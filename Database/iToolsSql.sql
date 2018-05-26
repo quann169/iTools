@@ -1,3 +1,4 @@
+DROP DATABASE iTools_v1p0;
 CREATE DATABASE  IF NOT EXISTS iTools_v1p0;
 USE iTools_v1p0;
 
@@ -21,7 +22,7 @@ INSERT INTO Company(CompanyID, CompanyName, CompanyType, Address, Location) VALU
 DROP TABLE IF EXISTS Assessor;
 CREATE TABLE IF NOT EXISTS Assessor (
   AssessorID INT(10) NOT NULL AUTO_INCREMENT,
-  AssessorName VARCHAR(100) NULL,
+  UserName VARCHAR(100) NULL,
   FingerID VARCHAR(100) NULL,
   Password VARCHAR(255) NULL,
   FirstName VARCHAR(255) NULL,
@@ -32,7 +33,7 @@ CREATE TABLE IF NOT EXISTS Assessor (
   CompanyID INT(10) NULL,
   IsActive BOOLEAN NOT NULL,
   PRIMARY KEY (AssessorID),
-  INDEX AssessorName (AssessorName),
+  INDEX UserName (UserName),
   FOREIGN KEY (CompanyID) REFERENCES Company(CompanyID) ON DELETE CASCADE
 );
 
