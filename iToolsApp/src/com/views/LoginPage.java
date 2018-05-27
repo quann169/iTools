@@ -7,6 +7,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
+import java.util.List;
+import java.util.ResourceBundle;
 
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -15,8 +17,13 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 
 import com.controllers.LoginController;
+import com.message.Enum;
+import com.models.Assessor;
+import com.utils.Config;
 
 public class LoginPage extends JFrame implements ActionListener {
 
@@ -33,6 +40,11 @@ public class LoginPage extends JFrame implements ActionListener {
 	JButton loginButton = new JButton("Login");
 	JButton forgotPwdButton = new JButton("Forget Password");
 	JCheckBox showPassword = new JCheckBox("Show Password");
+	
+	Config cfg = new Config();
+	String messageFile = cfg.getProperty(Enum.CFG_FILE.text());
+	ResourceBundle bundle = ResourceBundle.getBundle(messageFile);
+	
 
 	LoginPage() {
 		setLayoutManager();
@@ -48,34 +60,69 @@ public class LoginPage extends JFrame implements ActionListener {
 
 	public void setLocationAndSize() {
 		Font labelFont = logoLabel.getFont();
-		
+
 		logoLabel.setBounds(250, 60, 350, 60);
-		logoLabel.setFont(new Font(labelFont.getName(), Font.ITALIC+Font.BOLD, 50));
-		
+		logoLabel.setFont(new Font(labelFont.getName(), Font.ITALIC + Font.BOLD, 50));
+
 		userLabel.setBounds(100, 150, 150, 60);
 		userLabel.setFont(new Font(labelFont.getName(), Font.BOLD, 25));
-		
+
 		userTextField.setBounds(250, 170, 300, 30);
-		
-		
+
+		userTextField.getDocument().addDocumentListener(new DocumentListener() {
+			public void changedUpdate(DocumentEvent e) {
+				warn();
+			}
+
+			public void removeUpdate(DocumentEvent e) {
+				warn();
+			}
+
+			public void insertUpdate(DocumentEvent e) {
+				warn();
+			}
+
+			public void warn() {
+				if (userTextField.getText().length() > 0 && passwordField.getText().length() > 0) {
+					loginButton.setEnabled(true);
+				}
+			}
+		});
+
 		passwordLabel.setBounds(100, 200, 150, 60);
 		passwordLabel.setFont(new Font(labelFont.getName(), Font.BOLD, 25));
-		
-		
+
 		passwordField.setBounds(250, 220, 300, 30);
 		
+		passwordField.getDocument().addDocumentListener(new DocumentListener() {
+			public void changedUpdate(DocumentEvent e) {
+				warn();
+			}
+
+			public void removeUpdate(DocumentEvent e) {
+				warn();
+			}
+
+			public void insertUpdate(DocumentEvent e) {
+				warn();
+			}
+
+			public void warn() {
+				if (userTextField.getText().length() > 0 && passwordField.getText().length() > 0) {
+					loginButton.setEnabled(true);
+				}
+			}
+		});
+
 		showPassword.setBounds(246, 255, 350, 30);
 		showPassword.setFont(new Font(labelFont.getName(), Font.ITALIC, 20));
-		System.out.println(showPassword.getSize());
-		
-		
+
+		loginButton.setEnabled(false);
 		loginButton.setBounds(250, 300, 100, 30);
 		loginButton.setFont(new Font(labelFont.getName(), Font.BOLD, 15));
+
 		forgotPwdButton.setBounds(370, 300, 180, 30);
 		forgotPwdButton.setFont(new Font(labelFont.getName(), Font.BOLD, 15));
-		
-		
-		
 
 	}
 
@@ -101,11 +148,17 @@ public class LoginPage extends JFrame implements ActionListener {
 		if (e.getSource() == loginButton) {
 			String userText = userTextField.getText();
 			String pwdText = passwordField.getText();
-			
+
 			LoginController ctlObj = new LoginController();
 			boolean result = ctlObj.validateUser(userText, pwdText);
-			
+
 			if (result) {
+				List<Assessor> listUsers = ctlObj.getAllUsers();
+
+				for (Assessor assessor : listUsers) {
+					System.out.println(assessor);
+				}
+
 				JOptionPane.showMessageDialog(this, "Login Successful");
 			} else {
 				JOptionPane.showMessageDialog(this, "Invalid Username or Password");
@@ -125,23 +178,23 @@ public class LoginPage extends JFrame implements ActionListener {
 
 		}
 	}
-	
+
 	private static void titleAlign(JFrame frame) {
 
-        Font font = frame.getFont();
+		Font font = frame.getFont();
 
-        String currentTitle = frame.getTitle().trim();
-        FontMetrics fm = frame.getFontMetrics(font);
-        int frameWidth = frame.getWidth();
-        int titleWidth = fm.stringWidth(currentTitle);
-        int spaceWidth = fm.stringWidth(" ");
-        int centerPos = (frameWidth / 2) - (titleWidth / 2);
-        int spaceCount = centerPos / spaceWidth;
-        String pad = "";
-        pad = String.format("%" + (spaceCount - 14) + "s", pad);
-        frame.setTitle(pad + currentTitle);
+		String currentTitle = frame.getTitle().trim();
+		FontMetrics fm = frame.getFontMetrics(font);
+		int frameWidth = frame.getWidth();
+		int titleWidth = fm.stringWidth(currentTitle);
+		int spaceWidth = fm.stringWidth(" ");
+		int centerPos = (frameWidth / 2) - (titleWidth / 2);
+		int spaceCount = centerPos / spaceWidth;
+		String pad = "";
+		pad = String.format("%" + (spaceCount - 14) + "s", pad);
+		frame.setTitle(pad + currentTitle);
 
-    }
+	}
 
 	public static void main(String[] a) {
 		LoginPage frame = new LoginPage();
@@ -150,14 +203,14 @@ public class LoginPage extends JFrame implements ActionListener {
 		frame.setBounds(0, 0, 700, 460);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.addComponentListener(new ComponentAdapter() {
-            @Override
-            public void componentResized(ComponentEvent e) {
-                titleAlign(frame);
-            }
+			@Override
+			public void componentResized(ComponentEvent e) {
+				titleAlign(frame);
+			}
 
-        });
+		});
 		frame.setResizable(false);
-
+		frame.getRootPane().setDefaultButton(frame.loginButton);
 	}
 
 }

@@ -7,10 +7,13 @@ import java.util.Properties;
 
 public class MysqlConnect {
 	// init database constants
+	private static final Config cfg = new Config();
 	private static final String DATABASE_DRIVER = "com.mysql.jdbc.Driver";
-	private static final String DATABASE_URL = "jdbc:mysql://localhost:3306/itools_v1p0";
-	private static final String USERNAME = "root";
-	private static final String PASSWORD = "weatherford";
+	private static final String DATABASE_NAME = "mDbName";
+	private static final String USERNAME = "mDbUser";
+	private static final String HOST = "mDbHost";
+	private static final String PORT = "mDbPort";
+	private static final String PASSWORD = "mDbPwds";
 	private static final String MAX_POOL = "250";
 
 	// init connection object
@@ -22,7 +25,7 @@ public class MysqlConnect {
 	private Properties getProperties() {
 		if (properties == null) {
 			properties = new Properties();
-			properties.setProperty("user", USERNAME);
+			properties.setProperty("user", cfg.getProperty(USERNAME));
 			properties.setProperty("password", PASSWORD);
 			properties.setProperty("MaxPooledStatements", MAX_POOL);
 		}
@@ -34,6 +37,9 @@ public class MysqlConnect {
 		if (connection == null) {
 			try {
 				Class.forName(DATABASE_DRIVER);
+
+				String DATABASE_URL = "jdbc:mysql://" + cfg.getProperty(HOST) + ":" + cfg.getProperty(PORT) + "/"
+						+ cfg.getProperty(DATABASE_NAME);
 				connection = DriverManager.getConnection(DATABASE_URL, getProperties());
 			} catch (ClassNotFoundException | SQLException e) {
 				e.printStackTrace();
