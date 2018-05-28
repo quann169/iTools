@@ -274,9 +274,9 @@ CREATE TABLE IF NOT EXISTS WorkingTransaction (
   PRIMARY KEY (WorkingTransactionID),
   INDEX TransactionDate (TransactionDate),
   INDEX AssessorID (AssessorID),
-  INDEX CTID (CTID),
+  INDEX ToolID (ToolID),
   FOREIGN KEY (AssessorID) REFERENCES Assessor(AssessorID),
-  FOREIGN KEY (CTID) REFERENCES Tools(ToolID)
+  FOREIGN KEY (ToolID) REFERENCES Tools(ToolID)
 );
 	
 DROP TABLE IF EXISTS MasterLog;
