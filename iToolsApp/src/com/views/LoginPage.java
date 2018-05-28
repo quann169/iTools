@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.util.List;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 import javax.swing.JButton;
@@ -23,7 +24,6 @@ import javax.swing.event.DocumentListener;
 import com.controllers.LoginController;
 import com.message.Enum;
 import com.models.Assessor;
-import com.utils.Config;
 
 public class LoginPage extends JFrame implements ActionListener {
 
@@ -31,19 +31,17 @@ public class LoginPage extends JFrame implements ActionListener {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	static ResourceBundle bundleMessage = ResourceBundle.getBundle("com.message.ApplicationMessages", new Locale("vn", "VN"));
 	Container container = getContentPane();
-	JLabel logoLabel = new JLabel("iTools Logo");
-	JLabel userLabel = new JLabel("Username");
-	JLabel passwordLabel = new JLabel("Password");
+	JLabel logoLabel = new JLabel(bundleMessage.getString("Login_Page_iTools_Logo"));
+	JLabel userLabel = new JLabel(bundleMessage.getString("Login_Page_Username"));
+	JLabel passwordLabel = new JLabel(bundleMessage.getString("Login_Page_Password"));
 	JTextField userTextField = new JTextField();
 	JPasswordField passwordField = new JPasswordField();
-	JButton loginButton = new JButton("Login");
-	JButton forgotPwdButton = new JButton("Forget Password");
-	JCheckBox showPassword = new JCheckBox("Show Password");
+	JButton loginButton = new JButton(bundleMessage.getString("Login_Page_Login"));
+	JButton forgotPwdButton = new JButton(bundleMessage.getString("Login_Page_Forget_Password"));
+	JCheckBox showPassword = new JCheckBox(bundleMessage.getString("Login_Page_Show_Password"));
 	
-	Config cfg = new Config();
-	String messageFile = cfg.getProperty(Enum.CFG_FILE.text());
-	ResourceBundle bundle = ResourceBundle.getBundle(messageFile);
 	
 
 	LoginPage() {
@@ -159,9 +157,9 @@ public class LoginPage extends JFrame implements ActionListener {
 					System.out.println(assessor);
 				}
 
-				JOptionPane.showMessageDialog(this, "Login Successful");
+				JOptionPane.showMessageDialog(this, bundleMessage.getString("Login_Page_Login_Successful"));
 			} else {
-				JOptionPane.showMessageDialog(this, "Invalid Username or Password");
+				JOptionPane.showMessageDialog(this, bundleMessage.getString("Login_Page_Login_Fail"));
 			}
 
 		}
@@ -198,7 +196,7 @@ public class LoginPage extends JFrame implements ActionListener {
 
 	public static void main(String[] a) {
 		LoginPage frame = new LoginPage();
-		frame.setTitle("Login Page");
+		frame.setTitle(bundleMessage.getString("Login_Page_Title"));
 		frame.setVisible(true);
 		frame.setBounds(0, 0, 700, 460);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

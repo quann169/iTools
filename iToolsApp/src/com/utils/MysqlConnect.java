@@ -25,8 +25,8 @@ public class MysqlConnect {
 	private Properties getProperties() {
 		if (properties == null) {
 			properties = new Properties();
-			properties.setProperty("user", cfg.getProperty(USERNAME));
-			properties.setProperty("password", PASSWORD);
+			properties.setProperty("user", AdvancedEncryptionStandard.decrypt(cfg.getProperty(USERNAME)));
+			properties.setProperty("password", AdvancedEncryptionStandard.decrypt(cfg.getProperty(PASSWORD)));
 			properties.setProperty("MaxPooledStatements", MAX_POOL);
 		}
 		return properties;
@@ -38,8 +38,9 @@ public class MysqlConnect {
 			try {
 				Class.forName(DATABASE_DRIVER);
 
-				String DATABASE_URL = "jdbc:mysql://" + cfg.getProperty(HOST) + ":" + cfg.getProperty(PORT) + "/"
-						+ cfg.getProperty(DATABASE_NAME);
+				String DATABASE_URL = "jdbc:mysql://" + AdvancedEncryptionStandard.decrypt(cfg.getProperty(HOST)) + ":"
+						+ AdvancedEncryptionStandard.decrypt(cfg.getProperty(PORT)) + "/"
+						+ AdvancedEncryptionStandard.decrypt(cfg.getProperty(DATABASE_NAME));
 				connection = DriverManager.getConnection(DATABASE_URL, getProperties());
 			} catch (ClassNotFoundException | SQLException e) {
 				e.printStackTrace();

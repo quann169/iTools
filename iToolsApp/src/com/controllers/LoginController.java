@@ -28,8 +28,10 @@ public class LoginController {
 	}
 
 	public boolean validateUser(String username, String password) {
-		String sql = "SELECT * FROM Assessor where Assessor.UserName='" + username + "' and Password=md5(" + password
-				+ ");";
+		String sql = "SELECT * FROM Assessor where Assessor.UserName='" + username + "' and Password=md5('" + password
+				+ "');";
+		
+		System.out.println(sql);
 		try {
 			PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
 			ResultSet rs = statement.executeQuery(sql);
@@ -55,7 +57,7 @@ public class LoginController {
 			ResultSet rs = statement.executeQuery(sql);
 			
 			while (rs.next()) {
-			    String userId = rs.getString(1);
+			    int userId = Integer.parseInt(rs.getString(1));
 			    String username = rs.getString(2);
 			    String password = rs.getString(3);
 			    String companyIdStr = rs.getString(4);
@@ -67,6 +69,7 @@ public class LoginController {
 				}
 			    
 			    Assessor user = new Assessor(username, password, companyId);
+			    user.setAssessorId(userId);
 			    listAllUsers.add(user);
 			}
 			return listAllUsers;

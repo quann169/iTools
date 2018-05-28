@@ -1,4 +1,4 @@
-DROP DATABASE iTools_v1p0;
+-- DROP DATABASE iTools_v1p0;
 CREATE DATABASE  IF NOT EXISTS iTools_v1p0;
 USE iTools_v1p0;
 
@@ -6,6 +6,7 @@ USE iTools_v1p0;
 DROP TABLE IF EXISTS Company;
 CREATE TABLE IF NOT EXISTS Company (
   CompanyID INT(10) NOT NULL AUTO_INCREMENT,
+  CompanyCode VARCHAR(100) NULL,
   CompanyName VARCHAR(100) NULL,
   CompanyType VARCHAR(100) NULL,
   Address VARCHAR(100) NULL,
@@ -13,10 +14,10 @@ CREATE TABLE IF NOT EXISTS Company (
   PRIMARY KEY (CompanyID)
 );
 
-INSERT INTO Company(CompanyID, CompanyName, CompanyType, Address, Location) VALUES 
-		(1, "UHCom", "", "UH Addr", "Location1"),
-		(2, "Com1", "", "Com1 Addr", "Location2"),
-		(3, "Com2", "", "Com2 Addr", "Location3");
+INSERT INTO Company(CompanyID, CompanyName, CompanyCode, Address, Location) VALUES 
+		(1, "UHCom", "UHCom", "UH Addr", "Location1"),
+		(2, "Com1", "Com1", "Com1 Addr", "Location2"),
+		(3, "Com2", "Com2", "Com2 Addr", "Location3");
 
 
 DROP TABLE IF EXISTS Assessor;
@@ -32,12 +33,13 @@ CREATE TABLE IF NOT EXISTS Assessor (
   Phone VARCHAR(255) NULL,
   CompanyID INT(10) NULL,
   IsActive BOOLEAN NOT NULL,
+  LastPassword VARCHAR(255) NULL,
   PRIMARY KEY (AssessorID),
   INDEX UserName (UserName),
   FOREIGN KEY (CompanyID) REFERENCES Company(CompanyID) ON DELETE CASCADE
 );
 
-INSERT INTO Assessor(AssessorID, AssessorName, Password, FirstName, LastName, EmailAddress, CompanyID, IsActive) VALUES 
+INSERT INTO Assessor(AssessorID, UserName, Password, FirstName, LastName, EmailAddress, CompanyID, IsActive) VALUES 
 	(1, "admin", "e10adc3949ba59abbe56e057f20f883e", "ADMIN", "ADMIN", "quann169@gmail.com", NULL, 1),
 	(2, "UHAdmin1", "e10adc3949ba59abbe56e057f20f883e", "ADMIN", "UH", "admin1@aaa.bbb", 1, 1),
 	(3, "UHAcc1", "e10adc3949ba59abbe56e057f20f883e", "Acc1", "UH", "acc1@aaa.bbb", 1, 1),
@@ -118,6 +120,7 @@ DROP TABLE IF EXISTS Machine;
 CREATE TABLE IF NOT EXISTS Machine (
   MachineID INT(10) NOT NULL AUTO_INCREMENT,
   Name VARCHAR(100) NULL,
+  MachineCode VARCHAR(100) NULL,
   Model VARCHAR(100) NULL,
   Location VARCHAR(100) NULL,
   Description VARCHAR(100) NULL,
@@ -127,12 +130,12 @@ CREATE TABLE IF NOT EXISTS Machine (
   PRIMARY KEY (MachineID)
 );
 
-INSERT INTO Machine(MachineID, Name, Location, CreatedDate, IsActive) VALUES 
-	(1, "MAC1", "Location1", now(), 1),
-	(2, "MAC2", "Location2", now(), 1),
-	(3, "MAC3", "Location3", now(), 1),
-	(4, "MAC4", "Location4", now(), 1),
-	(5, "MAC5", "Location5", now(), 1);
+INSERT INTO Machine(MachineID, Name, MachineCode, Location, CreatedDate, IsActive) VALUES 
+	(1, "MAC1", "MAC1", "Location1", now(), 1),
+	(2, "MAC2", "MAC2", "Location2", now(), 1),
+	(3, "MAC3", "MAC3", "Location3", now(), 1),
+	(4, "MAC4", "MAC4", "Location4", now(), 1),
+	(5, "MAC5", "MAC5", "Location5", now(), 1);
 	
 DROP TABLE IF EXISTS CompanyMachine;
 CREATE TABLE IF NOT EXISTS CompanyMachine (
@@ -184,7 +187,7 @@ CREATE TABLE IF NOT EXISTS ToolsMachineTray (
   ToolsMachineTrayID INT(10) NOT NULL AUTO_INCREMENT,
   ToolID INT(10) NOT NULL,
   MachineID INT(10) NULL,
-  TrayIndex INT(10) NULL,
+  TrayIndex VARCHAR(100) NULL,
   Quantity INT(10) NULL,
   CreatedDate DATETIME NULL,
   UpdatedDate DATETIME NULL,
@@ -263,10 +266,11 @@ CREATE TABLE IF NOT EXISTS WorkingTransaction (
   AssessorID INT(10) NOT NULL,
   WOCode INT(10) NOT NULL,
   OPCode INT(10) NOT NULL,
-  CTID INT(10) NOT NULL,
-  TrayID INT(10) NOT NULL,
+  ToolID INT(10) NOT NULL,
+  TrayIndex VARCHAR(100) NULL,
   UpdatedDate DATETIME NULL,
   RespondMessage VARCHAR(255) NULL,
+  TransactionType VARCHAR(255) NULL,
   PRIMARY KEY (WorkingTransactionID),
   INDEX TransactionDate (TransactionDate),
   INDEX AssessorID (AssessorID),

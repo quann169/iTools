@@ -2,7 +2,10 @@ package com.message;
 
 public enum Enum {
 	
-	CFG_FILE("messageFile");
+	Login_Page_Title("Login_Page_Title"),
+	Login_Successful("Login_Successful"),
+	Login_Fail("Login_Fail")
+	;
 	
 	private String text;
 
