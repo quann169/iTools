@@ -21,8 +21,9 @@ import javax.swing.JTextField;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
+import org.apache.log4j.Logger;
+
 import com.controllers.LoginController;
-import com.message.Enum;
 import com.models.Assessor;
 
 public class LoginPage extends JFrame implements ActionListener {
@@ -42,7 +43,7 @@ public class LoginPage extends JFrame implements ActionListener {
 	JButton forgotPwdButton = new JButton(bundleMessage.getString("Login_Page_Forget_Password"));
 	JCheckBox showPassword = new JCheckBox(bundleMessage.getString("Login_Page_Show_Password"));
 	
-	
+	final static Logger logger = Logger.getLogger(LoginPage.class);
 
 	LoginPage() {
 		setLayoutManager();
@@ -144,12 +145,13 @@ public class LoginPage extends JFrame implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == loginButton) {
+			
 			String userText = userTextField.getText();
 			String pwdText = passwordField.getText();
-
+			logger.info("Login with username: " + userText);
 			LoginController ctlObj = new LoginController();
 			boolean result = ctlObj.validateUser(userText, pwdText);
-
+			logger.info("Login OK");
 			if (result) {
 				List<Assessor> listUsers = ctlObj.getAllUsers();
 

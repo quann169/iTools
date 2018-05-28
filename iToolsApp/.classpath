@@ -11,5 +11,6 @@
 	<classpathentry kind="lib" path="C:/Users/svi-quannguyen/OneDrive - Savarti Company Limited/Savarti/050_Individual/Project/WeatherFord/GIT/iTools/iToolsApp/lib/slf4j-api-1.6.1.jar"/>
 	<classpathentry kind="lib" path="C:/Users/svi-quannguyen/OneDrive - Savarti Company Limited/Savarti/050_Individual/Project/WeatherFord/GIT/iTools/iToolsApp/lib/mysql-connector.jar"/>
 	<classpathentry kind="lib" path="C:/Users/svi-quannguyen/OneDrive - Savarti Company Limited/Savarti/050_Individual/Project/WeatherFord/GIT/iTools/iToolsApp/lib/commons-codec-1.11.jar"/>
+	<classpathentry kind="lib" path="C:/Users/svi-quannguyen/OneDrive - Savarti Company Limited/Savarti/050_Individual/Project/WeatherFord/GIT/iTools/iToolsApp/lib/log4j.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
