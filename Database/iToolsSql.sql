@@ -1,4 +1,4 @@
--- DROP DATABASE iTools_v1p0;
+DROP DATABASE IF EXISTS  iTools_v1p0;
 CREATE DATABASE  IF NOT EXISTS iTools_v1p0;
 USE iTools_v1p0;
 
@@ -31,25 +31,24 @@ CREATE TABLE IF NOT EXISTS Assessor (
   EmailAddress VARCHAR(255) NOT NULL,
   Address VARCHAR(255) NULL,
   Phone VARCHAR(255) NULL,
-  CompanyID INT(10) NULL,
+  CompanyCode VARCHAR(100) NULL,
   IsActive BOOLEAN NOT NULL,
   LastPassword VARCHAR(255) NULL,
   PRIMARY KEY (AssessorID),
-  INDEX UserName (UserName),
-  FOREIGN KEY (CompanyID) REFERENCES Company(CompanyID) ON DELETE CASCADE
+  INDEX UserName (UserName)
 );
 
-INSERT INTO Assessor(AssessorID, UserName, Password, FirstName, LastName, EmailAddress, CompanyID, IsActive) VALUES 
+INSERT INTO Assessor(AssessorID, UserName, Password, FirstName, LastName, EmailAddress, CompanyCode, IsActive) VALUES 
 	(1, "admin", "e10adc3949ba59abbe56e057f20f883e", "ADMIN", "ADMIN", "quann169@gmail.com", NULL, 1),
-	(2, "UHAdmin1", "e10adc3949ba59abbe56e057f20f883e", "ADMIN", "UH", "admin1@aaa.bbb", 1, 1),
-	(3, "UHAcc1", "e10adc3949ba59abbe56e057f20f883e", "Acc1", "UH", "acc1@aaa.bbb", 1, 1),
-	(4, "UHAcc2", "e10adc3949ba59abbe56e057f20f883e", "Acc2", "UH", "acc2@aaa.bbb", 1, 1),
-	(5, "Com1Admin", "e10adc3949ba59abbe56e057f20f883e", "ADMIN", "Com1", "com1admin@aaa.bbb", 2, 1),
-	(6, "Com1User1", "e10adc3949ba59abbe56e057f20f883e", "User1", "Com1", "com1admin@aaa.bbb", 2, 1),
-	(7, "Com1User2", "e10adc3949ba59abbe56e057f20f883e", "User2", "Com1", "com1admin@aaa.bbb", 2, 1),
-	(8, "Com1User3", "e10adc3949ba59abbe56e057f20f883e", "User3", "Com1", "com1admin@aaa.bbb", 2, 1),
-	(9, "Com2Admin", "e10adc3949ba59abbe56e057f20f883e", "ADMIN", "Com2", "com1admin@aaa.bbb", 3, 1),
-	(10, "Com2User1", "e10adc3949ba59abbe56e057f20f883e", "User1", "Com2", "com1admin@aaa.bbb", 3, 1);
+	(2, "uhadmin1", "e10adc3949ba59abbe56e057f20f883e", "ADMIN", "UH", "admin1@aaa.bbb", "UHCom", 1),
+	(3, "uhacc1", "e10adc3949ba59abbe56e057f20f883e", "Acc1", "UH", "acc1@aaa.bbb", "UHCom", 1),
+	(4, "uhacc2", "e10adc3949ba59abbe56e057f20f883e", "Acc2", "UH", "acc2@aaa.bbb", "UHCom", 1),
+	(5, "com1admin", "e10adc3949ba59abbe56e057f20f883e", "ADMIN", "Com1", "com1admin@aaa.bbb", "Com1", 1),
+	(6, "com1user1", "e10adc3949ba59abbe56e057f20f883e", "User1", "Com1", "com1admin@aaa.bbb", "Com1", 1),
+	(7, "com1user2", "e10adc3949ba59abbe56e057f20f883e", "User2", "Com1", "com1admin@aaa.bbb", "Com1", 1),
+	(8, "com1user3", "e10adc3949ba59abbe56e057f20f883e", "User3", "Com1", "com1admin@aaa.bbb", "Com1", 1),
+	(9, "com2admin", "e10adc3949ba59abbe56e057f20f883e", "ADMIN", "Com2", "com1admin@aaa.bbb", 3, 1),
+	(10, "com2user1", "e10adc3949ba59abbe56e057f20f883e", "User1", "Com2", "com1admin@aaa.bbb", 3, 1);
 
 
 DROP TABLE IF EXISTS Roles;
@@ -68,7 +67,7 @@ INSERT INTO Roles(RoleID, RoleName, IsRole) VALUES
 	(5, "Other", 1),
 	(6, "PutIns", 0),
 	(7, "TakeOver", 0),
-	(8, "UpdateReport", 0);
+	(8, "EditTransaction", 0);
 
 
 
