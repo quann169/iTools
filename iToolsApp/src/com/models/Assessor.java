@@ -1,5 +1,7 @@
 package com.models;
 
+import java.util.List;
+
 public class Assessor {
 
 	private int assessorId;
@@ -8,19 +10,20 @@ public class Assessor {
 	private String firstName;
 	private String lastName;
 	private String email;
-	private int companyId;
 	private boolean isActive;
+	private List<Role> listRoles;
+	private String companyCode;
 
 	/**
 	 * @param username
 	 * @param password
 	 * @param companyId
 	 */
-	public Assessor(String username, String password, int companyId) {
+	public Assessor(String username, String password, String companyCode) {
 		super();
 		this.username = username;
 		this.password = password;
-		this.companyId = companyId;
+		this.companyCode = companyCode;
 	}
 
 	/**
@@ -114,21 +117,6 @@ public class Assessor {
 	}
 
 	/**
-	 * @return the companyId
-	 */
-	public int getCompanyId() {
-		return companyId;
-	}
-
-	/**
-	 * @param companyId
-	 *            the companyId to set
-	 */
-	public void setCompanyId(int companyId) {
-		this.companyId = companyId;
-	}
-
-	/**
 	 * @return the isActive
 	 */
 	public boolean isActive() {
@@ -143,6 +131,36 @@ public class Assessor {
 		this.isActive = isActive;
 	}
 
+	/**
+	 * @return the listRoles
+	 */
+	public List<Role> getListRoles() {
+		return listRoles;
+	}
+
+	/**
+	 * @param listRoles
+	 *            the listRoles to set
+	 */
+	public void setListRoles(List<Role> listRoles) {
+		this.listRoles = listRoles;
+	}
+
+	/**
+	 * @return the companyCode
+	 */
+	public String getCompanyCode() {
+		return companyCode;
+	}
+
+	/**
+	 * @param companyCode
+	 *            the companyCode to set
+	 */
+	public void setCompanyCode(String companyCode) {
+		this.companyCode = companyCode;
+	}
+
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -150,12 +168,10 @@ public class Assessor {
 	 */
 	@Override
 	public String toString() {
-		return "User [assessorId=" + assessorId + ", " + (username != null ? "username=" + username + ", " : "")
-				+ (password != null ? "password=" + password + ", " : "")
-				+ (firstName != null ? "firstName=" + firstName + ", " : "")
-				+ (lastName != null ? "lastName=" + lastName + ", " : "")
-				+ (email != null ? "email=" + email + ", " : "") + "companyId=" + companyId + ", isActive=" + isActive
-				+ "]";
+		return "Assessor [assessorId=" + assessorId + ", " + (username != null ? "username=" + username + ", " : "")
+				+ (companyCode != null ? "companyCode=" + companyCode + ", " : "")
+				+ (listRoles != null ? "listRoles=" + listRoles + ", " : "")
+				+ (email != null ? "email=" + email + ", " : "") + "isActive=" + isActive + "]";
 	}
 
 }

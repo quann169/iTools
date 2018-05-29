@@ -24,13 +24,12 @@ import javax.swing.event.DocumentListener;
 import org.apache.log4j.Logger;
 
 import com.controllers.LoginController;
-import com.message.Enum;
 import com.models.Assessor;
 import com.models.Role;
 import com.utils.AdvancedEncryptionStandard;
 import com.utils.Config;
 
-public class LoginPage extends JFrame implements ActionListener {
+public class EmployeePage extends JFrame implements ActionListener {
 
 	/**
 	 * 
@@ -50,9 +49,9 @@ public class LoginPage extends JFrame implements ActionListener {
 	
 	private static final Config cfg = new Config();
 	private static final String COMPANY_CODE = "COMPANY_CODE";
-	final static Logger logger = Logger.getLogger(LoginPage.class);
+	final static Logger logger = Logger.getLogger(EmployeePage.class);
 
-	LoginPage() {
+	EmployeePage() {
 		setLayoutManager();
 		setLocationAndSize();
 		addComponentsToContainer();
@@ -129,6 +128,8 @@ public class LoginPage extends JFrame implements ActionListener {
 
 		forgotPwdButton.setBounds(370, 300, 180, 30);
 		forgotPwdButton.setFont(new Font(labelFont.getName(), Font.BOLD, 15));
+		
+		loginButton.setText("DASHBOARD");
 
 	}
 
@@ -169,26 +170,7 @@ public class LoginPage extends JFrame implements ActionListener {
 				List<Role> listRoles = ctlObj.getUserRoles(userText, companyCode);
 				logger.info("listRoles: " + listRoles);
 				
-				if (listRoles.size() == 0) {
-					JOptionPane.showMessageDialog(this, bundleMessage.getString("Login_Page_Have_Not_Role"));
-					logger.info("User does not have role");
-				} else if (listRoles.size() == 1 && listRoles.get(0).getRoleName() == Enum.EMP.text()) {
-					EmployeePage empPage = new EmployeePage();
-					
-					empPage.setVisible(true);
-					empPage.setBounds(0, 0, 700, 460);
-					empPage.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-					empPage.setResizable(false);
-					
-					empPage.show();
-				} else {
-					DashboardPage dashboardPage = new DashboardPage();
-					dashboardPage.show();
-					dashboardPage.setVisible(true);
-					dashboardPage.setBounds(0, 0, 700, 460);
-					dashboardPage.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-					dashboardPage.setResizable(false);
-				}
+				
 				
 //				JOptionPane.showMessageDialog(this, bundleMessage.getString("Login_Page_Login_Successful"));
 			} else {
@@ -226,23 +208,6 @@ public class LoginPage extends JFrame implements ActionListener {
 		pad = String.format("%" + (spaceCount - 14) + "s", pad);
 		frame.setTitle(pad + currentTitle);
 
-	}
-
-	public static void main(String[] a) {
-		LoginPage frame = new LoginPage();
-		frame.setTitle(bundleMessage.getString("Login_Page_Title"));
-		frame.setVisible(true);
-		frame.setBounds(0, 0, 700, 460);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.addComponentListener(new ComponentAdapter() {
-			@Override
-			public void componentResized(ComponentEvent e) {
-				titleAlign(frame);
-			}
-
-		});
-		frame.setResizable(false);
-		frame.getRootPane().setDefaultButton(frame.loginButton);
 	}
 
 }

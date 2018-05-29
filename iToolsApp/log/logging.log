@@ -1,0 +1,28 @@
+2018-05-29 22:30:06 INFO  LoginPage:151 - Login with username: asdasdf
+2018-05-29 22:30:18 INFO  LoginPage:165 - Login Fail
+2018-05-29 23:39:22 INFO  LoginPage:157 - Login with username: admin
+2018-05-29 23:39:23 INFO  LoginPage:162 - Login OK
+2018-05-29 23:39:23 INFO  LoginPage:165 - listRoles: []
+2018-05-29 23:40:09 INFO  LoginPage:157 - Login with username: admin
+2018-05-29 23:40:10 INFO  LoginPage:162 - Login OK
+2018-05-29 23:40:10 INFO  LoginPage:165 - listRoles: []
+2018-05-29 23:40:59 INFO  LoginPage:157 - Login with username: admin
+2018-05-29 23:41:00 INFO  LoginPage:162 - Login OK
+2018-05-29 23:41:00 INFO  LoginPage:165 - listRoles: []
+2018-05-29 23:41:40 INFO  LoginPage:157 - Login with username: admin
+2018-05-29 23:41:41 INFO  LoginPage:162 - Login OK
+2018-05-29 23:41:41 INFO  LoginPage:165 - listRoles: []
+2018-05-29 23:42:07 INFO  LoginPage:157 - Login with username: UHAdmin
+2018-05-29 23:42:10 INFO  LoginPage:170 - Login Fail
+2018-05-29 23:48:03 INFO  LoginPage:161 - Login with username: uhadmin1
+2018-05-29 23:48:04 INFO  LoginPage:166 - Login OK
+2018-05-29 23:48:04 INFO  LoginPage:169 - listRoles: [Roles [roleName=Admin], Roles [roleName=SubAdmin], Roles [roleName=Accounting], Roles [roleName=PutIns], Roles [roleName=TakeOver], Roles [roleName=EditTransaction]]
+2018-05-30 00:03:57 INFO  LoginPage:162 - Login with username: uhadmin1
+2018-05-30 00:03:58 INFO  LoginPage:167 - Login OK
+2018-05-30 00:03:58 INFO  LoginPage:170 - listRoles: [Roles [roleName=Admin], Roles [roleName=SubAdmin], Roles [roleName=Accounting], Roles [roleName=PutIns], Roles [roleName=TakeOver], Roles [roleName=EditTransaction]]
+2018-05-30 00:06:01 INFO  LoginPage:162 - Login with username: uhadmin1
+2018-05-30 00:06:02 INFO  LoginPage:167 - Login OK
+2018-05-30 00:06:02 INFO  LoginPage:170 - listRoles: [Roles [roleName=Admin], Roles [roleName=SubAdmin], Roles [roleName=Accounting], Roles [roleName=PutIns], Roles [roleName=TakeOver], Roles [roleName=EditTransaction]]
+2018-05-30 00:06:29 INFO  LoginPage:162 - Login with username: uhadmin1
+2018-05-30 00:06:30 INFO  LoginPage:167 - Login OK
+2018-05-30 00:06:30 INFO  LoginPage:170 - listRoles: [Roles [roleName=Admin], Roles [roleName=SubAdmin], Roles [roleName=Accounting], Roles [roleName=PutIns], Roles [roleName=TakeOver], Roles [roleName=EditTransaction]]

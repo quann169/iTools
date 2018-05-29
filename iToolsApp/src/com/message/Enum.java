@@ -2,8 +2,19 @@ package com.message;
 
 public enum Enum {
 
-	Login_Page_Title("Login_Page_Title"), Login_Successful("Login_Successful"), Login_Fail("Login_Fail");
+	// Role
+	ADMIN("Admin"), 
+	SUBADMIN("SubAdmin"), 
+	ACCT("Accounting"),
+	EMP("Employee"),
+	OTHER("Other"),
+	PUTIN("PutIns"),
+	TKOVER("TakeOver"),
+	EDTTRANS("EditTransaction"),
+	
+	;
 
+	
 	private String text;
 
 	Enum(String text) {

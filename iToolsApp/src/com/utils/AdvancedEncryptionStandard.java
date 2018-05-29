@@ -27,7 +27,7 @@ public class AdvancedEncryptionStandard {
 			cipher.init(Cipher.ENCRYPT_MODE, skeySpec, iv);
 
 			byte[] encrypted = cipher.doFinal(value.getBytes());
-//			System.out.println("encrypted " + value + " ==> " + Base64.encodeBase64String(encrypted));
+			System.out.println("encrypted " + value + " ==> " + Base64.encodeBase64String(encrypted));
 
 			return Base64.encodeBase64String(encrypted);
 		} catch (Exception ex) {
@@ -57,17 +57,17 @@ public class AdvancedEncryptionStandard {
 
 //	public static void main(String[] a) throws Exception {
 //
-//		String plainText = "localhost";
+//		String plainText = "UHCom";
 //		String cipherText = AdvancedEncryptionStandard.encrypt(plainText);
 //		AdvancedEncryptionStandard.decrypt(cipherText);
 //		System.out.println();
 //		
-//		plainText = "admin";
+//		plainText = "Com1";
 //		cipherText = AdvancedEncryptionStandard.encrypt(plainText);
 //		AdvancedEncryptionStandard.decrypt(cipherText);
 //		System.out.println();
 //		
-//		plainText = "1qazxsw2";
+//		plainText = "Com2";
 //		cipherText = AdvancedEncryptionStandard.encrypt(plainText);
 //		AdvancedEncryptionStandard.decrypt(cipherText);
 //		System.out.println();

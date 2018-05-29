@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.models.Assessor;
+import com.models.Role;
 import com.utils.MysqlConnect;
 
 /**
@@ -24,22 +25,27 @@ public class LoginController {
 	 * 
 	 */
 	public LoginController() {
-		// TODO Auto-generated constructor stub
+		
 	}
 
+	/**
+	 * 
+	 * @param username
+	 * @param password
+	 * @return
+	 */
 	public boolean validateUser(String username, String password) {
-		String sql = "SELECT * FROM Assessor where Assessor.UserName='" + username + "' and Password=md5('" + password
+		String sql = "SELECT * FROM Assessor where Assessor.UserName='" + username.toLowerCase() + "' and Password=md5('" + password
 				+ "');";
-		
-		System.out.println(sql);
+		// System.out.println(sql);
 		try {
 			PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
 			ResultSet rs = statement.executeQuery(sql);
-			if (!rs.isBeforeFirst() ) {    
-			    return false;
+			if (!rs.isBeforeFirst()) {
+				return false;
 			} else {
 				return true;
-			}			
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return false;
@@ -48,29 +54,26 @@ public class LoginController {
 		}
 	}
 
-	
+	/**
+	 * 
+	 * @return
+	 */
 	public List<Assessor> getAllUsers() {
 		String sql = "SELECT AssessorID, UserName, Password, CompanyId FROM Assessor where Assessor.IsActive=1;";
 		List<Assessor> listAllUsers = new ArrayList<>();
 		try {
 			PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
 			ResultSet rs = statement.executeQuery(sql);
-			
+
 			while (rs.next()) {
-			    int userId = Integer.parseInt(rs.getString(1));
-			    String username = rs.getString(2);
-			    String password = rs.getString(3);
-			    String companyIdStr = rs.getString(4);
-			    int companyId = -1;
-			    try {
-			    	companyId = Integer.parseInt(companyIdStr);
-				} catch (Exception e) {
-					
-				}
-			    
-			    Assessor user = new Assessor(username, password, companyId);
-			    user.setAssessorId(userId);
-			    listAllUsers.add(user);
+				int userId = Integer.parseInt(rs.getString(1));
+				String username = rs.getString(2);
+				String password = rs.getString(3);
+				String companyCode = rs.getString(4);
+
+				Assessor user = new Assessor(username, password, companyCode);
+				user.setAssessorId(userId);
+				listAllUsers.add(user);
 			}
 			return listAllUsers;
 		} catch (SQLException e) {
@@ -81,4 +84,32 @@ public class LoginController {
 		}
 	}
 
+	/**
+	 * 
+	 */
+	public List<Role> getUserRoles(String userName, String companyCode) {
+		String sql = "select distinct RoleName "
+				+ " from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID"
+				+ " inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = '"
+				+ companyCode + "' and assessor.UserName= '" + userName.toLowerCase() + "'";
+		System.out.println(sql);
+		List<Role> listAllRoles = new ArrayList<>();
+		try {
+			PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
+			ResultSet rs = statement.executeQuery(sql);
+
+			while (rs.next()) {
+				String roleName = rs.getString(1);
+				Role role = new Role(0, roleName);
+				
+				listAllRoles.add(role);
+			}
+			return listAllRoles;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return listAllRoles;
+		} finally {
+			mysqlConnect.disconnect();
+		}
+	}
 }
