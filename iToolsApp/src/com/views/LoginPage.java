@@ -151,17 +151,18 @@ public class LoginPage extends JFrame implements ActionListener {
 			logger.info("Login with username: " + userText);
 			LoginController ctlObj = new LoginController();
 			boolean result = ctlObj.validateUser(userText, pwdText);
-			logger.info("Login OK");
+			
 			if (result) {
 				List<Assessor> listUsers = ctlObj.getAllUsers();
 
 				for (Assessor assessor : listUsers) {
 					System.out.println(assessor);
 				}
-
-				JOptionPane.showMessageDialog(this, bundleMessage.getString("Login_Page_Login_Successful"));
+				logger.info("Login OK");
+//				JOptionPane.showMessageDialog(this, bundleMessage.getString("Login_Page_Login_Successful"));
 			} else {
 				JOptionPane.showMessageDialog(this, bundleMessage.getString("Login_Page_Login_Fail"));
+				logger.info("Login Fail");
 			}
 
 		}

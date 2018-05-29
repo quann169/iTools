@@ -8,7 +8,7 @@ import java.util.Properties;
 public class MysqlConnect {
 	// init database constants
 	private static final Config cfg = new Config();
-	private static final String DATABASE_DRIVER = "com.mysql.jdbc.Driver";
+	private static final String DATABASE_DRIVER = "com.mysql.cj.jdbc.Driver";
 	private static final String DATABASE_NAME = "mDbName";
 	private static final String USERNAME = "mDbUser";
 	private static final String HOST = "mDbHost";
@@ -28,6 +28,8 @@ public class MysqlConnect {
 			properties.setProperty("user", AdvancedEncryptionStandard.decrypt(cfg.getProperty(USERNAME)));
 			properties.setProperty("password", AdvancedEncryptionStandard.decrypt(cfg.getProperty(PASSWORD)));
 			properties.setProperty("MaxPooledStatements", MAX_POOL);
+			properties.setProperty("useSSL", "false");
+			properties.setProperty("autoReconnect", "true");
 		}
 		return properties;
 	}

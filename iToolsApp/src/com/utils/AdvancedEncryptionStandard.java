@@ -27,7 +27,7 @@ public class AdvancedEncryptionStandard {
 			cipher.init(Cipher.ENCRYPT_MODE, skeySpec, iv);
 
 			byte[] encrypted = cipher.doFinal(value.getBytes());
-			System.out.println("encrypted " + value + " ==> " + Base64.encodeBase64String(encrypted));
+//			System.out.println("encrypted " + value + " ==> " + Base64.encodeBase64String(encrypted));
 
 			return Base64.encodeBase64String(encrypted);
 		} catch (Exception ex) {
@@ -46,7 +46,7 @@ public class AdvancedEncryptionStandard {
 			cipher.init(Cipher.DECRYPT_MODE, skeySpec, iv);
 
 			byte[] original = cipher.doFinal(Base64.decodeBase64(encrypted));
-			System.out.println("decrypt " + encrypted + " ==> " + new String(original));
+//			System.out.println("decrypt " + encrypted + " ==> " + new String(original));
 			return new String(original);
 		} catch (Exception ex) {
 			ex.printStackTrace();
