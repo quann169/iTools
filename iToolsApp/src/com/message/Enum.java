@@ -6,7 +6,7 @@ public enum Enum {
 	ADMIN("Admin"), 
 	SUBADMIN("SubAdmin"), 
 	ACCT("Accounting"),
-	EMP("Employee"),
+	EMP("Emp"),
 	OTHER("Other"),
 	PUTIN("PutIns"),
 	TKOVER("TakeOver"),

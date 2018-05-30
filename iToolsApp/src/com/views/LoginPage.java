@@ -156,7 +156,7 @@ public class LoginPage extends JFrame implements ActionListener {
 			String userText = userTextField.getText();
 			String pwdText = passwordField.getText();
 			
-			userText = "uhadmin1";
+			userText = "com1user2";
 			pwdText = "123456";
 			
 			logger.info("Login with username: " + userText);
@@ -169,17 +169,24 @@ public class LoginPage extends JFrame implements ActionListener {
 				List<Role> listRoles = ctlObj.getUserRoles(userText, companyCode);
 				logger.info("listRoles: " + listRoles);
 				
+				System.out.println(listRoles.get(0).getRoleName() + "   " + Enum.EMP.text());
 				if (listRoles.size() == 0) {
 					JOptionPane.showMessageDialog(this, bundleMessage.getString("Login_Page_Have_Not_Role"));
 					logger.info("User does not have role");
-				} else if (listRoles.size() == 1 && listRoles.get(0).getRoleName() == Enum.EMP.text()) {
+				} else if (listRoles.size() == 1 && Enum.EMP.text().equals(listRoles.get(0).getRoleName())) {
 					EmployeePage empPage = new EmployeePage();
 					
 					empPage.setVisible(true);
 					empPage.setBounds(0, 0, 700, 460);
 					empPage.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 					empPage.setResizable(false);
-					
+					empPage.addComponentListener(new ComponentAdapter() {
+						@Override
+						public void componentResized(ComponentEvent e) {
+							titleAlign(empPage);
+						}
+
+					});
 					empPage.show();
 				} else {
 					DashboardPage dashboardPage = new DashboardPage();
@@ -188,6 +195,13 @@ public class LoginPage extends JFrame implements ActionListener {
 					dashboardPage.setBounds(0, 0, 700, 460);
 					dashboardPage.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 					dashboardPage.setResizable(false);
+					dashboardPage.addComponentListener(new ComponentAdapter() {
+						@Override
+						public void componentResized(ComponentEvent e) {
+							titleAlign(dashboardPage);
+						}
+
+					});
 				}
 				
 //				JOptionPane.showMessageDialog(this, bundleMessage.getString("Login_Page_Login_Successful"));

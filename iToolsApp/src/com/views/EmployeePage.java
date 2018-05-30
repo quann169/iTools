@@ -5,18 +5,17 @@ import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
@@ -24,7 +23,6 @@ import javax.swing.event.DocumentListener;
 import org.apache.log4j.Logger;
 
 import com.controllers.LoginController;
-import com.models.Assessor;
 import com.models.Role;
 import com.utils.AdvancedEncryptionStandard;
 import com.utils.Config;
@@ -35,18 +33,26 @@ public class EmployeePage extends JFrame implements ActionListener {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	static ResourceBundle bundleMessage = ResourceBundle.getBundle("com.message.ApplicationMessages", new Locale("vn", "VN"));
+	static ResourceBundle bundleMessage = ResourceBundle.getBundle("com.message.ApplicationMessages",
+			new Locale("vn", "VN"));
 	Container container = getContentPane();
-	JLabel logoLabel = new JLabel(bundleMessage.getString("Login_Page_iTools_Logo"));
-	JLabel userLabel = new JLabel(bundleMessage.getString("Login_Page_Username"));
-	JLabel passwordLabel = new JLabel(bundleMessage.getString("Login_Page_Password"));
-	JTextField userTextField = new JTextField();
-	JPasswordField passwordField = new JPasswordField();
-	JButton loginButton = new JButton(bundleMessage.getString("Login_Page_Login"));
-	JButton forgotPwdButton = new JButton(bundleMessage.getString("Login_Page_Forget_Password"));
-	JCheckBox showPassword = new JCheckBox(bundleMessage.getString("Login_Page_Show_Password"));
+	JLabel woLabel = new JLabel(bundleMessage.getString("Employee_Page_WO"));
+	JLabel opLabel = new JLabel(bundleMessage.getString("Employee_Page_OP"));
+	JLabel toolLabel = new JLabel(bundleMessage.getString("Employee_Page_Tool"));
+	JLabel trayLabel = new JLabel(bundleMessage.getString("Employee_Page_Tray"));
+	JLabel quantityLabel = new JLabel(bundleMessage.getString("Employee_Page_Quantity"));
+
+	JTextField woTextField = new JTextField();
+	JTextField opTextField = new JTextField();
+	JTextField toolTextField = new JTextField();
+	JComboBox<String> trayComboBox = new JComboBox<String>();
+	JTextField quantityTextField = new JTextField();
 	
-	
+	Map<String, Integer> trayVsQuantityMap = new HashMap<>();
+
+	JButton sendRequestButton = new JButton(bundleMessage.getString("Employee_Page_Send_Request"));
+	JButton cancelButton = new JButton(bundleMessage.getString("Employee_Page_Cancel"));
+
 	private static final Config cfg = new Config();
 	private static final String COMPANY_CODE = "COMPANY_CODE";
 	final static Logger logger = Logger.getLogger(EmployeePage.class);
@@ -64,17 +70,14 @@ public class EmployeePage extends JFrame implements ActionListener {
 	}
 
 	public void setLocationAndSize() {
-		Font labelFont = logoLabel.getFont();
+		Font labelFont = woLabel.getFont();
 
-		logoLabel.setBounds(250, 60, 350, 60);
-		logoLabel.setFont(new Font(labelFont.getName(), Font.ITALIC + Font.BOLD, 50));
+		woLabel.setBounds(100, 70, 150, 60);
+		woLabel.setFont(new Font(labelFont.getName(), Font.BOLD, 25));
 
-		userLabel.setBounds(100, 150, 150, 60);
-		userLabel.setFont(new Font(labelFont.getName(), Font.BOLD, 25));
+		woTextField.setBounds(250, 90, 300, 30);
 
-		userTextField.setBounds(250, 170, 300, 30);
-
-		userTextField.getDocument().addDocumentListener(new DocumentListener() {
+		woTextField.getDocument().addDocumentListener(new DocumentListener() {
 			public void changedUpdate(DocumentEvent e) {
 				warn();
 			}
@@ -88,18 +91,18 @@ public class EmployeePage extends JFrame implements ActionListener {
 			}
 
 			public void warn() {
-				if (userTextField.getText().length() > 0 && passwordField.getText().length() > 0) {
-					loginButton.setEnabled(true);
+				if (woTextField.getText().length() > 0 && opTextField.getText().length() > 0) {
+					sendRequestButton.setEnabled(true);
 				}
 			}
 		});
 
-		passwordLabel.setBounds(100, 200, 150, 60);
-		passwordLabel.setFont(new Font(labelFont.getName(), Font.BOLD, 25));
+		opLabel.setBounds(100, 120, 150, 60);
+		opLabel.setFont(new Font(labelFont.getName(), Font.BOLD, 25));
 
-		passwordField.setBounds(250, 220, 300, 30);
-		
-		passwordField.getDocument().addDocumentListener(new DocumentListener() {
+		opTextField.setBounds(250, 140, 300, 30);
+
+		opTextField.getDocument().addDocumentListener(new DocumentListener() {
 			public void changedUpdate(DocumentEvent e) {
 				warn();
 			}
@@ -113,83 +116,155 @@ public class EmployeePage extends JFrame implements ActionListener {
 			}
 
 			public void warn() {
-				if (userTextField.getText().length() > 0 && passwordField.getText().length() > 0) {
-					loginButton.setEnabled(true);
+				if (validateAllFields()) {
+					sendRequestButton.setEnabled(true);
 				}
 			}
 		});
 
-		showPassword.setBounds(246, 255, 350, 30);
-		showPassword.setFont(new Font(labelFont.getName(), Font.ITALIC, 20));
+		toolLabel.setBounds(100, 170, 150, 60);
+		toolLabel.setFont(new Font(labelFont.getName(), Font.BOLD, 25));
 
-		loginButton.setEnabled(false);
-		loginButton.setBounds(250, 300, 100, 30);
-		loginButton.setFont(new Font(labelFont.getName(), Font.BOLD, 15));
+		toolTextField.setBounds(250, 190, 300, 30);
 
-		forgotPwdButton.setBounds(370, 300, 180, 30);
-		forgotPwdButton.setFont(new Font(labelFont.getName(), Font.BOLD, 15));
+		toolTextField.getDocument().addDocumentListener(new DocumentListener() {
+			public void changedUpdate(DocumentEvent e) {
+				warn();
+			}
+
+			public void removeUpdate(DocumentEvent e) {
+				warn();
+			}
+
+			public void insertUpdate(DocumentEvent e) {
+				warn();
+			}
+
+			public void warn() {
+				if (validateAllFields()) {
+					sendRequestButton.setEnabled(true);
+				}
+			}
+		});
+
+		trayLabel.setBounds(250, 205, 150, 60);
+		trayLabel.setFont(new Font(labelFont.getName(), Font.ITALIC + Font.BOLD, 15));
+
+		trayComboBox.setBounds(250, 250, 180, 30);
+		trayComboBox.addActionListener (new ActionListener () {
+		    public void actionPerformed(ActionEvent e) {
+		        String selectValue = trayComboBox.getSelectedItem().toString();
+		        if (trayVsQuantityMap.containsKey(selectValue)) {
+					quantityTextField.setText("" + trayVsQuantityMap.get(selectValue));
+				} else {
+					quantityTextField.setText("0");
+				}
+		    }
+		});
 		
-		loginButton.setText("DASHBOARD");
 
+		quantityLabel.setBounds(450, 205, 150, 60);
+		quantityLabel.setFont(new Font(labelFont.getName(), Font.ITALIC + Font.BOLD, 15));
+
+		quantityTextField.setBounds(450, 250, 100, 30);
+
+		quantityTextField.getDocument().addDocumentListener(new DocumentListener() {
+			public void changedUpdate(DocumentEvent e) {
+				warn();
+			}
+
+			public void removeUpdate(DocumentEvent e) {
+				warn();
+			}
+
+			public void insertUpdate(DocumentEvent e) {
+				warn();
+			}
+
+			public void warn() {
+				if (validateAllFields()) {
+					sendRequestButton.setEnabled(true);
+				}
+			}
+		});
+
+		sendRequestButton.setEnabled(false);
+		sendRequestButton.setBounds(250, 300, 180, 30);
+		sendRequestButton.setFont(new Font(labelFont.getName(), Font.BOLD, 15));
+
+		cancelButton.setBounds(450, 300, 100, 30);
+		cancelButton.setFont(new Font(labelFont.getName(), Font.BOLD, 15));
+
+	}
+
+	private boolean validateAllFields() {
+		int woLength = woTextField.getText().length();
+		int opLength = opTextField.getText().length();
+		int toolLength = toolTextField.getText().length();
+		int trayLength = ((String) trayComboBox.getSelectedItem()).length();
+		int quantityLength = quantityTextField.getText().length();
+
+		if (woLength > 0 && opLength > 0 && toolLength > 0 && trayLength > 0 && quantityLength > 0) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	public void addComponentsToContainer() {
-		container.add(logoLabel);
-		container.add(userLabel);
-		container.add(passwordLabel);
-		container.add(userTextField);
-		container.add(passwordField);
-		container.add(showPassword);
-		container.add(loginButton);
-		container.add(forgotPwdButton);
+		container.add(woLabel);
+		container.add(opLabel);
+		container.add(toolLabel);
+		container.add(trayLabel);
+		container.add(quantityLabel);
+		container.add(woTextField);
+		container.add(opTextField);
+		container.add(toolTextField);
+		container.add(trayComboBox);
+		container.add(quantityTextField);
+		container.add(sendRequestButton);
+		container.add(cancelButton);
 	}
 
 	public void addActionEvent() {
-		loginButton.addActionListener(this);
-		forgotPwdButton.addActionListener(this);
-		showPassword.addActionListener(this);
+		sendRequestButton.addActionListener(this);
+		cancelButton.addActionListener(this);
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if (e.getSource() == loginButton) {
-			
-			String userText = userTextField.getText();
-			String pwdText = passwordField.getText();
-			
+		if (e.getSource() == sendRequestButton) {
+
+			String userText = woTextField.getText();
+			String pwdText = opTextField.getText();
+
 			userText = "uhadmin1";
 			pwdText = "123456";
-			
+
 			logger.info("Login with username: " + userText);
 			LoginController ctlObj = new LoginController();
 			boolean result = ctlObj.validateUser(userText, pwdText);
-			
+
 			if (result) {
 				logger.info("Login OK");
 				String companyCode = AdvancedEncryptionStandard.decrypt(cfg.getProperty(COMPANY_CODE));
 				List<Role> listRoles = ctlObj.getUserRoles(userText, companyCode);
 				logger.info("listRoles: " + listRoles);
-				
-				
-				
-//				JOptionPane.showMessageDialog(this, bundleMessage.getString("Login_Page_Login_Successful"));
+
+				// JOptionPane.showMessageDialog(this,
+				// bundleMessage.getString("Employee_Page_Login_Successful"));
 			} else {
-				JOptionPane.showMessageDialog(this, bundleMessage.getString("Login_Page_Login_Fail"));
+				JOptionPane.showMessageDialog(this, bundleMessage.getString("Employee_Page_Login_Fail"));
 				logger.info("Login Fail");
 			}
 
 		}
-		if (e.getSource() == forgotPwdButton) {
-			userTextField.setText("");
-			passwordField.setText("");
-		}
-		if (e.getSource() == showPassword) {
-			if (showPassword.isSelected()) {
-				passwordField.setEchoChar((char) 0);
-			} else {
-				passwordField.setEchoChar('*');
-			}
-
+		if (e.getSource() == cancelButton) {
+			woTextField.setText("");
+			opTextField.setText("");
+			toolTextField.setText("");
+			trayComboBox.removeAllItems();
+			quantityTextField.setText("");
 		}
 	}
 
