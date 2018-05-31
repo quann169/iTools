@@ -15,6 +15,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenuBar;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.event.DocumentEvent;
@@ -23,9 +24,12 @@ import javax.swing.event.DocumentListener;
 import org.apache.log4j.Logger;
 
 import com.controllers.LoginController;
+import com.models.Assessor;
 import com.models.Role;
 import com.utils.AdvancedEncryptionStandard;
+import com.utils.AutoCompletion;
 import com.utils.Config;
+import com.utils.StringUtils;
 
 public class EmployeePage extends JFrame implements ActionListener {
 
@@ -44,11 +48,11 @@ public class EmployeePage extends JFrame implements ActionListener {
 
 	JTextField woTextField = new JTextField();
 	JTextField opTextField = new JTextField();
-	JTextField toolTextField = new JTextField();
-	JComboBox<String> trayComboBox = new JComboBox<String>();
+	JTextField trayTextField = new JTextField();
+	JComboBox<String> toolComboBox = new JComboBox<String>();
 	JTextField quantityTextField = new JTextField();
-	
-	Map<String, Integer> trayVsQuantityMap = new HashMap<>();
+
+	Map<String, String> toolVstrayAndQuantityMap = new HashMap<>();
 
 	JButton sendRequestButton = new JButton(bundleMessage.getString("Employee_Page_Send_Request"));
 	JButton cancelButton = new JButton(bundleMessage.getString("Employee_Page_Cancel"));
@@ -125,9 +129,10 @@ public class EmployeePage extends JFrame implements ActionListener {
 		toolLabel.setBounds(100, 170, 150, 60);
 		toolLabel.setFont(new Font(labelFont.getName(), Font.BOLD, 25));
 
-		toolTextField.setBounds(250, 190, 300, 30);
+		trayTextField.setBounds(250, 250, 180, 30);
+		toolComboBox.setBounds(250, 190, 300, 30);
 
-		toolTextField.getDocument().addDocumentListener(new DocumentListener() {
+		trayTextField.getDocument().addDocumentListener(new DocumentListener() {
 			public void changedUpdate(DocumentEvent e) {
 				warn();
 			}
@@ -146,28 +151,37 @@ public class EmployeePage extends JFrame implements ActionListener {
 				}
 			}
 		});
+		trayTextField.setEditable(false);
 
 		trayLabel.setBounds(250, 205, 150, 60);
 		trayLabel.setFont(new Font(labelFont.getName(), Font.ITALIC + Font.BOLD, 15));
 
-		trayComboBox.setBounds(250, 250, 180, 30);
-		trayComboBox.addActionListener (new ActionListener () {
-		    public void actionPerformed(ActionEvent e) {
-		        String selectValue = trayComboBox.getSelectedItem().toString();
-		        if (trayVsQuantityMap.containsKey(selectValue)) {
-					quantityTextField.setText("" + trayVsQuantityMap.get(selectValue));
+		toolComboBox.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String selectValue = toolComboBox.getSelectedItem().toString();
+				if (toolVstrayAndQuantityMap.containsKey(selectValue)) {
+					quantityTextField.setText("" + toolVstrayAndQuantityMap.get(selectValue));
 				} else {
 					quantityTextField.setText("0");
 				}
-		    }
+			}
 		});
+		toolComboBox.addItem("");
+		toolComboBox.addItem("Quan");
+		toolComboBox.addItem("fasdfsa");
+		toolComboBox.addItem("asdasf");
+		toolComboBox.addItem("Quaasdan");
+		toolComboBox.addItem("das");
+		toolComboBox.addItem("sSDADWAQuan");
 		
+		AutoCompletion.enable(toolComboBox);
+
 
 		quantityLabel.setBounds(450, 205, 150, 60);
 		quantityLabel.setFont(new Font(labelFont.getName(), Font.ITALIC + Font.BOLD, 15));
 
 		quantityTextField.setBounds(450, 250, 100, 30);
-
+		quantityTextField.setEditable(false);
 		quantityTextField.getDocument().addDocumentListener(new DocumentListener() {
 			public void changedUpdate(DocumentEvent e) {
 				warn();
@@ -197,11 +211,18 @@ public class EmployeePage extends JFrame implements ActionListener {
 
 	}
 
+	private static boolean StringFilter(String emp, String textToFilter) {
+		if (textToFilter.isEmpty()) {
+			return true;
+		}
+		return emp.toLowerCase().contains(textToFilter.toLowerCase());
+	}
+
 	private boolean validateAllFields() {
 		int woLength = woTextField.getText().length();
 		int opLength = opTextField.getText().length();
-		int toolLength = toolTextField.getText().length();
-		int trayLength = ((String) trayComboBox.getSelectedItem()).length();
+		int toolLength = trayTextField.getText().length();
+		int trayLength = ((String) toolComboBox.getSelectedItem()).length();
 		int quantityLength = quantityTextField.getText().length();
 
 		if (woLength > 0 && opLength > 0 && toolLength > 0 && trayLength > 0 && quantityLength > 0) {
@@ -219,8 +240,8 @@ public class EmployeePage extends JFrame implements ActionListener {
 		container.add(quantityLabel);
 		container.add(woTextField);
 		container.add(opTextField);
-		container.add(toolTextField);
-		container.add(trayComboBox);
+		container.add(toolComboBox);
+		container.add(trayTextField);
 		container.add(quantityTextField);
 		container.add(sendRequestButton);
 		container.add(cancelButton);
@@ -243,9 +264,9 @@ public class EmployeePage extends JFrame implements ActionListener {
 
 			logger.info("Login with username: " + userText);
 			LoginController ctlObj = new LoginController();
-			boolean result = ctlObj.validateUser(userText, pwdText);
+			Assessor result = ctlObj.validateUser(userText, pwdText);
 
-			if (result) {
+			if (result != null) {
 				logger.info("Login OK");
 				String companyCode = AdvancedEncryptionStandard.decrypt(cfg.getProperty(COMPANY_CODE));
 				List<Role> listRoles = ctlObj.getUserRoles(userText, companyCode);
@@ -262,8 +283,8 @@ public class EmployeePage extends JFrame implements ActionListener {
 		if (e.getSource() == cancelButton) {
 			woTextField.setText("");
 			opTextField.setText("");
-			toolTextField.setText("");
-			trayComboBox.removeAllItems();
+			trayTextField.setText("");
+			toolComboBox.removeAllItems();
 			quantityTextField.setText("");
 		}
 	}
@@ -283,6 +304,8 @@ public class EmployeePage extends JFrame implements ActionListener {
 		pad = String.format("%" + (spaceCount - 14) + "s", pad);
 		frame.setTitle(pad + currentTitle);
 
+		JMenuBar menubar = StringUtils.addMenu();
+		frame.setJMenuBar(menubar);
 	}
 
 }

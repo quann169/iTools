@@ -2,11 +2,8 @@ package com.views;
 
 import java.awt.Container;
 import java.awt.Font;
-import java.awt.FontMetrics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
 import java.util.List;
 import java.util.Locale;
 import java.util.ResourceBundle;
@@ -15,6 +12,7 @@ import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenuBar;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -29,6 +27,7 @@ import com.models.Assessor;
 import com.models.Role;
 import com.utils.AdvancedEncryptionStandard;
 import com.utils.Config;
+import com.utils.StringUtils;
 
 public class LoginPage extends JFrame implements ActionListener {
 
@@ -67,13 +66,13 @@ public class LoginPage extends JFrame implements ActionListener {
 	public void setLocationAndSize() {
 		Font labelFont = logoLabel.getFont();
 
-		logoLabel.setBounds(250, 60, 350, 60);
+		logoLabel.setBounds(220, 60, 350, 60);
 		logoLabel.setFont(new Font(labelFont.getName(), Font.ITALIC + Font.BOLD, 50));
 
-		userLabel.setBounds(100, 150, 150, 60);
+		userLabel.setBounds(70, 130, 150, 60);
 		userLabel.setFont(new Font(labelFont.getName(), Font.BOLD, 25));
 
-		userTextField.setBounds(250, 170, 300, 30);
+		userTextField.setBounds(220, 150, 300, 30);
 
 		userTextField.getDocument().addDocumentListener(new DocumentListener() {
 			public void changedUpdate(DocumentEvent e) {
@@ -95,10 +94,10 @@ public class LoginPage extends JFrame implements ActionListener {
 			}
 		});
 
-		passwordLabel.setBounds(100, 200, 150, 60);
+		passwordLabel.setBounds(70, 180, 150, 60);
 		passwordLabel.setFont(new Font(labelFont.getName(), Font.BOLD, 25));
 
-		passwordField.setBounds(250, 220, 300, 30);
+		passwordField.setBounds(220, 200, 300, 30);
 		
 		passwordField.getDocument().addDocumentListener(new DocumentListener() {
 			public void changedUpdate(DocumentEvent e) {
@@ -120,14 +119,14 @@ public class LoginPage extends JFrame implements ActionListener {
 			}
 		});
 
-		showPassword.setBounds(246, 255, 350, 30);
-		showPassword.setFont(new Font(labelFont.getName(), Font.ITALIC, 20));
+		showPassword.setBounds(216, 235, 350, 30);
+		showPassword.setFont(new Font(labelFont.getName(), Font.BOLD + Font.ITALIC, 13));
 
 		loginButton.setEnabled(false);
-		loginButton.setBounds(250, 300, 100, 30);
+		loginButton.setBounds(220, 280, 140, 30);
 		loginButton.setFont(new Font(labelFont.getName(), Font.BOLD, 15));
 
-		forgotPwdButton.setBounds(370, 300, 180, 30);
+		forgotPwdButton.setBounds(365, 280, 155, 30);
 		forgotPwdButton.setFont(new Font(labelFont.getName(), Font.BOLD, 15));
 
 	}
@@ -161,9 +160,9 @@ public class LoginPage extends JFrame implements ActionListener {
 			
 			logger.info("Login with username: " + userText);
 			LoginController ctlObj = new LoginController();
-			boolean result = ctlObj.validateUser(userText, pwdText);
+			Assessor result = ctlObj.validateUser(userText, pwdText);
 			
-			if (result) {
+			if (result != null) {
 				logger.info("Login OK");
 				String companyCode = AdvancedEncryptionStandard.decrypt(cfg.getProperty(COMPANY_CODE));
 				List<Role> listRoles = ctlObj.getUserRoles(userText, companyCode);
@@ -175,33 +174,13 @@ public class LoginPage extends JFrame implements ActionListener {
 					logger.info("User does not have role");
 				} else if (listRoles.size() == 1 && Enum.EMP.text().equals(listRoles.get(0).getRoleName())) {
 					EmployeePage empPage = new EmployeePage();
-					
-					empPage.setVisible(true);
-					empPage.setBounds(0, 0, 700, 460);
-					empPage.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-					empPage.setResizable(false);
-					empPage.addComponentListener(new ComponentAdapter() {
-						@Override
-						public void componentResized(ComponentEvent e) {
-							titleAlign(empPage);
-						}
-
-					});
+					StringUtils.frameInit(empPage, bundleMessage);
+					empPage.setTitle(userText + " - " + result.getFirstName() + " " + result.getLastName());
 					empPage.show();
 				} else {
 					DashboardPage dashboardPage = new DashboardPage();
+					StringUtils.frameInit(dashboardPage, bundleMessage);
 					dashboardPage.show();
-					dashboardPage.setVisible(true);
-					dashboardPage.setBounds(0, 0, 700, 460);
-					dashboardPage.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-					dashboardPage.setResizable(false);
-					dashboardPage.addComponentListener(new ComponentAdapter() {
-						@Override
-						public void componentResized(ComponentEvent e) {
-							titleAlign(dashboardPage);
-						}
-
-					});
 				}
 				
 //				JOptionPane.showMessageDialog(this, bundleMessage.getString("Login_Page_Login_Successful"));
@@ -225,38 +204,19 @@ public class LoginPage extends JFrame implements ActionListener {
 		}
 	}
 
-	private static void titleAlign(JFrame frame) {
-
-		Font font = frame.getFont();
-
-		String currentTitle = frame.getTitle().trim();
-		FontMetrics fm = frame.getFontMetrics(font);
-		int frameWidth = frame.getWidth();
-		int titleWidth = fm.stringWidth(currentTitle);
-		int spaceWidth = fm.stringWidth(" ");
-		int centerPos = (frameWidth / 2) - (titleWidth / 2);
-		int spaceCount = centerPos / spaceWidth;
-		String pad = "";
-		pad = String.format("%" + (spaceCount - 14) + "s", pad);
-		frame.setTitle(pad + currentTitle);
-
-	}
+	
+	
+	
 
 	public static void main(String[] a) {
 		LoginPage frame = new LoginPage();
+		StringUtils.frameInit(frame, bundleMessage);
+		
+		
 		frame.setTitle(bundleMessage.getString("Login_Page_Title"));
-		frame.setVisible(true);
-		frame.setBounds(0, 0, 700, 460);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.addComponentListener(new ComponentAdapter() {
-			@Override
-			public void componentResized(ComponentEvent e) {
-				titleAlign(frame);
-			}
-
-		});
-		frame.setResizable(false);
 		frame.getRootPane().setDefaultButton(frame.loginButton);
+		
+		
 	}
 
 }

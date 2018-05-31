@@ -144,3 +144,36 @@
 2018-05-30 23:53:17 INFO  EmployeePage:253 - Login with username: uhadmin1
 2018-05-30 23:53:17 INFO  EmployeePage:258 - Login OK
 2018-05-30 23:53:17 INFO  EmployeePage:261 - listRoles: []
+2018-05-31 00:08:55 INFO  LoginPage:162 - Login with username: com1user2
+2018-05-31 00:08:57 INFO  LoginPage:167 - Login OK
+2018-05-31 00:08:57 INFO  LoginPage:170 - listRoles: [Roles [roleName=Emp]]
+2018-05-31 18:00:23 INFO  LoginPage:162 - Login with username: com1user2
+2018-05-31 18:00:26 INFO  LoginPage:167 - Login OK
+2018-05-31 18:00:26 INFO  LoginPage:170 - listRoles: [Roles [roleName=Emp]]
+2018-05-31 22:19:57 INFO  LoginPage:161 - Login with username: com1user2
+2018-05-31 22:20:00 INFO  LoginPage:189 - Login Fail
+2018-05-31 22:20:47 INFO  LoginPage:161 - Login with username: com1user2
+2018-05-31 22:22:17 INFO  LoginPage:161 - Login with username: com1user2
+2018-05-31 22:22:18 INFO  LoginPage:166 - Login OK
+2018-05-31 22:22:18 INFO  LoginPage:169 - listRoles: [Roles [roleName=Emp]]
+2018-05-31 22:40:10 INFO  LoginPage:161 - Login with username: com1user2
+2018-05-31 22:40:11 INFO  LoginPage:166 - Login OK
+2018-05-31 22:40:11 INFO  LoginPage:169 - listRoles: [Roles [roleName=Emp]]
+2018-05-31 22:42:51 INFO  LoginPage:161 - Login with username: com1user2
+2018-05-31 22:42:52 INFO  LoginPage:166 - Login OK
+2018-05-31 22:42:52 INFO  LoginPage:169 - listRoles: [Roles [roleName=Emp]]
+2018-05-31 22:43:32 INFO  LoginPage:161 - Login with username: com1user2
+2018-05-31 22:43:33 INFO  LoginPage:166 - Login OK
+2018-05-31 22:43:33 INFO  LoginPage:169 - listRoles: [Roles [roleName=Emp]]
+2018-05-31 22:45:03 INFO  LoginPage:161 - Login with username: com1user2
+2018-05-31 22:45:04 INFO  LoginPage:166 - Login OK
+2018-05-31 22:45:04 INFO  LoginPage:169 - listRoles: [Roles [roleName=Emp]]
+2018-05-31 23:55:01 INFO  LoginPage:161 - Login with username: com1user2
+2018-05-31 23:55:02 INFO  LoginPage:166 - Login OK
+2018-05-31 23:55:02 INFO  LoginPage:169 - listRoles: [Roles [roleName=Emp]]
+2018-05-31 23:55:53 INFO  LoginPage:161 - Login with username: com1user2
+2018-05-31 23:55:54 INFO  LoginPage:166 - Login OK
+2018-05-31 23:55:54 INFO  LoginPage:169 - listRoles: [Roles [roleName=Emp]]
+2018-05-31 23:58:34 INFO  LoginPage:161 - Login with username: com1user2
+2018-05-31 23:58:35 INFO  LoginPage:166 - Login OK
+2018-05-31 23:58:35 INFO  LoginPage:169 - listRoles: [Roles [roleName=Emp]]

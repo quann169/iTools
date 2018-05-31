@@ -162,9 +162,9 @@ public class DashboardPage extends JFrame implements ActionListener {
 			
 			logger.info("Login with username: " + userText);
 			LoginController ctlObj = new LoginController();
-			boolean result = ctlObj.validateUser(userText, pwdText);
+			Assessor result = ctlObj.validateUser(userText, pwdText);
 			
-			if (result) {
+			if (result != null) {
 				logger.info("Login OK");
 				String companyCode = AdvancedEncryptionStandard.decrypt(cfg.getProperty(COMPANY_CODE));
 				List<Role> listRoles = ctlObj.getUserRoles(userText, companyCode);

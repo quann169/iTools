@@ -34,24 +34,32 @@ public class LoginController {
 	 * @param password
 	 * @return
 	 */
-	public boolean validateUser(String username, String password) {
-		String sql = "SELECT * FROM Assessor where Assessor.UserName='" + username.toLowerCase() + "' and Password=md5('" + password
+	public Assessor validateUser(String username, String password) {
+		String sql = "SELECT AssessorID, UserName, FirstName, LastName, CompanyCode FROM Assessor where Assessor.UserName='" + username.toLowerCase() + "' and Password=md5('" + password
 				+ "');";
 		// System.out.println(sql);
 		try {
 			PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
 			ResultSet rs = statement.executeQuery(sql);
-			if (!rs.isBeforeFirst()) {
-				return false;
+			if (rs.isBeforeFirst()) {
+				while (rs.next()) {
+					String companyCode = rs.getString(5);
+					
+					Assessor user = new Assessor(username, password, companyCode);
+					user.setFirstName(rs.getString(3));
+					user.setLastName(rs.getString(4));
+					return user;
+				}
 			} else {
-				return true;
+				return null;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-			return false;
+			return null;
 		} finally {
 			mysqlConnect.disconnect();
 		}
+		return null;
 	}
 
 	/**
