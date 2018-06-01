@@ -5,6 +5,9 @@ import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -23,9 +26,11 @@ import javax.swing.event.DocumentListener;
 
 import org.apache.log4j.Logger;
 
+import com.controllers.EmployeeController;
 import com.controllers.LoginController;
 import com.models.Assessor;
 import com.models.Role;
+import com.models.Tool;
 import com.utils.AdvancedEncryptionStandard;
 import com.utils.AutoCompletion;
 import com.utils.Config;
@@ -52,13 +57,17 @@ public class EmployeePage extends JFrame implements ActionListener {
 	JComboBox<String> toolComboBox = new JComboBox<String>();
 	JTextField quantityTextField = new JTextField();
 
-	Map<String, String> toolVstrayAndQuantityMap = new HashMap<>();
+	Map<String, List<List<Object>>> toolVstrayAndQuantityMap = new HashMap<>();
 
 	JButton sendRequestButton = new JButton(bundleMessage.getString("Employee_Page_Send_Request"));
 	JButton cancelButton = new JButton(bundleMessage.getString("Employee_Page_Cancel"));
 
 	private static final Config cfg = new Config();
 	private static final String COMPANY_CODE = "COMPANY_CODE";
+	private static final String MACHINE_CODE = "MACHINE_CODE";
+	String companyCode = AdvancedEncryptionStandard.decrypt(cfg.getProperty(COMPANY_CODE));
+	String machineCode = AdvancedEncryptionStandard.decrypt(cfg.getProperty(MACHINE_CODE));
+
 	final static Logger logger = Logger.getLogger(EmployeePage.class);
 
 	EmployeePage() {
@@ -131,26 +140,27 @@ public class EmployeePage extends JFrame implements ActionListener {
 
 		trayTextField.setBounds(250, 250, 180, 30);
 		toolComboBox.setBounds(250, 190, 300, 30);
-
-		trayTextField.getDocument().addDocumentListener(new DocumentListener() {
-			public void changedUpdate(DocumentEvent e) {
-				warn();
-			}
-
-			public void removeUpdate(DocumentEvent e) {
-				warn();
-			}
-
-			public void insertUpdate(DocumentEvent e) {
-				warn();
-			}
-
-			public void warn() {
-				if (validateAllFields()) {
-					sendRequestButton.setEnabled(true);
-				}
-			}
-		});
+		//
+		// trayTextField.getDocument().addDocumentListener(new
+		// DocumentListener() {
+		// public void changedUpdate(DocumentEvent e) {
+		// warn();
+		// }
+		//
+		// public void removeUpdate(DocumentEvent e) {
+		// warn();
+		// }
+		//
+		// public void insertUpdate(DocumentEvent e) {
+		// warn();
+		// }
+		//
+		// public void warn() {
+		// if (validateAllFields()) {
+		// sendRequestButton.setEnabled(true);
+		// }
+		// }
+		// });
 		trayTextField.setEditable(false);
 
 		trayLabel.setBounds(250, 205, 150, 60);
@@ -159,23 +169,54 @@ public class EmployeePage extends JFrame implements ActionListener {
 		toolComboBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String selectValue = toolComboBox.getSelectedItem().toString();
+
 				if (toolVstrayAndQuantityMap.containsKey(selectValue)) {
-					quantityTextField.setText("" + toolVstrayAndQuantityMap.get(selectValue));
+
+					List<List<Object>> existedValue = toolVstrayAndQuantityMap.get(selectValue);
+					if (existedValue.size() > 0) {
+						List<String> listTrays = new ArrayList<>();
+						for (List<Object> trayQuantity : existedValue) {
+							String tray = (String) trayQuantity.get(0);
+							int quantity = (int) trayQuantity.get(1);
+							quantityTextField.setText("" + quantity);
+							trayTextField.setText("" + tray);
+							listTrays.add(trayQuantity.toString());
+						}
+						trayTextField.setToolTipText(listTrays.toString());
+					}
+
 				} else {
+					trayTextField.setText("");
 					quantityTextField.setText("0");
+					List<String> availableTool = EmployeeController.findAvailableMachine(machineCode, selectValue);
+					if (!selectValue.equals("")) {
+						JOptionPane.showMessageDialog(trayTextField.getParent(), bundleMessage.getString("Login_Page_Login_Fail"));
+						logger.info("Login Fail");
+					}
+					
+					
 				}
 			}
 		});
+		EmployeeController controllerObj = new EmployeeController();
+		String machineCode = AdvancedEncryptionStandard.decrypt(cfg.getProperty(MACHINE_CODE));
+		List<Tool> listTools = controllerObj.getToolsOfMachine(machineCode);
+		Collections.sort(listTools, new Comparator<Tool>() {
+			public int compare(Tool o1, Tool o2) {
+				if (o1.getToolName() == o2.getToolName())
+					return 0;
+				return o1.getToolName().compareToIgnoreCase(o2.getToolName());
+			}
+		});
+
 		toolComboBox.addItem("");
-		toolComboBox.addItem("Quan");
-		toolComboBox.addItem("fasdfsa");
-		toolComboBox.addItem("asdasf");
-		toolComboBox.addItem("Quaasdan");
-		toolComboBox.addItem("das");
-		toolComboBox.addItem("sSDADWAQuan");
-		
+		for (Tool tool : listTools) {
+			toolComboBox.addItem(tool.getToolName());
+		}
+
 		AutoCompletion.enable(toolComboBox);
 
+		toolVstrayAndQuantityMap = controllerObj.getToolTrayQuantity(machineCode);
 
 		quantityLabel.setBounds(450, 205, 150, 60);
 		quantityLabel.setFont(new Font(labelFont.getName(), Font.ITALIC + Font.BOLD, 15));
@@ -256,35 +297,13 @@ public class EmployeePage extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == sendRequestButton) {
 
-			String userText = woTextField.getText();
-			String pwdText = opTextField.getText();
-
-			userText = "uhadmin1";
-			pwdText = "123456";
-
-			logger.info("Login with username: " + userText);
-			LoginController ctlObj = new LoginController();
-			Assessor result = ctlObj.validateUser(userText, pwdText);
-
-			if (result != null) {
-				logger.info("Login OK");
-				String companyCode = AdvancedEncryptionStandard.decrypt(cfg.getProperty(COMPANY_CODE));
-				List<Role> listRoles = ctlObj.getUserRoles(userText, companyCode);
-				logger.info("listRoles: " + listRoles);
-
-				// JOptionPane.showMessageDialog(this,
-				// bundleMessage.getString("Employee_Page_Login_Successful"));
-			} else {
-				JOptionPane.showMessageDialog(this, bundleMessage.getString("Employee_Page_Login_Fail"));
-				logger.info("Login Fail");
-			}
 
 		}
 		if (e.getSource() == cancelButton) {
 			woTextField.setText("");
 			opTextField.setText("");
 			trayTextField.setText("");
-			toolComboBox.removeAllItems();
+			toolComboBox.setSelectedIndex(0);;
 			quantityTextField.setText("");
 		}
 	}

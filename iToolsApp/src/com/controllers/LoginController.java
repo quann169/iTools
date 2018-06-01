@@ -100,7 +100,7 @@ public class LoginController {
 				+ " from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID"
 				+ " inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = '"
 				+ companyCode + "' and assessor.UserName= '" + userName.toLowerCase() + "'";
-		System.out.println(sql);
+//		System.out.println(sql);
 		List<Role> listAllRoles = new ArrayList<>();
 		try {
 			PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);

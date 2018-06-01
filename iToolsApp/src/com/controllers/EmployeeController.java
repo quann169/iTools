@@ -1,0 +1,197 @@
+/**
+ * 
+ */
+package com.controllers;
+
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+import org.apache.log4j.Logger;
+
+import com.models.Assessor;
+import com.models.Role;
+import com.models.Tool;
+import com.utils.MysqlConnect;
+import com.views.LoginPage;
+
+/**
+ * @author svi-quannguyen
+ *
+ */
+public class EmployeeController {
+
+	MysqlConnect mysqlConnect = new MysqlConnect();
+	final static Logger logger = Logger.getLogger(EmployeeController.class);
+
+	/**
+	 * 
+	 */
+	public EmployeeController() {
+
+	}
+
+	/**
+	 * 
+	 * @param username
+	 * @param password
+	 * @return
+	 */
+	public List<Tool> getToolsOfMachine(String machineCode) {
+		String sql = "select tools.ToolId, tools.Name "
+				+ " from tools inner join toolsmachine on tools.ToolID = toolsmachine.ToolID "
+				+ " inner join machine on toolsmachine.MachineCode = machine.MachineCode "
+				+ " where machine.MachineCode = '" + machineCode + "';";
+		// System.out.println(sql);
+		List<Tool> result = new ArrayList<>();
+		try {
+
+			PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
+			ResultSet rs = statement.executeQuery(sql);
+			while (rs.next()) {
+				int toolId = Integer.parseInt(rs.getString(1));
+				String toolName = rs.getString(2);
+
+				Tool tool = new Tool();
+				tool.setToolName(toolName);
+				tool.setToolId(toolId);
+				result.add(tool);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		} finally {
+			mysqlConnect.disconnect();
+		}
+		return result;
+	}
+
+	/**
+	 * 
+	 * @param username
+	 * @param password
+	 * @return
+	 */
+	public HashMap<String, List<List<Object>>> getToolTrayQuantity(String machineCode) {
+		String sql = " select tools.ToolID, tools.Name, machine.MachineCode, toolsmachinetray.TrayIndex, toolsmachinetray.Quantity "
+				+ " from tools inner join toolsmachine on tools.ToolID = toolsmachine.ToolID "
+				+ " inner join machine on toolsmachine.MachineCode = machine.MachineCode "
+				+ " inner join toolsmachinetray on toolsmachinetray.toolsmachineID = toolsmachine.toolsmachineID "
+				+ " where machine.MachineCode = '" + machineCode + "';";
+//		System.out.println(sql);
+		HashMap<String, List<List<Object>>> result = new HashMap<>();
+		List<String> availableTools = new ArrayList<>();
+		Set<String> toolTrays = new HashSet<>();
+		try {
+
+			PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
+			ResultSet rs = statement.executeQuery(sql);
+			while (rs.next()) {
+				String toolName = rs.getString(2);
+				String trayIndex = rs.getString(4);
+				String toolTray = toolName + "_" + trayIndex;
+				int quantity = Integer.parseInt(rs.getString(5));
+				if (toolTrays.contains(toolTray)) {
+					logger.warn("Machine " + machineCode + ": " + toolName + " - " + trayIndex + " existed.");
+				}
+				if (quantity > 0) {
+					availableTools.add(toolName);
+
+					if (result.containsKey(toolName)) {
+						List<List<Object>> existedData = result.get(toolName);
+						List<Object> tmpList = new ArrayList<>();
+						tmpList.add(trayIndex);
+						tmpList.add(quantity);
+						existedData.add(tmpList);
+						result.put(toolName, existedData);
+					} else {
+						List<Object> tmpList = new ArrayList<>();
+						tmpList.add(trayIndex);
+						tmpList.add(quantity);
+						List<List<Object>> existedData = new ArrayList<>();
+						existedData.add(tmpList);
+						result.put(toolName, existedData);
+					}
+				}
+			}
+
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		} finally {
+			mysqlConnect.disconnect();
+		}
+		return result;
+	}
+
+	/**
+	 * 
+	 * @return
+	 */
+	public List<Assessor> getAllUsers() {
+		String sql = "SELECT AssessorID, UserName, Password, CompanyId FROM Assessor where Assessor.IsActive=1;";
+		List<Assessor> listAllUsers = new ArrayList<>();
+		try {
+			PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
+			ResultSet rs = statement.executeQuery(sql);
+
+			while (rs.next()) {
+				int userId = Integer.parseInt(rs.getString(1));
+				String username = rs.getString(2);
+				String password = rs.getString(3);
+				String companyCode = rs.getString(4);
+
+				Assessor user = new Assessor(username, password, companyCode);
+				user.setAssessorId(userId);
+				listAllUsers.add(user);
+			}
+			return listAllUsers;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return listAllUsers;
+		} finally {
+			mysqlConnect.disconnect();
+		}
+	}
+
+	/**
+	 * 
+	 */
+	public List<Role> getUserRoles(String userName, String companyCode) {
+		String sql = "select distinct RoleName "
+				+ " from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID"
+				+ " inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = '" + companyCode
+				+ "' and assessor.UserName= '" + userName.toLowerCase() + "'";
+		System.out.println(sql);
+		List<Role> listAllRoles = new ArrayList<>();
+		try {
+			PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
+			ResultSet rs = statement.executeQuery(sql);
+
+			while (rs.next()) {
+				String roleName = rs.getString(1);
+				Role role = new Role(0, roleName);
+
+				listAllRoles.add(role);
+			}
+			return listAllRoles;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return listAllRoles;
+		} finally {
+			mysqlConnect.disconnect();
+		}
+	}
+
+	public static List<String> findAvailableMachine(String machineCode, String selectValue) {
+		List<String> result = new ArrayList<>();
+		
+		return result;
+	}
+}

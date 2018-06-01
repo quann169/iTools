@@ -57,27 +57,27 @@ public class AdvancedEncryptionStandard {
 
 //	public static void main(String[] a) throws Exception {
 //
-//		String plainText = "UHCom";
+//		String plainText = "MAC1";
 //		String cipherText = AdvancedEncryptionStandard.encrypt(plainText);
 //		AdvancedEncryptionStandard.decrypt(cipherText);
 //		System.out.println();
 //		
-//		plainText = "Com1";
+//		plainText = "MAC2";
 //		cipherText = AdvancedEncryptionStandard.encrypt(plainText);
 //		AdvancedEncryptionStandard.decrypt(cipherText);
 //		System.out.println();
 //		
-//		plainText = "Com2";
+//		plainText = "MAC3";
 //		cipherText = AdvancedEncryptionStandard.encrypt(plainText);
 //		AdvancedEncryptionStandard.decrypt(cipherText);
 //		System.out.println();
 //		
-//		plainText = "iTools_v1p0";
+//		plainText = "MAC4";
 //		cipherText = AdvancedEncryptionStandard.encrypt(plainText);
 //		AdvancedEncryptionStandard.decrypt(cipherText);
 //		System.out.println();
 //		
-//		plainText = "3306";
+//		plainText = "MAC5";
 //		cipherText = AdvancedEncryptionStandard.encrypt(plainText);
 //		AdvancedEncryptionStandard.decrypt(cipherText);
 //		System.out.println();

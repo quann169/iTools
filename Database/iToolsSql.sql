@@ -181,29 +181,63 @@ INSERT INTO Tools(ToolID, Name, CreatedDate, IsActive) VALUES
 	(6, "CTID6",  now(), 1),
 	(7, "CTID7",  now(), 1);
 	
+DROP TABLE IF EXISTS ToolsMachine;
+CREATE TABLE IF NOT EXISTS ToolsMachine (
+  ToolsMachineID INT(10) NOT NULL AUTO_INCREMENT,
+  ToolID INT(10) NOT NULL,
+  MachineCode VARCHAR(100) NULL,
+  CreatedDate DATETIME NULL,
+  UpdatedDate DATETIME NULL,
+  IsActive BOOLEAN NOT NULL,
+  PRIMARY KEY (ToolsMachineID),
+  FOREIGN KEY (ToolID) REFERENCES Tools(ToolID)
+);
+
+INSERT INTO ToolsMachine(ToolsMachineID, ToolID, MachineCode,CreatedDate, IsActive) VALUES 
+	-- ToolID at UHCom, do not add to Machine yet
+	(1, 1, "UHCom", now(), 1),
+	(2, 2, "UHCom", now(), 1),
+	(3, 3, "UHCom", now(), 1),
+	(4, 4, "UHCom", now(), 1),
+	(5, 5, "UHCom", now(), 1),
+	(6, 6, "UHCom", now(), 1),
+	(7, 7, "UHCom", now(), 1),
+	
+	(8, 1, "MAC1", now(), 1),
+	(9, 2, "MAC1", now(), 1),
+	(10, 6, "MAC1", now(), 1),
+	(11, 4, "MAC1", now(), 1), -- out of stock
+	(12, 5, "MAC1", now(), 1), -- out of stock
+	
+	(13, 1, "MAC2", now(), 1), -- out of stock
+	(14, 2, "MAC2", now(), 1),
+	(15, 3, "MAC2", now(), 1),
+	(16, 4, "MAC2", now(), 1);
+	
+	
+	
+
 DROP TABLE IF EXISTS ToolsMachineTray;
 CREATE TABLE IF NOT EXISTS ToolsMachineTray (
   ToolsMachineTrayID INT(10) NOT NULL AUTO_INCREMENT,
-  ToolID INT(10) NOT NULL,
-  MachineID INT(10) NULL,
+  ToolsMachineID INT(10) NOT NULL,
   TrayIndex VARCHAR(100) NULL,
   Quantity INT(10) NULL,
   CreatedDate DATETIME NULL,
   UpdatedDate DATETIME NULL,
   IsActive BOOLEAN NOT NULL,
   PRIMARY KEY (ToolsMachineTrayID),
-  FOREIGN KEY (ToolID) REFERENCES Tools(ToolID),
-  FOREIGN KEY (MachineID) REFERENCES Machine(MachineID)
+  FOREIGN KEY (ToolsMachineID) REFERENCES ToolsMachine(ToolsMachineID)
 );
 
-INSERT INTO ToolsMachineTray(ToolsMachineTrayID, ToolID, MachineID, TrayIndex, Quantity, CreatedDate, IsActive) VALUES 
+INSERT INTO ToolsMachineTray(ToolsMachineTrayID, ToolsMachineID, TrayIndex, Quantity, CreatedDate, IsActive) VALUES 
 	-- ToolID at UHCom, do not add to Machine yet
-	(1, 1, NULL, NULL, 2, now(), 1),
-	(2, 2, NULL, NULL, 10, now(), 1),
-	(3, 3, NULL, NULL, 8, now(), 1),
-	(4, 4, NULL, NULL, 6, now(), 1),
-	(5, 6, NULL, NULL, 200, now(), 1),
-	(6, 7, NULL, NULL, 68, now(), 1),
+	(1, 1, NULL, 2, now(), 1),
+	(2, 2, NULL, 10, now(), 1),
+	(3, 3, NULL, 8, now(), 1),
+	(4, 4, NULL, 6, now(), 1),
+	(5, 6, NULL, 200, now(), 1),
+	(6, 7, NULL, 68, now(), 1),
 	/*+ MA1
 		TRAY1: T1 - 5
 		TRAY2: T6 - 2
@@ -211,10 +245,10 @@ INSERT INTO ToolsMachineTray(ToolsMachineTrayID, ToolID, MachineID, TrayIndex, Q
 		TRAY4: T2 - 5
 		TRAY5: T1 - 3
 	*/
-	(7, 1, 1, 1, 5, now(), 1),
-	(8, 6, 1, 2, 2, now(), 1),
-	(9, 2, 1, 4, 5, now(), 1),
-	(10, 1, 1, 5, 3, now(), 1),
+	(7, 8, "Tray_1", 5, now(), 1),
+	(8, 10, "Tray_2", 2, now(), 1),
+	(9, 9, "Tray_4", 5, now(), 1),
+	(10, 8, "Tray_5", 3, now(), 1),
 	/*+ MA2
 		TRAY1: 
 		TRAY2: T2 - 2
@@ -222,10 +256,10 @@ INSERT INTO ToolsMachineTray(ToolsMachineTrayID, ToolID, MachineID, TrayIndex, Q
 		TRAY4: T2 - 5
 		TRAY5: T4 - 3
 	*/
-	(11, 2, 2, 2, 2, now(), 1),
-	(12, 3, 2, 3, 5, now(), 1),
-	(13, 2, 2, 4, 5, now(), 1),
-	(14, 4, 2, 5, 3, now(), 1),
+	(11, 14, "Tray_2", 2, now(), 1),
+	(12, 15, "Tray_3", 5, now(), 1),
+	(13, 14, "Tray_4", 5, now(), 1),
+	(14, 16, "Tray_5", 3, now(), 1)
 	/*+ MA3
 		TRAY1: 
 		TRAY2: 
@@ -233,8 +267,7 @@ INSERT INTO ToolsMachineTray(ToolsMachineTrayID, ToolID, MachineID, TrayIndex, Q
 		TRAY4: T2 - 5
 		TRAY5: T1 - 3
 	*/
-	(112, 2, 3, 4, 5, now(), 1),
-	(113, 1, 3, 5, 3, now(), 1),
+	
 	/*+ MA4
 		TRAY1: T2 - 5
 		TRAY2: T3 - 2
@@ -242,10 +275,7 @@ INSERT INTO ToolsMachineTray(ToolsMachineTrayID, ToolID, MachineID, TrayIndex, Q
 		TRAY4: T4 - 5
 		TRAY5: T6 - 3
 	*/
-	(114, 2, 4, 1, 5, now(), 1),
-	(15, 3, 4, 2, 2, now(), 1),
-	(16, 4, 4, 4, 5, now(), 1),
-	(17, 6, 4, 6, 3, now(), 1),
+	
 	/*+ MA5
 		TRAY1: T1 - 5
 		TRAY2: T6 - 2
@@ -253,10 +283,7 @@ INSERT INTO ToolsMachineTray(ToolsMachineTrayID, ToolID, MachineID, TrayIndex, Q
 		TRAY4: T2 - 5
 		TRAY5: T1 - 3
 	*/
-	(18, 1, 5, 1, 5, now(), 1),
-	(19, 6, 5, 2, 2, now(), 1),
-	(20, 2, 5, 4, 5, now(), 1),
-	(21, 1, 5, 6, 3, now(), 1);
+	;
 
 DROP TABLE IF EXISTS WorkingTransaction;
 CREATE TABLE IF NOT EXISTS WorkingTransaction (
