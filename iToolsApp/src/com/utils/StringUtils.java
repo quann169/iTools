@@ -8,6 +8,7 @@ import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.util.ResourceBundle;
 
+import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -16,6 +17,8 @@ import javax.swing.JMenuBar;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.BevelBorder;
+import javax.swing.event.MenuEvent;
+import javax.swing.event.MenuListener;
 
 public class StringUtils {
 
@@ -69,7 +72,7 @@ public class StringUtils {
 
 		});
 		frame.setResizable(false);
-		
+
 		// create the status bar panel and shove it down the bottom of the frame
 		JPanel statusPanel = new JPanel();
 		statusPanel.setBorder(new BevelBorder(BevelBorder.LOWERED));
@@ -81,16 +84,42 @@ public class StringUtils {
 		statusPanel.add(statusLabel);
 
 		String textFooter = StringUtils.calculateAlign(statusPanel, bundleMessage.getString("App_Footer"));
-		
+
 		statusLabel.setText(textFooter);
 	}
 
 	public static JMenuBar addMenu() {
-		JMenuBar menuBar = new JMenuBar(); 
-		JMenu fileMenu = new JMenu("File"); // Create File menu
-		JMenu elementMenu = new JMenu("Elements"); // Create Elements menu
-		menuBar.add(fileMenu); // Add the file menu
-		menuBar.add(elementMenu);
+		JMenuBar menuBar = new JMenuBar();
+		JMenu logOut = new JMenu("   Log Out  "); // Create File menu
+		JMenu changePass = new JMenu("    Change Password    "); // Create
+																	// Elements
+																	// menu
+		menuBar.add(Box.createHorizontalGlue());
+		menuBar.add(logOut); // Add the file menu
+//		menuBar.add(Box.createHorizontalGlue());
+//		logOut.setSize(390, 30);
+		
+		menuBar.add(changePass);
+
+		changePass.addMenuListener(new MenuListener() {
+
+			@Override
+			public void menuSelected(MenuEvent e) {
+				System.out.println("Change Password");
+			}
+
+			@Override
+			public void menuDeselected(MenuEvent e) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void menuCanceled(MenuEvent e) {
+				// TODO Auto-generated method stub
+
+			}
+		});
 		return menuBar;
 	}
 

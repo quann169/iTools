@@ -15,7 +15,7 @@ public class Config {
 	}
 
 	public String getProperty(String key) {
-		String value = this.configFile.getProperty(key);
+		String value = this.configFile.getProperty(key).trim();
 		return value;
 	}
 }

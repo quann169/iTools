@@ -14,7 +14,6 @@ import java.beans.PropertyChangeListener;
 import javax.swing.ComboBoxEditor;
 import javax.swing.ComboBoxModel;
 import javax.swing.JComboBox;
-import javax.swing.JFrame;
 import javax.swing.text.AttributeSet;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.JTextComponent;
@@ -64,7 +63,7 @@ public class AutoCompletion extends PlainDocument {
 				// determine if the pressed key is backspace (needed by the
 				// remove method)
 				case KeyEvent.VK_BACK_SPACE:
-//					hitBackspace = true;
+					// hitBackspace = true;
 					hitBackspaceOnSelection = editor.getSelectionStart() != editor.getSelectionEnd();
 					break;
 				// ignore delete key

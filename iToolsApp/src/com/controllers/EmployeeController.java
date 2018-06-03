@@ -15,10 +15,10 @@ import java.util.Set;
 import org.apache.log4j.Logger;
 
 import com.models.Assessor;
+import com.models.Machine;
 import com.models.Role;
 import com.models.Tool;
 import com.utils.MysqlConnect;
-import com.views.LoginPage;
 
 /**
  * @author svi-quannguyen
@@ -43,8 +43,8 @@ public class EmployeeController {
 	 * @return
 	 */
 	public List<Tool> getToolsOfMachine(String machineCode) {
-		String sql = "select tools.ToolId, tools.Name "
-				+ " from tools inner join toolsmachine on tools.ToolID = toolsmachine.ToolID "
+		String sql = "select tools.ToolId, tools.ToolCode "
+				+ " from tools inner join toolsmachine on tools.ToolCode = toolsmachine.ToolCode "
 				+ " inner join machine on toolsmachine.MachineCode = machine.MachineCode "
 				+ " where machine.MachineCode = '" + machineCode + "';";
 		// System.out.println(sql);
@@ -78,12 +78,12 @@ public class EmployeeController {
 	 * @return
 	 */
 	public HashMap<String, List<List<Object>>> getToolTrayQuantity(String machineCode) {
-		String sql = " select tools.ToolID, tools.Name, machine.MachineCode, toolsmachinetray.TrayIndex, toolsmachinetray.Quantity "
-				+ " from tools inner join toolsmachine on tools.ToolID = toolsmachine.ToolID "
+		String sql = " select tools.ToolCode, tools.ToolCode, machine.MachineCode, toolsmachinetray.TrayIndex, toolsmachinetray.Quantity "
+				+ " from tools inner join toolsmachine on tools.ToolCode = toolsmachine.ToolCode "
 				+ " inner join machine on toolsmachine.MachineCode = machine.MachineCode "
 				+ " inner join toolsmachinetray on toolsmachinetray.toolsmachineID = toolsmachine.toolsmachineID "
 				+ " where machine.MachineCode = '" + machineCode + "';";
-//		System.out.println(sql);
+		// System.out.println(sql);
 		HashMap<String, List<List<Object>>> result = new HashMap<>();
 		List<String> availableTools = new ArrayList<>();
 		Set<String> toolTrays = new HashSet<>();
@@ -119,7 +119,6 @@ public class EmployeeController {
 					}
 				}
 			}
-
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -189,9 +188,34 @@ public class EmployeeController {
 		}
 	}
 
-	public static List<String> findAvailableMachine(String machineCode, String selectValue) {
-		List<String> result = new ArrayList<>();
-		
-		return result;
+	public List<Machine> findAvailableMachine(String companyCode, String selectValue) {
+		String sql = "select tools.ToolID, tools.ToolCode,machine.MachineCode, toolsmachinetray.quantity "
+				+ " from company " + "	inner join companymachine "
+				+ "				on companymachine.CompanyCode = company.CompanyCode " + "	inner join machine  "
+				+ "				on machine.MachineCode = companymachine.MachineCode " + "	inner join toolsMachine  "
+				+ "				on toolsMachine.MachineCode = machine.MachineCode " + "	inner join Tools  "
+				+ "				on Tools.ToolCode = toolsMachine.ToolCode " + "	left join toolsMachineTray "
+				+ "				on toolsMachineTray.toolsMachineID = toolsMachine.toolsMachineID "
+				+ "where company.CompanyCode = '" + companyCode + "' and tools.ToolCode = '" + selectValue + "';";
+//		System.out.println(sql);
+		List<Machine> listAllMachines = new ArrayList<>();
+		try {
+			PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
+			ResultSet rs = statement.executeQuery(sql);
+
+			while (rs.next()) {
+//				int toolId = Integer.valueOf(rs.getString(1));
+				String machineCode = rs.getString(3);
+				Machine machine = new Machine(machineCode);
+
+				listAllMachines.add(machine);
+			}
+			return listAllMachines;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return listAllMachines;
+		} finally {
+			mysqlConnect.disconnect();
+		}
 	}
 }

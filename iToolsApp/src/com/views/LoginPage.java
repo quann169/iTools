@@ -175,11 +175,15 @@ public class LoginPage extends JFrame implements ActionListener {
 				} else if (listRoles.size() == 1 && Enum.EMP.text().equals(listRoles.get(0).getRoleName())) {
 					EmployeePage empPage = new EmployeePage();
 					StringUtils.frameInit(empPage, bundleMessage);
+//					empPage.setJMenuBar(StringUtils.addMenu());
 					empPage.setTitle(userText + " - " + result.getFirstName() + " " + result.getLastName());
 					empPage.show();
+					
 				} else {
 					DashboardPage dashboardPage = new DashboardPage();
 					StringUtils.frameInit(dashboardPage, bundleMessage);
+					
+//					dashboardPage.setJMenuBar(StringUtils.addMenu());
 					dashboardPage.show();
 				}
 				

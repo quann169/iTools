@@ -1,10 +1,15 @@
 package com.views;
 
 import java.awt.Container;
+import java.awt.Cursor;
 import java.awt.Font;
-import java.awt.FontMetrics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.font.TextAttribute;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -18,23 +23,21 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JMenuBar;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.Timer;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
 import org.apache.log4j.Logger;
 
 import com.controllers.EmployeeController;
-import com.controllers.LoginController;
-import com.models.Assessor;
-import com.models.Role;
+import com.models.Machine;
 import com.models.Tool;
 import com.utils.AdvancedEncryptionStandard;
 import com.utils.AutoCompletion;
 import com.utils.Config;
-import com.utils.StringUtils;
 
 public class EmployeePage extends JFrame implements ActionListener {
 
@@ -45,6 +48,10 @@ public class EmployeePage extends JFrame implements ActionListener {
 	static ResourceBundle bundleMessage = ResourceBundle.getBundle("com.message.ApplicationMessages",
 			new Locale("vn", "VN"));
 	Container container = getContentPane();
+	JLabel logOutLabel = new JLabel(bundleMessage.getString("App_Logout"));
+	JLabel changePassLabel = new JLabel(bundleMessage.getString("App_ChangePassword"));
+	JLabel splitLabel = new JLabel(" | ");
+	
 	JLabel woLabel = new JLabel(bundleMessage.getString("Employee_Page_WO"));
 	JLabel opLabel = new JLabel(bundleMessage.getString("Employee_Page_OP"));
 	JLabel toolLabel = new JLabel(bundleMessage.getString("Employee_Page_Tool"));
@@ -69,6 +76,11 @@ public class EmployeePage extends JFrame implements ActionListener {
 	String machineCode = AdvancedEncryptionStandard.decrypt(cfg.getProperty(MACHINE_CODE));
 
 	final static Logger logger = Logger.getLogger(EmployeePage.class);
+	EmployeeController empCtlObj = new EmployeeController();
+	Timer updateTimer;
+	int delayTime = Integer.valueOf(cfg.getProperty("Employee_Page_Time_Change_Focus")) * 1000;
+	int wo_min_length = Integer.valueOf(cfg.getProperty("Employee_Page_WO_Min_Length"));
+	int op_min_length = Integer.valueOf(cfg.getProperty("Employee_Page_OP_Min_Length"));
 
 	EmployeePage() {
 		setLayoutManager();
@@ -84,7 +96,59 @@ public class EmployeePage extends JFrame implements ActionListener {
 
 	public void setLocationAndSize() {
 		Font labelFont = woLabel.getFont();
+		
+		Map<TextAttribute, Integer> fontAttributes = new HashMap<TextAttribute, Integer>();
+		fontAttributes.put(TextAttribute.UNDERLINE, TextAttribute.UNDERLINE_ON);
+		
+//		JButton button = new JButton();
+//	    button.setText("<HTML><FONT color=\"#9BAFFF\"><U>   Logout   </U></FONT></HTML>");
+//	    button.setHorizontalAlignment(SwingConstants.LEFT);
+//	    button.setBorderPainted(false);
+//	    button.setOpaque(false);
+//	    button.setBackground(Color.WHITE);
+//	    button.setBounds(620, 0, 150, 60);
+//	    container.add(button);
+	    
 
+		changePassLabel.setText("<html><html><font size=\"5\" face=\"arial\" color=\"#9BAFFF\"><b><i><u>Change Password</u></i></b></font></html></html>");
+		changePassLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		changePassLabel.setBounds(440, 0, 170, 60);
+		changePassLabel.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                System.out.println("changePassLabel");
+            }
+        });
+	    
+		splitLabel.setBounds(605, 0, 15, 60);
+	    splitLabel.setFont(new Font(labelFont.getName(), Font.BOLD, 16));
+	    
+	    logOutLabel.setText("<html><font size=\"5\" face=\"arial\" color=\"#9BAFFF\"><b><i><u>Logout</u></i></b></font></html>");
+	    logOutLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
+	    logOutLabel.setBounds(620, 0, 100, 60);
+	    logOutLabel.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                System.out.println("logOutLabel");
+            }
+        });
+		
+//		changePassLabel.setBounds(480, 0, 150, 60);
+//		changePassLabel.setFont(new Font(labelFont.getName(), Font.ITALIC, 16).deriveFont(fontAttributes));
+//		changePassLabel.setForeground(Color.getColor("#9BAFFF"));
+//		
+//		splitLabel.setBounds(610, 0, 20, 60);
+//		splitLabel.setFont(new Font(labelFont.getName(), Font.ITALIC, 16));
+//		
+//		logOutLabel.setBounds(620, 0, 100, 60);
+//		logOutLabel.setFont(new Font(labelFont.getName(), Font.ITALIC, 16).deriveFont(fontAttributes));
+//		logOutLabel.setForeground(Color.getColor("#9BAFFF"));
+		
+		
+		
+		
+		
+		
 		woLabel.setBounds(100, 70, 150, 60);
 		woLabel.setFont(new Font(labelFont.getName(), Font.BOLD, 25));
 
@@ -104,11 +168,12 @@ public class EmployeePage extends JFrame implements ActionListener {
 			}
 
 			public void warn() {
-				if (woTextField.getText().length() > 0 && opTextField.getText().length() > 0) {
-					sendRequestButton.setEnabled(true);
-				}
+				validateAllFields();
+				updateTimer.restart();
 			}
 		});
+
+		woTextField.requestFocus();
 
 		opLabel.setBounds(100, 120, 150, 60);
 		opLabel.setFont(new Font(labelFont.getName(), Font.BOLD, 25));
@@ -126,12 +191,12 @@ public class EmployeePage extends JFrame implements ActionListener {
 
 			public void insertUpdate(DocumentEvent e) {
 				warn();
+
 			}
 
 			public void warn() {
-				if (validateAllFields()) {
-					sendRequestButton.setEnabled(true);
-				}
+				validateAllFields();
+				updateTimer.restart();
 			}
 		});
 
@@ -140,27 +205,6 @@ public class EmployeePage extends JFrame implements ActionListener {
 
 		trayTextField.setBounds(250, 250, 180, 30);
 		toolComboBox.setBounds(250, 190, 300, 30);
-		//
-		// trayTextField.getDocument().addDocumentListener(new
-		// DocumentListener() {
-		// public void changedUpdate(DocumentEvent e) {
-		// warn();
-		// }
-		//
-		// public void removeUpdate(DocumentEvent e) {
-		// warn();
-		// }
-		//
-		// public void insertUpdate(DocumentEvent e) {
-		// warn();
-		// }
-		//
-		// public void warn() {
-		// if (validateAllFields()) {
-		// sendRequestButton.setEnabled(true);
-		// }
-		// }
-		// });
 		trayTextField.setEditable(false);
 
 		trayLabel.setBounds(250, 205, 150, 60);
@@ -188,19 +232,28 @@ public class EmployeePage extends JFrame implements ActionListener {
 				} else {
 					trayTextField.setText("");
 					quantityTextField.setText("0");
-					List<String> availableTool = EmployeeController.findAvailableMachine(machineCode, selectValue);
+
 					if (!selectValue.equals("")) {
-						JOptionPane.showMessageDialog(trayTextField.getParent(), bundleMessage.getString("Login_Page_Login_Fail"));
-						logger.info("Login Fail");
+						List<Machine> availableMachine = empCtlObj.findAvailableMachine(machineCode, selectValue);
+
+						JOptionPane.showMessageDialog(trayTextField.getParent(),
+								bundleMessage.getString("Employee_AvailableMachine"));
+						logger.info("Suggest machine for tool " + selectValue + " - company " + COMPANY_CODE + ": "
+								+ availableMachine);
+
 					}
-					
-					
 				}
 			}
 		});
-		EmployeeController controllerObj = new EmployeeController();
+		toolComboBox.addFocusListener(new FocusAdapter() {
+
+			@Override
+			public void focusGained(FocusEvent e) {
+				toolComboBox.showPopup();
+			}
+		});
 		String machineCode = AdvancedEncryptionStandard.decrypt(cfg.getProperty(MACHINE_CODE));
-		List<Tool> listTools = controllerObj.getToolsOfMachine(machineCode);
+		List<Tool> listTools = empCtlObj.getToolsOfMachine(machineCode);
 		Collections.sort(listTools, new Comparator<Tool>() {
 			public int compare(Tool o1, Tool o2) {
 				if (o1.getToolName() == o2.getToolName())
@@ -216,7 +269,7 @@ public class EmployeePage extends JFrame implements ActionListener {
 
 		AutoCompletion.enable(toolComboBox);
 
-		toolVstrayAndQuantityMap = controllerObj.getToolTrayQuantity(machineCode);
+		toolVstrayAndQuantityMap = empCtlObj.getToolTrayQuantity(machineCode);
 
 		quantityLabel.setBounds(450, 205, 150, 60);
 		quantityLabel.setFont(new Font(labelFont.getName(), Font.ITALIC + Font.BOLD, 15));
@@ -250,6 +303,18 @@ public class EmployeePage extends JFrame implements ActionListener {
 		cancelButton.setBounds(450, 300, 100, 30);
 		cancelButton.setFont(new Font(labelFont.getName(), Font.BOLD, 15));
 
+		updateTimer = new Timer(delayTime, new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (woTextField.getText().length() > wo_min_length && opTextField.getText().length() > op_min_length) {
+					toolComboBox.requestFocusInWindow();
+				} else if (woTextField.getText().length() > wo_min_length && opTextField.getText().length() == 0) {
+					opTextField.requestFocusInWindow();
+				}
+			}
+		});
+		updateTimer.setRepeats(false);
+
 	}
 
 	private static boolean StringFilter(String emp, String textToFilter) {
@@ -267,13 +332,18 @@ public class EmployeePage extends JFrame implements ActionListener {
 		int quantityLength = quantityTextField.getText().length();
 
 		if (woLength > 0 && opLength > 0 && toolLength > 0 && trayLength > 0 && quantityLength > 0) {
+			sendRequestButton.setEnabled(true);
 			return true;
 		} else {
+			sendRequestButton.setEnabled(false);
 			return false;
 		}
 	}
 
 	public void addComponentsToContainer() {
+		container.add(splitLabel);
+		container.add(changePassLabel);
+		container.add(logOutLabel);
 		container.add(woLabel);
 		container.add(opLabel);
 		container.add(toolLabel);
@@ -297,34 +367,15 @@ public class EmployeePage extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == sendRequestButton) {
 
-
 		}
 		if (e.getSource() == cancelButton) {
 			woTextField.setText("");
 			opTextField.setText("");
 			trayTextField.setText("");
-			toolComboBox.setSelectedIndex(0);;
+			toolComboBox.setSelectedIndex(0);
+			;
 			quantityTextField.setText("");
 		}
-	}
-
-	private static void titleAlign(JFrame frame) {
-
-		Font font = frame.getFont();
-
-		String currentTitle = frame.getTitle().trim();
-		FontMetrics fm = frame.getFontMetrics(font);
-		int frameWidth = frame.getWidth();
-		int titleWidth = fm.stringWidth(currentTitle);
-		int spaceWidth = fm.stringWidth(" ");
-		int centerPos = (frameWidth / 2) - (titleWidth / 2);
-		int spaceCount = centerPos / spaceWidth;
-		String pad = "";
-		pad = String.format("%" + (spaceCount - 14) + "s", pad);
-		frame.setTitle(pad + currentTitle);
-
-		JMenuBar menubar = StringUtils.addMenu();
-		frame.setJMenuBar(menubar);
 	}
 
 }

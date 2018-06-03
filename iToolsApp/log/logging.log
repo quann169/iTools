@@ -222,3 +222,286 @@
 2018-06-01 17:00:14 INFO  EmployeePage:194 - Login Fail
 2018-06-01 17:00:17 INFO  EmployeePage:194 - Login Fail
 2018-06-01 17:00:26 INFO  EmployeePage:194 - Login Fail
+2018-06-03 09:59:28 INFO  LoginPage:161 - Login with username: com1user2
+2018-06-03 09:59:29 INFO  LoginPage:166 - Login OK
+2018-06-03 09:59:29 INFO  LoginPage:169 - listRoles: [Roles [roleName=Emp]]
+2018-06-03 10:02:08 INFO  EmployeePage:196 - Login Fail
+2018-06-03 10:56:41 INFO  LoginPage:161 - Login with username: com1user2
+2018-06-03 10:56:43 INFO  LoginPage:166 - Login OK
+2018-06-03 10:56:43 INFO  LoginPage:169 - listRoles: [Roles [roleName=Emp]]
+2018-06-03 10:58:35 INFO  LoginPage:161 - Login with username: com1user2
+2018-06-03 10:58:36 INFO  LoginPage:166 - Login OK
+2018-06-03 10:58:36 INFO  LoginPage:169 - listRoles: [Roles [roleName=Emp]]
+2018-06-03 10:58:54 INFO  LoginPage:161 - Login with username: com1user2
+2018-06-03 10:58:55 INFO  LoginPage:166 - Login OK
+2018-06-03 10:58:55 INFO  LoginPage:169 - listRoles: [Roles [roleName=Emp]]
+2018-06-03 10:59:07 INFO  EmployeePage:196 - Login Fail
+2018-06-03 11:24:22 INFO  LoginPage:161 - Login with username: com1user2
+2018-06-03 11:24:23 INFO  LoginPage:166 - Login OK
+2018-06-03 11:24:23 INFO  LoginPage:169 - listRoles: [Roles [roleName=Emp]]
+2018-06-03 11:24:28 INFO  EmployeePage:196 - Login Fail
+2018-06-03 11:57:07 INFO  LoginPage:161 - Login with username: com1user2
+2018-06-03 11:57:08 INFO  LoginPage:166 - Login OK
+2018-06-03 11:57:08 INFO  LoginPage:169 - listRoles: [Roles [roleName=Emp]]
+2018-06-03 11:57:19 INFO  EmployeePage:200 - Login Fail
+2018-06-03 11:57:37 INFO  EmployeePage:200 - Login Fail
+2018-06-03 12:01:34 INFO  LoginPage:161 - Login with username: com1user2
+2018-06-03 12:01:35 INFO  LoginPage:166 - Login OK
+2018-06-03 12:01:35 INFO  LoginPage:169 - listRoles: [Roles [roleName=Emp]]
+2018-06-03 12:02:59 INFO  LoginPage:161 - Login with username: com1user2
+2018-06-03 12:03:00 INFO  LoginPage:166 - Login OK
+2018-06-03 12:03:00 INFO  LoginPage:169 - listRoles: [Roles [roleName=Emp]]
+2018-06-03 12:04:31 INFO  LoginPage:161 - Login with username: com1user2
+2018-06-03 12:04:32 INFO  LoginPage:166 - Login OK
+2018-06-03 12:04:32 INFO  LoginPage:169 - listRoles: [Roles [roleName=Emp]]
+2018-06-03 12:05:08 INFO  LoginPage:161 - Login with username: com1user2
+2018-06-03 12:05:09 INFO  LoginPage:166 - Login OK
+2018-06-03 12:05:09 INFO  LoginPage:169 - listRoles: [Roles [roleName=Emp]]
+2018-06-03 12:05:41 INFO  LoginPage:161 - Login with username: com1user2
+2018-06-03 12:05:42 INFO  LoginPage:166 - Login OK
+2018-06-03 12:05:42 INFO  LoginPage:169 - listRoles: [Roles [roleName=Emp]]
+2018-06-03 12:06:39 INFO  LoginPage:161 - Login with username: com1user2
+2018-06-03 12:06:40 INFO  LoginPage:166 - Login OK
+2018-06-03 12:06:40 INFO  LoginPage:169 - listRoles: [Roles [roleName=Emp]]
+2018-06-03 12:06:57 INFO  EmployeePage:213 - Login Fail
+2018-06-03 12:07:09 INFO  EmployeePage:213 - Login Fail
+2018-06-03 12:10:25 INFO  LoginPage:161 - Login with username: com1user2
+2018-06-03 12:10:26 INFO  LoginPage:166 - Login OK
+2018-06-03 12:10:26 INFO  LoginPage:169 - listRoles: [Roles [roleName=Emp]]
+2018-06-03 12:10:38 INFO  EmployeePage:213 - Suggest machine for tool CTID4 - company COMPANY_CODE: []
+2018-06-03 12:12:15 INFO  LoginPage:161 - Login with username: com1user2
+2018-06-03 12:12:16 INFO  LoginPage:166 - Login OK
+2018-06-03 12:12:16 INFO  LoginPage:169 - listRoles: [Roles [roleName=Emp]]
+2018-06-03 12:12:22 INFO  EmployeePage:213 - Suggest machine for tool CTID4 - company COMPANY_CODE: []
+2018-06-03 12:12:32 INFO  EmployeePage:213 - Suggest machine for tool CTID4 - company COMPANY_CODE: []
+2018-06-03 12:13:34 INFO  LoginPage:161 - Login with username: com1user2
+2018-06-03 12:13:35 INFO  LoginPage:166 - Login OK
+2018-06-03 12:13:35 INFO  LoginPage:169 - listRoles: [Roles [roleName=Emp]]
+2018-06-03 12:13:42 INFO  EmployeePage:213 - Suggest machine for tool CTID5 - company COMPANY_CODE: []
+2018-06-03 12:17:28 INFO  LoginPage:161 - Login with username: com1user2
+2018-06-03 12:17:29 INFO  LoginPage:166 - Login OK
+2018-06-03 12:17:29 INFO  LoginPage:169 - listRoles: [Roles [roleName=Emp]]
+2018-06-03 12:17:37 INFO  EmployeePage:209 - Suggest machine for tool CTID5 - company COMPANY_CODE: []
+2018-06-03 12:17:42 INFO  EmployeePage:209 - Suggest machine for tool CTID5 - company COMPANY_CODE: []
+2018-06-03 12:22:34 INFO  LoginPage:161 - Login with username: com1user2
+2018-06-03 12:22:36 INFO  LoginPage:166 - Login OK
+2018-06-03 12:22:36 INFO  LoginPage:169 - listRoles: [Roles [roleName=Emp]]
+2018-06-03 12:39:37 INFO  LoginPage:161 - Login with username: com1user2
+2018-06-03 12:39:38 INFO  LoginPage:166 - Login OK
+2018-06-03 12:39:38 INFO  LoginPage:169 - listRoles: [Roles [roleName=Emp]]
+2018-06-03 12:53:00 INFO  LoginPage:161 - Login with username: com1user2
+2018-06-03 12:53:01 INFO  LoginPage:166 - Login OK
+2018-06-03 12:53:01 INFO  LoginPage:169 - listRoles: [Roles [roleName=Emp]]
+2018-06-03 13:08:06 INFO  LoginPage:161 - Login with username: com1user2
+2018-06-03 13:08:08 INFO  LoginPage:166 - Login OK
+2018-06-03 13:08:08 INFO  LoginPage:169 - listRoles: [Roles [roleName=Emp]]
+2018-06-03 13:08:53 INFO  LoginPage:161 - Login with username: com1user2
+2018-06-03 13:08:54 INFO  LoginPage:166 - Login OK
+2018-06-03 13:08:54 INFO  LoginPage:169 - listRoles: [Roles [roleName=Emp]]
+2018-06-03 13:13:46 INFO  LoginPage:161 - Login with username: com1user2
+2018-06-03 13:13:47 INFO  LoginPage:166 - Login OK
+2018-06-03 13:13:47 INFO  LoginPage:169 - listRoles: [Roles [roleName=Emp]]
+2018-06-03 13:14:18 INFO  LoginPage:161 - Login with username: com1user2
+2018-06-03 13:14:19 INFO  LoginPage:166 - Login OK
+2018-06-03 13:14:19 INFO  LoginPage:169 - listRoles: [Roles [roleName=Emp]]
+2018-06-03 13:19:11 INFO  LoginPage:161 - Login with username: com1user2
+2018-06-03 13:19:12 INFO  LoginPage:166 - Login OK
+2018-06-03 13:19:12 INFO  LoginPage:169 - listRoles: [Roles [roleName=Emp]]
+2018-06-03 13:19:56 INFO  LoginPage:161 - Login with username: com1user2
+2018-06-03 13:19:58 INFO  LoginPage:166 - Login OK
+2018-06-03 13:19:58 INFO  LoginPage:169 - listRoles: [Roles [roleName=Emp]]
+2018-06-03 13:25:17 INFO  LoginPage:161 - Login with username: com1user2
+2018-06-03 13:25:18 INFO  LoginPage:166 - Login OK
+2018-06-03 13:25:18 INFO  LoginPage:169 - listRoles: [Roles [roleName=Emp]]
+2018-06-03 13:26:16 INFO  LoginPage:161 - Login with username: com1user2
+2018-06-03 13:26:17 INFO  LoginPage:166 - Login OK
+2018-06-03 13:26:17 INFO  LoginPage:169 - listRoles: [Roles [roleName=Emp]]
+2018-06-03 13:32:08 INFO  LoginPage:161 - Login with username: com1user2
+2018-06-03 13:32:09 INFO  LoginPage:166 - Login OK
+2018-06-03 13:32:09 INFO  LoginPage:169 - listRoles: [Roles [roleName=Emp]]
+2018-06-03 13:32:58 INFO  LoginPage:161 - Login with username: com1user2
+2018-06-03 13:32:59 INFO  LoginPage:166 - Login OK
+2018-06-03 13:32:59 INFO  LoginPage:169 - listRoles: [Roles [roleName=Emp]]
+2018-06-03 13:39:26 INFO  LoginPage:161 - Login with username: com1user2
+2018-06-03 13:39:27 INFO  LoginPage:166 - Login OK
+2018-06-03 13:39:27 INFO  LoginPage:169 - listRoles: [Roles [roleName=Emp]]
+2018-06-03 13:41:26 INFO  LoginPage:161 - Login with username: com1user2
+2018-06-03 13:41:28 INFO  LoginPage:166 - Login OK
+2018-06-03 13:41:28 INFO  LoginPage:169 - listRoles: [Roles [roleName=Emp]]
+2018-06-03 13:43:40 INFO  LoginPage:161 - Login with username: com1user2
+2018-06-03 13:43:41 INFO  LoginPage:166 - Login OK
+2018-06-03 13:43:41 INFO  LoginPage:169 - listRoles: [Roles [roleName=Emp]]
+2018-06-03 13:43:52 INFO  LoginPage:161 - Login with username: com1user2
+2018-06-03 13:43:53 INFO  LoginPage:166 - Login OK
+2018-06-03 13:43:53 INFO  LoginPage:169 - listRoles: [Roles [roleName=Emp]]
+2018-06-03 13:44:04 INFO  LoginPage:161 - Login with username: com1user2
+2018-06-03 13:44:05 INFO  LoginPage:166 - Login OK
+2018-06-03 13:44:05 INFO  LoginPage:169 - listRoles: [Roles [roleName=Emp]]
+2018-06-03 13:44:52 INFO  LoginPage:161 - Login with username: com1user2
+2018-06-03 13:44:53 INFO  LoginPage:166 - Login OK
+2018-06-03 13:44:53 INFO  LoginPage:169 - listRoles: [Roles [roleName=Emp]]
+2018-06-03 13:45:16 INFO  LoginPage:161 - Login with username: com1user2
+2018-06-03 13:45:17 INFO  LoginPage:166 - Login OK
+2018-06-03 13:45:17 INFO  LoginPage:169 - listRoles: [Roles [roleName=Emp]]
+2018-06-03 13:45:34 INFO  LoginPage:161 - Login with username: com1user2
+2018-06-03 13:45:35 INFO  LoginPage:166 - Login OK
+2018-06-03 13:45:35 INFO  LoginPage:169 - listRoles: [Roles [roleName=Emp]]
+2018-06-03 13:45:50 INFO  LoginPage:161 - Login with username: com1user2
+2018-06-03 13:45:51 INFO  LoginPage:166 - Login OK
+2018-06-03 13:45:51 INFO  LoginPage:169 - listRoles: [Roles [roleName=Emp]]
+2018-06-03 13:46:01 INFO  LoginPage:161 - Login with username: com1user2
+2018-06-03 13:46:02 INFO  LoginPage:166 - Login OK
+2018-06-03 13:46:02 INFO  LoginPage:169 - listRoles: [Roles [roleName=Emp]]
+2018-06-03 13:46:27 INFO  LoginPage:161 - Login with username: com1user2
+2018-06-03 13:46:28 INFO  LoginPage:166 - Login OK
+2018-06-03 13:46:28 INFO  LoginPage:169 - listRoles: [Roles [roleName=Emp]]
+2018-06-03 13:58:59 INFO  LoginPage:161 - Login with username: com1user2
+2018-06-03 13:59:00 INFO  LoginPage:166 - Login OK
+2018-06-03 13:59:00 INFO  LoginPage:169 - listRoles: [Roles [roleName=Emp]]
+2018-06-03 14:00:53 INFO  LoginPage:161 - Login with username: com1user2
+2018-06-03 14:00:54 INFO  LoginPage:166 - Login OK
+2018-06-03 14:00:54 INFO  LoginPage:169 - listRoles: [Roles [roleName=Emp]]
+2018-06-03 14:01:17 INFO  LoginPage:161 - Login with username: com1user2
+2018-06-03 14:01:19 INFO  LoginPage:166 - Login OK
+2018-06-03 14:01:19 INFO  LoginPage:169 - listRoles: [Roles [roleName=Emp]]
+2018-06-03 14:04:47 INFO  LoginPage:161 - Login with username: com1user2
+2018-06-03 14:04:48 INFO  LoginPage:166 - Login OK
+2018-06-03 14:04:48 INFO  LoginPage:169 - listRoles: [Roles [roleName=Emp]]
+2018-06-03 14:06:44 INFO  LoginPage:161 - Login with username: com1user2
+2018-06-03 14:06:45 INFO  LoginPage:166 - Login OK
+2018-06-03 14:06:45 INFO  LoginPage:169 - listRoles: [Roles [roleName=Emp]]
+2018-06-03 14:09:23 INFO  LoginPage:161 - Login with username: com1user2
+2018-06-03 14:09:24 INFO  LoginPage:166 - Login OK
+2018-06-03 14:09:24 INFO  LoginPage:169 - listRoles: [Roles [roleName=Emp]]
+2018-06-03 14:09:36 INFO  LoginPage:161 - Login with username: com1user2
+2018-06-03 14:09:37 INFO  LoginPage:166 - Login OK
+2018-06-03 14:09:37 INFO  LoginPage:169 - listRoles: [Roles [roleName=Emp]]
+2018-06-03 14:10:07 INFO  LoginPage:161 - Login with username: com1user2
+2018-06-03 14:10:08 INFO  LoginPage:166 - Login OK
+2018-06-03 14:10:08 INFO  LoginPage:169 - listRoles: [Roles [roleName=Emp]]
+2018-06-03 14:10:27 INFO  LoginPage:161 - Login with username: com1user2
+2018-06-03 14:10:28 INFO  LoginPage:166 - Login OK
+2018-06-03 14:10:28 INFO  LoginPage:169 - listRoles: [Roles [roleName=Emp]]
+2018-06-03 14:10:43 INFO  LoginPage:161 - Login with username: com1user2
+2018-06-03 14:10:44 INFO  LoginPage:166 - Login OK
+2018-06-03 14:10:44 INFO  LoginPage:169 - listRoles: [Roles [roleName=Emp]]
+2018-06-03 14:10:55 INFO  LoginPage:161 - Login with username: com1user2
+2018-06-03 14:10:57 INFO  LoginPage:166 - Login OK
+2018-06-03 14:10:57 INFO  LoginPage:169 - listRoles: [Roles [roleName=Emp]]
+2018-06-03 14:11:09 INFO  LoginPage:161 - Login with username: com1user2
+2018-06-03 14:11:10 INFO  LoginPage:166 - Login OK
+2018-06-03 14:11:10 INFO  LoginPage:169 - listRoles: [Roles [roleName=Emp]]
+2018-06-03 14:11:20 INFO  LoginPage:161 - Login with username: com1user2
+2018-06-03 14:11:21 INFO  LoginPage:166 - Login OK
+2018-06-03 14:11:21 INFO  LoginPage:169 - listRoles: [Roles [roleName=Emp]]
+2018-06-03 14:11:32 INFO  LoginPage:161 - Login with username: com1user2
+2018-06-03 14:11:33 INFO  LoginPage:166 - Login OK
+2018-06-03 14:11:33 INFO  LoginPage:169 - listRoles: [Roles [roleName=Emp]]
+2018-06-03 14:11:57 INFO  LoginPage:161 - Login with username: com1user2
+2018-06-03 14:11:58 INFO  LoginPage:166 - Login OK
+2018-06-03 14:11:58 INFO  LoginPage:169 - listRoles: [Roles [roleName=Emp]]
+2018-06-03 14:12:14 INFO  LoginPage:161 - Login with username: com1user2
+2018-06-03 14:12:15 INFO  LoginPage:166 - Login OK
+2018-06-03 14:12:15 INFO  LoginPage:169 - listRoles: [Roles [roleName=Emp]]
+2018-06-03 14:15:04 INFO  LoginPage:161 - Login with username: com1user2
+2018-06-03 14:15:05 INFO  LoginPage:166 - Login OK
+2018-06-03 14:15:05 INFO  LoginPage:169 - listRoles: [Roles [roleName=Emp]]
+2018-06-03 14:16:13 INFO  LoginPage:161 - Login with username: com1user2
+2018-06-03 14:16:14 INFO  LoginPage:166 - Login OK
+2018-06-03 14:16:14 INFO  LoginPage:169 - listRoles: [Roles [roleName=Emp]]
+2018-06-03 14:16:55 INFO  LoginPage:161 - Login with username: com1user2
+2018-06-03 14:16:56 INFO  LoginPage:166 - Login OK
+2018-06-03 14:16:56 INFO  LoginPage:169 - listRoles: [Roles [roleName=Emp]]
+2018-06-03 14:18:14 INFO  LoginPage:161 - Login with username: com1user2
+2018-06-03 14:18:15 INFO  LoginPage:166 - Login OK
+2018-06-03 14:18:15 INFO  LoginPage:169 - listRoles: [Roles [roleName=Emp]]
+2018-06-03 14:18:26 INFO  LoginPage:161 - Login with username: com1user2
+2018-06-03 14:18:27 INFO  LoginPage:166 - Login OK
+2018-06-03 14:18:27 INFO  LoginPage:169 - listRoles: [Roles [roleName=Emp]]
+2018-06-03 14:19:07 INFO  LoginPage:161 - Login with username: com1user2
+2018-06-03 14:19:08 INFO  LoginPage:166 - Login OK
+2018-06-03 14:19:08 INFO  LoginPage:169 - listRoles: [Roles [roleName=Emp]]
+2018-06-03 14:19:32 INFO  LoginPage:161 - Login with username: com1user2
+2018-06-03 14:19:33 INFO  LoginPage:166 - Login OK
+2018-06-03 14:19:33 INFO  LoginPage:169 - listRoles: [Roles [roleName=Emp]]
+2018-06-03 14:19:54 INFO  LoginPage:161 - Login with username: com1user2
+2018-06-03 14:19:55 INFO  LoginPage:166 - Login OK
+2018-06-03 14:19:55 INFO  LoginPage:169 - listRoles: [Roles [roleName=Emp]]
+2018-06-03 14:20:35 INFO  LoginPage:161 - Login with username: com1user2
+2018-06-03 14:20:36 INFO  LoginPage:166 - Login OK
+2018-06-03 14:20:36 INFO  LoginPage:169 - listRoles: [Roles [roleName=Emp]]
+2018-06-03 14:21:22 INFO  LoginPage:161 - Login with username: com1user2
+2018-06-03 14:21:23 INFO  LoginPage:166 - Login OK
+2018-06-03 14:21:23 INFO  LoginPage:169 - listRoles: [Roles [roleName=Emp]]
+2018-06-03 14:21:34 INFO  LoginPage:161 - Login with username: com1user2
+2018-06-03 14:21:35 INFO  LoginPage:166 - Login OK
+2018-06-03 14:21:35 INFO  LoginPage:169 - listRoles: [Roles [roleName=Emp]]
+2018-06-03 14:25:10 INFO  LoginPage:161 - Login with username: com1user2
+2018-06-03 14:25:11 INFO  LoginPage:166 - Login OK
+2018-06-03 14:25:11 INFO  LoginPage:169 - listRoles: [Roles [roleName=Emp]]
+2018-06-03 14:25:46 INFO  LoginPage:161 - Login with username: com1user2
+2018-06-03 14:25:48 INFO  LoginPage:166 - Login OK
+2018-06-03 14:25:48 INFO  LoginPage:169 - listRoles: [Roles [roleName=Emp]]
+2018-06-03 14:26:23 INFO  LoginPage:161 - Login with username: com1user2
+2018-06-03 14:26:24 INFO  LoginPage:166 - Login OK
+2018-06-03 14:26:24 INFO  LoginPage:169 - listRoles: [Roles [roleName=Emp]]
+2018-06-03 14:28:28 INFO  LoginPage:161 - Login with username: com1user2
+2018-06-03 14:28:29 INFO  LoginPage:166 - Login OK
+2018-06-03 14:28:29 INFO  LoginPage:169 - listRoles: [Roles [roleName=Emp]]
+2018-06-03 14:29:05 INFO  LoginPage:161 - Login with username: com1user2
+2018-06-03 14:29:06 INFO  LoginPage:166 - Login OK
+2018-06-03 14:29:06 INFO  LoginPage:169 - listRoles: [Roles [roleName=Emp]]
+2018-06-03 14:31:06 INFO  LoginPage:161 - Login with username: com1user2
+2018-06-03 14:31:07 INFO  LoginPage:166 - Login OK
+2018-06-03 14:31:07 INFO  LoginPage:169 - listRoles: [Roles [roleName=Emp]]
+2018-06-03 14:31:30 INFO  LoginPage:161 - Login with username: com1user2
+2018-06-03 14:31:31 INFO  LoginPage:166 - Login OK
+2018-06-03 14:31:31 INFO  LoginPage:169 - listRoles: [Roles [roleName=Emp]]
+2018-06-03 14:31:58 INFO  LoginPage:161 - Login with username: com1user2
+2018-06-03 14:32:00 INFO  LoginPage:166 - Login OK
+2018-06-03 14:32:00 INFO  LoginPage:169 - listRoles: [Roles [roleName=Emp]]
+2018-06-03 14:32:40 INFO  LoginPage:161 - Login with username: com1user2
+2018-06-03 14:32:41 INFO  LoginPage:166 - Login OK
+2018-06-03 14:32:41 INFO  LoginPage:169 - listRoles: [Roles [roleName=Emp]]
+2018-06-03 14:32:56 INFO  LoginPage:161 - Login with username: com1user2
+2018-06-03 14:32:57 INFO  LoginPage:166 - Login OK
+2018-06-03 14:32:57 INFO  LoginPage:169 - listRoles: [Roles [roleName=Emp]]
+2018-06-03 14:38:31 INFO  LoginPage:161 - Login with username: com1user2
+2018-06-03 14:38:32 INFO  LoginPage:166 - Login OK
+2018-06-03 14:38:32 INFO  LoginPage:169 - listRoles: [Roles [roleName=Emp]]
+2018-06-03 14:38:49 INFO  LoginPage:161 - Login with username: com1user2
+2018-06-03 14:38:50 INFO  LoginPage:166 - Login OK
+2018-06-03 14:38:50 INFO  LoginPage:169 - listRoles: [Roles [roleName=Emp]]
+2018-06-03 14:39:00 INFO  LoginPage:161 - Login with username: com1user2
+2018-06-03 14:39:01 INFO  LoginPage:166 - Login OK
+2018-06-03 14:39:01 INFO  LoginPage:169 - listRoles: [Roles [roleName=Emp]]
+2018-06-03 14:39:36 INFO  LoginPage:161 - Login with username: com1user2
+2018-06-03 14:39:37 INFO  LoginPage:166 - Login OK
+2018-06-03 14:39:37 INFO  LoginPage:169 - listRoles: [Roles [roleName=Emp]]
+2018-06-03 14:40:20 INFO  LoginPage:161 - Login with username: com1user2
+2018-06-03 14:40:21 INFO  LoginPage:166 - Login OK
+2018-06-03 14:40:21 INFO  LoginPage:169 - listRoles: [Roles [roleName=Emp]]
+2018-06-03 14:40:46 INFO  LoginPage:161 - Login with username: com1user2
+2018-06-03 14:40:47 INFO  LoginPage:166 - Login OK
+2018-06-03 14:40:47 INFO  LoginPage:169 - listRoles: [Roles [roleName=Emp]]
+2018-06-03 14:41:02 INFO  LoginPage:161 - Login with username: com1user2
+2018-06-03 14:41:03 INFO  LoginPage:166 - Login OK
+2018-06-03 14:41:03 INFO  LoginPage:169 - listRoles: [Roles [roleName=Emp]]
+2018-06-03 14:41:28 INFO  LoginPage:161 - Login with username: com1user2
+2018-06-03 14:41:29 INFO  LoginPage:166 - Login OK
+2018-06-03 14:41:29 INFO  LoginPage:169 - listRoles: [Roles [roleName=Emp]]
+2018-06-03 14:42:32 INFO  LoginPage:161 - Login with username: com1user2
+2018-06-03 14:42:33 INFO  LoginPage:166 - Login OK
+2018-06-03 14:42:33 INFO  LoginPage:169 - listRoles: [Roles [roleName=Emp]]
+2018-06-03 14:42:54 INFO  LoginPage:161 - Login with username: com1user2
+2018-06-03 14:42:55 INFO  LoginPage:166 - Login OK
+2018-06-03 14:42:55 INFO  LoginPage:169 - listRoles: [Roles [roleName=Emp]]
+2018-06-03 14:43:14 INFO  LoginPage:161 - Login with username: com1user2
+2018-06-03 14:43:15 INFO  LoginPage:166 - Login OK
+2018-06-03 14:43:15 INFO  LoginPage:169 - listRoles: [Roles [roleName=Emp]]
+2018-06-03 14:43:57 INFO  LoginPage:161 - Login with username: com1user2
+2018-06-03 14:43:58 INFO  LoginPage:166 - Login OK
+2018-06-03 14:43:58 INFO  LoginPage:169 - listRoles: [Roles [roleName=Emp]]
+2018-06-03 14:44:09 INFO  LoginPage:161 - Login with username: com1user2
+2018-06-03 14:44:11 INFO  LoginPage:166 - Login OK
+2018-06-03 14:44:11 INFO  LoginPage:169 - listRoles: [Roles [roleName=Emp]]

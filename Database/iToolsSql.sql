@@ -6,12 +6,14 @@ USE iTools_v1p0;
 DROP TABLE IF EXISTS Company;
 CREATE TABLE IF NOT EXISTS Company (
   CompanyID INT(10) NOT NULL AUTO_INCREMENT,
-  CompanyCode VARCHAR(100) NULL,
+  CompanyCode VARCHAR(100) NOT NULL,
   CompanyName VARCHAR(100) NULL,
   CompanyType VARCHAR(100) NULL,
   Address VARCHAR(100) NULL,
   Location VARCHAR(100) NULL,
-  PRIMARY KEY (CompanyID)
+  INDEX Company_CompanyCode (CompanyCode),
+  PRIMARY KEY (CompanyID),
+  UNIQUE KEY (CompanyCode)
 );
 
 INSERT INTO Company(CompanyID, CompanyName, CompanyCode, Address, Location) VALUES 
@@ -35,11 +37,12 @@ CREATE TABLE IF NOT EXISTS Assessor (
   IsActive BOOLEAN NOT NULL,
   LastPassword VARCHAR(255) NULL,
   PRIMARY KEY (AssessorID),
-  INDEX UserName (UserName)
+  INDEX UserName (UserName),
+  FOREIGN KEY (CompanyCode) REFERENCES Company(CompanyCode)
 );
 
 INSERT INTO Assessor(AssessorID, UserName, Password, FirstName, LastName, EmailAddress, CompanyCode, IsActive) VALUES 
-	(1, "admin", "e10adc3949ba59abbe56e057f20f883e", "ADMIN", "ADMIN", "quann169@gmail.com", NULL, 1),
+	(1, "administrator", "e10adc3949ba59abbe56e057f20f883e", "ADMIN", "ADMIN", "quann169@gmail.com", "UHCom", 1),
 	(2, "uhadmin1", "e10adc3949ba59abbe56e057f20f883e", "ADMIN", "UH", "admin1@aaa.bbb", "UHCom", 1),
 	(3, "uhacc1", "e10adc3949ba59abbe56e057f20f883e", "Acc1", "UH", "acc1@aaa.bbb", "UHCom", 1),
 	(4, "uhacc2", "e10adc3949ba59abbe56e057f20f883e", "Acc2", "UH", "acc2@aaa.bbb", "UHCom", 1),
@@ -47,8 +50,8 @@ INSERT INTO Assessor(AssessorID, UserName, Password, FirstName, LastName, EmailA
 	(6, "com1user1", "e10adc3949ba59abbe56e057f20f883e", "User1", "Com1", "com1admin@aaa.bbb", "Com1", 1),
 	(7, "com1user2", "e10adc3949ba59abbe56e057f20f883e", "User2", "Com1", "com1admin@aaa.bbb", "Com1", 1),
 	(8, "com1user3", "e10adc3949ba59abbe56e057f20f883e", "User3", "Com1", "com1admin@aaa.bbb", "Com1", 1),
-	(9, "com2admin", "e10adc3949ba59abbe56e057f20f883e", "ADMIN", "Com2", "com1admin@aaa.bbb", 3, 1),
-	(10, "com2user1", "e10adc3949ba59abbe56e057f20f883e", "User1", "Com2", "com1admin@aaa.bbb", 3, 1);
+	(9, "com2admin", "e10adc3949ba59abbe56e057f20f883e", "ADMIN", "Com2", "com1admin@aaa.bbb", "Com2", 1),
+	(10, "com2user1", "e10adc3949ba59abbe56e057f20f883e", "User1", "Com2", "com1admin@aaa.bbb", "Com2", 1);
 
 
 DROP TABLE IF EXISTS Roles;
@@ -82,8 +85,8 @@ CREATE TABLE IF NOT EXISTS RoleAssessor (
   INDEX CreatedDate (CreatedDate),
   INDEX RoleID (RoleID),
   INDEX AssessorID (AssessorID),
-  FOREIGN KEY (RoleID) REFERENCES Roles(RoleID) ON DELETE CASCADE,
-  FOREIGN KEY (AssessorID) REFERENCES Assessor(AssessorID) ON DELETE CASCADE
+  FOREIGN KEY (RoleID) REFERENCES Roles(RoleID) ,
+  FOREIGN KEY (AssessorID) REFERENCES Assessor(AssessorID) 
 );
 
 -- Admin UH has Admin, SubAdmin, Accounting, PutIns, TakeOver, UpdateReport
@@ -118,61 +121,68 @@ INSERT INTO RoleAssessor(RoleAssessorID, RoleID, AssessorID, CreatedDate, IsActi
 DROP TABLE IF EXISTS Machine;
 CREATE TABLE IF NOT EXISTS Machine (
   MachineID INT(10) NOT NULL AUTO_INCREMENT,
-  Name VARCHAR(100) NULL,
-  MachineCode VARCHAR(100) NULL,
+  MachineName VARCHAR(100) NULL,
+  MachineCode VARCHAR(100) NOT NULL,
   Model VARCHAR(100) NULL,
   Location VARCHAR(100) NULL,
   Description VARCHAR(100) NULL,
   CreatedDate DATETIME NULL,
   UpdatedDate DATETIME NULL,
   IsActive BOOLEAN NOT NULL,
-  PRIMARY KEY (MachineID)
+  PRIMARY KEY (MachineID),
+  INDEX Machine_MachineCode (MachineCode),
+  UNIQUE KEY (MachineCode)
 );
 
-INSERT INTO Machine(MachineID, Name, MachineCode, Location, CreatedDate, IsActive) VALUES 
+INSERT INTO Machine(MachineID, MachineName, MachineCode, Location, CreatedDate, IsActive) VALUES 
 	(1, "MAC1", "MAC1", "Location1", now(), 1),
 	(2, "MAC2", "MAC2", "Location2", now(), 1),
 	(3, "MAC3", "MAC3", "Location3", now(), 1),
 	(4, "MAC4", "MAC4", "Location4", now(), 1),
-	(5, "MAC5", "MAC5", "Location5", now(), 1);
+	(5, "MAC5", "MAC5", "Location5", now(), 1),
+	-- virtual machine to manage Tool in UH
+	(6, "UHMAC", "UHMAC", "UHLocation", now(), 1);
 	
 DROP TABLE IF EXISTS CompanyMachine;
 CREATE TABLE IF NOT EXISTS CompanyMachine (
   CompanyMachineID INT(10) NOT NULL AUTO_INCREMENT,
-  MachineID INT(10) NULL,
-  CompanyID INT(10) NULL,
+  MachineCode VARCHAR(100) NULL,
+  CompanyCode VARCHAR(100) NULL,
   CreatedDate DATETIME NULL,
   IsActive BOOLEAN NOT NULL,
   PRIMARY KEY (CompanyMachineID),
-  FOREIGN KEY (MachineID) REFERENCES Machine(MachineID),
-  FOREIGN KEY (CompanyID) REFERENCES Company(CompanyID)
+  FOREIGN KEY (MachineCode) REFERENCES Machine(MachineCode),
+  FOREIGN KEY (CompanyCode) REFERENCES Company(CompanyCode)
 );
 
-INSERT INTO CompanyMachine(CompanyMachineID, MachineID, CompanyID, CreatedDate, IsActive) VALUES 
+INSERT INTO CompanyMachine(CompanyMachineID, MachineCode, CompanyCode, CreatedDate, IsActive) VALUES 
 	-- Com1 use Mac1, Mac2
-	(1, 1, 2, now(), 1),
-	(2, 2, 2, now(), 1),
+	(1, "MAC1", "Com1", now(), 1),
+	(2, "MAC2", "Com1", now(), 1),
 	-- Com2 use Mac3, Mac4, Mac5
-	(3, 3, 3, now(), 1),
-	(4, 4, 3, now(), 1),
-	(5, 5, 3, now(), 1),
+	(3, "MAC3", "Com2", now(), 1),
+	(4, "MAC4", "Com2", now(), 1),
+	(5, "MAC5", "Com2", now(), 1),
 	-- Move Mac3 from Com1 to Com2
-	(6, 3, 2, now(), 0);
+	(6, "MAC3", "Com2", now(), 0),
+	-- UH virtual machine
+	(7, "UHMAC", "UHCom", now(), 1);
 
 DROP TABLE IF EXISTS Tools;
 CREATE TABLE IF NOT EXISTS Tools (
   ToolID INT(10) NOT NULL AUTO_INCREMENT,
-  Name VARCHAR(100) NULL,
+  ToolCode VARCHAR(100) NULL,
   Model VARCHAR(100) NULL,
   Barcode VARCHAR(100) NULL,
   Description VARCHAR(100) NULL,
   CreatedDate DATETIME NULL,
   UpdatedDate DATETIME NULL,
   IsActive BOOLEAN NOT NULL,
-  PRIMARY KEY (ToolID)
+  PRIMARY KEY (ToolID),
+  UNIQUE KEY (ToolCode)
 );
 
-INSERT INTO Tools(ToolID, Name, CreatedDate, IsActive) VALUES 
+INSERT INTO Tools(ToolID, ToolCode, CreatedDate, IsActive) VALUES 
 	(1, "CTID1",  now(), 1),
 	(2, "CTID2",  now(), 1),
 	(3, "CTID3",  now(), 1),
@@ -184,35 +194,36 @@ INSERT INTO Tools(ToolID, Name, CreatedDate, IsActive) VALUES
 DROP TABLE IF EXISTS ToolsMachine;
 CREATE TABLE IF NOT EXISTS ToolsMachine (
   ToolsMachineID INT(10) NOT NULL AUTO_INCREMENT,
-  ToolID INT(10) NOT NULL,
+  ToolCode VARCHAR(100) NOT NULL,
   MachineCode VARCHAR(100) NULL,
   CreatedDate DATETIME NULL,
   UpdatedDate DATETIME NULL,
   IsActive BOOLEAN NOT NULL,
   PRIMARY KEY (ToolsMachineID),
-  FOREIGN KEY (ToolID) REFERENCES Tools(ToolID)
+  FOREIGN KEY (ToolCode) REFERENCES Tools(ToolCode),
+  FOREIGN KEY (MachineCode) REFERENCES Machine(MachineCode)
 );
 
-INSERT INTO ToolsMachine(ToolsMachineID, ToolID, MachineCode,CreatedDate, IsActive) VALUES 
+INSERT INTO ToolsMachine(ToolsMachineID, ToolCode, MachineCode,CreatedDate, IsActive) VALUES 
 	-- ToolID at UHCom, do not add to Machine yet
-	(1, 1, "UHCom", now(), 1),
-	(2, 2, "UHCom", now(), 1),
-	(3, 3, "UHCom", now(), 1),
-	(4, 4, "UHCom", now(), 1),
-	(5, 5, "UHCom", now(), 1),
-	(6, 6, "UHCom", now(), 1),
-	(7, 7, "UHCom", now(), 1),
-	
-	(8, 1, "MAC1", now(), 1),
-	(9, 2, "MAC1", now(), 1),
-	(10, 6, "MAC1", now(), 1),
-	(11, 4, "MAC1", now(), 1), -- out of stock
-	(12, 5, "MAC1", now(), 1), -- out of stock
-	
-	(13, 1, "MAC2", now(), 1), -- out of stock
-	(14, 2, "MAC2", now(), 1),
-	(15, 3, "MAC2", now(), 1),
-	(16, 4, "MAC2", now(), 1);
+	(1, "CTID1", "UHMAC", now(), 1),
+	(2, "CTID2", "UHMAC", now(), 1),
+	(3, "CTID3", "UHMAC", now(), 1),
+	(4, "CTID4", "UHMAC", now(), 1),
+	(5, "CTID5", "UHMAC", now(), 1),
+	(6, "CTID6", "UHMAC", now(), 1),
+	(7, "CTID7", "UHMAC", now(), 1),
+	-- Tool for MAC1
+	(8, "CTID1", "MAC1", now(), 1),
+	(9, "CTID2", "MAC1", now(), 1),
+	(10, "CTID6", "MAC1", now(), 1),
+	(11, "CTID4", "MAC1", now(), 1), -- out of stock
+	(12, "CTID5", "MAC1", now(), 1), -- out of stock
+	-- Tool for MAC2
+	(13, "CTID1", "MAC2", now(), 1), -- out of stock
+	(14, "CTID2", "MAC2", now(), 1),
+	(15, "CTID3", "MAC2", now(), 1),
+	(16, "CTID4", "MAC2", now(), 1);
 	
 	
 	
@@ -290,9 +301,9 @@ CREATE TABLE IF NOT EXISTS WorkingTransaction (
   WorkingTransactionID INT(20) NOT NULL AUTO_INCREMENT,
   TransactionDate DATETIME NULL,
   AssessorID INT(10) NOT NULL,
-  WOCode INT(10) NOT NULL,
-  OPCode INT(10) NOT NULL,
-  ToolID INT(10) NOT NULL,
+  WOCode VARCHAR(100) NOT NULL,
+  OPCode VARCHAR(100) NOT NULL,
+  ToolCode VARCHAR(100) NOT NULL,
   TrayIndex VARCHAR(100) NULL,
   UpdatedDate DATETIME NULL,
   RespondMessage VARCHAR(255) NULL,
@@ -300,9 +311,9 @@ CREATE TABLE IF NOT EXISTS WorkingTransaction (
   PRIMARY KEY (WorkingTransactionID),
   INDEX TransactionDate (TransactionDate),
   INDEX AssessorID (AssessorID),
-  INDEX ToolID (ToolID),
+  INDEX ToolCode (ToolCode),
   FOREIGN KEY (AssessorID) REFERENCES Assessor(AssessorID),
-  FOREIGN KEY (ToolID) REFERENCES Tools(ToolID)
+  FOREIGN KEY (ToolCode) REFERENCES Tools(ToolCode)
 );
 	
 DROP TABLE IF EXISTS MasterLog;
