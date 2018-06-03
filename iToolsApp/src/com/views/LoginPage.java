@@ -173,6 +173,9 @@ public class LoginPage extends JFrame implements ActionListener {
 					JOptionPane.showMessageDialog(this, bundleMessage.getString("Login_Page_Have_Not_Role"));
 					logger.info("User does not have role");
 				} else if (listRoles.size() == 1 && Enum.EMP.text().equals(listRoles.get(0).getRoleName())) {
+					this.userTextField.setText("");
+					this.passwordField.setText("");
+					this.loginButton.setEnabled(false);
 					EmployeePage empPage = new EmployeePage();
 					StringUtils.frameInit(empPage, bundleMessage);
 //					empPage.setJMenuBar(StringUtils.addMenu());
@@ -180,6 +183,9 @@ public class LoginPage extends JFrame implements ActionListener {
 					empPage.show();
 					
 				} else {
+					this.userTextField.setText("");
+					this.passwordField.setText("");
+					this.loginButton.setEnabled(false);
 					DashboardPage dashboardPage = new DashboardPage();
 					StringUtils.frameInit(dashboardPage, bundleMessage);
 					

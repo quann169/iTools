@@ -3,6 +3,8 @@ package com.views;
 import java.awt.Container;
 import java.awt.Cursor;
 import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusAdapter;
@@ -17,15 +19,18 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Random;
 import java.util.ResourceBundle;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.SwingWorker;
 import javax.swing.Timer;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
@@ -51,7 +56,7 @@ public class EmployeePage extends JFrame implements ActionListener {
 	JLabel logOutLabel = new JLabel(bundleMessage.getString("App_Logout"));
 	JLabel changePassLabel = new JLabel(bundleMessage.getString("App_ChangePassword"));
 	JLabel splitLabel = new JLabel(" | ");
-	
+
 	JLabel woLabel = new JLabel(bundleMessage.getString("Employee_Page_WO"));
 	JLabel opLabel = new JLabel(bundleMessage.getString("Employee_Page_OP"));
 	JLabel toolLabel = new JLabel(bundleMessage.getString("Employee_Page_Tool"));
@@ -63,6 +68,7 @@ public class EmployeePage extends JFrame implements ActionListener {
 	JTextField trayTextField = new JTextField();
 	JComboBox<String> toolComboBox = new JComboBox<String>();
 	JTextField quantityTextField = new JTextField();
+	boolean isReceiveResult = false;
 
 	Map<String, List<List<Object>>> toolVstrayAndQuantityMap = new HashMap<>();
 
@@ -96,59 +102,68 @@ public class EmployeePage extends JFrame implements ActionListener {
 
 	public void setLocationAndSize() {
 		Font labelFont = woLabel.getFont();
-		
+
 		Map<TextAttribute, Integer> fontAttributes = new HashMap<TextAttribute, Integer>();
 		fontAttributes.put(TextAttribute.UNDERLINE, TextAttribute.UNDERLINE_ON);
-		
-//		JButton button = new JButton();
-//	    button.setText("<HTML><FONT color=\"#9BAFFF\"><U>   Logout   </U></FONT></HTML>");
-//	    button.setHorizontalAlignment(SwingConstants.LEFT);
-//	    button.setBorderPainted(false);
-//	    button.setOpaque(false);
-//	    button.setBackground(Color.WHITE);
-//	    button.setBounds(620, 0, 150, 60);
-//	    container.add(button);
-	    
 
-		changePassLabel.setText("<html><html><font size=\"5\" face=\"arial\" color=\"#9BAFFF\"><b><i><u>Change Password</u></i></b></font></html></html>");
+		// JButton button = new JButton();
+		// button.setText("<HTML><FONT color=\"#9BAFFF\"><U> Logout
+		// </U></FONT></HTML>");
+		// button.setHorizontalAlignment(SwingConstants.LEFT);
+		// button.setBorderPainted(false);
+		// button.setOpaque(false);
+		// button.setBackground(Color.WHITE);
+		// button.setBounds(620, 0, 150, 60);
+		// container.add(button);
+
+		changePassLabel.setText(
+				"<html><html><font size=\"5\" face=\"arial\" color=\"#0181BE\"><b><i><u>Change Password</u></i></b></font></html></html>");
 		changePassLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		changePassLabel.setBounds(440, 0, 170, 60);
 		changePassLabel.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                System.out.println("changePassLabel");
-            }
-        });
-	    
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				System.out.println("changePassLabel");
+			}
+		});
+
 		splitLabel.setBounds(605, 0, 15, 60);
-	    splitLabel.setFont(new Font(labelFont.getName(), Font.BOLD, 16));
-	    
-	    logOutLabel.setText("<html><font size=\"5\" face=\"arial\" color=\"#9BAFFF\"><b><i><u>Logout</u></i></b></font></html>");
-	    logOutLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
-	    logOutLabel.setBounds(620, 0, 100, 60);
-	    logOutLabel.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                System.out.println("logOutLabel");
-            }
-        });
-		
-//		changePassLabel.setBounds(480, 0, 150, 60);
-//		changePassLabel.setFont(new Font(labelFont.getName(), Font.ITALIC, 16).deriveFont(fontAttributes));
-//		changePassLabel.setForeground(Color.getColor("#9BAFFF"));
-//		
-//		splitLabel.setBounds(610, 0, 20, 60);
-//		splitLabel.setFont(new Font(labelFont.getName(), Font.ITALIC, 16));
-//		
-//		logOutLabel.setBounds(620, 0, 100, 60);
-//		logOutLabel.setFont(new Font(labelFont.getName(), Font.ITALIC, 16).deriveFont(fontAttributes));
-//		logOutLabel.setForeground(Color.getColor("#9BAFFF"));
-		
-		
-		
-		
-		
-		
+		splitLabel.setFont(new Font(labelFont.getName(), Font.BOLD, 16));
+
+		logOutLabel.setText(
+				"<html><font size=\"5\" face=\"arial\" color=\"#0181BE\"><b><i><u>Logout</u></i></b></font></html>");
+		logOutLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		logOutLabel.setBounds(620, 0, 100, 60);
+		logOutLabel.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				System.out.println("logOutLabel");
+				((EmployeePage) e.getComponent().getParent().getParent().getParent().getParent()).dispose();
+
+				// .getClass().getName();
+				// LoginPage loginPage = new LoginPage();
+				//
+				// StringUtils.frameInit(loginPage, bundleMessage);
+				//
+				//
+				// loginPage.setTitle(bundleMessage.getString("Login_Page_Title"));
+				// loginPage.getRootPane().setDefaultButton(loginPage.loginButton);
+			}
+		});
+
+		// changePassLabel.setBounds(480, 0, 150, 60);
+		// changePassLabel.setFont(new Font(labelFont.getName(), Font.ITALIC,
+		// 16).deriveFont(fontAttributes));
+		// changePassLabel.setForeground(Color.getColor("#9BAFFF"));
+		//
+		// splitLabel.setBounds(610, 0, 20, 60);
+		// splitLabel.setFont(new Font(labelFont.getName(), Font.ITALIC, 16));
+		//
+		// logOutLabel.setBounds(620, 0, 100, 60);
+		// logOutLabel.setFont(new Font(labelFont.getName(), Font.ITALIC,
+		// 16).deriveFont(fontAttributes));
+		// logOutLabel.setForeground(Color.getColor("#9BAFFF"));
+
 		woLabel.setBounds(100, 70, 150, 60);
 		woLabel.setFont(new Font(labelFont.getName(), Font.BOLD, 25));
 
@@ -366,14 +381,101 @@ public class EmployeePage extends JFrame implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == sendRequestButton) {
+			// JDialog dialog = new JDialog();
+			// JLabel label = new JLabel("Please wait...");
+			// dialog.setLocationRelativeTo(null);
+			// dialog.setBounds(0, 0, 700, 460);
+			// dialog.setTitle("Please Wait...");
+			// dialog.add(label);
+			// dialog.pack();
+			//
+			// dialog.setVisible(true);
+			// final int percent = 0;
+			// while (!isReceiveResult) {
+			//
+			// try {
+			// SwingUtilities.invokeLater(new Runnable() {
+			// public void run() {
+			// it.updateBar(percent);
+			// }
+			// });
+			// java.lang.Thread.sleep(100);
+			// } catch (InterruptedException e1) {
+			// ;
+			// }
+			//
+			//
+			// }
+			//
+			//// for (int i = 0; i < 5; i++) {
+			//// try {
+			//// Thread.sleep(1000);
+			//// } catch (InterruptedException e1) {
+			//// // TODO Auto-generated catch block
+			//// e1.printStackTrace();
+			//// }
+			//// }
+			// dialog.setVisible(false);
 
+			final JDialog d = new JDialog();
+			JPanel p1 = new JPanel(new GridBagLayout());
+			JLabel progress = new JLabel("Please Wait...");
+			p1.add(progress, new GridBagConstraints());
+			d.getContentPane().add(p1);
+			d.setBounds(100, 100, 500, 200);
+			// d.setLocationRelativeTo(f);
+			d.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
+			d.setModal(true);
+
+			SwingWorker<?, ?> worker = new SwingWorker<Void, Integer>() {
+				protected Void doInBackground() throws InterruptedException {
+					int x = 0;
+					for (; x <= 100; x += 10) {
+						publish(x);
+						
+						int lower = 0;
+						int upper = 10;
+						
+						int value = (int) (Math.random() * (upper - lower)) + lower;
+						System.out.println("ramdom value: " + value);
+						if (value == 5) {
+							System.out.println("OK");
+							break;
+						} else if (value == 7) {
+							System.out.println("Fail");
+							break;
+						}
+						Thread.sleep(1000);
+					}
+					if (x == 100) {
+						System.out.println("No result");
+					}
+					return null;
+				}
+
+				protected void process(List<Integer> chunks) {
+					int selection = chunks.get(chunks.size() - 1);
+					progress.setText("Please Wait..." + selection + "s");
+				}
+
+				protected void done() {
+					System.out.println("Complete");
+					d.dispose();
+					woTextField.setText("");
+					opTextField.setText("");
+					toolComboBox.setSelectedIndex(0);
+					quantityTextField.setText("");
+					trayTextField.setText("");
+				}
+			};
+			worker.execute();
+			d.setVisible(true);
 		}
 		if (e.getSource() == cancelButton) {
 			woTextField.setText("");
 			opTextField.setText("");
 			trayTextField.setText("");
 			toolComboBox.setSelectedIndex(0);
-			;
 			quantityTextField.setText("");
 		}
 	}
