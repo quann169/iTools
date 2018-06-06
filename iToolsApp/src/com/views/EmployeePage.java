@@ -1,7 +1,9 @@
 package com.views;
 
+import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.Cursor;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -19,9 +21,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import java.util.Random;
 import java.util.ResourceBundle;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
@@ -29,7 +31,10 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 import javax.swing.SwingWorker;
 import javax.swing.Timer;
 import javax.swing.event.DocumentEvent;
@@ -88,7 +93,10 @@ public class EmployeePage extends JFrame implements ActionListener {
 	int wo_min_length = Integer.valueOf(cfg.getProperty("Employee_Page_WO_Min_Length"));
 	int op_min_length = Integer.valueOf(cfg.getProperty("Employee_Page_OP_Min_Length"));
 
+	int resultValue;
+
 	EmployeePage() {
+		toolVstrayAndQuantityMap = empCtlObj.getToolTrayQuantity(machineCode);
 		setLayoutManager();
 		setLocationAndSize();
 		addComponentsToContainer();
@@ -105,16 +113,6 @@ public class EmployeePage extends JFrame implements ActionListener {
 
 		Map<TextAttribute, Integer> fontAttributes = new HashMap<TextAttribute, Integer>();
 		fontAttributes.put(TextAttribute.UNDERLINE, TextAttribute.UNDERLINE_ON);
-
-		// JButton button = new JButton();
-		// button.setText("<HTML><FONT color=\"#9BAFFF\"><U> Logout
-		// </U></FONT></HTML>");
-		// button.setHorizontalAlignment(SwingConstants.LEFT);
-		// button.setBorderPainted(false);
-		// button.setOpaque(false);
-		// button.setBackground(Color.WHITE);
-		// button.setBounds(620, 0, 150, 60);
-		// container.add(button);
 
 		changePassLabel.setText(
 				"<html><html><font size=\"5\" face=\"arial\" color=\"#0181BE\"><b><i><u>Change Password</u></i></b></font></html></html>");
@@ -139,30 +137,8 @@ public class EmployeePage extends JFrame implements ActionListener {
 			public void mouseClicked(MouseEvent e) {
 				System.out.println("logOutLabel");
 				((EmployeePage) e.getComponent().getParent().getParent().getParent().getParent()).dispose();
-
-				// .getClass().getName();
-				// LoginPage loginPage = new LoginPage();
-				//
-				// StringUtils.frameInit(loginPage, bundleMessage);
-				//
-				//
-				// loginPage.setTitle(bundleMessage.getString("Login_Page_Title"));
-				// loginPage.getRootPane().setDefaultButton(loginPage.loginButton);
 			}
 		});
-
-		// changePassLabel.setBounds(480, 0, 150, 60);
-		// changePassLabel.setFont(new Font(labelFont.getName(), Font.ITALIC,
-		// 16).deriveFont(fontAttributes));
-		// changePassLabel.setForeground(Color.getColor("#9BAFFF"));
-		//
-		// splitLabel.setBounds(610, 0, 20, 60);
-		// splitLabel.setFont(new Font(labelFont.getName(), Font.ITALIC, 16));
-		//
-		// logOutLabel.setBounds(620, 0, 100, 60);
-		// logOutLabel.setFont(new Font(labelFont.getName(), Font.ITALIC,
-		// 16).deriveFont(fontAttributes));
-		// logOutLabel.setForeground(Color.getColor("#9BAFFF"));
 
 		woLabel.setBounds(100, 70, 150, 60);
 		woLabel.setFont(new Font(labelFont.getName(), Font.BOLD, 25));
@@ -222,19 +198,42 @@ public class EmployeePage extends JFrame implements ActionListener {
 		toolComboBox.setBounds(250, 190, 300, 30);
 		trayTextField.setEditable(false);
 
+		trayTextField.getDocument().addDocumentListener(new DocumentListener() {
+			public void changedUpdate(DocumentEvent e) {
+				warn();
+			}
+
+			public void removeUpdate(DocumentEvent e) {
+				warn();
+			}
+
+			public void insertUpdate(DocumentEvent e) {
+				warn();
+			}
+
+			public void warn() {
+				if (validateAllFields()) {
+					sendRequestButton.setEnabled(true);
+				}
+			}
+		});
+
 		trayLabel.setBounds(250, 205, 150, 60);
 		trayLabel.setFont(new Font(labelFont.getName(), Font.ITALIC + Font.BOLD, 15));
 
 		toolComboBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String selectValue = toolComboBox.getSelectedItem().toString();
-
+				// System.out.println(toolVstrayAndQuantityMap);
+				// System.out.println("selectValue: " + selectValue);
 				if (toolVstrayAndQuantityMap.containsKey(selectValue)) {
 
 					List<List<Object>> existedValue = toolVstrayAndQuantityMap.get(selectValue);
 					if (existedValue.size() > 0) {
 						List<String> listTrays = new ArrayList<>();
 						for (List<Object> trayQuantity : existedValue) {
+							// System.out.println("trayQuantity: " +
+							// trayQuantity);
 							String tray = (String) trayQuantity.get(0);
 							int quantity = (int) trayQuantity.get(1);
 							quantityTextField.setText("" + quantity);
@@ -283,8 +282,6 @@ public class EmployeePage extends JFrame implements ActionListener {
 		}
 
 		AutoCompletion.enable(toolComboBox);
-
-		toolVstrayAndQuantityMap = empCtlObj.getToolTrayQuantity(machineCode);
 
 		quantityLabel.setBounds(450, 205, 150, 60);
 		quantityLabel.setFont(new Font(labelFont.getName(), Font.ITALIC + Font.BOLD, 15));
@@ -342,9 +339,16 @@ public class EmployeePage extends JFrame implements ActionListener {
 	private boolean validateAllFields() {
 		int woLength = woTextField.getText().length();
 		int opLength = opTextField.getText().length();
-		int toolLength = trayTextField.getText().length();
-		int trayLength = ((String) toolComboBox.getSelectedItem()).length();
+		int trayLength = trayTextField.getText().length();
+		int toolLength = ((String) toolComboBox.getSelectedItem()).length();
 		int quantityLength = quantityTextField.getText().length();
+		// System.out.println("----");
+		// System.out.println("wo: " + woTextField.getText());
+		// System.out.println("op: " + opTextField.getText());
+		// System.out.println("tray: " + trayTextField.getText());
+		// System.out.println("tool: " + (String)
+		// toolComboBox.getSelectedItem());
+		// System.out.println("quan: " + quantityTextField.getText());
 
 		if (woLength > 0 && opLength > 0 && toolLength > 0 && trayLength > 0 && quantityLength > 0) {
 			sendRequestButton.setEnabled(true);
@@ -381,95 +385,138 @@ public class EmployeePage extends JFrame implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == sendRequestButton) {
-			// JDialog dialog = new JDialog();
-			// JLabel label = new JLabel("Please wait...");
-			// dialog.setLocationRelativeTo(null);
-			// dialog.setBounds(0, 0, 700, 460);
-			// dialog.setTitle("Please Wait...");
-			// dialog.add(label);
-			// dialog.pack();
-			//
-			// dialog.setVisible(true);
-			// final int percent = 0;
-			// while (!isReceiveResult) {
-			//
-			// try {
-			// SwingUtilities.invokeLater(new Runnable() {
-			// public void run() {
-			// it.updateBar(percent);
-			// }
-			// });
-			// java.lang.Thread.sleep(100);
-			// } catch (InterruptedException e1) {
-			// ;
-			// }
-			//
-			//
-			// }
-			//
-			//// for (int i = 0; i < 5; i++) {
-			//// try {
-			//// Thread.sleep(1000);
-			//// } catch (InterruptedException e1) {
-			//// // TODO Auto-generated catch block
-			//// e1.printStackTrace();
-			//// }
-			//// }
-			// dialog.setVisible(false);
+			ImageIcon icon = new ImageIcon("src/img/confirmation_60x60.png");
 
-			final JDialog d = new JDialog();
-			JPanel p1 = new JPanel(new GridBagLayout());
-			JLabel progress = new JLabel("Please Wait...");
-			p1.add(progress, new GridBagConstraints());
-			d.getContentPane().add(p1);
-			d.setBounds(100, 100, 500, 200);
-			// d.setLocationRelativeTo(f);
-			d.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
-			d.setModal(true);
+			JPanel panel = new JPanel() {
+				/**
+				 * 
+				 */
+				private static final long serialVersionUID = 1L;
 
-			SwingWorker<?, ?> worker = new SwingWorker<Void, Integer>() {
-				protected Void doInBackground() throws InterruptedException {
-					int x = 0;
-					for (; x <= 100; x += 10) {
-						publish(x);
-						
-						int lower = 0;
-						int upper = 10;
-						
-						int value = (int) (Math.random() * (upper - lower)) + lower;
-						System.out.println("ramdom value: " + value);
-						if (value == 5) {
-							System.out.println("OK");
-							break;
-						} else if (value == 7) {
-							System.out.println("Fail");
-							break;
-						}
-						Thread.sleep(1000);
-					}
-					if (x == 100) {
-						System.out.println("No result");
-					}
-					return null;
+				@Override
+				public Dimension getPreferredSize() {
+					return new Dimension(350, 150);
 				}
 
-				protected void process(List<Integer> chunks) {
-					int selection = chunks.get(chunks.size() - 1);
-					progress.setText("Please Wait..." + selection + "s");
-				}
-
-				protected void done() {
-					System.out.println("Complete");
-					d.dispose();
-					woTextField.setText("");
-					opTextField.setText("");
-					toolComboBox.setSelectedIndex(0);
-					quantityTextField.setText("");
-					trayTextField.setText("");
-				}
 			};
-			worker.execute();
-			d.setVisible(true);
+			// panel.setBackground(new Color(102, 205, 170));
+			// panel.setSize(new Dimension(200, 64));
+
+			// panel.setBounds(100, 100, 500, 200);
+
+			panel.setLayout(null);
+
+			String wo = woTextField.getText();
+			String op = opTextField.getText();
+			String ctid = toolComboBox.getSelectedItem().toString();
+			String tray = trayTextField.getText();
+			int quantity = 1;
+
+			JLabel label2 = new JLabel("<html>Review and confirm information<br/>WO: " + wo + "<br/>OP: " + op
+					+ "<br/>CTID: " + ctid + "<br/>Tray: " + tray + "<br/>Quantity: " + quantity + "</html>",
+					SwingConstants.CENTER);
+			label2.setVerticalAlignment(SwingConstants.CENTER);
+			label2.setHorizontalAlignment(SwingConstants.CENTER);
+			label2.setFont(new Font("Arial", Font.BOLD, 17));
+			label2.setBounds(0, 0, 350, 150);
+			panel.add(label2);
+
+			// UIManager.put("OptionPane.minimumSize", new Dimension(300, 120));
+			int dialogResult = JOptionPane.showConfirmDialog(this, panel, "Admin Rights Confirmation",
+					JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, null);
+
+			// JPanel panel = new JPanel() {
+			// @Override
+			// public Dimension getPreferredSize() {
+			// return new Dimension(320, 240);
+			// }
+
+			// };
+
+			// We can use JTextArea or JLabel to display messages
+			JTextArea textArea = new JTextArea();
+			textArea.setEditable(false);
+			panel.setLayout(new BorderLayout());
+			panel.add(new JScrollPane(textArea));
+
+			// int dialogResult = JOptionPane.showConfirmDialog(null, panel, //
+			// Here
+			// // goes
+			// // content
+			// "Here goes the title", JOptionPane.OK_CANCEL_OPTION, // Options
+			// // for
+			// // JOptionPane
+			// JOptionPane.ERROR_MESSAGE); // Message type
+
+			if (dialogResult == 0) {
+				System.out.println("Yes option");
+				final JDialog d = new JDialog();
+				JPanel p1 = new JPanel(new GridBagLayout());
+				JLabel progress = new JLabel("Please Wait...");
+				p1.add(progress, new GridBagConstraints());
+				d.getContentPane().add(p1);
+				d.setBounds(100, 100, 500, 200);
+				// d.setLocationRelativeTo(f);
+				d.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
+				d.setModal(true);
+
+				SwingWorker<?, ?> worker = new SwingWorker<Void, Integer>() {
+					protected Void doInBackground() throws InterruptedException {
+						int x = 0;
+						for (; x <= 100; x += 10) {
+							publish(x);
+
+							int lower = 0;
+							int upper = 10;
+
+							int value = (int) (Math.random() * (upper - lower)) + lower;
+							System.out.println("ramdom value: " + value);
+							if (value == 5) {
+								System.out.println("OK");
+								JOptionPane.showMessageDialog(container, "Completed!", "Notify result",
+										JOptionPane.INFORMATION_MESSAGE);
+								resultValue = 1;
+								break;
+							} else if (value == 7) {
+								System.out.println("Fail");
+								JOptionPane.showMessageDialog(container, "Failed!", "Notify result",
+										JOptionPane.ERROR_MESSAGE);
+								break;
+							}
+							Thread.sleep(1000);
+						}
+						if (x >= 100) {
+							System.out.println("No result");
+							JOptionPane.showMessageDialog(container, "No result!", "Notify result",
+									JOptionPane.WARNING_MESSAGE);
+						}
+						return null;
+					}
+
+					protected void process(List<Integer> chunks) {
+						int selection = chunks.get(chunks.size() - 1);
+						progress.setText("Please Wait..." + selection + "s");
+					}
+
+					protected void done() {
+						System.out.println("Complete");
+						d.dispose();
+						if (resultValue == 1) {
+							woTextField.setText("");
+							opTextField.setText("");
+							toolComboBox.setSelectedIndex(0);
+							quantityTextField.setText("");
+							trayTextField.setText("");
+						}
+
+					}
+				};
+				worker.execute();
+				d.setVisible(true);
+			} else {
+				System.out.println("No Option");
+			}
+
 		}
 		if (e.getSource() == cancelButton) {
 			woTextField.setText("");
