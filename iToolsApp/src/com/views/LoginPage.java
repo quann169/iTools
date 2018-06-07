@@ -12,7 +12,6 @@ import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JMenuBar;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -35,7 +34,8 @@ public class LoginPage extends JFrame implements ActionListener {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	static ResourceBundle bundleMessage = ResourceBundle.getBundle("com.message.ApplicationMessages", new Locale("vn", "VN"));
+	static ResourceBundle bundleMessage = ResourceBundle.getBundle("com.message.ApplicationMessages",
+			new Locale("vn", "VN"));
 	Container container = getContentPane();
 	JLabel logoLabel = new JLabel(bundleMessage.getString("Login_Page_iTools_Logo"));
 	JLabel userLabel = new JLabel(bundleMessage.getString("Login_Page_Username"));
@@ -45,8 +45,7 @@ public class LoginPage extends JFrame implements ActionListener {
 	JButton loginButton = new JButton(bundleMessage.getString("Login_Page_Login"));
 	JButton forgotPwdButton = new JButton(bundleMessage.getString("Login_Page_Forget_Password"));
 	JCheckBox showPassword = new JCheckBox(bundleMessage.getString("Login_Page_Show_Password"));
-	
-	
+
 	private static final Config cfg = new Config();
 	private static final String COMPANY_CODE = "COMPANY_CODE";
 	final static Logger logger = Logger.getLogger(LoginPage.class);
@@ -87,6 +86,7 @@ public class LoginPage extends JFrame implements ActionListener {
 				warn();
 			}
 
+			@SuppressWarnings("deprecation")
 			public void warn() {
 				if (userTextField.getText().length() > 0 && passwordField.getText().length() > 0) {
 					loginButton.setEnabled(true);
@@ -98,7 +98,7 @@ public class LoginPage extends JFrame implements ActionListener {
 		passwordLabel.setFont(new Font(labelFont.getName(), Font.BOLD, 25));
 
 		passwordField.setBounds(220, 200, 300, 30);
-		
+
 		passwordField.getDocument().addDocumentListener(new DocumentListener() {
 			public void changedUpdate(DocumentEvent e) {
 				warn();
@@ -112,6 +112,7 @@ public class LoginPage extends JFrame implements ActionListener {
 				warn();
 			}
 
+			@SuppressWarnings("deprecation")
 			public void warn() {
 				if (userTextField.getText().length() > 0 && passwordField.getText().length() > 0) {
 					loginButton.setEnabled(true);
@@ -148,26 +149,27 @@ public class LoginPage extends JFrame implements ActionListener {
 		showPassword.addActionListener(this);
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == loginButton) {
-			
+
 			String userText = userTextField.getText();
 			String pwdText = passwordField.getText();
-			
-			userText = "com1user2";
+
+			userText = "com1admin";
 			pwdText = "123456";
-			
+
 			logger.info("Login with username: " + userText);
 			LoginController ctlObj = new LoginController();
 			Assessor result = ctlObj.validateUser(userText, pwdText);
-			
+
 			if (result != null) {
 				logger.info("Login OK");
 				String companyCode = AdvancedEncryptionStandard.decrypt(cfg.getProperty(COMPANY_CODE));
 				List<Role> listRoles = ctlObj.getUserRoles(userText, companyCode);
 				logger.info("listRoles: " + listRoles);
-				
+
 				System.out.println(listRoles.get(0).getRoleName() + "   " + Enum.EMP.text());
 				if (listRoles.size() == 0) {
 					JOptionPane.showMessageDialog(this, bundleMessage.getString("Login_Page_Have_Not_Role"));
@@ -178,22 +180,23 @@ public class LoginPage extends JFrame implements ActionListener {
 					this.loginButton.setEnabled(false);
 					EmployeePage empPage = new EmployeePage();
 					StringUtils.frameInit(empPage, bundleMessage);
-//					empPage.setJMenuBar(StringUtils.addMenu());
+					// empPage.setJMenuBar(StringUtils.addMenu());
 					empPage.setTitle(userText + " - " + result.getFirstName() + " " + result.getLastName());
 					empPage.show();
-					
+
 				} else {
 					this.userTextField.setText("");
 					this.passwordField.setText("");
 					this.loginButton.setEnabled(false);
-					DashboardPage dashboardPage = new DashboardPage();
+					DashboardPage dashboardPage = new DashboardPage(listRoles);
 					StringUtils.frameInit(dashboardPage, bundleMessage);
-					
-//					dashboardPage.setJMenuBar(StringUtils.addMenu());
+
+					// dashboardPage.setJMenuBar(StringUtils.addMenu());
 					dashboardPage.show();
 				}
-				
-//				JOptionPane.showMessageDialog(this, bundleMessage.getString("Login_Page_Login_Successful"));
+
+				// JOptionPane.showMessageDialog(this,
+				// bundleMessage.getString("Login_Page_Login_Successful"));
 			} else {
 				JOptionPane.showMessageDialog(this, bundleMessage.getString("Login_Page_Login_Fail"));
 				logger.info("Login Fail");
@@ -214,19 +217,13 @@ public class LoginPage extends JFrame implements ActionListener {
 		}
 	}
 
-	
-	
-	
-
 	public static void main(String[] a) {
 		LoginPage frame = new LoginPage();
 		StringUtils.frameInit(frame, bundleMessage);
-		
-		
+
 		frame.setTitle(bundleMessage.getString("Login_Page_Title"));
 		frame.getRootPane().setDefaultButton(frame.loginButton);
-		
-		
+
 	}
 
 }

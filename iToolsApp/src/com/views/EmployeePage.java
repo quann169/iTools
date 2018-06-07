@@ -23,7 +23,6 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.ResourceBundle;
 
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
@@ -329,13 +328,6 @@ public class EmployeePage extends JFrame implements ActionListener {
 
 	}
 
-	private static boolean StringFilter(String emp, String textToFilter) {
-		if (textToFilter.isEmpty()) {
-			return true;
-		}
-		return emp.toLowerCase().contains(textToFilter.toLowerCase());
-	}
-
 	private boolean validateAllFields() {
 		int woLength = woTextField.getText().length();
 		int opLength = opTextField.getText().length();
@@ -385,7 +377,7 @@ public class EmployeePage extends JFrame implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == sendRequestButton) {
-			ImageIcon icon = new ImageIcon("src/img/confirmation_60x60.png");
+			// ImageIcon icon = new ImageIcon("src/img/confirmation_60x60.png");
 
 			JPanel panel = new JPanel() {
 				/**
@@ -463,6 +455,9 @@ public class EmployeePage extends JFrame implements ActionListener {
 				SwingWorker<?, ?> worker = new SwingWorker<Void, Integer>() {
 					protected Void doInBackground() throws InterruptedException {
 						int x = 0;
+						for (int z = 0; z < 5; z++) {
+							Thread.sleep(1000);
+						}
 						for (; x <= 100; x += 10) {
 							publish(x);
 

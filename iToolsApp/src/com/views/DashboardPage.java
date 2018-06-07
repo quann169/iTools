@@ -1,32 +1,33 @@
 package com.views;
 
 import java.awt.Container;
+import java.awt.Cursor;
+import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.FontMetrics;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.GridLayout;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.font.TextAttribute;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPasswordField;
-import javax.swing.JTextField;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
 
 import org.apache.log4j.Logger;
 
-import com.controllers.LoginController;
-import com.models.Assessor;
+import com.message.Enum;
 import com.models.Role;
-import com.utils.AdvancedEncryptionStandard;
 import com.utils.Config;
 
 public class DashboardPage extends JFrame implements ActionListener {
@@ -35,23 +36,30 @@ public class DashboardPage extends JFrame implements ActionListener {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	static ResourceBundle bundleMessage = ResourceBundle.getBundle("com.message.ApplicationMessages", new Locale("vn", "VN"));
+	static ResourceBundle bundleMessage = ResourceBundle.getBundle("com.message.ApplicationMessages",
+			new Locale("vn", "VN"));
 	Container container = getContentPane();
-	JLabel logoLabel = new JLabel(bundleMessage.getString("Login_Page_iTools_Logo"));
-	JLabel userLabel = new JLabel(bundleMessage.getString("Login_Page_Username"));
-	JLabel passwordLabel = new JLabel(bundleMessage.getString("Login_Page_Password"));
-	JTextField userTextField = new JTextField();
-	JPasswordField passwordField = new JPasswordField();
-	JButton loginButton = new JButton(bundleMessage.getString("Login_Page_Login"));
-	JButton forgotPwdButton = new JButton(bundleMessage.getString("Login_Page_Forget_Password"));
-	JCheckBox showPassword = new JCheckBox(bundleMessage.getString("Login_Page_Show_Password"));
-	
-	
+	List<Role> listRoles;
+
+	JLabel logOutLabel = new JLabel(bundleMessage.getString("App_Logout"));
+	JLabel changePassLabel = new JLabel(bundleMessage.getString("App_ChangePassword"));
+	JLabel splitLabel = new JLabel(" | ");
+
+	JButton getToolButton = new JButton(bundleMessage.getString("Dashboard_Page_Get_Tool"));
+	JButton resetPasswordButton = new JButton(bundleMessage.getString("Dashboard_Page_Reset_Password"));
+	JButton lockAccountButton = new JButton(bundleMessage.getString("Dashboard_Page_Lock_Account"));
+	JButton manualSyncButton = new JButton(bundleMessage.getString("Dashboard_Page_Manual_Sync"));
+
+	JButton unlockMachineButton = new JButton(bundleMessage.getString("Dashboard_Page_Unlock_Machine"));
+	JButton putInsButton = new JButton(bundleMessage.getString("Dashboard_Page_Putins"));
+	JButton takeOverButton = new JButton(bundleMessage.getString("Dashboard_Page_Take_Over"));
+
 	private static final Config cfg = new Config();
 	private static final String COMPANY_CODE = "COMPANY_CODE";
 	final static Logger logger = Logger.getLogger(DashboardPage.class);
 
-	DashboardPage() {
+	DashboardPage(List<Role> listRoles) {
+		this.listRoles = listRoles;
 		setLayoutManager();
 		setLocationAndSize();
 		addComponentsToContainer();
@@ -60,155 +68,160 @@ public class DashboardPage extends JFrame implements ActionListener {
 	}
 
 	public void setLayoutManager() {
-		container.setLayout(null);
+//		container.setLayout(new GridLayout(0, 2));
+		
+		JButton button;
+		container.setLayout(new GridBagLayout());
+		GridBagConstraints c = new GridBagConstraints();
+		c.fill = GridBagConstraints.HORIZONTAL;
+
+		button = new JButton("Button 1");
+		c.weightx = 0.5;
+		c.gridx = 0;
+		c.gridy = 0;
+		container.add(button, c);
+
+		button = new JButton("Button 2");
+		c.gridx = 1;
+		c.gridy = 0;
+		container.add(button, c);
+
+		button = new JButton("Button 3");
+		c.gridx = 2;
+		c.gridy = 0;
+		container.add(button, c);
+
+		button = new JButton("Long-Named Button 4");
+		c.ipady = 40;      //make this component tall
+		c.weightx = 0.0;
+		c.gridwidth = 3;
+		c.gridx = 0;
+		c.gridy = 1;
+		container.add(button, c);
+
+		button = new JButton("5");
+		c.ipady = 0;       //reset to default
+		c.weighty = 1.0;   //request any extra vertical space
+		c.anchor = GridBagConstraints.PAGE_END; //bottom of space
+		c.insets = new Insets(10,0,0,0);  //top padding
+		c.gridx = 1;       //aligned with button 2
+		c.gridwidth = 2;   //2 columns wide
+		c.gridy = 2;       //third row
+		container.add(button, c);
+		
 	}
 
 	public void setLocationAndSize() {
-		Font labelFont = logoLabel.getFont();
 
-		logoLabel.setBounds(250, 60, 350, 60);
-		logoLabel.setFont(new Font(labelFont.getName(), Font.ITALIC + Font.BOLD, 50));
+		Font labelFont = container.getFont();
 
-		userLabel.setBounds(100, 150, 150, 60);
-		userLabel.setFont(new Font(labelFont.getName(), Font.BOLD, 25));
+		Map<TextAttribute, Integer> fontAttributes = new HashMap<TextAttribute, Integer>();
+		fontAttributes.put(TextAttribute.UNDERLINE, TextAttribute.UNDERLINE_ON);
 
-		userTextField.setBounds(250, 170, 300, 30);
-
-		userTextField.getDocument().addDocumentListener(new DocumentListener() {
-			public void changedUpdate(DocumentEvent e) {
-				warn();
-			}
-
-			public void removeUpdate(DocumentEvent e) {
-				warn();
-			}
-
-			public void insertUpdate(DocumentEvent e) {
-				warn();
-			}
-
-			public void warn() {
-				if (userTextField.getText().length() > 0 && passwordField.getText().length() > 0) {
-					loginButton.setEnabled(true);
-				}
+		changePassLabel.setText(
+				"<html><html><font size=\"5\" face=\"arial\" color=\"#0181BE\"><b><i><u>Change Password</u></i></b></font></html></html>");
+		changePassLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		changePassLabel.setBounds(440, 0, 170, 60);
+		changePassLabel.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				System.out.println("changePassLabel");
 			}
 		});
 
-		passwordLabel.setBounds(100, 200, 150, 60);
-		passwordLabel.setFont(new Font(labelFont.getName(), Font.BOLD, 25));
+		splitLabel.setBounds(605, 0, 15, 60);
+		splitLabel.setFont(new Font(labelFont.getName(), Font.BOLD, 16));
 
-		passwordField.setBounds(250, 220, 300, 30);
-		
-		passwordField.getDocument().addDocumentListener(new DocumentListener() {
-			public void changedUpdate(DocumentEvent e) {
-				warn();
-			}
-
-			public void removeUpdate(DocumentEvent e) {
-				warn();
-			}
-
-			public void insertUpdate(DocumentEvent e) {
-				warn();
-			}
-
-			public void warn() {
-				if (userTextField.getText().length() > 0 && passwordField.getText().length() > 0) {
-					loginButton.setEnabled(true);
-				}
+		logOutLabel.setText(
+				"<html><font size=\"5\" face=\"arial\" color=\"#0181BE\"><b><i><u>Logout</u></i></b></font></html>");
+		logOutLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		logOutLabel.setBounds(620, 0, 100, 60);
+		logOutLabel.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				System.out.println("logOutLabel");
+				((EmployeePage) e.getComponent().getParent().getParent().getParent().getParent()).dispose();
 			}
 		});
 
-		showPassword.setBounds(246, 255, 350, 30);
-		showPassword.setFont(new Font(labelFont.getName(), Font.ITALIC, 20));
+		// accounting role
+//		unlockMachineButton.setSize(new Dimension(40, 30));
+//		unlockMachineButton.setFont(new Font(labelFont.getName(), Font.BOLD, 15));
+//
+//		takeOverButton.setSize(new Dimension(40, 30));
+//		takeOverButton.setFont(new Font(labelFont.getName(), Font.BOLD, 15));
+//
+//		putInsButton.setSize(new Dimension(40, 30));
+//		putInsButton.setFont(new Font(labelFont.getName(), Font.BOLD, 15));
 
-		loginButton.setEnabled(false);
-		loginButton.setBounds(250, 300, 100, 30);
-		loginButton.setFont(new Font(labelFont.getName(), Font.BOLD, 15));
-
-		forgotPwdButton.setBounds(370, 300, 180, 30);
-		forgotPwdButton.setFont(new Font(labelFont.getName(), Font.BOLD, 15));
-		
-		loginButton.setText("AAAAAAAAAAAAAAAAAAAAAA");
+		// sub admin role
+//		putInsButton.setSize(new Dimension(40, 30));
+//		putInsButton.setFont(new Font(labelFont.getName(), Font.BOLD, 15));
+//
+//		resetPasswordButton.setSize(new Dimension(40, 30));
+//		resetPasswordButton.setFont(new Font(labelFont.getName(), Font.BOLD, 15));
+//
+//		lockAccountButton.setSize(new Dimension(40, 30));
+//		lockAccountButton.setFont(new Font(labelFont.getName(), Font.BOLD, 15));
+//
+//		manualSyncButton.setSize(new Dimension(40, 30));
+//		manualSyncButton.setFont(new Font(labelFont.getName(), Font.BOLD, 15));
 
 	}
 
 	public void addComponentsToContainer() {
-		container.add(logoLabel);
-		container.add(userLabel);
-		container.add(passwordLabel);
-		container.add(userTextField);
-		container.add(passwordField);
-		container.add(showPassword);
-		container.add(loginButton);
-		container.add(forgotPwdButton);
+//		List<String> listRoleName = new ArrayList<>();
+//		for (Role role : this.listRoles) {
+//			listRoleName.add(role.getRoleName());
+//		}
+//		if (listRoleName.contains(Enum.TKOVER) || listRoleName.contains(Enum.PUTIN)) {
+//			container.add(unlockMachineButton);
+//			container.add(takeOverButton);
+//			container.add(putInsButton);
+//			if (listRoleName.contains(Enum.TKOVER)) {
+//
+//			}
+//			if (listRoleName.contains(Enum.PUTIN)) {
+//
+//			}
+//		} else {
+//			container.add(getToolButton);
+//			container.add(resetPasswordButton);
+//			container.add(lockAccountButton);
+//			container.add(manualSyncButton);
+//		}
+
 	}
 
 	public void addActionEvent() {
-		loginButton.addActionListener(this);
-		forgotPwdButton.addActionListener(this);
-		showPassword.addActionListener(this);
+		unlockMachineButton.addActionListener(this);
+		takeOverButton.addActionListener(this);
+		putInsButton.addActionListener(this);
+		getToolButton.addActionListener(this);
+		resetPasswordButton.addActionListener(this);
+		lockAccountButton.addActionListener(this);
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if (e.getSource() == loginButton) {
-			
-			String userText = userTextField.getText();
-			String pwdText = passwordField.getText();
-			
-			userText = "uhadmin1";
-			pwdText = "123456";
-			
-			logger.info("Login with username: " + userText);
-			LoginController ctlObj = new LoginController();
-			Assessor result = ctlObj.validateUser(userText, pwdText);
-			
-			if (result != null) {
-				logger.info("Login OK");
-				String companyCode = AdvancedEncryptionStandard.decrypt(cfg.getProperty(COMPANY_CODE));
-				List<Role> listRoles = ctlObj.getUserRoles(userText, companyCode);
-				logger.info("listRoles: " + listRoles);
-				
-				
-				
-//				JOptionPane.showMessageDialog(this, bundleMessage.getString("Login_Page_Login_Successful"));
-			} else {
-				JOptionPane.showMessageDialog(this, bundleMessage.getString("Login_Page_Login_Fail"));
-				logger.info("Login Fail");
-			}
+		if (e.getSource() == unlockMachineButton) {
 
 		}
-		if (e.getSource() == forgotPwdButton) {
-			userTextField.setText("");
-			passwordField.setText("");
+		if (e.getSource() == takeOverButton) {
+
 		}
-		if (e.getSource() == showPassword) {
-			if (showPassword.isSelected()) {
-				passwordField.setEchoChar((char) 0);
-			} else {
-				passwordField.setEchoChar('*');
-			}
+		if (e.getSource() == putInsButton) {
+
+		}
+		if (e.getSource() == getToolButton) {
+
+		}
+		if (e.getSource() == resetPasswordButton) {
+
+		}
+		if (e.getSource() == lockAccountButton) {
 
 		}
 	}
-
-	private static void titleAlign(JFrame frame) {
-
-		Font font = frame.getFont();
-
-		String currentTitle = frame.getTitle().trim();
-		FontMetrics fm = frame.getFontMetrics(font);
-		int frameWidth = frame.getWidth();
-		int titleWidth = fm.stringWidth(currentTitle);
-		int spaceWidth = fm.stringWidth(" ");
-		int centerPos = (frameWidth / 2) - (titleWidth / 2);
-		int spaceCount = centerPos / spaceWidth;
-		String pad = "";
-		pad = String.format("%" + (spaceCount - 14) + "s", pad);
-		frame.setTitle(pad + currentTitle);
-
-	}
-
 
 }
