@@ -36,6 +36,7 @@ CREATE TABLE IF NOT EXISTS Assessor (
   CompanyCode VARCHAR(100) NULL,
   IsActive BOOLEAN NOT NULL,
   LastPassword VARCHAR(255) NULL,
+  IsFirstChange BOOLEAN NULL,
   PRIMARY KEY (AssessorID),
   INDEX UserName (UserName),
   FOREIGN KEY (CompanyCode) REFERENCES Company(CompanyCode)
