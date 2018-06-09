@@ -11,8 +11,10 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 import javax.swing.JButton;
@@ -50,6 +52,7 @@ public class LockUnlockAccountPage extends JFrame implements ActionListener {
 
 	JLabel usernameLabel = new JLabel(bundleMessage.getString("LockUnlockAccount_Page_Username"));
 	JComboBox<String> userNameComboBox = new JComboBox<String>();
+	Map<String, Assessor> mapDisplayName = new HashMap<>();
 
 	UserController empCtlObj = new UserController();
 	boolean isDashboard;
@@ -151,8 +154,10 @@ public class LockUnlockAccountPage extends JFrame implements ActionListener {
 
 		userNameComboBox.addItem("");
 		for (Assessor user : listUsers) {
-			if (user.getUsername() != this.user.getUsername()) {
-				userNameComboBox.addItem(user.getFirstName() + " " + user.getLastName() + " - " + user.getUsername());
+			String displayName = user.getFirstName() + " " + user.getLastName() + " - " + user.getUsername();
+			mapDisplayName.put(displayName, user);
+			if (!user.getUsername().equals(this.user.getUsername())) {
+				userNameComboBox.addItem(displayName);
 			}
 
 		}
@@ -189,15 +194,16 @@ public class LockUnlockAccountPage extends JFrame implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-
+		String displayName = userNameComboBox.getSelectedItem().toString();
+		String userName = mapDisplayName.get(displayName).getUsername();
 		if (e.getSource() == lockAccountButtom) {
-			empCtlObj.updateIsActive(userNameComboBox.getSelectedItem().toString(), this.companyCode, 0);
+			empCtlObj.updateIsActive(userName, this.companyCode, 0);
 			JOptionPane.showMessageDialog(container, "Completed Lock Account!", "Notify result",
 					JOptionPane.INFORMATION_MESSAGE);
 		}
 
 		if (e.getSource() == unLockAccountButton) {
-			empCtlObj.updateIsActive(userNameComboBox.getSelectedItem().toString(), this.companyCode, 1);
+			empCtlObj.updateIsActive(userName, this.companyCode, 1);
 			JOptionPane.showMessageDialog(container, "Completed UnLock Account!", "Notify result",
 					JOptionPane.INFORMATION_MESSAGE);
 		}

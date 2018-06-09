@@ -24,12 +24,14 @@ import java.util.Map;
 import java.util.ResourceBundle;
 
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
@@ -42,6 +44,8 @@ import javax.swing.event.DocumentListener;
 import org.apache.log4j.Logger;
 
 import com.controllers.EmployeeController;
+import com.controllers.UserController;
+import com.models.Assessor;
 import com.models.Machine;
 import com.models.Tool;
 import com.utils.AdvancedEncryptionStandard;
@@ -63,23 +67,19 @@ public class ResetPasswordPage extends JFrame implements ActionListener {
 
 	JLabel backToDashboardLabel = new JLabel(bundleMessage.getString("Employee_Back_To_Dashboard"));
 
-	JLabel woLabel = new JLabel(bundleMessage.getString("Employee_Page_WO"));
-	JLabel opLabel = new JLabel(bundleMessage.getString("Employee_Page_OP"));
-	JLabel toolLabel = new JLabel(bundleMessage.getString("Employee_Page_Tool"));
-	JLabel trayLabel = new JLabel(bundleMessage.getString("Employee_Page_Tray"));
-	JLabel quantityLabel = new JLabel(bundleMessage.getString("Employee_Page_Quantity"));
+	JLabel usernameLabel = new JLabel(bundleMessage.getString("ResetPassword_Page_Username"));
+	JLabel passwordLabel = new JLabel(bundleMessage.getString("ResetPassword_Page_Password"));
+	JLabel rePasswordLabel = new JLabel(bundleMessage.getString("ResetPassword_Page_RePassword"));
 
-	JTextField woTextField = new JTextField();
-	JTextField opTextField = new JTextField();
-	JTextField trayTextField = new JTextField();
-	JComboBox<String> toolComboBox = new JComboBox<String>();
-	JTextField quantityTextField = new JTextField();
-	boolean isReceiveResult = false;
+	JLabel matchPasswordLabel = new JLabel();
 
-	Map<String, List<List<Object>>> toolVstrayAndQuantityMap = new HashMap<>();
+	JComboBox<String> usernameComboBox = new JComboBox<String>();
+	JTextField passwordTextField = new JPasswordField();
+	JTextField rePasswordTextField = new JPasswordField();
 
-	JButton sendRequestButton = new JButton(bundleMessage.getString("Employee_Page_Send_Request"));
-	JButton cancelButton = new JButton(bundleMessage.getString("Employee_Page_Cancel"));
+	JButton resetPassButton = new JButton(bundleMessage.getString("ResetPassword_Page_ResetPassword"));
+
+	JCheckBox isFirstChange = new JCheckBox(bundleMessage.getString("ResetPassword_Page_FirstChange"));
 
 	private static final Config cfg = new Config();
 	private static final String COMPANY_CODE = "COMPANY_CODE";
@@ -88,18 +88,16 @@ public class ResetPasswordPage extends JFrame implements ActionListener {
 	String machineCode = AdvancedEncryptionStandard.decrypt(cfg.getProperty(MACHINE_CODE));
 
 	final static Logger logger = Logger.getLogger(ResetPasswordPage.class);
-	EmployeeController empCtlObj = new EmployeeController();
-	Timer updateTimer;
-	int delayTime = Integer.valueOf(cfg.getProperty("Employee_Page_Time_Change_Focus")) * 1000;
-	int wo_min_length = Integer.valueOf(cfg.getProperty("Employee_Page_WO_Min_Length"));
-	int op_min_length = Integer.valueOf(cfg.getProperty("Employee_Page_OP_Min_Length"));
+	UserController empCtlObj = new UserController();
 
+	Assessor user;
+	Map<String, Assessor> mapDisplayName = new HashMap<>();
 	int resultValue;
 	boolean isDashboard;
 
-	ResetPasswordPage(boolean isDashboard) {
+	ResetPasswordPage(Assessor user, boolean isDashboard) {
 		this.isDashboard = isDashboard;
-		toolVstrayAndQuantityMap = empCtlObj.getToolTrayQuantity(machineCode);
+		this.user = user;
 		setLayoutManager();
 		setLocationAndSize();
 		addComponentsToContainer();
@@ -112,7 +110,7 @@ public class ResetPasswordPage extends JFrame implements ActionListener {
 	}
 
 	public void setLocationAndSize() {
-		Font labelFont = woLabel.getFont();
+		Font labelFont = usernameLabel.getFont();
 
 		Map<TextAttribute, Integer> fontAttributes = new HashMap<TextAttribute, Integer>();
 		fontAttributes.put(TextAttribute.UNDERLINE, TextAttribute.UNDERLINE_ON);
@@ -160,155 +158,56 @@ public class ResetPasswordPage extends JFrame implements ActionListener {
 			}
 		});
 
-		woLabel.setBounds(100, 70, 150, 60);
-		woLabel.setFont(new Font(labelFont.getName(), Font.BOLD, 25));
+		usernameLabel.setBounds(100, 100, 150, 60);
+		usernameLabel.setFont(new Font(labelFont.getName(), Font.BOLD, 18));
 
-		woTextField.setBounds(250, 90, 300, 30);
-
-		woTextField.getDocument().addDocumentListener(new DocumentListener() {
-			public void changedUpdate(DocumentEvent e) {
-				warn();
-			}
-
-			public void removeUpdate(DocumentEvent e) {
-				warn();
-			}
-
-			public void insertUpdate(DocumentEvent e) {
-				warn();
-			}
-
-			public void warn() {
-				validateAllFields();
-				updateTimer.restart();
-			}
-		});
-
-		woTextField.requestFocus();
-
-		opLabel.setBounds(100, 120, 150, 60);
-		opLabel.setFont(new Font(labelFont.getName(), Font.BOLD, 25));
-
-		opTextField.setBounds(250, 140, 300, 30);
-
-		opTextField.getDocument().addDocumentListener(new DocumentListener() {
-			public void changedUpdate(DocumentEvent e) {
-				warn();
-			}
-
-			public void removeUpdate(DocumentEvent e) {
-				warn();
-			}
-
-			public void insertUpdate(DocumentEvent e) {
-				warn();
-
-			}
-
-			public void warn() {
-				validateAllFields();
-				updateTimer.restart();
-			}
-		});
-
-		toolLabel.setBounds(100, 170, 150, 60);
-		toolLabel.setFont(new Font(labelFont.getName(), Font.BOLD, 25));
-
-		trayTextField.setBounds(250, 250, 180, 30);
-		toolComboBox.setBounds(250, 190, 300, 30);
-		trayTextField.setEditable(false);
-
-		trayTextField.getDocument().addDocumentListener(new DocumentListener() {
-			public void changedUpdate(DocumentEvent e) {
-				warn();
-			}
-
-			public void removeUpdate(DocumentEvent e) {
-				warn();
-			}
-
-			public void insertUpdate(DocumentEvent e) {
-				warn();
-			}
-
-			public void warn() {
-				if (validateAllFields()) {
-					sendRequestButton.setEnabled(true);
-				}
-			}
-		});
-
-		trayLabel.setBounds(250, 205, 150, 60);
-		trayLabel.setFont(new Font(labelFont.getName(), Font.ITALIC + Font.BOLD, 15));
-
-		toolComboBox.addActionListener(new ActionListener() {
+		usernameComboBox.setBounds(270, 110, 250, 30);
+		usernameComboBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String selectValue = toolComboBox.getSelectedItem().toString();
-				// System.out.println(toolVstrayAndQuantityMap);
-				// System.out.println("selectValue: " + selectValue);
-				if (toolVstrayAndQuantityMap.containsKey(selectValue)) {
-
-					List<List<Object>> existedValue = toolVstrayAndQuantityMap.get(selectValue);
-					if (existedValue.size() > 0) {
-						List<String> listTrays = new ArrayList<>();
-						for (List<Object> trayQuantity : existedValue) {
-							// System.out.println("trayQuantity: " +
-							// trayQuantity);
-							String tray = (String) trayQuantity.get(0);
-							int quantity = (int) trayQuantity.get(1);
-							quantityTextField.setText("" + quantity);
-							trayTextField.setText("" + tray);
-							listTrays.add(trayQuantity.toString());
-						}
-						trayTextField.setToolTipText(listTrays.toString());
-					}
-
-				} else {
-					trayTextField.setText("");
-					quantityTextField.setText("0");
-
-					if (!selectValue.equals("")) {
-						List<Machine> availableMachine = empCtlObj.findAvailableMachine(machineCode, selectValue);
-
-						JOptionPane.showMessageDialog(trayTextField.getParent(),
-								bundleMessage.getString("Employee_AvailableMachine"));
-						logger.info("Suggest machine for tool " + selectValue + " - company " + COMPANY_CODE + ": "
-								+ availableMachine);
-
-					}
-				}
+				validateAllFields();
 			}
 		});
-		toolComboBox.addFocusListener(new FocusAdapter() {
+		usernameComboBox.addFocusListener(new FocusAdapter() {
 
 			@Override
 			public void focusGained(FocusEvent e) {
-				toolComboBox.showPopup();
+				usernameComboBox.showPopup();
 			}
 		});
-		String machineCode = AdvancedEncryptionStandard.decrypt(cfg.getProperty(MACHINE_CODE));
-		List<Tool> listTools = empCtlObj.getToolsOfMachine(machineCode);
-		Collections.sort(listTools, new Comparator<Tool>() {
-			public int compare(Tool o1, Tool o2) {
-				if (o1.getToolName() == o2.getToolName())
-					return 0;
-				return o1.getToolName().compareToIgnoreCase(o2.getToolName());
+		String companyCode = AdvancedEncryptionStandard.decrypt(cfg.getProperty(COMPANY_CODE));
+		this.companyCode = companyCode;
+		List<Assessor> listUsers = empCtlObj.getUsersOfCompany(companyCode);
+		Collections.sort(listUsers, new Comparator<Assessor>() {
+			public int compare(Assessor o1, Assessor o2) {
+				String fullName1 = o1.getFirstName() + " " + o1.getLastName();
+				String fullName2 = o2.getFirstName() + " " + o2.getLastName();
+				return fullName1.compareToIgnoreCase(fullName2);
 			}
 		});
 
-		toolComboBox.addItem("");
-		for (Tool tool : listTools) {
-			toolComboBox.addItem(tool.getToolName());
+		usernameComboBox.addItem("");
+		for (Assessor user : listUsers) {
+			String displayName = user.getFirstName() + " " + user.getLastName() + " - " + user.getUsername();
+			mapDisplayName.put(displayName, user);
+			System.out.println(user.getUsername());
+			System.out.println(this.user.getUsername());
+			System.out.println(user.getUsername() != this.user.getUsername());
+			System.out.println("----");
+			if (!user.getUsername().equals(this.user.getUsername())) {
+				usernameComboBox.addItem(displayName);
+			}
+
 		}
 
-		AutoCompletion.enable(toolComboBox);
+		AutoCompletion.enable(usernameComboBox);
 
-		quantityLabel.setBounds(450, 205, 150, 60);
-		quantityLabel.setFont(new Font(labelFont.getName(), Font.ITALIC + Font.BOLD, 15));
+		passwordLabel.setBounds(100, 160, 170, 60);
+		passwordLabel.setFont(new Font(labelFont.getName(), Font.BOLD, 18));
 
-		quantityTextField.setBounds(450, 250, 100, 30);
-		quantityTextField.setEditable(false);
-		quantityTextField.getDocument().addDocumentListener(new DocumentListener() {
+		passwordTextField.setBounds(270, 170, 250, 30);
+		passwordTextField.setText("");
+
+		passwordTextField.getDocument().addDocumentListener(new DocumentListener() {
 			public void changedUpdate(DocumentEvent e) {
 				warn();
 			}
@@ -322,52 +221,61 @@ public class ResetPasswordPage extends JFrame implements ActionListener {
 			}
 
 			public void warn() {
-				if (validateAllFields()) {
-					sendRequestButton.setEnabled(true);
-				}
+				validateAllFields();
 			}
 		});
 
-		sendRequestButton.setEnabled(false);
-		sendRequestButton.setBounds(250, 300, 180, 30);
-		sendRequestButton.setFont(new Font(labelFont.getName(), Font.BOLD, 15));
+		rePasswordLabel.setBounds(100, 220, 170, 60);
+		rePasswordLabel.setFont(new Font(labelFont.getName(), Font.BOLD, 18));
 
-		cancelButton.setBounds(450, 300, 100, 30);
-		cancelButton.setFont(new Font(labelFont.getName(), Font.BOLD, 15));
+		matchPasswordLabel.setBounds(270, 200, 170, 30);
 
-		updateTimer = new Timer(delayTime, new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				if (woTextField.getText().length() > wo_min_length && opTextField.getText().length() > op_min_length) {
-					toolComboBox.requestFocusInWindow();
-				} else if (woTextField.getText().length() > wo_min_length && opTextField.getText().length() == 0) {
-					opTextField.requestFocusInWindow();
-				}
+		rePasswordTextField.setBounds(270, 230, 250, 30);
+		rePasswordTextField.setText("");
+
+		rePasswordTextField.getDocument().addDocumentListener(new DocumentListener() {
+			public void changedUpdate(DocumentEvent e) {
+				warn();
+			}
+
+			public void removeUpdate(DocumentEvent e) {
+				warn();
+			}
+
+			public void insertUpdate(DocumentEvent e) {
+				warn();
+			}
+
+			public void warn() {
+				validateAllFields();
 			}
 		});
-		updateTimer.setRepeats(false);
 
+		isFirstChange.setBounds(270, 270, 300, 30);
+		isFirstChange.setFont(new Font(labelFont.getName(), Font.ITALIC, 15));
+
+		resetPassButton.setBounds(270, 310, 200, 30);
+		resetPassButton.setFont(new Font(labelFont.getName(), Font.BOLD, 18));
+		resetPassButton.setEnabled(false);
 	}
 
 	private boolean validateAllFields() {
-		int woLength = woTextField.getText().length();
-		int opLength = opTextField.getText().length();
-		int trayLength = trayTextField.getText().length();
-		int toolLength = ((String) toolComboBox.getSelectedItem()).length();
-		int quantityLength = quantityTextField.getText().length();
-		// System.out.println("----");
-		// System.out.println("wo: " + woTextField.getText());
-		// System.out.println("op: " + opTextField.getText());
-		// System.out.println("tray: " + trayTextField.getText());
-		// System.out.println("tool: " + (String)
-		// toolComboBox.getSelectedItem());
-		// System.out.println("quan: " + quantityTextField.getText());
+		String password = passwordTextField.getText();
+		String repassword = rePasswordTextField.getText();
+		boolean userExisted = mapDisplayName.containsKey(usernameComboBox.getSelectedItem().toString());
 
-		if (woLength > 0 && opLength > 0 && toolLength > 0 && trayLength > 0 && quantityLength > 0) {
-			sendRequestButton.setEnabled(true);
+		if (password.length() > 0 && repassword.length() > 0 && !password.equals(repassword)) {
+			matchPasswordLabel.setText("<html><font size=\"3\" face=\"arial\" color=\"red\"><i>"
+					+ bundleMessage.getString("ResetPassword_Page_Password_Not_Match") + "</i></font></html>");
+			resetPassButton.setEnabled(false);
+			return false;
+		} else if (password != "" && password.equals(repassword) && userExisted) {
+			matchPasswordLabel.setText("");
+			resetPassButton.setEnabled(true);
 			return true;
 		} else {
-			sendRequestButton.setEnabled(false);
+			matchPasswordLabel.setText("");
+			resetPassButton.setEnabled(false);
 			return false;
 		}
 	}
@@ -377,170 +285,57 @@ public class ResetPasswordPage extends JFrame implements ActionListener {
 		container.add(changePassLabel);
 		container.add(logOutLabel);
 		container.add(backToDashboardLabel);
-		container.add(woLabel);
-		container.add(opLabel);
-		container.add(toolLabel);
-		container.add(trayLabel);
-		container.add(quantityLabel);
-		container.add(woTextField);
-		container.add(opTextField);
-		container.add(toolComboBox);
-		container.add(trayTextField);
-		container.add(quantityTextField);
-		container.add(sendRequestButton);
-		container.add(cancelButton);
+
+		container.add(usernameLabel);
+		container.add(usernameComboBox);
+
+		container.add(passwordLabel);
+		container.add(passwordTextField);
+		container.add(rePasswordTextField);
+		container.add(rePasswordLabel);
+		container.add(matchPasswordLabel);
+
+		container.add(isFirstChange);
+
+		container.add(resetPassButton);
+
 	}
 
 	public void addActionEvent() {
-		sendRequestButton.addActionListener(this);
-		cancelButton.addActionListener(this);
+		resetPassButton.addActionListener(this);
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if (e.getSource() == sendRequestButton) {
-			// ImageIcon icon = new ImageIcon("src/img/confirmation_60x60.png");
+		if (e.getSource() == resetPassButton) {
 
-			JPanel panel = new JPanel() {
-				/**
-				 * 
-				 */
-				private static final long serialVersionUID = 1L;
-
-				@Override
-				public Dimension getPreferredSize() {
-					return new Dimension(350, 150);
-				}
-
-			};
-			// panel.setBackground(new Color(102, 205, 170));
-			// panel.setSize(new Dimension(200, 64));
-
-			// panel.setBounds(100, 100, 500, 200);
+			JPanel panel = new JPanel();
 
 			panel.setLayout(null);
 
-			String wo = woTextField.getText();
-			String op = opTextField.getText();
-			String ctid = toolComboBox.getSelectedItem().toString();
-			String tray = trayTextField.getText();
-			int quantity = 1;
+			String password = rePasswordTextField.getText();
+			String username = mapDisplayName.get(usernameComboBox.getSelectedItem().toString()).getUsername();
 
-			JLabel label2 = new JLabel("<html>Review and confirm information<br/>WO: " + wo + "<br/>OP: " + op
-					+ "<br/>CTID: " + ctid + "<br/>Tray: " + tray + "<br/>Quantity: " + quantity + "</html>",
-					SwingConstants.CENTER);
-			label2.setVerticalAlignment(SwingConstants.CENTER);
-			label2.setHorizontalAlignment(SwingConstants.CENTER);
-			label2.setFont(new Font("Arial", Font.BOLD, 17));
-			label2.setBounds(0, 0, 350, 150);
-			panel.add(label2);
 
-			// UIManager.put("OptionPane.minimumSize", new Dimension(300, 120));
-			int dialogResult = JOptionPane.showConfirmDialog(this, panel, "Admin Rights Confirmation",
-					JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, null);
-
-			// JPanel panel = new JPanel() {
-			// @Override
-			// public Dimension getPreferredSize() {
-			// return new Dimension(320, 240);
-			// }
-
-			// };
-
-			// We can use JTextArea or JLabel to display messages
-			JTextArea textArea = new JTextArea();
-			textArea.setEditable(false);
-			panel.setLayout(new BorderLayout());
-			panel.add(new JScrollPane(textArea));
-
-			// int dialogResult = JOptionPane.showConfirmDialog(null, panel, //
-			// Here
-			// // goes
-			// // content
-			// "Here goes the title", JOptionPane.OK_CANCEL_OPTION, // Options
-			// // for
-			// // JOptionPane
-			// JOptionPane.ERROR_MESSAGE); // Message type
+			int dialogResult = JOptionPane.showConfirmDialog(container,
+					bundleMessage.getString("ResetPassword_Page_Reset_Confirmation") + " " + username + "?", "Confirmation",
+					JOptionPane.YES_NO_OPTION);
 
 			if (dialogResult == 0) {
 				System.out.println("Yes option");
-				final JDialog d = new JDialog();
-				JPanel p1 = new JPanel(new GridBagLayout());
-				JLabel progress = new JLabel("Please Wait...");
-				p1.add(progress, new GridBagConstraints());
-				d.getContentPane().add(p1);
-				d.setBounds(100, 100, 500, 200);
-				// d.setLocationRelativeTo(f);
-				d.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
-				d.setModal(true);
-
-				SwingWorker<?, ?> worker = new SwingWorker<Void, Integer>() {
-					protected Void doInBackground() throws InterruptedException {
-						int x = 0;
-						for (int z = 0; z < 5; z++) {
-							Thread.sleep(1000);
-						}
-						for (; x <= 100; x += 10) {
-							publish(x);
-
-							int lower = 0;
-							int upper = 10;
-
-							int value = (int) (Math.random() * (upper - lower)) + lower;
-							System.out.println("ramdom value: " + value);
-							if (value == 5) {
-								System.out.println("OK");
-								JOptionPane.showMessageDialog(container, "Completed!", "Notify result",
-										JOptionPane.INFORMATION_MESSAGE);
-								resultValue = 1;
-								break;
-							} else if (value == 7) {
-								System.out.println("Fail");
-								JOptionPane.showMessageDialog(container, "Failed!", "Notify result",
-										JOptionPane.ERROR_MESSAGE);
-								break;
-							}
-							Thread.sleep(1000);
-						}
-						if (x >= 100) {
-							System.out.println("No result");
-							JOptionPane.showMessageDialog(container, "No result!", "Notify result",
-									JOptionPane.WARNING_MESSAGE);
-						}
-						return null;
-					}
-
-					protected void process(List<Integer> chunks) {
-						int selection = chunks.get(chunks.size() - 1);
-						progress.setText("Please Wait..." + selection + "s");
-					}
-
-					protected void done() {
-						System.out.println("Complete");
-						d.dispose();
-						if (resultValue == 1) {
-							woTextField.setText("");
-							opTextField.setText("");
-							toolComboBox.setSelectedIndex(0);
-							quantityTextField.setText("");
-							trayTextField.setText("");
-						}
-
-					}
-				};
-				worker.execute();
-				d.setVisible(true);
+				empCtlObj.updatePassword(username, this.companyCode, password, isFirstChange.isSelected());
+				JOptionPane.showMessageDialog(container, "Completed Reset Password!", "Notify result",
+						JOptionPane.INFORMATION_MESSAGE);
+				
+				passwordTextField.setText("");
+				rePasswordTextField.setText("");
+				isFirstChange.setSelected(false);
+				usernameComboBox.setSelectedIndex(0);
+				
 			} else {
 				System.out.println("No Option");
 			}
 
-		}
-		if (e.getSource() == cancelButton) {
-			woTextField.setText("");
-			opTextField.setText("");
-			trayTextField.setText("");
-			toolComboBox.setSelectedIndex(0);
-			quantityTextField.setText("");
 		}
 	}
 

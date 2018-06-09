@@ -63,15 +63,34 @@ public class UserController {
 	 * @return
 	 */
 	public boolean updateIsActive(String username, String companyCode, int status) {
-		String sql = "SELECT AssessorID, UserName, Password, CompanyCode FROM Assessor where Assessor.IsActive=1 and Assessor.CompanyCode = '"
-				+ companyCode + "';";
+		String sql = "Update  Assessor set Assessor.IsActive = " + status + " where Assessor.Username = '" + username
+				+ "' and Assessor.CompanyCode = '" + companyCode + "';";
+		System.out.println(sql);
 		try {
 			PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
-			ResultSet rs = statement.executeQuery(sql);
-
-			while (rs.next()) {
-
-			}
+			int rows = statement.executeUpdate();
+			System.out.printf("%d row(s) updated!\n", rows);
+			return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		} finally {
+			mysqlConnect.disconnect();
+		}
+	}
+	
+	/**
+	 * 
+	 * @return
+	 */
+	public boolean updatePassword(String username, String companyCode, String password, boolean isFirstChange) {
+		String sql = "Update  Assessor set Assessor.Password = md5('" + password + "') and Assessor.IsFirstChange = " + isFirstChange + " where Assessor.Username = '" + username
+				+ "' and Assessor.CompanyCode = '" + companyCode + "';";
+		System.out.println(sql);
+		try {
+			PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
+			int rows = statement.executeUpdate();
+			System.out.printf("%d row(s) updated!\n", rows);
 			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();

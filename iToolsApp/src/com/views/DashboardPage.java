@@ -185,7 +185,11 @@ public class DashboardPage extends JFrame implements ActionListener {
 
 		}
 		if (e.getSource() == resetPasswordButton) {
-
+			ResetPasswordPage resetPassPage = new ResetPasswordPage(user, true);
+			StringUtils.frameInit(resetPassPage, bundleMessage);
+			// empPage.setJMenuBar(StringUtils.addMenu());
+			resetPassPage.setTitle(user.getUsername() + " - " + user.getFirstName() + " " + user.getLastName());
+			resetPassPage.show();
 		}
 		if (e.getSource() == lockAccountButton) {
 			LockUnlockAccountPage lockUnlockPage = new LockUnlockAccountPage(user, true);
