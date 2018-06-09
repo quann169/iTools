@@ -43,7 +43,7 @@ public class StringUtils {
 
 	}
 
-	private static String calculateAlign(JPanel frame, String currentTitle) {
+	private static String calculateAlign(JFrame frame, String currentTitle) {
 
 		Font font = frame.getFont();
 
@@ -80,10 +80,10 @@ public class StringUtils {
 		statusPanel.setPreferredSize(new Dimension(frame.getWidth(), 30));
 		statusPanel.setLayout(new BoxLayout(statusPanel, BoxLayout.X_AXIS));
 		JLabel statusLabel = new JLabel();
-		statusLabel.setHorizontalAlignment(SwingConstants.LEFT);
+		statusLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		statusPanel.add(statusLabel);
 
-		String textFooter = StringUtils.calculateAlign(statusPanel, bundleMessage.getString("App_Footer"));
+		String textFooter = StringUtils.calculateAlign(frame, bundleMessage.getString("App_Footer"));
 
 		statusLabel.setText(textFooter);
 	}
@@ -96,9 +96,9 @@ public class StringUtils {
 																	// menu
 		menuBar.add(Box.createHorizontalGlue());
 		menuBar.add(logOut); // Add the file menu
-//		menuBar.add(Box.createHorizontalGlue());
-//		logOut.setSize(390, 30);
-		
+		// menuBar.add(Box.createHorizontalGlue());
+		// logOut.setSize(390, 30);
+
 		menuBar.add(changePass);
 
 		changePass.addMenuListener(new MenuListener() {

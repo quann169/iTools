@@ -46,7 +46,8 @@ public class AdvancedEncryptionStandard {
 			cipher.init(Cipher.DECRYPT_MODE, skeySpec, iv);
 
 			byte[] original = cipher.doFinal(Base64.decodeBase64(encrypted));
-//			System.out.println("decrypt " + encrypted + " ==> " + new String(original));
+			// System.out.println("decrypt " + encrypted + " ==> " + new
+			// String(original));
 			return new String(original);
 		} catch (Exception ex) {
 			ex.printStackTrace();
@@ -55,32 +56,32 @@ public class AdvancedEncryptionStandard {
 		return null;
 	}
 
-//	public static void main(String[] a) throws Exception {
-//
-//		String plainText = "MAC1";
-//		String cipherText = AdvancedEncryptionStandard.encrypt(plainText);
-//		AdvancedEncryptionStandard.decrypt(cipherText);
-//		System.out.println();
-//		
-//		plainText = "MAC2";
-//		cipherText = AdvancedEncryptionStandard.encrypt(plainText);
-//		AdvancedEncryptionStandard.decrypt(cipherText);
-//		System.out.println();
-//		
-//		plainText = "MAC3";
-//		cipherText = AdvancedEncryptionStandard.encrypt(plainText);
-//		AdvancedEncryptionStandard.decrypt(cipherText);
-//		System.out.println();
-//		
-//		plainText = "MAC4";
-//		cipherText = AdvancedEncryptionStandard.encrypt(plainText);
-//		AdvancedEncryptionStandard.decrypt(cipherText);
-//		System.out.println();
-//		
-//		plainText = "MAC5";
-//		cipherText = AdvancedEncryptionStandard.encrypt(plainText);
-//		AdvancedEncryptionStandard.decrypt(cipherText);
-//		System.out.println();
-//		
-//	}
+	// public static void main(String[] a) throws Exception {
+	//
+	// String plainText = "MAC1";
+	// String cipherText = AdvancedEncryptionStandard.encrypt(plainText);
+	// AdvancedEncryptionStandard.decrypt(cipherText);
+	// System.out.println();
+	//
+	// plainText = "MAC2";
+	// cipherText = AdvancedEncryptionStandard.encrypt(plainText);
+	// AdvancedEncryptionStandard.decrypt(cipherText);
+	// System.out.println();
+	//
+	// plainText = "MAC3";
+	// cipherText = AdvancedEncryptionStandard.encrypt(plainText);
+	// AdvancedEncryptionStandard.decrypt(cipherText);
+	// System.out.println();
+	//
+	// plainText = "MAC4";
+	// cipherText = AdvancedEncryptionStandard.encrypt(plainText);
+	// AdvancedEncryptionStandard.decrypt(cipherText);
+	// System.out.println();
+	//
+	// plainText = "MAC5";
+	// cipherText = AdvancedEncryptionStandard.encrypt(plainText);
+	// AdvancedEncryptionStandard.decrypt(cipherText);
+	// System.out.println();
+	//
+	// }
 }

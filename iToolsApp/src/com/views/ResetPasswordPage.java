@@ -48,7 +48,7 @@ import com.utils.AdvancedEncryptionStandard;
 import com.utils.AutoCompletion;
 import com.utils.Config;
 
-public class EmployeePage extends JFrame implements ActionListener {
+public class ResetPasswordPage extends JFrame implements ActionListener {
 
 	/**
 	 * 
@@ -87,7 +87,7 @@ public class EmployeePage extends JFrame implements ActionListener {
 	String companyCode = AdvancedEncryptionStandard.decrypt(cfg.getProperty(COMPANY_CODE));
 	String machineCode = AdvancedEncryptionStandard.decrypt(cfg.getProperty(MACHINE_CODE));
 
-	final static Logger logger = Logger.getLogger(EmployeePage.class);
+	final static Logger logger = Logger.getLogger(ResetPasswordPage.class);
 	EmployeeController empCtlObj = new EmployeeController();
 	Timer updateTimer;
 	int delayTime = Integer.valueOf(cfg.getProperty("Employee_Page_Time_Change_Focus")) * 1000;
@@ -97,7 +97,7 @@ public class EmployeePage extends JFrame implements ActionListener {
 	int resultValue;
 	boolean isDashboard;
 
-	EmployeePage(boolean isDashboard) {
+	ResetPasswordPage(boolean isDashboard) {
 		this.isDashboard = isDashboard;
 		toolVstrayAndQuantityMap = empCtlObj.getToolTrayQuantity(machineCode);
 		setLayoutManager();
@@ -156,7 +156,7 @@ public class EmployeePage extends JFrame implements ActionListener {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				System.out.println("logOutLabel");
-				((EmployeePage) e.getComponent().getParent().getParent().getParent().getParent()).dispose();
+				((ResetPasswordPage) e.getComponent().getParent().getParent().getParent().getParent()).dispose();
 			}
 		});
 
@@ -215,7 +215,7 @@ public class EmployeePage extends JFrame implements ActionListener {
 		toolLabel.setFont(new Font(labelFont.getName(), Font.BOLD, 25));
 
 		trayTextField.setBounds(250, 250, 180, 30);
-
+		toolComboBox.setBounds(250, 190, 300, 30);
 		trayTextField.setEditable(false);
 
 		trayTextField.getDocument().addDocumentListener(new DocumentListener() {
@@ -241,7 +241,6 @@ public class EmployeePage extends JFrame implements ActionListener {
 		trayLabel.setBounds(250, 205, 150, 60);
 		trayLabel.setFont(new Font(labelFont.getName(), Font.ITALIC + Font.BOLD, 15));
 
-		toolComboBox.setBounds(250, 190, 300, 30);
 		toolComboBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String selectValue = toolComboBox.getSelectedItem().toString();

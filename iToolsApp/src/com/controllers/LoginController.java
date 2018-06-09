@@ -25,7 +25,7 @@ public class LoginController {
 	 * 
 	 */
 	public LoginController() {
-		
+
 	}
 
 	/**
@@ -35,8 +35,8 @@ public class LoginController {
 	 * @return
 	 */
 	public Assessor validateUser(String username, String password) {
-		String sql = "SELECT AssessorID, UserName, FirstName, LastName, CompanyCode FROM Assessor where Assessor.UserName='" + username.toLowerCase() + "' and Password=md5('" + password
-				+ "');";
+		String sql = "SELECT AssessorID, UserName, FirstName, LastName, CompanyCode FROM Assessor where Assessor.UserName='"
+				+ username.toLowerCase() + "' and Password=md5('" + password + "');";
 		// System.out.println(sql);
 		try {
 			PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
@@ -44,7 +44,7 @@ public class LoginController {
 			if (rs.isBeforeFirst()) {
 				while (rs.next()) {
 					String companyCode = rs.getString(5);
-					
+
 					Assessor user = new Assessor(username, password, companyCode);
 					user.setFirstName(rs.getString(3));
 					user.setLastName(rs.getString(4));
@@ -98,9 +98,9 @@ public class LoginController {
 	public List<Role> getUserRoles(String userName, String companyCode) {
 		String sql = "select distinct RoleName "
 				+ " from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID"
-				+ " inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = '"
-				+ companyCode + "' and assessor.UserName= '" + userName.toLowerCase() + "'";
-//		System.out.println(sql);
+				+ " inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = '" + companyCode
+				+ "' and assessor.UserName= '" + userName.toLowerCase() + "'";
+		// System.out.println(sql);
 		List<Role> listAllRoles = new ArrayList<>();
 		try {
 			PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
@@ -109,7 +109,7 @@ public class LoginController {
 			while (rs.next()) {
 				String roleName = rs.getString(1);
 				Role role = new Role(0, roleName);
-				
+
 				listAllRoles.add(role);
 			}
 			return listAllRoles;

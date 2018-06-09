@@ -27,8 +27,10 @@ import javax.swing.JLabel;
 import org.apache.log4j.Logger;
 
 import com.message.Enum;
+import com.models.Assessor;
 import com.models.Role;
 import com.utils.Config;
+import com.utils.StringUtils;
 
 public class DashboardPage extends JFrame implements ActionListener {
 
@@ -40,6 +42,7 @@ public class DashboardPage extends JFrame implements ActionListener {
 			new Locale("vn", "VN"));
 	Container container = getContentPane();
 	List<Role> listRoles;
+	Assessor user;
 
 	JLabel logOutLabel = new JLabel(bundleMessage.getString("App_Logout"));
 	JLabel changePassLabel = new JLabel(bundleMessage.getString("App_ChangePassword"));
@@ -58,8 +61,9 @@ public class DashboardPage extends JFrame implements ActionListener {
 	private static final String COMPANY_CODE = "COMPANY_CODE";
 	final static Logger logger = Logger.getLogger(DashboardPage.class);
 
-	DashboardPage(List<Role> listRoles) {
+	DashboardPage(List<Role> listRoles, Assessor user) {
 		this.listRoles = listRoles;
+		this.user = user;
 		setLayoutManager();
 		setLocationAndSize();
 		addComponentsToContainer();
@@ -68,58 +72,21 @@ public class DashboardPage extends JFrame implements ActionListener {
 	}
 
 	public void setLayoutManager() {
-//		container.setLayout(new GridLayout(0, 2));
-		
-		JButton button;
-		container.setLayout(new GridBagLayout());
-		GridBagConstraints c = new GridBagConstraints();
-		c.fill = GridBagConstraints.HORIZONTAL;
+		container.setLayout(null);
 
-		button = new JButton("Button 1");
-		c.weightx = 0.5;
-		c.gridx = 0;
-		c.gridy = 0;
-		container.add(button, c);
-
-		button = new JButton("Button 2");
-		c.gridx = 1;
-		c.gridy = 0;
-		container.add(button, c);
-
-		button = new JButton("Button 3");
-		c.gridx = 2;
-		c.gridy = 0;
-		container.add(button, c);
-
-		button = new JButton("Long-Named Button 4");
-		c.ipady = 40;      //make this component tall
-		c.weightx = 0.0;
-		c.gridwidth = 3;
-		c.gridx = 0;
-		c.gridy = 1;
-		container.add(button, c);
-
-		button = new JButton("5");
-		c.ipady = 0;       //reset to default
-		c.weighty = 1.0;   //request any extra vertical space
-		c.anchor = GridBagConstraints.PAGE_END; //bottom of space
-		c.insets = new Insets(10,0,0,0);  //top padding
-		c.gridx = 1;       //aligned with button 2
-		c.gridwidth = 2;   //2 columns wide
-		c.gridy = 2;       //third row
-		container.add(button, c);
-		
 	}
 
 	public void setLocationAndSize() {
 
 		Font labelFont = container.getFont();
 
-		Map<TextAttribute, Integer> fontAttributes = new HashMap<TextAttribute, Integer>();
-		fontAttributes.put(TextAttribute.UNDERLINE, TextAttribute.UNDERLINE_ON);
+		// Map<TextAttribute, Integer> fontAttributes = new
+		// HashMap<TextAttribute, Integer>();
+		// fontAttributes.put(TextAttribute.UNDERLINE,
+		// TextAttribute.UNDERLINE_ON);
 
-		changePassLabel.setText(
-				"<html><html><font size=\"5\" face=\"arial\" color=\"#0181BE\"><b><i><u>Change Password</u></i></b></font></html></html>");
+		changePassLabel.setText("<html><html><font size=\"5\" face=\"arial\" color=\"#0181BE\"><b><i><u>"
+				+ bundleMessage.getString("App_ChangePassword") + "</u></i></b></font></html></html>");
 		changePassLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		changePassLabel.setBounds(440, 0, 170, 60);
 		changePassLabel.addMouseListener(new MouseAdapter() {
@@ -132,8 +99,8 @@ public class DashboardPage extends JFrame implements ActionListener {
 		splitLabel.setBounds(605, 0, 15, 60);
 		splitLabel.setFont(new Font(labelFont.getName(), Font.BOLD, 16));
 
-		logOutLabel.setText(
-				"<html><font size=\"5\" face=\"arial\" color=\"#0181BE\"><b><i><u>Logout</u></i></b></font></html>");
+		logOutLabel.setText("<html><font size=\"5\" face=\"arial\" color=\"#0181BE\"><b><i><u>"
+				+ bundleMessage.getString("App_Logout") + "</u></i></b></font></html>");
 		logOutLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		logOutLabel.setBounds(620, 0, 100, 60);
 		logOutLabel.addMouseListener(new MouseAdapter() {
@@ -145,51 +112,52 @@ public class DashboardPage extends JFrame implements ActionListener {
 		});
 
 		// accounting role
-//		unlockMachineButton.setSize(new Dimension(40, 30));
-//		unlockMachineButton.setFont(new Font(labelFont.getName(), Font.BOLD, 15));
-//
-//		takeOverButton.setSize(new Dimension(40, 30));
-//		takeOverButton.setFont(new Font(labelFont.getName(), Font.BOLD, 15));
-//
-//		putInsButton.setSize(new Dimension(40, 30));
-//		putInsButton.setFont(new Font(labelFont.getName(), Font.BOLD, 15));
+		unlockMachineButton.setBounds(50, 120, 250, 40);
+		unlockMachineButton.setFont(new Font(labelFont.getName(), Font.BOLD, 15));
+
+		takeOverButton.setBounds(400, 120, 250, 40);
+		takeOverButton.setFont(new Font(labelFont.getName(), Font.BOLD, 15));
+
+		putInsButton.setBounds(50, 250, 250, 40);
+		putInsButton.setFont(new Font(labelFont.getName(), Font.BOLD, 15));
 
 		// sub admin role
-//		putInsButton.setSize(new Dimension(40, 30));
-//		putInsButton.setFont(new Font(labelFont.getName(), Font.BOLD, 15));
-//
-//		resetPasswordButton.setSize(new Dimension(40, 30));
-//		resetPasswordButton.setFont(new Font(labelFont.getName(), Font.BOLD, 15));
-//
-//		lockAccountButton.setSize(new Dimension(40, 30));
-//		lockAccountButton.setFont(new Font(labelFont.getName(), Font.BOLD, 15));
-//
-//		manualSyncButton.setSize(new Dimension(40, 30));
-//		manualSyncButton.setFont(new Font(labelFont.getName(), Font.BOLD, 15));
+		resetPasswordButton.setBounds(50, 120, 250, 40);
+		resetPasswordButton.setFont(new Font(labelFont.getName(), Font.BOLD, 15));
+
+		lockAccountButton.setBounds(400, 120, 250, 40);
+		lockAccountButton.setFont(new Font(labelFont.getName(), Font.BOLD, 15));
+
+		manualSyncButton.setBounds(50, 250, 250, 40);
+		manualSyncButton.setFont(new Font(labelFont.getName(), Font.BOLD, 15));
+
+		getToolButton.setBounds(400, 250, 250, 40);
+		getToolButton.setFont(new Font(labelFont.getName(), Font.BOLD, 15));
 
 	}
 
 	public void addComponentsToContainer() {
-//		List<String> listRoleName = new ArrayList<>();
-//		for (Role role : this.listRoles) {
-//			listRoleName.add(role.getRoleName());
-//		}
-//		if (listRoleName.contains(Enum.TKOVER) || listRoleName.contains(Enum.PUTIN)) {
-//			container.add(unlockMachineButton);
-//			container.add(takeOverButton);
-//			container.add(putInsButton);
-//			if (listRoleName.contains(Enum.TKOVER)) {
-//
-//			}
-//			if (listRoleName.contains(Enum.PUTIN)) {
-//
-//			}
-//		} else {
-//			container.add(getToolButton);
-//			container.add(resetPasswordButton);
-//			container.add(lockAccountButton);
-//			container.add(manualSyncButton);
-//		}
+		container.add(splitLabel);
+		container.add(changePassLabel);
+		container.add(logOutLabel);
+
+		List<String> listRoleName = new ArrayList<>();
+		for (Role role : this.listRoles) {
+			listRoleName.add(role.getRoleName());
+		}
+		if (listRoleName.contains(Enum.ACCT) || listRoleName.contains(Enum.TKOVER)
+				|| listRoleName.contains(Enum.PUTIN)) {
+			container.add(unlockMachineButton);
+			container.add(takeOverButton);
+			container.add(putInsButton);
+			takeOverButton.setEnabled(false);
+			putInsButton.setEnabled(false);
+		} else {
+			container.add(getToolButton);
+			container.add(resetPasswordButton);
+			container.add(lockAccountButton);
+			container.add(manualSyncButton);
+		}
 
 	}
 
@@ -220,7 +188,19 @@ public class DashboardPage extends JFrame implements ActionListener {
 
 		}
 		if (e.getSource() == lockAccountButton) {
+			LockUnlockAccountPage lockUnlockPage = new LockUnlockAccountPage(user, true);
+			StringUtils.frameInit(lockUnlockPage, bundleMessage);
+			// empPage.setJMenuBar(StringUtils.addMenu());
+			lockUnlockPage.setTitle(user.getUsername() + " - " + user.getFirstName() + " " + user.getLastName());
+			lockUnlockPage.show();
+		}
 
+		if (e.getSource() == getToolButton) {
+			EmployeePage empPage = new EmployeePage(true);
+			StringUtils.frameInit(empPage, bundleMessage);
+			// empPage.setJMenuBar(StringUtils.addMenu());
+			empPage.setTitle(user.getUsername() + " - " + user.getFirstName() + " " + user.getLastName());
+			empPage.show();
 		}
 	}
 

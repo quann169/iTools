@@ -1,0 +1,84 @@
+/**
+ * 
+ */
+package com.controllers;
+
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.models.Assessor;
+import com.models.Role;
+import com.utils.MysqlConnect;
+
+/**
+ * @author svi-quannguyen
+ *
+ */
+public class UserController {
+
+	MysqlConnect mysqlConnect = new MysqlConnect();
+
+	/**
+	 * 
+	 */
+	public UserController() {
+
+	}
+
+	/**
+	 * 
+	 * @return
+	 */
+	public List<Assessor> getUsersOfCompany(String companyCode) {
+		String sql = "SELECT AssessorID, UserName, Password, CompanyCode FROM Assessor where Assessor.IsActive=1 and Assessor.CompanyCode = '"
+				+ companyCode + "';";
+		List<Assessor> listAllUsers = new ArrayList<>();
+		try {
+			PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
+			ResultSet rs = statement.executeQuery(sql);
+
+			while (rs.next()) {
+				int userId = Integer.parseInt(rs.getString(1));
+				String username = rs.getString(2);
+				String password = rs.getString(3);
+
+				Assessor user = new Assessor(username, password, companyCode);
+				user.setAssessorId(userId);
+				listAllUsers.add(user);
+			}
+			return listAllUsers;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return listAllUsers;
+		} finally {
+			mysqlConnect.disconnect();
+		}
+	}
+
+	/**
+	 * 
+	 * @return
+	 */
+	public boolean updateIsActive(String username, String companyCode, int status) {
+		String sql = "SELECT AssessorID, UserName, Password, CompanyCode FROM Assessor where Assessor.IsActive=1 and Assessor.CompanyCode = '"
+				+ companyCode + "';";
+		try {
+			PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
+			ResultSet rs = statement.executeQuery(sql);
+
+			while (rs.next()) {
+
+			}
+			return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		} finally {
+			mysqlConnect.disconnect();
+		}
+	}
+
+}

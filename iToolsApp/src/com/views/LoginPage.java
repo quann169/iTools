@@ -178,7 +178,7 @@ public class LoginPage extends JFrame implements ActionListener {
 					this.userTextField.setText("");
 					this.passwordField.setText("");
 					this.loginButton.setEnabled(false);
-					EmployeePage empPage = new EmployeePage();
+					EmployeePage empPage = new EmployeePage(false);
 					StringUtils.frameInit(empPage, bundleMessage);
 					// empPage.setJMenuBar(StringUtils.addMenu());
 					empPage.setTitle(userText + " - " + result.getFirstName() + " " + result.getLastName());
@@ -188,9 +188,9 @@ public class LoginPage extends JFrame implements ActionListener {
 					this.userTextField.setText("");
 					this.passwordField.setText("");
 					this.loginButton.setEnabled(false);
-					DashboardPage dashboardPage = new DashboardPage(listRoles);
+					DashboardPage dashboardPage = new DashboardPage(listRoles, result);
 					StringUtils.frameInit(dashboardPage, bundleMessage);
-
+					dashboardPage.setTitle(userText + " - " + result.getFirstName() + " " + result.getLastName());
 					// dashboardPage.setJMenuBar(StringUtils.addMenu());
 					dashboardPage.show();
 				}

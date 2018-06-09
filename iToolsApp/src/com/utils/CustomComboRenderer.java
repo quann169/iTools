@@ -23,7 +23,7 @@ public class CustomComboRenderer extends DefaultListCellRenderer {
 	public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected,
 			boolean cellHasFocus) {
 		super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
-		String text = (String)value;
+		String text = (String) value;
 		text = HtmlHighlighter.highlightText(text, highlightTextSupplier.get());
 		this.setText(text);
 		if (!isSelected) {
@@ -35,18 +35,18 @@ public class CustomComboRenderer extends DefaultListCellRenderer {
 }
 
 class HtmlHighlighter {
-    private static final String HighLightTemplate = "<span style='background:yellow;'>$1</span>";
+	private static final String HighLightTemplate = "<span style='background:yellow;'>$1</span>";
 
-    public static String highlightText(String text, String textToHighlight) {
-        if(textToHighlight.length()==0){
-            return text;
-        }
+	public static String highlightText(String text, String textToHighlight) {
+		if (textToHighlight.length() == 0) {
+			return text;
+		}
 
-        try {
-            text = text.replaceAll("(?i)(" + Pattern.quote(textToHighlight) + ")", HighLightTemplate);
-        } catch (Exception e) {
-            return text;
-        }
-        return "<html>" + text + "</html>";
-    }
+		try {
+			text = text.replaceAll("(?i)(" + Pattern.quote(textToHighlight) + ")", HighLightTemplate);
+		} catch (Exception e) {
+			return text;
+		}
+		return "<html>" + text + "</html>";
+	}
 }

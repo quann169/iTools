@@ -197,14 +197,14 @@ public class EmployeeController {
 				+ "				on Tools.ToolCode = toolsMachine.ToolCode " + "	left join toolsMachineTray "
 				+ "				on toolsMachineTray.toolsMachineID = toolsMachine.toolsMachineID "
 				+ "where company.CompanyCode = '" + companyCode + "' and tools.ToolCode = '" + selectValue + "';";
-//		System.out.println(sql);
+		// System.out.println(sql);
 		List<Machine> listAllMachines = new ArrayList<>();
 		try {
 			PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
 			ResultSet rs = statement.executeQuery(sql);
 
 			while (rs.next()) {
-//				int toolId = Integer.valueOf(rs.getString(1));
+				// int toolId = Integer.valueOf(rs.getString(1));
 				String machineCode = rs.getString(3);
 				Machine machine = new Machine(machineCode);
 
