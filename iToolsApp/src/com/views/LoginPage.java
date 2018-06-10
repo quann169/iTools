@@ -167,34 +167,44 @@ public class LoginPage extends JFrame implements ActionListener {
 			if (result != null) {
 				logger.info("Login OK");
 				String companyCode = AdvancedEncryptionStandard.decrypt(cfg.getProperty(COMPANY_CODE));
-				List<Role> listRoles = ctlObj.getUserRoles(userText, companyCode);
-				logger.info("listRoles: " + listRoles);
 
-				System.out.println(listRoles.get(0).getRoleName() + "   " + Enum.EMP.text());
-				if (listRoles.size() == 0) {
-					JOptionPane.showMessageDialog(this, bundleMessage.getString("Login_Page_Have_Not_Role"));
-					logger.info("User does not have role");
-				} else if (listRoles.size() == 1 && Enum.EMP.text().equals(listRoles.get(0).getRoleName())) {
-					this.userTextField.setText("");
-					this.passwordField.setText("");
-					this.loginButton.setEnabled(false);
-					EmployeePage empPage = new EmployeePage(false);
-					StringUtils.frameInit(empPage, bundleMessage);
+				if (result.isFirstTimeLogin()) {
+					ResetPasswordPage resetPassPage = new ResetPasswordPage(result, false, result.isFirstTimeLogin());
+					StringUtils.frameInit(resetPassPage, bundleMessage);
 					// empPage.setJMenuBar(StringUtils.addMenu());
-					empPage.setTitle(userText + " - " + result.getFirstName() + " " + result.getLastName());
-					empPage.show();
-
+					resetPassPage.setTitle(
+							result.getUsername() + " - " + result.getFirstName() + " " + result.getLastName());
+					resetPassPage.show();
 				} else {
-					this.userTextField.setText("");
-					this.passwordField.setText("");
-					this.loginButton.setEnabled(false);
-					DashboardPage dashboardPage = new DashboardPage(listRoles, result);
-					StringUtils.frameInit(dashboardPage, bundleMessage);
-					dashboardPage.setTitle(userText + " - " + result.getFirstName() + " " + result.getLastName());
-					// dashboardPage.setJMenuBar(StringUtils.addMenu());
-					dashboardPage.show();
-				}
 
+					List<Role> listRoles = ctlObj.getUserRoles(userText, companyCode);
+					logger.info("listRoles: " + listRoles);
+
+					System.out.println(listRoles.get(0).getRoleName() + "   " + Enum.EMP.text());
+					if (listRoles.size() == 0) {
+						JOptionPane.showMessageDialog(this, bundleMessage.getString("Login_Page_Have_Not_Role"));
+						logger.info("User does not have role");
+					} else if (listRoles.size() == 1 && Enum.EMP.text().equals(listRoles.get(0).getRoleName())) {
+						this.userTextField.setText("");
+						this.passwordField.setText("");
+						this.loginButton.setEnabled(false);
+						EmployeePage empPage = new EmployeePage(false);
+						StringUtils.frameInit(empPage, bundleMessage);
+						// empPage.setJMenuBar(StringUtils.addMenu());
+						empPage.setTitle(userText + " - " + result.getFirstName() + " " + result.getLastName());
+						empPage.show();
+
+					} else {
+						this.userTextField.setText("");
+						this.passwordField.setText("");
+						this.loginButton.setEnabled(false);
+						DashboardPage dashboardPage = new DashboardPage(listRoles, result);
+						StringUtils.frameInit(dashboardPage, bundleMessage);
+						dashboardPage.setTitle(userText + " - " + result.getFirstName() + " " + result.getLastName());
+						// dashboardPage.setJMenuBar(StringUtils.addMenu());
+						dashboardPage.show();
+					}
+				}
 				// JOptionPane.showMessageDialog(this,
 				// bundleMessage.getString("Login_Page_Login_Successful"));
 			} else {

@@ -70,6 +70,7 @@ public class ResetPasswordPage extends JFrame implements ActionListener {
 	JLabel usernameLabel = new JLabel(bundleMessage.getString("ResetPassword_Page_Username"));
 	JLabel passwordLabel = new JLabel(bundleMessage.getString("ResetPassword_Page_Password"));
 	JLabel rePasswordLabel = new JLabel(bundleMessage.getString("ResetPassword_Page_RePassword"));
+	JLabel firstTimeLoginLabel = new JLabel();
 
 	JLabel matchPasswordLabel = new JLabel();
 
@@ -77,7 +78,7 @@ public class ResetPasswordPage extends JFrame implements ActionListener {
 	JTextField passwordTextField = new JPasswordField();
 	JTextField rePasswordTextField = new JPasswordField();
 
-	JButton resetPassButton = new JButton(bundleMessage.getString("ResetPassword_Page_ResetPassword"));
+	JButton resetPassButton = new JButton();
 
 	JCheckBox isFirstChange = new JCheckBox(bundleMessage.getString("ResetPassword_Page_FirstChange"));
 
@@ -94,8 +95,10 @@ public class ResetPasswordPage extends JFrame implements ActionListener {
 	Map<String, Assessor> mapDisplayName = new HashMap<>();
 	int resultValue;
 	boolean isDashboard;
+	boolean isFirstTimeLogin;
 
-	ResetPasswordPage(Assessor user, boolean isDashboard) {
+	ResetPasswordPage(Assessor user, boolean isDashboard, boolean isFirstTimeLogin) {
+		this.isFirstTimeLogin = isFirstTimeLogin;
 		this.isDashboard = isDashboard;
 		this.user = user;
 		setLayoutManager();
@@ -185,20 +188,27 @@ public class ResetPasswordPage extends JFrame implements ActionListener {
 			}
 		});
 
-		usernameComboBox.addItem("");
-		for (Assessor user : listUsers) {
+		if (isFirstTimeLogin) {
+
 			String displayName = user.getFirstName() + " " + user.getLastName() + " - " + user.getUsername();
 			mapDisplayName.put(displayName, user);
-			System.out.println(user.getUsername());
-			System.out.println(this.user.getUsername());
-			System.out.println(user.getUsername() != this.user.getUsername());
-			System.out.println("----");
-			if (!user.getUsername().equals(this.user.getUsername())) {
-				usernameComboBox.addItem(displayName);
+			usernameComboBox.addItem(displayName);
+			usernameComboBox.setEnabled(false);
+		} else {
+			usernameComboBox.addItem("");
+			for (Assessor user : listUsers) {
+				String displayName = user.getFirstName() + " " + user.getLastName() + " - " + user.getUsername();
+				mapDisplayName.put(displayName, user);
+				System.out.println(user.getUsername());
+				System.out.println(this.user.getUsername());
+				System.out.println(user.getUsername() != this.user.getUsername());
+				System.out.println("----");
+				if (!user.getUsername().equals(this.user.getUsername())) {
+					usernameComboBox.addItem(displayName);
+				}
+
 			}
-
 		}
-
 		AutoCompletion.enable(usernameComboBox);
 
 		passwordLabel.setBounds(100, 160, 170, 60);
@@ -254,8 +264,21 @@ public class ResetPasswordPage extends JFrame implements ActionListener {
 		isFirstChange.setBounds(270, 270, 300, 30);
 		isFirstChange.setFont(new Font(labelFont.getName(), Font.ITALIC, 15));
 
-		resetPassButton.setBounds(270, 310, 200, 30);
-		resetPassButton.setFont(new Font(labelFont.getName(), Font.BOLD, 18));
+		if (isFirstTimeLogin) {
+
+			firstTimeLoginLabel.setText(bundleMessage.getString("ResetPassword_Page_FirstTimeLoginLabel"));
+			firstTimeLoginLabel.setBounds(200, 60, 400, 30);
+			firstTimeLoginLabel.setFont(new Font(labelFont.getName(), Font.BOLD, 15));
+
+			resetPassButton.setText(bundleMessage.getString("ResetPassword_Page_FirstTimeLogin"));
+			resetPassButton.setBounds(270, 290, 200, 30);
+			resetPassButton.setFont(new Font(labelFont.getName(), Font.BOLD, 18));
+		} else {
+			resetPassButton.setText(bundleMessage.getString("ResetPassword_Page_ResetPassword"));
+			resetPassButton.setBounds(270, 310, 200, 30);
+			resetPassButton.setFont(new Font(labelFont.getName(), Font.BOLD, 18));
+		}
+
 		resetPassButton.setEnabled(false);
 	}
 
@@ -281,10 +304,9 @@ public class ResetPasswordPage extends JFrame implements ActionListener {
 	}
 
 	public void addComponentsToContainer() {
-		container.add(splitLabel);
-		container.add(changePassLabel);
+		
+
 		container.add(logOutLabel);
-		container.add(backToDashboardLabel);
 
 		container.add(usernameLabel);
 		container.add(usernameComboBox);
@@ -295,8 +317,15 @@ public class ResetPasswordPage extends JFrame implements ActionListener {
 		container.add(rePasswordLabel);
 		container.add(matchPasswordLabel);
 
-		container.add(isFirstChange);
+		if (!isFirstTimeLogin) {
+			container.add(splitLabel);
+			container.add(backToDashboardLabel);
+			container.add(changePassLabel);
+			container.add(isFirstChange);
+		} else {
+			container.add(firstTimeLoginLabel);
 
+		}
 		container.add(resetPassButton);
 
 	}
@@ -315,23 +344,30 @@ public class ResetPasswordPage extends JFrame implements ActionListener {
 
 			String password = rePasswordTextField.getText();
 			String username = mapDisplayName.get(usernameComboBox.getSelectedItem().toString()).getUsername();
-
-
-			int dialogResult = JOptionPane.showConfirmDialog(container,
-					bundleMessage.getString("ResetPassword_Page_Reset_Confirmation") + " " + username + "?", "Confirmation",
-					JOptionPane.YES_NO_OPTION);
-
+			int dialogResult;
+			if (isFirstTimeLogin) {
+				dialogResult = 0;
+			} else {
+				dialogResult = JOptionPane.showConfirmDialog(container,
+						bundleMessage.getString("ResetPassword_Page_Reset_Confirmation") + " " + username + "?",
+						"Confirmation", JOptionPane.YES_NO_OPTION);
+			}
 			if (dialogResult == 0) {
 				System.out.println("Yes option");
-				empCtlObj.updatePassword(username, this.companyCode, password, isFirstChange.isSelected());
+				if (isFirstTimeLogin) {
+					empCtlObj.updatePassword(username, this.companyCode, password, false);
+				} else {
+					
+				}
+				
 				JOptionPane.showMessageDialog(container, "Completed Reset Password!", "Notify result",
 						JOptionPane.INFORMATION_MESSAGE);
-				
+
 				passwordTextField.setText("");
 				rePasswordTextField.setText("");
 				isFirstChange.setSelected(false);
 				usernameComboBox.setSelectedIndex(0);
-				
+
 			} else {
 				System.out.println("No Option");
 			}

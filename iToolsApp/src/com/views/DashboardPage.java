@@ -185,7 +185,7 @@ public class DashboardPage extends JFrame implements ActionListener {
 
 		}
 		if (e.getSource() == resetPasswordButton) {
-			ResetPasswordPage resetPassPage = new ResetPasswordPage(user, true);
+			ResetPasswordPage resetPassPage = new ResetPasswordPage(user, true, false);
 			StringUtils.frameInit(resetPassPage, bundleMessage);
 			// empPage.setJMenuBar(StringUtils.addMenu());
 			resetPassPage.setTitle(user.getUsername() + " - " + user.getFirstName() + " " + user.getLastName());

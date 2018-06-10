@@ -84,7 +84,11 @@ public class UserController {
 	 * @return
 	 */
 	public boolean updatePassword(String username, String companyCode, String password, boolean isFirstChange) {
-		String sql = "Update  Assessor set Assessor.Password = md5('" + password + "') and Assessor.IsFirstChange = " + isFirstChange + " where Assessor.Username = '" + username
+		int isFirstChangeInt = 0;
+		if (isFirstChange) {
+			isFirstChangeInt = 1;
+		}
+		String sql = "Update  Assessor set Assessor.Password = md5('" + password + "') and Assessor.IsFirstTimeLogin = " + isFirstChangeInt + " where Assessor.Username = '" + username
 				+ "' and Assessor.CompanyCode = '" + companyCode + "';";
 		System.out.println(sql);
 		try {

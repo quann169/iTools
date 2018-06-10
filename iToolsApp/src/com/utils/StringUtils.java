@@ -122,5 +122,20 @@ public class StringUtils {
 		});
 		return menuBar;
 	}
+	
+	public static boolean converToBoolean(String data) {
+		try {
+			if (data != "" && "true".equals(data.toLowerCase())) {
+				return true;
+			}
+			int result = Integer.valueOf(data);
+			if (result == 1) {
+				return true;
+			}
+		} catch (Exception e) {
+			
+		}
+		return false;
+	}
 
 }

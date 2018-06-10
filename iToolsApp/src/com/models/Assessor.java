@@ -13,6 +13,7 @@ public class Assessor {
 	private boolean isActive;
 	private List<Role> listRoles;
 	private String companyCode;
+	private boolean isFirstTimeLogin;
 
 	/**
 	 * @param username
@@ -159,6 +160,21 @@ public class Assessor {
 	 */
 	public void setCompanyCode(String companyCode) {
 		this.companyCode = companyCode;
+	}
+
+	/**
+	 * @return the isFirstTimeLogin
+	 */
+	public boolean isFirstTimeLogin() {
+		return isFirstTimeLogin;
+	}
+
+	/**
+	 * @param isFirstTimeLogin
+	 *            the isFirstTimeLogin to set
+	 */
+	public void setFirstTimeLogin(boolean isFirstTimeLogin) {
+		this.isFirstTimeLogin = isFirstTimeLogin;
 	}
 
 	/*

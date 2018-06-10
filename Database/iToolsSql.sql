@@ -36,7 +36,7 @@ CREATE TABLE IF NOT EXISTS Assessor (
   CompanyCode VARCHAR(100) NULL,
   IsActive BOOLEAN NOT NULL,
   LastPassword VARCHAR(255) NULL,
-  IsFirstChange BOOLEAN NULL,
+  IsFirstTimeLogin BOOLEAN NULL,
   PRIMARY KEY (AssessorID),
   INDEX UserName (UserName),
   FOREIGN KEY (CompanyCode) REFERENCES Company(CompanyCode)
@@ -54,6 +54,7 @@ INSERT INTO Assessor(AssessorID, UserName, Password, FirstName, LastName, EmailA
 	(9, "com2admin", "e10adc3949ba59abbe56e057f20f883e", "ADMIN", "Com2", "com1admin@aaa.bbb", "Com2", 1),
 	(10, "com2user1", "e10adc3949ba59abbe56e057f20f883e", "User1", "Com2", "com1admin@aaa.bbb", "Com2", 1);
 
+update Assessor set IsFirstTimeLogin = 1 where UserName = 'com1admin';
 
 DROP TABLE IF EXISTS Roles;
 CREATE TABLE IF NOT EXISTS Roles (

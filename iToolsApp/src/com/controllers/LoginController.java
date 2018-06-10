@@ -12,6 +12,7 @@ import java.util.List;
 import com.models.Assessor;
 import com.models.Role;
 import com.utils.MysqlConnect;
+import com.utils.StringUtils;
 
 /**
  * @author svi-quannguyen
@@ -35,7 +36,7 @@ public class LoginController {
 	 * @return
 	 */
 	public Assessor validateUser(String username, String password) {
-		String sql = "SELECT AssessorID, UserName, FirstName, LastName, CompanyCode FROM Assessor where Assessor.UserName='"
+		String sql = "SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin FROM Assessor where Assessor.UserName='"
 				+ username.toLowerCase() + "' and Password=md5('" + password + "');";
 		// System.out.println(sql);
 		try {
@@ -44,10 +45,12 @@ public class LoginController {
 			if (rs.isBeforeFirst()) {
 				while (rs.next()) {
 					String companyCode = rs.getString(5);
-
+					System.out.println(rs.getString(6));
+					System.out.println(Boolean.getBoolean(rs.getString(6)));
 					Assessor user = new Assessor(username, password, companyCode);
 					user.setFirstName(rs.getString(3));
 					user.setLastName(rs.getString(4));
+					user.setFirstTimeLogin(StringUtils.converToBoolean(rs.getString(6)));
 					return user;
 				}
 			} else {
