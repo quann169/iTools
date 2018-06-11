@@ -48,6 +48,7 @@ public class LoginPage extends JFrame implements ActionListener {
 
 	private static final Config cfg = new Config();
 	private static final String COMPANY_CODE = "COMPANY_CODE";
+	private static final String COMPANY_CODE_UH = "COMPANY_CODE_UH";
 	final static Logger logger = Logger.getLogger(LoginPage.class);
 
 	LoginPage() {
@@ -157,7 +158,8 @@ public class LoginPage extends JFrame implements ActionListener {
 			String userText = userTextField.getText();
 			String pwdText = passwordField.getText();
 
-			userText = "com1admin";
+//			userText = "com1admin";
+			userText = "uhacc1";
 			pwdText = "123456";
 
 			logger.info("Login with username: " + userText);
@@ -167,6 +169,8 @@ public class LoginPage extends JFrame implements ActionListener {
 			if (result != null) {
 				logger.info("Login OK");
 				String companyCode = AdvancedEncryptionStandard.decrypt(cfg.getProperty(COMPANY_CODE));
+				
+				String companyCodeUH = AdvancedEncryptionStandard.decrypt(cfg.getProperty(COMPANY_CODE_UH));
 
 				if (result.isFirstTimeLogin()) {
 					ResetPasswordPage resetPassPage = new ResetPasswordPage(result, false, result.isFirstTimeLogin());
@@ -179,8 +183,14 @@ public class LoginPage extends JFrame implements ActionListener {
 
 					List<Role> listRoles = ctlObj.getUserRoles(userText, companyCode);
 					logger.info("listRoles: " + listRoles);
+					
+					if (listRoles.size() == 0) {
+						listRoles = ctlObj.getUserRoles(userText, companyCodeUH);
+						logger.info("listRolesUH: " + listRoles);
+					}
+					
+					
 
-					System.out.println(listRoles.get(0).getRoleName() + "   " + Enum.EMP.text());
 					if (listRoles.size() == 0) {
 						JOptionPane.showMessageDialog(this, bundleMessage.getString("Login_Page_Have_Not_Role"));
 						logger.info("User does not have role");

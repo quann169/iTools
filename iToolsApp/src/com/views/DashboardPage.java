@@ -2,27 +2,25 @@ package com.views;
 
 import java.awt.Container;
 import java.awt.Cursor;
-import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.GridLayout;
-import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.font.TextAttribute;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
-import java.util.Map;
 import java.util.ResourceBundle;
 
 import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.SwingWorker;
 
 import org.apache.log4j.Logger;
 
@@ -61,8 +59,15 @@ public class DashboardPage extends JFrame implements ActionListener {
 	private static final String COMPANY_CODE = "COMPANY_CODE";
 	final static Logger logger = Logger.getLogger(DashboardPage.class);
 
+	List<String> listRoleName = new ArrayList<>();
+	
 	DashboardPage(List<Role> listRoles, Assessor user) {
 		this.listRoles = listRoles;
+		
+		for (Role role : this.listRoles) {
+			listRoleName.add(role.getRoleName().toLowerCase());
+		}
+		
 		this.user = user;
 		setLayoutManager();
 		setLocationAndSize();
@@ -141,12 +146,12 @@ public class DashboardPage extends JFrame implements ActionListener {
 		container.add(changePassLabel);
 		container.add(logOutLabel);
 
-		List<String> listRoleName = new ArrayList<>();
-		for (Role role : this.listRoles) {
-			listRoleName.add(role.getRoleName());
-		}
-		if (listRoleName.contains(Enum.ACCT) || listRoleName.contains(Enum.TKOVER)
-				|| listRoleName.contains(Enum.PUTIN)) {
+		
+		
+
+		if (listRoleName.contains(Enum.ACCT.text().toLowerCase())
+				|| listRoleName.contains(Enum.TKOVER.text().toLowerCase())
+				|| listRoleName.contains(Enum.PUTIN.text().toLowerCase())) {
 			container.add(unlockMachineButton);
 			container.add(takeOverButton);
 			container.add(putInsButton);
@@ -173,17 +178,56 @@ public class DashboardPage extends JFrame implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == unlockMachineButton) {
+			final JDialog d = new JDialog();
+			JPanel p1 = new JPanel(new GridBagLayout());
+			JLabel progress = new JLabel("Please Wait...");
+			p1.add(progress, new GridBagConstraints());
+			d.getContentPane().add(p1);
+			d.setBounds(100, 100, 500, 200);
+			// d.setLocationRelativeTo(f);
+			d.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
+			d.setModal(true);
 
+			SwingWorker<?, ?> worker = new SwingWorker<Void, Integer>() {
+				protected Void doInBackground() throws InterruptedException {
+					int x = 0;
+					for (; x <= 100; x += 10) {
+						publish(x);
+						Thread.sleep(1000);
+					}
+					return null;
+				}
+
+				protected void process(List<Integer> chunks) {
+					int selection = chunks.get(chunks.size() - 1);
+					progress.setText("Please Wait..." + selection + "s");
+				}
+
+				protected void done() {
+					System.out.println("Complete");
+					d.dispose();
+					if (listRoleName.contains(Enum.PUTIN.text().toLowerCase())) {
+						putInsButton.setEnabled(true);
+					}
+					
+					if (listRoleName.contains(Enum.TKOVER.text().toLowerCase())) {
+						takeOverButton.setEnabled(true);
+					}
+				}
+			};
+			worker.execute();
+			d.setVisible(true);
 		}
 		if (e.getSource() == takeOverButton) {
-
+			PutInTakeOverPage putinsTakeOverPage = new PutInTakeOverPage(user, Enum.TKOVER.text());
+			StringUtils.frameInit(putinsTakeOverPage, bundleMessage);
+			putinsTakeOverPage.setTitle(user.getUsername() + " - " + user.getFirstName() + " " + user.getLastName());
+			putinsTakeOverPage.show();
 		}
 		if (e.getSource() == putInsButton) {
 
 		}
-		if (e.getSource() == getToolButton) {
 
-		}
 		if (e.getSource() == resetPasswordButton) {
 			ResetPasswordPage resetPassPage = new ResetPasswordPage(user, true, false);
 			StringUtils.frameInit(resetPassPage, bundleMessage);

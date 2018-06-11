@@ -41,6 +41,7 @@ import javax.swing.event.DocumentListener;
 import org.apache.log4j.Logger;
 
 import com.controllers.EmployeeController;
+import com.models.Assessor;
 import com.models.Machine;
 import com.models.Tool;
 import com.utils.AdvancedEncryptionStandard;
@@ -86,10 +87,8 @@ public class PutInTakeOverPage extends JFrame implements ActionListener {
 	EmployeeController empCtlObj = new EmployeeController();
 
 	int resultValue;
-	boolean isDashboard;
 
-	PutInTakeOverPage(boolean isDashboard) {
-		this.isDashboard = isDashboard;
+	PutInTakeOverPage(Assessor user, String pageType) {
 		toolVstrayAndQuantityMap = empCtlObj.getToolTrayQuantity(machineCode);
 		setLayoutManager();
 		setLocationAndSize();
@@ -119,11 +118,7 @@ public class PutInTakeOverPage extends JFrame implements ActionListener {
 			}
 		});
 
-		if (this.isDashboard) {
-			backToDashboardLabel.setEnabled(true);
-		} else {
-			backToDashboardLabel.setEnabled(false);
-		}
+		backToDashboardLabel.setEnabled(true);
 
 		changePassLabel.setText("<html><html><font size=\"5\" face=\"arial\" color=\"#0181BE\"><b><i><u>"
 				+ bundleMessage.getString("App_ChangePassword") + "</u></i></b></font></html></html>");
@@ -151,7 +146,6 @@ public class PutInTakeOverPage extends JFrame implements ActionListener {
 			}
 		});
 
-
 		toolLabel.setBounds(100, 170, 150, 60);
 		toolLabel.setFont(new Font(labelFont.getName(), Font.BOLD, 25));
 
@@ -175,7 +169,7 @@ public class PutInTakeOverPage extends JFrame implements ActionListener {
 							String tray = (String) trayQuantity.get(0);
 							int quantity = (int) trayQuantity.get(1);
 							quantityTextField.setText("" + quantity);
-//							trayTextField.setText("" + tray);
+							// trayTextField.setText("" + tray);
 							listTrays.add(trayQuantity.toString());
 						}
 						trayCombobox.setToolTipText(listTrays.toString());
@@ -220,9 +214,9 @@ public class PutInTakeOverPage extends JFrame implements ActionListener {
 		}
 
 		AutoCompletion.enable(toolComboBox);
-		
+
 		////////////////////////////////////////
-		
+
 		toolComboBox.setBounds(250, 190, 300, 30);
 		toolComboBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -240,7 +234,7 @@ public class PutInTakeOverPage extends JFrame implements ActionListener {
 							String tray = (String) trayQuantity.get(0);
 							int quantity = (int) trayQuantity.get(1);
 							quantityTextField.setText("" + quantity);
-//							trayTextField.setText("" + tray);
+							// trayTextField.setText("" + tray);
 							listTrays.add(trayQuantity.toString());
 						}
 						trayCombobox.setToolTipText(listTrays.toString());
@@ -318,7 +312,6 @@ public class PutInTakeOverPage extends JFrame implements ActionListener {
 		cancelButton.setBounds(450, 300, 100, 30);
 		cancelButton.setFont(new Font(labelFont.getName(), Font.BOLD, 15));
 
-
 	}
 
 	private boolean validateAllFields() {
@@ -390,8 +383,8 @@ public class PutInTakeOverPage extends JFrame implements ActionListener {
 			String tray = trayCombobox.getSelectedItem().toString();
 			int quantity = 1;
 
-			JLabel label2 = new JLabel("<html>Review and confirm information<br/>CTID: " + ctid + "<br/>Tray: " + tray + "<br/>Quantity: " + quantity + "</html>",
-					SwingConstants.CENTER);
+			JLabel label2 = new JLabel("<html>Review and confirm information<br/>CTID: " + ctid + "<br/>Tray: " + tray
+					+ "<br/>Quantity: " + quantity + "</html>", SwingConstants.CENTER);
 			label2.setVerticalAlignment(SwingConstants.CENTER);
 			label2.setHorizontalAlignment(SwingConstants.CENTER);
 			label2.setFont(new Font("Arial", Font.BOLD, 17));

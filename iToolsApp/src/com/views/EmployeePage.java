@@ -14,6 +14,7 @@ import java.awt.event.FocusEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.font.TextAttribute;
+import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -270,9 +271,11 @@ public class EmployeePage extends JFrame implements ActionListener {
 
 					if (!selectValue.equals("")) {
 						List<Machine> availableMachine = empCtlObj.findAvailableMachine(machineCode, selectValue);
+						String availableMachineNotify = MessageFormat.format(
+								bundleMessage.getString("Employee_AvailableMachine"), selectValue, machineCode,
+								availableMachine.toString());
 
-						JOptionPane.showMessageDialog(trayTextField.getParent(),
-								bundleMessage.getString("Employee_AvailableMachine"));
+						JOptionPane.showMessageDialog(trayTextField.getParent(), availableMachineNotify);
 						logger.info("Suggest machine for tool " + selectValue + " - company " + COMPANY_CODE + ": "
 								+ availableMachine);
 
