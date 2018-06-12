@@ -1,0 +1,12 @@
+<style type="text/css">
+.form-horizontal .control-label {
+	text-align: left;
+}
+
+.payment-hide {
+	display: none;
+}
+</style>
+<div class="join-us">
+	submit success
+</div>

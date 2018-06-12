@@ -1,0 +1,14 @@
+#RegisterForm
+Size.registerForm.fullName=Please input your name
+
+#RegisterScreen
+register.fullname=Full Name
+register.age=Age
+register.email=Email Address
+register.address=Address
+register.mobile=Mobile Number
+register.facebook=Facebook
+register.term=By click.....
+register.registerbutton=Register
+register.title=REGISTER YOUR INFORMATION
+register.referral=referral

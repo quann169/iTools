@@ -1,0 +1,101 @@
+<style type="text/css">
+.form-horizontal .control-label {
+	text-align: left;
+}
+
+.payment-hide {
+	display: none;
+}
+
+.form-group {
+	min-height: 110px
+}
+</style>
+
+<div class="title margin-top-l">
+	<h2>ĐĂNG KÝ THÔNG TIN</h2>
+</div>
+<div style="background-color: #f1f1f1;">
+	<section>
+		<div class="content">
+			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+				do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+				enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
+				ut aliquip ex ea commodo consequat.</p>
+		</div>
+	</section>
+	<section style="background-color: #f1f1f1;">
+		<form:form
+			action="${pageContext.request.contextPath}/public/register"
+			modelAttribute="registerForm" class="form-horizontal ">	
+			<spring:message code="Size.registerForm.fullName"/>		 
+			Your locale ${pageContext.response.locale} 
+			<fieldset>
+				<div class="col col-sm-6">
+					<div class="form-group">
+						<form:label path="fullName"
+							class="col col-sm-12 control-label text-left">Họ và tên *</form:label>
+						<div class="col col-sm-12">
+							<form:input path="fullName" class="form-control" />
+							<form:errors path="fullName" cssClass="text-danger" />
+						</div>
+					</div>
+					<div class="form-group">
+						<form:label path="address" class="col col-sm-12 control-label">Địa chỉ *</form:label>
+						<div class="col col-sm-12">
+							<form:input path="address" class="form-control" />
+							<form:errors path="address" cssClass="text-danger" />
+						</div>
+					</div>
+					<div class="form-group">
+						<form:label path="phoneNumber" class="col col-sm-12 control-label">Số điện thoại *</form:label>
+						<div class="col col-sm-12">
+							<form:input path="phoneNumber" class="form-control" />
+							<form:errors path="phoneNumber" cssClass="text-danger" />
+						</div>
+					</div>
+				</div>
+				<div class="col col-sm-6">
+					<div class="form-group">
+						<form:label path="age" class="col col-sm-12 control-label">Tuổi *</form:label>
+						<div class="col col-sm-12">
+							<form:input path="age" class="form-control" />
+							<form:errors path="age" cssClass="text-danger" />
+						</div>
+					</div>
+					<div class="form-group">
+						<form:label path="email" class="col col-sm-12 control-label">Địa chỉ email *</form:label>
+						<div class="col col-sm-12">
+							<form:input path="email" class="form-control" />
+							<form:errors path="email" cssClass="text-danger" />
+						</div>
+					</div>
+					<div class="form-group">
+						<form:label path="facebook" class="col col-sm-12 control-label">Facebook</form:label>
+						<div class="col col-sm-12">
+							<form:input path="facebook" class="form-control" />
+							<form:errors path="facebook" cssClass="text-danger" />
+						</div>
+					</div>
+				</div>
+				<div class="col col-sm-1">
+					<form:checkbox path="agreed" class="checkbox" />
+				</div>
+				<div class="col col-sm-11">
+					<form:label path="agreed" class="col col-sm-12 control-label">
+			Bằng việc cung cấp thông tin và tham dự ngày hội, chúng tôi đồng ý cho FWD được sử dụng hình ảnh của chúng tôi để quảng bá cho chương trình.
+			</form:label>
+				</div>
+
+
+
+				<div class="col col-sm-6 margin-top-l">
+					<a href="#" onclick="document.forms[0].submit()"
+						class="btn btn-primary text-uppercase full-width">ĐĂNG KÝ</a>
+				</div>
+
+			</fieldset>
+		</form:form>
+	</section>
+	<div class="margin-top-l"></div>
+</div>
