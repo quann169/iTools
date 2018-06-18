@@ -193,7 +193,7 @@ public class DashboardPage extends JFrame implements ActionListener {
 					int x = 0;
 					for (; x <= 100; x += 10) {
 						publish(x);
-						Thread.sleep(1000);
+						Thread.sleep(200);
 					}
 					return null;
 				}

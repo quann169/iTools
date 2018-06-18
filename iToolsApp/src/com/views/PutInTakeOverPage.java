@@ -14,7 +14,7 @@ import java.awt.event.FocusEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.font.TextAttribute;
-import java.util.ArrayList;
+import java.text.MessageFormat;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -42,7 +42,6 @@ import org.apache.log4j.Logger;
 
 import com.controllers.EmployeeController;
 import com.models.Assessor;
-import com.models.Machine;
 import com.models.Tool;
 import com.utils.AdvancedEncryptionStandard;
 import com.utils.AutoCompletion;
@@ -80,16 +79,20 @@ public class PutInTakeOverPage extends JFrame implements ActionListener {
 	private static final Config cfg = new Config();
 	private static final String COMPANY_CODE = "COMPANY_CODE";
 	private static final String MACHINE_CODE = "MACHINE_CODE";
+	
 	String companyCode = AdvancedEncryptionStandard.decrypt(cfg.getProperty(COMPANY_CODE));
 	String machineCode = AdvancedEncryptionStandard.decrypt(cfg.getProperty(MACHINE_CODE));
+	
+	int maxItemsPerTray = Integer.valueOf(AdvancedEncryptionStandard.decrypt(cfg.getProperty("MAX_ITEM_PER_TRAY")));
 
 	final static Logger logger = Logger.getLogger(PutInTakeOverPage.class);
 	EmployeeController empCtlObj = new EmployeeController();
-
+	Map<String, Integer> mapTrayQuantity = new HashMap<>();
 	int resultValue;
 
 	PutInTakeOverPage(Assessor user, String pageType) {
 		toolVstrayAndQuantityMap = empCtlObj.getToolTrayQuantity(machineCode);
+		System.out.println(toolVstrayAndQuantityMap);
 		setLayoutManager();
 		setLocationAndSize();
 		addComponentsToContainer();
@@ -146,114 +149,50 @@ public class PutInTakeOverPage extends JFrame implements ActionListener {
 			}
 		});
 
-		toolLabel.setBounds(100, 170, 150, 60);
-		toolLabel.setFont(new Font(labelFont.getName(), Font.BOLD, 25));
-
-		trayLabel.setBounds(250, 205, 150, 60);
-		trayLabel.setFont(new Font(labelFont.getName(), Font.ITALIC + Font.BOLD, 15));
-
-		trayCombobox.setBounds(250, 190, 300, 30);
-		trayCombobox.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				String selectValue = trayCombobox.getSelectedItem().toString();
-				// System.out.println(toolVstrayAndQuantityMap);
-				// System.out.println("selectValue: " + selectValue);
-				if (toolVstrayAndQuantityMap.containsKey(selectValue)) {
-
-					List<List<Object>> existedValue = toolVstrayAndQuantityMap.get(selectValue);
-					if (existedValue.size() > 0) {
-						List<String> listTrays = new ArrayList<>();
-						for (List<Object> trayQuantity : existedValue) {
-							// System.out.println("trayQuantity: " +
-							// trayQuantity);
-							String tray = (String) trayQuantity.get(0);
-							int quantity = (int) trayQuantity.get(1);
-							quantityTextField.setText("" + quantity);
-							// trayTextField.setText("" + tray);
-							listTrays.add(trayQuantity.toString());
-						}
-						trayCombobox.setToolTipText(listTrays.toString());
-					}
-
-				} else {
-					trayCombobox.setSelectedIndex(0);
-					quantityTextField.setText("0");
-
-					if (!selectValue.equals("")) {
-						List<Machine> availableMachine = empCtlObj.findAvailableMachine(machineCode, selectValue);
-
-						JOptionPane.showMessageDialog(trayCombobox.getParent(),
-								bundleMessage.getString("Employee_AvailableMachine"));
-						logger.info("Suggest machine for tool " + selectValue + " - company " + COMPANY_CODE + ": "
-								+ availableMachine);
-
-					}
-				}
-			}
-		});
-		trayCombobox.addFocusListener(new FocusAdapter() {
-
-			@Override
-			public void focusGained(FocusEvent e) {
-				trayCombobox.showPopup();
-			}
-		});
-		String machineCode = AdvancedEncryptionStandard.decrypt(cfg.getProperty(MACHINE_CODE));
-		List<Tool> listTrays = empCtlObj.getToolsOfMachine(machineCode);
-		Collections.sort(listTrays, new Comparator<Tool>() {
-			public int compare(Tool o1, Tool o2) {
-				if (o1.getToolName() == o2.getToolName())
-					return 0;
-				return o1.getToolName().compareToIgnoreCase(o2.getToolName());
-			}
-		});
-
-		trayCombobox.addItem("");
-		for (Tool tool : listTrays) {
-			trayCombobox.addItem(tool.getToolName());
-		}
-
-		AutoCompletion.enable(toolComboBox);
-
 		////////////////////////////////////////
+		toolLabel.setBounds(100, 105, 150, 60);
+		toolComboBox.setBounds(250, 110, 300, 30);
 
-		toolComboBox.setBounds(250, 190, 300, 30);
+		toolLabel.setFont(new Font(labelFont.getName(), Font.BOLD, 20));
+
 		toolComboBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if (trayCombobox.getItemCount() > 0) {
+					trayCombobox.removeAllItems();
+				}
+
+				quantityTextField.setText("");
 				String selectValue = toolComboBox.getSelectedItem().toString();
 				// System.out.println(toolVstrayAndQuantityMap);
 				// System.out.println("selectValue: " + selectValue);
-				if (toolVstrayAndQuantityMap.containsKey(selectValue)) {
+				
+				if (!"".equals(selectValue)) {
+					if (toolVstrayAndQuantityMap.containsKey(selectValue)) {
+						mapTrayQuantity = new HashMap<>();
+						List<List<Object>> existedValue = toolVstrayAndQuantityMap.get(selectValue);
+						if (existedValue.size() > 0) {
+							for (List<Object> trayQuantity : existedValue) {
+								String tray = (String) trayQuantity.get(0);
+								int quantity = (int) trayQuantity.get(1);
+								mapTrayQuantity.put(tray, quantity);
+								trayCombobox.addItem(tray);
 
-					List<List<Object>> existedValue = toolVstrayAndQuantityMap.get(selectValue);
-					if (existedValue.size() > 0) {
-						List<String> listTrays = new ArrayList<>();
-						for (List<Object> trayQuantity : existedValue) {
-							// System.out.println("trayQuantity: " +
-							// trayQuantity);
-							String tray = (String) trayQuantity.get(0);
-							int quantity = (int) trayQuantity.get(1);
-							quantityTextField.setText("" + quantity);
-							// trayTextField.setText("" + tray);
-							listTrays.add(trayQuantity.toString());
+							}
+							// trayCombobox.setSelectedIndex(0);
+						} else {
+							System.out.println("AAAAAAAAAAAAAAa");
 						}
-						trayCombobox.setToolTipText(listTrays.toString());
-					}
 
-				} else {
-					trayCombobox.setSelectedIndex(0);
-					quantityTextField.setText("0");
-
-					if (!selectValue.equals("")) {
-						List<Machine> availableMachine = empCtlObj.findAvailableMachine(machineCode, selectValue);
-
-						JOptionPane.showMessageDialog(trayCombobox.getParent(),
-								bundleMessage.getString("Employee_AvailableMachine"));
-						logger.info("Suggest machine for tool " + selectValue + " - company " + COMPANY_CODE + ": "
-								+ availableMachine);
-
+					} else {
+						toolComboBox.setSelectedIndex(0);
+						quantityTextField.setText("0");
+						JOptionPane.showMessageDialog(container, MessageFormat
+								.format(bundleMessage.getString("Putin_TakeOver_Page_toolNotTrayMessage"), selectValue),
+								"Warning", JOptionPane.WARNING_MESSAGE);
+						sendRequestButton.setEnabled(false);
 					}
 				}
+				
 			}
 		});
 		toolComboBox.addFocusListener(new FocusAdapter() {
@@ -263,7 +202,6 @@ public class PutInTakeOverPage extends JFrame implements ActionListener {
 				toolComboBox.showPopup();
 			}
 		});
-
 		List<Tool> listTools = empCtlObj.getToolsOfMachine(machineCode);
 		Collections.sort(listTools, new Comparator<Tool>() {
 			public int compare(Tool o1, Tool o2) {
@@ -280,11 +218,48 @@ public class PutInTakeOverPage extends JFrame implements ActionListener {
 
 		AutoCompletion.enable(toolComboBox);
 
-		quantityLabel.setBounds(450, 205, 150, 60);
-		quantityLabel.setFont(new Font(labelFont.getName(), Font.ITALIC + Font.BOLD, 15));
+		//////////////////////////////////////////////////////////////////
+		trayLabel.setBounds(100, 160, 150, 60);
+		trayCombobox.setBounds(250, 170, 300, 30);
 
-		quantityTextField.setBounds(450, 250, 100, 30);
-		quantityTextField.setEditable(false);
+		trayLabel.setFont(new Font(labelFont.getName(), Font.BOLD, 20));
+
+		trayCombobox.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (trayCombobox.getItemCount() == 0) {
+					return;
+				}
+
+				String selectValue = trayCombobox.getSelectedItem().toString();
+				// System.out.println(toolVstrayAndQuantityMap);
+				// System.out.println("selectValue: " + selectValue);
+				if (mapTrayQuantity.containsKey(selectValue)) {
+
+					quantityTextField.setText("" + mapTrayQuantity.get(selectValue));
+
+				} else {
+					trayCombobox.removeAllItems();
+					trayCombobox.addItem("");
+					quantityTextField.setText("");
+				}
+			}
+		});
+		trayCombobox.addFocusListener(new FocusAdapter() {
+
+			@Override
+			public void focusGained(FocusEvent e) {
+				trayCombobox.showPopup();
+			}
+		});
+
+		trayCombobox.addItem("");
+		AutoCompletion.enable(trayCombobox);
+
+		quantityLabel.setBounds(100, 220, 150, 60);
+		quantityLabel.setFont(new Font(labelFont.getName(), Font.BOLD, 20));
+
+		quantityTextField.setBounds(250, 230, 100, 30);
+		// quantityTextField.setEditable(false);
 		quantityTextField.getDocument().addDocumentListener(new DocumentListener() {
 			public void changedUpdate(DocumentEvent e) {
 				warn();
@@ -306,29 +281,32 @@ public class PutInTakeOverPage extends JFrame implements ActionListener {
 		});
 
 		sendRequestButton.setEnabled(false);
-		sendRequestButton.setBounds(250, 300, 180, 30);
+		sendRequestButton.setBounds(250, 280, 180, 30);
 		sendRequestButton.setFont(new Font(labelFont.getName(), Font.BOLD, 15));
 
-		cancelButton.setBounds(450, 300, 100, 30);
+		cancelButton.setBounds(450, 280, 100, 30);
 		cancelButton.setFont(new Font(labelFont.getName(), Font.BOLD, 15));
 
 	}
 
 	private boolean validateAllFields() {
+		if (trayCombobox == null || toolComboBox == null || trayCombobox.getSelectedItem() == null
+				|| toolComboBox.getSelectedItem() == null || quantityTextField.getText() == null) {
+			return false;
+		}
 		int trayLength = ((String) trayCombobox.getSelectedItem()).length();
 		int toolLength = ((String) toolComboBox.getSelectedItem()).length();
 		int quantityLength = quantityTextField.getText().length();
-		// System.out.println("----");
-		// System.out.println("wo: " + woTextField.getText());
-		// System.out.println("op: " + opTextField.getText());
-		// System.out.println("tray: " + trayTextField.getText());
-		// System.out.println("tool: " + (String)
-		// toolComboBox.getSelectedItem());
-		// System.out.println("quan: " + quantityTextField.getText());
 
 		if (toolLength > 0 && trayLength > 0 && quantityLength > 0) {
-			sendRequestButton.setEnabled(true);
-			return true;
+			int defaultQuantity = mapTrayQuantity.get(trayCombobox.getSelectedItem());
+			if (defaultQuantity != Integer.parseInt(quantityTextField.getText())) {
+				sendRequestButton.setEnabled(true);
+				return true;
+			}
+			
+			sendRequestButton.setEnabled(false);
+			return false;
 		} else {
 			sendRequestButton.setEnabled(false);
 			return false;
