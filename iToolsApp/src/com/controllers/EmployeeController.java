@@ -70,6 +70,11 @@ public class EmployeeController {
 		}
 		return result;
 	}
+	
+	public boolean updateToolTray() {
+		
+		return true;
+	}
 
 	/**
 	 * 

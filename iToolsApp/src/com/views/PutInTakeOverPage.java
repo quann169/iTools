@@ -41,6 +41,7 @@ import javax.swing.event.DocumentListener;
 import org.apache.log4j.Logger;
 
 import com.controllers.EmployeeController;
+import com.message.Enum;
 import com.models.Assessor;
 import com.models.Tool;
 import com.utils.AdvancedEncryptionStandard;
@@ -66,6 +67,8 @@ public class PutInTakeOverPage extends JFrame implements ActionListener {
 	JLabel trayLabel = new JLabel(bundleMessage.getString("Putin_TakeOver_Page_Tray"));
 	JLabel quantityLabel = new JLabel(bundleMessage.getString("Putin_TakeOver_Page_Quantity"));
 
+	JLabel quantityMessage = new JLabel("");
+
 	JComboBox<String> trayCombobox = new JComboBox<String>();
 	JComboBox<String> toolComboBox = new JComboBox<String>();
 	JTextField quantityTextField = new JTextField();
@@ -79,19 +82,21 @@ public class PutInTakeOverPage extends JFrame implements ActionListener {
 	private static final Config cfg = new Config();
 	private static final String COMPANY_CODE = "COMPANY_CODE";
 	private static final String MACHINE_CODE = "MACHINE_CODE";
-	
+
 	String companyCode = AdvancedEncryptionStandard.decrypt(cfg.getProperty(COMPANY_CODE));
 	String machineCode = AdvancedEncryptionStandard.decrypt(cfg.getProperty(MACHINE_CODE));
-	
-	int maxItemsPerTray = Integer.valueOf(AdvancedEncryptionStandard.decrypt(cfg.getProperty("MAX_ITEM_PER_TRAY")));
+
+	int maxItemsPerTray = Integer.valueOf(cfg.getProperty("MAX_ITEM_PER_TRAY"));
 
 	final static Logger logger = Logger.getLogger(PutInTakeOverPage.class);
 	EmployeeController empCtlObj = new EmployeeController();
 	Map<String, Integer> mapTrayQuantity = new HashMap<>();
-	int resultValue;
+	boolean resultValue;
+	String pageType;
 
 	PutInTakeOverPage(Assessor user, String pageType) {
 		toolVstrayAndQuantityMap = empCtlObj.getToolTrayQuantity(machineCode);
+		this.pageType = pageType;
 		System.out.println(toolVstrayAndQuantityMap);
 		setLayoutManager();
 		setLocationAndSize();
@@ -165,7 +170,7 @@ public class PutInTakeOverPage extends JFrame implements ActionListener {
 				String selectValue = toolComboBox.getSelectedItem().toString();
 				// System.out.println(toolVstrayAndQuantityMap);
 				// System.out.println("selectValue: " + selectValue);
-				
+
 				if (!"".equals(selectValue)) {
 					if (toolVstrayAndQuantityMap.containsKey(selectValue)) {
 						mapTrayQuantity = new HashMap<>();
@@ -192,7 +197,7 @@ public class PutInTakeOverPage extends JFrame implements ActionListener {
 						sendRequestButton.setEnabled(false);
 					}
 				}
-				
+
 			}
 		});
 		toolComboBox.addFocusListener(new FocusAdapter() {
@@ -280,11 +285,13 @@ public class PutInTakeOverPage extends JFrame implements ActionListener {
 			}
 		});
 
+		quantityMessage.setBounds(250, 260, 380, 30);
+
 		sendRequestButton.setEnabled(false);
-		sendRequestButton.setBounds(250, 280, 180, 30);
+		sendRequestButton.setBounds(250, 290, 180, 30);
 		sendRequestButton.setFont(new Font(labelFont.getName(), Font.BOLD, 15));
 
-		cancelButton.setBounds(450, 280, 100, 30);
+		cancelButton.setBounds(450, 290, 100, 30);
 		cancelButton.setFont(new Font(labelFont.getName(), Font.BOLD, 15));
 
 	}
@@ -300,11 +307,31 @@ public class PutInTakeOverPage extends JFrame implements ActionListener {
 
 		if (toolLength > 0 && trayLength > 0 && quantityLength > 0) {
 			int defaultQuantity = mapTrayQuantity.get(trayCombobox.getSelectedItem());
-			if (defaultQuantity != Integer.parseInt(quantityTextField.getText())) {
+			int newQuantity = Integer.parseInt(quantityTextField.getText());
+			if (defaultQuantity != newQuantity) {
+				if (this.pageType.equals(Enum.TKOVER.text())) {
+					if (newQuantity > defaultQuantity) {
+						sendRequestButton.setEnabled(false);
+						quantityMessage.setText("<html><html><font size=\"4\" face=\"arial\" color=\"RED\"><b>"
+								+ MessageFormat.format(
+										bundleMessage.getString("Putin_TakeOver_Page_TakeOverErrMessage"), defaultQuantity)
+								+ "</b></font></html></html>");
+						return false;
+					}
+				} else {
+					sendRequestButton.setEnabled(false);
+					quantityMessage.setText("<html><html><font size=\"4\" face=\"arial\" color=\"RED\"><b>"
+							+ MessageFormat.format(
+									bundleMessage.getString("Putin_TakeOver_Page_PutinErrMessage"), defaultQuantity, maxItemsPerTray)
+							+ "</b></font></html></html>");
+					return false;
+				}
+
 				sendRequestButton.setEnabled(true);
+				quantityMessage.setText("");
 				return true;
 			}
-			
+
 			sendRequestButton.setEnabled(false);
 			return false;
 		} else {
@@ -326,6 +353,7 @@ public class PutInTakeOverPage extends JFrame implements ActionListener {
 		container.add(quantityTextField);
 		container.add(sendRequestButton);
 		container.add(cancelButton);
+		container.add(quantityMessage);
 	}
 
 	public void addActionEvent() {
@@ -359,18 +387,24 @@ public class PutInTakeOverPage extends JFrame implements ActionListener {
 
 			String ctid = toolComboBox.getSelectedItem().toString();
 			String tray = trayCombobox.getSelectedItem().toString();
-			int quantity = 1;
+			String quantity = quantityTextField.getText();
 
 			JLabel label2 = new JLabel("<html>Review and confirm information<br/>CTID: " + ctid + "<br/>Tray: " + tray
 					+ "<br/>Quantity: " + quantity + "</html>", SwingConstants.CENTER);
 			label2.setVerticalAlignment(SwingConstants.CENTER);
 			label2.setHorizontalAlignment(SwingConstants.CENTER);
-			label2.setFont(new Font("Arial", Font.BOLD, 17));
+			label2.setFont(new Font("Arial", Font.BOLD, 15));
 			label2.setBounds(0, 0, 350, 150);
 			panel.add(label2);
 
 			// UIManager.put("OptionPane.minimumSize", new Dimension(300, 120));
-			int dialogResult = JOptionPane.showConfirmDialog(this, panel, "Admin Rights Confirmation",
+			String action = "";
+			if (this.pageType.equals(Enum.TKOVER.text())) {
+				action = Enum.TKOVER.text();
+			} else {
+				action = Enum.PUTIN.text();
+			}
+			int dialogResult = JOptionPane.showConfirmDialog(this, panel, action + " Confirmation",
 					JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, null);
 
 			// JPanel panel = new JPanel() {
@@ -410,52 +444,26 @@ public class PutInTakeOverPage extends JFrame implements ActionListener {
 
 				SwingWorker<?, ?> worker = new SwingWorker<Void, Integer>() {
 					protected Void doInBackground() throws InterruptedException {
-						int x = 0;
-						for (int z = 0; z < 5; z++) {
-							Thread.sleep(1000);
+						resultValue = empCtlObj.updateToolTray();
+						if (resultValue) {
+							toolComboBox.setSelectedIndex(0);
+							trayCombobox.removeAllItems();
+							quantityTextField.setText("");
 						}
-						for (; x <= 100; x += 10) {
-							publish(x);
-
-							int lower = 0;
-							int upper = 10;
-
-							int value = (int) (Math.random() * (upper - lower)) + lower;
-							System.out.println("ramdom value: " + value);
-							if (value == 5) {
-								System.out.println("OK");
-								JOptionPane.showMessageDialog(container, "Completed!", "Notify result",
-										JOptionPane.INFORMATION_MESSAGE);
-								resultValue = 1;
-								break;
-							} else if (value == 7) {
-								System.out.println("Fail");
-								JOptionPane.showMessageDialog(container, "Failed!", "Notify result",
-										JOptionPane.ERROR_MESSAGE);
-								break;
-							}
-							Thread.sleep(1000);
-						}
-						if (x >= 100) {
-							System.out.println("No result");
-							JOptionPane.showMessageDialog(container, "No result!", "Notify result",
-									JOptionPane.WARNING_MESSAGE);
-						}
+						
+//						publish(0);
+						
 						return null;
 					}
 
 					protected void process(List<Integer> chunks) {
-						int selection = chunks.get(chunks.size() - 1);
-						progress.setText("Please Wait..." + selection + "s");
+//						int selection = chunks.get(chunks.size() - 1);
+//						progress.setText("Please Wait..." + selection + "s");
 					}
 
 					protected void done() {
 						System.out.println("Complete");
 						d.dispose();
-						if (resultValue == 1) {
-							toolComboBox.setSelectedIndex(0);
-							quantityTextField.setText("");
-						}
 
 					}
 				};
