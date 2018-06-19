@@ -21,7 +21,7 @@ public class Machine implements Serializable {
     @Column(name = "MachineID", nullable = false)
     private int machineID;
  
-    @Column(name = "MachineName", length = 100, nullable = false)
+    @Column(name = "Name", length = 100, nullable = false)
     private String machineName;
  
     @Column(name = "MachineCode", length = 100, nullable = true)

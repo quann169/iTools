@@ -1,7 +1,0 @@
-package vn.com.fwd.domain.service.user;
-
-import vn.com.fwd.domain.model.Register;
-
-public interface RegisterService {
-	public boolean register(Register reg);
-}

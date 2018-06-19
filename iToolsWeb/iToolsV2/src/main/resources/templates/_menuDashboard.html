@@ -11,21 +11,15 @@
    User Management
    </a>
    |
-   <a th:href="@{/machineList}">
-   Machine List
+   <th:block sec:authorize="hasAnyRole('ROLE_MANAGER')">
+   <a th:href="@{/addMachine}">
+   Add new Machine
    </a>
+   </th:block>
    |
    <a th:href="@{/companyList}">
    Company Management
-   </a> 
-   |
-   <a th:href="@{/productList}">
-   Product List
-   </a>
-   |
-   <a th:href="@{/shoppingCart}">
-   My Cart
-   </a>
+   </a>   
    |
    <th:block sec:authorize="hasAnyRole('ROLE_MANAGER','ROLE_EMPLOYEE')">
       <a th:href="@{/admin/orderList}">

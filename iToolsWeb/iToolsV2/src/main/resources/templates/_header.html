@@ -6,14 +6,17 @@
    
    <div class="header-bar">
       <th:block sec:authorize="isAuthenticated()">
-         Hello
+         Welcome
          <a th:href="@{/admin/accountInfo}" th:utext="${#request.userPrincipal.name}">..</a>
          &nbsp;|&nbsp;
          <a th:href="@{/admin/logout}">Logout</a>
       </th:block>
        
-      <th:block sec:authorize="!isAuthenticated()">
+      <!-- <th:block sec:authorize="!isAuthenticated()">
          <a th:href="@{/admin/login}">Login</a>
+      </th:block> -->
+      <th:block sec:authorize="!isAuthenticated()">
+         <a th:href="@{/test/login}">Test Login</a>
       </th:block>
    </div>
    
