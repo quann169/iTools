@@ -1,26 +1,20 @@
-<div class="menu-container"
-   xmlns:th="http://www.thymeleaf.org"
-   xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4" >
-   <a th:href="@{/}">Home</a>
-   |
-   <a th:href="@{/productList}">
-   Product List
-   </a>
-   |
-   <a th:href="@{/shoppingCart}">
-   My Cart
-   </a>
-   |
-   <th:block sec:authorize="hasAnyRole('ROLE_MANAGER','ROLE_EMPLOYEE')">
-      <a th:href="@{/admin/orderList}">
-      Order List
-      </a>
-      |
-   </th:block>
-   <th:block sec:authorize="hasRole('ROLE_MANAGER')">
-      <a th:href="@{/admin/product}">
-      Create Product
-      </a>
-      |
-   </th:block>
-</div>
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+   <head>
+      <meta charset="UTF-8">
+      <title>Access Denied</title>
+      <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}">
+   </head>
+    
+   <body>
+    
+      <th:block th:include="/_header"></th:block>
+      <th:block th:include="/_menu"></th:block>
+       
+      <div class="page-title">Access Denied!</div>
+      <h3 style="color:red;">Sorry, you can not access this page!</h3>
+       
+      <th:block th:include="/_footer"></th:block>
+       
+   </body>
+</html>

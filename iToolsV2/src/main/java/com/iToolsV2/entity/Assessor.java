@@ -1,10 +1,9 @@
 package com.iToolsV2.entity;
  
 import java.io.Serializable;
- 
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
@@ -46,6 +45,18 @@ public class Assessor implements Serializable {
     
     @Column(name = "Address", length = 255, nullable = false)
     private String address;
+    
+	@Column(name = "Phone", length = 255, nullable = false)
+    private String phone;
+    
+    @Column(name = "CompanyId", length = 100, nullable = false)
+    private String companyCode;
+    
+    @Column(name = "LastPassword", length = 255, nullable = false)
+    private String lastPassword;
+ 
+    @Column(name = "IsActive", length = 1, nullable = false)
+    private boolean active;
     
     public int getAssessorID() {
 		return assessorID;
@@ -118,18 +129,6 @@ public class Assessor implements Serializable {
 	public void setLastPassword(String lastPassword) {
 		this.lastPassword = lastPassword;
 	}	
-
-	@Column(name = "Phone", length = 255, nullable = false)
-    private String phone;
-    
-    @Column(name = "CompanyId", length = 100, nullable = false)
-    private String companyCode;
-    
-    @Column(name = "LastPassword", length = 255, nullable = false)
-    private String lastPassword;
- 
-    @Column(name = "IsActive", length = 1, nullable = false)
-    private boolean active;
  
     /*@Column(name = "IsFirstChange", length = 1, nullable = true)
     private boolean isFirstChange;

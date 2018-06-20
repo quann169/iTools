@@ -2,13 +2,6 @@ package com.iToolsV2.service;
  
 import java.util.ArrayList;
 import java.util.List;
- 
-import com.iToolsV2.dao.AccountDAO;
-import com.iToolsV2.entity.Account;
-import com.iToolsV2.dao.AssessorDAO;
-import com.iToolsV2.dao.RolesDAO;
-import com.iToolsV2.entity.Assessor;
-import com.iToolsV2.model.AssessorInfo;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -18,12 +11,16 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+
+import com.iToolsV2.dao.AssessorDAO;
+import com.iToolsV2.dao.RolesDAO;
+import com.iToolsV2.entity.Assessor;
  
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
  
-    //@Autowired
-    //private AccountDAO accountDAO;
+   /* @Autowired
+    private AccountDAO accountDAO;*/
 	String ROLE_PREFIX = "ROLE_";
     
     @Autowired
@@ -34,8 +31,8 @@ public class UserDetailsServiceImpl implements UserDetailsService {
  
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        //Account account = accountDAO.findAccount(username);        
-        //System.out.println("Account= " + account);
+        /*Account account = accountDAO.findAccount(username);        
+        System.out.println("Account= " + account);*/
     	Assessor asssessor = asssessorDAO.findAccount(username);
         System.out.println("Account= " + asssessor);
         
@@ -55,8 +52,8 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         List<GrantedAuthority> grantList = new ArrayList<GrantedAuthority>();
  
         // ROLE_EMPLOYEE, ROLE_MANAGER
-        //GrantedAuthority authority = new SimpleGrantedAuthority(role);
-        //grantList.add(authority);
+        /*GrantedAuthority authority = new SimpleGrantedAuthority(role);
+        grantList.add(authority);*/
         
         if (roleNames != null) {
             for (String role : roleNames) {

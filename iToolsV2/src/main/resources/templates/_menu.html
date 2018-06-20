@@ -2,4 +2,49 @@
    xmlns:th="http://www.thymeleaf.org"
    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4" >
    <a th:href="@{/}">Home</a>
+   <th:block sec:authorize="hasRole('ROLE_Admin')">
+   |
+   <a th:href="@{/ctidList}">
+   CTID Management
+   </a>
+   </th:block>
+   <th:block sec:authorize="hasAnyRole('ROLE_Admin', 'ROLE_SubAdmin')">
+   |
+   <a th:href="@{/userList}">
+   User Management
+   </a>
+   </th:block>
+   <th:block sec:authorize="hasAnyRole('ROLE_Admin', 'ROLE_SubAdmin', 'ROLE_Accounting')">
+   |
+   <a th:href="@{/machineList}">
+   Machine List
+   </a>
+   </th:block>
+   <th:block sec:authorize="hasRole('ROLE_Admin')">
+   |
+   <a th:href="@{/companyList}">
+   Company Management
+   </a>
+   </th:block> 
+<!--    |
+   <a th:href="@{/productList}">
+   Product List
+   </a>
+   |
+   <a th:href="@{/shoppingCart}">
+   My Cart
+   </a>
+   |
+   <th:block sec:authorize="hasAnyRole('ROLE_MANAGER','ROLE_EMPLOYEE')">
+      <a th:href="@{/admin/orderList}">
+      Order List
+      </a>
+      |
+   </th:block>
+   <th:block sec:authorize="hasRole('ROLE_MANAGER')">
+      <a th:href="@{/admin/product}">
+      Create Product
+      </a>
+      |
+   </th:block> -->
 </div>

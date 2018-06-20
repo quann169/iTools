@@ -34,12 +34,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
  
         http.csrf().disable();
  
-        http.authorizeRequests().antMatchers("/admin/orderList", "/admin/order", "/admin/accountInfo")//
+        http.authorizeRequests().antMatchers("/admin/orderList", "/admin/order", "/admin/accountInfo", "/machineList")//
                 //.access("hasAnyRole('ROLE_EMPLOYEE', 'ROLE_MANAGER')");
-        		.access("hasAnyRole('ROLE_Admin', 'ROLE_SubAdmin', 'ROLE_Accounting', 'ROLE_Emp', 'ROLE_Other', 'ROLE_PutIns', 'ROLE_TakeOver', 'ROLE_UpdateReport')");
+        		.access("hasAnyRole('ROLE_EMPLOYEE', 'ROLE_MANAGER','ROLE_Admin', 'ROLE_SubAdmin', 'ROLE_Accounting', 'ROLE_PutIns', 'ROLE_TakeOver', 'ROLE_UpdateReport')");
  
-        //http.authorizeRequests().antMatchers("/admin/product").access("hasRole('ROLE_MANAGER')");
-        http.authorizeRequests().antMatchers("/admin/product").access("hasRole('ROLE_Admin', 'ROLE_SubAdmin', 'ROLE_Accounting', 'ROLE_Emp', 'ROLE_Other', 'ROLE_PutIns', 'ROLE_TakeOver', 'ROLE_UpdateReport')");
+        http.authorizeRequests().antMatchers("/admin/product", "/ctidList").access("hasRole('ROLE_Admin')");
+        //http.authorizeRequests().antMatchers("/admin/product").access("hasRole('ROLE_Admin')");
  
         http.authorizeRequests().and().exceptionHandling().accessDeniedPage("/403");
  
@@ -48,7 +48,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 // 
                 .loginProcessingUrl("/j_spring_security_check") // Submit URL
                 .loginPage("/admin/login")//
-                .defaultSuccessUrl("/admin/accountInfo")//
+                .defaultSuccessUrl("/machineList")//
+                //.defaultSuccessUrl("/admin/accountInfo")//
                 .failureUrl("/admin/login?error=true")//
                 .usernameParameter("userName")//
                 .passwordParameter("password")

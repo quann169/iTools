@@ -4,14 +4,22 @@ import java.io.IOException;
  
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
- 
+
+import com.iToolsV2.dao.AssessorDAO;
+import com.iToolsV2.dao.CompanyDAO;
+import com.iToolsV2.dao.MachineDAO;
 import com.iToolsV2.dao.OrderDAO;
 import com.iToolsV2.dao.ProductDAO;
+import com.iToolsV2.dao.ToolDAO;
 import com.iToolsV2.entity.Product;
 import com.iToolsV2.form.CustomerForm;
+import com.iToolsV2.model.AssessorInfo;
 import com.iToolsV2.model.CartInfo;
+import com.iToolsV2.model.CompanyInfo;
 import com.iToolsV2.model.CustomerInfo;
+import com.iToolsV2.model.MachineInfo;
 import com.iToolsV2.model.ProductInfo;
+import com.iToolsV2.model.ToolInfo;
 import com.iToolsV2.pagination.PaginationResult;
 import com.iToolsV2.utils.Utils;
 import com.iToolsV2.validator.CustomerFormValidator;
@@ -38,6 +46,18 @@ public class MainController {
  
     @Autowired
     private ProductDAO productDAO;
+    
+    @Autowired
+    private MachineDAO machineDAO;
+    
+    @Autowired
+    private AssessorDAO assessorDAO;
+    
+    @Autowired
+    private CompanyDAO companyDAO;
+    
+    @Autowired
+    private ToolDAO toolDAO;
  
     @Autowired
     private CustomerFormValidator customerFormValidator;
@@ -69,7 +89,8 @@ public class MainController {
  
     @RequestMapping("/")
     public String home() {
-        return "index";
+        //return "index";
+    	return "login";
     }
  
     @RequestMapping({ "/productList" })
@@ -84,6 +105,62 @@ public class MainController {
  
         model.addAttribute("paginationProducts", result);
         return "productList";
+    }
+    
+    @RequestMapping({ "/machineList" })
+    public String listMachineHandler(Model model, //
+            @RequestParam(value = "name", defaultValue = "") String likeName,
+            @RequestParam(value = "page", defaultValue = "1") int page) {
+        final int maxResult = 3;
+        final int maxNavigationPage = 10;
+ 
+        PaginationResult<MachineInfo> result = machineDAO.queryMachine(page, //
+                maxResult, maxNavigationPage, likeName);
+ 
+        model.addAttribute("paginationMachine", result);
+        return "machineList";
+    }
+    
+    @RequestMapping({ "/userList" })
+    public String listUserHandler(Model model, //
+            @RequestParam(value = "name", defaultValue = "") String likeName,
+            @RequestParam(value = "page", defaultValue = "1") int page) {
+        final int maxResult = 10;
+        final int maxNavigationPage = 10;
+ 
+        PaginationResult<AssessorInfo> result = assessorDAO.queryAssessor(page, //
+                maxResult, maxNavigationPage, likeName);
+ 
+        model.addAttribute("paginationAssessor", result);
+        return "assessorList";
+    }
+    
+    @RequestMapping({ "companyList" })
+    public String listCompanyHandler(Model model, //
+            @RequestParam(value = "name", defaultValue = "") String likeName,
+            @RequestParam(value = "page", defaultValue = "1") int page) {
+        final int maxResult = 10;
+        final int maxNavigationPage = 10;
+ 
+        PaginationResult<CompanyInfo> result = companyDAO.queryCompany(page, //
+                maxResult, maxNavigationPage, likeName);
+ 
+        model.addAttribute("paginationCompany", result);
+        return "companyList";
+    }
+    
+    @RequestMapping({ "ctidList" })
+    public String listToolHandler(Model model, //
+            @RequestParam(value = "name", defaultValue = "") String likeName,
+            @RequestParam(value = "page", defaultValue = "1") int page) {
+        final int maxResult = 10;
+        final int maxNavigationPage = 10;
+ 
+        PaginationResult<ToolInfo> result = toolDAO.queryTool(page, //
+                maxResult, maxNavigationPage, likeName);
+ 
+        model.addAttribute("paginationTool", result);
+        return "toolList";
     }
  
     @RequestMapping({ "/buyProduct" })

@@ -21,6 +21,17 @@
                 Login Failed!!!<br /> Reason :
                 <span th:utext="${#session.getAttribute('SPRING_SECURITY_LAST_EXCEPTION').message}"></span>
              </div>
+             
+             <div th:if="${param.error}">
+                 <div class="alert alert-danger">
+                     Invalid username and password.
+                 </div>
+             </div>
+             <div th:if="${param.logout}">
+                 <div class="alert alert-info">
+                     You have been logged out.
+                 </div>
+             </div>
          </th:block>
           
          <form method="POST"

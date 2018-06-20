@@ -93,6 +93,10 @@ body {
     width: 120px;
     height: 80px;
 }
+.machine-image {
+    width: 204px;
+    height: 306px;
+}
   
 ul {
     list-style-type: none;
@@ -136,7 +140,7 @@ ul {
     font-weight: bold;
     font-size: 120%;
 }
-  
+
 table td {
     padding: 5px;
 }

@@ -4,11 +4,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.iToolsV2</groupId>
-	<artifactId>iToolsV2</artifactId>
-	<version>0.0.1</version>
+	<artifactId>iTools</artifactId>
+	<version>1</version>
 	<packaging>war</packaging>
 
-	<name>iToolsV2</name>
+	<name>iTools</name>
 	<description>iTools Management</description>
 
 	<parent>

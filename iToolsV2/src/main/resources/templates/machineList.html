@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+   xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+   <head>
+      <meta charset="UTF-8">
+      <title>Product List</title>
+      <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}" />
+   </head>
+   <body>
+      <th:block th:include="/_header"></th:block>
+      <th:block th:include="/_menu"></th:block>
+       
+      <div class="page-title">Machine List</div>
+       
+      <div class="product-preview-container" th:each="machineInfo : ${paginationMachine.list}">
+         <ul>
+            <li><img class="machine-image"
+               th:src="@{/image/machine.jpg}" /></li>
+            <li>Code: <span th:utext="${machineInfo.machineCode}"></span></li>
+            <li>Name: <span th:utext="${machineInfo.machineName}"></span></li>
+         </ul>
+      </div>      
+       
+      <br/>
+      <div class="page-navigator" th:if="${paginationMachine.totalPages > 1}">
+         <th:block th:each="page : ${paginationMachine.navigationPages}">
+         
+            <a th:href="@{|/machineList?page=${page}|}" th:if="${page != -1}"
+               class="nav-item" th:utext="${page}"></a>
+               
+            <span class="nav-item" th:if="${page == -1}"> ... </span>
+             
+         </th:block>
+      </div>
+       
+      <th:block th:include="/_footer"></th:block>
+       
+   </body>
+</html>

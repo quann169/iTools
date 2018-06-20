@@ -21,7 +21,7 @@ public class Tools implements Serializable {
     @Column(name = "ToolID", nullable = false)
     private int ToolID;
  
-    @Column(name = "ToolCode", length = 100, nullable = true)
+    @Column(name = "Name", length = 100, nullable = true)
     private String toolCode;
     
     @Column(name = "Model", length = 100, nullable = true)
