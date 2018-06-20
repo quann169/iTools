@@ -1,0 +1,70 @@
+
+3 cty
+	+ UHCom
+	+ Com1
+	+ Com2
+	
+Cty UHCom co 
+	- 3 users, 
+		+ Accounting
+			+ UHAcc1 ==> role putin - takeover
+			+ UHAcc2 ==> role putin - view/export report
+		+ Admin
+			+ UHAdmin1 ==> Full permission
+	- 5 machines phan bo cho 2 cty Com1, Com2
+		+ Com1: MA1, MA2
+		+ Com2: MA3, MA4, MA5
+		+ MA3 sau do duoc chuyen tu Com1 sang Com2 ==>>>>>>>>>>>>>>>> Report cu xem the nao? Co nen duplicate MA5 thanh MA6 ko?
+	- 6 ToolID - T1, T2, T3, T4, T5 (Het hang - chi co tai UH), T6
+		+ MA1
+			TRAY1: T1 - 5
+			TRAY2: T6 - 2
+			TRAY3: 
+			TRAY4: T2 - 5
+			TRAY5: T1 - 3
+		+ MA2
+			TRAY1: 
+			TRAY2: T2 - 2
+			TRAY3: T3 - 5
+			TRAY4: T2 - 5
+			TRAY5: T4 - 3
+		+ MA3
+			TRAY1: 
+			TRAY2: 
+			TRAY3: 
+			TRAY4: T2 - 5
+			TRAY5: T1 - 3
+		+ MA4
+			TRAY1: T2 - 5
+			TRAY2: T3 - 2
+			TRAY3: 
+			TRAY4: T4 - 5
+			TRAY5: T6 - 3
+		+ MA5
+			TRAY1: T1 - 5
+			TRAY2: T6 - 2
+			TRAY3: 
+			TRAY4: T2 - 5
+			TRAY5: T1 - 3
+		
+		
+Cty Com1 co 
+	- 4 users
+		+ Sub admin
+			+ com1_sub_ad ==> CRUD user, reset pass, normal working
+		+ 3 normal user
+			+ com1_user1 ==> normal working
+			+ com1_user2 ==> normal working
+			+ com1_user3 ==> normal working
+	- May: MA1, MA2
+			
+		
+Cty Com2 co 
+	-2 users
+		+ Sub admin
+			+ com2_sub_ad ==> CRUD user, reset pass, normal working
+		+ 1 normal user
+			+ com2_user1 ==> normal working
+	- May: MA3, MA4, MA5
+		
+		
