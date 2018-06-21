@@ -18,7 +18,6 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingWorker;
 
@@ -27,7 +26,6 @@ import org.apache.log4j.Logger;
 import com.message.Enum;
 import com.models.Assessor;
 import com.models.Role;
-import com.utils.Config;
 import com.utils.StringUtils;
 
 public class DashboardPage extends JFrame implements ActionListener {
@@ -55,8 +53,6 @@ public class DashboardPage extends JFrame implements ActionListener {
 	JButton putInsButton = new JButton(bundleMessage.getString("Dashboard_Page_Putins"));
 	JButton takeOverButton = new JButton(bundleMessage.getString("Dashboard_Page_Take_Over"));
 
-	private static final Config cfg = new Config();
-	private static final String COMPANY_CODE = "COMPANY_CODE";
 	final static Logger logger = Logger.getLogger(DashboardPage.class);
 
 	List<String> listRoleName = new ArrayList<>();
@@ -175,6 +171,7 @@ public class DashboardPage extends JFrame implements ActionListener {
 		lockAccountButton.addActionListener(this);
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == unlockMachineButton) {
@@ -225,7 +222,10 @@ public class DashboardPage extends JFrame implements ActionListener {
 			putinsTakeOverPage.show();
 		}
 		if (e.getSource() == putInsButton) {
-
+			PutInTakeOverPage putinsTakeOverPage = new PutInTakeOverPage(user, Enum.PUTIN.text());
+			StringUtils.frameInit(putinsTakeOverPage, bundleMessage);
+			putinsTakeOverPage.setTitle(user.getUsername() + " - " + user.getFirstName() + " " + user.getLastName());
+			putinsTakeOverPage.show();
 		}
 
 		if (e.getSource() == resetPasswordButton) {

@@ -141,7 +141,7 @@ public class EmployeeController {
 				if (toolTrays.contains(toolTray)) {
 					logger.warn("Machine " + machineCode + ": " + toolName + " - " + trayIndex + " existed.");
 				}
-				if (quantity > 0) {
+				if (quantity > -1) {
 					availableTools.add(toolName);
 
 					if (result.containsKey(toolName)) {
