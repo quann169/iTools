@@ -70,9 +70,46 @@ public class EmployeeController {
 		}
 		return result;
 	}
-	
-	public boolean updateToolTray() {
-		
+
+	public boolean updateToolTray(String machineCode, String tool, String tray, String quantity) {
+
+		String sql = " select toolsmachine.ToolsMachineID "
+				+ "from tools inner join toolsmachine on tools.ToolCode = toolsmachine.ToolCode "
+				+ "where tools.ToolCode = '" + tool + "' and toolsmachine.MachineCode = '" + machineCode + "';";
+		System.out.println("Get ToolsMachineID: " + sql);
+		String toolsMachineID = "";
+		try {
+
+			PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
+			ResultSet rs = statement.executeQuery(sql);
+			while (rs.next()) {
+				toolsMachineID = rs.getString(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		} finally {
+			mysqlConnect.disconnect();
+		}
+
+		sql = " update toolsmachinetray set quantity = '" + quantity + "' where ToolsMachineID = '"
+				+ toolsMachineID + "' and trayIndex = '" + tray + "';";
+		System.out.println("Update: " + sql);
+
+		try {
+
+			PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
+			int countResult = statement.executeUpdate();
+			if (countResult > 0) {
+				return true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		} finally {
+			mysqlConnect.disconnect();
+		}
+
 		return true;
 	}
 

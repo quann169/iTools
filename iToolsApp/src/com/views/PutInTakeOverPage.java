@@ -312,17 +312,18 @@ public class PutInTakeOverPage extends JFrame implements ActionListener {
 				if (this.pageType.equals(Enum.TKOVER.text())) {
 					if (newQuantity > defaultQuantity) {
 						sendRequestButton.setEnabled(false);
-						quantityMessage.setText("<html><html><font size=\"4\" face=\"arial\" color=\"RED\"><b>"
-								+ MessageFormat.format(
-										bundleMessage.getString("Putin_TakeOver_Page_TakeOverErrMessage"), defaultQuantity)
-								+ "</b></font></html></html>");
+						quantityMessage
+								.setText("<html><html><font size=\"4\" face=\"arial\" color=\"RED\"><b>" + MessageFormat
+										.format(bundleMessage.getString("Putin_TakeOver_Page_TakeOverErrMessage"),
+												defaultQuantity)
+										+ "</b></font></html></html>");
 						return false;
 					}
 				} else {
 					sendRequestButton.setEnabled(false);
 					quantityMessage.setText("<html><html><font size=\"4\" face=\"arial\" color=\"RED\"><b>"
-							+ MessageFormat.format(
-									bundleMessage.getString("Putin_TakeOver_Page_PutinErrMessage"), defaultQuantity, maxItemsPerTray)
+							+ MessageFormat.format(bundleMessage.getString("Putin_TakeOver_Page_PutinErrMessage"),
+									defaultQuantity, maxItemsPerTray)
 							+ "</b></font></html></html>");
 					return false;
 				}
@@ -444,21 +445,23 @@ public class PutInTakeOverPage extends JFrame implements ActionListener {
 
 				SwingWorker<?, ?> worker = new SwingWorker<Void, Integer>() {
 					protected Void doInBackground() throws InterruptedException {
-						resultValue = empCtlObj.updateToolTray();
+						resultValue = empCtlObj.updateToolTray(machineCode, toolComboBox.getSelectedItem().toString(),
+								trayCombobox.getSelectedItem().toString(), quantityTextField.getText());
 						if (resultValue) {
+							toolVstrayAndQuantityMap = empCtlObj.getToolTrayQuantity(machineCode);
 							toolComboBox.setSelectedIndex(0);
 							trayCombobox.removeAllItems();
 							quantityTextField.setText("");
 						}
-						
-//						publish(0);
-						
+
+						// publish(0);
+
 						return null;
 					}
 
 					protected void process(List<Integer> chunks) {
-//						int selection = chunks.get(chunks.size() - 1);
-//						progress.setText("Please Wait..." + selection + "s");
+						// int selection = chunks.get(chunks.size() - 1);
+						// progress.setText("Please Wait..." + selection + "s");
 					}
 
 					protected void done() {
