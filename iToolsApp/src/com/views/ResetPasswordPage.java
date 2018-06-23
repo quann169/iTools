@@ -27,6 +27,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import javax.swing.Timer;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
@@ -79,7 +80,7 @@ public class ResetPasswordPage extends JFrame implements ActionListener {
 
 	final static Logger logger = Logger.getLogger(ResetPasswordPage.class);
 	UserController empCtlObj = new UserController();
-	
+
 	LogController masterLogObj = new LogController();
 
 	String userName = "";
@@ -89,6 +90,10 @@ public class ResetPasswordPage extends JFrame implements ActionListener {
 	int resultValue;
 	boolean isDashboard;
 	boolean isFirstTimeLogin;
+
+	JFrame root = this;
+	Timer updateTimer;
+	int expiredTime = Integer.valueOf(cfg.getProperty("Expired_Time")) * 1000;
 
 	ResetPasswordPage(Assessor user, boolean isDashboard, boolean isFirstTimeLogin) {
 		this.isFirstTimeLogin = isFirstTimeLogin;
@@ -152,7 +157,7 @@ public class ResetPasswordPage extends JFrame implements ActionListener {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				System.out.println("logOutLabel");
-				
+
 				((ResetPasswordPage) e.getComponent().getParent().getParent().getParent().getParent()).dispose();
 			}
 		});
@@ -276,9 +281,26 @@ public class ResetPasswordPage extends JFrame implements ActionListener {
 		}
 
 		resetPassButton.setEnabled(false);
+
+		updateTimer = new Timer(expiredTime, new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				masterLogObj.insertLog(userName, Enum.LOCK_UNLOCK_PAGE, "", Enum.TIME_OUT, "", "", companyCode,
+						machineCode, StringUtils.getCurrentClassAndMethodNames());
+				root.dispose();
+			}
+		});
+		updateTimer.setRepeats(false);
+		updateTimer.restart();
 	}
 
 	private boolean validateAllFields() {
+		try {
+			updateTimer.restart();
+		} catch (Exception e) {
+			System.err.println("validateAllFields of resetpasspage");
+		}
+		
 		String password = passwordTextField.getText();
 		String repassword = rePasswordTextField.getText();
 		boolean userExisted = mapDisplayName.containsKey(usernameComboBox.getSelectedItem().toString());
@@ -331,6 +353,7 @@ public class ResetPasswordPage extends JFrame implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		updateTimer.restart();
 		if (e.getSource() == resetPassButton) {
 
 			JPanel panel = new JPanel();
@@ -344,18 +367,21 @@ public class ResetPasswordPage extends JFrame implements ActionListener {
 				dialogResult = 0;
 			} else {
 				dialogResult = JOptionPane.showConfirmDialog(container,
-						bundleMessage.getString("ResetPassword_Page_Reset_Confirmation") + " " + usernameResetPass + "?",
+						bundleMessage.getString("ResetPassword_Page_Reset_Confirmation") + " " + usernameResetPass
+								+ "?",
 						"Confirmation", JOptionPane.YES_NO_OPTION);
 			}
 			if (dialogResult == 0) {
 				System.out.println("Yes option");
 				if (isFirstTimeLogin) {
 					empCtlObj.updatePassword(usernameResetPass, this.companyCode, password, false);
-					masterLogObj.insertLog(userName, Enum.ASSESSOR, "Password", Enum.UPDATE_PASS_FIRST_TIME_LOGIN, usernameResetPass + " - " + user.getPassword(), "XXX", companyCode, machineCode,
+					masterLogObj.insertLog(userName, Enum.ASSESSOR, "Password", Enum.UPDATE_PASS_FIRST_TIME_LOGIN,
+							usernameResetPass + " - " + user.getPassword(), "XXX", companyCode, machineCode,
 							StringUtils.getCurrentClassAndMethodNames());
 				} else {
 					empCtlObj.updatePassword(usernameResetPass, this.companyCode, password, true);
-					masterLogObj.insertLog(userName, Enum.ASSESSOR, "Password", Enum.RESET_PASS, usernameResetPass + " - " + user.getPassword(), "XXX", companyCode, machineCode,
+					masterLogObj.insertLog(userName, Enum.ASSESSOR, "Password", Enum.RESET_PASS,
+							usernameResetPass + " - " + user.getPassword(), "XXX", companyCode, machineCode,
 							StringUtils.getCurrentClassAndMethodNames());
 				}
 

@@ -95,11 +95,12 @@ public class EmployeePage extends JFrame implements ActionListener {
 	LogController masterLogObj = new LogController();
 	String userName = "";
 	
+	JFrame root = this;
 
 	final static Logger logger = Logger.getLogger(EmployeePage.class);
 	EmployeeController empCtlObj = new EmployeeController();
 	Timer updateTimer;
-	int delayTime = Integer.valueOf(cfg.getProperty("Employee_Page_Time_Change_Focus")) * 1000;
+	int expiredTime = Integer.valueOf(cfg.getProperty("Expired_Time")) * 1000;
 	int wo_min_length = Integer.valueOf(cfg.getProperty("Employee_Page_WO_Min_Length"));
 	int op_min_length = Integer.valueOf(cfg.getProperty("Employee_Page_OP_Min_Length"));
 
@@ -114,7 +115,8 @@ public class EmployeePage extends JFrame implements ActionListener {
 		setLocationAndSize();
 		addComponentsToContainer();
 		addActionEvent();
-
+		masterLogObj.insertLog(userName, Enum.WORKINGTRANSACTION, "", Enum.EMP_PAGE, "", "", companyCode, machineCode,
+				StringUtils.getCurrentClassAndMethodNames());
 	}
 
 	public void setLayoutManager() {
@@ -196,7 +198,6 @@ public class EmployeePage extends JFrame implements ActionListener {
 
 			public void warn() {
 				validateAllFields();
-				updateTimer.restart();
 			}
 		});
 
@@ -223,7 +224,6 @@ public class EmployeePage extends JFrame implements ActionListener {
 
 			public void warn() {
 				validateAllFields();
-				updateTimer.restart();
 			}
 		});
 
@@ -354,21 +354,25 @@ public class EmployeePage extends JFrame implements ActionListener {
 		cancelButton.setBounds(450, 300, 100, 30);
 		cancelButton.setFont(new Font(labelFont.getName(), Font.BOLD, 15));
 
-		updateTimer = new Timer(delayTime, new ActionListener() {
+		updateTimer = new Timer(expiredTime, new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (woTextField.getText().length() > wo_min_length && opTextField.getText().length() > op_min_length) {
-					toolComboBox.requestFocusInWindow();
-				} else if (woTextField.getText().length() > wo_min_length && opTextField.getText().length() == 0) {
-					opTextField.requestFocusInWindow();
-				}
+				masterLogObj.insertLog(userName, Enum.EMP_PAGE, "", Enum.TIME_OUT, "", "", companyCode, machineCode,
+						StringUtils.getCurrentClassAndMethodNames());
+				root.dispose();
 			}
 		});
 		updateTimer.setRepeats(false);
+		updateTimer.restart();
 
 	}
 
 	private boolean validateAllFields() {
+		try {
+			updateTimer.restart();
+		} catch (Exception e) {
+			System.err.println("validateAllFields of emppage");
+		}
 		int woLength = woTextField.getText().length();
 		int opLength = opTextField.getText().length();
 		int trayLength = trayTextField.getText().length();
@@ -381,7 +385,7 @@ public class EmployeePage extends JFrame implements ActionListener {
 		// System.out.println("tool: " + (String)
 		// toolComboBox.getSelectedItem());
 		// System.out.println("quan: " + quantityTextField.getText());
-
+		updateTimer.restart();
 		if (woLength > 0 && opLength > 0 && toolLength > 0 && trayLength > 0 && quantityLength > 0) {
 			sendRequestButton.setEnabled(true);
 			return true;
@@ -417,6 +421,7 @@ public class EmployeePage extends JFrame implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		updateTimer.restart();
 		if (e.getSource() == sendRequestButton) {
 			// ImageIcon icon = new ImageIcon("src/img/confirmation_60x60.png");
 			

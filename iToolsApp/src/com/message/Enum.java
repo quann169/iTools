@@ -24,6 +24,7 @@ public enum Enum {
 	UPDATE_PASS_FIRST_TIME_LOGIN("FirstTimeChangePass"),
 	
 	REQUEST_TOOL("SendRequest"),
+	TIME_OUT("TimeOut"),
 	
 	SHOW_DASHBOARD("ShowDashboard"),
 	LOGIN("Login"),

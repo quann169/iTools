@@ -35,18 +35,21 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.SwingWorker;
+import javax.swing.Timer;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
 import org.apache.log4j.Logger;
 
 import com.controllers.EmployeeController;
+import com.controllers.LogController;
 import com.message.Enum;
 import com.models.Assessor;
 import com.models.Tool;
 import com.utils.AdvancedEncryptionStandard;
 import com.utils.AutoCompletion;
 import com.utils.Config;
+import com.utils.StringUtils;
 
 public class PutInTakeOverPage extends JFrame implements ActionListener {
 
@@ -93,6 +96,13 @@ public class PutInTakeOverPage extends JFrame implements ActionListener {
 	Map<String, Integer> mapTrayQuantity = new HashMap<>();
 	boolean resultValue;
 	String pageType;
+	
+	LogController masterLogObj = new LogController();
+	String userName = "";
+	
+	JFrame root = this;
+	Timer updateTimer;
+	int expiredTime = Integer.valueOf(cfg.getProperty("Expired_Time")) * 1000;
 
 	PutInTakeOverPage(Assessor user, String pageType) {
 		toolVstrayAndQuantityMap = empCtlObj.getToolTrayQuantity(machineCode);
@@ -293,10 +303,25 @@ public class PutInTakeOverPage extends JFrame implements ActionListener {
 
 		cancelButton.setBounds(450, 290, 100, 30);
 		cancelButton.setFont(new Font(labelFont.getName(), Font.BOLD, 15));
-
+		
+		updateTimer = new Timer(expiredTime, new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				masterLogObj.insertLog(userName, Enum.LOCK_UNLOCK_PAGE, "", Enum.TIME_OUT, "", "", companyCode, machineCode,
+						StringUtils.getCurrentClassAndMethodNames());
+				root.dispose();
+			}
+		});
+		updateTimer.setRepeats(false);
+		updateTimer.restart();
 	}
 
 	private boolean validateAllFields() {
+		try {
+			updateTimer.restart();
+		} catch (Exception e) {
+			System.err.println("validateAllFields of putintakeover");
+		}
 		if (trayCombobox == null || toolComboBox == null || trayCombobox.getSelectedItem() == null
 				|| toolComboBox.getSelectedItem() == null || quantityTextField.getText() == null) {
 			return false;
@@ -368,6 +393,7 @@ public class PutInTakeOverPage extends JFrame implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		updateTimer.restart();
 		if (e.getSource() == sendRequestButton) {
 			// ImageIcon icon = new ImageIcon("src/img/confirmation_60x60.png");
 

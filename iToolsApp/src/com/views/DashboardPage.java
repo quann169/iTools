@@ -20,6 +20,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingWorker;
+import javax.swing.Timer;
 
 import org.apache.log4j.Logger;
 
@@ -66,6 +67,10 @@ public class DashboardPage extends JFrame implements ActionListener {
 	private static final String machineCode = AdvancedEncryptionStandard.decrypt(cfg.getProperty("MACHINE_CODE"));
 
 	String userName = "";
+	
+	JFrame root = this;
+	Timer updateTimer;
+	int expiredTime = Integer.valueOf(cfg.getProperty("Expired_Time")) * 1000;
 
 	List<String> listRoleName = new ArrayList<>();
 	
@@ -109,6 +114,7 @@ public class DashboardPage extends JFrame implements ActionListener {
 				System.out.println("changePassLabel");
 				masterLogObj.insertLog(userName, Enum.ASSESSOR, "", Enum.CHANGE_PASS, "", "", companyCode, machineCode,
 						StringUtils.getCurrentClassAndMethodNames());
+				updateTimer.restart();
 			}
 		});
 
@@ -125,7 +131,9 @@ public class DashboardPage extends JFrame implements ActionListener {
 				masterLogObj.insertLog(userName, Enum.ASSESSOR, "", Enum.LOGOUT, "", "", companyCode, machineCode,
 						StringUtils.getCurrentClassAndMethodNames());
 				System.out.println("logOutLabel");
-				((EmployeePage) e.getComponent().getParent().getParent().getParent().getParent()).dispose();
+				updateTimer.restart();
+//				((EmployeePage) e.getComponent().getParent().getParent().getParent().getParent()).dispose();
+				root.dispose();
 			}
 		});
 
@@ -151,7 +159,17 @@ public class DashboardPage extends JFrame implements ActionListener {
 
 		getToolButton.setBounds(400, 250, 250, 40);
 		getToolButton.setFont(new Font(labelFont.getName(), Font.BOLD, 15));
-
+		
+		updateTimer = new Timer(expiredTime, new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				masterLogObj.insertLog(userName, Enum.DASHBOARD_PAGE, "", Enum.TIME_OUT, "", "", companyCode, machineCode,
+						StringUtils.getCurrentClassAndMethodNames());
+				root.dispose();
+			}
+		});
+		updateTimer.setRepeats(false);
+		updateTimer.restart();
 	}
 
 	public void addComponentsToContainer() {
@@ -191,6 +209,7 @@ public class DashboardPage extends JFrame implements ActionListener {
 	@SuppressWarnings("deprecation")
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		updateTimer.restart();
 		if (e.getSource() == unlockMachineButton) {
 			masterLogObj.insertLog(userName, Enum.ASSESSOR, "", Enum.UNLOCK_MACHINE, "", "", companyCode, machineCode,
 					StringUtils.getCurrentClassAndMethodNames());

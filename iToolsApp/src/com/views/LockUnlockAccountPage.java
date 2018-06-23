@@ -22,6 +22,7 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.Timer;
 
 import org.apache.log4j.Logger;
 
@@ -68,7 +69,9 @@ public class LockUnlockAccountPage extends JFrame implements ActionListener {
 
 	private static final String companyCode = AdvancedEncryptionStandard.decrypt(cfg.getProperty("COMPANY_CODE"));
 	private static final String machineCode = AdvancedEncryptionStandard.decrypt(cfg.getProperty("MACHINE_CODE"));
-
+	JFrame root = this;
+	Timer updateTimer;
+	int expiredTime = Integer.valueOf(cfg.getProperty("Expired_Time")) * 1000;
 	String userName = "";
 
 	LockUnlockAccountPage(Assessor user, boolean isDashboard) {
@@ -100,6 +103,7 @@ public class LockUnlockAccountPage extends JFrame implements ActionListener {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				System.out.println("backToDashboardLabel");
+				updateTimer.restart();
 			}
 		});
 
@@ -117,6 +121,7 @@ public class LockUnlockAccountPage extends JFrame implements ActionListener {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				System.out.println("changePassLabel");
+				updateTimer.restart();
 			}
 		});
 
@@ -130,6 +135,7 @@ public class LockUnlockAccountPage extends JFrame implements ActionListener {
 		logOutLabel.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				updateTimer.restart();
 				System.out.println("logOutLabel");
 				((EmployeePage) e.getComponent().getParent().getParent().getParent().getParent()).dispose();
 			}
@@ -171,9 +177,25 @@ public class LockUnlockAccountPage extends JFrame implements ActionListener {
 		unLockAccountButton.setBounds(350, 200, 200, 40);
 		unLockAccountButton.setFont(new Font(labelFont.getName(), Font.BOLD, 15));
 		validateAllFields();
+		
+		updateTimer = new Timer(expiredTime, new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				masterLogObj.insertLog(userName, Enum.LOCK_UNLOCK_PAGE, "", Enum.TIME_OUT, "", "", companyCode, machineCode,
+						StringUtils.getCurrentClassAndMethodNames());
+				root.dispose();
+			}
+		});
+		updateTimer.setRepeats(false);
+		updateTimer.restart();
 	}
 	
 	private boolean validateAllFields() {
+		try {
+			updateTimer.restart();
+		} catch (Exception e) {
+			System.err.println("validateAllFields of lockunlockpage");
+		}
 		String selectedValue = userNameComboBox.getSelectedItem().toString();
 
 		if ("".equals(selectedValue)) {
@@ -224,6 +246,7 @@ public class LockUnlockAccountPage extends JFrame implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		updateTimer.restart();
 		String displayName = userNameComboBox.getSelectedItem().toString();
 		String userNameLock = mapDisplayName.get(displayName).getUsername();
 		String oldIsActiveValue = mapDisplayName.get(displayName).isLocked();
