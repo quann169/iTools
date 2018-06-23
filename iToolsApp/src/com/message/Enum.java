@@ -21,7 +21,7 @@ public enum Enum {
 	EMP_PAGE("EmployeePage"),
 	RESET_PASS_PAGE("ResetPasswordPage"),
 	PUTIN_TAKEOVER_PAGE("PutInTakeOverPage"),
-	
+	UPDATE_PASS_FIRST_TIME_LOGIN("FirstTimeChangePass"),
 	
 	REQUEST_TOOL("SendRequest"),
 	
@@ -47,6 +47,8 @@ public enum Enum {
 	LOCK_USER("LockUser"),
 	UNLOCK_USER_FAIL("UnlockUserFail"),
 	LOCK_USER_FAIL("LockUserFail"),
+	SYNC_MANUALLY("SyncManually"),
+	SYNC_MANUALLY_FAIL("SyncManuallyFail"),
 	;
 
 	private String text;

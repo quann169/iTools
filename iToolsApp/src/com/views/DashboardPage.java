@@ -24,6 +24,7 @@ import javax.swing.SwingWorker;
 import org.apache.log4j.Logger;
 
 import com.controllers.LogController;
+import com.controllers.SyncController;
 import com.message.Enum;
 import com.models.Assessor;
 import com.models.Role;
@@ -277,6 +278,14 @@ public class DashboardPage extends JFrame implements ActionListener {
 			// empPage.setJMenuBar(StringUtils.addMenu());
 			empPage.setTitle(user.getUsername() + " - " + user.getFirstName() + " " + user.getLastName());
 			empPage.show();
+		}
+		
+		if (e.getSource() == manualSyncButton) {
+			SyncController syncCtl = new SyncController();
+			List<String> syncResult = syncCtl.syncDataManually(companyCode, machineCode);
+			masterLogObj.insertLog(userName, Enum.ASSESSOR, "", Enum.SYNC_MANUALLY, "", syncResult.toString(), companyCode, machineCode,
+					StringUtils.getCurrentClassAndMethodNames());
+			
 		}
 	}
 

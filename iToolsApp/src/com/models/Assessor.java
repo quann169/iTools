@@ -11,6 +11,7 @@ public class Assessor {
 	private String lastName;
 	private String email;
 	private String isActive;
+	private String isLocked;
 	private List<Role> listRoles;
 	private String companyCode;
 	private boolean isFirstTimeLogin;
@@ -138,6 +139,21 @@ public class Assessor {
 	 */
 	public void setActive(String isActive) {
 		this.isActive = isActive;
+	}
+	
+	/**
+	 * @return the isActive
+	 */
+	public String isLocked() {
+		return isLocked;
+	}
+
+	/**
+	 * @param isActive
+	 *            the isActive to set
+	 */
+	public void setLocked(String isLocked) {
+		this.isLocked = isLocked;
 	}
 
 	/**

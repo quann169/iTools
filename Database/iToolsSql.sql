@@ -34,6 +34,7 @@ CREATE TABLE IF NOT EXISTS Assessor (
   Address VARCHAR(255) NULL,
   Phone VARCHAR(255) NULL,
   CompanyCode VARCHAR(100) NULL,
+  IsLocked BOOLEAN DEFAULT 0,
   IsActive BOOLEAN NOT NULL,
   LastPassword VARCHAR(255) NULL,
   IsFirstTimeLogin BOOLEAN NULL,

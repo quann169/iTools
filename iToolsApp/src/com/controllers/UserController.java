@@ -32,7 +32,7 @@ public class UserController {
 	 * @return
 	 */
 	public List<Assessor> getUsersOfCompany(String companyCode) {
-		String sql = "SELECT AssessorID, UserName, Password, CompanyCode, IsActive FROM Assessor where Assessor.IsActive=1 and Assessor.CompanyCode = '"
+		String sql = "SELECT AssessorID, UserName, Password, CompanyCode, IsActive, IsLocked FROM Assessor where Assessor.IsActive=1 and Assessor.CompanyCode = '"
 				+ companyCode + "';";
 		List<Assessor> listAllUsers = new ArrayList<>();
 		try {
@@ -44,9 +44,11 @@ public class UserController {
 				String username = rs.getString(2);
 				String password = rs.getString(3);
 				String isActive = rs.getString(5);
+				String isLocked = rs.getString(6);
 				Assessor user = new Assessor(username, password, companyCode);
 				user.setAssessorId(userId);
 				user.setActive(isActive);
+				user.setLocked(isLocked);
 				listAllUsers.add(user);
 			}
 			return listAllUsers;
@@ -64,6 +66,27 @@ public class UserController {
 	 */
 	public boolean updateIsActive(String username, String companyCode, int status) {
 		String sql = "Update  Assessor set Assessor.IsActive = " + status + " where Assessor.Username = '" + username
+				+ "' and Assessor.CompanyCode = '" + companyCode + "';";
+		System.out.println(sql);
+		try {
+			PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
+			int rows = statement.executeUpdate();
+			System.out.printf("%d row(s) updated!\n", rows);
+			return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		} finally {
+			mysqlConnect.disconnect();
+		}
+	}
+	
+	/**
+	 * 
+	 * @return
+	 */
+	public boolean updateIsLocked(String username, String companyCode, int status) {
+		String sql = "Update  Assessor set Assessor.IsLocked = " + status + " where Assessor.Username = '" + username
 				+ "' and Assessor.CompanyCode = '" + companyCode + "';";
 		System.out.println(sql);
 		try {

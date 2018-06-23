@@ -59,6 +59,7 @@ public class LockUnlockAccountPage extends JFrame implements ActionListener {
 
 	UserController empCtlObj = new UserController();
 	boolean isDashboard;
+	List<Assessor> listUsers = empCtlObj.getUsersOfCompany(companyCode);
 
 	private static final Config cfg = new Config();
 	final static Logger logger = Logger.getLogger(LockUnlockAccountPage.class);
@@ -137,11 +138,7 @@ public class LockUnlockAccountPage extends JFrame implements ActionListener {
 		userNameComboBox.setBounds(250, 140, 300, 30);
 		userNameComboBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String selectValue = userNameComboBox.getSelectedItem().toString();
-				if (!selectValue.equals("")) {
-					lockAccountButtom.setEnabled(true);
-					unLockAccountButton.setEnabled(true);
-				}
+				validateAllFields();
 			}
 		});
 		userNameComboBox.addFocusListener(new FocusAdapter() {
@@ -153,29 +150,6 @@ public class LockUnlockAccountPage extends JFrame implements ActionListener {
 		});
 
 		updateDisplayName();
-		AutoCompletion.enable(userNameComboBox);
-
-		usernameLabel.setBounds(100, 130, 150, 60);
-		usernameLabel.setFont(new Font(labelFont.getName(), Font.ITALIC + Font.BOLD, 20));
-
-		lockAccountButtom.setBounds(100, 200, 200, 40);
-		lockAccountButtom.setFont(new Font(labelFont.getName(), Font.BOLD, 15));
-
-		unLockAccountButton.setBounds(350, 200, 200, 40);
-		unLockAccountButton.setFont(new Font(labelFont.getName(), Font.BOLD, 15));
-
-	}
-
-	private void updateDisplayName() {
-		mapDisplayName = new HashMap<>();
-		List<Assessor> listUsers = empCtlObj.getUsersOfCompany(companyCode);
-		Collections.sort(listUsers, new Comparator<Assessor>() {
-			public int compare(Assessor o1, Assessor o2) {
-				String fullName1 = o1.getFirstName() + " " + o1.getLastName();
-				String fullName2 = o2.getFirstName() + " " + o2.getLastName();
-				return fullName1.compareToIgnoreCase(fullName2);
-			}
-		});
 
 		userNameComboBox.addItem("");
 		for (Assessor user : listUsers) {
@@ -186,6 +160,49 @@ public class LockUnlockAccountPage extends JFrame implements ActionListener {
 			}
 
 		}
+		AutoCompletion.enable(userNameComboBox);
+
+		usernameLabel.setBounds(100, 130, 150, 60);
+		usernameLabel.setFont(new Font(labelFont.getName(), Font.ITALIC + Font.BOLD, 20));
+
+		lockAccountButtom.setBounds(100, 200, 200, 40);
+		lockAccountButtom.setFont(new Font(labelFont.getName(), Font.BOLD, 15));
+
+		unLockAccountButton.setBounds(350, 200, 200, 40);
+		unLockAccountButton.setFont(new Font(labelFont.getName(), Font.BOLD, 15));
+		validateAllFields();
+	}
+	
+	private boolean validateAllFields() {
+		String selectedValue = userNameComboBox.getSelectedItem().toString();
+
+		if ("".equals(selectedValue)) {
+			lockAccountButtom.setEnabled(false);
+			unLockAccountButton.setEnabled(false);
+			return false;
+		} else {
+			lockAccountButtom.setEnabled(true);
+			unLockAccountButton.setEnabled(true);
+			return true;
+		}
+	}
+
+	private void updateDisplayName() {
+		mapDisplayName = new HashMap<>();
+
+		Collections.sort(listUsers, new Comparator<Assessor>() {
+			public int compare(Assessor o1, Assessor o2) {
+				String fullName1 = o1.getFirstName() + " " + o1.getLastName();
+				String fullName2 = o2.getFirstName() + " " + o2.getLastName();
+				return fullName1.compareToIgnoreCase(fullName2);
+			}
+		});
+		for (Assessor user : listUsers) {
+			String displayName = user.getFirstName() + " " + user.getLastName() + " - " + user.getUsername();
+			mapDisplayName.put(displayName, user);
+
+		}
+
 	}
 
 	public void addComponentsToContainer() {
@@ -208,21 +225,23 @@ public class LockUnlockAccountPage extends JFrame implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String displayName = userNameComboBox.getSelectedItem().toString();
-		String userName = mapDisplayName.get(displayName).getUsername();
-		String oldIsActiveValue = mapDisplayName.get(displayName).isActive();
+		String userNameLock = mapDisplayName.get(displayName).getUsername();
+		String oldIsActiveValue = mapDisplayName.get(displayName).isLocked();
 		if (e.getSource() == lockAccountButtom) {
-			empCtlObj.updateIsActive(userName, companyCode, 0);
-			masterLogObj.insertLog(userName, Enum.ASSESSOR, "IsActive", Enum.UPDATE, oldIsActiveValue, "0", companyCode,
-					machineCode, StringUtils.getCurrentClassAndMethodNames());
+			empCtlObj.updateIsLocked(userNameLock, companyCode, 0);
+			masterLogObj.insertLog(userName, Enum.ASSESSOR, "IsLocked", Enum.UPDATE,
+					userNameLock + " - " + oldIsActiveValue, userNameLock + " - 0", companyCode, machineCode,
+					StringUtils.getCurrentClassAndMethodNames());
 			JOptionPane.showMessageDialog(container, "Completed Lock Account!", "Notify result",
 					JOptionPane.INFORMATION_MESSAGE);
 			updateDisplayName();
 		}
 
 		if (e.getSource() == unLockAccountButton) {
-			empCtlObj.updateIsActive(userName, companyCode, 1);
-			masterLogObj.insertLog(userName, Enum.ASSESSOR, "IsActive", Enum.UPDATE, oldIsActiveValue, "1", companyCode,
-					machineCode, StringUtils.getCurrentClassAndMethodNames());
+			empCtlObj.updateIsLocked(userNameLock, companyCode, 1);
+			masterLogObj.insertLog(userName, Enum.ASSESSOR, "IsLocked", Enum.UPDATE,
+					userNameLock + " - " + oldIsActiveValue, userNameLock + " - 1", companyCode, machineCode,
+					StringUtils.getCurrentClassAndMethodNames());
 			JOptionPane.showMessageDialog(container, "Completed UnLock Account!", "Notify result",
 					JOptionPane.INFORMATION_MESSAGE);
 			updateDisplayName();
