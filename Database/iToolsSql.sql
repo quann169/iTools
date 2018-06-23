@@ -326,14 +326,14 @@ CREATE TABLE IF NOT EXISTS MasterLog (
   TblName VARCHAR(100) NULL,
   RecordID INT(10) NULL,
   ColumnName VARCHAR(100) NULL,
+  Action VARCHAR(100) NULL,
   OldValue TEXT NULL,
   NewValue TEXT NULL,
-  LogStatus TINYINT(3) UNSIGNED NULL,
-  ApprovedBy VARCHAR(255) NULL,
-  ApprovedDate DATETIME NULL,
+  CompanyCode VARCHAR(100) NULL,
+  MachineCode VARCHAR(100) NULL,
+  Notes TEXT NULL,
   PRIMARY KEY (LogID),
   INDEX RecordID (RecordID),
-  INDEX ApprovedDate (ApprovedDate),
   INDEX AssessorName (AssessorName),
   INDEX LogDate (LogDate)
 ); 
