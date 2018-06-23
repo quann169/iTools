@@ -1,12 +1,8 @@
 package com.views;
 
-import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.Cursor;
-import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusAdapter;
@@ -14,7 +10,6 @@ import java.awt.event.FocusEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.font.TextAttribute;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -26,28 +21,19 @@ import java.util.ResourceBundle;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
-import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
 import javax.swing.JTextField;
-import javax.swing.SwingConstants;
-import javax.swing.SwingWorker;
-import javax.swing.Timer;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
 import org.apache.log4j.Logger;
 
-import com.controllers.EmployeeController;
 import com.controllers.UserController;
 import com.models.Assessor;
-import com.models.Machine;
-import com.models.Tool;
 import com.utils.AdvancedEncryptionStandard;
 import com.utils.AutoCompletion;
 import com.utils.Config;
@@ -304,7 +290,6 @@ public class ResetPasswordPage extends JFrame implements ActionListener {
 	}
 
 	public void addComponentsToContainer() {
-		
 
 		container.add(logOutLabel);
 
@@ -357,9 +342,9 @@ public class ResetPasswordPage extends JFrame implements ActionListener {
 				if (isFirstTimeLogin) {
 					empCtlObj.updatePassword(username, this.companyCode, password, false);
 				} else {
-					
+
 				}
-				
+
 				JOptionPane.showMessageDialog(container, "Completed Reset Password!", "Notify result",
 						JOptionPane.INFORMATION_MESSAGE);
 

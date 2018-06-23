@@ -23,9 +23,12 @@ import javax.swing.SwingWorker;
 
 import org.apache.log4j.Logger;
 
+import com.controllers.LogController;
 import com.message.Enum;
 import com.models.Assessor;
 import com.models.Role;
+import com.utils.AdvancedEncryptionStandard;
+import com.utils.Config;
 import com.utils.StringUtils;
 
 public class DashboardPage extends JFrame implements ActionListener {
@@ -54,12 +57,20 @@ public class DashboardPage extends JFrame implements ActionListener {
 	JButton takeOverButton = new JButton(bundleMessage.getString("Dashboard_Page_Take_Over"));
 
 	final static Logger logger = Logger.getLogger(DashboardPage.class);
+	
+	LogController masterLogObj = new LogController();
+
+	private static final Config cfg = new Config();
+	private static final String companyCode = AdvancedEncryptionStandard.decrypt(cfg.getProperty("COMPANY_CODE"));
+	private static final String machineCode = AdvancedEncryptionStandard.decrypt(cfg.getProperty("MACHINE_CODE"));
+
+	String userName = "";
 
 	List<String> listRoleName = new ArrayList<>();
 	
 	DashboardPage(List<Role> listRoles, Assessor user) {
 		this.listRoles = listRoles;
-		
+		userName = user.getUsername();
 		for (Role role : this.listRoles) {
 			listRoleName.add(role.getRoleName().toLowerCase());
 		}
@@ -69,7 +80,8 @@ public class DashboardPage extends JFrame implements ActionListener {
 		setLocationAndSize();
 		addComponentsToContainer();
 		addActionEvent();
-
+		masterLogObj.insertLog(userName, Enum.ASSESSOR, "", Enum.SHOW_DASHBOARD, "", "", companyCode, machineCode,
+				StringUtils.getCurrentClassAndMethodNames());
 	}
 
 	public void setLayoutManager() {
@@ -94,6 +106,8 @@ public class DashboardPage extends JFrame implements ActionListener {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				System.out.println("changePassLabel");
+				masterLogObj.insertLog(userName, Enum.ASSESSOR, "", Enum.CHANGE_PASS, "", "", companyCode, machineCode,
+						StringUtils.getCurrentClassAndMethodNames());
 			}
 		});
 
@@ -107,6 +121,8 @@ public class DashboardPage extends JFrame implements ActionListener {
 		logOutLabel.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				masterLogObj.insertLog(userName, Enum.ASSESSOR, "", Enum.LOGOUT, "", "", companyCode, machineCode,
+						StringUtils.getCurrentClassAndMethodNames());
 				System.out.println("logOutLabel");
 				((EmployeePage) e.getComponent().getParent().getParent().getParent().getParent()).dispose();
 			}
@@ -175,6 +191,8 @@ public class DashboardPage extends JFrame implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == unlockMachineButton) {
+			masterLogObj.insertLog(userName, Enum.ASSESSOR, "", Enum.UNLOCK_MACHINE, "", "", companyCode, machineCode,
+					StringUtils.getCurrentClassAndMethodNames());
 			final JDialog d = new JDialog();
 			JPanel p1 = new JPanel(new GridBagLayout());
 			JLabel progress = new JLabel("Please Wait...");
@@ -216,12 +234,16 @@ public class DashboardPage extends JFrame implements ActionListener {
 			d.setVisible(true);
 		}
 		if (e.getSource() == takeOverButton) {
+			masterLogObj.insertLog(userName, Enum.ASSESSOR, "", Enum.TKOVER, "", "", companyCode, machineCode,
+					StringUtils.getCurrentClassAndMethodNames());
 			PutInTakeOverPage putinsTakeOverPage = new PutInTakeOverPage(user, Enum.TKOVER.text());
 			StringUtils.frameInit(putinsTakeOverPage, bundleMessage);
 			putinsTakeOverPage.setTitle(user.getUsername() + " - " + user.getFirstName() + " " + user.getLastName());
 			putinsTakeOverPage.show();
 		}
 		if (e.getSource() == putInsButton) {
+			masterLogObj.insertLog(userName, Enum.ASSESSOR, "", Enum.PUTIN, "", "", companyCode, machineCode,
+					StringUtils.getCurrentClassAndMethodNames());
 			PutInTakeOverPage putinsTakeOverPage = new PutInTakeOverPage(user, Enum.PUTIN.text());
 			StringUtils.frameInit(putinsTakeOverPage, bundleMessage);
 			putinsTakeOverPage.setTitle(user.getUsername() + " - " + user.getFirstName() + " " + user.getLastName());
@@ -229,6 +251,8 @@ public class DashboardPage extends JFrame implements ActionListener {
 		}
 
 		if (e.getSource() == resetPasswordButton) {
+			masterLogObj.insertLog(userName, Enum.ASSESSOR, "", Enum.RESET_PASS, "", "", companyCode, machineCode,
+					StringUtils.getCurrentClassAndMethodNames());
 			ResetPasswordPage resetPassPage = new ResetPasswordPage(user, true, false);
 			StringUtils.frameInit(resetPassPage, bundleMessage);
 			// empPage.setJMenuBar(StringUtils.addMenu());
@@ -236,6 +260,8 @@ public class DashboardPage extends JFrame implements ActionListener {
 			resetPassPage.show();
 		}
 		if (e.getSource() == lockAccountButton) {
+			masterLogObj.insertLog(userName, Enum.ASSESSOR, "", Enum.LOCK_USER, "", "", companyCode, machineCode,
+					StringUtils.getCurrentClassAndMethodNames());
 			LockUnlockAccountPage lockUnlockPage = new LockUnlockAccountPage(user, true);
 			StringUtils.frameInit(lockUnlockPage, bundleMessage);
 			// empPage.setJMenuBar(StringUtils.addMenu());
@@ -244,7 +270,9 @@ public class DashboardPage extends JFrame implements ActionListener {
 		}
 
 		if (e.getSource() == getToolButton) {
-			EmployeePage empPage = new EmployeePage(true);
+			masterLogObj.insertLog(userName, Enum.ASSESSOR, "", Enum.GETTOOL, "", "", companyCode, machineCode,
+					StringUtils.getCurrentClassAndMethodNames());
+			EmployeePage empPage = new EmployeePage(userName, true);
 			StringUtils.frameInit(empPage, bundleMessage);
 			// empPage.setJMenuBar(StringUtils.addMenu());
 			empPage.setTitle(user.getUsername() + " - " + user.getFirstName() + " " + user.getLastName());

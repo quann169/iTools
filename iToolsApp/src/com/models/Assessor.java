@@ -10,7 +10,7 @@ public class Assessor {
 	private String firstName;
 	private String lastName;
 	private String email;
-	private boolean isActive;
+	private String isActive;
 	private List<Role> listRoles;
 	private String companyCode;
 	private boolean isFirstTimeLogin;
@@ -25,6 +25,14 @@ public class Assessor {
 		this.username = username;
 		this.password = password;
 		this.companyCode = companyCode;
+	}
+	
+	public Assessor(String username, String password, String companyCode, String isActive) {
+		super();
+		this.username = username;
+		this.password = password;
+		this.companyCode = companyCode;
+		this.isActive = isActive;
 	}
 
 	/**
@@ -120,7 +128,7 @@ public class Assessor {
 	/**
 	 * @return the isActive
 	 */
-	public boolean isActive() {
+	public String isActive() {
 		return isActive;
 	}
 
@@ -128,7 +136,7 @@ public class Assessor {
 	 * @param isActive
 	 *            the isActive to set
 	 */
-	public void setActive(boolean isActive) {
+	public void setActive(String isActive) {
 		this.isActive = isActive;
 	}
 

@@ -43,11 +43,14 @@ import javax.swing.event.DocumentListener;
 import org.apache.log4j.Logger;
 
 import com.controllers.EmployeeController;
+import com.controllers.LogController;
+import com.message.Enum;
 import com.models.Machine;
 import com.models.Tool;
 import com.utils.AdvancedEncryptionStandard;
 import com.utils.AutoCompletion;
 import com.utils.Config;
+import com.utils.StringUtils;
 
 public class EmployeePage extends JFrame implements ActionListener {
 
@@ -87,6 +90,11 @@ public class EmployeePage extends JFrame implements ActionListener {
 	private static final String MACHINE_CODE = "MACHINE_CODE";
 	String companyCode = AdvancedEncryptionStandard.decrypt(cfg.getProperty(COMPANY_CODE));
 	String machineCode = AdvancedEncryptionStandard.decrypt(cfg.getProperty(MACHINE_CODE));
+	
+	
+	LogController masterLogObj = new LogController();
+	String userName = "";
+	
 
 	final static Logger logger = Logger.getLogger(EmployeePage.class);
 	EmployeeController empCtlObj = new EmployeeController();
@@ -98,7 +106,8 @@ public class EmployeePage extends JFrame implements ActionListener {
 	int resultValue;
 	boolean isDashboard;
 
-	EmployeePage(boolean isDashboard) {
+	EmployeePage(String userName, boolean isDashboard) {
+		this.userName = userName;
 		this.isDashboard = isDashboard;
 		toolVstrayAndQuantityMap = empCtlObj.getToolTrayQuantity(machineCode);
 		setLayoutManager();
@@ -126,6 +135,8 @@ public class EmployeePage extends JFrame implements ActionListener {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				System.out.println("backToDashboardLabel");
+				masterLogObj.insertLog(userName, Enum.ASSESSOR, "", Enum.SHOW_DASHBOARD, "", "", companyCode, machineCode,
+						StringUtils.getCurrentClassAndMethodNames());
 			}
 		});
 
@@ -143,6 +154,8 @@ public class EmployeePage extends JFrame implements ActionListener {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				System.out.println("changePassLabel");
+				masterLogObj.insertLog(userName, Enum.ASSESSOR, "", Enum.CHANGE_PASS, "", "", companyCode, machineCode,
+						StringUtils.getCurrentClassAndMethodNames());
 			}
 		});
 
@@ -156,6 +169,8 @@ public class EmployeePage extends JFrame implements ActionListener {
 		logOutLabel.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				masterLogObj.insertLog(userName, Enum.ASSESSOR, "", Enum.LOGOUT, "", "", companyCode, machineCode,
+						StringUtils.getCurrentClassAndMethodNames());
 				System.out.println("logOutLabel");
 				((EmployeePage) e.getComponent().getParent().getParent().getParent().getParent()).dispose();
 			}
@@ -404,7 +419,7 @@ public class EmployeePage extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == sendRequestButton) {
 			// ImageIcon icon = new ImageIcon("src/img/confirmation_60x60.png");
-
+			
 			JPanel panel = new JPanel() {
 				/**
 				 * 
@@ -468,6 +483,8 @@ public class EmployeePage extends JFrame implements ActionListener {
 
 			if (dialogResult == 0) {
 				System.out.println("Yes option");
+				masterLogObj.insertLog(userName, Enum.WORKINGTRANSACTION, "", Enum.REQUEST_TOOL, "", "", companyCode, machineCode,
+						StringUtils.getCurrentClassAndMethodNames());
 				final JDialog d = new JDialog();
 				JPanel p1 = new JPanel(new GridBagLayout());
 				JLabel progress = new JLabel("Please Wait...");
@@ -477,6 +494,7 @@ public class EmployeePage extends JFrame implements ActionListener {
 				// d.setLocationRelativeTo(f);
 				d.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
 				d.setModal(true);
+				int columnId = -1;
 
 				SwingWorker<?, ?> worker = new SwingWorker<Void, Integer>() {
 					protected Void doInBackground() throws InterruptedException {
@@ -493,6 +511,8 @@ public class EmployeePage extends JFrame implements ActionListener {
 							int value = (int) (Math.random() * (upper - lower)) + lower;
 							System.out.println("ramdom value: " + value);
 							if (value == 5) {
+								masterLogObj.insertLog(userName, Enum.WORKINGTRANSACTION, "", Enum.CREATE, "", "", companyCode, machineCode,
+										StringUtils.getCurrentClassAndMethodNames(), columnId);
 								System.out.println("OK");
 								JOptionPane.showMessageDialog(container, "Completed!", "Notify result",
 										JOptionPane.INFORMATION_MESSAGE);
@@ -500,6 +520,8 @@ public class EmployeePage extends JFrame implements ActionListener {
 								break;
 							} else if (value == 7) {
 								System.out.println("Fail");
+								masterLogObj.insertLog(userName, Enum.WORKINGTRANSACTION, "", Enum.CREATE_FAIL, "", "", companyCode, machineCode,
+										StringUtils.getCurrentClassAndMethodNames());
 								JOptionPane.showMessageDialog(container, "Failed!", "Notify result",
 										JOptionPane.ERROR_MESSAGE);
 								break;
@@ -534,6 +556,8 @@ public class EmployeePage extends JFrame implements ActionListener {
 				};
 				worker.execute();
 				d.setVisible(true);
+				
+				
 			} else {
 				System.out.println("No Option");
 			}

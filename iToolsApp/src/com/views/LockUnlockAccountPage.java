@@ -25,11 +25,14 @@ import javax.swing.JOptionPane;
 
 import org.apache.log4j.Logger;
 
+import com.controllers.LogController;
 import com.controllers.UserController;
+import com.message.Enum;
 import com.models.Assessor;
 import com.utils.AdvancedEncryptionStandard;
 import com.utils.AutoCompletion;
 import com.utils.Config;
+import com.utils.StringUtils;
 
 public class LockUnlockAccountPage extends JFrame implements ActionListener {
 
@@ -58,9 +61,14 @@ public class LockUnlockAccountPage extends JFrame implements ActionListener {
 	boolean isDashboard;
 
 	private static final Config cfg = new Config();
-	private static final String COMPANY_CODE = "COMPANY_CODE";
-	private String companyCode;
 	final static Logger logger = Logger.getLogger(LockUnlockAccountPage.class);
+
+	LogController masterLogObj = new LogController();
+
+	private static final String companyCode = AdvancedEncryptionStandard.decrypt(cfg.getProperty("COMPANY_CODE"));
+	private static final String machineCode = AdvancedEncryptionStandard.decrypt(cfg.getProperty("MACHINE_CODE"));
+
+	String userName = "";
 
 	LockUnlockAccountPage(Assessor user, boolean isDashboard) {
 		this.user = user;
@@ -69,7 +77,9 @@ public class LockUnlockAccountPage extends JFrame implements ActionListener {
 		setLocationAndSize();
 		addComponentsToContainer();
 		addActionEvent();
-
+		this.userName = user.getUsername();
+		masterLogObj.insertLog(userName, Enum.ASSESSOR, "", Enum.LOCK_UNLOCK_PAGE, "", "", companyCode, machineCode,
+				StringUtils.getCurrentClassAndMethodNames());
 	}
 
 	public void setLayoutManager() {
@@ -141,8 +151,23 @@ public class LockUnlockAccountPage extends JFrame implements ActionListener {
 				userNameComboBox.showPopup();
 			}
 		});
-		String companyCode = AdvancedEncryptionStandard.decrypt(cfg.getProperty(COMPANY_CODE));
-		this.companyCode = companyCode;
+
+		updateDisplayName();
+		AutoCompletion.enable(userNameComboBox);
+
+		usernameLabel.setBounds(100, 130, 150, 60);
+		usernameLabel.setFont(new Font(labelFont.getName(), Font.ITALIC + Font.BOLD, 20));
+
+		lockAccountButtom.setBounds(100, 200, 200, 40);
+		lockAccountButtom.setFont(new Font(labelFont.getName(), Font.BOLD, 15));
+
+		unLockAccountButton.setBounds(350, 200, 200, 40);
+		unLockAccountButton.setFont(new Font(labelFont.getName(), Font.BOLD, 15));
+
+	}
+
+	private void updateDisplayName() {
+		mapDisplayName = new HashMap<>();
 		List<Assessor> listUsers = empCtlObj.getUsersOfCompany(companyCode);
 		Collections.sort(listUsers, new Comparator<Assessor>() {
 			public int compare(Assessor o1, Assessor o2) {
@@ -161,18 +186,6 @@ public class LockUnlockAccountPage extends JFrame implements ActionListener {
 			}
 
 		}
-
-		AutoCompletion.enable(userNameComboBox);
-
-		usernameLabel.setBounds(100, 130, 150, 60);
-		usernameLabel.setFont(new Font(labelFont.getName(), Font.ITALIC + Font.BOLD, 20));
-
-		lockAccountButtom.setBounds(100, 200, 200, 40);
-		lockAccountButtom.setFont(new Font(labelFont.getName(), Font.BOLD, 15));
-
-		unLockAccountButton.setBounds(350, 200, 200, 40);
-		unLockAccountButton.setFont(new Font(labelFont.getName(), Font.BOLD, 15));
-
 	}
 
 	public void addComponentsToContainer() {
@@ -196,16 +209,23 @@ public class LockUnlockAccountPage extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		String displayName = userNameComboBox.getSelectedItem().toString();
 		String userName = mapDisplayName.get(displayName).getUsername();
+		String oldIsActiveValue = mapDisplayName.get(displayName).isActive();
 		if (e.getSource() == lockAccountButtom) {
-			empCtlObj.updateIsActive(userName, this.companyCode, 0);
+			empCtlObj.updateIsActive(userName, companyCode, 0);
+			masterLogObj.insertLog(userName, Enum.ASSESSOR, "IsActive", Enum.UPDATE, oldIsActiveValue, "0", companyCode,
+					machineCode, StringUtils.getCurrentClassAndMethodNames());
 			JOptionPane.showMessageDialog(container, "Completed Lock Account!", "Notify result",
 					JOptionPane.INFORMATION_MESSAGE);
+			updateDisplayName();
 		}
 
 		if (e.getSource() == unLockAccountButton) {
-			empCtlObj.updateIsActive(userName, this.companyCode, 1);
+			empCtlObj.updateIsActive(userName, companyCode, 1);
+			masterLogObj.insertLog(userName, Enum.ASSESSOR, "IsActive", Enum.UPDATE, oldIsActiveValue, "1", companyCode,
+					machineCode, StringUtils.getCurrentClassAndMethodNames());
 			JOptionPane.showMessageDialog(container, "Completed UnLock Account!", "Notify result",
 					JOptionPane.INFORMATION_MESSAGE);
+			updateDisplayName();
 		}
 
 	}

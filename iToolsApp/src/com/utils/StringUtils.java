@@ -25,6 +25,12 @@ public class StringUtils {
 	public StringUtils() {
 		// TODO Auto-generated constructor stub
 	}
+	
+	public static String getCurrentClassAndMethodNames() {
+	    final StackTraceElement e = Thread.currentThread().getStackTrace()[2];
+	    final String s = e.getClassName();
+	    return s.substring(s.lastIndexOf('.') + 1, s.length()) + "." + e.getMethodName();
+	}
 
 	public static void titleAlign(JFrame frame) {
 

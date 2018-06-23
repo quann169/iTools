@@ -1261,3 +1261,107 @@
 2018-06-21 23:59:11 INFO  LoginPage:170 - Login OK
 2018-06-21 23:59:11 INFO  LoginPage:185 - listRoles: []
 2018-06-21 23:59:11 INFO  LoginPage:189 - listRolesUH: [Roles [roleName=Accounting], Roles [roleName=PutIns], Roles [roleName=TakeOver]]
+2018-06-22 00:10:28 INFO  LoginPage:165 - Login with username: uhacc1
+2018-06-22 00:10:29 INFO  LoginPage:170 - Login OK
+2018-06-22 00:10:29 INFO  LoginPage:185 - listRoles: []
+2018-06-22 00:10:29 INFO  LoginPage:189 - listRolesUH: [Roles [roleName=Accounting], Roles [roleName=PutIns], Roles [roleName=TakeOver]]
+2018-06-22 00:11:34 INFO  LoginPage:165 - Login with username: uhacc1
+2018-06-22 00:11:35 INFO  LoginPage:170 - Login OK
+2018-06-22 00:11:35 INFO  LoginPage:185 - listRoles: []
+2018-06-22 00:11:35 INFO  LoginPage:189 - listRolesUH: [Roles [roleName=Accounting], Roles [roleName=PutIns], Roles [roleName=TakeOver]]
+2018-06-22 00:14:06 INFO  LoginPage:165 - Login with username: uhacc1
+2018-06-22 00:14:07 INFO  LoginPage:170 - Login OK
+2018-06-22 00:14:07 INFO  LoginPage:185 - listRoles: []
+2018-06-22 00:14:07 INFO  LoginPage:189 - listRolesUH: [Roles [roleName=Accounting], Roles [roleName=PutIns], Roles [roleName=TakeOver]]
+2018-06-22 00:14:48 INFO  LoginPage:165 - Login with username: uhacc1
+2018-06-22 00:14:49 INFO  LoginPage:170 - Login OK
+2018-06-22 00:14:49 INFO  LoginPage:185 - listRoles: []
+2018-06-22 00:14:49 INFO  LoginPage:189 - listRolesUH: [Roles [roleName=Accounting], Roles [roleName=PutIns], Roles [roleName=TakeOver]]
+2018-06-22 00:15:26 INFO  LoginPage:165 - Login with username: uhacc1
+2018-06-22 00:15:27 INFO  LoginPage:170 - Login OK
+2018-06-22 00:15:27 INFO  LoginPage:185 - listRoles: []
+2018-06-22 00:15:27 INFO  LoginPage:189 - listRolesUH: [Roles [roleName=Accounting], Roles [roleName=PutIns], Roles [roleName=TakeOver]]
+2018-06-22 00:17:14 INFO  LoginPage:165 - Login with username: uhacc1
+2018-06-22 00:17:15 INFO  LoginPage:170 - Login OK
+2018-06-22 00:17:15 INFO  LoginPage:185 - listRoles: []
+2018-06-22 00:17:15 INFO  LoginPage:189 - listRolesUH: [Roles [roleName=Accounting], Roles [roleName=PutIns], Roles [roleName=TakeOver]]
+2018-06-22 00:19:54 INFO  LoginPage:165 - Login with username: uhacc1
+2018-06-22 00:19:55 INFO  LoginPage:170 - Login OK
+2018-06-22 00:19:55 INFO  LoginPage:185 - listRoles: []
+2018-06-22 00:19:55 INFO  LoginPage:189 - listRolesUH: [Roles [roleName=Accounting], Roles [roleName=PutIns], Roles [roleName=TakeOver]]
+2018-06-22 00:24:13 INFO  LoginPage:165 - Login with username: uhacc1
+2018-06-22 00:24:14 INFO  LoginPage:170 - Login OK
+2018-06-22 00:24:14 INFO  LoginPage:185 - listRoles: []
+2018-06-22 00:24:14 INFO  LoginPage:189 - listRolesUH: [Roles [roleName=Accounting], Roles [roleName=PutIns], Roles [roleName=TakeOver]]
+2018-06-22 00:27:19 INFO  LoginPage:165 - Login with username: uhacc1
+2018-06-22 00:27:20 INFO  LoginPage:170 - Login OK
+2018-06-22 00:27:20 INFO  LoginPage:185 - listRoles: []
+2018-06-22 00:27:20 INFO  LoginPage:189 - listRolesUH: [Roles [roleName=Accounting], Roles [roleName=PutIns], Roles [roleName=TakeOver]]
+2018-06-23 10:57:25 INFO  LoginPage:165 - Login with username: uhacc1
+2018-06-23 10:57:28 INFO  LoginPage:170 - Login OK
+2018-06-23 10:57:28 INFO  LoginPage:185 - listRoles: []
+2018-06-23 10:57:28 INFO  LoginPage:189 - listRolesUH: [Roles [roleName=Accounting], Roles [roleName=PutIns], Roles [roleName=TakeOver]]
+2018-06-23 11:20:31 INFO  LoginPage:165 - Login with username: uhacc1
+2018-06-23 11:20:32 INFO  LoginPage:170 - Login OK
+2018-06-23 11:20:32 INFO  LoginPage:185 - listRoles: []
+2018-06-23 11:20:33 INFO  LoginPage:189 - listRolesUH: [Roles [roleName=Accounting], Roles [roleName=PutIns], Roles [roleName=TakeOver]]
+2018-06-23 11:50:21 INFO  LoginPage:168 - Login with username: uhacc1
+2018-06-23 11:50:22 INFO  LoginPage:173 - Login OK
+2018-06-23 11:50:22 INFO  LoginPage:190 - listRoles: []
+2018-06-23 11:50:22 INFO  LoginPage:194 - listRolesUH: [Roles [roleName=Accounting], Roles [roleName=PutIns], Roles [roleName=TakeOver]]
+2018-06-23 11:51:19 INFO  LoginPage:168 - Login with username: uhacc1
+2018-06-23 11:51:20 INFO  LoginPage:173 - Login OK
+2018-06-23 11:51:20 INFO  LoginPage:190 - listRoles: []
+2018-06-23 11:51:20 INFO  LoginPage:194 - listRolesUH: [Roles [roleName=Accounting], Roles [roleName=PutIns], Roles [roleName=TakeOver]]
+2018-06-23 11:52:53 INFO  LoginPage:168 - Login with username: uhacc1
+2018-06-23 11:52:53 INFO  LoginPage:173 - Login OK
+2018-06-23 11:52:54 INFO  LoginPage:190 - listRoles: []
+2018-06-23 11:52:54 INFO  LoginPage:194 - listRolesUH: [Roles [roleName=Accounting], Roles [roleName=PutIns], Roles [roleName=TakeOver]]
+2018-06-23 11:54:32 INFO  LoginPage:168 - Login with username: uhacc1
+2018-06-23 11:54:33 INFO  LoginPage:173 - Login OK
+2018-06-23 11:54:33 INFO  LoginPage:190 - listRoles: []
+2018-06-23 11:54:33 INFO  LoginPage:194 - listRolesUH: [Roles [roleName=Accounting], Roles [roleName=PutIns], Roles [roleName=TakeOver]]
+2018-06-23 12:03:26 INFO  LoginPage:171 - Login with username: uhacc1
+2018-06-23 12:03:26 INFO  LoginPage:176 - Login OK
+2018-06-23 12:03:26 INFO  LoginPage:191 - listRoles: []
+2018-06-23 12:03:26 INFO  LoginPage:195 - listRolesUH: [Roles [roleName=Accounting], Roles [roleName=PutIns], Roles [roleName=TakeOver]]
+2018-06-23 12:05:00 INFO  LoginPage:171 - Login with username: uhacc1
+2018-06-23 12:05:00 INFO  LoginPage:176 - Login OK
+2018-06-23 12:05:00 INFO  LoginPage:191 - listRoles: []
+2018-06-23 12:05:00 INFO  LoginPage:195 - listRolesUH: [Roles [roleName=Accounting], Roles [roleName=PutIns], Roles [roleName=TakeOver]]
+2018-06-23 12:05:56 INFO  LoginPage:171 - Login with username: uhacc1
+2018-06-23 12:05:56 INFO  LoginPage:176 - Login OK
+2018-06-23 12:05:56 INFO  LoginPage:191 - listRoles: []
+2018-06-23 12:05:56 INFO  LoginPage:195 - listRolesUH: [Roles [roleName=Accounting], Roles [roleName=PutIns], Roles [roleName=TakeOver]]
+2018-06-23 12:06:55 INFO  LoginPage:171 - Login with username: uhacc1
+2018-06-23 12:06:55 INFO  LoginPage:176 - Login OK
+2018-06-23 12:06:55 INFO  LoginPage:191 - listRoles: []
+2018-06-23 12:06:55 INFO  LoginPage:195 - listRolesUH: [Roles [roleName=Accounting], Roles [roleName=PutIns], Roles [roleName=TakeOver]]
+2018-06-23 12:15:13 INFO  LoginPage:171 - Login with username: uhacc1
+2018-06-23 12:15:14 INFO  LoginPage:176 - Login OK
+2018-06-23 12:15:14 INFO  LoginPage:191 - listRoles: []
+2018-06-23 12:15:14 INFO  LoginPage:195 - listRolesUH: [Roles [roleName=Accounting], Roles [roleName=PutIns], Roles [roleName=TakeOver]]
+2018-06-23 12:19:47 INFO  LoginPage:173 - Login with username: uhacc1
+2018-06-23 12:19:47 INFO  LoginPage:178 - Login OK
+2018-06-23 12:19:47 INFO  LoginPage:193 - listRoles: []
+2018-06-23 12:19:47 INFO  LoginPage:197 - listRolesUH: [Roles [roleName=Accounting], Roles [roleName=PutIns], Roles [roleName=TakeOver]]
+2018-06-23 12:21:11 INFO  LoginPage:173 - Login with username: uhacc1
+2018-06-23 12:21:11 INFO  LoginPage:178 - Login OK
+2018-06-23 12:21:11 INFO  LoginPage:193 - listRoles: []
+2018-06-23 12:21:11 INFO  LoginPage:197 - listRolesUH: [Roles [roleName=Accounting], Roles [roleName=PutIns], Roles [roleName=TakeOver]]
+2018-06-23 12:41:14 INFO  LoginPage:173 - Login with username: uhacc1
+2018-06-23 12:41:14 INFO  LoginPage:178 - Login OK
+2018-06-23 12:41:15 INFO  LoginPage:193 - listRoles: []
+2018-06-23 12:41:15 INFO  LoginPage:197 - listRolesUH: [Roles [roleName=Accounting], Roles [roleName=PutIns], Roles [roleName=TakeOver]]
+2018-06-23 13:06:09 INFO  LoginPage:173 - Login with username: com1admin
+2018-06-23 13:06:09 INFO  LoginPage:178 - Login OK
+2018-06-23 13:06:10 INFO  LoginPage:193 - listRoles: [Roles [roleName=SubAdmin], Roles [roleName=Emp]]
+2018-06-23 13:09:59 INFO  LoginPage:173 - Login with username: com1admin
+2018-06-23 13:09:59 INFO  LoginPage:178 - Login OK
+2018-06-23 13:09:59 INFO  LoginPage:193 - listRoles: [Roles [roleName=SubAdmin], Roles [roleName=Emp]]
+2018-06-23 13:18:52 INFO  LoginPage:173 - Login with username: com1admin
+2018-06-23 13:18:52 INFO  LoginPage:178 - Login OK
+2018-06-23 13:18:52 INFO  LoginPage:193 - listRoles: [Roles [roleName=SubAdmin], Roles [roleName=Emp]]
+2018-06-23 13:19:56 INFO  LoginPage:173 - Login with username: com1admin
+2018-06-23 13:19:56 INFO  LoginPage:178 - Login OK
+2018-06-23 13:19:56 INFO  LoginPage:193 - listRoles: [Roles [roleName=SubAdmin], Roles [roleName=Emp]]
