@@ -1,0 +1,72 @@
+LogID,LogDate,AssessorName,TblName,RecordID,ColumnName,Action,OldValue,NewValue,CompanyCode,MachineCode,Notes
+1,"2018-06-24 10:50:37",ASa,Assessor,NULL,,Login,,,Com1,MAC1,LoginPage.actionPerformed
+2,"2018-06-24 10:50:38",com1admin,Assessor,NULL,,ShowDashboard,,,Com1,MAC1,DashboardPage.<init>
+3,"2018-06-24 10:50:39",com1admin,Assessor,NULL,,ResetPass,,,Com1,MAC1,DashboardPage.actionPerformed
+4,"2018-06-24 10:50:40",com1admin,Assessor,NULL,,ResetPasswordPage,,,Com1,MAC1,ResetPasswordPage.<init>
+5,"2018-06-24 10:50:46",com1admin,Assessor,NULL,Password,ResetPass,"com1user1 - 123456",XXX,Com1,MAC1,ResetPasswordPage.actionPerformed
+6,"2018-06-24 10:50:49",com1admin,DashboardPage,NULL,,TimeOut,,,Com1,MAC1,DashboardPage$3.actionPerformed
+7,"2018-06-24 10:50:56",com1admin,Assessor,NULL,,Logout,,,Com1,MAC1,ResetPasswordPage$3.mouseClicked
+8,"2018-06-24 10:50:57",com1admin,LockUnlockAccountPage,NULL,,TimeOut,,,Com1,MAC1,ResetPasswordPage$9.actionPerformed
+9,"2018-06-24 10:51:05",AAA,Assessor,NULL,,Login,,,Com1,MAC1,LoginPage.actionPerformed
+10,"2018-06-24 10:51:05",com1admin,Assessor,NULL,,ShowDashboard,,,Com1,MAC1,DashboardPage.<init>
+11,"2018-06-24 10:51:07",com1admin,Assessor,NULL,,LockUser,,,Com1,MAC1,DashboardPage.actionPerformed
+12,"2018-06-24 10:51:07",com1admin,Assessor,NULL,,LockUnlockAccountPage,,,Com1,MAC1,LockUnlockAccountPage.<init>
+13,"2018-06-24 10:51:10",com1admin,Assessor,NULL,IsLocked,Update,"com1user1 - 0","com1user1 - 0",Com1,MAC1,LockUnlockAccountPage.actionPerformed
+14,"2018-06-24 10:51:13",com1admin,Assessor,NULL,IsLocked,Update,"com1user3 - 0","com1user3 - 1",Com1,MAC1,LockUnlockAccountPage.actionPerformed
+15,"2018-06-24 10:51:15",com1admin,Assessor,NULL,,Logout,,,Com1,MAC1,LockUnlockAccountPage$3.mouseClicked
+16,"2018-06-24 10:51:17",com1admin,DashboardPage,NULL,,TimeOut,,,Com1,MAC1,DashboardPage$3.actionPerformed
+17,"2018-06-24 10:51:25",com1admin,LockUnlockAccountPage,NULL,,TimeOut,,,Com1,MAC1,LockUnlockAccountPage$6.actionPerformed
+18,"2018-06-24 10:51:33",AAA,Assessor,NULL,,Login,,,Com1,MAC1,LoginPage.actionPerformed
+19,"2018-06-24 10:51:34",com1admin,Assessor,NULL,,ShowDashboard,,,Com1,MAC1,DashboardPage.<init>
+20,"2018-06-24 10:51:35",com1admin,Assessor,NULL,,GetTools,,,Com1,MAC1,DashboardPage.actionPerformed
+21,"2018-06-24 10:51:35",com1admin,WorkingTransaction,NULL,,EmployeePage,,,Com1,MAC1,EmployeePage.<init>
+22,"2018-06-24 10:51:45",com1admin,DashboardPage,NULL,,TimeOut,,,Com1,MAC1,DashboardPage$3.actionPerformed
+23,"2018-06-24 10:51:53",com1admin,WorkingTransaction,NULL,,SendRequest,,,Com1,MAC1,EmployeePage.actionPerformed
+24,"2018-06-24 10:51:56",com1admin,WorkingTransaction,NULL,,Create,,,Com1,MAC1,EmployeePage$13.doInBackground
+25,"2018-06-24 10:52:06",com1admin,WorkingTransaction,NULL,,Create,"Send request to board",Complete,Com1,MAC1,EmployeePage$13.doInBackground
+26,"2018-06-24 10:52:18",com1admin,WorkingTransaction,NULL,,SendRequest,,,Com1,MAC1,EmployeePage.actionPerformed
+27,"2018-06-24 10:52:22",com1admin,WorkingTransaction,NULL,,Create,,,Com1,MAC1,EmployeePage$13.doInBackground
+28,"2018-06-24 10:52:33",com1admin,WorkingTransaction,NULL,,CreateFail,"Send request to board","No result",Com1,MAC1,EmployeePage$13.doInBackground
+29,"2018-06-24 10:52:45",com1admin,EmployeePage,NULL,,TimeOut,,,Com1,MAC1,EmployeePage$11.actionPerformed
+30,"2018-06-24 10:57:05",ASDAD,Assessor,NULL,,Login,,,Com1,MAC1,LoginPage.actionPerformed
+31,"2018-06-24 10:57:05",com1admin,Assessor,NULL,,ShowDashboard,,,Com1,MAC1,DashboardPage.<init>
+32,"2018-06-24 10:57:06",com1admin,Assessor,NULL,,GetTools,,,Com1,MAC1,DashboardPage.actionPerformed
+33,"2018-06-24 10:57:06",com1admin,WorkingTransaction,NULL,,EmployeePage,,,Com1,MAC1,EmployeePage.<init>
+34,"2018-06-24 10:57:12",com1admin,WorkingTransaction,NULL,,SendRequest,,,Com1,MAC1,EmployeePage.actionPerformed
+35,"2018-06-24 10:57:15",com1admin,WorkingTransaction,NULL,,Create,,,Com1,MAC1,EmployeePage$13.doInBackground
+36,"2018-06-24 10:57:16",com1admin,DashboardPage,NULL,,TimeOut,,,Com1,MAC1,DashboardPage$3.actionPerformed
+37,"2018-06-24 10:57:27",com1admin,WorkingTransaction,NULL,,CreateFail,"Send request to board","No result",Com1,MAC1,EmployeePage$13.doInBackground
+38,"2018-06-24 10:57:38",com1admin,EmployeePage,NULL,,TimeOut,,,Com1,MAC1,EmployeePage$11.actionPerformed
+39,"2018-06-24 10:57:45",ADA,Assessor,NULL,,Login,,,Com1,MAC1,LoginPage.actionPerformed
+40,"2018-06-24 10:57:46",com1admin,Assessor,NULL,,ShowDashboard,,,Com1,MAC1,DashboardPage.<init>
+41,"2018-06-24 10:57:49",com1admin,Assessor,NULL,,ResetPass,,,Com1,MAC1,DashboardPage.actionPerformed
+42,"2018-06-24 10:57:49",com1admin,Assessor,NULL,,ResetPasswordPage,,,Com1,MAC1,ResetPasswordPage.<init>
+43,"2018-06-24 10:57:55",com1admin,Assessor,NULL,Password,ResetPass,"com1user1 - 123456",XXX,Com1,MAC1,ResetPasswordPage.actionPerformed
+44,"2018-06-24 10:57:58",com1admin,Assessor,NULL,,Logout,,,Com1,MAC1,ResetPasswordPage$3.mouseClicked
+45,"2018-06-24 10:57:59",com1admin,DashboardPage,NULL,,TimeOut,,,Com1,MAC1,DashboardPage$3.actionPerformed
+46,"2018-06-24 10:58:21",ASDAD,Assessor,NULL,,Login,,,Com1,MAC1,LoginPage.actionPerformed
+47,"2018-06-24 10:58:21",uhacc1,Assessor,NULL,,ShowDashboard,,,Com1,MAC1,DashboardPage.<init>
+48,"2018-06-24 10:58:22",uhacc1,Assessor,NULL,,UnlockMachine,,,Com1,MAC1,DashboardPage.actionPerformed
+49,"2018-06-24 10:58:26",uhacc1,Assessor,NULL,,TakeOver,,,Com1,MAC1,DashboardPage.actionPerformed
+50,"2018-06-24 10:58:36",uhacc1,DashboardPage,NULL,,TimeOut,,,Com1,MAC1,DashboardPage$3.actionPerformed
+51,"2018-06-24 10:58:41",,Assessor,NULL,,Logout,,,Com1,MAC1,PutInTakeOverPage$3.mouseClicked
+52,"2018-06-24 10:58:41",,PutInTakeOverPage,NULL,,TimeOut,,,Com1,MAC1,PutInTakeOverPage$10.actionPerformed
+53,"2018-06-24 10:58:45",AA,Assessor,NULL,,Login,,,Com1,MAC1,LoginPage.actionPerformed
+54,"2018-06-24 10:58:45",uhacc1,Assessor,NULL,,ShowDashboard,,,Com1,MAC1,DashboardPage.<init>
+55,"2018-06-24 10:58:46",uhacc1,Assessor,NULL,,UnlockMachine,,,Com1,MAC1,DashboardPage.actionPerformed
+56,"2018-06-24 10:58:49",uhacc1,Assessor,NULL,,TakeOver,,,Com1,MAC1,DashboardPage.actionPerformed
+57,"2018-06-24 10:58:55",,WorkingTransaction,NULL,,Create,,,Com1,MAC1,PutInTakeOverPage$12.doInBackground
+58,"2018-06-24 10:58:57",,ToolsMachineTray,NULL,quantity,TakeOver,5,1,Com1,MAC1,PutInTakeOverPage$12.doInBackground
+59,"2018-06-24 10:58:59",uhacc1,DashboardPage,NULL,,TimeOut,,,Com1,MAC1,DashboardPage$3.actionPerformed
+60,"2018-06-24 10:59:10",,WorkingTransaction,NULL,,Create,,,Com1,MAC1,PutInTakeOverPage$12.doInBackground
+61,"2018-06-24 10:59:12",,ToolsMachineTray,NULL,quantity,TakeOver,5,1,Com1,MAC1,PutInTakeOverPage$12.doInBackground
+62,"2018-06-24 10:59:19",,Assessor,NULL,,Logout,,,Com1,MAC1,PutInTakeOverPage$3.mouseClicked
+63,"2018-06-24 10:59:22",AAAD,Assessor,NULL,,Login,,,Com1,MAC1,LoginPage.actionPerformed
+64,"2018-06-24 10:59:22",uhacc1,Assessor,NULL,,ShowDashboard,,,Com1,MAC1,DashboardPage.<init>
+65,"2018-06-24 10:59:23",uhacc1,Assessor,NULL,,UnlockMachine,,,Com1,MAC1,DashboardPage.actionPerformed
+66,"2018-06-24 10:59:26",uhacc1,Assessor,NULL,,PutIns,,,Com1,MAC1,DashboardPage.actionPerformed
+67,"2018-06-24 10:59:27",,PutInTakeOverPage,NULL,,TimeOut,,,Com1,MAC1,PutInTakeOverPage$10.actionPerformed
+68,"2018-06-24 10:59:36",uhacc1,DashboardPage,NULL,,TimeOut,,,Com1,MAC1,DashboardPage$3.actionPerformed
+69,"2018-06-24 10:59:45",,WorkingTransaction,NULL,,Create,,,Com1,MAC1,PutInTakeOverPage$12.doInBackground
+70,"2018-06-24 10:59:47",,ToolsMachineTray,NULL,quantity,PutIns,1,3,Com1,MAC1,PutInTakeOverPage$12.doInBackground
+71,"2018-06-24 10:59:56",,PutInTakeOverPage,NULL,,TimeOut,,,Com1,MAC1,PutInTakeOverPage$10.actionPerformed

@@ -1,0 +1,11 @@
+AssessorID,UserName,FingerID,Password,FirstName,LastName,EmailAddress,Address,Phone,CompanyCode,IsLocked,IsActive,LastPassword,IsFirstTimeLogin
+1,administrator,NULL,e10adc3949ba59abbe56e057f20f883e,ADMIN,ADMIN,quann169@gmail.com,NULL,NULL,UHCom,0,1,NULL,NULL
+2,uhadmin1,NULL,e10adc3949ba59abbe56e057f20f883e,ADMIN,UH,admin1@aaa.bbb,NULL,NULL,UHCom,0,1,NULL,NULL
+3,uhacc1,NULL,e10adc3949ba59abbe56e057f20f883e,Acc1,UH,acc1@aaa.bbb,NULL,NULL,UHCom,0,1,NULL,NULL
+4,uhacc2,NULL,e10adc3949ba59abbe56e057f20f883e,Acc2,UH,acc2@aaa.bbb,NULL,NULL,UHCom,0,1,NULL,NULL
+5,com1admin,NULL,e10adc3949ba59abbe56e057f20f883e,ADMIN,Com1,com1admin@aaa.bbb,NULL,NULL,Com1,0,1,NULL,0
+6,com1user1,NULL,NULL,User1,Com1,com1admin@aaa.bbb,NULL,NULL,Com1,0,1,NULL,NULL
+7,com1user2,NULL,e10adc3949ba59abbe56e057f20f883e,User2,Com1,com1admin@aaa.bbb,NULL,NULL,Com1,0,1,NULL,NULL
+8,com1user3,NULL,e10adc3949ba59abbe56e057f20f883e,User3,Com1,com1admin@aaa.bbb,NULL,NULL,Com1,1,1,NULL,NULL
+9,com2admin,NULL,e10adc3949ba59abbe56e057f20f883e,ADMIN,Com2,com1admin@aaa.bbb,NULL,NULL,Com2,0,1,NULL,NULL
+10,com2user1,NULL,e10adc3949ba59abbe56e057f20f883e,User1,Com2,com1admin@aaa.bbb,NULL,NULL,Com2,0,1,NULL,NULL

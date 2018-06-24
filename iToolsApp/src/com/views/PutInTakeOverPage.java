@@ -43,6 +43,7 @@ import org.apache.log4j.Logger;
 
 import com.controllers.EmployeeController;
 import com.controllers.LogController;
+import com.controllers.TransactionController;
 import com.message.Enum;
 import com.models.Assessor;
 import com.models.Tool;
@@ -96,10 +97,12 @@ public class PutInTakeOverPage extends JFrame implements ActionListener {
 	Map<String, Integer> mapTrayQuantity = new HashMap<>();
 	boolean resultValue;
 	String pageType;
-	
+	int defaultQuantity = -1;
+	int newQuantity = -1;
+
 	LogController masterLogObj = new LogController();
 	String userName = "";
-	
+
 	JFrame root = this;
 	Timer updateTimer;
 	int expiredTime = Integer.valueOf(cfg.getProperty("Expired_Time")) * 1000;
@@ -160,7 +163,10 @@ public class PutInTakeOverPage extends JFrame implements ActionListener {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				System.out.println("logOutLabel");
-				((PutInTakeOverPage) e.getComponent().getParent().getParent().getParent().getParent()).dispose();
+				masterLogObj.insertLog(userName, Enum.ASSESSOR, "", Enum.LOGOUT, "", "", companyCode, machineCode,
+						StringUtils.getCurrentClassAndMethodNames());
+				root.dispose();
+//				((PutInTakeOverPage) e.getComponent().getParent().getParent().getParent().getParent()).dispose();
 			}
 		});
 
@@ -303,12 +309,16 @@ public class PutInTakeOverPage extends JFrame implements ActionListener {
 
 		cancelButton.setBounds(450, 290, 100, 30);
 		cancelButton.setFont(new Font(labelFont.getName(), Font.BOLD, 15));
-		
+
 		updateTimer = new Timer(expiredTime, new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				masterLogObj.insertLog(userName, Enum.LOCK_UNLOCK_PAGE, "", Enum.TIME_OUT, "", "", companyCode, machineCode,
-						StringUtils.getCurrentClassAndMethodNames());
+				masterLogObj.insertLog(userName, Enum.PUTIN_TAKEOVER_PAGE, "", Enum.TIME_OUT, "", "", companyCode,
+						machineCode, StringUtils.getCurrentClassAndMethodNames());
+				String timeoutMess = MessageFormat.format(bundleMessage.getString("App_TimeOut"),
+						cfg.getProperty("Expired_Time"));
+				JOptionPane.showMessageDialog(container, timeoutMess, "Time Out", JOptionPane.WARNING_MESSAGE);
+
 				root.dispose();
 			}
 		});
@@ -331,8 +341,8 @@ public class PutInTakeOverPage extends JFrame implements ActionListener {
 		int quantityLength = quantityTextField.getText().length();
 
 		if (toolLength > 0 && trayLength > 0 && quantityLength > 0) {
-			int defaultQuantity = mapTrayQuantity.get(trayCombobox.getSelectedItem());
-			int newQuantity = Integer.parseInt(quantityTextField.getText());
+			defaultQuantity = mapTrayQuantity.get(trayCombobox.getSelectedItem());
+			newQuantity = Integer.parseInt(quantityTextField.getText());
 			if (defaultQuantity != newQuantity) {
 				if (this.pageType.equals(Enum.TKOVER.text())) {
 					if (newQuantity > defaultQuantity) {
@@ -429,12 +439,7 @@ public class PutInTakeOverPage extends JFrame implements ActionListener {
 			panel.add(label2);
 
 			// UIManager.put("OptionPane.minimumSize", new Dimension(300, 120));
-			String action = "";
-			if (this.pageType.equals(Enum.TKOVER.text())) {
-				action = Enum.TKOVER.text();
-			} else {
-				action = Enum.PUTIN.text();
-			}
+			final String action = this.pageType;
 			int dialogResult = JOptionPane.showConfirmDialog(this, panel, action + " Confirmation",
 					JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, null);
 
@@ -476,6 +481,16 @@ public class PutInTakeOverPage extends JFrame implements ActionListener {
 				SwingWorker<?, ?> worker = new SwingWorker<Void, String>() {
 					protected Void doInBackground() throws InterruptedException {
 
+						publish("Insert into transaction");
+						Thread.sleep(1000);
+						TransactionController transCtl = new TransactionController();
+						transCtl.insertTransaction(userName, companyCode, machineCode, "", "",
+								toolComboBox.getSelectedItem().toString(), trayCombobox.getSelectedItem().toString(),
+								quantityTextField.getText(), action, "Complete");
+
+						masterLogObj.insertLog(userName, Enum.WORKINGTRANSACTION, "", Enum.CREATE, "", "", companyCode,
+								machineCode, StringUtils.getCurrentClassAndMethodNames());
+
 						publish("Update value");
 						Thread.sleep(1000);
 						resultValue = empCtlObj.updateToolTray(machineCode, toolComboBox.getSelectedItem().toString(),
@@ -488,6 +503,15 @@ public class PutInTakeOverPage extends JFrame implements ActionListener {
 						}
 						Thread.sleep(1000);
 						publish("Update log");
+
+						Enum actionType = Enum.PUTIN;
+						if (pageType.equals(Enum.TKOVER.text())) {
+							actionType = Enum.TKOVER;
+						}
+
+						masterLogObj.insertLog(userName, Enum.TOOLSMACHINETRAY, "quantity", actionType,
+								"" + defaultQuantity, "" + newQuantity, companyCode, machineCode,
+								StringUtils.getCurrentClassAndMethodNames());
 						Thread.sleep(1000);
 						publish("Send email");
 						Thread.sleep(1000);
@@ -496,8 +520,8 @@ public class PutInTakeOverPage extends JFrame implements ActionListener {
 					}
 
 					protected void process(List<String> chunks) {
-						 String selection = chunks.get(chunks.size() - 1);
-						 progress.setText(selection);
+						String selection = chunks.get(chunks.size() - 1);
+						progress.setText(selection);
 					}
 
 					protected void done() {

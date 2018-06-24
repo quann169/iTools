@@ -44,6 +44,7 @@ import org.apache.log4j.Logger;
 
 import com.controllers.EmployeeController;
 import com.controllers.LogController;
+import com.controllers.TransactionController;
 import com.message.Enum;
 import com.models.Machine;
 import com.models.Tool;
@@ -90,11 +91,11 @@ public class EmployeePage extends JFrame implements ActionListener {
 	private static final String MACHINE_CODE = "MACHINE_CODE";
 	String companyCode = AdvancedEncryptionStandard.decrypt(cfg.getProperty(COMPANY_CODE));
 	String machineCode = AdvancedEncryptionStandard.decrypt(cfg.getProperty(MACHINE_CODE));
-	
-	
+
+	int transactionID = -1;
 	LogController masterLogObj = new LogController();
 	String userName = "";
-	
+
 	JFrame root = this;
 
 	final static Logger logger = Logger.getLogger(EmployeePage.class);
@@ -137,8 +138,8 @@ public class EmployeePage extends JFrame implements ActionListener {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				System.out.println("backToDashboardLabel");
-				masterLogObj.insertLog(userName, Enum.ASSESSOR, "", Enum.SHOW_DASHBOARD, "", "", companyCode, machineCode,
-						StringUtils.getCurrentClassAndMethodNames());
+				masterLogObj.insertLog(userName, Enum.ASSESSOR, "", Enum.SHOW_DASHBOARD, "", "", companyCode,
+						machineCode, StringUtils.getCurrentClassAndMethodNames());
 			}
 		});
 
@@ -174,7 +175,8 @@ public class EmployeePage extends JFrame implements ActionListener {
 				masterLogObj.insertLog(userName, Enum.ASSESSOR, "", Enum.LOGOUT, "", "", companyCode, machineCode,
 						StringUtils.getCurrentClassAndMethodNames());
 				System.out.println("logOutLabel");
-				((EmployeePage) e.getComponent().getParent().getParent().getParent().getParent()).dispose();
+				root.dispose();
+//				((EmployeePage) e.getComponent().getParent().getParent().getParent().getParent()).dispose();
 			}
 		});
 
@@ -359,6 +361,10 @@ public class EmployeePage extends JFrame implements ActionListener {
 			public void actionPerformed(ActionEvent e) {
 				masterLogObj.insertLog(userName, Enum.EMP_PAGE, "", Enum.TIME_OUT, "", "", companyCode, machineCode,
 						StringUtils.getCurrentClassAndMethodNames());
+				String timeoutMess = MessageFormat.format(bundleMessage.getString("App_TimeOut"),
+						cfg.getProperty("Expired_Time"));
+				JOptionPane.showMessageDialog(container, timeoutMess, "Time Out", JOptionPane.WARNING_MESSAGE);
+
 				root.dispose();
 			}
 		});
@@ -424,7 +430,7 @@ public class EmployeePage extends JFrame implements ActionListener {
 		updateTimer.restart();
 		if (e.getSource() == sendRequestButton) {
 			// ImageIcon icon = new ImageIcon("src/img/confirmation_60x60.png");
-			
+
 			JPanel panel = new JPanel() {
 				/**
 				 * 
@@ -488,8 +494,9 @@ public class EmployeePage extends JFrame implements ActionListener {
 
 			if (dialogResult == 0) {
 				System.out.println("Yes option");
-				masterLogObj.insertLog(userName, Enum.WORKINGTRANSACTION, "", Enum.REQUEST_TOOL, "", "", companyCode, machineCode,
-						StringUtils.getCurrentClassAndMethodNames());
+				updateTimer.restart();
+				masterLogObj.insertLog(userName, Enum.WORKINGTRANSACTION, "", Enum.REQUEST_TOOL, "", "", companyCode,
+						machineCode, StringUtils.getCurrentClassAndMethodNames());
 				final JDialog d = new JDialog();
 				JPanel p1 = new JPanel(new GridBagLayout());
 				JLabel progress = new JLabel("Please Wait...");
@@ -501,22 +508,38 @@ public class EmployeePage extends JFrame implements ActionListener {
 				d.setModal(true);
 				int columnId = -1;
 
-				SwingWorker<?, ?> worker = new SwingWorker<Void, Integer>() {
+				SwingWorker<?, ?> worker = new SwingWorker<Void, String>() {
 					protected Void doInBackground() throws InterruptedException {
+						updateTimer.restart();
 						int x = 0;
 						for (int z = 0; z < 5; z++) {
-							Thread.sleep(1000);
+							Thread.sleep(500);
 						}
-						for (; x <= 100; x += 10) {
-							publish(x);
+						updateTimer.restart();
+						publish("Insert into transaction");
+						Thread.sleep(1000);
+						TransactionController transCtl = new TransactionController();
+						transactionID = transCtl.insertTransaction(userName, companyCode, machineCode, "", "",
+								toolComboBox.getSelectedItem().toString(), tray, quantityTextField.getText(),
+								Enum.GETTOOL.text(), "Send request to board");
+						
 
+						masterLogObj.insertLog(userName, Enum.WORKINGTRANSACTION, "", Enum.CREATE, "", "", companyCode,
+								machineCode, StringUtils.getCurrentClassAndMethodNames());
+
+						for (; x <= 100; x += 10) {
+							updateTimer.restart();
 							int lower = 0;
 							int upper = 10;
 
 							int value = (int) (Math.random() * (upper - lower)) + lower;
 							System.out.println("ramdom value: " + value);
+							publish("Waiting for result: " + x);
 							if (value == 5) {
-								masterLogObj.insertLog(userName, Enum.WORKINGTRANSACTION, "", Enum.CREATE, "", "", companyCode, machineCode,
+								transCtl.updateTransaction(transactionID, "TransactionStatus", "Complete");
+
+								masterLogObj.insertLog(userName, Enum.WORKINGTRANSACTION, "", Enum.CREATE,
+										"Send request to board", "Complete", companyCode, machineCode,
 										StringUtils.getCurrentClassAndMethodNames(), columnId);
 								System.out.println("OK");
 								JOptionPane.showMessageDialog(container, "Completed!", "Notify result",
@@ -525,7 +548,9 @@ public class EmployeePage extends JFrame implements ActionListener {
 								break;
 							} else if (value == 7) {
 								System.out.println("Fail");
-								masterLogObj.insertLog(userName, Enum.WORKINGTRANSACTION, "", Enum.CREATE_FAIL, "", "", companyCode, machineCode,
+								transCtl.updateTransaction(transactionID, "TransactionStatus", "Fail");
+								masterLogObj.insertLog(userName, Enum.WORKINGTRANSACTION, "", Enum.CREATE_FAIL,
+										"Send request to board", "Fail", companyCode, machineCode,
 										StringUtils.getCurrentClassAndMethodNames());
 								JOptionPane.showMessageDialog(container, "Failed!", "Notify result",
 										JOptionPane.ERROR_MESSAGE);
@@ -535,15 +560,20 @@ public class EmployeePage extends JFrame implements ActionListener {
 						}
 						if (x >= 100) {
 							System.out.println("No result");
+							transCtl.updateTransaction(transactionID, "TransactionStatus", "No result");
+							masterLogObj.insertLog(userName, Enum.WORKINGTRANSACTION, "", Enum.CREATE_FAIL,
+									"Send request to board", "No result", companyCode, machineCode,
+									StringUtils.getCurrentClassAndMethodNames());
 							JOptionPane.showMessageDialog(container, "No result!", "Notify result",
 									JOptionPane.WARNING_MESSAGE);
 						}
+						updateTimer.restart();
 						return null;
 					}
 
-					protected void process(List<Integer> chunks) {
-						int selection = chunks.get(chunks.size() - 1);
-						progress.setText("Please Wait..." + selection + "s");
+					protected void process(List<String> chunks) {
+						String selection = chunks.get(chunks.size() - 1);
+						progress.setText(selection);
 					}
 
 					protected void done() {
@@ -561,8 +591,7 @@ public class EmployeePage extends JFrame implements ActionListener {
 				};
 				worker.execute();
 				d.setVisible(true);
-				
-				
+
 			} else {
 				System.out.println("No Option");
 			}

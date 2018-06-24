@@ -10,6 +10,7 @@ import java.awt.event.FocusEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.font.TextAttribute;
+import java.text.MessageFormat;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -157,8 +158,11 @@ public class ResetPasswordPage extends JFrame implements ActionListener {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				System.out.println("logOutLabel");
-
-				((ResetPasswordPage) e.getComponent().getParent().getParent().getParent().getParent()).dispose();
+				masterLogObj.insertLog(userName, Enum.ASSESSOR, "", Enum.LOGOUT, "", "", companyCode, machineCode,
+						StringUtils.getCurrentClassAndMethodNames());
+				root.dispose();
+				// ((ResetPasswordPage)
+				// e.getComponent().getParent().getParent().getParent().getParent()).dispose();
 			}
 		});
 
@@ -287,6 +291,10 @@ public class ResetPasswordPage extends JFrame implements ActionListener {
 			public void actionPerformed(ActionEvent e) {
 				masterLogObj.insertLog(userName, Enum.LOCK_UNLOCK_PAGE, "", Enum.TIME_OUT, "", "", companyCode,
 						machineCode, StringUtils.getCurrentClassAndMethodNames());
+				String timeoutMess = MessageFormat.format(bundleMessage.getString("App_TimeOut"),
+						cfg.getProperty("Expired_Time"));
+				JOptionPane.showMessageDialog(container, timeoutMess, "Time Out", JOptionPane.WARNING_MESSAGE);
+
 				root.dispose();
 			}
 		});
@@ -300,7 +308,7 @@ public class ResetPasswordPage extends JFrame implements ActionListener {
 		} catch (Exception e) {
 			System.err.println("validateAllFields of resetpasspage");
 		}
-		
+
 		String password = passwordTextField.getText();
 		String repassword = rePasswordTextField.getText();
 		boolean userExisted = mapDisplayName.containsKey(usernameComboBox.getSelectedItem().toString());

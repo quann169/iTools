@@ -9,6 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -18,6 +19,7 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingWorker;
 import javax.swing.Timer;
@@ -59,7 +61,7 @@ public class DashboardPage extends JFrame implements ActionListener {
 	JButton takeOverButton = new JButton(bundleMessage.getString("Dashboard_Page_Take_Over"));
 
 	final static Logger logger = Logger.getLogger(DashboardPage.class);
-	
+
 	LogController masterLogObj = new LogController();
 
 	private static final Config cfg = new Config();
@@ -67,20 +69,20 @@ public class DashboardPage extends JFrame implements ActionListener {
 	private static final String machineCode = AdvancedEncryptionStandard.decrypt(cfg.getProperty("MACHINE_CODE"));
 
 	String userName = "";
-	
+
 	JFrame root = this;
 	Timer updateTimer;
 	int expiredTime = Integer.valueOf(cfg.getProperty("Expired_Time")) * 1000;
 
 	List<String> listRoleName = new ArrayList<>();
-	
+
 	DashboardPage(List<Role> listRoles, Assessor user) {
 		this.listRoles = listRoles;
 		userName = user.getUsername();
 		for (Role role : this.listRoles) {
 			listRoleName.add(role.getRoleName().toLowerCase());
 		}
-		
+
 		this.user = user;
 		setLayoutManager();
 		setLocationAndSize();
@@ -132,7 +134,10 @@ public class DashboardPage extends JFrame implements ActionListener {
 						StringUtils.getCurrentClassAndMethodNames());
 				System.out.println("logOutLabel");
 				updateTimer.restart();
-//				((EmployeePage) e.getComponent().getParent().getParent().getParent().getParent()).dispose();
+				masterLogObj.insertLog(userName, Enum.ASSESSOR, "", Enum.LOGOUT, "", "", companyCode, machineCode,
+						StringUtils.getCurrentClassAndMethodNames());
+				// ((EmployeePage)
+				// e.getComponent().getParent().getParent().getParent().getParent()).dispose();
 				root.dispose();
 			}
 		});
@@ -159,12 +164,16 @@ public class DashboardPage extends JFrame implements ActionListener {
 
 		getToolButton.setBounds(400, 250, 250, 40);
 		getToolButton.setFont(new Font(labelFont.getName(), Font.BOLD, 15));
-		
+
 		updateTimer = new Timer(expiredTime, new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				masterLogObj.insertLog(userName, Enum.DASHBOARD_PAGE, "", Enum.TIME_OUT, "", "", companyCode, machineCode,
-						StringUtils.getCurrentClassAndMethodNames());
+				masterLogObj.insertLog(userName, Enum.DASHBOARD_PAGE, "", Enum.TIME_OUT, "", "", companyCode,
+						machineCode, StringUtils.getCurrentClassAndMethodNames());
+				String timeoutMess = MessageFormat.format(bundleMessage.getString("App_TimeOut"),
+						cfg.getProperty("Expired_Time"));
+				JOptionPane.showMessageDialog(container, timeoutMess, "Time Out", JOptionPane.WARNING_MESSAGE);
+
 				root.dispose();
 			}
 		});
@@ -176,9 +185,6 @@ public class DashboardPage extends JFrame implements ActionListener {
 		container.add(splitLabel);
 		container.add(changePassLabel);
 		container.add(logOutLabel);
-
-		
-		
 
 		if (listRoleName.contains(Enum.ACCT.text().toLowerCase())
 				|| listRoleName.contains(Enum.TKOVER.text().toLowerCase())
@@ -244,7 +250,7 @@ public class DashboardPage extends JFrame implements ActionListener {
 					if (listRoleName.contains(Enum.PUTIN.text().toLowerCase())) {
 						putInsButton.setEnabled(true);
 					}
-					
+
 					if (listRoleName.contains(Enum.TKOVER.text().toLowerCase())) {
 						takeOverButton.setEnabled(true);
 					}
@@ -298,13 +304,13 @@ public class DashboardPage extends JFrame implements ActionListener {
 			empPage.setTitle(user.getUsername() + " - " + user.getFirstName() + " " + user.getLastName());
 			empPage.show();
 		}
-		
+
 		if (e.getSource() == manualSyncButton) {
 			SyncController syncCtl = new SyncController();
 			List<String> syncResult = syncCtl.syncDataManually(companyCode, machineCode);
-			masterLogObj.insertLog(userName, Enum.ASSESSOR, "", Enum.SYNC_MANUALLY, "", syncResult.toString(), companyCode, machineCode,
-					StringUtils.getCurrentClassAndMethodNames());
-			
+			masterLogObj.insertLog(userName, Enum.ASSESSOR, "", Enum.SYNC_MANUALLY, "", syncResult.toString(),
+					companyCode, machineCode, StringUtils.getCurrentClassAndMethodNames());
+
 		}
 	}
 

@@ -303,19 +303,24 @@ DROP TABLE IF EXISTS WorkingTransaction;
 CREATE TABLE IF NOT EXISTS WorkingTransaction (
   WorkingTransactionID INT(20) NOT NULL AUTO_INCREMENT,
   TransactionDate DATETIME NULL,
-  AssessorID INT(10) NOT NULL,
+  MachineCode VARCHAR(100) NOT NULL,
+  CompanyCode VARCHAR(100) NOT NULL,
+  AssessorID VARCHAR(100) NOT NULL,
   WOCode VARCHAR(100) NOT NULL,
   OPCode VARCHAR(100) NOT NULL,
   ToolCode VARCHAR(100) NOT NULL,
   TrayIndex VARCHAR(100) NULL,
+  Quantity INT(10) NULL,
   UpdatedDate DATETIME NULL,
+  TransactionStatus VARCHAR(255) NULL,
   RespondMessage VARCHAR(255) NULL,
   TransactionType VARCHAR(255) NULL,
   PRIMARY KEY (WorkingTransactionID),
   INDEX TransactionDate (TransactionDate),
   INDEX AssessorID (AssessorID),
   INDEX ToolCode (ToolCode),
-  FOREIGN KEY (AssessorID) REFERENCES Assessor(AssessorID),
+  FOREIGN KEY (MachineCode) REFERENCES Machine(MachineCode),
+  FOREIGN KEY (CompanyCode) REFERENCES Company(CompanyCode),
   FOREIGN KEY (ToolCode) REFERENCES Tools(ToolCode)
 );
 	

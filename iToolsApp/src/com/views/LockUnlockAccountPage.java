@@ -9,6 +9,7 @@ import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.text.MessageFormat;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -137,7 +138,10 @@ public class LockUnlockAccountPage extends JFrame implements ActionListener {
 			public void mouseClicked(MouseEvent e) {
 				updateTimer.restart();
 				System.out.println("logOutLabel");
-				((EmployeePage) e.getComponent().getParent().getParent().getParent().getParent()).dispose();
+				masterLogObj.insertLog(userName, Enum.ASSESSOR, "", Enum.LOGOUT, "", "", companyCode, machineCode,
+						StringUtils.getCurrentClassAndMethodNames());
+				root.dispose();
+//				((EmployeePage) e.getComponent().getParent().getParent().getParent().getParent()).dispose();
 			}
 		});
 
@@ -183,6 +187,10 @@ public class LockUnlockAccountPage extends JFrame implements ActionListener {
 			public void actionPerformed(ActionEvent e) {
 				masterLogObj.insertLog(userName, Enum.LOCK_UNLOCK_PAGE, "", Enum.TIME_OUT, "", "", companyCode, machineCode,
 						StringUtils.getCurrentClassAndMethodNames());
+				String timeoutMess = MessageFormat.format(bundleMessage.getString("App_TimeOut"),
+						cfg.getProperty("Expired_Time"));
+				JOptionPane.showMessageDialog(container, timeoutMess, "Time Out", JOptionPane.WARNING_MESSAGE);
+
 				root.dispose();
 			}
 		});
