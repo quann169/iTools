@@ -45,6 +45,7 @@ import org.apache.log4j.Logger;
 import com.controllers.EmployeeController;
 import com.controllers.LogController;
 import com.controllers.TransactionController;
+import com.controllers.UsbHIDDeviceController;
 import com.message.Enum;
 import com.models.Machine;
 import com.models.Tool;
@@ -105,6 +106,11 @@ public class EmployeePage extends JFrame implements ActionListener {
 	int wo_min_length = Integer.valueOf(cfg.getProperty("Employee_Page_WO_Min_Length"));
 	int op_min_length = Integer.valueOf(cfg.getProperty("Employee_Page_OP_Min_Length"));
 
+	String vendorId = cfg.getProperty("VENDOR_ID");
+	String productId = cfg.getProperty("PRODUCT_ID");
+	int readWaitTime = Integer.valueOf(cfg.getProperty("READ_WAIT_TIME"));
+	HashMap<String, String> hashMessage = new HashMap<>();
+
 	int resultValue;
 	boolean isDashboard;
 
@@ -121,6 +127,15 @@ public class EmployeePage extends JFrame implements ActionListener {
 		addActionEvent();
 		masterLogObj.insertLog(userName, Enum.WORKINGTRANSACTION, "", Enum.EMP_PAGE, "", "", companyCode, machineCode,
 				StringUtils.getCurrentClassAndMethodNames());
+
+		List<String> listAllTrays = Enum.getTrays();
+		System.out.println("listAllTrays: " + listAllTrays);
+		for (String tray : listAllTrays) {
+			System.out.println(tray + ": " + cfg.checkKey(tray));
+			if (cfg.checkKey(tray)) {
+				hashMessage.put(tray, cfg.getProperty(tray));
+			}
+		}
 	}
 
 	public void setLayoutManager() {
@@ -471,32 +486,13 @@ public class EmployeePage extends JFrame implements ActionListener {
 			label2.setBounds(0, 0, 350, 150);
 			panel.add(label2);
 
-			// UIManager.put("OptionPane.minimumSize", new Dimension(300, 120));
 			int dialogResult = JOptionPane.showConfirmDialog(this, panel, "Admin Rights Confirmation",
 					JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, null);
 
-			// JPanel panel = new JPanel() {
-			// @Override
-			// public Dimension getPreferredSize() {
-			// return new Dimension(320, 240);
-			// }
-
-			// };
-
-			// We can use JTextArea or JLabel to display messages
 			JTextArea textArea = new JTextArea();
 			textArea.setEditable(false);
 			panel.setLayout(new BorderLayout());
 			panel.add(new JScrollPane(textArea));
-
-			// int dialogResult = JOptionPane.showConfirmDialog(null, panel, //
-			// Here
-			// // goes
-			// // content
-			// "Here goes the title", JOptionPane.OK_CANCEL_OPTION, // Options
-			// // for
-			// // JOptionPane
-			// JOptionPane.ERROR_MESSAGE); // Message type
 
 			if (dialogResult == 0) {
 				System.out.println("Yes option");
@@ -518,10 +514,7 @@ public class EmployeePage extends JFrame implements ActionListener {
 					protected Void doInBackground() throws InterruptedException {
 						updateTimer.restart();
 						int x = 0;
-						for (int z = 0; z < 5; z++) {
-							Thread.sleep(500);
-						}
-						updateTimer.restart();
+						Thread.sleep(1000);
 						publish("Insert into transaction");
 						Thread.sleep(1000);
 						TransactionController transCtl = new TransactionController();
@@ -531,47 +524,76 @@ public class EmployeePage extends JFrame implements ActionListener {
 
 						masterLogObj.insertLog(userName, Enum.WORKINGTRANSACTION, "", Enum.CREATE, "", "", companyCode,
 								machineCode, StringUtils.getCurrentClassAndMethodNames());
-
-						for (; x <= 100; x += 10) {
-							updateTimer.restart();
-							int lower = 0;
-							int upper = 10;
-
-							int value = (int) (Math.random() * (upper - lower)) + lower;
-							System.out.println("ramdom value: " + value);
-							publish("Waiting for result: " + x);
-							if (value == 5) {
-								transCtl.updateTransaction(transactionID, "TransactionStatus", "Complete");
-
-								masterLogObj.insertLog(userName, Enum.WORKINGTRANSACTION, "", Enum.CREATE,
-										"Send request to board", "Complete", companyCode, machineCode,
-										StringUtils.getCurrentClassAndMethodNames(), columnId);
-								System.out.println("OK");
-								JOptionPane.showMessageDialog(container, "Completed!", "Notify result",
-										JOptionPane.INFORMATION_MESSAGE);
-								resultValue = 1;
-								break;
-							} else if (value == 7) {
-								System.out.println("Fail");
-								transCtl.updateTransaction(transactionID, "TransactionStatus", "Fail");
-								masterLogObj.insertLog(userName, Enum.WORKINGTRANSACTION, "", Enum.CREATE_FAIL,
-										"Send request to board", "Fail", companyCode, machineCode,
-										StringUtils.getCurrentClassAndMethodNames());
-								JOptionPane.showMessageDialog(container, "Failed!", "Notify result",
-										JOptionPane.ERROR_MESSAGE);
-								break;
+						System.out.println("hashMessage: " + hashMessage);
+						System.out.println("trayTextField.getText(): " + trayTextField.getText());
+						System.out.println(hashMessage.containsKey(trayTextField.getText().toUpperCase()));
+						if (hashMessage.containsKey(trayTextField.getText().toUpperCase())) {
+							String message = hashMessage.get(trayTextField.getText().toUpperCase());
+							System.out.println("message: " + message);
+							UsbHIDDeviceController usbObj = new UsbHIDDeviceController(vendorId, productId, message,
+									readWaitTime);
+							try {
+								usbObj.executeAction();
+							} catch (Exception e2) {
+								e2.printStackTrace();
 							}
-							Thread.sleep(1000);
+
 						}
-						if (x >= 100) {
-							System.out.println("No result");
-							transCtl.updateTransaction(transactionID, "TransactionStatus", "No result");
-							masterLogObj.insertLog(userName, Enum.WORKINGTRANSACTION, "", Enum.CREATE_FAIL,
-									"Send request to board", "No result", companyCode, machineCode,
-									StringUtils.getCurrentClassAndMethodNames());
-							JOptionPane.showMessageDialog(container, "No result!", "Notify result",
-									JOptionPane.WARNING_MESSAGE);
-						}
+
+						// for (; x <= 100; x += 10) {
+						// updateTimer.restart();
+						// int lower = 0;
+						// int upper = 10;
+						//
+						// int value = (int) (Math.random() * (upper - lower)) +
+						// lower;
+						// System.out.println("ramdom value: " + value);
+						// publish("Waiting for result: " + x);
+						// if (value == 5) {
+						// transCtl.updateTransaction(transactionID,
+						// "TransactionStatus", "Complete");
+						//
+						// masterLogObj.insertLog(userName,
+						// Enum.WORKINGTRANSACTION, "", Enum.CREATE,
+						// "Send request to board", "Complete", companyCode,
+						// machineCode,
+						// StringUtils.getCurrentClassAndMethodNames(),
+						// columnId);
+						// System.out.println("OK");
+						// JOptionPane.showMessageDialog(container,
+						// "Completed!", "Notify result",
+						// JOptionPane.INFORMATION_MESSAGE);
+						// resultValue = 1;
+						// break;
+						// } else if (value == 7) {
+						// System.out.println("Fail");
+						// transCtl.updateTransaction(transactionID,
+						// "TransactionStatus", "Fail");
+						// masterLogObj.insertLog(userName,
+						// Enum.WORKINGTRANSACTION, "", Enum.CREATE_FAIL,
+						// "Send request to board", "Fail", companyCode,
+						// machineCode,
+						// StringUtils.getCurrentClassAndMethodNames());
+						// JOptionPane.showMessageDialog(container, "Failed!",
+						// "Notify result",
+						// JOptionPane.ERROR_MESSAGE);
+						// break;
+						// }
+						// Thread.sleep(1000);
+						// }
+						// if (x >= 100) {
+						// System.out.println("No result");
+						// transCtl.updateTransaction(transactionID,
+						// "TransactionStatus", "No result");
+						// masterLogObj.insertLog(userName,
+						// Enum.WORKINGTRANSACTION, "", Enum.CREATE_FAIL,
+						// "Send request to board", "No result", companyCode,
+						// machineCode,
+						// StringUtils.getCurrentClassAndMethodNames());
+						// JOptionPane.showMessageDialog(container, "No
+						// result!", "Notify result",
+						// JOptionPane.WARNING_MESSAGE);
+						// }
 						updateTimer.restart();
 						return null;
 					}
