@@ -71,7 +71,7 @@ public class LoginController {
 	 * @return
 	 */
 	public List<Assessor> getAllUsers() {
-		String sql = "SELECT AssessorID, UserName, Password, CompanyId FROM Assessor where Assessor.IsActive=1;";
+		String sql = "SELECT AssessorID, UserName, Password, CompanyCode FROM Assessor where Assessor.IsActive=1;";
 		List<Assessor> listAllUsers = new ArrayList<>();
 		try {
 			PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);

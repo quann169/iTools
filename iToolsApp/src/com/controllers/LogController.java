@@ -81,7 +81,7 @@ public class LogController {
 			columnNameText = columnName.toString();
 		}
 
-		String sql = "insert into masterlog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), '"
+		String sql = "insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), '"
 				+ username + "', '" + tableName.text() + "', '" + columnNameText + "', '" + action.text() + "', '"
 				+ oldvalue + "', '" + newValue + "', '" + companyCode + "', '" + machineCode + "', '" + note + "');";
 		System.out.println(sql);

@@ -93,10 +93,12 @@ public class ResetPasswordPage extends JFrame implements ActionListener {
 	boolean isFirstTimeLogin;
 
 	JFrame root = this;
+	JFrame parent;
 	Timer updateTimer;
 	int expiredTime = Integer.valueOf(cfg.getProperty("Expired_Time")) * 1000;
 
-	ResetPasswordPage(Assessor user, boolean isDashboard, boolean isFirstTimeLogin) {
+	ResetPasswordPage(JFrame parent, Assessor user, boolean isDashboard, boolean isFirstTimeLogin) {
+		this.parent = parent;
 		this.isFirstTimeLogin = isFirstTimeLogin;
 		this.isDashboard = isDashboard;
 		this.user = user;
@@ -161,6 +163,7 @@ public class ResetPasswordPage extends JFrame implements ActionListener {
 				masterLogObj.insertLog(userName, Enum.ASSESSOR, "", Enum.LOGOUT, "", "", companyCode, machineCode,
 						StringUtils.getCurrentClassAndMethodNames());
 				root.dispose();
+				parent.dispose();
 				// ((ResetPasswordPage)
 				// e.getComponent().getParent().getParent().getParent().getParent()).dispose();
 			}
@@ -293,9 +296,10 @@ public class ResetPasswordPage extends JFrame implements ActionListener {
 						machineCode, StringUtils.getCurrentClassAndMethodNames());
 				String timeoutMess = MessageFormat.format(bundleMessage.getString("App_TimeOut"),
 						cfg.getProperty("Expired_Time"));
-				JOptionPane.showMessageDialog(container, timeoutMess, "Time Out", JOptionPane.WARNING_MESSAGE);
-
+				JOptionPane.showMessageDialog(container, timeoutMess, "Time Out Reset Pass", JOptionPane.WARNING_MESSAGE);
+				
 				root.dispose();
+				parent.dispose();
 			}
 		});
 		updateTimer.setRepeats(false);

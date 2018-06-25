@@ -165,13 +165,14 @@ public class LoginPage extends JFrame implements ActionListener {
 
 		userName = userTextField.getText();
 		if (e.getSource() == loginButton) {
-
-//			 userText = "com1admin";
-			userText = "uhacc1";
+			LoginController ctlObj = new LoginController();
+			
+			 userText = "com1admin";
+//			userText = "uhacc1";
 			pwdText = "123456";
 
 			logger.info("Login with username: " + userText);
-			LoginController ctlObj = new LoginController();
+			
 			Assessor result = ctlObj.validateUser(userText, pwdText);
 			System.out.println(result);
 			if (result != null) {
@@ -181,7 +182,7 @@ public class LoginPage extends JFrame implements ActionListener {
 						StringUtils.getCurrentClassAndMethodNames());
 
 				if (result.isFirstTimeLogin()) {
-					ResetPasswordPage resetPassPage = new ResetPasswordPage(result, false, result.isFirstTimeLogin());
+					ResetPasswordPage resetPassPage = new ResetPasswordPage(this, result, false, result.isFirstTimeLogin());
 					StringUtils.frameInit(resetPassPage, bundleMessage);
 					// empPage.setJMenuBar(StringUtils.addMenu());
 					resetPassPage.setTitle(
@@ -204,7 +205,7 @@ public class LoginPage extends JFrame implements ActionListener {
 						this.userTextField.setText("");
 						this.passwordField.setText("");
 						this.loginButton.setEnabled(false);
-						EmployeePage empPage = new EmployeePage(userName, false);
+						EmployeePage empPage = new EmployeePage(this, userName, false);
 						StringUtils.frameInit(empPage, bundleMessage);
 						// empPage.setJMenuBar(StringUtils.addMenu());
 						empPage.setTitle(userText + " - " + result.getFirstName() + " " + result.getLastName());

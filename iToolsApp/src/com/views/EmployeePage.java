@@ -108,9 +108,12 @@ public class EmployeePage extends JFrame implements ActionListener {
 	int resultValue;
 	boolean isDashboard;
 
-	EmployeePage(String userName, boolean isDashboard) {
+	JFrame parent;
+
+	EmployeePage(JFrame parent, String userName, boolean isDashboard) {
 		this.userName = userName;
 		this.isDashboard = isDashboard;
+		this.parent = parent;
 		toolVstrayAndQuantityMap = empCtlObj.getToolTrayQuantity(machineCode);
 		setLayoutManager();
 		setLocationAndSize();
@@ -176,7 +179,9 @@ public class EmployeePage extends JFrame implements ActionListener {
 						StringUtils.getCurrentClassAndMethodNames());
 				System.out.println("logOutLabel");
 				root.dispose();
-//				((EmployeePage) e.getComponent().getParent().getParent().getParent().getParent()).dispose();
+				parent.dispose();
+				// ((EmployeePage)
+				// e.getComponent().getParent().getParent().getParent().getParent()).dispose();
 			}
 		});
 
@@ -363,9 +368,10 @@ public class EmployeePage extends JFrame implements ActionListener {
 						StringUtils.getCurrentClassAndMethodNames());
 				String timeoutMess = MessageFormat.format(bundleMessage.getString("App_TimeOut"),
 						cfg.getProperty("Expired_Time"));
-				JOptionPane.showMessageDialog(container, timeoutMess, "Time Out", JOptionPane.WARNING_MESSAGE);
+				JOptionPane.showMessageDialog(container, timeoutMess, "Time Out Emp", JOptionPane.WARNING_MESSAGE);
 
 				root.dispose();
+				parent.dispose();
 			}
 		});
 		updateTimer.setRepeats(false);
@@ -522,7 +528,6 @@ public class EmployeePage extends JFrame implements ActionListener {
 						transactionID = transCtl.insertTransaction(userName, companyCode, machineCode, "", "",
 								toolComboBox.getSelectedItem().toString(), tray, quantityTextField.getText(),
 								Enum.GETTOOL.text(), "Send request to board");
-						
 
 						masterLogObj.insertLog(userName, Enum.WORKINGTRANSACTION, "", Enum.CREATE, "", "", companyCode,
 								machineCode, StringUtils.getCurrentClassAndMethodNames());

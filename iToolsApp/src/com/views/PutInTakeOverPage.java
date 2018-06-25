@@ -104,11 +104,13 @@ public class PutInTakeOverPage extends JFrame implements ActionListener {
 	String userName = "";
 
 	JFrame root = this;
+	JFrame parent;
 	Timer updateTimer;
 	int expiredTime = Integer.valueOf(cfg.getProperty("Expired_Time")) * 1000;
 
-	PutInTakeOverPage(Assessor user, String pageType) {
+	PutInTakeOverPage(JFrame parent, Assessor user, String pageType) {
 		toolVstrayAndQuantityMap = empCtlObj.getToolTrayQuantity(machineCode);
+		this.parent = parent;
 		this.pageType = pageType;
 		System.out.println(toolVstrayAndQuantityMap);
 		setLayoutManager();
@@ -166,6 +168,7 @@ public class PutInTakeOverPage extends JFrame implements ActionListener {
 				masterLogObj.insertLog(userName, Enum.ASSESSOR, "", Enum.LOGOUT, "", "", companyCode, machineCode,
 						StringUtils.getCurrentClassAndMethodNames());
 				root.dispose();
+				parent.dispose();
 //				((PutInTakeOverPage) e.getComponent().getParent().getParent().getParent().getParent()).dispose();
 			}
 		});
@@ -317,9 +320,10 @@ public class PutInTakeOverPage extends JFrame implements ActionListener {
 						machineCode, StringUtils.getCurrentClassAndMethodNames());
 				String timeoutMess = MessageFormat.format(bundleMessage.getString("App_TimeOut"),
 						cfg.getProperty("Expired_Time"));
-				JOptionPane.showMessageDialog(container, timeoutMess, "Time Out", JOptionPane.WARNING_MESSAGE);
+				JOptionPane.showMessageDialog(container, timeoutMess, "Time Out Putin", JOptionPane.WARNING_MESSAGE);
 
 				root.dispose();
+				parent.dispose();
 			}
 		});
 		updateTimer.setRepeats(false);

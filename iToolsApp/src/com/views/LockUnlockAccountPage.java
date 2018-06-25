@@ -67,6 +67,7 @@ public class LockUnlockAccountPage extends JFrame implements ActionListener {
 	final static Logger logger = Logger.getLogger(LockUnlockAccountPage.class);
 
 	LogController masterLogObj = new LogController();
+	JFrame parent;
 
 	private static final String companyCode = AdvancedEncryptionStandard.decrypt(cfg.getProperty("COMPANY_CODE"));
 	private static final String machineCode = AdvancedEncryptionStandard.decrypt(cfg.getProperty("MACHINE_CODE"));
@@ -75,7 +76,8 @@ public class LockUnlockAccountPage extends JFrame implements ActionListener {
 	int expiredTime = Integer.valueOf(cfg.getProperty("Expired_Time")) * 1000;
 	String userName = "";
 
-	LockUnlockAccountPage(Assessor user, boolean isDashboard) {
+	LockUnlockAccountPage(JFrame parent, Assessor user, boolean isDashboard) {
+		this.parent = parent;
 		this.user = user;
 		this.isDashboard = isDashboard;
 		setLayoutManager();
@@ -141,6 +143,7 @@ public class LockUnlockAccountPage extends JFrame implements ActionListener {
 				masterLogObj.insertLog(userName, Enum.ASSESSOR, "", Enum.LOGOUT, "", "", companyCode, machineCode,
 						StringUtils.getCurrentClassAndMethodNames());
 				root.dispose();
+				parent.dispose();
 //				((EmployeePage) e.getComponent().getParent().getParent().getParent().getParent()).dispose();
 			}
 		});
@@ -189,9 +192,10 @@ public class LockUnlockAccountPage extends JFrame implements ActionListener {
 						StringUtils.getCurrentClassAndMethodNames());
 				String timeoutMess = MessageFormat.format(bundleMessage.getString("App_TimeOut"),
 						cfg.getProperty("Expired_Time"));
-				JOptionPane.showMessageDialog(container, timeoutMess, "Time Out", JOptionPane.WARNING_MESSAGE);
+				JOptionPane.showMessageDialog(container, timeoutMess, "Time Out Lock Unlock", JOptionPane.WARNING_MESSAGE);
 
 				root.dispose();
+				parent.dispose();
 			}
 		});
 		updateTimer.setRepeats(false);

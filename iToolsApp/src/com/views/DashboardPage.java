@@ -168,11 +168,12 @@ public class DashboardPage extends JFrame implements ActionListener {
 		updateTimer = new Timer(expiredTime, new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				System.out.println(e);
 				masterLogObj.insertLog(userName, Enum.DASHBOARD_PAGE, "", Enum.TIME_OUT, "", "", companyCode,
 						machineCode, StringUtils.getCurrentClassAndMethodNames());
 				String timeoutMess = MessageFormat.format(bundleMessage.getString("App_TimeOut"),
 						cfg.getProperty("Expired_Time"));
-				JOptionPane.showMessageDialog(container, timeoutMess, "Time Out", JOptionPane.WARNING_MESSAGE);
+				JOptionPane.showMessageDialog(container, timeoutMess, "Time Out Dashboard", JOptionPane.WARNING_MESSAGE);
 
 				root.dispose();
 			}
@@ -217,6 +218,7 @@ public class DashboardPage extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		updateTimer.restart();
 		if (e.getSource() == unlockMachineButton) {
+			updateTimer.stop();
 			masterLogObj.insertLog(userName, Enum.ASSESSOR, "", Enum.UNLOCK_MACHINE, "", "", companyCode, machineCode,
 					StringUtils.getCurrentClassAndMethodNames());
 			final JDialog d = new JDialog();
@@ -260,35 +262,39 @@ public class DashboardPage extends JFrame implements ActionListener {
 			d.setVisible(true);
 		}
 		if (e.getSource() == takeOverButton) {
+			updateTimer.stop();
 			masterLogObj.insertLog(userName, Enum.ASSESSOR, "", Enum.TKOVER, "", "", companyCode, machineCode,
 					StringUtils.getCurrentClassAndMethodNames());
-			PutInTakeOverPage putinsTakeOverPage = new PutInTakeOverPage(user, Enum.TKOVER.text());
+			PutInTakeOverPage putinsTakeOverPage = new PutInTakeOverPage(root, user, Enum.TKOVER.text());
 			StringUtils.frameInit(putinsTakeOverPage, bundleMessage);
 			putinsTakeOverPage.setTitle(user.getUsername() + " - " + user.getFirstName() + " " + user.getLastName());
 			putinsTakeOverPage.show();
 		}
 		if (e.getSource() == putInsButton) {
+			updateTimer.stop();
 			masterLogObj.insertLog(userName, Enum.ASSESSOR, "", Enum.PUTIN, "", "", companyCode, machineCode,
 					StringUtils.getCurrentClassAndMethodNames());
-			PutInTakeOverPage putinsTakeOverPage = new PutInTakeOverPage(user, Enum.PUTIN.text());
+			PutInTakeOverPage putinsTakeOverPage = new PutInTakeOverPage(root, user, Enum.PUTIN.text());
 			StringUtils.frameInit(putinsTakeOverPage, bundleMessage);
 			putinsTakeOverPage.setTitle(user.getUsername() + " - " + user.getFirstName() + " " + user.getLastName());
 			putinsTakeOverPage.show();
 		}
 
 		if (e.getSource() == resetPasswordButton) {
+			updateTimer.stop();
 			masterLogObj.insertLog(userName, Enum.ASSESSOR, "", Enum.RESET_PASS, "", "", companyCode, machineCode,
 					StringUtils.getCurrentClassAndMethodNames());
-			ResetPasswordPage resetPassPage = new ResetPasswordPage(user, true, false);
+			ResetPasswordPage resetPassPage = new ResetPasswordPage(root, user, true, false);
 			StringUtils.frameInit(resetPassPage, bundleMessage);
 			// empPage.setJMenuBar(StringUtils.addMenu());
 			resetPassPage.setTitle(user.getUsername() + " - " + user.getFirstName() + " " + user.getLastName());
 			resetPassPage.show();
 		}
 		if (e.getSource() == lockAccountButton) {
+			updateTimer.stop();
 			masterLogObj.insertLog(userName, Enum.ASSESSOR, "", Enum.LOCK_USER, "", "", companyCode, machineCode,
 					StringUtils.getCurrentClassAndMethodNames());
-			LockUnlockAccountPage lockUnlockPage = new LockUnlockAccountPage(user, true);
+			LockUnlockAccountPage lockUnlockPage = new LockUnlockAccountPage(root, user, true);
 			StringUtils.frameInit(lockUnlockPage, bundleMessage);
 			// empPage.setJMenuBar(StringUtils.addMenu());
 			lockUnlockPage.setTitle(user.getUsername() + " - " + user.getFirstName() + " " + user.getLastName());
@@ -296,9 +302,10 @@ public class DashboardPage extends JFrame implements ActionListener {
 		}
 
 		if (e.getSource() == getToolButton) {
+			updateTimer.stop();
 			masterLogObj.insertLog(userName, Enum.ASSESSOR, "", Enum.GETTOOL, "", "", companyCode, machineCode,
 					StringUtils.getCurrentClassAndMethodNames());
-			EmployeePage empPage = new EmployeePage(userName, true);
+			EmployeePage empPage = new EmployeePage(root, userName, true);
 			StringUtils.frameInit(empPage, bundleMessage);
 			// empPage.setJMenuBar(StringUtils.addMenu());
 			empPage.setTitle(user.getUsername() + " - " + user.getFirstName() + " " + user.getLastName());

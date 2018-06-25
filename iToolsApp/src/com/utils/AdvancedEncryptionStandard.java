@@ -56,32 +56,32 @@ public class AdvancedEncryptionStandard {
 		return null;
 	}
 
-	// public static void main(String[] a) throws Exception {
-	//
-	// String plainText = "MAC1";
-	// String cipherText = AdvancedEncryptionStandard.encrypt(plainText);
-	// AdvancedEncryptionStandard.decrypt(cipherText);
-	// System.out.println();
-	//
-	// plainText = "MAC2";
-	// cipherText = AdvancedEncryptionStandard.encrypt(plainText);
-	// AdvancedEncryptionStandard.decrypt(cipherText);
-	// System.out.println();
-	//
-	// plainText = "MAC3";
-	// cipherText = AdvancedEncryptionStandard.encrypt(plainText);
-	// AdvancedEncryptionStandard.decrypt(cipherText);
-	// System.out.println();
-	//
-	// plainText = "MAC4";
-	// cipherText = AdvancedEncryptionStandard.encrypt(plainText);
-	// AdvancedEncryptionStandard.decrypt(cipherText);
-	// System.out.println();
-	//
-	// plainText = "MAC5";
-	// cipherText = AdvancedEncryptionStandard.encrypt(plainText);
-	// AdvancedEncryptionStandard.decrypt(cipherText);
-	// System.out.println();
-	//
-	// }
+//	public static void main(String[] a) throws Exception {
+//
+//		String plainText = "tqteamne_iTools";
+//		String cipherText = AdvancedEncryptionStandard.encrypt(plainText);
+//		AdvancedEncryptionStandard.decrypt(cipherText);
+//		System.out.println();
+//
+//		plainText = "tqteamne_admin";
+//		cipherText = AdvancedEncryptionStandard.encrypt(plainText);
+//		AdvancedEncryptionStandard.decrypt(cipherText);
+//		System.out.println();
+//
+//		plainText = "Admin123";
+//		cipherText = AdvancedEncryptionStandard.encrypt(plainText);
+//		AdvancedEncryptionStandard.decrypt(cipherText);
+//		System.out.println();
+//
+//		plainText = "112.213.89.49";
+//		cipherText = AdvancedEncryptionStandard.encrypt(plainText);
+//		AdvancedEncryptionStandard.decrypt(cipherText);
+//		System.out.println();
+//
+//		plainText = "MAC5";
+//		cipherText = AdvancedEncryptionStandard.encrypt(plainText);
+//		AdvancedEncryptionStandard.decrypt(cipherText);
+//		System.out.println();
+//
+//	}
 }
