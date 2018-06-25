@@ -45,10 +45,11 @@ public class LoginController {
 			if (rs.isBeforeFirst()) {
 				while (rs.next()) {
 					String companyCode = rs.getString(5);
-					System.out.println(rs.getString(6));
-					System.out.println(Boolean.getBoolean(rs.getString(6)));
 					Assessor user = new Assessor(username, password, companyCode);
+					user.setAssessorId(Integer.valueOf(rs.getString(1)));
 					user.setFirstName(rs.getString(3));
+					user.setUsername(username);
+					user.setPassword(password);
 					user.setLastName(rs.getString(4));
 					user.setFirstTimeLogin(StringUtils.converToBoolean(rs.getString(6)));
 					return user;
@@ -70,7 +71,7 @@ public class LoginController {
 	 * @return
 	 */
 	public List<Assessor> getAllUsers() {
-		String sql = "SELECT AssessorID, UserName, Password, CompanyId FROM Assessor where Assessor.IsActive=1;";
+		String sql = "SELECT AssessorID, UserName, Password, CompanyCode FROM Assessor where Assessor.IsActive=1;";
 		List<Assessor> listAllUsers = new ArrayList<>();
 		try {
 			PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);

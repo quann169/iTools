@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+   xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+   <head>
+      <meta charset="UTF-8">
+      <title>User List</title>
+      <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}" />
+      <style>
+	      table th, table td {
+	        border: 1px solid #ccc;
+		    padding: 5px;
+		    width: 150px;
+		    display: inline-block;
+		    text-align: center;
+	      }
+	      .message {
+	         color: blue;
+	      }
+	  </style>
+   </head>
+   <body>
+      <th:block th:include="/_header"></th:block>
+      <th:block th:include="/_menu"></th:block>
+       
+      <div class="page-title">User List</div>
+      
+      <table border="1" style="width:100%">
+            <tr>
+               <th>Company ID</th>
+               <th>Company Name</th>
+               <th>Company Code</th>
+               <th>Address</th>
+               <th>Location</th>
+            </tr>
+            <tr th:each ="companyInfo : ${paginationCompany.list}">
+               <td th:utext="${companyInfo.companyId}">...</td>
+               <td th:utext="${companyInfo.companyName}">...</td>
+               <td th:utext="${companyInfo.companyCode}">...</td>
+               <td th:utext="${companyInfo.address}">...</td>
+               <td th:utext="${companyInfo.location}">...</td>
+            </tr>
+      </table>      
+       
+      <br/>
+      <div class="page-navigator" th:if="${paginationCompany.totalPages > 1}">
+         <th:block th:each="page : ${paginationCompany.navigationPages}">
+         
+            <a th:href="@{|/companyList?page=${page}|}" th:if="${page != -1}"
+               class="nav-item" th:utext="${page}"></a>
+               
+            <span class="nav-item" th:if="${page == -1}"> ... </span>
+             
+         </th:block>
+      </div>
+       
+      <th:block th:include="/_footer"></th:block>
+       
+   </body>
+</html>

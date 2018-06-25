@@ -14,7 +14,7 @@ import java.awt.event.FocusEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.font.TextAttribute;
-import java.util.ArrayList;
+import java.text.MessageFormat;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -35,18 +35,22 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.SwingWorker;
+import javax.swing.Timer;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
 import org.apache.log4j.Logger;
 
 import com.controllers.EmployeeController;
+import com.controllers.LogController;
+import com.controllers.TransactionController;
+import com.message.Enum;
 import com.models.Assessor;
-import com.models.Machine;
 import com.models.Tool;
 import com.utils.AdvancedEncryptionStandard;
 import com.utils.AutoCompletion;
 import com.utils.Config;
+import com.utils.StringUtils;
 
 public class PutInTakeOverPage extends JFrame implements ActionListener {
 
@@ -67,6 +71,8 @@ public class PutInTakeOverPage extends JFrame implements ActionListener {
 	JLabel trayLabel = new JLabel(bundleMessage.getString("Putin_TakeOver_Page_Tray"));
 	JLabel quantityLabel = new JLabel(bundleMessage.getString("Putin_TakeOver_Page_Quantity"));
 
+	JLabel quantityMessage = new JLabel("");
+
 	JComboBox<String> trayCombobox = new JComboBox<String>();
 	JComboBox<String> toolComboBox = new JComboBox<String>();
 	JTextField quantityTextField = new JTextField();
@@ -80,16 +86,33 @@ public class PutInTakeOverPage extends JFrame implements ActionListener {
 	private static final Config cfg = new Config();
 	private static final String COMPANY_CODE = "COMPANY_CODE";
 	private static final String MACHINE_CODE = "MACHINE_CODE";
+
 	String companyCode = AdvancedEncryptionStandard.decrypt(cfg.getProperty(COMPANY_CODE));
 	String machineCode = AdvancedEncryptionStandard.decrypt(cfg.getProperty(MACHINE_CODE));
 
+	int maxItemsPerTray = Integer.valueOf(cfg.getProperty("MAX_ITEM_PER_TRAY"));
+
 	final static Logger logger = Logger.getLogger(PutInTakeOverPage.class);
 	EmployeeController empCtlObj = new EmployeeController();
+	Map<String, Integer> mapTrayQuantity = new HashMap<>();
+	boolean resultValue;
+	String pageType;
+	int defaultQuantity = -1;
+	int newQuantity = -1;
 
-	int resultValue;
+	LogController masterLogObj = new LogController();
+	String userName = "";
 
-	PutInTakeOverPage(Assessor user, String pageType) {
+	JFrame root = this;
+	JFrame parent;
+	Timer updateTimer;
+	int expiredTime = Integer.valueOf(cfg.getProperty("Expired_Time")) * 1000;
+
+	PutInTakeOverPage(JFrame parent, Assessor user, String pageType) {
 		toolVstrayAndQuantityMap = empCtlObj.getToolTrayQuantity(machineCode);
+		this.parent = parent;
+		this.pageType = pageType;
+		System.out.println(toolVstrayAndQuantityMap);
 		setLayoutManager();
 		setLocationAndSize();
 		addComponentsToContainer();
@@ -142,118 +165,58 @@ public class PutInTakeOverPage extends JFrame implements ActionListener {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				System.out.println("logOutLabel");
-				((PutInTakeOverPage) e.getComponent().getParent().getParent().getParent().getParent()).dispose();
+				masterLogObj.insertLog(userName, Enum.ASSESSOR, "", Enum.LOGOUT, "", "", companyCode, machineCode,
+						StringUtils.getCurrentClassAndMethodNames());
+				root.dispose();
+				parent.dispose();
+//				((PutInTakeOverPage) e.getComponent().getParent().getParent().getParent().getParent()).dispose();
 			}
 		});
-
-		toolLabel.setBounds(100, 170, 150, 60);
-		toolLabel.setFont(new Font(labelFont.getName(), Font.BOLD, 25));
-
-		trayLabel.setBounds(250, 205, 150, 60);
-		trayLabel.setFont(new Font(labelFont.getName(), Font.ITALIC + Font.BOLD, 15));
-
-		trayCombobox.setBounds(250, 190, 300, 30);
-		trayCombobox.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				String selectValue = trayCombobox.getSelectedItem().toString();
-				// System.out.println(toolVstrayAndQuantityMap);
-				// System.out.println("selectValue: " + selectValue);
-				if (toolVstrayAndQuantityMap.containsKey(selectValue)) {
-
-					List<List<Object>> existedValue = toolVstrayAndQuantityMap.get(selectValue);
-					if (existedValue.size() > 0) {
-						List<String> listTrays = new ArrayList<>();
-						for (List<Object> trayQuantity : existedValue) {
-							// System.out.println("trayQuantity: " +
-							// trayQuantity);
-							String tray = (String) trayQuantity.get(0);
-							int quantity = (int) trayQuantity.get(1);
-							quantityTextField.setText("" + quantity);
-							// trayTextField.setText("" + tray);
-							listTrays.add(trayQuantity.toString());
-						}
-						trayCombobox.setToolTipText(listTrays.toString());
-					}
-
-				} else {
-					trayCombobox.setSelectedIndex(0);
-					quantityTextField.setText("0");
-
-					if (!selectValue.equals("")) {
-						List<Machine> availableMachine = empCtlObj.findAvailableMachine(machineCode, selectValue);
-
-						JOptionPane.showMessageDialog(trayCombobox.getParent(),
-								bundleMessage.getString("Employee_AvailableMachine"));
-						logger.info("Suggest machine for tool " + selectValue + " - company " + COMPANY_CODE + ": "
-								+ availableMachine);
-
-					}
-				}
-			}
-		});
-		trayCombobox.addFocusListener(new FocusAdapter() {
-
-			@Override
-			public void focusGained(FocusEvent e) {
-				trayCombobox.showPopup();
-			}
-		});
-		String machineCode = AdvancedEncryptionStandard.decrypt(cfg.getProperty(MACHINE_CODE));
-		List<Tool> listTrays = empCtlObj.getToolsOfMachine(machineCode);
-		Collections.sort(listTrays, new Comparator<Tool>() {
-			public int compare(Tool o1, Tool o2) {
-				if (o1.getToolName() == o2.getToolName())
-					return 0;
-				return o1.getToolName().compareToIgnoreCase(o2.getToolName());
-			}
-		});
-
-		trayCombobox.addItem("");
-		for (Tool tool : listTrays) {
-			trayCombobox.addItem(tool.getToolName());
-		}
-
-		AutoCompletion.enable(toolComboBox);
 
 		////////////////////////////////////////
+		toolLabel.setBounds(100, 105, 150, 60);
+		toolComboBox.setBounds(250, 110, 300, 30);
 
-		toolComboBox.setBounds(250, 190, 300, 30);
+		toolLabel.setFont(new Font(labelFont.getName(), Font.BOLD, 20));
+
 		toolComboBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if (trayCombobox.getItemCount() > 0) {
+					trayCombobox.removeAllItems();
+				}
+
+				quantityTextField.setText("");
 				String selectValue = toolComboBox.getSelectedItem().toString();
 				// System.out.println(toolVstrayAndQuantityMap);
 				// System.out.println("selectValue: " + selectValue);
-				if (toolVstrayAndQuantityMap.containsKey(selectValue)) {
 
-					List<List<Object>> existedValue = toolVstrayAndQuantityMap.get(selectValue);
-					if (existedValue.size() > 0) {
-						List<String> listTrays = new ArrayList<>();
-						for (List<Object> trayQuantity : existedValue) {
-							// System.out.println("trayQuantity: " +
-							// trayQuantity);
-							String tray = (String) trayQuantity.get(0);
-							int quantity = (int) trayQuantity.get(1);
-							quantityTextField.setText("" + quantity);
-							// trayTextField.setText("" + tray);
-							listTrays.add(trayQuantity.toString());
+				if (!"".equals(selectValue)) {
+					if (toolVstrayAndQuantityMap.containsKey(selectValue)) {
+						mapTrayQuantity = new HashMap<>();
+						List<List<Object>> existedValue = toolVstrayAndQuantityMap.get(selectValue);
+						if (existedValue.size() > 0) {
+							for (List<Object> trayQuantity : existedValue) {
+								String tray = (String) trayQuantity.get(0);
+								int quantity = (int) trayQuantity.get(1);
+								mapTrayQuantity.put(tray, quantity);
+								trayCombobox.addItem(tray);
+
+							}
+							// trayCombobox.setSelectedIndex(0);
+						} else {
+							System.out.println("AAAAAAAAAAAAAAa");
 						}
-						trayCombobox.setToolTipText(listTrays.toString());
-					}
 
-				} else {
-					trayCombobox.setSelectedIndex(0);
-					quantityTextField.setText("0");
-
-					if (!selectValue.equals("")) {
-						List<Machine> availableMachine = empCtlObj.findAvailableMachine(machineCode, selectValue);
-
-						JOptionPane.showMessageDialog(trayCombobox.getParent(),
-								bundleMessage.getString("Employee_AvailableMachine"));
-						logger.info("Suggest machine for tool " + selectValue + " - company " + COMPANY_CODE + ": "
-								+ availableMachine);
-
+					} else {
+						toolComboBox.setSelectedIndex(0);
+						quantityTextField.setText("0");
+						JOptionPane.showMessageDialog(container, MessageFormat
+								.format(bundleMessage.getString("Putin_TakeOver_Page_toolNotTrayMessage"), selectValue),
+								"Warning", JOptionPane.WARNING_MESSAGE);
+						sendRequestButton.setEnabled(false);
 					}
 				}
+
 			}
 		});
 		toolComboBox.addFocusListener(new FocusAdapter() {
@@ -263,7 +226,6 @@ public class PutInTakeOverPage extends JFrame implements ActionListener {
 				toolComboBox.showPopup();
 			}
 		});
-
 		List<Tool> listTools = empCtlObj.getToolsOfMachine(machineCode);
 		Collections.sort(listTools, new Comparator<Tool>() {
 			public int compare(Tool o1, Tool o2) {
@@ -280,11 +242,48 @@ public class PutInTakeOverPage extends JFrame implements ActionListener {
 
 		AutoCompletion.enable(toolComboBox);
 
-		quantityLabel.setBounds(450, 205, 150, 60);
-		quantityLabel.setFont(new Font(labelFont.getName(), Font.ITALIC + Font.BOLD, 15));
+		//////////////////////////////////////////////////////////////////
+		trayLabel.setBounds(100, 160, 150, 60);
+		trayCombobox.setBounds(250, 170, 300, 30);
 
-		quantityTextField.setBounds(450, 250, 100, 30);
-		quantityTextField.setEditable(false);
+		trayLabel.setFont(new Font(labelFont.getName(), Font.BOLD, 20));
+
+		trayCombobox.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (trayCombobox.getItemCount() == 0) {
+					return;
+				}
+
+				String selectValue = trayCombobox.getSelectedItem().toString();
+				// System.out.println(toolVstrayAndQuantityMap);
+				// System.out.println("selectValue: " + selectValue);
+				if (mapTrayQuantity.containsKey(selectValue)) {
+
+					quantityTextField.setText("" + mapTrayQuantity.get(selectValue));
+
+				} else {
+					trayCombobox.removeAllItems();
+					trayCombobox.addItem("");
+					quantityTextField.setText("");
+				}
+			}
+		});
+		trayCombobox.addFocusListener(new FocusAdapter() {
+
+			@Override
+			public void focusGained(FocusEvent e) {
+				trayCombobox.showPopup();
+			}
+		});
+
+		trayCombobox.addItem("");
+		AutoCompletion.enable(trayCombobox);
+
+		quantityLabel.setBounds(100, 220, 150, 60);
+		quantityLabel.setFont(new Font(labelFont.getName(), Font.BOLD, 20));
+
+		quantityTextField.setBounds(250, 230, 100, 30);
+		// quantityTextField.setEditable(false);
 		quantityTextField.getDocument().addDocumentListener(new DocumentListener() {
 			public void changedUpdate(DocumentEvent e) {
 				warn();
@@ -305,30 +304,80 @@ public class PutInTakeOverPage extends JFrame implements ActionListener {
 			}
 		});
 
+		quantityMessage.setBounds(250, 260, 380, 30);
+
 		sendRequestButton.setEnabled(false);
-		sendRequestButton.setBounds(250, 300, 180, 30);
+		sendRequestButton.setBounds(250, 290, 180, 30);
 		sendRequestButton.setFont(new Font(labelFont.getName(), Font.BOLD, 15));
 
-		cancelButton.setBounds(450, 300, 100, 30);
+		cancelButton.setBounds(450, 290, 100, 30);
 		cancelButton.setFont(new Font(labelFont.getName(), Font.BOLD, 15));
 
+		updateTimer = new Timer(expiredTime, new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				masterLogObj.insertLog(userName, Enum.PUTIN_TAKEOVER_PAGE, "", Enum.TIME_OUT, "", "", companyCode,
+						machineCode, StringUtils.getCurrentClassAndMethodNames());
+				String timeoutMess = MessageFormat.format(bundleMessage.getString("App_TimeOut"),
+						cfg.getProperty("Expired_Time"));
+				JOptionPane.showMessageDialog(container, timeoutMess, "Time Out Putin", JOptionPane.WARNING_MESSAGE);
+
+				root.dispose();
+				parent.dispose();
+			}
+		});
+		updateTimer.setRepeats(false);
+		updateTimer.restart();
 	}
 
 	private boolean validateAllFields() {
+		try {
+			updateTimer.restart();
+		} catch (Exception e) {
+			System.err.println("validateAllFields of putintakeover");
+		}
+		if (trayCombobox == null || toolComboBox == null || trayCombobox.getSelectedItem() == null
+				|| toolComboBox.getSelectedItem() == null || quantityTextField.getText() == null) {
+			return false;
+		}
 		int trayLength = ((String) trayCombobox.getSelectedItem()).length();
 		int toolLength = ((String) toolComboBox.getSelectedItem()).length();
 		int quantityLength = quantityTextField.getText().length();
-		// System.out.println("----");
-		// System.out.println("wo: " + woTextField.getText());
-		// System.out.println("op: " + opTextField.getText());
-		// System.out.println("tray: " + trayTextField.getText());
-		// System.out.println("tool: " + (String)
-		// toolComboBox.getSelectedItem());
-		// System.out.println("quan: " + quantityTextField.getText());
 
 		if (toolLength > 0 && trayLength > 0 && quantityLength > 0) {
-			sendRequestButton.setEnabled(true);
-			return true;
+			defaultQuantity = mapTrayQuantity.get(trayCombobox.getSelectedItem());
+			newQuantity = Integer.parseInt(quantityTextField.getText());
+			if (defaultQuantity != newQuantity) {
+				if (this.pageType.equals(Enum.TKOVER.text())) {
+					if (newQuantity > defaultQuantity) {
+						sendRequestButton.setEnabled(false);
+						quantityMessage
+								.setText("<html><html><font size=\"4\" face=\"arial\" color=\"RED\"><b>" + MessageFormat
+										.format(bundleMessage.getString("Putin_TakeOver_Page_TakeOverErrMessage"),
+												defaultQuantity)
+										+ "</b></font></html></html>");
+						return false;
+					}
+				} else {
+
+					if (newQuantity < defaultQuantity || newQuantity > maxItemsPerTray) {
+						sendRequestButton.setEnabled(false);
+						quantityMessage.setText("<html><html><font size=\"4\" face=\"arial\" color=\"RED\"><b>"
+								+ MessageFormat.format(bundleMessage.getString("Putin_TakeOver_Page_PutinErrMessage"),
+										defaultQuantity, maxItemsPerTray)
+								+ "</b></font></html></html>");
+						return false;
+					}
+
+				}
+
+				sendRequestButton.setEnabled(true);
+				quantityMessage.setText("");
+				return true;
+			}
+
+			sendRequestButton.setEnabled(false);
+			return false;
 		} else {
 			sendRequestButton.setEnabled(false);
 			return false;
@@ -348,6 +397,7 @@ public class PutInTakeOverPage extends JFrame implements ActionListener {
 		container.add(quantityTextField);
 		container.add(sendRequestButton);
 		container.add(cancelButton);
+		container.add(quantityMessage);
 	}
 
 	public void addActionEvent() {
@@ -357,6 +407,7 @@ public class PutInTakeOverPage extends JFrame implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		updateTimer.restart();
 		if (e.getSource() == sendRequestButton) {
 			// ImageIcon icon = new ImageIcon("src/img/confirmation_60x60.png");
 
@@ -381,18 +432,19 @@ public class PutInTakeOverPage extends JFrame implements ActionListener {
 
 			String ctid = toolComboBox.getSelectedItem().toString();
 			String tray = trayCombobox.getSelectedItem().toString();
-			int quantity = 1;
+			String quantity = quantityTextField.getText();
 
 			JLabel label2 = new JLabel("<html>Review and confirm information<br/>CTID: " + ctid + "<br/>Tray: " + tray
 					+ "<br/>Quantity: " + quantity + "</html>", SwingConstants.CENTER);
 			label2.setVerticalAlignment(SwingConstants.CENTER);
 			label2.setHorizontalAlignment(SwingConstants.CENTER);
-			label2.setFont(new Font("Arial", Font.BOLD, 17));
+			label2.setFont(new Font("Arial", Font.BOLD, 15));
 			label2.setBounds(0, 0, 350, 150);
 			panel.add(label2);
 
 			// UIManager.put("OptionPane.minimumSize", new Dimension(300, 120));
-			int dialogResult = JOptionPane.showConfirmDialog(this, panel, "Admin Rights Confirmation",
+			final String action = this.pageType;
+			int dialogResult = JOptionPane.showConfirmDialog(this, panel, action + " Confirmation",
 					JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, null);
 
 			// JPanel panel = new JPanel() {
@@ -430,54 +482,55 @@ public class PutInTakeOverPage extends JFrame implements ActionListener {
 				d.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
 				d.setModal(true);
 
-				SwingWorker<?, ?> worker = new SwingWorker<Void, Integer>() {
+				SwingWorker<?, ?> worker = new SwingWorker<Void, String>() {
 					protected Void doInBackground() throws InterruptedException {
-						int x = 0;
-						for (int z = 0; z < 5; z++) {
-							Thread.sleep(1000);
-						}
-						for (; x <= 100; x += 10) {
-							publish(x);
 
-							int lower = 0;
-							int upper = 10;
+						publish("Insert into transaction");
+						Thread.sleep(1000);
+						TransactionController transCtl = new TransactionController();
+						transCtl.insertTransaction(userName, companyCode, machineCode, "", "",
+								toolComboBox.getSelectedItem().toString(), trayCombobox.getSelectedItem().toString(),
+								quantityTextField.getText(), action, "Complete");
 
-							int value = (int) (Math.random() * (upper - lower)) + lower;
-							System.out.println("ramdom value: " + value);
-							if (value == 5) {
-								System.out.println("OK");
-								JOptionPane.showMessageDialog(container, "Completed!", "Notify result",
-										JOptionPane.INFORMATION_MESSAGE);
-								resultValue = 1;
-								break;
-							} else if (value == 7) {
-								System.out.println("Fail");
-								JOptionPane.showMessageDialog(container, "Failed!", "Notify result",
-										JOptionPane.ERROR_MESSAGE);
-								break;
-							}
-							Thread.sleep(1000);
+						masterLogObj.insertLog(userName, Enum.WORKINGTRANSACTION, "", Enum.CREATE, "", "", companyCode,
+								machineCode, StringUtils.getCurrentClassAndMethodNames());
+
+						publish("Update value");
+						Thread.sleep(1000);
+						resultValue = empCtlObj.updateToolTray(machineCode, toolComboBox.getSelectedItem().toString(),
+								trayCombobox.getSelectedItem().toString(), quantityTextField.getText());
+						if (resultValue) {
+							toolVstrayAndQuantityMap = empCtlObj.getToolTrayQuantity(machineCode);
+							toolComboBox.setSelectedIndex(0);
+							trayCombobox.removeAllItems();
+							quantityTextField.setText("");
 						}
-						if (x >= 100) {
-							System.out.println("No result");
-							JOptionPane.showMessageDialog(container, "No result!", "Notify result",
-									JOptionPane.WARNING_MESSAGE);
+						Thread.sleep(1000);
+						publish("Update log");
+
+						Enum actionType = Enum.PUTIN;
+						if (pageType.equals(Enum.TKOVER.text())) {
+							actionType = Enum.TKOVER;
 						}
+
+						masterLogObj.insertLog(userName, Enum.TOOLSMACHINETRAY, "quantity", actionType,
+								"" + defaultQuantity, "" + newQuantity, companyCode, machineCode,
+								StringUtils.getCurrentClassAndMethodNames());
+						Thread.sleep(1000);
+						publish("Send email");
+						Thread.sleep(1000);
+
 						return null;
 					}
 
-					protected void process(List<Integer> chunks) {
-						int selection = chunks.get(chunks.size() - 1);
-						progress.setText("Please Wait..." + selection + "s");
+					protected void process(List<String> chunks) {
+						String selection = chunks.get(chunks.size() - 1);
+						progress.setText(selection);
 					}
 
 					protected void done() {
 						System.out.println("Complete");
 						d.dispose();
-						if (resultValue == 1) {
-							toolComboBox.setSelectedIndex(0);
-							quantityTextField.setText("");
-						}
 
 					}
 				};

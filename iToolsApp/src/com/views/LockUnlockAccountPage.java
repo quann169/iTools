@@ -9,6 +9,7 @@ import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.text.MessageFormat;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -22,14 +23,18 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.Timer;
 
 import org.apache.log4j.Logger;
 
+import com.controllers.LogController;
 import com.controllers.UserController;
+import com.message.Enum;
 import com.models.Assessor;
 import com.utils.AdvancedEncryptionStandard;
 import com.utils.AutoCompletion;
 import com.utils.Config;
+import com.utils.StringUtils;
 
 public class LockUnlockAccountPage extends JFrame implements ActionListener {
 
@@ -56,20 +61,32 @@ public class LockUnlockAccountPage extends JFrame implements ActionListener {
 
 	UserController empCtlObj = new UserController();
 	boolean isDashboard;
+	List<Assessor> listUsers = empCtlObj.getUsersOfCompany(companyCode);
 
 	private static final Config cfg = new Config();
-	private static final String COMPANY_CODE = "COMPANY_CODE";
-	private String companyCode;
 	final static Logger logger = Logger.getLogger(LockUnlockAccountPage.class);
 
-	LockUnlockAccountPage(Assessor user, boolean isDashboard) {
+	LogController masterLogObj = new LogController();
+	JFrame parent;
+
+	private static final String companyCode = AdvancedEncryptionStandard.decrypt(cfg.getProperty("COMPANY_CODE"));
+	private static final String machineCode = AdvancedEncryptionStandard.decrypt(cfg.getProperty("MACHINE_CODE"));
+	JFrame root = this;
+	Timer updateTimer;
+	int expiredTime = Integer.valueOf(cfg.getProperty("Expired_Time")) * 1000;
+	String userName = "";
+
+	LockUnlockAccountPage(JFrame parent, Assessor user, boolean isDashboard) {
+		this.parent = parent;
 		this.user = user;
 		this.isDashboard = isDashboard;
 		setLayoutManager();
 		setLocationAndSize();
 		addComponentsToContainer();
 		addActionEvent();
-
+		this.userName = user.getUsername();
+		masterLogObj.insertLog(userName, Enum.ASSESSOR, "", Enum.LOCK_UNLOCK_PAGE, "", "", companyCode, machineCode,
+				StringUtils.getCurrentClassAndMethodNames());
 	}
 
 	public void setLayoutManager() {
@@ -89,6 +106,7 @@ public class LockUnlockAccountPage extends JFrame implements ActionListener {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				System.out.println("backToDashboardLabel");
+				updateTimer.restart();
 			}
 		});
 
@@ -106,6 +124,7 @@ public class LockUnlockAccountPage extends JFrame implements ActionListener {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				System.out.println("changePassLabel");
+				updateTimer.restart();
 			}
 		});
 
@@ -119,19 +138,20 @@ public class LockUnlockAccountPage extends JFrame implements ActionListener {
 		logOutLabel.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				updateTimer.restart();
 				System.out.println("logOutLabel");
-				((EmployeePage) e.getComponent().getParent().getParent().getParent().getParent()).dispose();
+				masterLogObj.insertLog(userName, Enum.ASSESSOR, "", Enum.LOGOUT, "", "", companyCode, machineCode,
+						StringUtils.getCurrentClassAndMethodNames());
+				root.dispose();
+				parent.dispose();
+//				((EmployeePage) e.getComponent().getParent().getParent().getParent().getParent()).dispose();
 			}
 		});
 
 		userNameComboBox.setBounds(250, 140, 300, 30);
 		userNameComboBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String selectValue = userNameComboBox.getSelectedItem().toString();
-				if (!selectValue.equals("")) {
-					lockAccountButtom.setEnabled(true);
-					unLockAccountButton.setEnabled(true);
-				}
+				validateAllFields();
 			}
 		});
 		userNameComboBox.addFocusListener(new FocusAdapter() {
@@ -141,16 +161,8 @@ public class LockUnlockAccountPage extends JFrame implements ActionListener {
 				userNameComboBox.showPopup();
 			}
 		});
-		String companyCode = AdvancedEncryptionStandard.decrypt(cfg.getProperty(COMPANY_CODE));
-		this.companyCode = companyCode;
-		List<Assessor> listUsers = empCtlObj.getUsersOfCompany(companyCode);
-		Collections.sort(listUsers, new Comparator<Assessor>() {
-			public int compare(Assessor o1, Assessor o2) {
-				String fullName1 = o1.getFirstName() + " " + o1.getLastName();
-				String fullName2 = o2.getFirstName() + " " + o2.getLastName();
-				return fullName1.compareToIgnoreCase(fullName2);
-			}
-		});
+
+		updateDisplayName();
 
 		userNameComboBox.addItem("");
 		for (Assessor user : listUsers) {
@@ -161,7 +173,6 @@ public class LockUnlockAccountPage extends JFrame implements ActionListener {
 			}
 
 		}
-
 		AutoCompletion.enable(userNameComboBox);
 
 		usernameLabel.setBounds(100, 130, 150, 60);
@@ -172,6 +183,59 @@ public class LockUnlockAccountPage extends JFrame implements ActionListener {
 
 		unLockAccountButton.setBounds(350, 200, 200, 40);
 		unLockAccountButton.setFont(new Font(labelFont.getName(), Font.BOLD, 15));
+		validateAllFields();
+		
+		updateTimer = new Timer(expiredTime, new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				masterLogObj.insertLog(userName, Enum.LOCK_UNLOCK_PAGE, "", Enum.TIME_OUT, "", "", companyCode, machineCode,
+						StringUtils.getCurrentClassAndMethodNames());
+				String timeoutMess = MessageFormat.format(bundleMessage.getString("App_TimeOut"),
+						cfg.getProperty("Expired_Time"));
+				JOptionPane.showMessageDialog(container, timeoutMess, "Time Out Lock Unlock", JOptionPane.WARNING_MESSAGE);
+
+				root.dispose();
+				parent.dispose();
+			}
+		});
+		updateTimer.setRepeats(false);
+		updateTimer.restart();
+	}
+	
+	private boolean validateAllFields() {
+		try {
+			updateTimer.restart();
+		} catch (Exception e) {
+			System.err.println("validateAllFields of lockunlockpage");
+		}
+		String selectedValue = userNameComboBox.getSelectedItem().toString();
+
+		if ("".equals(selectedValue)) {
+			lockAccountButtom.setEnabled(false);
+			unLockAccountButton.setEnabled(false);
+			return false;
+		} else {
+			lockAccountButtom.setEnabled(true);
+			unLockAccountButton.setEnabled(true);
+			return true;
+		}
+	}
+
+	private void updateDisplayName() {
+		mapDisplayName = new HashMap<>();
+
+		Collections.sort(listUsers, new Comparator<Assessor>() {
+			public int compare(Assessor o1, Assessor o2) {
+				String fullName1 = o1.getFirstName() + " " + o1.getLastName();
+				String fullName2 = o2.getFirstName() + " " + o2.getLastName();
+				return fullName1.compareToIgnoreCase(fullName2);
+			}
+		});
+		for (Assessor user : listUsers) {
+			String displayName = user.getFirstName() + " " + user.getLastName() + " - " + user.getUsername();
+			mapDisplayName.put(displayName, user);
+
+		}
 
 	}
 
@@ -194,18 +258,28 @@ public class LockUnlockAccountPage extends JFrame implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		updateTimer.restart();
 		String displayName = userNameComboBox.getSelectedItem().toString();
-		String userName = mapDisplayName.get(displayName).getUsername();
+		String userNameLock = mapDisplayName.get(displayName).getUsername();
+		String oldIsActiveValue = mapDisplayName.get(displayName).isLocked();
 		if (e.getSource() == lockAccountButtom) {
-			empCtlObj.updateIsActive(userName, this.companyCode, 0);
+			empCtlObj.updateIsLocked(userNameLock, companyCode, 0);
+			masterLogObj.insertLog(userName, Enum.ASSESSOR, "IsLocked", Enum.UPDATE,
+					userNameLock + " - " + oldIsActiveValue, userNameLock + " - 0", companyCode, machineCode,
+					StringUtils.getCurrentClassAndMethodNames());
 			JOptionPane.showMessageDialog(container, "Completed Lock Account!", "Notify result",
 					JOptionPane.INFORMATION_MESSAGE);
+			updateDisplayName();
 		}
 
 		if (e.getSource() == unLockAccountButton) {
-			empCtlObj.updateIsActive(userName, this.companyCode, 1);
+			empCtlObj.updateIsLocked(userNameLock, companyCode, 1);
+			masterLogObj.insertLog(userName, Enum.ASSESSOR, "IsLocked", Enum.UPDATE,
+					userNameLock + " - " + oldIsActiveValue, userNameLock + " - 1", companyCode, machineCode,
+					StringUtils.getCurrentClassAndMethodNames());
 			JOptionPane.showMessageDialog(container, "Completed UnLock Account!", "Notify result",
 					JOptionPane.INFORMATION_MESSAGE);
+			updateDisplayName();
 		}
 
 	}

@@ -43,11 +43,16 @@ import javax.swing.event.DocumentListener;
 import org.apache.log4j.Logger;
 
 import com.controllers.EmployeeController;
+import com.controllers.LogController;
+import com.controllers.TransactionController;
+import com.controllers.UsbHIDDeviceController;
+import com.message.Enum;
 import com.models.Machine;
 import com.models.Tool;
 import com.utils.AdvancedEncryptionStandard;
 import com.utils.AutoCompletion;
 import com.utils.Config;
+import com.utils.StringUtils;
 
 public class EmployeePage extends JFrame implements ActionListener {
 
@@ -88,24 +93,49 @@ public class EmployeePage extends JFrame implements ActionListener {
 	String companyCode = AdvancedEncryptionStandard.decrypt(cfg.getProperty(COMPANY_CODE));
 	String machineCode = AdvancedEncryptionStandard.decrypt(cfg.getProperty(MACHINE_CODE));
 
+	int transactionID = -1;
+	LogController masterLogObj = new LogController();
+	String userName = "";
+
+	JFrame root = this;
+
 	final static Logger logger = Logger.getLogger(EmployeePage.class);
 	EmployeeController empCtlObj = new EmployeeController();
 	Timer updateTimer;
-	int delayTime = Integer.valueOf(cfg.getProperty("Employee_Page_Time_Change_Focus")) * 1000;
+	int expiredTime = Integer.valueOf(cfg.getProperty("Expired_Time")) * 1000;
 	int wo_min_length = Integer.valueOf(cfg.getProperty("Employee_Page_WO_Min_Length"));
 	int op_min_length = Integer.valueOf(cfg.getProperty("Employee_Page_OP_Min_Length"));
+
+	String vendorId = cfg.getProperty("VENDOR_ID");
+	String productId = cfg.getProperty("PRODUCT_ID");
+	int readWaitTime = Integer.valueOf(cfg.getProperty("READ_WAIT_TIME"));
+	HashMap<String, String> hashMessage = new HashMap<>();
 
 	int resultValue;
 	boolean isDashboard;
 
-	EmployeePage(boolean isDashboard) {
+	JFrame parent;
+
+	EmployeePage(JFrame parent, String userName, boolean isDashboard) {
+		this.userName = userName;
 		this.isDashboard = isDashboard;
+		this.parent = parent;
 		toolVstrayAndQuantityMap = empCtlObj.getToolTrayQuantity(machineCode);
 		setLayoutManager();
 		setLocationAndSize();
 		addComponentsToContainer();
 		addActionEvent();
+		masterLogObj.insertLog(userName, Enum.WORKINGTRANSACTION, "", Enum.EMP_PAGE, "", "", companyCode, machineCode,
+				StringUtils.getCurrentClassAndMethodNames());
 
+		List<String> listAllTrays = Enum.getTrays();
+		System.out.println("listAllTrays: " + listAllTrays);
+		for (String tray : listAllTrays) {
+			System.out.println(tray + ": " + cfg.checkKey(tray));
+			if (cfg.checkKey(tray)) {
+				hashMessage.put(tray, cfg.getProperty(tray));
+			}
+		}
 	}
 
 	public void setLayoutManager() {
@@ -126,6 +156,8 @@ public class EmployeePage extends JFrame implements ActionListener {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				System.out.println("backToDashboardLabel");
+				masterLogObj.insertLog(userName, Enum.ASSESSOR, "", Enum.SHOW_DASHBOARD, "", "", companyCode,
+						machineCode, StringUtils.getCurrentClassAndMethodNames());
 			}
 		});
 
@@ -143,6 +175,8 @@ public class EmployeePage extends JFrame implements ActionListener {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				System.out.println("changePassLabel");
+				masterLogObj.insertLog(userName, Enum.ASSESSOR, "", Enum.CHANGE_PASS, "", "", companyCode, machineCode,
+						StringUtils.getCurrentClassAndMethodNames());
 			}
 		});
 
@@ -156,8 +190,13 @@ public class EmployeePage extends JFrame implements ActionListener {
 		logOutLabel.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				masterLogObj.insertLog(userName, Enum.ASSESSOR, "", Enum.LOGOUT, "", "", companyCode, machineCode,
+						StringUtils.getCurrentClassAndMethodNames());
 				System.out.println("logOutLabel");
-				((EmployeePage) e.getComponent().getParent().getParent().getParent().getParent()).dispose();
+				root.dispose();
+				parent.dispose();
+				// ((EmployeePage)
+				// e.getComponent().getParent().getParent().getParent().getParent()).dispose();
 			}
 		});
 
@@ -181,7 +220,6 @@ public class EmployeePage extends JFrame implements ActionListener {
 
 			public void warn() {
 				validateAllFields();
-				updateTimer.restart();
 			}
 		});
 
@@ -208,7 +246,6 @@ public class EmployeePage extends JFrame implements ActionListener {
 
 			public void warn() {
 				validateAllFields();
-				updateTimer.restart();
 			}
 		});
 
@@ -339,21 +376,30 @@ public class EmployeePage extends JFrame implements ActionListener {
 		cancelButton.setBounds(450, 300, 100, 30);
 		cancelButton.setFont(new Font(labelFont.getName(), Font.BOLD, 15));
 
-		updateTimer = new Timer(delayTime, new ActionListener() {
+		updateTimer = new Timer(expiredTime, new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (woTextField.getText().length() > wo_min_length && opTextField.getText().length() > op_min_length) {
-					toolComboBox.requestFocusInWindow();
-				} else if (woTextField.getText().length() > wo_min_length && opTextField.getText().length() == 0) {
-					opTextField.requestFocusInWindow();
-				}
+				masterLogObj.insertLog(userName, Enum.EMP_PAGE, "", Enum.TIME_OUT, "", "", companyCode, machineCode,
+						StringUtils.getCurrentClassAndMethodNames());
+				String timeoutMess = MessageFormat.format(bundleMessage.getString("App_TimeOut"),
+						cfg.getProperty("Expired_Time"));
+				JOptionPane.showMessageDialog(container, timeoutMess, "Time Out Emp", JOptionPane.WARNING_MESSAGE);
+
+				root.dispose();
+				parent.dispose();
 			}
 		});
 		updateTimer.setRepeats(false);
+		updateTimer.restart();
 
 	}
 
 	private boolean validateAllFields() {
+		try {
+			updateTimer.restart();
+		} catch (Exception e) {
+			System.err.println("validateAllFields of emppage");
+		}
 		int woLength = woTextField.getText().length();
 		int opLength = opTextField.getText().length();
 		int trayLength = trayTextField.getText().length();
@@ -366,7 +412,7 @@ public class EmployeePage extends JFrame implements ActionListener {
 		// System.out.println("tool: " + (String)
 		// toolComboBox.getSelectedItem());
 		// System.out.println("quan: " + quantityTextField.getText());
-
+		updateTimer.restart();
 		if (woLength > 0 && opLength > 0 && toolLength > 0 && trayLength > 0 && quantityLength > 0) {
 			sendRequestButton.setEnabled(true);
 			return true;
@@ -402,6 +448,7 @@ public class EmployeePage extends JFrame implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		updateTimer.restart();
 		if (e.getSource() == sendRequestButton) {
 			// ImageIcon icon = new ImageIcon("src/img/confirmation_60x60.png");
 
@@ -439,35 +486,19 @@ public class EmployeePage extends JFrame implements ActionListener {
 			label2.setBounds(0, 0, 350, 150);
 			panel.add(label2);
 
-			// UIManager.put("OptionPane.minimumSize", new Dimension(300, 120));
 			int dialogResult = JOptionPane.showConfirmDialog(this, panel, "Admin Rights Confirmation",
 					JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, null);
 
-			// JPanel panel = new JPanel() {
-			// @Override
-			// public Dimension getPreferredSize() {
-			// return new Dimension(320, 240);
-			// }
-
-			// };
-
-			// We can use JTextArea or JLabel to display messages
 			JTextArea textArea = new JTextArea();
 			textArea.setEditable(false);
 			panel.setLayout(new BorderLayout());
 			panel.add(new JScrollPane(textArea));
 
-			// int dialogResult = JOptionPane.showConfirmDialog(null, panel, //
-			// Here
-			// // goes
-			// // content
-			// "Here goes the title", JOptionPane.OK_CANCEL_OPTION, // Options
-			// // for
-			// // JOptionPane
-			// JOptionPane.ERROR_MESSAGE); // Message type
-
 			if (dialogResult == 0) {
 				System.out.println("Yes option");
+				updateTimer.restart();
+				masterLogObj.insertLog(userName, Enum.WORKINGTRANSACTION, "", Enum.REQUEST_TOOL, "", "", companyCode,
+						machineCode, StringUtils.getCurrentClassAndMethodNames());
 				final JDialog d = new JDialog();
 				JPanel p1 = new JPanel(new GridBagLayout());
 				JLabel progress = new JLabel("Please Wait...");
@@ -477,46 +508,99 @@ public class EmployeePage extends JFrame implements ActionListener {
 				// d.setLocationRelativeTo(f);
 				d.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
 				d.setModal(true);
+				int columnId = -1;
 
-				SwingWorker<?, ?> worker = new SwingWorker<Void, Integer>() {
+				SwingWorker<?, ?> worker = new SwingWorker<Void, String>() {
 					protected Void doInBackground() throws InterruptedException {
+						updateTimer.restart();
 						int x = 0;
-						for (int z = 0; z < 5; z++) {
-							Thread.sleep(1000);
-						}
-						for (; x <= 100; x += 10) {
-							publish(x);
+						Thread.sleep(1000);
+						publish("Insert into transaction");
+						Thread.sleep(1000);
+						TransactionController transCtl = new TransactionController();
+						transactionID = transCtl.insertTransaction(userName, companyCode, machineCode, "", "",
+								toolComboBox.getSelectedItem().toString(), tray, quantityTextField.getText(),
+								Enum.GETTOOL.text(), "Send request to board");
 
-							int lower = 0;
-							int upper = 10;
-
-							int value = (int) (Math.random() * (upper - lower)) + lower;
-							System.out.println("ramdom value: " + value);
-							if (value == 5) {
-								System.out.println("OK");
-								JOptionPane.showMessageDialog(container, "Completed!", "Notify result",
-										JOptionPane.INFORMATION_MESSAGE);
-								resultValue = 1;
-								break;
-							} else if (value == 7) {
-								System.out.println("Fail");
-								JOptionPane.showMessageDialog(container, "Failed!", "Notify result",
-										JOptionPane.ERROR_MESSAGE);
-								break;
+						masterLogObj.insertLog(userName, Enum.WORKINGTRANSACTION, "", Enum.CREATE, "", "", companyCode,
+								machineCode, StringUtils.getCurrentClassAndMethodNames());
+						System.out.println("hashMessage: " + hashMessage);
+						System.out.println("trayTextField.getText(): " + trayTextField.getText());
+						System.out.println(hashMessage.containsKey(trayTextField.getText().toUpperCase()));
+						if (hashMessage.containsKey(trayTextField.getText().toUpperCase())) {
+							String message = hashMessage.get(trayTextField.getText().toUpperCase());
+							System.out.println("message: " + message);
+							UsbHIDDeviceController usbObj = new UsbHIDDeviceController(vendorId, productId, message,
+									readWaitTime);
+							try {
+								usbObj.executeAction();
+							} catch (Exception e2) {
+								e2.printStackTrace();
 							}
-							Thread.sleep(1000);
+
 						}
-						if (x >= 100) {
-							System.out.println("No result");
-							JOptionPane.showMessageDialog(container, "No result!", "Notify result",
-									JOptionPane.WARNING_MESSAGE);
-						}
+
+						// for (; x <= 100; x += 10) {
+						// updateTimer.restart();
+						// int lower = 0;
+						// int upper = 10;
+						//
+						// int value = (int) (Math.random() * (upper - lower)) +
+						// lower;
+						// System.out.println("ramdom value: " + value);
+						// publish("Waiting for result: " + x);
+						// if (value == 5) {
+						// transCtl.updateTransaction(transactionID,
+						// "TransactionStatus", "Complete");
+						//
+						// masterLogObj.insertLog(userName,
+						// Enum.WORKINGTRANSACTION, "", Enum.CREATE,
+						// "Send request to board", "Complete", companyCode,
+						// machineCode,
+						// StringUtils.getCurrentClassAndMethodNames(),
+						// columnId);
+						// System.out.println("OK");
+						// JOptionPane.showMessageDialog(container,
+						// "Completed!", "Notify result",
+						// JOptionPane.INFORMATION_MESSAGE);
+						// resultValue = 1;
+						// break;
+						// } else if (value == 7) {
+						// System.out.println("Fail");
+						// transCtl.updateTransaction(transactionID,
+						// "TransactionStatus", "Fail");
+						// masterLogObj.insertLog(userName,
+						// Enum.WORKINGTRANSACTION, "", Enum.CREATE_FAIL,
+						// "Send request to board", "Fail", companyCode,
+						// machineCode,
+						// StringUtils.getCurrentClassAndMethodNames());
+						// JOptionPane.showMessageDialog(container, "Failed!",
+						// "Notify result",
+						// JOptionPane.ERROR_MESSAGE);
+						// break;
+						// }
+						// Thread.sleep(1000);
+						// }
+						// if (x >= 100) {
+						// System.out.println("No result");
+						// transCtl.updateTransaction(transactionID,
+						// "TransactionStatus", "No result");
+						// masterLogObj.insertLog(userName,
+						// Enum.WORKINGTRANSACTION, "", Enum.CREATE_FAIL,
+						// "Send request to board", "No result", companyCode,
+						// machineCode,
+						// StringUtils.getCurrentClassAndMethodNames());
+						// JOptionPane.showMessageDialog(container, "No
+						// result!", "Notify result",
+						// JOptionPane.WARNING_MESSAGE);
+						// }
+						updateTimer.restart();
 						return null;
 					}
 
-					protected void process(List<Integer> chunks) {
-						int selection = chunks.get(chunks.size() - 1);
-						progress.setText("Please Wait..." + selection + "s");
+					protected void process(List<String> chunks) {
+						String selection = chunks.get(chunks.size() - 1);
+						progress.setText(selection);
 					}
 
 					protected void done() {
@@ -534,6 +618,7 @@ public class EmployeePage extends JFrame implements ActionListener {
 				};
 				worker.execute();
 				d.setVisible(true);
+
 			} else {
 				System.out.println("No Option");
 			}

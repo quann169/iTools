@@ -20,6 +20,7 @@ import javax.swing.event.DocumentListener;
 
 import org.apache.log4j.Logger;
 
+import com.controllers.LogController;
 import com.controllers.LoginController;
 import com.message.Enum;
 import com.models.Assessor;
@@ -46,9 +47,15 @@ public class LoginPage extends JFrame implements ActionListener {
 	JButton forgotPwdButton = new JButton(bundleMessage.getString("Login_Page_Forget_Password"));
 	JCheckBox showPassword = new JCheckBox(bundleMessage.getString("Login_Page_Show_Password"));
 
+	LogController masterLogObj = new LogController();
+
 	private static final Config cfg = new Config();
-	private static final String COMPANY_CODE = "COMPANY_CODE";
-	private static final String COMPANY_CODE_UH = "COMPANY_CODE_UH";
+	private static final String companyCode = AdvancedEncryptionStandard.decrypt(cfg.getProperty("COMPANY_CODE"));
+	private static final String companyCodeUH = AdvancedEncryptionStandard.decrypt(cfg.getProperty("COMPANY_CODE_UH"));
+	private static final String machineCode = AdvancedEncryptionStandard.decrypt(cfg.getProperty("MACHINE_CODE"));
+
+	String userName = "";
+
 	final static Logger logger = Logger.getLogger(LoginPage.class);
 
 	LoginPage() {
@@ -153,27 +160,29 @@ public class LoginPage extends JFrame implements ActionListener {
 	@SuppressWarnings("deprecation")
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		String userText = userTextField.getText();
+		String pwdText = passwordField.getText();
+
+		userName = userTextField.getText();
 		if (e.getSource() == loginButton) {
-
-			String userText = userTextField.getText();
-			String pwdText = passwordField.getText();
-
-//			userText = "com1admin";
-			userText = "uhacc1";
+			LoginController ctlObj = new LoginController();
+			
+			 userText = "com1admin";
+//			userText = "uhacc1";
 			pwdText = "123456";
 
 			logger.info("Login with username: " + userText);
-			LoginController ctlObj = new LoginController();
+			
 			Assessor result = ctlObj.validateUser(userText, pwdText);
-
+			System.out.println(result);
 			if (result != null) {
 				logger.info("Login OK");
-				String companyCode = AdvancedEncryptionStandard.decrypt(cfg.getProperty(COMPANY_CODE));
-				
-				String companyCodeUH = AdvancedEncryptionStandard.decrypt(cfg.getProperty(COMPANY_CODE_UH));
+
+				masterLogObj.insertLog(userName, Enum.ASSESSOR, "", Enum.LOGIN, "", "", companyCode, machineCode,
+						StringUtils.getCurrentClassAndMethodNames());
 
 				if (result.isFirstTimeLogin()) {
-					ResetPasswordPage resetPassPage = new ResetPasswordPage(result, false, result.isFirstTimeLogin());
+					ResetPasswordPage resetPassPage = new ResetPasswordPage(this, result, false, result.isFirstTimeLogin());
 					StringUtils.frameInit(resetPassPage, bundleMessage);
 					// empPage.setJMenuBar(StringUtils.addMenu());
 					resetPassPage.setTitle(
@@ -183,13 +192,11 @@ public class LoginPage extends JFrame implements ActionListener {
 
 					List<Role> listRoles = ctlObj.getUserRoles(userText, companyCode);
 					logger.info("listRoles: " + listRoles);
-					
+
 					if (listRoles.size() == 0) {
 						listRoles = ctlObj.getUserRoles(userText, companyCodeUH);
 						logger.info("listRolesUH: " + listRoles);
 					}
-					
-					
 
 					if (listRoles.size() == 0) {
 						JOptionPane.showMessageDialog(this, bundleMessage.getString("Login_Page_Have_Not_Role"));
@@ -198,7 +205,7 @@ public class LoginPage extends JFrame implements ActionListener {
 						this.userTextField.setText("");
 						this.passwordField.setText("");
 						this.loginButton.setEnabled(false);
-						EmployeePage empPage = new EmployeePage(false);
+						EmployeePage empPage = new EmployeePage(this, userName, false);
 						StringUtils.frameInit(empPage, bundleMessage);
 						// empPage.setJMenuBar(StringUtils.addMenu());
 						empPage.setTitle(userText + " - " + result.getFirstName() + " " + result.getLastName());
@@ -219,6 +226,8 @@ public class LoginPage extends JFrame implements ActionListener {
 				// bundleMessage.getString("Login_Page_Login_Successful"));
 			} else {
 				JOptionPane.showMessageDialog(this, bundleMessage.getString("Login_Page_Login_Fail"));
+				masterLogObj.insertLog(userName, Enum.ASSESSOR, "", Enum.LOGIN_FAIL, "", "", companyCode, machineCode,
+						StringUtils.getCurrentClassAndMethodNames());
 				logger.info("Login Fail");
 			}
 
@@ -226,6 +235,10 @@ public class LoginPage extends JFrame implements ActionListener {
 		if (e.getSource() == forgotPwdButton) {
 			userTextField.setText("");
 			passwordField.setText("");
+
+			masterLogObj.insertLog(userName, Enum.ASSESSOR, "", Enum.FORGOT_PASS, "", "", companyCode, machineCode,
+					StringUtils.getCurrentClassAndMethodNames());
+			logger.info("Forgot Pass");
 		}
 		if (e.getSource() == showPassword) {
 			if (showPassword.isSelected()) {

@@ -18,4 +18,8 @@ public class Config {
 		String value = this.configFile.getProperty(key).trim();
 		return value;
 	}
+
+	public boolean checkKey(String key) {
+		return this.configFile.containsKey(key);
+	}
 }

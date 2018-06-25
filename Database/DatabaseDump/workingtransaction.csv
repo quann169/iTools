@@ -1,0 +1,7 @@
+WorkingTransactionID,TransactionDate,MachineCode,CompanyCode,AssessorID,WOCode,OPCode,ToolCode,TrayIndex,Quantity,UpdatedDate,TransactionStatus,RespondMessage,TransactionType
+1,"2018-06-24 10:51:56",MAC1,Com1,com1admin,,,CTID1,Tray_5,3,"2018-06-24 10:52:06",Complete,NULL,GetTools
+2,"2018-06-24 10:52:22",MAC1,Com1,com1admin,,,CTID2,Tray_4,5,"2018-06-24 10:52:33","No result",NULL,GetTools
+3,"2018-06-24 10:57:15",MAC1,Com1,com1admin,,,CTID1,Tray_5,3,"2018-06-24 10:57:26","No result",NULL,GetTools
+4,"2018-06-24 10:58:55",MAC1,Com1,,,,CTID2,Tray_4,1,"2018-06-24 10:58:55",Complete,NULL,TakeOver
+5,"2018-06-24 10:59:10",MAC1,Com1,,,,CTID1,Tray_1,1,"2018-06-24 10:59:10",Complete,NULL,TakeOver
+6,"2018-06-24 10:59:44",MAC1,Com1,,,,CTID2,Tray_4,3,"2018-06-24 10:59:44",Complete,NULL,PutIns
