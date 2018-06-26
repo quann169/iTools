@@ -23,6 +23,19 @@ public enum Enum {
 					"PutInTakeOverPage"), UPDATE_PASS_FIRST_TIME_LOGIN("FirstTimeChangePass"),
 
 	REQUEST_TOOL("SendRequest"), TIME_OUT("TimeOut"),
+	INVALID_SIGNAL_RECEIVE("InvalidSignalReceived"),
+	SEND_SIGNAL_TO_BOARD("SendRequestToBoard"),
+	MOTOR_START("MotorStart"),
+	MOTOR_STOP("MotorStop"),
+	PRODUCT_OK("ProductOK"),
+	PRODUCT_FAIL("ProductFail"),
+	
+	
+	SEND_SIGNAL_TO_BOARD_FAIL("FailSendRequestToBoard"),
+	RECEIVE_SIGNAL_FROM_BOARD_1_FAIL("FailSendRequestToBoard1"),
+	RECEIVE_SIGNAL_FROM_BOARD_2_FAIL("FailSendRequestToBoard2"),
+	RECEIVE_SIGNAL_FROM_BOARD_3_FAIL("FailSendRequestToBoard3"),
+	RECEIVE_SIGNAL_FROM_BOARD_4_FAIL("FailSendRequestToBoard4"),
 
 	SHOW_DASHBOARD("ShowDashboard"), LOGIN("Login"), LOGIN_FAIL("LoginFail"), FORGOT_PASS("ForgotPass"), CREATE(
 			"Create"), UPDATE("Update"), CREATE_FAIL("CreateFail"), UPDATE_FAIL("UpdateFail"), DELETE(

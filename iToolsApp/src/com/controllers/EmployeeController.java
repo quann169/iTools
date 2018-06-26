@@ -91,9 +91,14 @@ public class EmployeeController {
 		} finally {
 			mysqlConnect.disconnect();
 		}
-
-		sql = " update toolsmachinetray set quantity = '" + quantity + "' where ToolsMachineID = '"
-				+ toolsMachineID + "' and trayIndex = '" + tray + "';";
+		if ("-1".equals(quantity)) {
+			sql = " update toolsmachinetray set quantity = quantity - 1 where ToolsMachineID = '"
+					+ toolsMachineID + "' and trayIndex = '" + tray + "';";
+		} else {
+			sql = " update toolsmachinetray set quantity = '" + quantity + "' where ToolsMachineID = '"
+					+ toolsMachineID + "' and trayIndex = '" + tray + "';";
+		}
+		
 		System.out.println("Update: " + sql);
 
 		try {

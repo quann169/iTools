@@ -16,6 +16,7 @@ import java.awt.event.MouseEvent;
 import java.awt.font.TextAttribute;
 import java.text.MessageFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -45,7 +46,14 @@ import org.apache.log4j.Logger;
 import com.controllers.EmployeeController;
 import com.controllers.LogController;
 import com.controllers.TransactionController;
-import com.controllers.UsbHIDDeviceController;
+import com.lib.hid4java.HidDevice;
+import com.lib.hid4java.HidException;
+import com.lib.hid4java.HidManager;
+import com.lib.hid4java.HidServices;
+import com.lib.hid4java.HidServicesListener;
+import com.lib.hid4java.HidServicesSpecification;
+import com.lib.hid4java.ScanMode;
+import com.lib.hid4java.event.HidServicesEvent;
 import com.message.Enum;
 import com.models.Machine;
 import com.models.Tool;
@@ -54,7 +62,7 @@ import com.utils.AutoCompletion;
 import com.utils.Config;
 import com.utils.StringUtils;
 
-public class EmployeePage extends JFrame implements ActionListener {
+public class EmployeePage extends JFrame implements ActionListener, HidServicesListener {
 
 	/**
 	 * 
@@ -110,6 +118,12 @@ public class EmployeePage extends JFrame implements ActionListener {
 	String productId = cfg.getProperty("PRODUCT_ID");
 	int readWaitTime = Integer.valueOf(cfg.getProperty("READ_WAIT_TIME"));
 	HashMap<String, String> hashMessage = new HashMap<>();
+	TransactionController transCtl = new TransactionController();
+
+	int MOTOR_START = Integer.valueOf(cfg.getProperty("MOTOR_START"));
+	int MOTOR_STOP = Integer.valueOf(cfg.getProperty("MOTOR_STOP"));
+	int PRODUCT_OK = Integer.valueOf(cfg.getProperty("PRODUCT_OK"));
+	int PRODUCT_FAIL = Integer.valueOf(cfg.getProperty("PRODUCT_FAIL"));
 
 	int resultValue;
 	boolean isDashboard;
@@ -508,39 +522,57 @@ public class EmployeePage extends JFrame implements ActionListener {
 				// d.setLocationRelativeTo(f);
 				d.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
 				d.setModal(true);
-				int columnId = -1;
 
 				SwingWorker<?, ?> worker = new SwingWorker<Void, String>() {
 					protected Void doInBackground() throws InterruptedException {
 						updateTimer.restart();
-						int x = 0;
 						Thread.sleep(1000);
 						publish("Insert into transaction");
 						Thread.sleep(1000);
-						TransactionController transCtl = new TransactionController();
+
 						transactionID = transCtl.insertTransaction(userName, companyCode, machineCode, "", "",
 								toolComboBox.getSelectedItem().toString(), tray, quantityTextField.getText(),
 								Enum.GETTOOL.text(), "Send request to board");
 
-						masterLogObj.insertLog(userName, Enum.WORKINGTRANSACTION, "", Enum.CREATE, "", "", companyCode,
-								machineCode, StringUtils.getCurrentClassAndMethodNames());
-						System.out.println("hashMessage: " + hashMessage);
-						System.out.println("trayTextField.getText(): " + trayTextField.getText());
-						System.out.println(hashMessage.containsKey(trayTextField.getText().toUpperCase()));
+						masterLogObj.insertLog(userName, Enum.WORKINGTRANSACTION, "", Enum.CREATE, "",
+								"Create transaction", companyCode, machineCode,
+								StringUtils.getCurrentClassAndMethodNames());
+
 						if (hashMessage.containsKey(trayTextField.getText().toUpperCase())) {
 							String message = hashMessage.get(trayTextField.getText().toUpperCase());
-							System.out.println("message: " + message);
-							UsbHIDDeviceController usbObj = new UsbHIDDeviceController(vendorId, productId, message,
-									readWaitTime);
 							try {
-								usbObj.executeAction();
+								resultValue = executeAction(message);
 							} catch (Exception e2) {
 								e2.printStackTrace();
 							}
 
+						} else {
+							masterLogObj.insertLog(userName, Enum.WORKINGTRANSACTION, "", Enum.CREATE, "",
+									"Tray " + trayTextField.getText() + "is not defined in config file", companyCode,
+									machineCode, StringUtils.getCurrentClassAndMethodNames());
+							JOptionPane.showMessageDialog(container,
+									"Tray " + trayTextField.getText() + "is not defined in config file",
+									"Notify result", JOptionPane.ERROR_MESSAGE);
 						}
 
-						// for (; x <= 100; x += 10) {
+						if (resultValue == -1) {
+							JOptionPane.showMessageDialog(container, "Failed!", "Notify result",
+									JOptionPane.ERROR_MESSAGE);
+						} else if (resultValue == 0) {
+							JOptionPane.showMessageDialog(container, "No result!", "Notify result",
+									JOptionPane.WARNING_MESSAGE);
+						} else if (resultValue == 1) {
+							empCtlObj.updateToolTray(machineCode, toolComboBox.getSelectedItem().toString(),
+									trayTextField.getText(), "-1");
+
+							masterLogObj.insertLog(userName, Enum.TOOLSMACHINETRAY, "", Enum.UPDATE, "X", "X - 1",
+									companyCode, machineCode, StringUtils.getCurrentClassAndMethodNames());
+
+							JOptionPane.showMessageDialog(container, "Completed!", "Notify result",
+									JOptionPane.INFORMATION_MESSAGE);
+						}
+
+						// for (int x = 0; x <= 100; x += 10) {
 						// updateTimer.restart();
 						// int lower = 0;
 						// int upper = 10;
@@ -557,8 +589,7 @@ public class EmployeePage extends JFrame implements ActionListener {
 						// Enum.WORKINGTRANSACTION, "", Enum.CREATE,
 						// "Send request to board", "Complete", companyCode,
 						// machineCode,
-						// StringUtils.getCurrentClassAndMethodNames(),
-						// columnId);
+						// StringUtils.getCurrentClassAndMethodNames(), 0);
 						// System.out.println("OK");
 						// JOptionPane.showMessageDialog(container,
 						// "Completed!", "Notify result",
@@ -581,7 +612,7 @@ public class EmployeePage extends JFrame implements ActionListener {
 						// }
 						// Thread.sleep(1000);
 						// }
-						// if (x >= 100) {
+						// if (0 >= 100) {
 						// System.out.println("No result");
 						// transCtl.updateTransaction(transactionID,
 						// "TransactionStatus", "No result");
@@ -612,6 +643,7 @@ public class EmployeePage extends JFrame implements ActionListener {
 							toolComboBox.setSelectedIndex(0);
 							quantityTextField.setText("");
 							trayTextField.setText("");
+							toolVstrayAndQuantityMap = empCtlObj.getToolTrayQuantity(machineCode);
 						}
 
 					}
@@ -631,6 +663,176 @@ public class EmployeePage extends JFrame implements ActionListener {
 			toolComboBox.setSelectedIndex(0);
 			quantityTextField.setText("");
 		}
+	}
+
+	public int executeAction(String messageData) throws HidException {
+
+		// Configure to use custom specification
+		HidServicesSpecification hidServicesSpecification = new HidServicesSpecification();
+		hidServicesSpecification.setAutoShutdown(true);
+		hidServicesSpecification.setScanInterval(500);
+		hidServicesSpecification.setPauseInterval(5000);
+		hidServicesSpecification.setScanMode(ScanMode.SCAN_AT_FIXED_INTERVAL_WITH_PAUSE_AFTER_WRITE);
+
+		// Get HID services using custom specification
+		HidServices hidServices = HidManager.getHidServices(hidServicesSpecification);
+		hidServices.addHidServicesListener(this);
+
+		// Start the services
+		System.out.println("\n\nStarting HID services.\n\n");
+		hidServices.start();
+
+		System.out.println("Calculating attached devices...\n\n");
+
+		// Provide a list of attached devices
+		for (HidDevice hidDevice : hidServices.getAttachedHidDevices()) {
+			System.out.println(hidDevice);
+		}
+
+		int VENDOR_ID = Integer.decode(vendorId);
+		int PRODUCT_ID = Integer.decode(productId);
+		
+		System.out.println("vendorId: " + vendorId + " - " + VENDOR_ID);
+		System.out.println("productId: " + productId + " - " + PRODUCT_ID);
+		
+		HidDevice hidDevice = hidServices.getHidDevice(VENDOR_ID, PRODUCT_ID, null);
+		int result = -1;
+		if (hidDevice != null) {
+			result =  sendMessage(hidDevice, messageData);
+		} else {
+			System.out.println("\nDo not find HID device - please help me to recheck config file\n\n");
+
+		}
+
+//		 hidServices.shutdown();
+		 return result;
+	}
+
+	@Override
+	public void hidDeviceAttached(HidServicesEvent event) {
+
+		System.out.println("\nAdd device: " + event.getHidDevice() + "\n");
+
+	}
+
+	@Override
+	public void hidDeviceDetached(HidServicesEvent event) {
+
+		System.out.println("\nRemove device: " + event.getHidDevice());
+
+	}
+
+	@Override
+	public void hidFailure(HidServicesEvent event) {
+
+		System.err.println("HID failure: " + event);
+
+	}
+
+	private int sendMessage(HidDevice hidDevice, String messageData) {
+
+		// Ensure device is open after an attach/detach event
+		if (hidDevice != null && !hidDevice.isOpen()) {
+			hidDevice.open();
+		}
+
+		byte value = (byte) Integer.parseInt(messageData, 10);
+		byte[] message = new byte[2];
+		message[0] = 125;
+		message[1] = value;
+
+		System.out.println("\nData send to board: " + Arrays.toString(message));
+		int val = -1;
+		try {
+			val = hidDevice.write(message, 2, (byte) 0x00);
+		} catch (Exception e) {
+			System.out.println("\n\n[ERR] Cannot send data.\n\n");
+			System.out.println(e.getMessage());
+			
+			transCtl.updateTransaction(transactionID, "TransactionStatus", Enum.SEND_SIGNAL_TO_BOARD_FAIL.text());
+			masterLogObj.insertLog(userName, Enum.WORKINGTRANSACTION, "", Enum.SEND_SIGNAL_TO_BOARD_FAIL, "",
+					e.getMessage(), companyCode, machineCode, StringUtils.getCurrentClassAndMethodNames());
+			return -1;
+		}
+
+		if (val >= 0) {
+			System.out.println("> [" + val + "]");
+			System.out.println(
+					"> Send message " + messageData + " successfully. Wait to read data in " + readWaitTime + "s...");
+		} else {
+			System.err.println(hidDevice.getLastErrorMessage());
+			transCtl.updateTransaction(transactionID, "TransactionStatus", Enum.SEND_SIGNAL_TO_BOARD_FAIL.text());
+			masterLogObj.insertLog(userName, Enum.WORKINGTRANSACTION, "", Enum.SEND_SIGNAL_TO_BOARD_FAIL, "",
+					hidDevice.getLastErrorMessage(), companyCode, machineCode,
+					StringUtils.getCurrentClassAndMethodNames());
+		}
+
+		System.out.println("\n\n-------------Begin wait to read data in " + readWaitTime + "s------------\n");
+		List<Integer> listDataReceived = new ArrayList<>();
+		for (int i = 0; i < 4; i++) {
+			// Prepare to read a single data packet
+			boolean moreData = true;
+			while (moreData) {
+				byte data[] = new byte[2];
+				val = hidDevice.read(data, readWaitTime * 1000);
+				System.out.println("Switch case --- " + val + " ----");
+				// System.out.println("Read result: " + val);
+				switch (val) {
+				case -1:
+					System.err.println(hidDevice.getLastErrorMessage());
+					moreData = false;
+					break;
+				case 0:
+					System.out.println("-------------No data receive, end read data------------");
+					moreData = false;
+					break;
+				default:
+					if (data.length == 2 && data[0] == value) {
+						int receivedCode = data[1];
+						listDataReceived.add(receivedCode);
+					} else {
+						masterLogObj.insertLog(userName, Enum.WORKINGTRANSACTION, "", Enum.INVALID_SIGNAL_RECEIVE, "",
+								Arrays.toString(data), companyCode, machineCode,
+								StringUtils.getCurrentClassAndMethodNames());
+					}
+					System.out.print("<Data received from board [");
+					for (byte b : data) {
+						System.out.printf(" " + b);
+					}
+					System.out.println("]");
+					moreData = false;
+					break;
+				}
+			}
+
+		}
+		int result = -1;
+		for (int dataReceived : listDataReceived) {
+			if (dataReceived == MOTOR_START) {
+				transCtl.updateTransaction(transactionID, "TransactionStatus", Enum.MOTOR_START.text());
+				masterLogObj.insertLog(userName, Enum.WORKINGTRANSACTION, "", Enum.MOTOR_START, "", "" + dataReceived,
+						companyCode, machineCode, StringUtils.getCurrentClassAndMethodNames());
+			} else if (dataReceived == MOTOR_STOP) {
+				transCtl.updateTransaction(transactionID, "TransactionStatus", Enum.MOTOR_STOP.text());
+				masterLogObj.insertLog(userName, Enum.WORKINGTRANSACTION, "", Enum.MOTOR_STOP, "", "" + dataReceived,
+						companyCode, machineCode, StringUtils.getCurrentClassAndMethodNames());
+			} else if (dataReceived == PRODUCT_OK) {
+				result = 1;
+				transCtl.updateTransaction(transactionID, "TransactionStatus", Enum.PRODUCT_OK.text());
+				masterLogObj.insertLog(userName, Enum.WORKINGTRANSACTION, "", Enum.PRODUCT_OK, "", "" + dataReceived,
+						companyCode, machineCode, StringUtils.getCurrentClassAndMethodNames());
+			} else if (dataReceived == PRODUCT_FAIL) {
+				result = 0;
+				transCtl.updateTransaction(transactionID, "TransactionStatus", Enum.PRODUCT_FAIL.text());
+				masterLogObj.insertLog(userName, Enum.WORKINGTRANSACTION, "", Enum.PRODUCT_FAIL, "", "" + dataReceived,
+						companyCode, machineCode, StringUtils.getCurrentClassAndMethodNames());
+			}
+		}
+
+		System.out.println(
+				"############################################\nComplete sending all messages!!!\n############################################\n");
+		
+		return result;
 	}
 
 }
