@@ -130,15 +130,16 @@ public class DashboardPage extends JFrame implements ActionListener {
 		logOutLabel.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				masterLogObj.insertLog(userName, Enum.ASSESSOR, "", Enum.LOGOUT, "", "", companyCode, machineCode,
-						StringUtils.getCurrentClassAndMethodNames());
-				System.out.println("logOutLabel");
 				updateTimer.restart();
 				masterLogObj.insertLog(userName, Enum.ASSESSOR, "", Enum.LOGOUT, "", "", companyCode, machineCode,
 						StringUtils.getCurrentClassAndMethodNames());
-				// ((EmployeePage)
-				// e.getComponent().getParent().getParent().getParent().getParent()).dispose();
+				logger.info(userName + " logout.");
 				root.dispose();
+				root = new LoginPage();
+				StringUtils.frameInit(root, bundleMessage);
+
+				root.setTitle(bundleMessage.getString("Login_Page_Title"));
+				root.getRootPane().setDefaultButton(((LoginPage) root).loginButton);
 			}
 		});
 
@@ -168,14 +169,21 @@ public class DashboardPage extends JFrame implements ActionListener {
 		updateTimer = new Timer(expiredTime, new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				System.out.println(e);
 				masterLogObj.insertLog(userName, Enum.DASHBOARD_PAGE, "", Enum.TIME_OUT, "", "", companyCode,
 						machineCode, StringUtils.getCurrentClassAndMethodNames());
 				String timeoutMess = MessageFormat.format(bundleMessage.getString("App_TimeOut"),
 						cfg.getProperty("Expired_Time"));
-				JOptionPane.showMessageDialog(container, timeoutMess, "Time Out Dashboard", JOptionPane.WARNING_MESSAGE);
+				JOptionPane.showMessageDialog(container, timeoutMess, "Time Out Dashboard",
+						JOptionPane.WARNING_MESSAGE);
 
+				logger.info(userName + ": " + Enum.DASHBOARD_PAGE + " time out.");
 				root.dispose();
+				root = new LoginPage();
+				StringUtils.frameInit(root, bundleMessage);
+
+				root.setTitle(bundleMessage.getString("Login_Page_Title"));
+				root.getRootPane().setDefaultButton(((LoginPage) root).loginButton);
+
 			}
 		});
 		updateTimer.setRepeats(false);
@@ -265,51 +273,56 @@ public class DashboardPage extends JFrame implements ActionListener {
 			updateTimer.stop();
 			masterLogObj.insertLog(userName, Enum.ASSESSOR, "", Enum.TKOVER, "", "", companyCode, machineCode,
 					StringUtils.getCurrentClassAndMethodNames());
-			PutInTakeOverPage putinsTakeOverPage = new PutInTakeOverPage(root, user, Enum.TKOVER.text());
-			StringUtils.frameInit(putinsTakeOverPage, bundleMessage);
-			putinsTakeOverPage.setTitle(user.getUsername() + " - " + user.getFirstName() + " " + user.getLastName());
-			putinsTakeOverPage.show();
+			root.dispose();
+			root = new PutInTakeOverPage(user, Enum.TKOVER.text());
+			StringUtils.frameInit(root, bundleMessage);
+			root.setTitle(user.getUsername() + " - " + user.getFirstName() + " " + user.getLastName());
+			root.show();
 		}
 		if (e.getSource() == putInsButton) {
 			updateTimer.stop();
 			masterLogObj.insertLog(userName, Enum.ASSESSOR, "", Enum.PUTIN, "", "", companyCode, machineCode,
 					StringUtils.getCurrentClassAndMethodNames());
-			PutInTakeOverPage putinsTakeOverPage = new PutInTakeOverPage(root, user, Enum.PUTIN.text());
-			StringUtils.frameInit(putinsTakeOverPage, bundleMessage);
-			putinsTakeOverPage.setTitle(user.getUsername() + " - " + user.getFirstName() + " " + user.getLastName());
-			putinsTakeOverPage.show();
+			root.dispose();
+			root = new PutInTakeOverPage(user, Enum.PUTIN.text());
+			StringUtils.frameInit(root, bundleMessage);
+			root.setTitle(user.getUsername() + " - " + user.getFirstName() + " " + user.getLastName());
+			root.show();
 		}
 
 		if (e.getSource() == resetPasswordButton) {
 			updateTimer.stop();
 			masterLogObj.insertLog(userName, Enum.ASSESSOR, "", Enum.RESET_PASS, "", "", companyCode, machineCode,
 					StringUtils.getCurrentClassAndMethodNames());
-			ResetPasswordPage resetPassPage = new ResetPasswordPage(root, user, true, false);
-			StringUtils.frameInit(resetPassPage, bundleMessage);
+			root.dispose();
+			root = new ResetPasswordPage(user, true, false);
+			StringUtils.frameInit(root, bundleMessage);
 			// empPage.setJMenuBar(StringUtils.addMenu());
-			resetPassPage.setTitle(user.getUsername() + " - " + user.getFirstName() + " " + user.getLastName());
-			resetPassPage.show();
+			root.setTitle(user.getUsername() + " - " + user.getFirstName() + " " + user.getLastName());
+			root.show();
 		}
 		if (e.getSource() == lockAccountButton) {
 			updateTimer.stop();
 			masterLogObj.insertLog(userName, Enum.ASSESSOR, "", Enum.LOCK_USER, "", "", companyCode, machineCode,
 					StringUtils.getCurrentClassAndMethodNames());
-			LockUnlockAccountPage lockUnlockPage = new LockUnlockAccountPage(root, user, true);
-			StringUtils.frameInit(lockUnlockPage, bundleMessage);
+			root.dispose();
+			root = new LockUnlockAccountPage(user, true);
+			StringUtils.frameInit(root, bundleMessage);
 			// empPage.setJMenuBar(StringUtils.addMenu());
-			lockUnlockPage.setTitle(user.getUsername() + " - " + user.getFirstName() + " " + user.getLastName());
-			lockUnlockPage.show();
+			root.setTitle(user.getUsername() + " - " + user.getFirstName() + " " + user.getLastName());
+			root.show();
 		}
 
 		if (e.getSource() == getToolButton) {
 			updateTimer.stop();
 			masterLogObj.insertLog(userName, Enum.ASSESSOR, "", Enum.GETTOOL, "", "", companyCode, machineCode,
 					StringUtils.getCurrentClassAndMethodNames());
-			EmployeePage empPage = new EmployeePage(root, userName, true);
-			StringUtils.frameInit(empPage, bundleMessage);
+			root.dispose();
+			root = new EmployeePage(userName, true);
+			StringUtils.frameInit(root, bundleMessage);
 			// empPage.setJMenuBar(StringUtils.addMenu());
-			empPage.setTitle(user.getUsername() + " - " + user.getFirstName() + " " + user.getLastName());
-			empPage.show();
+			root.setTitle(user.getUsername() + " - " + user.getFirstName() + " " + user.getLastName());
+			root.show();
 		}
 
 		if (e.getSource() == manualSyncButton) {

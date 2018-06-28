@@ -21,7 +21,10 @@ public class MysqlConnect {
 	// init properties object
 	private Properties properties;
 
-	// create properties
+	/**
+	 * 
+	 * @return
+	 */
 	private Properties getProperties() {
 		if (properties == null) {
 			properties = new Properties();
@@ -34,7 +37,10 @@ public class MysqlConnect {
 		return properties;
 	}
 
-	// connect database
+	/**
+	 * 
+	 * @return
+	 */
 	public Connection connect() {
 		if (connection == null) {
 			try {
@@ -51,7 +57,9 @@ public class MysqlConnect {
 		return connection;
 	}
 
-	// disconnect database
+	/**
+	 * 
+	 */
 	public void disconnect() {
 		if (connection != null) {
 			try {
@@ -62,4 +70,40 @@ public class MysqlConnect {
 			}
 		}
 	}
+
+	/**
+	 * @return the databaseName
+	 */
+	public static String getDatabaseName() {
+		return AdvancedEncryptionStandard.decrypt(cfg.getProperty(DATABASE_NAME));
+	}
+
+	/**
+	 * @return the username
+	 */
+	public static String getUsername() {
+		return AdvancedEncryptionStandard.decrypt(cfg.getProperty(USERNAME));
+	}
+
+	/**
+	 * @return the host
+	 */
+	public static String getHost() {
+		return AdvancedEncryptionStandard.decrypt(cfg.getProperty(HOST));
+	}
+
+	/**
+	 * @return the port
+	 */
+	public static String getPort() {
+		return AdvancedEncryptionStandard.decrypt(cfg.getProperty(PORT));
+	}
+
+	/**
+	 * @return the password
+	 */
+	public static String getPassword() {
+		return AdvancedEncryptionStandard.decrypt(cfg.getProperty(PASSWORD));
+	}
+	
 }

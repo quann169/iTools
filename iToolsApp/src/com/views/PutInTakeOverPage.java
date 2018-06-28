@@ -104,13 +104,11 @@ public class PutInTakeOverPage extends JFrame implements ActionListener {
 	String userName = "";
 
 	JFrame root = this;
-	JFrame parent;
 	Timer updateTimer;
 	int expiredTime = Integer.valueOf(cfg.getProperty("Expired_Time")) * 1000;
 
-	PutInTakeOverPage(JFrame parent, Assessor user, String pageType) {
+	PutInTakeOverPage(Assessor user, String pageType) {
 		toolVstrayAndQuantityMap = empCtlObj.getToolTrayQuantity(machineCode);
-		this.parent = parent;
 		this.pageType = pageType;
 		System.out.println(toolVstrayAndQuantityMap);
 		setLayoutManager();
@@ -164,12 +162,16 @@ public class PutInTakeOverPage extends JFrame implements ActionListener {
 		logOutLabel.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				System.out.println("logOutLabel");
+				updateTimer.restart();
 				masterLogObj.insertLog(userName, Enum.ASSESSOR, "", Enum.LOGOUT, "", "", companyCode, machineCode,
 						StringUtils.getCurrentClassAndMethodNames());
+				logger.info(userName + " logout.");
 				root.dispose();
-				parent.dispose();
-//				((PutInTakeOverPage) e.getComponent().getParent().getParent().getParent().getParent()).dispose();
+				root = new LoginPage();
+				StringUtils.frameInit(root, bundleMessage);
+
+				root.setTitle(bundleMessage.getString("Login_Page_Title"));
+				root.getRootPane().setDefaultButton(((LoginPage) root).loginButton);
 			}
 		});
 
@@ -321,9 +323,15 @@ public class PutInTakeOverPage extends JFrame implements ActionListener {
 				String timeoutMess = MessageFormat.format(bundleMessage.getString("App_TimeOut"),
 						cfg.getProperty("Expired_Time"));
 				JOptionPane.showMessageDialog(container, timeoutMess, "Time Out Putin", JOptionPane.WARNING_MESSAGE);
-
+				
+				
+				logger.info(userName + ": " + Enum.PUTIN_TAKEOVER_PAGE + " time out.");
 				root.dispose();
-				parent.dispose();
+				root = new LoginPage();
+				StringUtils.frameInit(root, bundleMessage);
+
+				root.setTitle(bundleMessage.getString("Login_Page_Title"));
+				root.getRootPane().setDefaultButton(((LoginPage) root).loginButton);
 			}
 		});
 		updateTimer.setRepeats(false);

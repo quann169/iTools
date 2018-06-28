@@ -76,8 +76,7 @@ public class LockUnlockAccountPage extends JFrame implements ActionListener {
 	int expiredTime = Integer.valueOf(cfg.getProperty("Expired_Time")) * 1000;
 	String userName = "";
 
-	LockUnlockAccountPage(JFrame parent, Assessor user, boolean isDashboard) {
-		this.parent = parent;
+	LockUnlockAccountPage(Assessor user, boolean isDashboard) {
 		this.user = user;
 		this.isDashboard = isDashboard;
 		setLayoutManager();
@@ -138,13 +137,17 @@ public class LockUnlockAccountPage extends JFrame implements ActionListener {
 		logOutLabel.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+
 				updateTimer.restart();
-				System.out.println("logOutLabel");
 				masterLogObj.insertLog(userName, Enum.ASSESSOR, "", Enum.LOGOUT, "", "", companyCode, machineCode,
 						StringUtils.getCurrentClassAndMethodNames());
+				logger.info(userName + " logout.");
 				root.dispose();
-				parent.dispose();
-//				((EmployeePage) e.getComponent().getParent().getParent().getParent().getParent()).dispose();
+				root = new LoginPage();
+				StringUtils.frameInit(root, bundleMessage);
+
+				root.setTitle(bundleMessage.getString("Login_Page_Title"));
+				root.getRootPane().setDefaultButton(((LoginPage) root).loginButton);
 			}
 		});
 
@@ -184,24 +187,31 @@ public class LockUnlockAccountPage extends JFrame implements ActionListener {
 		unLockAccountButton.setBounds(350, 200, 200, 40);
 		unLockAccountButton.setFont(new Font(labelFont.getName(), Font.BOLD, 15));
 		validateAllFields();
-		
+
 		updateTimer = new Timer(expiredTime, new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				masterLogObj.insertLog(userName, Enum.LOCK_UNLOCK_PAGE, "", Enum.TIME_OUT, "", "", companyCode, machineCode,
-						StringUtils.getCurrentClassAndMethodNames());
+				masterLogObj.insertLog(userName, Enum.LOCK_UNLOCK_PAGE, "", Enum.TIME_OUT, "", "", companyCode,
+						machineCode, StringUtils.getCurrentClassAndMethodNames());
 				String timeoutMess = MessageFormat.format(bundleMessage.getString("App_TimeOut"),
 						cfg.getProperty("Expired_Time"));
-				JOptionPane.showMessageDialog(container, timeoutMess, "Time Out Lock Unlock", JOptionPane.WARNING_MESSAGE);
+				JOptionPane.showMessageDialog(container, timeoutMess, "Time Out Lock Unlock",
+						JOptionPane.WARNING_MESSAGE);
 
+				logger.info(userName + ": " + Enum.LOCK_UNLOCK_PAGE + " time out.");
 				root.dispose();
-				parent.dispose();
+				root = new LoginPage();
+				StringUtils.frameInit(root, bundleMessage);
+
+				root.setTitle(bundleMessage.getString("Login_Page_Title"));
+				root.getRootPane().setDefaultButton(((LoginPage) root).loginButton);
+
 			}
 		});
 		updateTimer.setRepeats(false);
 		updateTimer.restart();
 	}
-	
+
 	private boolean validateAllFields() {
 		try {
 			updateTimer.restart();

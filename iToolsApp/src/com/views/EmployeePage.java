@@ -128,12 +128,12 @@ public class EmployeePage extends JFrame implements ActionListener, HidServicesL
 	int resultValue;
 	boolean isDashboard;
 
-	JFrame parent;
+//	JFrame parent;
 
-	EmployeePage(JFrame parent, String userName, boolean isDashboard) {
+	EmployeePage(String userName, boolean isDashboard) {
 		this.userName = userName;
 		this.isDashboard = isDashboard;
-		this.parent = parent;
+//		this.parent = parent;
 		toolVstrayAndQuantityMap = empCtlObj.getToolTrayQuantity(machineCode);
 		setLayoutManager();
 		setLocationAndSize();
@@ -204,13 +204,16 @@ public class EmployeePage extends JFrame implements ActionListener, HidServicesL
 		logOutLabel.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				updateTimer.restart();
 				masterLogObj.insertLog(userName, Enum.ASSESSOR, "", Enum.LOGOUT, "", "", companyCode, machineCode,
 						StringUtils.getCurrentClassAndMethodNames());
-				System.out.println("logOutLabel");
+				logger.info(userName + " logout.");
 				root.dispose();
-				parent.dispose();
-				// ((EmployeePage)
-				// e.getComponent().getParent().getParent().getParent().getParent()).dispose();
+				root = new LoginPage();
+				StringUtils.frameInit(root, bundleMessage);
+
+				root.setTitle(bundleMessage.getString("Login_Page_Title"));
+				root.getRootPane().setDefaultButton(((LoginPage) root).loginButton);
 			}
 		});
 
@@ -399,8 +402,14 @@ public class EmployeePage extends JFrame implements ActionListener, HidServicesL
 						cfg.getProperty("Expired_Time"));
 				JOptionPane.showMessageDialog(container, timeoutMess, "Time Out Emp", JOptionPane.WARNING_MESSAGE);
 
+				logger.info(userName + ": " + Enum.EMP_PAGE + " time out.");
 				root.dispose();
-				parent.dispose();
+				root = new LoginPage();
+				StringUtils.frameInit(root, bundleMessage);
+
+				root.setTitle(bundleMessage.getString("Login_Page_Title"));
+				root.getRootPane().setDefaultButton(((LoginPage) root).loginButton);
+
 			}
 		});
 		updateTimer.setRepeats(false);
@@ -691,21 +700,21 @@ public class EmployeePage extends JFrame implements ActionListener, HidServicesL
 
 		int VENDOR_ID = Integer.decode(vendorId);
 		int PRODUCT_ID = Integer.decode(productId);
-		
+
 		System.out.println("vendorId: " + vendorId + " - " + VENDOR_ID);
 		System.out.println("productId: " + productId + " - " + PRODUCT_ID);
-		
+
 		HidDevice hidDevice = hidServices.getHidDevice(VENDOR_ID, PRODUCT_ID, null);
 		int result = -1;
 		if (hidDevice != null) {
-			result =  sendMessage(hidDevice, messageData);
+			result = sendMessage(hidDevice, messageData);
 		} else {
 			System.out.println("\nDo not find HID device - please help me to recheck config file\n\n");
 
 		}
 
-//		 hidServices.shutdown();
-		 return result;
+		// hidServices.shutdown();
+		return result;
 	}
 
 	@Override
@@ -748,7 +757,7 @@ public class EmployeePage extends JFrame implements ActionListener, HidServicesL
 		} catch (Exception e) {
 			System.out.println("\n\n[ERR] Cannot send data.\n\n");
 			System.out.println(e.getMessage());
-			
+
 			transCtl.updateTransaction(transactionID, "TransactionStatus", Enum.SEND_SIGNAL_TO_BOARD_FAIL.text());
 			masterLogObj.insertLog(userName, Enum.WORKINGTRANSACTION, "", Enum.SEND_SIGNAL_TO_BOARD_FAIL, "",
 					e.getMessage(), companyCode, machineCode, StringUtils.getCurrentClassAndMethodNames());
@@ -831,7 +840,7 @@ public class EmployeePage extends JFrame implements ActionListener, HidServicesL
 
 		System.out.println(
 				"############################################\nComplete sending all messages!!!\n############################################\n");
-		
+
 		return result;
 	}
 

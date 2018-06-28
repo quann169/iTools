@@ -124,4 +124,21 @@ public class LoginController {
 			mysqlConnect.disconnect();
 		}
 	}
+
+	/**
+	 * 
+	 * @return
+	 */
+	public List<String> getDatabaseVersion() {
+		List<String> result = new ArrayList<>();
+		result.add(MysqlConnect.getHost());
+		result.add(MysqlConnect.getUsername());
+		result.add(MysqlConnect.getPassword());
+		result.add(MysqlConnect.getDatabaseName());
+		result.add(MysqlConnect.getPort());
+		result.add("VERSION");
+		result.add("LASTSYNC");
+		return result;
+	}
+
 }

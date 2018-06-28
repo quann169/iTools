@@ -48,6 +48,7 @@ public class LoginPage extends JFrame implements ActionListener {
 	JCheckBox showPassword = new JCheckBox(bundleMessage.getString("Login_Page_Show_Password"));
 
 	LogController masterLogObj = new LogController();
+	static LoginController ctlObj = new LoginController();
 
 	private static final Config cfg = new Config();
 	private static final String companyCode = AdvancedEncryptionStandard.decrypt(cfg.getProperty("COMPANY_CODE"));
@@ -57,6 +58,8 @@ public class LoginPage extends JFrame implements ActionListener {
 	String userName = "";
 
 	final static Logger logger = Logger.getLogger(LoginPage.class);
+
+	static JFrame root;
 
 	LoginPage() {
 		setLayoutManager();
@@ -165,16 +168,14 @@ public class LoginPage extends JFrame implements ActionListener {
 
 		userName = userTextField.getText();
 		if (e.getSource() == loginButton) {
-			LoginController ctlObj = new LoginController();
-			
-			 userText = "com1admin";
-//			userText = "uhacc1";
+
+			userText = "com1admin";
+			// userText = "uhacc1";
 			pwdText = "123456";
 
 			logger.info("Login with username: " + userText);
-			
+
 			Assessor result = ctlObj.validateUser(userText, pwdText);
-			System.out.println(result);
 			if (result != null) {
 				logger.info("Login OK");
 
@@ -182,12 +183,13 @@ public class LoginPage extends JFrame implements ActionListener {
 						StringUtils.getCurrentClassAndMethodNames());
 
 				if (result.isFirstTimeLogin()) {
-					ResetPasswordPage resetPassPage = new ResetPasswordPage(this, result, false, result.isFirstTimeLogin());
-					StringUtils.frameInit(resetPassPage, bundleMessage);
+					logger.info("isFirstTimeLogin: " + result.isFirstTimeLogin());
+					root.dispose();
+					root = new ResetPasswordPage(result, false, result.isFirstTimeLogin());
+					StringUtils.frameInit(root, bundleMessage);
 					// empPage.setJMenuBar(StringUtils.addMenu());
-					resetPassPage.setTitle(
-							result.getUsername() + " - " + result.getFirstName() + " " + result.getLastName());
-					resetPassPage.show();
+					root.setTitle(result.getUsername() + " - " + result.getFirstName() + " " + result.getLastName());
+					root.show();
 				} else {
 
 					List<Role> listRoles = ctlObj.getUserRoles(userText, companyCode);
@@ -202,33 +204,30 @@ public class LoginPage extends JFrame implements ActionListener {
 						JOptionPane.showMessageDialog(this, bundleMessage.getString("Login_Page_Have_Not_Role"));
 						logger.info("User does not have role");
 					} else if (listRoles.size() == 1 && Enum.EMP.text().equals(listRoles.get(0).getRoleName())) {
-						this.userTextField.setText("");
-						this.passwordField.setText("");
-						this.loginButton.setEnabled(false);
-						EmployeePage empPage = new EmployeePage(this, userName, false);
-						StringUtils.frameInit(empPage, bundleMessage);
+						logger.info("Show EmployeePage");
+						root.dispose();
+						root = new EmployeePage(userName, false);
+						StringUtils.frameInit(root, bundleMessage);
 						// empPage.setJMenuBar(StringUtils.addMenu());
-						empPage.setTitle(userText + " - " + result.getFirstName() + " " + result.getLastName());
-						empPage.show();
+						root.setTitle(userText + " - " + result.getFirstName() + " " + result.getLastName());
+						root.show();
 
 					} else {
-						this.userTextField.setText("");
-						this.passwordField.setText("");
-						this.loginButton.setEnabled(false);
-						DashboardPage dashboardPage = new DashboardPage(listRoles, result);
-						StringUtils.frameInit(dashboardPage, bundleMessage);
-						dashboardPage.setTitle(userText + " - " + result.getFirstName() + " " + result.getLastName());
+						logger.info("Show DashboardPage");
+						root.dispose();
+						root = new DashboardPage(listRoles, result);
+						StringUtils.frameInit(root, bundleMessage);
+						root.setTitle(userText + " - " + result.getFirstName() + " " + result.getLastName());
 						// dashboardPage.setJMenuBar(StringUtils.addMenu());
-						dashboardPage.show();
+						root.show();
 					}
 				}
-				// JOptionPane.showMessageDialog(this,
-				// bundleMessage.getString("Login_Page_Login_Successful"));
 			} else {
+				logger.info("Login Fail");
 				JOptionPane.showMessageDialog(this, bundleMessage.getString("Login_Page_Login_Fail"));
 				masterLogObj.insertLog(userName, Enum.ASSESSOR, "", Enum.LOGIN_FAIL, "", "", companyCode, machineCode,
 						StringUtils.getCurrentClassAndMethodNames());
-				logger.info("Login Fail");
+
 			}
 
 		}
@@ -251,11 +250,36 @@ public class LoginPage extends JFrame implements ActionListener {
 	}
 
 	public static void main(String[] a) {
-		LoginPage frame = new LoginPage();
-		StringUtils.frameInit(frame, bundleMessage);
 
-		frame.setTitle(bundleMessage.getString("Login_Page_Title"));
-		frame.getRootPane().setDefaultButton(frame.loginButton);
+		printConfigInfo();
+
+		root = new LoginPage();
+		StringUtils.frameInit(root, bundleMessage);
+
+		root.setTitle(bundleMessage.getString("Login_Page_Title"));
+		root.getRootPane().setDefaultButton(((LoginPage) root).loginButton);
+
+	}
+
+	private static void printConfigInfo() {
+		logger.info("************************************************************");
+		logger.info("************************************************************");
+		logger.info("************************************************************");
+		logger.info("************************************************************");
+		logger.info("Starting iTool app.");
+		logger.info("companyCode: " + companyCode);
+		logger.info("companyCodeUH: " + companyCodeUH);
+		logger.info("machineCode: " + machineCode);
+
+		List<String> databaseInfo = ctlObj.getDatabaseVersion();
+		logger.info("mDbHost: " + databaseInfo.get(0));
+		logger.info("mDbUser: " + databaseInfo.get(1));
+		logger.info("mDbPwds: " + databaseInfo.get(2));
+		logger.info("mDbName: " + databaseInfo.get(3));
+		logger.info("mDbPort: " + databaseInfo.get(4));
+		logger.info("Database version: " + databaseInfo.get(5));
+
+		logger.info("Last Sync: " + databaseInfo.get(6));
 
 	}
 
