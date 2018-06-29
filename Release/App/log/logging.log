@@ -1,0 +1,3 @@
+2018-06-28 23:06:16 INFO  LoginPage:174 - Login with username: com1admin
+2018-06-28 23:06:19 INFO  LoginPage:179 - Login OK
+2018-06-28 23:06:20 INFO  LoginPage:194 - listRoles: [Roles [roleName=SubAdmin], Roles [roleName=Emp]]
