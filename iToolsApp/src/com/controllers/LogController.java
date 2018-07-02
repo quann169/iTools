@@ -6,6 +6,8 @@ package com.controllers;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
+import org.apache.log4j.Logger;
+
 import com.message.Enum;
 import com.utils.MysqlConnect;
 
@@ -16,6 +18,7 @@ import com.utils.MysqlConnect;
 public class LogController {
 
 	MysqlConnect mysqlConnect = new MysqlConnect();
+	final static Logger logger = Logger.getLogger(LogController.class);
 
 	/**
 	 * 
@@ -49,7 +52,7 @@ public class LogController {
 				+ username + "', '" + tableName.text() + "', '" + columnNameText + "', '" + columnId + "', '"
 				+ action.text() + "', '" + oldvalue + "', '" + newValue + "', '" + companyCode + "', '" + machineCode
 				+ "', '" + note + "');";
-		System.out.println(sql);
+		logger.info(sql);
 		try {
 			PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
 			int result = statement.executeUpdate(sql);
@@ -84,7 +87,9 @@ public class LogController {
 		String sql = "insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), '"
 				+ username + "', '" + tableName.text() + "', '" + columnNameText + "', '" + action.text() + "', '"
 				+ oldvalue + "', '" + newValue + "', '" + companyCode + "', '" + machineCode + "', '" + note + "');";
-		System.out.println(sql);
+
+		logger.info(sql);
+
 		try {
 			PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
 			int result = statement.executeUpdate(sql);

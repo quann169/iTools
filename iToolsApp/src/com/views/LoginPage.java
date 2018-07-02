@@ -66,24 +66,30 @@ public class LoginPage extends JFrame implements ActionListener {
 		setLocationAndSize();
 		addComponentsToContainer();
 		addActionEvent();
+		
+		setExtendedState(JFrame.MAXIMIZED_BOTH); 
+//		setUndecorated(true);
+		setVisible(true);
 
 	}
 
 	public void setLayoutManager() {
 		container.setLayout(null);
+		
+		
 	}
 
 	public void setLocationAndSize() {
 		Font labelFont = logoLabel.getFont();
 
-		logoLabel.setBounds(220, 60, 350, 60);
-		logoLabel.setFont(new Font(labelFont.getName(), Font.ITALIC + Font.BOLD, 50));
+		logoLabel.setBounds(240, 70, 350, 70);
+		logoLabel.setFont(new Font(labelFont.getName(), Font.ITALIC + Font.BOLD, 60));
 
-		userLabel.setBounds(70, 130, 150, 60);
-		userLabel.setFont(new Font(labelFont.getName(), Font.BOLD, 25));
+		userLabel.setBounds(80, 170, 250, 60);
+		userLabel.setFont(new Font(labelFont.getName(), Font.BOLD, 40));
 
-		userTextField.setBounds(220, 150, 300, 30);
-
+		userTextField.setBounds(300, 180, 400, 50);
+		userTextField.setFont(new Font(labelFont.getName(), Font.PLAIN, 30));
 		userTextField.getDocument().addDocumentListener(new DocumentListener() {
 			public void changedUpdate(DocumentEvent e) {
 				warn();
@@ -105,11 +111,11 @@ public class LoginPage extends JFrame implements ActionListener {
 			}
 		});
 
-		passwordLabel.setBounds(70, 180, 150, 60);
-		passwordLabel.setFont(new Font(labelFont.getName(), Font.BOLD, 25));
+		passwordLabel.setBounds(80, 260, 250, 60);
+		passwordLabel.setFont(new Font(labelFont.getName(), Font.BOLD, 40));
 
-		passwordField.setBounds(220, 200, 300, 30);
-
+		passwordField.setBounds(300, 260, 400, 50);
+		passwordField.setFont(new Font(labelFont.getName(), Font.PLAIN, 30));
 		passwordField.getDocument().addDocumentListener(new DocumentListener() {
 			public void changedUpdate(DocumentEvent e) {
 				warn();
@@ -131,15 +137,15 @@ public class LoginPage extends JFrame implements ActionListener {
 			}
 		});
 
-		showPassword.setBounds(216, 235, 350, 30);
-		showPassword.setFont(new Font(labelFont.getName(), Font.BOLD + Font.ITALIC, 13));
+		showPassword.setBounds(295, 315, 350, 50);
+		showPassword.setFont(new Font(labelFont.getName(), Font.BOLD + Font.ITALIC, 20));
 
 		loginButton.setEnabled(false);
-		loginButton.setBounds(220, 280, 140, 30);
-		loginButton.setFont(new Font(labelFont.getName(), Font.BOLD, 15));
+		loginButton.setBounds(200, 380, 210, 50);
+		loginButton.setFont(new Font(labelFont.getName(), Font.BOLD, 25));
 
-		forgotPwdButton.setBounds(365, 280, 155, 30);
-		forgotPwdButton.setFont(new Font(labelFont.getName(), Font.BOLD, 15));
+		forgotPwdButton.setBounds(435, 380, 270, 50);
+		forgotPwdButton.setFont(new Font(labelFont.getName(), Font.BOLD, 25));
 
 	}
 

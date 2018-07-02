@@ -9,6 +9,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.log4j.Logger;
+
 import com.models.Assessor;
 import com.utils.MysqlConnect;
 
@@ -19,7 +21,7 @@ import com.utils.MysqlConnect;
 public class UserController {
 
 	MysqlConnect mysqlConnect = new MysqlConnect();
-
+	final static Logger logger = Logger.getLogger(UserController.class);
 	/**
 	 * 
 	 */
@@ -34,6 +36,7 @@ public class UserController {
 	public List<Assessor> getUsersOfCompany(String companyCode) {
 		String sql = "SELECT AssessorID, UserName, Password, CompanyCode, IsActive, IsLocked FROM Assessor where Assessor.IsActive=1 and Assessor.CompanyCode = '"
 				+ companyCode + "';";
+		logger.info(sql);
 		List<Assessor> listAllUsers = new ArrayList<>();
 		try {
 			PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
@@ -67,7 +70,7 @@ public class UserController {
 	public boolean updateIsActive(String username, String companyCode, int status) {
 		String sql = "Update  Assessor set Assessor.IsActive = " + status + " where Assessor.Username = '" + username
 				+ "' and Assessor.CompanyCode = '" + companyCode + "';";
-		System.out.println(sql);
+		logger.info(sql);
 		try {
 			PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
 			int rows = statement.executeUpdate();
@@ -88,7 +91,7 @@ public class UserController {
 	public boolean updateIsLocked(String username, String companyCode, int status) {
 		String sql = "Update  Assessor set Assessor.IsLocked = " + status + " where Assessor.Username = '" + username
 				+ "' and Assessor.CompanyCode = '" + companyCode + "';";
-		System.out.println(sql);
+		logger.info(sql);
 		try {
 			PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
 			int rows = statement.executeUpdate();
@@ -113,7 +116,7 @@ public class UserController {
 		}
 		String sql = "Update  Assessor set Assessor.Password = md5('" + password + "') and Assessor.IsFirstTimeLogin = " + isFirstChangeInt + " where Assessor.Username = '" + username
 				+ "' and Assessor.CompanyCode = '" + companyCode + "';";
-		System.out.println(sql);
+		logger.info(sql);
 		try {
 			PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
 			int rows = statement.executeUpdate();

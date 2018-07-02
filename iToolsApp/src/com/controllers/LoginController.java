@@ -9,6 +9,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.log4j.Logger;
+
 import com.models.Assessor;
 import com.models.Role;
 import com.utils.MysqlConnect;
@@ -21,7 +23,7 @@ import com.utils.StringUtils;
 public class LoginController {
 
 	MysqlConnect mysqlConnect = new MysqlConnect();
-
+	final static Logger logger = Logger.getLogger(LoginController.class);
 	/**
 	 * 
 	 */
@@ -39,6 +41,7 @@ public class LoginController {
 		String sql = "SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin FROM Assessor where Assessor.UserName='"
 				+ username.toLowerCase() + "' and Password=md5('" + password + "');";
 		// System.out.println(sql);
+		logger.info(sql);
 		try {
 			PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
 			ResultSet rs = statement.executeQuery(sql);
@@ -72,6 +75,7 @@ public class LoginController {
 	 */
 	public List<Assessor> getAllUsers() {
 		String sql = "SELECT AssessorID, UserName, Password, CompanyCode FROM Assessor where Assessor.IsActive=1;";
+		logger.info(sql);
 		List<Assessor> listAllUsers = new ArrayList<>();
 		try {
 			PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
@@ -105,6 +109,7 @@ public class LoginController {
 				+ " inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = '" + companyCode
 				+ "' and assessor.UserName= '" + userName.toLowerCase() + "'";
 		// System.out.println(sql);
+		logger.info(sql);
 		List<Role> listAllRoles = new ArrayList<>();
 		try {
 			PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);

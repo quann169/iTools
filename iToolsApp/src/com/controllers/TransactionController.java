@@ -8,6 +8,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import org.apache.log4j.Logger;
+
 import com.utils.MysqlConnect;
 
 /**
@@ -17,7 +19,7 @@ import com.utils.MysqlConnect;
 public class TransactionController {
 
 	MysqlConnect mysqlConnect = new MysqlConnect();
-
+	final static Logger logger = Logger.getLogger(TransactionController.class);
 	/**
 	 * 
 	 */
@@ -38,7 +40,7 @@ public class TransactionController {
 				+ "TrayIndex, Quantity, UpdatedDate, TransactionStatus, TransactionType) values (now(), '" + machineCode
 				+ "', '" + companyCode + "', '" + userId + "', '" + woCode + "', '" + opCode + "', '" + toolCode
 				+ "', '" + trayIndex + "', '" + quantity + "', now(), '" + transactioStatus + "', '" + transactionType + "');";
-		System.out.println("insertTransaction: " + sql);
+		logger.info(sql);
 		try {
 			PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 			int rs = statement.executeUpdate();
@@ -70,7 +72,7 @@ public class TransactionController {
 	public int updateTransaction(int transactionID, String columnName, String value) {
 		String sql = "update WorkingTransaction set UpdatedDate=now(), " + columnName + "='" + value
 				+ "' where WorkingTransactionID = " + transactionID + ";";
-		System.out.println(sql);
+		logger.info(sql);
 		try {
 			PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 			int rs = statement.executeUpdate();

@@ -48,6 +48,7 @@ public class EmployeeController {
 				+ " inner join machine on toolsmachine.MachineCode = machine.MachineCode "
 				+ " where machine.MachineCode = '" + machineCode + "';";
 		// System.out.println(sql);
+		logger.info(sql);
 		List<Tool> result = new ArrayList<>();
 		try {
 
@@ -68,6 +69,7 @@ public class EmployeeController {
 		} finally {
 			mysqlConnect.disconnect();
 		}
+		logger.info(result);
 		return result;
 	}
 
@@ -76,7 +78,7 @@ public class EmployeeController {
 		String sql = " select toolsmachine.ToolsMachineID "
 				+ "from tools inner join toolsmachine on tools.ToolCode = toolsmachine.ToolCode "
 				+ "where tools.ToolCode = '" + tool + "' and toolsmachine.MachineCode = '" + machineCode + "';";
-		System.out.println("Get ToolsMachineID: " + sql);
+		logger.info(sql);
 		String toolsMachineID = "";
 		try {
 
@@ -98,8 +100,7 @@ public class EmployeeController {
 			sql = " update toolsmachinetray set quantity = '" + quantity + "' where ToolsMachineID = '"
 					+ toolsMachineID + "' and trayIndex = '" + tray + "';";
 		}
-		
-		System.out.println("Update: " + sql);
+		logger.info(sql);
 
 		try {
 
@@ -124,13 +125,14 @@ public class EmployeeController {
 	 * @param password
 	 * @return
 	 */
-	public HashMap<String, List<List<Object>>> getToolTrayQuantity(String machineCode) {
+	public HashMap<String, List<List<Object>>> getToolTrayQuantity(String machineCode, int minVal) {
 		String sql = " select tools.ToolCode, tools.ToolCode, machine.MachineCode, toolsmachinetray.TrayIndex, toolsmachinetray.Quantity "
 				+ " from tools inner join toolsmachine on tools.ToolCode = toolsmachine.ToolCode "
 				+ " inner join machine on toolsmachine.MachineCode = machine.MachineCode "
 				+ " inner join toolsmachinetray on toolsmachinetray.toolsmachineID = toolsmachine.toolsmachineID "
 				+ " where machine.MachineCode = '" + machineCode + "';";
 		// System.out.println(sql);
+		logger.info(sql);
 		HashMap<String, List<List<Object>>> result = new HashMap<>();
 		List<String> availableTools = new ArrayList<>();
 		Set<String> toolTrays = new HashSet<>();
@@ -146,7 +148,7 @@ public class EmployeeController {
 				if (toolTrays.contains(toolTray)) {
 					logger.warn("Machine " + machineCode + ": " + toolName + " - " + trayIndex + " existed.");
 				}
-				if (quantity > -1) {
+				if (quantity > minVal) {
 					availableTools.add(toolName);
 
 					if (result.containsKey(toolName)) {
@@ -173,6 +175,7 @@ public class EmployeeController {
 		} finally {
 			mysqlConnect.disconnect();
 		}
+		logger.info(result);
 		return result;
 	}
 
@@ -182,6 +185,7 @@ public class EmployeeController {
 	 */
 	public List<Assessor> getAllUsers() {
 		String sql = "SELECT AssessorID, UserName, Password, CompanyId FROM Assessor where Assessor.IsActive=1;";
+		logger.info(sql);
 		List<Assessor> listAllUsers = new ArrayList<>();
 		try {
 			PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
@@ -214,7 +218,7 @@ public class EmployeeController {
 				+ " from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID"
 				+ " inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = '" + companyCode
 				+ "' and assessor.UserName= '" + userName.toLowerCase() + "'";
-		System.out.println(sql);
+		logger.info(sql);
 		List<Role> listAllRoles = new ArrayList<>();
 		try {
 			PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
@@ -226,6 +230,7 @@ public class EmployeeController {
 
 				listAllRoles.add(role);
 			}
+			logger.info(listAllRoles);
 			return listAllRoles;
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -245,6 +250,7 @@ public class EmployeeController {
 				+ "				on toolsMachineTray.toolsMachineID = toolsMachine.toolsMachineID "
 				+ "where company.CompanyCode = '" + companyCode + "' and tools.ToolCode = '" + selectValue + "';";
 		// System.out.println(sql);
+		logger.info(sql);
 		List<Machine> listAllMachines = new ArrayList<>();
 		try {
 			PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
@@ -257,6 +263,7 @@ public class EmployeeController {
 
 				listAllMachines.add(machine);
 			}
+			logger.info(listAllMachines);
 			return listAllMachines;
 		} catch (SQLException e) {
 			e.printStackTrace();

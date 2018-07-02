@@ -97,15 +97,16 @@ public class LockUnlockAccountPage extends JFrame implements ActionListener {
 
 		Font labelFont = container.getFont();
 
-		backToDashboardLabel.setText("<html><html><font size=\"5\" face=\"arial\" color=\"#0181BE\"><b><i><u>"
+		backToDashboardLabel.setText("<html><html><font size=\"6\" face=\"arial\" color=\"#0181BE\"><b><i><u>"
 				+ bundleMessage.getString("Employee_Back_To_Dashboard") + "</u></i></b></font></html></html>");
 		backToDashboardLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		backToDashboardLabel.setBounds(10, 0, 170, 60);
+		backToDashboardLabel.setBounds(15, 10, 270, 60);
 		backToDashboardLabel.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				System.out.println("backToDashboardLabel");
-				updateTimer.restart();
+				masterLogObj.insertLog(userName, Enum.ASSESSOR, "", Enum.SHOW_DASHBOARD, "", "", companyCode,
+						machineCode, StringUtils.getCurrentClassAndMethodNames());
 			}
 		});
 
@@ -115,29 +116,30 @@ public class LockUnlockAccountPage extends JFrame implements ActionListener {
 			backToDashboardLabel.setEnabled(false);
 		}
 
-		changePassLabel.setText("<html><html><font size=\"5\" face=\"arial\" color=\"#0181BE\"><b><i><u>"
+		changePassLabel.setText("<html><html><font size=\"6\" face=\"arial\" color=\"#0181BE\"><b><i><u>"
 				+ bundleMessage.getString("App_ChangePassword") + "</u></i></b></font></html></html>");
 		changePassLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		changePassLabel.setBounds(440, 0, 170, 60);
+		changePassLabel.setBounds(450, 10, 250, 60);
 		changePassLabel.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				System.out.println("changePassLabel");
+				masterLogObj.insertLog(userName, Enum.ASSESSOR, "", Enum.CHANGE_PASS, "", "", companyCode, machineCode,
+						StringUtils.getCurrentClassAndMethodNames());
 				updateTimer.restart();
 			}
 		});
 
-		splitLabel.setBounds(605, 0, 15, 60);
-		splitLabel.setFont(new Font(labelFont.getName(), Font.BOLD, 16));
+		splitLabel.setBounds(665, 10, 20, 60);
+		splitLabel.setFont(new Font(labelFont.getName(), Font.BOLD, 20));
 
-		logOutLabel.setText("<html><font size=\"5\" face=\"arial\" color=\"#0181BE\"><b><i><u>"
+		logOutLabel.setText("<html><font size=\"6\" face=\"arial\" color=\"#0181BE\"><b><i><u>"
 				+ bundleMessage.getString("App_Logout") + "</u></i></b></font></html>");
 		logOutLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		logOutLabel.setBounds(620, 0, 100, 60);
+		logOutLabel.setBounds(685, 10, 150, 60);
 		logOutLabel.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-
 				updateTimer.restart();
 				masterLogObj.insertLog(userName, Enum.ASSESSOR, "", Enum.LOGOUT, "", "", companyCode, machineCode,
 						StringUtils.getCurrentClassAndMethodNames());

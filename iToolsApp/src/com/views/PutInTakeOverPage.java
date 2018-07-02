@@ -108,7 +108,7 @@ public class PutInTakeOverPage extends JFrame implements ActionListener {
 	int expiredTime = Integer.valueOf(cfg.getProperty("Expired_Time")) * 1000;
 
 	PutInTakeOverPage(Assessor user, String pageType) {
-		toolVstrayAndQuantityMap = empCtlObj.getToolTrayQuantity(machineCode);
+		toolVstrayAndQuantityMap = empCtlObj.getToolTrayQuantity(machineCode, -1);
 		this.pageType = pageType;
 		System.out.println(toolVstrayAndQuantityMap);
 		setLayoutManager();
@@ -128,37 +128,42 @@ public class PutInTakeOverPage extends JFrame implements ActionListener {
 		Map<TextAttribute, Integer> fontAttributes = new HashMap<TextAttribute, Integer>();
 		fontAttributes.put(TextAttribute.UNDERLINE, TextAttribute.UNDERLINE_ON);
 
-		backToDashboardLabel.setText("<html><html><font size=\"5\" face=\"arial\" color=\"#0181BE\"><b><i><u>"
+		backToDashboardLabel.setText("<html><html><font size=\"6\" face=\"arial\" color=\"#0181BE\"><b><i><u>"
 				+ bundleMessage.getString("Employee_Back_To_Dashboard") + "</u></i></b></font></html></html>");
 		backToDashboardLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		backToDashboardLabel.setBounds(10, 0, 170, 60);
+		backToDashboardLabel.setBounds(15, 10, 270, 60);
 		backToDashboardLabel.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				System.out.println("backToDashboardLabel");
+				masterLogObj.insertLog(userName, Enum.ASSESSOR, "", Enum.SHOW_DASHBOARD, "", "", companyCode,
+						machineCode, StringUtils.getCurrentClassAndMethodNames());
 			}
 		});
 
 		backToDashboardLabel.setEnabled(true);
 
-		changePassLabel.setText("<html><html><font size=\"5\" face=\"arial\" color=\"#0181BE\"><b><i><u>"
+		changePassLabel.setText("<html><html><font size=\"6\" face=\"arial\" color=\"#0181BE\"><b><i><u>"
 				+ bundleMessage.getString("App_ChangePassword") + "</u></i></b></font></html></html>");
 		changePassLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		changePassLabel.setBounds(440, 0, 170, 60);
+		changePassLabel.setBounds(450, 10, 250, 60);
 		changePassLabel.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				System.out.println("changePassLabel");
+				masterLogObj.insertLog(userName, Enum.ASSESSOR, "", Enum.CHANGE_PASS, "", "", companyCode, machineCode,
+						StringUtils.getCurrentClassAndMethodNames());
+				updateTimer.restart();
 			}
 		});
 
-		splitLabel.setBounds(605, 0, 15, 60);
-		splitLabel.setFont(new Font(labelFont.getName(), Font.BOLD, 16));
+		splitLabel.setBounds(665, 10, 20, 60);
+		splitLabel.setFont(new Font(labelFont.getName(), Font.BOLD, 20));
 
-		logOutLabel.setText("<html><font size=\"5\" face=\"arial\" color=\"#0181BE\"><b><i><u>"
+		logOutLabel.setText("<html><font size=\"6\" face=\"arial\" color=\"#0181BE\"><b><i><u>"
 				+ bundleMessage.getString("App_Logout") + "</u></i></b></font></html>");
 		logOutLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		logOutLabel.setBounds(620, 0, 100, 60);
+		logOutLabel.setBounds(685, 10, 150, 60);
 		logOutLabel.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -508,7 +513,7 @@ public class PutInTakeOverPage extends JFrame implements ActionListener {
 						resultValue = empCtlObj.updateToolTray(machineCode, toolComboBox.getSelectedItem().toString(),
 								trayCombobox.getSelectedItem().toString(), quantityTextField.getText());
 						if (resultValue) {
-							toolVstrayAndQuantityMap = empCtlObj.getToolTrayQuantity(machineCode);
+							toolVstrayAndQuantityMap = empCtlObj.getToolTrayQuantity(machineCode, -1);
 							toolComboBox.setSelectedIndex(0);
 							trayCombobox.removeAllItems();
 							quantityTextField.setText("");

@@ -60,7 +60,7 @@ public class StringUtils {
 		int centerPos = (frameWidth / 2) - (titleWidth / 2);
 		int spaceCount = centerPos / spaceWidth;
 		String pad = "";
-		pad = String.format("%" + (spaceCount - 1) + "s", pad);
+		pad = String.format("%" + (spaceCount - 34) + "s", pad);
 		return pad + currentTitle;
 
 	}
@@ -68,7 +68,8 @@ public class StringUtils {
 	public static void frameInit(JFrame frame, ResourceBundle bundleMessage) {
 		frame.setLayout(new BorderLayout());
 		frame.setVisible(true);
-		frame.setBounds(0, 0, 700, 460);
+//		frame.setBounds(0, 0, 700, 460);
+		frame.setBounds(0, 0, 800, 600);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.addComponentListener(new ComponentAdapter() {
 			@Override
@@ -83,15 +84,16 @@ public class StringUtils {
 		JPanel statusPanel = new JPanel();
 		statusPanel.setBorder(new BevelBorder(BevelBorder.LOWERED));
 		frame.add(statusPanel, BorderLayout.SOUTH);
-		statusPanel.setPreferredSize(new Dimension(frame.getWidth(), 30));
+		statusPanel.setPreferredSize(new Dimension(frame.getWidth(), 50));
 		statusPanel.setLayout(new BoxLayout(statusPanel, BoxLayout.X_AXIS));
 		JLabel statusLabel = new JLabel();
 		statusLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		statusPanel.add(statusLabel);
 
 		String textFooter = StringUtils.calculateAlign(frame, bundleMessage.getString("App_Footer"));
-
+		statusLabel.setFont(new Font(statusLabel.getFont().getName(), Font.BOLD, 15));
 		statusLabel.setText(textFooter);
+		
 	}
 
 	public static JMenuBar addMenu() {
