@@ -1,0 +1,37 @@
+1. Quan ly ten mien
+https://access.pavietnam.vn/index.php?view=4
+acc : tqteam.net
+pass : danhim1105
+
+https://kienthuc.pavietnam.vn/article/Ten-mien-quoc-te/Huong-dan-Thu-thuat/Huong-dan-cau-hinh-ten-mien-tu-Mat-Bao-ve-hosting-cua-PA-Viet-Nam.html
+
+2. web quan ly ten mien
+http://thongbaotenmien.vn/
+acc : tqteam.net
+pass : danhim
+
+3. trang ho tro
+https://support.pavietnam.vn
+acc : PA-435096
+pass : danhim
+
+acc github
+acc tanthuong
+email ngngoctanthuong@gmail.com
+pass danhim1105
+
+Username:	admin@tqteam.net
+Password:	Tanthuong1105
+Pop3 Server:	mail.tqteam.net
+Smtp Server:	mail.tqteam.net
+
+
+http://112.213.89.49:2222
+acc tqteamne
+pass Danhim1105
+
+
+DB
+tqteamne_iTools
+username tqteamne_admin
+pass Admin123
