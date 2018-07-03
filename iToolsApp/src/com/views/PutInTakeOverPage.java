@@ -171,20 +171,23 @@ public class PutInTakeOverPage extends JFrame implements ActionListener {
 				masterLogObj.insertLog(userName, Enum.ASSESSOR, "", Enum.LOGOUT, "", "", companyCode, machineCode,
 						StringUtils.getCurrentClassAndMethodNames());
 				logger.info(userName + " logout.");
-				root.dispose();
+				JFrame old = root;
 				root = new LoginPage();
 				StringUtils.frameInit(root, bundleMessage);
 
 				root.setTitle(bundleMessage.getString("Login_Page_Title"));
 				root.getRootPane().setDefaultButton(((LoginPage) root).loginButton);
+				old.dispose();
 			}
 		});
 
 		////////////////////////////////////////
-		toolLabel.setBounds(100, 105, 150, 60);
-		toolComboBox.setBounds(250, 110, 300, 30);
-
-		toolLabel.setFont(new Font(labelFont.getName(), Font.BOLD, 20));
+		toolLabel.setBounds(100, 105, 250, 60);
+		toolLabel.setFont(new Font(labelFont.getName(), Font.BOLD, 30));
+		
+		
+		toolComboBox.setBounds(250, 110, 400, 40);
+		toolComboBox.setFont(new Font(labelFont.getName(), Font.BOLD, 25));
 
 		toolComboBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -250,10 +253,14 @@ public class PutInTakeOverPage extends JFrame implements ActionListener {
 		AutoCompletion.enable(toolComboBox);
 
 		//////////////////////////////////////////////////////////////////
-		trayLabel.setBounds(100, 160, 150, 60);
-		trayCombobox.setBounds(250, 170, 300, 30);
+		trayLabel.setBounds(100, 180, 250, 60);
+		trayLabel.setFont(new Font(labelFont.getName(), Font.BOLD, 30));
+		
+		
+		trayCombobox.setBounds(250, 190, 400, 40);
+		trayCombobox.setFont(new Font(labelFont.getName(), Font.BOLD, 25));
 
-		trayLabel.setFont(new Font(labelFont.getName(), Font.BOLD, 20));
+		
 
 		trayCombobox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -286,10 +293,11 @@ public class PutInTakeOverPage extends JFrame implements ActionListener {
 		trayCombobox.addItem("");
 		AutoCompletion.enable(trayCombobox);
 
-		quantityLabel.setBounds(100, 220, 150, 60);
-		quantityLabel.setFont(new Font(labelFont.getName(), Font.BOLD, 20));
+		quantityLabel.setBounds(100, 260, 250, 60);
+		quantityLabel.setFont(new Font(labelFont.getName(), Font.BOLD, 30));
 
-		quantityTextField.setBounds(250, 230, 100, 30);
+		quantityTextField.setBounds(250, 270, 180, 40);
+		quantityTextField.setFont(new Font(labelFont.getName(), Font.BOLD, 25));
 		// quantityTextField.setEditable(false);
 		quantityTextField.getDocument().addDocumentListener(new DocumentListener() {
 			public void changedUpdate(DocumentEvent e) {
@@ -305,20 +313,22 @@ public class PutInTakeOverPage extends JFrame implements ActionListener {
 			}
 
 			public void warn() {
+				
 				if (validateAllFields()) {
 					sendRequestButton.setEnabled(true);
 				}
 			}
 		});
 
-		quantityMessage.setBounds(250, 260, 380, 30);
-
+		quantityMessage.setBounds(250, 310, 550, 40);
+		quantityMessage.setFont(new Font(labelFont.getName(), Font.BOLD, 20));
+		
 		sendRequestButton.setEnabled(false);
-		sendRequestButton.setBounds(250, 290, 180, 30);
-		sendRequestButton.setFont(new Font(labelFont.getName(), Font.BOLD, 15));
+		sendRequestButton.setBounds(250, 350, 250, 40);
+		sendRequestButton.setFont(new Font(labelFont.getName(), Font.BOLD, 25));
 
-		cancelButton.setBounds(450, 290, 100, 30);
-		cancelButton.setFont(new Font(labelFont.getName(), Font.BOLD, 15));
+		cancelButton.setBounds(510, 350, 140, 40);
+		cancelButton.setFont(new Font(labelFont.getName(), Font.BOLD, 25));
 
 		updateTimer = new Timer(expiredTime, new ActionListener() {
 			@Override
@@ -331,12 +341,13 @@ public class PutInTakeOverPage extends JFrame implements ActionListener {
 				
 				
 				logger.info(userName + ": " + Enum.PUTIN_TAKEOVER_PAGE + " time out.");
-				root.dispose();
+				JFrame old = root;
 				root = new LoginPage();
 				StringUtils.frameInit(root, bundleMessage);
 
 				root.setTitle(bundleMessage.getString("Login_Page_Title"));
 				root.getRootPane().setDefaultButton(((LoginPage) root).loginButton);
+				old.dispose();
 			}
 		});
 		updateTimer.setRepeats(false);
@@ -355,17 +366,19 @@ public class PutInTakeOverPage extends JFrame implements ActionListener {
 		}
 		int trayLength = ((String) trayCombobox.getSelectedItem()).length();
 		int toolLength = ((String) toolComboBox.getSelectedItem()).length();
-		int quantityLength = quantityTextField.getText().length();
+		String strTmp = quantityTextField.getText().replaceAll("\\D+","");
+		int quantityLength = strTmp.length();
 
 		if (toolLength > 0 && trayLength > 0 && quantityLength > 0) {
 			defaultQuantity = mapTrayQuantity.get(trayCombobox.getSelectedItem());
-			newQuantity = Integer.parseInt(quantityTextField.getText());
+			
+			newQuantity = Integer.parseInt(strTmp);
 			if (defaultQuantity != newQuantity) {
 				if (this.pageType.equals(Enum.TKOVER.text())) {
 					if (newQuantity > defaultQuantity) {
 						sendRequestButton.setEnabled(false);
 						quantityMessage
-								.setText("<html><html><font size=\"4\" face=\"arial\" color=\"RED\"><b>" + MessageFormat
+								.setText("<html><html><font face=\"arial\" color=\"RED\"><b>" + MessageFormat
 										.format(bundleMessage.getString("Putin_TakeOver_Page_TakeOverErrMessage"),
 												defaultQuantity)
 										+ "</b></font></html></html>");
@@ -375,7 +388,7 @@ public class PutInTakeOverPage extends JFrame implements ActionListener {
 
 					if (newQuantity < defaultQuantity || newQuantity > maxItemsPerTray) {
 						sendRequestButton.setEnabled(false);
-						quantityMessage.setText("<html><html><font size=\"4\" face=\"arial\" color=\"RED\"><b>"
+						quantityMessage.setText("<html><html><font face=\"arial\" color=\"RED\"><b>"
 								+ MessageFormat.format(bundleMessage.getString("Putin_TakeOver_Page_PutinErrMessage"),
 										defaultQuantity, maxItemsPerTray)
 								+ "</b></font></html></html>");
@@ -445,7 +458,7 @@ public class PutInTakeOverPage extends JFrame implements ActionListener {
 
 			String ctid = toolComboBox.getSelectedItem().toString();
 			String tray = trayCombobox.getSelectedItem().toString();
-			String quantity = quantityTextField.getText();
+			String quantity = quantityTextField.getText().replaceAll("\\D+","");
 
 			JLabel label2 = new JLabel("<html>Review and confirm information<br/>CTID: " + ctid + "<br/>Tray: " + tray
 					+ "<br/>Quantity: " + quantity + "</html>", SwingConstants.CENTER);

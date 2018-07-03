@@ -144,16 +144,22 @@ public class LockUnlockAccountPage extends JFrame implements ActionListener {
 				masterLogObj.insertLog(userName, Enum.ASSESSOR, "", Enum.LOGOUT, "", "", companyCode, machineCode,
 						StringUtils.getCurrentClassAndMethodNames());
 				logger.info(userName + " logout.");
-				root.dispose();
+				JFrame old = root;
 				root = new LoginPage();
 				StringUtils.frameInit(root, bundleMessage);
 
 				root.setTitle(bundleMessage.getString("Login_Page_Title"));
 				root.getRootPane().setDefaultButton(((LoginPage) root).loginButton);
+				old.dispose();
 			}
 		});
+		
+		usernameLabel.setBounds(100, 200, 150, 60);
+		usernameLabel.setFont(new Font(labelFont.getName(), Font.BOLD, 30));
 
-		userNameComboBox.setBounds(250, 140, 300, 30);
+		userNameComboBox.setBounds(280, 210, 400, 40);
+		userNameComboBox.setFont(new Font(labelFont.getName(), Font.BOLD, 30));
+		
 		userNameComboBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				validateAllFields();
@@ -180,14 +186,13 @@ public class LockUnlockAccountPage extends JFrame implements ActionListener {
 		}
 		AutoCompletion.enable(userNameComboBox);
 
-		usernameLabel.setBounds(100, 130, 150, 60);
-		usernameLabel.setFont(new Font(labelFont.getName(), Font.ITALIC + Font.BOLD, 20));
+		
 
-		lockAccountButtom.setBounds(100, 200, 200, 40);
-		lockAccountButtom.setFont(new Font(labelFont.getName(), Font.BOLD, 15));
+		lockAccountButtom.setBounds(150, 300, 250, 40);
+		lockAccountButtom.setFont(new Font(labelFont.getName(), Font.BOLD, 25));
 
-		unLockAccountButton.setBounds(350, 200, 200, 40);
-		unLockAccountButton.setFont(new Font(labelFont.getName(), Font.BOLD, 15));
+		unLockAccountButton.setBounds(430, 300, 250, 40);
+		unLockAccountButton.setFont(new Font(labelFont.getName(), Font.BOLD, 25));
 		validateAllFields();
 
 		updateTimer = new Timer(expiredTime, new ActionListener() {
@@ -201,13 +206,13 @@ public class LockUnlockAccountPage extends JFrame implements ActionListener {
 						JOptionPane.WARNING_MESSAGE);
 
 				logger.info(userName + ": " + Enum.LOCK_UNLOCK_PAGE + " time out.");
-				root.dispose();
+				JFrame old = root;
 				root = new LoginPage();
 				StringUtils.frameInit(root, bundleMessage);
 
 				root.setTitle(bundleMessage.getString("Login_Page_Title"));
 				root.getRootPane().setDefaultButton(((LoginPage) root).loginButton);
-
+				old.dispose();
 			}
 		});
 		updateTimer.setRepeats(false);

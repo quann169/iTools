@@ -134,12 +134,13 @@ public class DashboardPage extends JFrame implements ActionListener {
 				masterLogObj.insertLog(userName, Enum.ASSESSOR, "", Enum.LOGOUT, "", "", companyCode, machineCode,
 						StringUtils.getCurrentClassAndMethodNames());
 				logger.info(userName + " logout.");
-				root.dispose();
+				JFrame old = root;
 				root = new LoginPage();
 				StringUtils.frameInit(root, bundleMessage);
 
 				root.setTitle(bundleMessage.getString("Login_Page_Title"));
 				root.getRootPane().setDefaultButton(((LoginPage) root).loginButton);
+				old.dispose();
 			}
 		});
 
@@ -177,13 +178,13 @@ public class DashboardPage extends JFrame implements ActionListener {
 						JOptionPane.WARNING_MESSAGE);
 
 				logger.info(userName + ": " + Enum.DASHBOARD_PAGE + " time out.");
-				root.dispose();
+				JFrame old = root;
 				root = new LoginPage();
 				StringUtils.frameInit(root, bundleMessage);
 
 				root.setTitle(bundleMessage.getString("Login_Page_Title"));
 				root.getRootPane().setDefaultButton(((LoginPage) root).loginButton);
-
+				old.dispose();
 			}
 		});
 		updateTimer.setRepeats(false);
@@ -234,24 +235,27 @@ public class DashboardPage extends JFrame implements ActionListener {
 			JLabel progress = new JLabel("Please Wait...");
 			p1.add(progress, new GridBagConstraints());
 			d.getContentPane().add(p1);
-			d.setBounds(100, 100, 500, 200);
+			d.setBounds(150, 200, 500, 200);
 			// d.setLocationRelativeTo(f);
 			d.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
 			d.setModal(true);
 
-			SwingWorker<?, ?> worker = new SwingWorker<Void, Integer>() {
+			SwingWorker<?, ?> worker = new SwingWorker<Void, String>() {
 				protected Void doInBackground() throws InterruptedException {
 					int x = 0;
 					for (; x <= 100; x += 10) {
-						publish(x);
+						publish("" + x);
 						Thread.sleep(200);
 					}
 					return null;
 				}
 
-				protected void process(List<Integer> chunks) {
-					int selection = chunks.get(chunks.size() - 1);
-					progress.setText("Please Wait..." + selection + "s");
+				protected void process(List<String> chunks) {
+					String selection = chunks.get(chunks.size() - 1);
+					progress.setText("<html><html><font size=\"5\" face=\"arial\" color=\"#0181BE\"><b>Please Wait... "
+							+ selection + "s</b></font></html></html>");
+					
+					
 				}
 
 				protected void done() {
@@ -273,56 +277,61 @@ public class DashboardPage extends JFrame implements ActionListener {
 			updateTimer.stop();
 			masterLogObj.insertLog(userName, Enum.ASSESSOR, "", Enum.TKOVER, "", "", companyCode, machineCode,
 					StringUtils.getCurrentClassAndMethodNames());
-			root.dispose();
+			JFrame old = root;
 			root = new PutInTakeOverPage(user, Enum.TKOVER.text());
 			StringUtils.frameInit(root, bundleMessage);
 			root.setTitle(user.getUsername() + " - " + user.getFirstName() + " " + user.getLastName());
 			root.show();
+			old.dispose();
 		}
 		if (e.getSource() == putInsButton) {
 			updateTimer.stop();
 			masterLogObj.insertLog(userName, Enum.ASSESSOR, "", Enum.PUTIN, "", "", companyCode, machineCode,
 					StringUtils.getCurrentClassAndMethodNames());
-			root.dispose();
+			JFrame old = root;
 			root = new PutInTakeOverPage(user, Enum.PUTIN.text());
 			StringUtils.frameInit(root, bundleMessage);
 			root.setTitle(user.getUsername() + " - " + user.getFirstName() + " " + user.getLastName());
 			root.show();
+			old.dispose();
 		}
 
 		if (e.getSource() == resetPasswordButton) {
 			updateTimer.stop();
 			masterLogObj.insertLog(userName, Enum.ASSESSOR, "", Enum.RESET_PASS, "", "", companyCode, machineCode,
 					StringUtils.getCurrentClassAndMethodNames());
-			root.dispose();
+			JFrame old = root;
 			root = new ResetPasswordPage(user, true, false);
 			StringUtils.frameInit(root, bundleMessage);
 			// empPage.setJMenuBar(StringUtils.addMenu());
 			root.setTitle(user.getUsername() + " - " + user.getFirstName() + " " + user.getLastName());
 			root.show();
+			old.dispose();
 		}
 		if (e.getSource() == lockAccountButton) {
 			updateTimer.stop();
 			masterLogObj.insertLog(userName, Enum.ASSESSOR, "", Enum.LOCK_USER, "", "", companyCode, machineCode,
 					StringUtils.getCurrentClassAndMethodNames());
-			root.dispose();
+			JFrame old = root;
 			root = new LockUnlockAccountPage(user, true);
 			StringUtils.frameInit(root, bundleMessage);
 			// empPage.setJMenuBar(StringUtils.addMenu());
 			root.setTitle(user.getUsername() + " - " + user.getFirstName() + " " + user.getLastName());
 			root.show();
+			old.dispose();
 		}
 
 		if (e.getSource() == getToolButton) {
 			updateTimer.stop();
 			masterLogObj.insertLog(userName, Enum.ASSESSOR, "", Enum.GETTOOL, "", "", companyCode, machineCode,
 					StringUtils.getCurrentClassAndMethodNames());
-			root.dispose();
+			JFrame old = root;
 			root = new EmployeePage(userName, true);
 			StringUtils.frameInit(root, bundleMessage);
 			// empPage.setJMenuBar(StringUtils.addMenu());
 			root.setTitle(user.getUsername() + " - " + user.getFirstName() + " " + user.getLastName());
 			root.show();
+			old.dispose();
 		}
 
 		if (e.getSource() == manualSyncButton) {

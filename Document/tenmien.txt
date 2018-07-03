@@ -35,3 +35,9 @@ DB
 tqteamne_iTools
 username tqteamne_admin
 pass Admin123
+
+
+Email Test
+itool_app@tqteam.net
+itool_web@tqteam.net
+1qazxsw2!A

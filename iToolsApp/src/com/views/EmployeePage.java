@@ -86,6 +86,8 @@ public class EmployeePage extends JFrame implements ActionListener, HidServicesL
 	JComboBox<String> toolComboBox = new JComboBox<String>();
 	JTextField quantityTextField = new JTextField();
 	boolean isReceiveResult = false;
+	
+	JLabel progress = new JLabel();
 
 	Map<String, List<List<Object>>> toolVstrayAndQuantityMap = new HashMap<>();
 
@@ -203,12 +205,13 @@ public class EmployeePage extends JFrame implements ActionListener, HidServicesL
 				masterLogObj.insertLog(userName, Enum.ASSESSOR, "", Enum.LOGOUT, "", "", companyCode, machineCode,
 						StringUtils.getCurrentClassAndMethodNames());
 				logger.info(userName + " logout.");
-				root.dispose();
+				JFrame old = root;
 				root = new LoginPage();
 				StringUtils.frameInit(root, bundleMessage);
 
 				root.setTitle(bundleMessage.getString("Login_Page_Title"));
 				root.getRootPane().setDefaultButton(((LoginPage) root).loginButton);
+				old.dispose();
 			}
 		});
 
@@ -281,8 +284,6 @@ public class EmployeePage extends JFrame implements ActionListener, HidServicesL
 					if (existedValue.size() > 0) {
 						List<String> listTrays = new ArrayList<>();
 						for (List<Object> trayQuantity : existedValue) {
-							// System.out.println("trayQuantity: " +
-							// trayQuantity);
 							String tray = (String) trayQuantity.get(0);
 							int quantity = (int) trayQuantity.get(1);
 							quantityTextField.setText("" + quantity);
@@ -388,13 +389,13 @@ public class EmployeePage extends JFrame implements ActionListener, HidServicesL
 				JOptionPane.showMessageDialog(container, timeoutMess, "Time Out Emp", JOptionPane.WARNING_MESSAGE);
 
 				logger.info(userName + ": " + Enum.EMP_PAGE + " time out.");
-				root.dispose();
+				JFrame old = root;
 				root = new LoginPage();
 				StringUtils.frameInit(root, bundleMessage);
 
 				root.setTitle(bundleMessage.getString("Login_Page_Title"));
 				root.getRootPane().setDefaultButton(((LoginPage) root).loginButton);
-
+				old.dispose();
 			}
 		});
 		updateTimer.setRepeats(false);
@@ -529,7 +530,7 @@ public class EmployeePage extends JFrame implements ActionListener, HidServicesL
 						machineCode, StringUtils.getCurrentClassAndMethodNames());
 				final JDialog d = new JDialog();
 				JPanel p1 = new JPanel(new GridBagLayout());
-				JLabel progress = new JLabel("Please Wait...");
+				progress.setText("Please Wait...");
 				p1.add(progress, new GridBagConstraints());
 				d.getContentPane().add(p1);
 				d.setBounds(100, 100, 500, 200);
@@ -557,6 +558,7 @@ public class EmployeePage extends JFrame implements ActionListener, HidServicesL
 						if (hashMessage.containsKey(trayTextField.getText().toUpperCase())) {
 							String message = hashMessage.get(trayTextField.getText().toUpperCase());
 							try {
+								publish("Send message to board");
 								resultValue = executeAction(message);
 //								resultValue = 1;
 							} catch (Exception e2) {
@@ -647,7 +649,7 @@ public class EmployeePage extends JFrame implements ActionListener, HidServicesL
 		// Start the services
 
 		hidServices.start();
-
+		progress.setText("Calculating attached devices...");
 		logger.info("Calculating attached devices...");
 
 		// Provide a list of attached devices
@@ -664,6 +666,8 @@ public class EmployeePage extends JFrame implements ActionListener, HidServicesL
 		HidDevice hidDevice = hidServices.getHidDevice(VENDOR_ID, PRODUCT_ID, null);
 		logger.info("hidDevice: " + hidDevice);
 		logger.info("messageData: " + messageData);
+		
+		progress.setText("Get HidDevice " + hidDevice);
 		int result = -1;
 		if (hidDevice != null) {
 			result = sendMessage(hidDevice, messageData);
@@ -715,6 +719,7 @@ public class EmployeePage extends JFrame implements ActionListener, HidServicesL
 		message[0] = 125;
 		message[1] = value;
 		logger.info("Data send to board: " + Arrays.toString(message));
+		progress.setText("Data send to board: " + Arrays.toString(message));
 		int val = -1;
 		try {
 			val = hidDevice.write(message, 2, (byte) 0x00);
@@ -739,7 +744,7 @@ public class EmployeePage extends JFrame implements ActionListener, HidServicesL
 					hidDevice.getLastErrorMessage(), companyCode, machineCode,
 					StringUtils.getCurrentClassAndMethodNames());
 		}
-
+		progress.setText("Begin wait to read data");
 		logger.info("-------------Begin wait to read data in " + readWaitTime + "s------------");
 		List<Integer> listDataReceived = new ArrayList<>();
 		for (int i = 0; i < 4; i++) {
@@ -752,10 +757,12 @@ public class EmployeePage extends JFrame implements ActionListener, HidServicesL
 				switch (val) {
 				case -1:
 					logger.error(hidDevice.getLastErrorMessage());
+					progress.setText("ERR: " + hidDevice.getLastErrorMessage());
 					moreData = false;
 					break;
 				case 0:
 					logger.info("-------------No data receive, end read data------------");
+					progress.setText("No data receive, end read data");
 					moreData = false;
 					break;
 				default:
@@ -765,6 +772,16 @@ public class EmployeePage extends JFrame implements ActionListener, HidServicesL
 					if (data.length == 2 && data[0] == value) {
 						int receivedCode = data[1];
 						listDataReceived.add(receivedCode);
+						if (receivedCode == MOTOR_START) {
+							progress.setText("MOTOR_START");
+						} else if (receivedCode == MOTOR_STOP) {
+							progress.setText("MOTOR_STOP");
+						} else if (receivedCode == PRODUCT_OK) {
+							progress.setText("PRODUCT_OK");
+						} else if (receivedCode == PRODUCT_FAIL) {
+							progress.setText("PRODUCT_FAIL");
+						}
+						
 					} else {
 						masterLogObj.insertLog(userName, Enum.WORKINGTRANSACTION, "", Enum.INVALID_SIGNAL_RECEIVE, "",
 								Arrays.toString(data), companyCode, machineCode,

@@ -17,5 +17,7 @@
 			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="iToolsApp/lib"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="lib/activation-1.1.jar"/>
+	<classpathentry kind="lib" path="lib/javax.mail-1.5.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

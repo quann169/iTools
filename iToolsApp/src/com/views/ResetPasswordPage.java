@@ -166,19 +166,21 @@ public class ResetPasswordPage extends JFrame implements ActionListener {
 				masterLogObj.insertLog(userName, Enum.ASSESSOR, "", Enum.LOGOUT, "", "", companyCode, machineCode,
 						StringUtils.getCurrentClassAndMethodNames());
 				logger.info(userName + " logout.");
-				root.dispose();
+				JFrame old = root;
 				root = new LoginPage();
 				StringUtils.frameInit(root, bundleMessage);
 
 				root.setTitle(bundleMessage.getString("Login_Page_Title"));
 				root.getRootPane().setDefaultButton(((LoginPage) root).loginButton);
+				old.dispose();
 			}
 		});
 
-		usernameLabel.setBounds(100, 100, 150, 60);
-		usernameLabel.setFont(new Font(labelFont.getName(), Font.BOLD, 18));
+		usernameLabel.setBounds(70, 100, 250, 60);
+		usernameLabel.setFont(new Font(labelFont.getName(), Font.BOLD, 30));
 
-		usernameComboBox.setBounds(270, 110, 250, 30);
+		usernameComboBox.setBounds(320, 110, 350, 40);
+		usernameComboBox.setFont(new Font(labelFont.getName(), Font.BOLD, 30));
 		usernameComboBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				validateAllFields();
@@ -221,10 +223,11 @@ public class ResetPasswordPage extends JFrame implements ActionListener {
 		}
 		AutoCompletion.enable(usernameComboBox);
 
-		passwordLabel.setBounds(100, 160, 170, 60);
-		passwordLabel.setFont(new Font(labelFont.getName(), Font.BOLD, 18));
+		passwordLabel.setBounds(70, 170, 350, 60);
+		passwordLabel.setFont(new Font(labelFont.getName(), Font.BOLD, 28));
 
-		passwordTextField.setBounds(270, 170, 250, 30);
+		passwordTextField.setBounds(320, 180, 350, 40);
+		passwordTextField.setFont(new Font(labelFont.getName(), Font.BOLD, 28));
 		passwordTextField.setText("");
 
 		passwordTextField.getDocument().addDocumentListener(new DocumentListener() {
@@ -245,12 +248,13 @@ public class ResetPasswordPage extends JFrame implements ActionListener {
 			}
 		});
 
-		rePasswordLabel.setBounds(100, 220, 170, 60);
-		rePasswordLabel.setFont(new Font(labelFont.getName(), Font.BOLD, 18));
+		rePasswordLabel.setBounds(70, 240, 350, 60);
+		rePasswordLabel.setFont(new Font(labelFont.getName(), Font.BOLD, 28));
 
-		matchPasswordLabel.setBounds(270, 200, 170, 30);
+		matchPasswordLabel.setBounds(320, 215, 350, 40);
 
-		rePasswordTextField.setBounds(270, 230, 250, 30);
+		rePasswordTextField.setBounds(320, 250, 350, 40);
+		rePasswordTextField.setFont(new Font(labelFont.getName(), Font.BOLD, 30));
 		rePasswordTextField.setText("");
 
 		rePasswordTextField.getDocument().addDocumentListener(new DocumentListener() {
@@ -271,22 +275,22 @@ public class ResetPasswordPage extends JFrame implements ActionListener {
 			}
 		});
 
-		isFirstChange.setBounds(270, 270, 300, 30);
-		isFirstChange.setFont(new Font(labelFont.getName(), Font.ITALIC, 15));
+		isFirstChange.setBounds(320, 300, 400, 30);
+		isFirstChange.setFont(new Font(labelFont.getName(), Font.ITALIC, 22));
 
 		if (isFirstTimeLogin) {
-
+			usernameComboBox.setFont(new Font(labelFont.getName(), Font.BOLD, 22));
 			firstTimeLoginLabel.setText(bundleMessage.getString("ResetPassword_Page_FirstTimeLoginLabel"));
-			firstTimeLoginLabel.setBounds(200, 60, 400, 30);
-			firstTimeLoginLabel.setFont(new Font(labelFont.getName(), Font.BOLD, 15));
+			firstTimeLoginLabel.setBounds(200, 60, 550, 30);
+			firstTimeLoginLabel.setFont(new Font(labelFont.getName(), Font.BOLD, 18));
 
 			resetPassButton.setText(bundleMessage.getString("ResetPassword_Page_FirstTimeLogin"));
-			resetPassButton.setBounds(270, 290, 200, 30);
-			resetPassButton.setFont(new Font(labelFont.getName(), Font.BOLD, 18));
+			resetPassButton.setBounds(320, 330, 300, 40);
+			resetPassButton.setFont(new Font(labelFont.getName(), Font.BOLD, 25));
 		} else {
 			resetPassButton.setText(bundleMessage.getString("ResetPassword_Page_ResetPassword"));
-			resetPassButton.setBounds(270, 310, 200, 30);
-			resetPassButton.setFont(new Font(labelFont.getName(), Font.BOLD, 18));
+			resetPassButton.setBounds(320, 350, 300, 40);
+			resetPassButton.setFont(new Font(labelFont.getName(), Font.BOLD, 25));
 		}
 
 		resetPassButton.setEnabled(false);
@@ -302,12 +306,13 @@ public class ResetPasswordPage extends JFrame implements ActionListener {
 						JOptionPane.WARNING_MESSAGE);
 
 				logger.info(userName + ": " + Enum.LOCK_UNLOCK_PAGE + " time out.");
-				root.dispose();
+				JFrame old = root;
 				root = new LoginPage();
 				StringUtils.frameInit(root, bundleMessage);
 
 				root.setTitle(bundleMessage.getString("Login_Page_Title"));
 				root.getRootPane().setDefaultButton(((LoginPage) root).loginButton);
+				old.dispose();
 			}
 		});
 		updateTimer.setRepeats(false);
@@ -326,7 +331,7 @@ public class ResetPasswordPage extends JFrame implements ActionListener {
 		boolean userExisted = mapDisplayName.containsKey(usernameComboBox.getSelectedItem().toString());
 
 		if (password.length() > 0 && repassword.length() > 0 && !password.equals(repassword)) {
-			matchPasswordLabel.setText("<html><font size=\"3\" face=\"arial\" color=\"red\"><i>"
+			matchPasswordLabel.setText("<html><font size=\"4\" face=\"arial\" color=\"red\"><i>"
 					+ bundleMessage.getString("ResetPassword_Page_Password_Not_Match") + "</i></font></html>");
 			resetPassButton.setEnabled(false);
 			return false;
@@ -386,10 +391,12 @@ public class ResetPasswordPage extends JFrame implements ActionListener {
 			if (isFirstTimeLogin) {
 				dialogResult = 0;
 			} else {
-				dialogResult = JOptionPane.showConfirmDialog(container,
-						bundleMessage.getString("ResetPassword_Page_Reset_Confirmation") + " " + usernameResetPass
-								+ "?",
-						"Confirmation", JOptionPane.YES_NO_OPTION);
+
+				String confirm = "<html><font size=\"5\" face=\"arial\"><i>"
+						+ bundleMessage.getString("ResetPassword_Page_Reset_Confirmation") + " " + usernameResetPass
+						+ "?</i></font></html>";
+				dialogResult = JOptionPane.showConfirmDialog(container, confirm, "Confirmation",
+						JOptionPane.YES_NO_OPTION);
 			}
 			if (dialogResult == 0) {
 				System.out.println("Yes option");
@@ -398,15 +405,33 @@ public class ResetPasswordPage extends JFrame implements ActionListener {
 					masterLogObj.insertLog(userName, Enum.ASSESSOR, "Password", Enum.UPDATE_PASS_FIRST_TIME_LOGIN,
 							usernameResetPass + " - " + user.getPassword(), "XXX", companyCode, machineCode,
 							StringUtils.getCurrentClassAndMethodNames());
+					String confirm = "<html><font size=\"5\" face=\"arial\"><i>Completed Change Password</i></font></html>";
+					JOptionPane.showMessageDialog(container, confirm, "Notify result",
+							JOptionPane.INFORMATION_MESSAGE);
+					
+					
+					masterLogObj.insertLog(userName, Enum.ASSESSOR, "", Enum.LOGOUT, "", "", companyCode, machineCode,
+							StringUtils.getCurrentClassAndMethodNames());
+					logger.info(userName + " logout.");
+					JFrame old = root;
+					root = new LoginPage();
+					StringUtils.frameInit(root, bundleMessage);
+
+					root.setTitle(bundleMessage.getString("Login_Page_Title"));
+					root.getRootPane().setDefaultButton(((LoginPage) root).loginButton);
+					old.dispose();
 				} else {
 					empCtlObj.updatePassword(usernameResetPass, this.companyCode, password, true);
 					masterLogObj.insertLog(userName, Enum.ASSESSOR, "Password", Enum.RESET_PASS,
 							usernameResetPass + " - " + user.getPassword(), "XXX", companyCode, machineCode,
 							StringUtils.getCurrentClassAndMethodNames());
+					String confirm = "<html><font size=\"5\" face=\"arial\"><i>Completed Reset Password" + " " + usernameResetPass
+							+ "</i></font></html>";
+					JOptionPane.showMessageDialog(container, confirm, "Notify result",
+							JOptionPane.INFORMATION_MESSAGE);
 				}
 
-				JOptionPane.showMessageDialog(container, "Completed Reset Password!", "Notify result",
-						JOptionPane.INFORMATION_MESSAGE);
+				
 
 				passwordTextField.setText("");
 				rePasswordTextField.setText("");

@@ -66,17 +66,16 @@ public class LoginPage extends JFrame implements ActionListener {
 		setLocationAndSize();
 		addComponentsToContainer();
 		addActionEvent();
-		
-		setExtendedState(JFrame.MAXIMIZED_BOTH); 
-//		setUndecorated(true);
+
+		setExtendedState(JFrame.MAXIMIZED_BOTH);
+		// setUndecorated(true);
 		setVisible(true);
 
 	}
 
 	public void setLayoutManager() {
 		container.setLayout(null);
-		
-		
+
 	}
 
 	public void setLocationAndSize() {
@@ -176,7 +175,7 @@ public class LoginPage extends JFrame implements ActionListener {
 		if (e.getSource() == loginButton) {
 
 			userText = "com1admin";
-			// userText = "uhacc1";
+//			userText = "uhacc1";
 			pwdText = "123456";
 
 			logger.info("Login with username: " + userText);
@@ -190,12 +189,13 @@ public class LoginPage extends JFrame implements ActionListener {
 
 				if (result.isFirstTimeLogin()) {
 					logger.info("isFirstTimeLogin: " + result.isFirstTimeLogin());
-					root.dispose();
+					JFrame old = root;
 					root = new ResetPasswordPage(result, false, result.isFirstTimeLogin());
 					StringUtils.frameInit(root, bundleMessage);
 					// empPage.setJMenuBar(StringUtils.addMenu());
 					root.setTitle(result.getUsername() + " - " + result.getFirstName() + " " + result.getLastName());
 					root.show();
+					old.dispose();
 				} else {
 
 					List<Role> listRoles = ctlObj.getUserRoles(userText, companyCode);
@@ -211,21 +211,22 @@ public class LoginPage extends JFrame implements ActionListener {
 						logger.info("User does not have role");
 					} else if (listRoles.size() == 1 && Enum.EMP.text().equals(listRoles.get(0).getRoleName())) {
 						logger.info("Show EmployeePage");
-						root.dispose();
+						JFrame old = root;
 						root = new EmployeePage(userName, false);
 						StringUtils.frameInit(root, bundleMessage);
 						// empPage.setJMenuBar(StringUtils.addMenu());
 						root.setTitle(userText + " - " + result.getFirstName() + " " + result.getLastName());
 						root.show();
-
+						old.dispose();
 					} else {
 						logger.info("Show DashboardPage");
-						root.dispose();
+						JFrame old = root;
 						root = new DashboardPage(listRoles, result);
 						StringUtils.frameInit(root, bundleMessage);
 						root.setTitle(userText + " - " + result.getFirstName() + " " + result.getLastName());
 						// dashboardPage.setJMenuBar(StringUtils.addMenu());
 						root.show();
+						old.dispose();
 					}
 				}
 			} else {
