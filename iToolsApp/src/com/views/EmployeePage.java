@@ -767,6 +767,7 @@ public class EmployeePage extends JFrame implements ActionListener, HidServicesL
 					break;
 				default:
 					if (Arrays.equals(data, message)) {
+						progress.setText("Board return with meassage: " + Arrays.toString(data));
 						continue;
 					}
 					if (data.length == 2 && data[0] == value) {

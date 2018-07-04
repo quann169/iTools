@@ -11,7 +11,7 @@ public enum Enum {
 			"TakeOver"), EDTTRANS("EditTransaction"), GETTOOL("GetTools"),
 
 	// Table name
-
+	EMAIL("Email"),
 	MASTERLOG("MasterLog"), WORKINGTRANSACTION("WorkingTransaction"), TOOLSMACHINETRAY(
 			"ToolsMachineTray"), TOOLSMACHINE("ToolsMachine"), TOOLS("Tools"), COMPANYMACHINE(
 					"CompanyMachine"), MACHINE("Machine"), ROLEASSESSOR(
@@ -19,7 +19,7 @@ public enum Enum {
 
 	// Action
 	LOGIN_PAGE("LoginPage"), DASHBOARD_PAGE("DashboardPage"), LOCK_UNLOCK_PAGE("LockUnlockAccountPage"), EMP_PAGE(
-			"EmployeePage"), RESET_PASS_PAGE("ResetPasswordPage"), PUTIN_TAKEOVER_PAGE(
+			"EmployeePage"), RESET_PASS_PAGE("ResetPasswordPage"), FORGOT_PASS_PAGE("ForgotPasswordPage"), PUTIN_TAKEOVER_PAGE(
 					"PutInTakeOverPage"), UPDATE_PASS_FIRST_TIME_LOGIN("FirstTimeChangePass"),
 
 	REQUEST_TOOL("SendRequest"), TIME_OUT("TimeOut"),
@@ -36,6 +36,9 @@ public enum Enum {
 	RECEIVE_SIGNAL_FROM_BOARD_2_FAIL("FailSendRequestToBoard2"),
 	RECEIVE_SIGNAL_FROM_BOARD_3_FAIL("FailSendRequestToBoard3"),
 	RECEIVE_SIGNAL_FROM_BOARD_4_FAIL("FailSendRequestToBoard4"),
+	
+	FORGOT_PASS_USERNAME_EMAIL_NOT_MATCH("ForgotPassUsernameNotMatchEmail"),
+	FORGOT_PASS_RESET_OK("ForgotPassResetOk"),
 
 	SHOW_DASHBOARD("ShowDashboard"), LOGIN("Login"), LOGIN_FAIL("LoginFail"), FORGOT_PASS("ForgotPass"), CREATE(
 			"Create"), UPDATE("Update"), CREATE_FAIL("CreateFail"), UPDATE_FAIL("UpdateFail"), DELETE(

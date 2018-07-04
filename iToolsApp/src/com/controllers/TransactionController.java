@@ -55,7 +55,7 @@ public class TransactionController {
 				}
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			logger.info(e.getMessage());
 			return -1;
 		} finally {
 			mysqlConnect.disconnect();
@@ -78,7 +78,7 @@ public class TransactionController {
 			int rs = statement.executeUpdate();
 			return rs;
 		} catch (SQLException e) {
-			e.printStackTrace();
+			logger.info(e.getMessage());
 			return -1;
 		} finally {
 			mysqlConnect.disconnect();

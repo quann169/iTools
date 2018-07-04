@@ -60,7 +60,7 @@ public class LogController {
 				return true;
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			logger.info(e.getMessage());
 			return false;
 		} finally {
 			mysqlConnect.disconnect();
@@ -97,7 +97,7 @@ public class LogController {
 				return true;
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			logger.info(e.getMessage());
 			return false;
 		} finally {
 			mysqlConnect.disconnect();

@@ -5,7 +5,14 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
 
+import org.apache.log4j.Logger;
+
+import com.controllers.UserController;
+
 public class MysqlConnect {
+	
+	final static Logger logger = Logger.getLogger(MysqlConnect.class);
+	
 	// init database constants
 	private static final Config cfg = new Config();
 	private static final String DATABASE_DRIVER = "com.mysql.cj.jdbc.Driver";
@@ -51,7 +58,7 @@ public class MysqlConnect {
 						+ AdvancedEncryptionStandard.decrypt(cfg.getProperty(DATABASE_NAME));
 				connection = DriverManager.getConnection(DATABASE_URL, getProperties());
 			} catch (ClassNotFoundException | SQLException e) {
-				e.printStackTrace();
+				logger.info(e.getMessage());
 			}
 		}
 		return connection;
@@ -66,7 +73,7 @@ public class MysqlConnect {
 				connection.close();
 				connection = null;
 			} catch (SQLException e) {
-				e.printStackTrace();
+				logger.info(e.getMessage());
 			}
 		}
 	}

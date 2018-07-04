@@ -10,61 +10,98 @@ import javax.mail.Session;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
+import org.apache.log4j.Logger;
+
+import com.controllers.LogController;
+import com.message.Enum;
 import com.sun.mail.smtp.SMTPTransport;
 
 public class EmailUtils {
 
-	public EmailUtils() {
-		// TODO Auto-generated constructor stub
+	private static final Config cfg = new Config();
+	final static String email = AdvancedEncryptionStandard.decrypt(cfg.getProperty("EMAIL_USERNAME"));
+	final static String password = AdvancedEncryptionStandard.decrypt(cfg.getProperty("EMAIL_PASSWORD"));
+	final static int port = Integer.valueOf(AdvancedEncryptionStandard.decrypt(cfg.getProperty("EMAIL_PORT")));
+	static String host = AdvancedEncryptionStandard.decrypt(cfg.getProperty("EMAIL_HOST"));
+
+	final static Logger logger = Logger.getLogger(EmailUtils.class);
+	LogController masterLogObj = new LogController();
+	String username, companyCode, machineCode;
+	Enum page;
+
+	public EmailUtils(Enum page, String username, String companyCode, String machineCode) {
+		this.username = username;
+		this.companyCode = companyCode;
+		this.machineCode = machineCode;
+		this.page = page;
 	}
 
-	public static void main(String[] args) {
-		final String username = "itool_app@tqteam.net";
-		final String password = "1qazxsw2!A";
-		final int port = 25;
-		String host = "mail.tqteam.net";
+	/**
+	 * 
+	 */
+	public boolean checkEmailConnection() {
+		try {
+			Properties props = new Properties();
+			props.put("mail.smtp.auth", "true");
+			props.put("mail.smtp.host", host);
+			props.put("mail.smtp.port", port);
+			Session session = Session.getInstance(props, null);
+			SMTPTransport transport = (SMTPTransport) session.getTransport("smtp");
+			transport.connect(host, port, email, password);
+			transport.close();
+			return true;
+		} catch (AuthenticationFailedException e) {
+			logger.warn("AuthenticationFailedException: Cannot connect to email" + e.getMessage());
+		} catch (MessagingException e) {
+			logger.warn("MessagingException: Cannot connect to email" + e.getMessage());
+		}
+		return false;
+	}
+
+	/**
+	 * 
+	 * @param args
+	 */
+	public boolean sendEmail(String toAddr, String subject, String message) {
 
 		try {
 			Properties props = new Properties();
 			props.put("mail.smtp.auth", "true");
-//			props.put("mail.smtp.ssl.enable", "true");
+			// props.put("mail.smtp.ssl.enable", "true");
 			props.put("mail.smtp.host", host);
 			props.put("mail.smtp.port", port);
-			
-			
+
 			Session session = Session.getInstance(props, null);
-	        Message msg = new MimeMessage(session);
-	        msg.setFrom(new InternetAddress(username));;
-	        msg.setRecipients(Message.RecipientType.TO,
-	        InternetAddress.parse("ngngoctanthuong@gmail.com", false));
-	        msg.setSubject("Test email from tqteam.vn");
-	        msg.setText("Text Text Text Text Text Text Text");
-	        msg.setHeader("Header1", "Header2");
-	        msg.setSentDate(new Date());
-	        SMTPTransport t =
-	            (SMTPTransport)session.getTransport("smtp");
-	        t.connect(host, port, username, password);
-	        t.sendMessage(msg, msg.getAllRecipients());
-	        System.out.println("Response: " + t.getLastServerResponse());
-	        t.close();
-			
-			
-			
-			
-//			props.put("mail.smtp.starttls.enable", "true");
-			// or use getDefaultInstance instance if desired...
-//			Session session = Session.getInstance(props, null);
-//			Transport transport = session.getTransport("smtp");
-//			transport.connect(host, port, username, password);
-//			transport.close();
-			System.out.println("success");
+			Message msg = new MimeMessage(session);
+			msg.setFrom(new InternetAddress(email));
+			msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(toAddr, false));
+			msg.setSubject(subject);
+			msg.setText(message);
+			// msg.setHeader("Header1", "Header2");
+			msg.setSentDate(new Date());
+			SMTPTransport t = (SMTPTransport) session.getTransport("smtp");
+			t.connect(host, port, email, password);
+			t.sendMessage(msg, msg.getAllRecipients());
+			String response = t.getLastServerResponse();
+			t.close();
+			if (response.contains("OK")) {
+				masterLogObj.insertLog(username, Enum.EMAIL, "", page, "",
+						"To " + toAddr + " - Subject: " + subject + " - Message: " + message, companyCode, machineCode,
+						StringUtils.getCurrentClassAndMethodNames());
+				return true;
+			}
 		} catch (AuthenticationFailedException e) {
-			System.out.println("AuthenticationFailedException - for authentication failures");
-			System.out.println(e.getMessage());
+			logger.warn("AuthenticationFailedException: Cannot connect to email" + e.getMessage());
+			masterLogObj.insertLog(username, Enum.EMAIL, "", page, "",
+					"AuthenticationFailedException: Cannot connect to email" + e.getMessage(), companyCode, machineCode,
+					StringUtils.getCurrentClassAndMethodNames());
 		} catch (MessagingException e) {
-			System.out.println("for other failures");
-			System.out.println(e.getMessage());
+			logger.warn("MessagingException: Cannot connect to email" + e.getMessage());
+			masterLogObj.insertLog(username, Enum.EMAIL, "", page, "",
+					"AuthenticationFailedException: Cannot connect to email" + e.getMessage(), companyCode, machineCode,
+					StringUtils.getCurrentClassAndMethodNames());
 		}
+		return false;
 
 	}
 

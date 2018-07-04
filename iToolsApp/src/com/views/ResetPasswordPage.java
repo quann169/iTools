@@ -298,14 +298,14 @@ public class ResetPasswordPage extends JFrame implements ActionListener {
 		updateTimer = new Timer(expiredTime, new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				masterLogObj.insertLog(userName, Enum.LOCK_UNLOCK_PAGE, "", Enum.TIME_OUT, "", "", companyCode,
+				masterLogObj.insertLog(userName, Enum.RESET_PASS_PAGE, "", Enum.TIME_OUT, "", "", companyCode,
 						machineCode, StringUtils.getCurrentClassAndMethodNames());
 				String timeoutMess = MessageFormat.format(bundleMessage.getString("App_TimeOut"),
 						cfg.getProperty("Expired_Time"));
 				JOptionPane.showMessageDialog(container, timeoutMess, "Time Out Reset Pass",
 						JOptionPane.WARNING_MESSAGE);
 
-				logger.info(userName + ": " + Enum.LOCK_UNLOCK_PAGE + " time out.");
+				logger.info(userName + ": " + Enum.RESET_PASS_PAGE + " time out.");
 				JFrame old = root;
 				root = new LoginPage();
 				StringUtils.frameInit(root, bundleMessage);

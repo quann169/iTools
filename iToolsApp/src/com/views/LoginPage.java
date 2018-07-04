@@ -176,7 +176,7 @@ public class LoginPage extends JFrame implements ActionListener {
 
 			userText = "com1admin";
 //			userText = "uhacc1";
-			pwdText = "123456";
+//			pwdText = "123456";
 
 			logger.info("Login with username: " + userText);
 
@@ -241,10 +241,17 @@ public class LoginPage extends JFrame implements ActionListener {
 		if (e.getSource() == forgotPwdButton) {
 			userTextField.setText("");
 			passwordField.setText("");
-
 			masterLogObj.insertLog(userName, Enum.ASSESSOR, "", Enum.FORGOT_PASS, "", "", companyCode, machineCode,
 					StringUtils.getCurrentClassAndMethodNames());
 			logger.info("Forgot Pass");
+			JFrame old = root;
+			root = new ForgotPasswordPage();
+			StringUtils.frameInit(root, bundleMessage);
+			// empPage.setJMenuBar(StringUtils.addMenu());
+			root.setTitle("Forgot Password");
+			root.show();
+			old.dispose();
+			
 		}
 		if (e.getSource() == showPassword) {
 			if (showPassword.isSelected()) {

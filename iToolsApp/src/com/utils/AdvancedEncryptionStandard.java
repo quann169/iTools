@@ -56,24 +56,24 @@ public class AdvancedEncryptionStandard {
 		return null;
 	}
 
-//	public static void main(String[] a) throws Exception {
-//
-//		String plainText = "tqteamne_iTools";
+	public static void main(String[] a) throws Exception {
+
+//		String plainText = "itool_app@tqteam.net";
 //		String cipherText = AdvancedEncryptionStandard.encrypt(plainText);
 //		AdvancedEncryptionStandard.decrypt(cipherText);
 //		System.out.println();
 //
-//		plainText = "tqteamne_admin";
+//		plainText = "1qazxsw2!A";
 //		cipherText = AdvancedEncryptionStandard.encrypt(plainText);
 //		AdvancedEncryptionStandard.decrypt(cipherText);
 //		System.out.println();
 //
-//		plainText = "Admin123";
+//		plainText = "mail.tqteam.net";
 //		cipherText = AdvancedEncryptionStandard.encrypt(plainText);
 //		AdvancedEncryptionStandard.decrypt(cipherText);
 //		System.out.println();
 //
-//		plainText = "112.213.89.49";
+//		plainText = "25";
 //		cipherText = AdvancedEncryptionStandard.encrypt(plainText);
 //		AdvancedEncryptionStandard.decrypt(cipherText);
 //		System.out.println();
@@ -82,6 +82,6 @@ public class AdvancedEncryptionStandard {
 //		cipherText = AdvancedEncryptionStandard.encrypt(plainText);
 //		AdvancedEncryptionStandard.decrypt(cipherText);
 //		System.out.println();
-//
-//	}
+
+	}
 }

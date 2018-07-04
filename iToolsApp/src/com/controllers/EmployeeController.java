@@ -64,7 +64,7 @@ public class EmployeeController {
 				result.add(tool);
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			logger.info(e.getMessage());
 			return null;
 		} finally {
 			mysqlConnect.disconnect();
@@ -88,7 +88,7 @@ public class EmployeeController {
 				toolsMachineID = rs.getString(1);
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			logger.info(e.getMessage());
 			return false;
 		} finally {
 			mysqlConnect.disconnect();
@@ -110,7 +110,7 @@ public class EmployeeController {
 				return true;
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			logger.info(e.getMessage());
 			return false;
 		} finally {
 			mysqlConnect.disconnect();
@@ -170,7 +170,7 @@ public class EmployeeController {
 			}
 
 		} catch (SQLException e) {
-			e.printStackTrace();
+			logger.info(e.getMessage());
 			return null;
 		} finally {
 			mysqlConnect.disconnect();
@@ -203,7 +203,7 @@ public class EmployeeController {
 			}
 			return listAllUsers;
 		} catch (SQLException e) {
-			e.printStackTrace();
+			logger.info(e.getMessage());
 			return listAllUsers;
 		} finally {
 			mysqlConnect.disconnect();
@@ -233,7 +233,7 @@ public class EmployeeController {
 			logger.info(listAllRoles);
 			return listAllRoles;
 		} catch (SQLException e) {
-			e.printStackTrace();
+			logger.info(e.getMessage());
 			return listAllRoles;
 		} finally {
 			mysqlConnect.disconnect();
@@ -266,7 +266,7 @@ public class EmployeeController {
 			logger.info(listAllMachines);
 			return listAllMachines;
 		} catch (SQLException e) {
-			e.printStackTrace();
+			logger.info(e.getMessage());
 			return listAllMachines;
 		} finally {
 			mysqlConnect.disconnect();

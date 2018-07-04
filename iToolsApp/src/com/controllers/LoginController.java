@@ -24,6 +24,7 @@ public class LoginController {
 
 	MysqlConnect mysqlConnect = new MysqlConnect();
 	final static Logger logger = Logger.getLogger(LoginController.class);
+
 	/**
 	 * 
 	 */
@@ -39,7 +40,8 @@ public class LoginController {
 	 */
 	public Assessor validateUser(String username, String password) {
 		String sql = "SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin FROM Assessor where Assessor.UserName='"
-				+ username.toLowerCase() + "' and Password=md5('" + password + "');";
+				+ username.toLowerCase() + "' and (Password=md5('" + password + "') or LastPassword=md5('" + password
+				+ "'));";
 		// System.out.println(sql);
 		logger.info(sql);
 		try {
@@ -61,7 +63,7 @@ public class LoginController {
 				return null;
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			logger.info(e.getMessage());
 			return null;
 		} finally {
 			mysqlConnect.disconnect();
@@ -93,7 +95,7 @@ public class LoginController {
 			}
 			return listAllUsers;
 		} catch (SQLException e) {
-			e.printStackTrace();
+			logger.info(e.getMessage());
 			return listAllUsers;
 		} finally {
 			mysqlConnect.disconnect();
@@ -123,7 +125,7 @@ public class LoginController {
 			}
 			return listAllRoles;
 		} catch (SQLException e) {
-			e.printStackTrace();
+			logger.info(e.getMessage());
 			return listAllRoles;
 		} finally {
 			mysqlConnect.disconnect();

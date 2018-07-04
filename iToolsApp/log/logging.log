@@ -7109,3 +7109,529 @@
 2018-07-03 18:42:09 INFO  EmployeePage:603 - Complete with resultValue = 0
 2018-07-03 18:47:06 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'EmployeePage', '', 'TimeOut', '', '', 'Com1', 'MAC1', 'EmployeePage$9.actionPerformed');
 2018-07-03 18:51:03 INFO  EmployeePage:389 - com1admin: EMP_PAGE time out.
+2018-07-04 23:17:10 INFO  LoginPage:279 - ************************************************************
+2018-07-04 23:17:10 INFO  LoginPage:280 - ************************************************************
+2018-07-04 23:17:10 INFO  LoginPage:281 - ************************************************************
+2018-07-04 23:17:10 INFO  LoginPage:282 - ************************************************************
+2018-07-04 23:17:10 INFO  LoginPage:283 - Starting iTool app.
+2018-07-04 23:17:10 INFO  LoginPage:284 - companyCode: Com1
+2018-07-04 23:17:10 INFO  LoginPage:285 - companyCodeUH: UHCom
+2018-07-04 23:17:10 INFO  LoginPage:286 - machineCode: MAC1
+2018-07-04 23:17:10 INFO  LoginPage:289 - mDbHost: localhost
+2018-07-04 23:17:10 INFO  LoginPage:290 - mDbUser: admin
+2018-07-04 23:17:10 INFO  LoginPage:291 - mDbPwds: 1qazxsw2
+2018-07-04 23:17:10 INFO  LoginPage:292 - mDbName: iTools_v1p0
+2018-07-04 23:17:10 INFO  LoginPage:293 - mDbPort: 3306
+2018-07-04 23:17:10 INFO  LoginPage:294 - Database version: VERSION
+2018-07-04 23:17:10 INFO  LoginPage:296 - Last Sync: LASTSYNC
+2018-07-04 23:17:13 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'assd', 'Assessor', '', 'ForgotPass', '', '', 'Com1', 'MAC1', 'LoginPage.actionPerformed');
+2018-07-04 23:17:13 INFO  LoginPage:246 - Forgot Pass
+2018-07-04 23:17:47 INFO  LoginPage:279 - ************************************************************
+2018-07-04 23:17:47 INFO  LoginPage:280 - ************************************************************
+2018-07-04 23:17:47 INFO  LoginPage:281 - ************************************************************
+2018-07-04 23:17:47 INFO  LoginPage:282 - ************************************************************
+2018-07-04 23:17:47 INFO  LoginPage:283 - Starting iTool app.
+2018-07-04 23:17:47 INFO  LoginPage:284 - companyCode: Com1
+2018-07-04 23:17:47 INFO  LoginPage:285 - companyCodeUH: UHCom
+2018-07-04 23:17:47 INFO  LoginPage:286 - machineCode: MAC1
+2018-07-04 23:17:47 INFO  LoginPage:289 - mDbHost: localhost
+2018-07-04 23:17:47 INFO  LoginPage:290 - mDbUser: admin
+2018-07-04 23:17:47 INFO  LoginPage:291 - mDbPwds: 1qazxsw2
+2018-07-04 23:17:47 INFO  LoginPage:292 - mDbName: iTools_v1p0
+2018-07-04 23:17:47 INFO  LoginPage:293 - mDbPort: 3306
+2018-07-04 23:17:47 INFO  LoginPage:294 - Database version: VERSION
+2018-07-04 23:17:47 INFO  LoginPage:296 - Last Sync: LASTSYNC
+2018-07-04 23:17:48 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), '', 'Assessor', '', 'ForgotPass', '', '', 'Com1', 'MAC1', 'LoginPage.actionPerformed');
+2018-07-04 23:17:48 INFO  LoginPage:246 - Forgot Pass
+2018-07-04 23:17:48 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), '', 'Assessor', '', 'ForgotPasswordPage', '', '', 'Com1', 'MAC1', 'ForgotPasswordPage.<init>');
+2018-07-04 23:17:58 INFO  LoginPage:279 - ************************************************************
+2018-07-04 23:17:58 INFO  LoginPage:280 - ************************************************************
+2018-07-04 23:17:58 INFO  LoginPage:281 - ************************************************************
+2018-07-04 23:17:58 INFO  LoginPage:282 - ************************************************************
+2018-07-04 23:17:58 INFO  LoginPage:283 - Starting iTool app.
+2018-07-04 23:17:58 INFO  LoginPage:284 - companyCode: Com1
+2018-07-04 23:17:58 INFO  LoginPage:285 - companyCodeUH: UHCom
+2018-07-04 23:17:58 INFO  LoginPage:286 - machineCode: MAC1
+2018-07-04 23:17:58 INFO  LoginPage:289 - mDbHost: localhost
+2018-07-04 23:17:58 INFO  LoginPage:290 - mDbUser: admin
+2018-07-04 23:17:58 INFO  LoginPage:291 - mDbPwds: 1qazxsw2
+2018-07-04 23:17:58 INFO  LoginPage:292 - mDbName: iTools_v1p0
+2018-07-04 23:17:58 INFO  LoginPage:293 - mDbPort: 3306
+2018-07-04 23:17:58 INFO  LoginPage:294 - Database version: VERSION
+2018-07-04 23:17:58 INFO  LoginPage:296 - Last Sync: LASTSYNC
+2018-07-04 23:17:59 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), '', 'Assessor', '', 'ForgotPass', '', '', 'Com1', 'MAC1', 'LoginPage.actionPerformed');
+2018-07-04 23:18:00 INFO  LoginPage:246 - Forgot Pass
+2018-07-04 23:18:00 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), '', 'Assessor', '', 'ForgotPasswordPage', '', '', 'Com1', 'MAC1', 'ForgotPasswordPage.<init>');
+2018-07-04 23:18:32 INFO  LoginPage:279 - ************************************************************
+2018-07-04 23:18:32 INFO  LoginPage:280 - ************************************************************
+2018-07-04 23:18:32 INFO  LoginPage:281 - ************************************************************
+2018-07-04 23:18:32 INFO  LoginPage:282 - ************************************************************
+2018-07-04 23:18:32 INFO  LoginPage:283 - Starting iTool app.
+2018-07-04 23:18:32 INFO  LoginPage:284 - companyCode: Com1
+2018-07-04 23:18:32 INFO  LoginPage:285 - companyCodeUH: UHCom
+2018-07-04 23:18:32 INFO  LoginPage:286 - machineCode: MAC1
+2018-07-04 23:18:32 INFO  LoginPage:289 - mDbHost: localhost
+2018-07-04 23:18:32 INFO  LoginPage:290 - mDbUser: admin
+2018-07-04 23:18:32 INFO  LoginPage:291 - mDbPwds: 1qazxsw2
+2018-07-04 23:18:32 INFO  LoginPage:292 - mDbName: iTools_v1p0
+2018-07-04 23:18:32 INFO  LoginPage:293 - mDbPort: 3306
+2018-07-04 23:18:32 INFO  LoginPage:294 - Database version: VERSION
+2018-07-04 23:18:32 INFO  LoginPage:296 - Last Sync: LASTSYNC
+2018-07-04 23:18:34 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'dada', 'Assessor', '', 'ForgotPass', '', '', 'Com1', 'MAC1', 'LoginPage.actionPerformed');
+2018-07-04 23:18:35 INFO  LoginPage:246 - Forgot Pass
+2018-07-04 23:18:35 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), '', 'Assessor', '', 'ForgotPasswordPage', '', '', 'Com1', 'MAC1', 'ForgotPasswordPage.<init>');
+2018-07-04 23:20:41 INFO  LoginPage:279 - ************************************************************
+2018-07-04 23:20:41 INFO  LoginPage:280 - ************************************************************
+2018-07-04 23:20:41 INFO  LoginPage:281 - ************************************************************
+2018-07-04 23:20:41 INFO  LoginPage:282 - ************************************************************
+2018-07-04 23:20:41 INFO  LoginPage:283 - Starting iTool app.
+2018-07-04 23:20:41 INFO  LoginPage:284 - companyCode: Com1
+2018-07-04 23:20:41 INFO  LoginPage:285 - companyCodeUH: UHCom
+2018-07-04 23:20:41 INFO  LoginPage:286 - machineCode: MAC1
+2018-07-04 23:20:41 INFO  LoginPage:289 - mDbHost: localhost
+2018-07-04 23:20:41 INFO  LoginPage:290 - mDbUser: admin
+2018-07-04 23:20:41 INFO  LoginPage:291 - mDbPwds: 1qazxsw2
+2018-07-04 23:20:41 INFO  LoginPage:292 - mDbName: iTools_v1p0
+2018-07-04 23:20:41 INFO  LoginPage:293 - mDbPort: 3306
+2018-07-04 23:20:41 INFO  LoginPage:294 - Database version: VERSION
+2018-07-04 23:20:41 INFO  LoginPage:296 - Last Sync: LASTSYNC
+2018-07-04 23:20:42 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), '', 'Assessor', '', 'ForgotPass', '', '', 'Com1', 'MAC1', 'LoginPage.actionPerformed');
+2018-07-04 23:20:42 INFO  LoginPage:246 - Forgot Pass
+2018-07-04 23:20:42 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), '', 'Assessor', '', 'ForgotPasswordPage', '', '', 'Com1', 'MAC1', 'ForgotPasswordPage.<init>');
+2018-07-04 23:21:43 INFO  LoginPage:279 - ************************************************************
+2018-07-04 23:21:43 INFO  LoginPage:280 - ************************************************************
+2018-07-04 23:21:43 INFO  LoginPage:281 - ************************************************************
+2018-07-04 23:21:43 INFO  LoginPage:282 - ************************************************************
+2018-07-04 23:21:43 INFO  LoginPage:283 - Starting iTool app.
+2018-07-04 23:21:43 INFO  LoginPage:284 - companyCode: Com1
+2018-07-04 23:21:43 INFO  LoginPage:285 - companyCodeUH: UHCom
+2018-07-04 23:21:43 INFO  LoginPage:286 - machineCode: MAC1
+2018-07-04 23:21:43 INFO  LoginPage:289 - mDbHost: localhost
+2018-07-04 23:21:43 INFO  LoginPage:290 - mDbUser: admin
+2018-07-04 23:21:43 INFO  LoginPage:291 - mDbPwds: 1qazxsw2
+2018-07-04 23:21:43 INFO  LoginPage:292 - mDbName: iTools_v1p0
+2018-07-04 23:21:43 INFO  LoginPage:293 - mDbPort: 3306
+2018-07-04 23:21:43 INFO  LoginPage:294 - Database version: VERSION
+2018-07-04 23:21:43 INFO  LoginPage:296 - Last Sync: LASTSYNC
+2018-07-04 23:21:45 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'dadad', 'Assessor', '', 'ForgotPass', '', '', 'Com1', 'MAC1', 'LoginPage.actionPerformed');
+2018-07-04 23:21:46 INFO  LoginPage:246 - Forgot Pass
+2018-07-04 23:21:46 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), '', 'Assessor', '', 'ForgotPasswordPage', '', '', 'Com1', 'MAC1', 'ForgotPasswordPage.<init>');
+2018-07-04 23:22:27 INFO  LoginPage:279 - ************************************************************
+2018-07-04 23:22:27 INFO  LoginPage:280 - ************************************************************
+2018-07-04 23:22:27 INFO  LoginPage:281 - ************************************************************
+2018-07-04 23:22:27 INFO  LoginPage:282 - ************************************************************
+2018-07-04 23:22:27 INFO  LoginPage:283 - Starting iTool app.
+2018-07-04 23:22:27 INFO  LoginPage:284 - companyCode: Com1
+2018-07-04 23:22:27 INFO  LoginPage:285 - companyCodeUH: UHCom
+2018-07-04 23:22:27 INFO  LoginPage:286 - machineCode: MAC1
+2018-07-04 23:22:27 INFO  LoginPage:289 - mDbHost: localhost
+2018-07-04 23:22:27 INFO  LoginPage:290 - mDbUser: admin
+2018-07-04 23:22:27 INFO  LoginPage:291 - mDbPwds: 1qazxsw2
+2018-07-04 23:22:27 INFO  LoginPage:292 - mDbName: iTools_v1p0
+2018-07-04 23:22:27 INFO  LoginPage:293 - mDbPort: 3306
+2018-07-04 23:22:27 INFO  LoginPage:294 - Database version: VERSION
+2018-07-04 23:22:27 INFO  LoginPage:296 - Last Sync: LASTSYNC
+2018-07-04 23:22:28 INFO  LoginPage:181 - Login with username: com1admin
+2018-07-04 23:22:28 INFO  LoginController:44 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin FROM Assessor where Assessor.UserName='com1admin' and Password=md5('123456');
+2018-07-04 23:22:29 INFO  LoginPage:185 - Login OK
+2018-07-04 23:22:29 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'asda', 'Assessor', '', 'Login', '', '', 'Com1', 'MAC1', 'LoginPage.actionPerformed');
+2018-07-04 23:22:29 INFO  LoginController:112 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'Com1' and assessor.UserName= 'com1admin'
+2018-07-04 23:22:29 INFO  LoginPage:202 - listRoles: [Roles [roleName=SubAdmin], Roles [roleName=Emp]]
+2018-07-04 23:22:29 INFO  LoginPage:222 - Show DashboardPage
+2018-07-04 23:22:29 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Assessor', '', 'ShowDashboard', '', '', 'Com1', 'MAC1', 'DashboardPage.<init>');
+2018-07-04 23:22:30 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Assessor', '', 'Logout', '', '', 'Com1', 'MAC1', 'DashboardPage$2.mouseClicked');
+2018-07-04 23:22:31 INFO  DashboardPage:136 - com1admin logout.
+2018-07-04 23:22:31 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), '', 'Assessor', '', 'ForgotPass', '', '', 'Com1', 'MAC1', 'LoginPage.actionPerformed');
+2018-07-04 23:22:31 INFO  LoginPage:246 - Forgot Pass
+2018-07-04 23:22:31 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), '', 'Assessor', '', 'ForgotPasswordPage', '', '', 'Com1', 'MAC1', 'ForgotPasswordPage.<init>');
+2018-07-04 23:23:10 INFO  LoginPage:279 - ************************************************************
+2018-07-04 23:23:10 INFO  LoginPage:280 - ************************************************************
+2018-07-04 23:23:10 INFO  LoginPage:281 - ************************************************************
+2018-07-04 23:23:10 INFO  LoginPage:282 - ************************************************************
+2018-07-04 23:23:10 INFO  LoginPage:283 - Starting iTool app.
+2018-07-04 23:23:10 INFO  LoginPage:284 - companyCode: Com1
+2018-07-04 23:23:10 INFO  LoginPage:285 - companyCodeUH: UHCom
+2018-07-04 23:23:10 INFO  LoginPage:286 - machineCode: MAC1
+2018-07-04 23:23:10 INFO  LoginPage:289 - mDbHost: localhost
+2018-07-04 23:23:10 INFO  LoginPage:290 - mDbUser: admin
+2018-07-04 23:23:10 INFO  LoginPage:291 - mDbPwds: 1qazxsw2
+2018-07-04 23:23:10 INFO  LoginPage:292 - mDbName: iTools_v1p0
+2018-07-04 23:23:10 INFO  LoginPage:293 - mDbPort: 3306
+2018-07-04 23:23:10 INFO  LoginPage:294 - Database version: VERSION
+2018-07-04 23:23:10 INFO  LoginPage:296 - Last Sync: LASTSYNC
+2018-07-04 23:23:11 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), '', 'Assessor', '', 'ForgotPass', '', '', 'Com1', 'MAC1', 'LoginPage.actionPerformed');
+2018-07-04 23:23:11 INFO  LoginPage:246 - Forgot Pass
+2018-07-04 23:23:11 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), '', 'Assessor', '', 'ForgotPasswordPage', '', '', 'Com1', 'MAC1', 'ForgotPasswordPage.<init>');
+2018-07-04 23:23:33 INFO  LoginPage:279 - ************************************************************
+2018-07-04 23:23:33 INFO  LoginPage:280 - ************************************************************
+2018-07-04 23:23:33 INFO  LoginPage:281 - ************************************************************
+2018-07-04 23:23:33 INFO  LoginPage:282 - ************************************************************
+2018-07-04 23:23:33 INFO  LoginPage:283 - Starting iTool app.
+2018-07-04 23:23:33 INFO  LoginPage:284 - companyCode: Com1
+2018-07-04 23:23:33 INFO  LoginPage:285 - companyCodeUH: UHCom
+2018-07-04 23:23:33 INFO  LoginPage:286 - machineCode: MAC1
+2018-07-04 23:23:33 INFO  LoginPage:289 - mDbHost: localhost
+2018-07-04 23:23:33 INFO  LoginPage:290 - mDbUser: admin
+2018-07-04 23:23:33 INFO  LoginPage:291 - mDbPwds: 1qazxsw2
+2018-07-04 23:23:33 INFO  LoginPage:292 - mDbName: iTools_v1p0
+2018-07-04 23:23:33 INFO  LoginPage:293 - mDbPort: 3306
+2018-07-04 23:23:33 INFO  LoginPage:294 - Database version: VERSION
+2018-07-04 23:23:33 INFO  LoginPage:296 - Last Sync: LASTSYNC
+2018-07-04 23:23:37 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), '', 'Assessor', '', 'ForgotPass', '', '', 'Com1', 'MAC1', 'LoginPage.actionPerformed');
+2018-07-04 23:23:37 INFO  LoginPage:246 - Forgot Pass
+2018-07-04 23:23:37 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), '', 'Assessor', '', 'ForgotPasswordPage', '', '', 'Com1', 'MAC1', 'ForgotPasswordPage.<init>');
+2018-07-04 23:23:46 INFO  LoginPage:279 - ************************************************************
+2018-07-04 23:23:46 INFO  LoginPage:280 - ************************************************************
+2018-07-04 23:23:46 INFO  LoginPage:281 - ************************************************************
+2018-07-04 23:23:46 INFO  LoginPage:282 - ************************************************************
+2018-07-04 23:23:46 INFO  LoginPage:283 - Starting iTool app.
+2018-07-04 23:23:46 INFO  LoginPage:284 - companyCode: Com1
+2018-07-04 23:23:46 INFO  LoginPage:285 - companyCodeUH: UHCom
+2018-07-04 23:23:46 INFO  LoginPage:286 - machineCode: MAC1
+2018-07-04 23:23:46 INFO  LoginPage:289 - mDbHost: localhost
+2018-07-04 23:23:46 INFO  LoginPage:290 - mDbUser: admin
+2018-07-04 23:23:46 INFO  LoginPage:291 - mDbPwds: 1qazxsw2
+2018-07-04 23:23:46 INFO  LoginPage:292 - mDbName: iTools_v1p0
+2018-07-04 23:23:46 INFO  LoginPage:293 - mDbPort: 3306
+2018-07-04 23:23:46 INFO  LoginPage:294 - Database version: VERSION
+2018-07-04 23:23:46 INFO  LoginPage:296 - Last Sync: LASTSYNC
+2018-07-04 23:23:47 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), '', 'Assessor', '', 'ForgotPass', '', '', 'Com1', 'MAC1', 'LoginPage.actionPerformed');
+2018-07-04 23:23:48 INFO  LoginPage:246 - Forgot Pass
+2018-07-04 23:23:48 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), '', 'Assessor', '', 'ForgotPasswordPage', '', '', 'Com1', 'MAC1', 'ForgotPasswordPage.<init>');
+2018-07-04 23:23:56 INFO  LoginPage:279 - ************************************************************
+2018-07-04 23:23:56 INFO  LoginPage:280 - ************************************************************
+2018-07-04 23:23:56 INFO  LoginPage:281 - ************************************************************
+2018-07-04 23:23:56 INFO  LoginPage:282 - ************************************************************
+2018-07-04 23:23:56 INFO  LoginPage:283 - Starting iTool app.
+2018-07-04 23:23:56 INFO  LoginPage:284 - companyCode: Com1
+2018-07-04 23:23:56 INFO  LoginPage:285 - companyCodeUH: UHCom
+2018-07-04 23:23:56 INFO  LoginPage:286 - machineCode: MAC1
+2018-07-04 23:23:56 INFO  LoginPage:289 - mDbHost: localhost
+2018-07-04 23:23:56 INFO  LoginPage:290 - mDbUser: admin
+2018-07-04 23:23:56 INFO  LoginPage:291 - mDbPwds: 1qazxsw2
+2018-07-04 23:23:56 INFO  LoginPage:292 - mDbName: iTools_v1p0
+2018-07-04 23:23:56 INFO  LoginPage:293 - mDbPort: 3306
+2018-07-04 23:23:56 INFO  LoginPage:294 - Database version: VERSION
+2018-07-04 23:23:56 INFO  LoginPage:296 - Last Sync: LASTSYNC
+2018-07-04 23:23:58 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'fsdf', 'Assessor', '', 'ForgotPass', '', '', 'Com1', 'MAC1', 'LoginPage.actionPerformed');
+2018-07-04 23:23:58 INFO  LoginPage:246 - Forgot Pass
+2018-07-04 23:23:58 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), '', 'Assessor', '', 'ForgotPasswordPage', '', '', 'Com1', 'MAC1', 'ForgotPasswordPage.<init>');
+2018-07-04 23:24:53 INFO  LoginPage:279 - ************************************************************
+2018-07-04 23:24:53 INFO  LoginPage:280 - ************************************************************
+2018-07-04 23:24:53 INFO  LoginPage:281 - ************************************************************
+2018-07-04 23:24:53 INFO  LoginPage:282 - ************************************************************
+2018-07-04 23:24:53 INFO  LoginPage:283 - Starting iTool app.
+2018-07-04 23:24:53 INFO  LoginPage:284 - companyCode: Com1
+2018-07-04 23:24:53 INFO  LoginPage:285 - companyCodeUH: UHCom
+2018-07-04 23:24:53 INFO  LoginPage:286 - machineCode: MAC1
+2018-07-04 23:24:53 INFO  LoginPage:289 - mDbHost: localhost
+2018-07-04 23:24:53 INFO  LoginPage:290 - mDbUser: admin
+2018-07-04 23:24:53 INFO  LoginPage:291 - mDbPwds: 1qazxsw2
+2018-07-04 23:24:53 INFO  LoginPage:292 - mDbName: iTools_v1p0
+2018-07-04 23:24:53 INFO  LoginPage:293 - mDbPort: 3306
+2018-07-04 23:24:53 INFO  LoginPage:294 - Database version: VERSION
+2018-07-04 23:24:53 INFO  LoginPage:296 - Last Sync: LASTSYNC
+2018-07-04 23:24:54 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), '', 'Assessor', '', 'ForgotPass', '', '', 'Com1', 'MAC1', 'LoginPage.actionPerformed');
+2018-07-04 23:24:54 INFO  LoginPage:246 - Forgot Pass
+2018-07-04 23:24:54 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), '', 'Assessor', '', 'ForgotPasswordPage', '', '', 'Com1', 'MAC1', 'ForgotPasswordPage.<init>');
+2018-07-04 23:25:39 INFO  LoginPage:279 - ************************************************************
+2018-07-04 23:25:39 INFO  LoginPage:280 - ************************************************************
+2018-07-04 23:25:39 INFO  LoginPage:281 - ************************************************************
+2018-07-04 23:25:39 INFO  LoginPage:282 - ************************************************************
+2018-07-04 23:25:39 INFO  LoginPage:283 - Starting iTool app.
+2018-07-04 23:25:39 INFO  LoginPage:284 - companyCode: Com1
+2018-07-04 23:25:39 INFO  LoginPage:285 - companyCodeUH: UHCom
+2018-07-04 23:25:39 INFO  LoginPage:286 - machineCode: MAC1
+2018-07-04 23:25:39 INFO  LoginPage:289 - mDbHost: localhost
+2018-07-04 23:25:39 INFO  LoginPage:290 - mDbUser: admin
+2018-07-04 23:25:39 INFO  LoginPage:291 - mDbPwds: 1qazxsw2
+2018-07-04 23:25:39 INFO  LoginPage:292 - mDbName: iTools_v1p0
+2018-07-04 23:25:39 INFO  LoginPage:293 - mDbPort: 3306
+2018-07-04 23:25:39 INFO  LoginPage:294 - Database version: VERSION
+2018-07-04 23:25:39 INFO  LoginPage:296 - Last Sync: LASTSYNC
+2018-07-04 23:25:40 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), '', 'Assessor', '', 'ForgotPass', '', '', 'Com1', 'MAC1', 'LoginPage.actionPerformed');
+2018-07-04 23:25:41 INFO  LoginPage:246 - Forgot Pass
+2018-07-04 23:25:41 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), '', 'Assessor', '', 'ForgotPasswordPage', '', '', 'Com1', 'MAC1', 'ForgotPasswordPage.<init>');
+2018-07-04 23:26:06 INFO  LoginPage:279 - ************************************************************
+2018-07-04 23:26:06 INFO  LoginPage:280 - ************************************************************
+2018-07-04 23:26:06 INFO  LoginPage:281 - ************************************************************
+2018-07-04 23:26:06 INFO  LoginPage:282 - ************************************************************
+2018-07-04 23:26:06 INFO  LoginPage:283 - Starting iTool app.
+2018-07-04 23:26:06 INFO  LoginPage:284 - companyCode: Com1
+2018-07-04 23:26:06 INFO  LoginPage:285 - companyCodeUH: UHCom
+2018-07-04 23:26:06 INFO  LoginPage:286 - machineCode: MAC1
+2018-07-04 23:26:06 INFO  LoginPage:289 - mDbHost: localhost
+2018-07-04 23:26:06 INFO  LoginPage:290 - mDbUser: admin
+2018-07-04 23:26:06 INFO  LoginPage:291 - mDbPwds: 1qazxsw2
+2018-07-04 23:26:06 INFO  LoginPage:292 - mDbName: iTools_v1p0
+2018-07-04 23:26:06 INFO  LoginPage:293 - mDbPort: 3306
+2018-07-04 23:26:06 INFO  LoginPage:294 - Database version: VERSION
+2018-07-04 23:26:06 INFO  LoginPage:296 - Last Sync: LASTSYNC
+2018-07-04 23:26:07 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), '', 'Assessor', '', 'ForgotPass', '', '', 'Com1', 'MAC1', 'LoginPage.actionPerformed');
+2018-07-04 23:26:08 INFO  LoginPage:246 - Forgot Pass
+2018-07-04 23:26:08 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), '', 'Assessor', '', 'ForgotPasswordPage', '', '', 'Com1', 'MAC1', 'ForgotPasswordPage.<init>');
+2018-07-04 23:26:55 INFO  LoginPage:279 - ************************************************************
+2018-07-04 23:26:55 INFO  LoginPage:280 - ************************************************************
+2018-07-04 23:26:55 INFO  LoginPage:281 - ************************************************************
+2018-07-04 23:26:55 INFO  LoginPage:282 - ************************************************************
+2018-07-04 23:26:55 INFO  LoginPage:283 - Starting iTool app.
+2018-07-04 23:26:55 INFO  LoginPage:284 - companyCode: Com1
+2018-07-04 23:26:55 INFO  LoginPage:285 - companyCodeUH: UHCom
+2018-07-04 23:26:55 INFO  LoginPage:286 - machineCode: MAC1
+2018-07-04 23:26:55 INFO  LoginPage:289 - mDbHost: localhost
+2018-07-04 23:26:55 INFO  LoginPage:290 - mDbUser: admin
+2018-07-04 23:26:55 INFO  LoginPage:291 - mDbPwds: 1qazxsw2
+2018-07-04 23:26:55 INFO  LoginPage:292 - mDbName: iTools_v1p0
+2018-07-04 23:26:55 INFO  LoginPage:293 - mDbPort: 3306
+2018-07-04 23:26:55 INFO  LoginPage:294 - Database version: VERSION
+2018-07-04 23:26:55 INFO  LoginPage:296 - Last Sync: LASTSYNC
+2018-07-04 23:26:56 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), '', 'Assessor', '', 'ForgotPass', '', '', 'Com1', 'MAC1', 'LoginPage.actionPerformed');
+2018-07-04 23:26:56 INFO  LoginPage:246 - Forgot Pass
+2018-07-04 23:26:56 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), '', 'Assessor', '', 'ForgotPasswordPage', '', '', 'Com1', 'MAC1', 'ForgotPasswordPage.<init>');
+2018-07-04 23:27:21 INFO  UserController:150 - SELECT * FROM assessor where assessor.UserName = 'com1admin' and assessor.EmailAddress = 'xX@sadda.dfg' and assessor.CompanyCode = 'Com1';
+2018-07-04 23:27:25 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Assessor', '', 'ForgotPassUsernameNotMatchEmail', '', 'com1admin - xX@sadda.dfg', 'Com1', 'MAC1', 'ForgotPasswordPage.actionPerformed');
+2018-07-04 23:27:25 INFO  ForgotPasswordPage:236 - com1admin - xX@sadda.dfg fail validate
+2018-07-04 23:27:27 INFO  UserController:150 - SELECT * FROM assessor where assessor.UserName = 'com1admin' and assessor.EmailAddress = 'quann169@gmail' and assessor.CompanyCode = 'Com1';
+2018-07-04 23:27:27 INFO  UserController:181 - Update  Assessor set Assessor.LastPassword = md5('st6BBdRV')  and Assessor.IsFirstTimeLogin = 1  where Assessor.Username = 'com1admin' and Assessor.CompanyCode = 'Com1';
+2018-07-04 23:27:34 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Email', '', 'ForgotPasswordPage', '', 'To quann169@gmail - Subject: New password reset - Message: New password: st6BBdRV', 'Com1', 'MAC1', 'EmailUtils.sendEmail');
+2018-07-04 23:27:34 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Assessor', '', 'ForgotPassResetOk', '', 'com1admin - quann169@gmail', 'Com1', 'MAC1', 'ForgotPasswordPage.actionPerformed');
+2018-07-04 23:27:34 INFO  ForgotPasswordPage:222 - com1admin - quann169@gmail forgot pass ok.
+2018-07-04 23:32:24 INFO  LoginPage:279 - ************************************************************
+2018-07-04 23:32:24 INFO  LoginPage:280 - ************************************************************
+2018-07-04 23:32:24 INFO  LoginPage:281 - ************************************************************
+2018-07-04 23:32:24 INFO  LoginPage:282 - ************************************************************
+2018-07-04 23:32:24 INFO  LoginPage:283 - Starting iTool app.
+2018-07-04 23:32:24 INFO  LoginPage:284 - companyCode: Com1
+2018-07-04 23:32:24 INFO  LoginPage:285 - companyCodeUH: UHCom
+2018-07-04 23:32:24 INFO  LoginPage:286 - machineCode: MAC1
+2018-07-04 23:32:24 INFO  LoginPage:289 - mDbHost: localhost
+2018-07-04 23:32:24 INFO  LoginPage:290 - mDbUser: admin
+2018-07-04 23:32:24 INFO  LoginPage:291 - mDbPwds: 1qazxsw2
+2018-07-04 23:32:24 INFO  LoginPage:292 - mDbName: iTools_v1p0
+2018-07-04 23:32:24 INFO  LoginPage:293 - mDbPort: 3306
+2018-07-04 23:32:24 INFO  LoginPage:294 - Database version: VERSION
+2018-07-04 23:32:24 INFO  LoginPage:296 - Last Sync: LASTSYNC
+2018-07-04 23:32:29 INFO  LoginPage:181 - Login with username: com1admin
+2018-07-04 23:32:29 INFO  LoginController:44 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin FROM Assessor where Assessor.UserName='com1admin' and Password=md5('123456');
+2018-07-04 23:32:29 INFO  LoginPage:185 - Login OK
+2018-07-04 23:32:29 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'asdsadas', 'Assessor', '', 'Login', '', '', 'Com1', 'MAC1', 'LoginPage.actionPerformed');
+2018-07-04 23:32:29 INFO  LoginController:112 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'Com1' and assessor.UserName= 'com1admin'
+2018-07-04 23:32:29 INFO  LoginPage:202 - listRoles: [Roles [roleName=SubAdmin], Roles [roleName=Emp]]
+2018-07-04 23:32:29 INFO  LoginPage:222 - Show DashboardPage
+2018-07-04 23:32:29 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Assessor', '', 'ShowDashboard', '', '', 'Com1', 'MAC1', 'DashboardPage.<init>');
+2018-07-04 23:32:33 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Assessor', '', 'Logout', '', '', 'Com1', 'MAC1', 'DashboardPage$2.mouseClicked');
+2018-07-04 23:32:33 INFO  DashboardPage:136 - com1admin logout.
+2018-07-04 23:32:39 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), '', 'Assessor', '', 'ForgotPass', '', '', 'Com1', 'MAC1', 'LoginPage.actionPerformed');
+2018-07-04 23:32:39 INFO  LoginPage:246 - Forgot Pass
+2018-07-04 23:32:39 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), '', 'Assessor', '', 'ForgotPasswordPage', '', '', 'Com1', 'MAC1', 'ForgotPasswordPage.<init>');
+2018-07-04 23:32:58 INFO  UserController:150 - SELECT * FROM assessor where assessor.UserName = 'com1admin' and assessor.EmailAddress = 'quannguyen@savarti.com' and assessor.CompanyCode = 'Com1';
+2018-07-04 23:32:58 INFO  UserController:181 - Update  Assessor set Assessor.LastPassword = md5('mZPYgpgP')  and Assessor.IsFirstTimeLogin = 1  where Assessor.Username = 'com1admin' and Assessor.CompanyCode = 'Com1';
+2018-07-04 23:33:05 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Email', '', 'ForgotPasswordPage', '', 'To quannguyen@savarti.com - Subject: New password reset - Message: New password: mZPYgpgP', 'Com1', 'MAC1', 'EmailUtils.sendEmail');
+2018-07-04 23:33:05 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Assessor', '', 'ForgotPassResetOk', '', 'com1admin - quannguyen@savarti.com', 'Com1', 'MAC1', 'ForgotPasswordPage.actionPerformed');
+2018-07-04 23:33:05 INFO  ForgotPasswordPage:222 - com1admin - quannguyen@savarti.com forgot pass ok.
+2018-07-04 23:33:32 INFO  LoginPage:181 - Login with username: com1admin
+2018-07-04 23:33:32 INFO  LoginController:44 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin FROM Assessor where Assessor.UserName='com1admin' and Password=md5('mZPYgpgP');
+2018-07-04 23:33:32 INFO  LoginPage:233 - Login Fail
+2018-07-04 23:33:33 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Assessor', '', 'LoginFail', '', '', 'Com1', 'MAC1', 'LoginPage.actionPerformed');
+2018-07-04 23:33:39 INFO  LoginPage:279 - ************************************************************
+2018-07-04 23:33:39 INFO  LoginPage:280 - ************************************************************
+2018-07-04 23:33:39 INFO  LoginPage:281 - ************************************************************
+2018-07-04 23:33:39 INFO  LoginPage:282 - ************************************************************
+2018-07-04 23:33:39 INFO  LoginPage:283 - Starting iTool app.
+2018-07-04 23:33:39 INFO  LoginPage:284 - companyCode: Com1
+2018-07-04 23:33:39 INFO  LoginPage:285 - companyCodeUH: UHCom
+2018-07-04 23:33:39 INFO  LoginPage:286 - machineCode: MAC1
+2018-07-04 23:33:39 INFO  LoginPage:289 - mDbHost: localhost
+2018-07-04 23:33:39 INFO  LoginPage:290 - mDbUser: admin
+2018-07-04 23:33:39 INFO  LoginPage:291 - mDbPwds: 1qazxsw2
+2018-07-04 23:33:39 INFO  LoginPage:292 - mDbName: iTools_v1p0
+2018-07-04 23:33:39 INFO  LoginPage:293 - mDbPort: 3306
+2018-07-04 23:33:39 INFO  LoginPage:294 - Database version: VERSION
+2018-07-04 23:33:39 INFO  LoginPage:296 - Last Sync: LASTSYNC
+2018-07-04 23:35:11 INFO  LoginPage:279 - ************************************************************
+2018-07-04 23:35:11 INFO  LoginPage:280 - ************************************************************
+2018-07-04 23:35:11 INFO  LoginPage:281 - ************************************************************
+2018-07-04 23:35:11 INFO  LoginPage:282 - ************************************************************
+2018-07-04 23:35:11 INFO  LoginPage:283 - Starting iTool app.
+2018-07-04 23:35:11 INFO  LoginPage:284 - companyCode: Com1
+2018-07-04 23:35:11 INFO  LoginPage:285 - companyCodeUH: UHCom
+2018-07-04 23:35:11 INFO  LoginPage:286 - machineCode: MAC1
+2018-07-04 23:35:11 INFO  LoginPage:289 - mDbHost: localhost
+2018-07-04 23:35:11 INFO  LoginPage:290 - mDbUser: admin
+2018-07-04 23:35:11 INFO  LoginPage:291 - mDbPwds: 1qazxsw2
+2018-07-04 23:35:11 INFO  LoginPage:292 - mDbName: iTools_v1p0
+2018-07-04 23:35:11 INFO  LoginPage:293 - mDbPort: 3306
+2018-07-04 23:35:11 INFO  LoginPage:294 - Database version: VERSION
+2018-07-04 23:35:11 INFO  LoginPage:296 - Last Sync: LASTSYNC
+2018-07-04 23:35:21 INFO  LoginPage:181 - Login with username: com1admin
+2018-07-04 23:35:21 INFO  LoginController:46 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin FROM Assessor where Assessor.UserName='com1admin' and (Password=md5('mZPYgpgP') or LastPassword=md5('mZPYgpgP');
+2018-07-04 23:35:21 INFO  LoginController:66 - You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+2018-07-04 23:35:21 INFO  LoginPage:233 - Login Fail
+2018-07-04 23:35:22 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'dasdasd', 'Assessor', '', 'LoginFail', '', '', 'Com1', 'MAC1', 'LoginPage.actionPerformed');
+2018-07-04 23:35:57 INFO  LoginPage:279 - ************************************************************
+2018-07-04 23:35:57 INFO  LoginPage:280 - ************************************************************
+2018-07-04 23:35:57 INFO  LoginPage:281 - ************************************************************
+2018-07-04 23:35:57 INFO  LoginPage:282 - ************************************************************
+2018-07-04 23:35:57 INFO  LoginPage:283 - Starting iTool app.
+2018-07-04 23:35:57 INFO  LoginPage:284 - companyCode: Com1
+2018-07-04 23:35:57 INFO  LoginPage:285 - companyCodeUH: UHCom
+2018-07-04 23:35:57 INFO  LoginPage:286 - machineCode: MAC1
+2018-07-04 23:35:57 INFO  LoginPage:289 - mDbHost: localhost
+2018-07-04 23:35:57 INFO  LoginPage:290 - mDbUser: admin
+2018-07-04 23:35:57 INFO  LoginPage:291 - mDbPwds: 1qazxsw2
+2018-07-04 23:35:57 INFO  LoginPage:292 - mDbName: iTools_v1p0
+2018-07-04 23:35:57 INFO  LoginPage:293 - mDbPort: 3306
+2018-07-04 23:35:57 INFO  LoginPage:294 - Database version: VERSION
+2018-07-04 23:35:57 INFO  LoginPage:296 - Last Sync: LASTSYNC
+2018-07-04 23:36:01 INFO  LoginPage:181 - Login with username: com1admin
+2018-07-04 23:36:01 INFO  LoginController:46 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin FROM Assessor where Assessor.UserName='com1admin' and (Password=md5('mZPYgpgP') or LastPassword=md5('mZPYgpgP'));
+2018-07-04 23:36:01 INFO  LoginPage:233 - Login Fail
+2018-07-04 23:36:03 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'sfsfsa', 'Assessor', '', 'LoginFail', '', '', 'Com1', 'MAC1', 'LoginPage.actionPerformed');
+2018-07-04 23:37:04 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'sfsfsa', 'Assessor', '', 'ForgotPass', '', '', 'Com1', 'MAC1', 'LoginPage.actionPerformed');
+2018-07-04 23:37:04 INFO  LoginPage:246 - Forgot Pass
+2018-07-04 23:37:04 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), '', 'Assessor', '', 'ForgotPasswordPage', '', '', 'Com1', 'MAC1', 'ForgotPasswordPage.<init>');
+2018-07-04 23:37:15 INFO  UserController:150 - SELECT * FROM assessor where assessor.UserName = 'com1admin' and assessor.EmailAddress = 'quannguyen@savarti.com' and assessor.CompanyCode = 'Com1';
+2018-07-04 23:37:15 INFO  UserController:181 - Update  Assessor set Assessor.LastPassword = md5('SWuQdm1m')  and Assessor.IsFirstTimeLogin = 1  where Assessor.Username = 'com1admin' and Assessor.CompanyCode = 'Com1';
+2018-07-04 23:37:22 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Email', '', 'ForgotPasswordPage', '', 'To quannguyen@savarti.com - Subject: New password reset - Message: New password: SWuQdm1m', 'Com1', 'MAC1', 'EmailUtils.sendEmail');
+2018-07-04 23:37:22 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Assessor', '', 'ForgotPassResetOk', '', 'com1admin - quannguyen@savarti.com', 'Com1', 'MAC1', 'ForgotPasswordPage.actionPerformed');
+2018-07-04 23:37:22 INFO  ForgotPasswordPage:222 - com1admin - quannguyen@savarti.com forgot pass ok.
+2018-07-04 23:37:41 INFO  LoginPage:181 - Login with username: com1admin
+2018-07-04 23:37:41 INFO  LoginController:46 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin FROM Assessor where Assessor.UserName='com1admin' and (Password=md5('SWuQdm1m') or LastPassword=md5('SWuQdm1m'));
+2018-07-04 23:37:41 INFO  LoginPage:233 - Login Fail
+2018-07-04 23:37:43 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'sfs', 'Assessor', '', 'LoginFail', '', '', 'Com1', 'MAC1', 'LoginPage.actionPerformed');
+2018-07-04 23:42:15 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), '', 'ForgotPasswordPage', '', 'TimeOut', '', '', 'Com1', 'MAC1', 'ForgotPasswordPage$3.actionPerformed');
+2018-07-04 23:42:21 INFO  LoginPage:279 - ************************************************************
+2018-07-04 23:42:21 INFO  LoginPage:280 - ************************************************************
+2018-07-04 23:42:21 INFO  LoginPage:281 - ************************************************************
+2018-07-04 23:42:21 INFO  LoginPage:282 - ************************************************************
+2018-07-04 23:42:21 INFO  LoginPage:283 - Starting iTool app.
+2018-07-04 23:42:21 INFO  LoginPage:284 - companyCode: Com1
+2018-07-04 23:42:21 INFO  LoginPage:285 - companyCodeUH: UHCom
+2018-07-04 23:42:21 INFO  LoginPage:286 - machineCode: MAC1
+2018-07-04 23:42:21 INFO  LoginPage:289 - mDbHost: localhost
+2018-07-04 23:42:21 INFO  LoginPage:290 - mDbUser: admin
+2018-07-04 23:42:21 INFO  LoginPage:291 - mDbPwds: 1qazxsw2
+2018-07-04 23:42:21 INFO  LoginPage:292 - mDbName: iTools_v1p0
+2018-07-04 23:42:21 INFO  LoginPage:293 - mDbPort: 3306
+2018-07-04 23:42:21 INFO  LoginPage:294 - Database version: VERSION
+2018-07-04 23:42:21 INFO  LoginPage:296 - Last Sync: LASTSYNC
+2018-07-04 23:42:25 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'cacaca', 'Assessor', '', 'ForgotPass', '', '', 'Com1', 'MAC1', 'LoginPage.actionPerformed');
+2018-07-04 23:42:26 INFO  LoginPage:246 - Forgot Pass
+2018-07-04 23:42:26 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), '', 'Assessor', '', 'ForgotPasswordPage', '', '', 'Com1', 'MAC1', 'ForgotPasswordPage.<init>');
+2018-07-04 23:42:43 INFO  UserController:150 - SELECT * FROM assessor where assessor.UserName = 'com1admin' and assessor.EmailAddress = 'quannguyen@savarti.com' and assessor.CompanyCode = 'Com1';
+2018-07-04 23:42:43 INFO  UserController:181 - Update  Assessor set Assessor.LastPassword = md5('lwj3HMF5')  and Assessor.IsFirstTimeLogin = 1  where Assessor.Username = 'com1admin' and Assessor.CompanyCode = 'Com1';
+2018-07-04 23:42:43 INFO  UserController:185 - 1 row(s) updated!
+2018-07-04 23:42:49 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Email', '', 'ForgotPasswordPage', '', 'To quannguyen@savarti.com - Subject: New password reset - Message: New password: lwj3HMF5', 'Com1', 'MAC1', 'EmailUtils.sendEmail');
+2018-07-04 23:42:50 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Assessor', '', 'ForgotPassResetOk', '', 'com1admin - quannguyen@savarti.com', 'Com1', 'MAC1', 'ForgotPasswordPage.actionPerformed');
+2018-07-04 23:42:50 INFO  ForgotPasswordPage:222 - com1admin - quannguyen@savarti.com forgot pass ok.
+2018-07-04 23:47:43 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), '', 'ForgotPasswordPage', '', 'TimeOut', '', '', 'Com1', 'MAC1', 'ForgotPasswordPage$3.actionPerformed');
+2018-07-04 23:48:03 INFO  ForgotPasswordPage:151 - : FORGOT_PASS_PAGE time out.
+2018-07-04 23:54:13 INFO  LoginPage:279 - ************************************************************
+2018-07-04 23:54:13 INFO  LoginPage:280 - ************************************************************
+2018-07-04 23:54:13 INFO  LoginPage:281 - ************************************************************
+2018-07-04 23:54:13 INFO  LoginPage:282 - ************************************************************
+2018-07-04 23:54:13 INFO  LoginPage:283 - Starting iTool app.
+2018-07-04 23:54:13 INFO  LoginPage:284 - companyCode: Com1
+2018-07-04 23:54:13 INFO  LoginPage:285 - companyCodeUH: UHCom
+2018-07-04 23:54:13 INFO  LoginPage:286 - machineCode: MAC1
+2018-07-04 23:54:13 INFO  LoginPage:289 - mDbHost: localhost
+2018-07-04 23:54:13 INFO  LoginPage:290 - mDbUser: admin
+2018-07-04 23:54:13 INFO  LoginPage:291 - mDbPwds: 1qazxsw2
+2018-07-04 23:54:13 INFO  LoginPage:292 - mDbName: iTools_v1p0
+2018-07-04 23:54:13 INFO  LoginPage:293 - mDbPort: 3306
+2018-07-04 23:54:13 INFO  LoginPage:294 - Database version: VERSION
+2018-07-04 23:54:13 INFO  LoginPage:296 - Last Sync: LASTSYNC
+2018-07-04 23:54:27 INFO  LoginPage:279 - ************************************************************
+2018-07-04 23:54:27 INFO  LoginPage:280 - ************************************************************
+2018-07-04 23:54:27 INFO  LoginPage:281 - ************************************************************
+2018-07-04 23:54:27 INFO  LoginPage:282 - ************************************************************
+2018-07-04 23:54:27 INFO  LoginPage:283 - Starting iTool app.
+2018-07-04 23:54:27 INFO  LoginPage:284 - companyCode: Com1
+2018-07-04 23:54:27 INFO  LoginPage:285 - companyCodeUH: UHCom
+2018-07-04 23:54:27 INFO  LoginPage:286 - machineCode: MAC1
+2018-07-04 23:54:27 INFO  LoginPage:289 - mDbHost: localhost
+2018-07-04 23:54:27 INFO  LoginPage:290 - mDbUser: admin
+2018-07-04 23:54:27 INFO  LoginPage:291 - mDbPwds: 1qazxsw2
+2018-07-04 23:54:27 INFO  LoginPage:292 - mDbName: iTools_v1p0
+2018-07-04 23:54:27 INFO  LoginPage:293 - mDbPort: 3306
+2018-07-04 23:54:27 INFO  LoginPage:294 - Database version: VERSION
+2018-07-04 23:54:27 INFO  LoginPage:296 - Last Sync: LASTSYNC
+2018-07-04 23:54:31 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'as', 'Assessor', '', 'ForgotPass', '', '', 'Com1', 'MAC1', 'LoginPage.actionPerformed');
+2018-07-04 23:54:32 INFO  LoginPage:246 - Forgot Pass
+2018-07-04 23:54:32 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), '', 'Assessor', '', 'ForgotPasswordPage', '', '', 'Com1', 'MAC1', 'ForgotPasswordPage.<init>');
+2018-07-04 23:54:58 INFO  LoginPage:279 - ************************************************************
+2018-07-04 23:54:58 INFO  LoginPage:280 - ************************************************************
+2018-07-04 23:54:58 INFO  LoginPage:281 - ************************************************************
+2018-07-04 23:54:58 INFO  LoginPage:282 - ************************************************************
+2018-07-04 23:54:58 INFO  LoginPage:283 - Starting iTool app.
+2018-07-04 23:54:58 INFO  LoginPage:284 - companyCode: Com1
+2018-07-04 23:54:58 INFO  LoginPage:285 - companyCodeUH: UHCom
+2018-07-04 23:54:58 INFO  LoginPage:286 - machineCode: MAC1
+2018-07-04 23:54:58 INFO  LoginPage:289 - mDbHost: localhost
+2018-07-04 23:54:58 INFO  LoginPage:290 - mDbUser: admin
+2018-07-04 23:54:58 INFO  LoginPage:291 - mDbPwds: 1qazxsw2
+2018-07-04 23:54:58 INFO  LoginPage:292 - mDbName: iTools_v1p0
+2018-07-04 23:54:58 INFO  LoginPage:293 - mDbPort: 3306
+2018-07-04 23:54:58 INFO  LoginPage:294 - Database version: VERSION
+2018-07-04 23:54:58 INFO  LoginPage:296 - Last Sync: LASTSYNC
+2018-07-04 23:54:58 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), '', 'Assessor', '', 'ForgotPass', '', '', 'Com1', 'MAC1', 'LoginPage.actionPerformed');
+2018-07-04 23:54:59 INFO  LoginPage:246 - Forgot Pass
+2018-07-04 23:54:59 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), '', 'Assessor', '', 'ForgotPasswordPage', '', '', 'Com1', 'MAC1', 'ForgotPasswordPage.<init>');
+2018-07-04 23:55:15 INFO  UserController:150 - SELECT * FROM assessor where assessor.UserName = 'com1admin' and assessor.EmailAddress = 'quannguyen@savarti.com' and assessor.CompanyCode = 'Com1';
+2018-07-04 23:55:15 INFO  UserController:181 - Update  Assessor set Assessor.LastPassword = md5('9BR1KQzb')  and Assessor.IsFirstTimeLogin = 1  where Assessor.Username = 'com1admin' and Assessor.CompanyCode = 'Com1';
+2018-07-04 23:55:15 INFO  UserController:185 - 1 row(s) updated!
+2018-07-04 23:55:24 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Email', '', 'ForgotPasswordPage', '', 'To quannguyen@savarti.com - Subject: New password reset - Message: New password: 9BR1KQzb', 'Com1', 'MAC1', 'EmailUtils.sendEmail');
+2018-07-04 23:55:24 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Assessor', '', 'ForgotPassResetOk', '', 'com1admin - quannguyen@savarti.com', 'Com1', 'MAC1', 'ForgotPasswordPage$4.done');
+2018-07-04 23:55:24 INFO  ForgotPasswordPage:252 - com1admin - quannguyen@savarti.com forgot pass ok.
+2018-07-04 23:55:44 INFO  LoginPage:181 - Login with username: com1admin
+2018-07-04 23:55:44 INFO  LoginController:46 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin FROM Assessor where Assessor.UserName='com1admin' and (Password=md5('9BR1KQzb') or LastPassword=md5('9BR1KQzb'));
+2018-07-04 23:55:44 INFO  LoginPage:233 - Login Fail
+2018-07-04 23:55:46 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'adad', 'Assessor', '', 'LoginFail', '', '', 'Com1', 'MAC1', 'LoginPage.actionPerformed');
+2018-07-05 00:00:15 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), '', 'ForgotPasswordPage', '', 'TimeOut', '', '', 'Com1', 'MAC1', 'ForgotPasswordPage$3.actionPerformed');
+2018-07-05 00:01:54 INFO  ForgotPasswordPage:154 - : FORGOT_PASS_PAGE time out.
+2018-07-05 00:02:23 INFO  LoginPage:279 - ************************************************************
+2018-07-05 00:02:23 INFO  LoginPage:280 - ************************************************************
+2018-07-05 00:02:23 INFO  LoginPage:281 - ************************************************************
+2018-07-05 00:02:23 INFO  LoginPage:282 - ************************************************************
+2018-07-05 00:02:23 INFO  LoginPage:283 - Starting iTool app.
+2018-07-05 00:02:23 INFO  LoginPage:284 - companyCode: Com1
+2018-07-05 00:02:23 INFO  LoginPage:285 - companyCodeUH: UHCom
+2018-07-05 00:02:23 INFO  LoginPage:286 - machineCode: MAC1
+2018-07-05 00:02:23 INFO  LoginPage:289 - mDbHost: localhost
+2018-07-05 00:02:23 INFO  LoginPage:290 - mDbUser: admin
+2018-07-05 00:02:23 INFO  LoginPage:291 - mDbPwds: 1qazxsw2
+2018-07-05 00:02:23 INFO  LoginPage:292 - mDbName: iTools_v1p0
+2018-07-05 00:02:23 INFO  LoginPage:293 - mDbPort: 3306
+2018-07-05 00:02:23 INFO  LoginPage:294 - Database version: VERSION
+2018-07-05 00:02:23 INFO  LoginPage:296 - Last Sync: LASTSYNC
+2018-07-05 00:02:24 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), '', 'Assessor', '', 'ForgotPass', '', '', 'Com1', 'MAC1', 'LoginPage.actionPerformed');
+2018-07-05 00:02:25 INFO  LoginPage:246 - Forgot Pass
+2018-07-05 00:02:25 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), '', 'Assessor', '', 'ForgotPasswordPage', '', '', 'Com1', 'MAC1', 'ForgotPasswordPage.<init>');
+2018-07-05 00:02:38 INFO  UserController:150 - SELECT * FROM assessor where assessor.UserName = 'com1admin' and assessor.EmailAddress = 'quannguyen@savarti.com' and assessor.CompanyCode = 'Com1';
+2018-07-05 00:02:38 INFO  UserController:181 - Update  Assessor set Assessor.LastPassword = md5('wjYUvQko') , Assessor.IsFirstTimeLogin = 1  where Assessor.Username = 'com1admin' and Assessor.CompanyCode = 'Com1';
+2018-07-05 00:02:38 INFO  UserController:185 - 1 row(s) updated!
+2018-07-05 00:02:45 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Email', '', 'ForgotPasswordPage', '', 'To quannguyen@savarti.com - Subject: New password reset - Message: New password: wjYUvQko', 'Com1', 'MAC1', 'EmailUtils.sendEmail');
+2018-07-05 00:02:45 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Assessor', '', 'ForgotPassResetOk', '', 'com1admin - quannguyen@savarti.com', 'Com1', 'MAC1', 'ForgotPasswordPage$4.done');
+2018-07-05 00:02:45 INFO  ForgotPasswordPage:252 - com1admin - quannguyen@savarti.com forgot pass ok.
+2018-07-05 00:03:09 INFO  LoginPage:181 - Login with username: com1admin
+2018-07-05 00:03:09 INFO  LoginController:46 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin FROM Assessor where Assessor.UserName='com1admin' and (Password=md5('wjYUvQko') or LastPassword=md5('wjYUvQko'));
+2018-07-05 00:03:09 INFO  LoginPage:185 - Login OK
+2018-07-05 00:03:09 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'adad', 'Assessor', '', 'Login', '', '', 'Com1', 'MAC1', 'LoginPage.actionPerformed');
+2018-07-05 00:03:09 INFO  LoginPage:191 - isFirstTimeLogin: true
+2018-07-05 00:03:09 INFO  UserController:44 - SELECT AssessorID, UserName, Password, CompanyCode, IsActive, IsLocked FROM Assessor where Assessor.IsActive=1 and Assessor.CompanyCode = 'Com1';
+2018-07-05 00:03:09 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Assessor', '', 'ResetPasswordPage', '', '', 'Com1', 'MAC1', 'ResetPasswordPage.<init>');
+2018-07-05 00:03:13 INFO  UserController:125 - Update  Assessor set Assessor.Password = md5('aaa'), Assessor.IsFirstTimeLogin = 0 where Assessor.Username = 'com1admin' and Assessor.CompanyCode = 'Com1';
+2018-07-05 00:03:14 INFO  UserController:129 - 1 row(s) updated!
+2018-07-05 00:03:14 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Assessor', 'Password', 'FirstTimeChangePass', 'com1admin - wjYUvQko', 'XXX', 'Com1', 'MAC1', 'ResetPasswordPage.actionPerformed');
+2018-07-05 00:03:15 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Assessor', '', 'Logout', '', '', 'Com1', 'MAC1', 'ResetPasswordPage.actionPerformed');
+2018-07-05 00:03:15 INFO  ResetPasswordPage:415 - com1admin logout.
+2018-07-05 00:03:21 INFO  LoginPage:181 - Login with username: com1admin
+2018-07-05 00:03:21 INFO  LoginController:46 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin FROM Assessor where Assessor.UserName='com1admin' and (Password=md5('aaa') or LastPassword=md5('aaa'));
+2018-07-05 00:03:21 INFO  LoginPage:185 - Login OK
+2018-07-05 00:03:21 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'aaa', 'Assessor', '', 'Login', '', '', 'Com1', 'MAC1', 'LoginPage.actionPerformed');
+2018-07-05 00:03:21 INFO  LoginController:114 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'Com1' and assessor.UserName= 'com1admin'
+2018-07-05 00:03:21 INFO  LoginPage:202 - listRoles: [Roles [roleName=SubAdmin], Roles [roleName=Emp]]
+2018-07-05 00:03:21 INFO  LoginPage:222 - Show DashboardPage
+2018-07-05 00:03:21 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Assessor', '', 'ShowDashboard', '', '', 'Com1', 'MAC1', 'DashboardPage.<init>');
+2018-07-05 00:03:25 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Assessor', '', 'Logout', '', '', 'Com1', 'MAC1', 'DashboardPage$2.mouseClicked');
+2018-07-05 00:03:25 INFO  DashboardPage:136 - com1admin logout.
