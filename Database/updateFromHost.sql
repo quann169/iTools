@@ -1,4 +1,4 @@
-CREATE DEFINER=`tqteamne_admin`@`116.102.20.72` PROCEDURE `updateFromHost`()
+CREATE DEFINER=`root`@`localhost` PROCEDURE `updateFromHost`()
 BEGIN
 	DECLARE EXIT HANDLER FOR SQLEXCEPTION ROLLBACK;
 	DECLARE EXIT HANDLER FOR SQLWARNING ROLLBACK;
@@ -7,37 +7,37 @@ BEGIN
     SET SQL_SAFE_UPDATES = 0;
     
     #insert missing record from Host to local
-    INSERT INTO local_Assessor
-	SELECT a.* FROM Assessor a
-	LEFT OUTER JOIN local_Assessor b ON b.AssessorID = a.AssessorID
+    INSERT INTO federated_assessor
+	SELECT a.* FROM assessor a
+	LEFT OUTER JOIN federated_assessor b ON b.AssessorID = a.AssessorID
 	WHERE b.AssessorID IS NULL;
 	
     #update all record from Host to local
-	update local_Assessor lA
-	left join Assessor on lA.AssessorID = Assessor.AssessorID
-		set lA.UserName = Assessor.UserName,
-			lA.FingerID = Assessor.FingerID,
-			lA.Password = Assessor.Password,
-            lA.FirstName = Assessor.FirstName,
-            lA.LastName = Assessor.LastName,
-            lA.EmailAddress = Assessor.EmailAddress,
-            lA.Address = Assessor.Address,
-            lA.Phone = Assessor.Phone,
-            lA.CompanyCode = Assessor.CompanyCode,
-            lA.IsLocked = Assessor.IsLocked,
-            lA.IsActive = Assessor.IsActive,
-            lA.LastPassword = Assessor.LastPassword,
-            lA.IsFirstTimeLogin = Assessor.IsFirstTimeLogin
-		where lA.AssessorID in (select AssessorID from Assessor);
+	update federated_assessor lA
+	left join assessor on lA.AssessorID = assessor.AssessorID
+		set lA.UserName = assessor.UserName,
+			lA.FingerID = assessor.FingerID,
+			lA.Password = assessor.Password,
+            lA.FirstName = assessor.FirstName,
+            lA.LastName = assessor.LastName,
+            lA.EmailAddress = assessor.EmailAddress,
+            lA.Address = assessor.Address,
+            lA.Phone = assessor.Phone,
+            lA.CompanyCode = assessor.CompanyCode,
+            lA.IsLocked = assessor.IsLocked,
+            lA.IsActive = assessor.IsActive,
+            lA.LastPassword = assessor.LastPassword,
+            lA.IsFirstTimeLogin = assessor.IsFirstTimeLogin
+		where lA.AssessorID in (select AssessorID from assessor);
         
 	#insert missing record from Host to local
-    INSERT INTO local_Company
+    INSERT INTO federated_Company
 	SELECT a.* FROM Company a
-	LEFT OUTER JOIN local_Company b ON b.CompanyID = a.CompanyID
+	LEFT OUTER JOIN federated_Company b ON b.CompanyID = a.CompanyID
 	WHERE b.CompanyID IS NULL;
 	
     #update all record from Host to local
-	update local_Company lC
+	update federated_Company lC
 	left join Company on lC.CompanyID = Company.CompanyID
 		set lC.CompanyCode = Company.CompanyCode,
 			lC.CompanyName = Company.CompanyName,
@@ -47,13 +47,13 @@ BEGIN
 		where lC.CompanyID in (select CompanyID from Company);
         
 	#insert missing record from Host to local
-    INSERT INTO local_CompanyMachine
+    INSERT INTO federated_CompanyMachine
 	SELECT a.* FROM CompanyMachine a
-	LEFT OUTER JOIN local_CompanyMachine b ON b.CompanyMachineID = a.CompanyMachineID
+	LEFT OUTER JOIN federated_CompanyMachine b ON b.CompanyMachineID = a.CompanyMachineID
 	WHERE b.CompanyMachineID IS NULL;
 	
     #update all record from Host to local
-	update local_CompanyMachine lCM
+	update federated_CompanyMachine lCM
 	left join CompanyMachine on lCM.CompanyMachineID = CompanyMachine.CompanyMachineID
 		set lCM.CompanyCode = CompanyMachine.CompanyCode,
 			lCM.MachineCode = CompanyMachine.MachineCode,
@@ -62,13 +62,13 @@ BEGIN
 		where lCM.CompanyMachineID in (select CompanyMachineID from CompanyMachine);
     
     #insert missing record from Host to local
-    INSERT INTO local_Machine
+    INSERT INTO federated_Machine
 	SELECT a.* FROM Machine a
-	LEFT OUTER JOIN local_Machine b ON b.MachineID = a.MachineID
+	LEFT OUTER JOIN federated_Machine b ON b.MachineID = a.MachineID
 	WHERE b.MachineID IS NULL;
 	
     #update all record from Host to local
-	update local_Machine lM
+	update federated_Machine lM
 	left join Machine on lM.MachineID = Machine.MachineID
 		set lM.MachineName = Machine.MachineName,
 			lM.MachineCode = Machine.MachineCode,
@@ -81,13 +81,13 @@ BEGIN
 		where lM.MachineID in (select MachineID from Machine);
         
 	#insert missing record from Host to local
-    INSERT INTO local_RoleAssessor
+    INSERT INTO federated_RoleAssessor
 	SELECT a.* FROM RoleAssessor a
-	LEFT OUTER JOIN local_RoleAssessor b ON b.RoleAssessorID = a.RoleAssessorID
+	LEFT OUTER JOIN federated_RoleAssessor b ON b.RoleAssessorID = a.RoleAssessorID
 	WHERE b.RoleAssessorID IS NULL;
 	
     #update all record from Host to local
-	update local_RoleAssessor lRA
+	update federated_RoleAssessor lRA
 	left join RoleAssessor on lRA.RoleAssessorID = RoleAssessor.RoleAssessorID
 		set lRA.RoleID = RoleAssessor.RoleID,
 			lRA.AssessorID = RoleAssessor.AssessorID,
@@ -96,13 +96,13 @@ BEGIN
 		where lRA.RoleAssessorID in (select RoleAssessorID from RoleAssessor);
     
     #insert missing record from Host to local
-    INSERT INTO local_Roles
+    INSERT INTO federated_Roles
 	SELECT a.* FROM Roles a
-	LEFT OUTER JOIN local_Roles b ON b.RoleID = a.RoleID
+	LEFT OUTER JOIN federated_Roles b ON b.RoleID = a.RoleID
 	WHERE b.RoleID IS NULL;
 	
     #update all record from Host to local
-	update local_Roles lR
+	update federated_Roles lR
 	left join Roles on lR.RoleID = Roles.RoleID
 		set lR.RoleName = Roles.RoleName,
 			lR.RoleType = Roles.RoleType,
@@ -110,14 +110,14 @@ BEGIN
 		where lR.RoleID in (select RoleID from Roles);
     
     #insert missing record from Host to local
-    INSERT INTO local_Tools
+    INSERT INTO federated_Tools
 	SELECT a.* FROM Tools a
-	LEFT OUTER JOIN local_Tools b ON b.ToolID = a.ToolID
+	LEFT OUTER JOIN federated_Tools b ON b.ToolID = a.ToolID
 	WHERE b.ToolID IS NULL;
 	
     #update all record from Host to local
-	update local_Tools lT
-	left join Tools on lT.MachineID = Tools.MachineID
+	update federated_Tools lT
+	left join Tools on lT.ToolID = Tools.ToolID
 		set lT.ToolCode = Tools.ToolCode,
 			lT.Model = Tools.Model,
             lT.Barcode = Tools.Barcode,
@@ -128,13 +128,13 @@ BEGIN
 		where lT.ToolID in (select ToolID from Tools);
     
     #insert missing record from Host to local
-    INSERT INTO local_ToolsMachine
+    INSERT INTO federated_ToolsMachine
 	SELECT a.* FROM ToolsMachine a
-	LEFT OUTER JOIN local_ToolsMachine b ON b.ToolsMachineID = a.ToolsMachineID
+	LEFT OUTER JOIN federated_ToolsMachine b ON b.ToolsMachineID = a.ToolsMachineID
 	WHERE b.ToolsMachineID IS NULL;
 	
     #update all record from Host to local
-	update local_ToolsMachine lTM
+	update federated_ToolsMachine lTM
 	left join ToolsMachine on lTM.ToolsMachineID = ToolsMachine.ToolsMachineID
 		set lTM.ToolCode = ToolsMachine.ToolCode,
             lTM.MachineCode = ToolsMachine.MachineCode,
