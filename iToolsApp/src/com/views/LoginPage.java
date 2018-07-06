@@ -4,6 +4,9 @@ import java.awt.Container;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.util.List;
 import java.util.Locale;
 import java.util.ResourceBundle;
@@ -27,6 +30,7 @@ import com.models.Assessor;
 import com.models.Role;
 import com.utils.AdvancedEncryptionStandard;
 import com.utils.Config;
+import com.utils.EmailUtils;
 import com.utils.StringUtils;
 
 public class LoginPage extends JFrame implements ActionListener {
@@ -55,8 +59,9 @@ public class LoginPage extends JFrame implements ActionListener {
 	private static final String companyCodeUH = AdvancedEncryptionStandard.decrypt(cfg.getProperty("COMPANY_CODE_UH"));
 	private static final String machineCode = AdvancedEncryptionStandard.decrypt(cfg.getProperty("MACHINE_CODE"));
 
-	String userName = "";
+	static String userName = "";
 
+	static EmailUtils emailUtils = new EmailUtils(Enum.LOGIN, userName, companyCode, machineCode);
 	final static Logger logger = Logger.getLogger(LoginPage.class);
 
 	static JFrame root;
@@ -175,8 +180,8 @@ public class LoginPage extends JFrame implements ActionListener {
 		if (e.getSource() == loginButton) {
 
 			userText = "com1admin";
-//			userText = "uhacc1";
-//			pwdText = "123456";
+//			 userText = "uhacc1";
+//			 pwdText = "123456";
 
 			logger.info("Login with username: " + userText);
 
@@ -222,11 +227,12 @@ public class LoginPage extends JFrame implements ActionListener {
 						logger.info("Show DashboardPage");
 						JFrame old = root;
 						root = new DashboardPage(listRoles, result);
+						old.dispose();
 						StringUtils.frameInit(root, bundleMessage);
 						root.setTitle(userText + " - " + result.getFirstName() + " " + result.getLastName());
 						// dashboardPage.setJMenuBar(StringUtils.addMenu());
 						root.show();
-						old.dispose();
+						
 					}
 				}
 			} else {
@@ -251,7 +257,7 @@ public class LoginPage extends JFrame implements ActionListener {
 			root.setTitle("Forgot Password");
 			root.show();
 			old.dispose();
-			
+
 		}
 		if (e.getSource() == showPassword) {
 			if (showPassword.isSelected()) {
@@ -294,6 +300,24 @@ public class LoginPage extends JFrame implements ActionListener {
 		logger.info("Database version: " + databaseInfo.get(5));
 
 		logger.info("Last Sync: " + databaseInfo.get(6));
+
+		boolean checkEmailConfig = emailUtils.checkEmailConnection();
+		logger.info("checkEmailConfig: " + checkEmailConfig);
+
+		File versionFile = new File("");
+		try {
+			versionFile = new File(LoginPage.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath()
+					+ "/com/message/version");
+
+			if (versionFile.isFile()) {
+				BufferedReader cfgBuffer = new BufferedReader(new FileReader(versionFile));
+				String text = cfgBuffer.readLine();
+				logger.info("App Version: " + text);
+				cfgBuffer.close();
+			}
+		} catch (Exception e1) {
+			logger.info("Verison err: " + e1.getMessage());
+		}
 
 	}
 

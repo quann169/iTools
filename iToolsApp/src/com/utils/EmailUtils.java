@@ -77,7 +77,7 @@ public class EmailUtils {
 			msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(toAddr, false));
 			msg.setSubject(subject);
 			msg.setText(message);
-			// msg.setHeader("Header1", "Header2");
+			msg.setHeader("iTool_App", "Email from system");
 			msg.setSentDate(new Date());
 			SMTPTransport t = (SMTPTransport) session.getTransport("smtp");
 			t.connect(host, port, email, password);

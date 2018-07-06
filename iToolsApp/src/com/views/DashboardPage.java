@@ -90,6 +90,18 @@ public class DashboardPage extends JFrame implements ActionListener {
 		addActionEvent();
 		masterLogObj.insertLog(userName, Enum.ASSESSOR, "", Enum.SHOW_DASHBOARD, "", "", companyCode, machineCode,
 				StringUtils.getCurrentClassAndMethodNames());
+		
+		
+//		Frame[] allFrame = JFrame.getFrames();
+//		for (Frame frame : allFrame) {
+//			System.out.println("----");
+//			System.out.println(frame);
+//			System.out.println(frame.getName());
+//			System.out.println(frame.getTitle());
+//			System.out.println(frame.getType().name());
+//		}
+		
+		
 	}
 
 	public void setLayoutManager() {

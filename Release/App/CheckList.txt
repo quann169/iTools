@@ -1,0 +1,200 @@
+
+
+Login Page
+	+ Environment checking 
+	+ GUI
+		+ Login enable - disable
+		+ Forgot Pass
+		+ Show Password
+		+ Exit message
+		+ Max length pass/username 
+	+ Happy case 
+		+ Login with barcode
+		+ login with username
+		+ Master log
+	+ Wrong password or username
+	+ Wrong 3 times
+	+ Inactive account
+	+ Locked account
+	+ First time login 
+	+ First time forgot pass
+	+ Timeout ??
+	
+	
+Forgot password
+	+ GUI
+		+ Reset enable - disable
+		+ Max length email/username
+		+ Exit message
+	+ Cancel buttom 
+	+ Ivalid email format
+	+ Wrong username - email
+	+ Happy case
+		+ Forgot pass ok
+		+ Email sent
+		+ Message dialog
+		+ Back to login
+		+ Master log
+	+ Wrong email config
+	+ First time forgot pass
+	+ Timeout
+	
+First time login
+	+ GUI
+		+ Change pass enable - disable
+		+ Logout
+		+ Exit message
+	+ Happy case
+		+ First time change pass
+		+ Login ok next time
+		+ Message dialog
+		+ Email sent
+		+ Master log
+	+ Password not match
+	+ Timeout
+	
+Screen based on Role
+	+ 1 role ==> EMP page
+	+ admin ==> dashboard with 4 features
+	+ Accounting ==> Unlock + Putin/Take Over
+		+ Putin/Take over disable default
+	+ Change password
+	+ Logout
+	+ Timeout
+	
+Change Password
+	+ GUI
+		+ Change pass enable - disable
+		+ Exit message
+		+ Logout
+	+ Happy case
+		+ Password and Repass not match
+		+ Old pass not match
+		+ Message dialog
+		+ Email sent
+		+ Master log
+	+ Timeout
+
+Reset Password
+	+ GUI
+		+ Reset pass enable - disable
+		+ Exit message
+		+ Back to dashboard
+		+ Logout
+	+ Happy case
+		+ List out all users of machine - Full name + username 
+		+ Password and Repass not match
+		+ Change first time login 
+		+ Not change first time login 
+		+ Message dialog
+		+ Email sent
+		+ Master log
+	+ Timeout
+
+Lock - Unlock Account
+	+ GUI
+		+ Send request enable - disable
+		+ Cancel
+		+ Exit message
+		+ Back to dashboard show/hide
+		+ Logout
+	+ Happy case
+		+ Scan barcode OP, WO
+		+ Filter CTID
+		+ Select 1 tray + quantity (program)
+		+ Guideline dialog to available machine
+		+ Send request to board + receive message 
+		+ Receive message from board 
+			+ Start motor
+			+ End motor
+			+ Receive product
+		+ Update transaction
+		+ Update masterlog
+		+ Send email
+		+ Update tray quantity
+	+ Test wrong message config
+	+ Test missing config message
+	+ Test timeout not receive message
+	+ Test wrong message receive
+	+ Test board not ready
+	+ Test board not responding 
+	+ Test wrong config Product ID and vendor ID 
+	+ Test detached and attached HID device
+	+ Timeout
+
+Get Tool
+	+ GUI
+		+ Lock - Unlock enable - disable
+		+ Exit message
+		+ Back to dashboard
+		+ Logouta
+	+ Logout
+	+ Timeout
+
+Unlock machine
+	+ Enable default
+	+ Show progress when click + report current tray status
+	+ Message dialog
+	+ Email sent
+	+ Enable Putin/Take over by role	
+	+ Logout
+	+ Timeout
+
+Putin
+	+ GUI
+		+ Send request enable - disable
+		+ Cancel buttom
+		+ Exit message
+		+ Back to dashboard
+		+ Logout
+	+ Show list CTID
+	+ Filter on combobox
+	+ Change CTID + change tray
+		+ Show list available trays
+		+ Show dialog if not available
+		+ Update tray + quantity
+		+ Test case quantity = 0
+	+ Quantity > max config
+	+ Quantity < current
+	+ Master log
+	+ Email
+	+ Logout
+	+ Timeout
+
+Take Over
+	+ GUI
+		+ Send request enable - disable
+		+ Cancel buttom
+		+ Exit message
+		+ Back to dashboard
+		+ Logout
+	+ Show list CTID
+	+ Filter on combobox
+	+ Change CTID + change tray
+		+ Show list available trays
+		+ Show dialog if not available
+		+ Update tray + quantity
+		+ Test case quantity = 0
+	+ Quantity > current
+	+ Master log
+	+ Email
+	+ Logout
+	+ Timeout
+	
+Sync Data manually
+	+ Show progress bar
+	+ Show result
+	+ Email ??
+	+ Check sync result
+	+ Logout
+	+ Timeout
+
+Sync Data automatic	
+	+ Check thread
+	+ Check database connection
+	+ Check sync result
+		+ Host --> local
+		+ local --> host
+	+ Email ??
+	+ Master log
+	+ 

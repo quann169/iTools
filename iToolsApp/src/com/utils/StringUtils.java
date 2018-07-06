@@ -84,7 +84,7 @@ public class StringUtils {
 		JPanel statusPanel = new JPanel();
 		statusPanel.setBorder(new BevelBorder(BevelBorder.LOWERED));
 		frame.add(statusPanel, BorderLayout.SOUTH);
-		statusPanel.setPreferredSize(new Dimension(frame.getWidth(), 50));
+		statusPanel.setPreferredSize(new Dimension(frame.getWidth(), 30));
 		statusPanel.setLayout(new BoxLayout(statusPanel, BoxLayout.X_AXIS));
 		JLabel statusLabel = new JLabel();
 		statusLabel.setHorizontalAlignment(SwingConstants.CENTER);

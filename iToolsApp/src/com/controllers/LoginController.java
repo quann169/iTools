@@ -143,8 +143,44 @@ public class LoginController {
 		result.add(MysqlConnect.getPassword());
 		result.add(MysqlConnect.getDatabaseName());
 		result.add(MysqlConnect.getPort());
-		result.add("VERSION");
-		result.add("LASTSYNC");
+		
+		
+		String lastSync = "";
+		String sql = "select SyncDate from SyncHistory order by SyncHistory.SyncDate desc limit 1;";
+//		logger.info(sql);
+		try {
+			PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
+			ResultSet rs = statement.executeQuery(sql);
+
+			while (rs.next()) {
+				lastSync = rs.getString(1);
+			}
+		} catch (SQLException e) {
+			logger.info(e.getMessage());
+		} finally {
+			mysqlConnect.disconnect();
+		}
+		
+		String version = "";
+		String updatedDate = "";
+		sql = "select iToolAppDatabase, UpdatedDate from DatabaseVersion";
+//		logger.info(sql);
+		try {
+			PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
+			ResultSet rs = statement.executeQuery(sql);
+
+			while (rs.next()) {
+				version = rs.getString(1);
+				updatedDate = rs.getString(2);
+			}
+		} catch (SQLException e) {
+			logger.info(e.getMessage());
+		} finally {
+			mysqlConnect.disconnect();
+		}
+		
+		result.add(version + " - " + updatedDate);
+		result.add(lastSync);
 		return result;
 	}
 

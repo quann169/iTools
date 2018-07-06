@@ -2,6 +2,7 @@ DROP DATABASE IF EXISTS  iTools_v1p0;
 CREATE DATABASE  IF NOT EXISTS iTools_v1p0;
 USE iTools_v1p0;
 
+SET SQL_SAFE_UPDATES = 0;
 
 DROP TABLE IF EXISTS Company;
 CREATE TABLE IF NOT EXISTS Company (
@@ -48,7 +49,7 @@ INSERT INTO Assessor(AssessorID, UserName, Password, FirstName, LastName, EmailA
 	(2, "uhadmin1", "e10adc3949ba59abbe56e057f20f883e", "ADMIN", "UH", "admin1@aaa.bbb", "UHCom", 1),
 	(3, "uhacc1", "e10adc3949ba59abbe56e057f20f883e", "Acc1", "UH", "acc1@aaa.bbb", "UHCom", 1),
 	(4, "uhacc2", "e10adc3949ba59abbe56e057f20f883e", "Acc2", "UH", "acc2@aaa.bbb", "UHCom", 1),
-	(5, "com1admin", "e10adc3949ba59abbe56e057f20f883e", "ADMIN", "Com1", "com1admin@aaa.bbb", "Com1", 1),
+	(5, "com1admin", "e10adc3949ba59abbe56e057f20f883e", "ADMIN", "Com1", "quann169@gmail.com", "Com1", 1),
 	(6, "com1user1", "e10adc3949ba59abbe56e057f20f883e", "User1", "Com1", "com1admin@aaa.bbb", "Com1", 1),
 	(7, "com1user2", "e10adc3949ba59abbe56e057f20f883e", "User2", "Com1", "com1admin@aaa.bbb", "Com1", 1),
 	(8, "com1user3", "e10adc3949ba59abbe56e057f20f883e", "User3", "Com1", "com1admin@aaa.bbb", "Com1", 1),
@@ -343,4 +344,35 @@ CREATE TABLE IF NOT EXISTS MasterLog (
   INDEX AssessorName (AssessorName),
   INDEX LogDate (LogDate)
 ); 
+
+
+DROP TABLE IF EXISTS PendingAction;
+CREATE TABLE IF NOT EXISTS PendingAction (
+  PendingActionID INT(20) NOT NULL AUTO_INCREMENT,
+  PendingActionDate DATETIME NULL,
+  PendingActionName VARCHAR(255) NULL,
+  ActionContent TEXT NULL,
+  Status VARCHAR(100) NULL,
+  UpdatedDate DATETIME NULL,
+  PRIMARY KEY (PendingActionID)
+);
+
+DROP TABLE IF EXISTS DatabaseVersion;
+CREATE TABLE IF NOT EXISTS DatabaseVersion (
+  iToolAppDatabase VARCHAR(255) NULL,
+  UpdatedDate DATETIME NULL
+);
+
+INSERT INTO DatabaseVersion(iToolAppDatabase, UpdatedDate) VALUES ("v1p0", now());
+
+
+DROP TABLE IF EXISTS SyncHistory;
+CREATE TABLE IF NOT EXISTS SyncHistory (
+  SyncHistoryID INT(20) NOT NULL AUTO_INCREMENT,
+  SyncDate DATETIME NULL,
+  Statistic TEXT NULL,
+  Status VARCHAR(255) NULL,
+  PRIMARY KEY (SyncHistoryID)
+);
+
 
