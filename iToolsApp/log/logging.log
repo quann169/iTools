@@ -8613,3 +8613,76 @@
 2018-07-06 17:19:19 INFO  EmployeePage:307 - Suggest machine for tool CTID4 - company COMPANY_CODE: []
 2018-07-06 17:19:37 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'EmployeePage', '', 'TimeOut', '', '', 'Com1', 'MAC1', 'EmployeePage$9.actionPerformed');
 2018-07-06 17:20:10 INFO  EmployeePage:391 - com1admin: EMP_PAGE time out.
+2018-07-08 10:24:51 INFO  LoginPage:285 - ************************************************************
+2018-07-08 10:24:51 INFO  LoginPage:286 - ************************************************************
+2018-07-08 10:24:51 INFO  LoginPage:287 - ************************************************************
+2018-07-08 10:24:51 INFO  LoginPage:288 - ************************************************************
+2018-07-08 10:24:51 INFO  LoginPage:289 - Starting iTool app.
+2018-07-08 10:24:51 INFO  LoginPage:290 - companyCode: Com1
+2018-07-08 10:24:51 INFO  LoginPage:291 - companyCodeUH: UHCom
+2018-07-08 10:24:51 INFO  LoginPage:292 - machineCode: MAC1
+2018-07-08 10:24:52 INFO  LoginPage:295 - mDbHost: localhost
+2018-07-08 10:24:52 INFO  LoginPage:296 - mDbUser: admin
+2018-07-08 10:24:52 INFO  LoginPage:297 - mDbPwds: 1qazxsw2
+2018-07-08 10:24:52 INFO  LoginPage:298 - mDbName: iTools_v1p0
+2018-07-08 10:24:52 INFO  LoginPage:299 - mDbPort: 3306
+2018-07-08 10:24:52 INFO  LoginPage:300 - Database version: v1p0 - 2018-07-08 10:14:35
+2018-07-08 10:24:52 INFO  LoginPage:302 - Last Sync: 
+2018-07-08 10:24:57 INFO  LoginPage:305 - checkEmailConfig: true
+2018-07-08 10:24:57 INFO  LoginPage:315 - App Version: 1.0
+2018-07-08 10:25:16 INFO  LoginPage:186 - Login with username: com1admin
+2018-07-08 10:25:16 INFO  LoginController:46 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin FROM Assessor where Assessor.UserName='com1admin' and (Password=md5('asdsad') or LastPassword=md5('asdsad'));
+2018-07-08 10:25:16 INFO  LoginPage:239 - Login Fail
+2018-07-08 10:25:18 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'dasdasd', 'Assessor', '', 'LoginFail', '', '', 'Com1', 'MAC1', 'LoginPage.actionPerformed');
+2018-07-08 10:25:21 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'dasdasd', 'Assessor', '', 'ForgotPass', '', '', 'Com1', 'MAC1', 'LoginPage.actionPerformed');
+2018-07-08 10:25:21 INFO  LoginPage:252 - Forgot Pass
+2018-07-08 10:25:21 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), '', 'Assessor', '', 'ForgotPasswordPage', '', '', 'Com1', 'MAC1', 'ForgotPasswordPage.<init>');
+2018-07-08 10:25:39 INFO  UserController:150 - SELECT * FROM assessor where assessor.UserName = 'com1admin' and assessor.EmailAddress = 'quannguyen@savarti.co' and assessor.CompanyCode = 'Com1';
+2018-07-08 10:25:43 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Assessor', '', 'ForgotPassUsernameNotMatchEmail', '', 'com1admin - quannguyen@savarti.co', 'Com1', 'MAC1', 'ForgotPasswordPage.actionPerformed');
+2018-07-08 10:25:43 INFO  ForgotPasswordPage:278 - com1admin - quannguyen@savarti.co fail validate
+2018-07-08 10:25:45 INFO  UserController:150 - SELECT * FROM assessor where assessor.UserName = 'com1admin' and assessor.EmailAddress = 'quannguyen@savarti.com' and assessor.CompanyCode = 'Com1';
+2018-07-08 10:25:45 INFO  UserController:181 - Update  Assessor set Assessor.LastPassword = md5('uvJKLx0u') , Assessor.IsFirstTimeLogin = 1  where Assessor.Username = 'com1admin' and Assessor.CompanyCode = 'Com1';
+2018-07-08 10:25:45 INFO  UserController:185 - 1 row(s) updated!
+2018-07-08 10:25:51 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Email', '', 'ForgotPasswordPage', '', 'To quannguyen@savarti.com - Subject: New password reset - Message: New password: uvJKLx0u', 'Com1', 'MAC1', 'EmailUtils.sendEmail');
+2018-07-08 10:25:51 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Assessor', '', 'ForgotPassResetOk', '', 'com1admin - quannguyen@savarti.com', 'Com1', 'MAC1', 'ForgotPasswordPage$4.done');
+2018-07-08 10:25:51 INFO  ForgotPasswordPage:252 - com1admin - quannguyen@savarti.com forgot pass ok.
+2018-07-08 10:26:47 INFO  LoginPage:186 - Login with username: com1admin
+2018-07-08 10:26:47 INFO  LoginController:46 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin FROM Assessor where Assessor.UserName='com1admin' and (Password=md5('uvJKLx0u') or LastPassword=md5('uvJKLx0u'));
+2018-07-08 10:26:47 INFO  LoginPage:190 - Login OK
+2018-07-08 10:26:47 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'asda', 'Assessor', '', 'Login', '', '', 'Com1', 'MAC1', 'LoginPage.actionPerformed');
+2018-07-08 10:26:48 INFO  LoginPage:196 - isFirstTimeLogin: true
+2018-07-08 10:26:48 INFO  UserController:44 - SELECT AssessorID, UserName, Password, CompanyCode, IsActive, IsLocked FROM Assessor where Assessor.IsActive=1 and Assessor.CompanyCode = 'Com1';
+2018-07-08 10:26:48 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Assessor', '', 'ResetPasswordPage', '', '', 'Com1', 'MAC1', 'ResetPasswordPage.<init>');
+2018-07-08 10:26:54 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Assessor', '', 'Logout', '', '', 'Com1', 'MAC1', 'ResetPasswordPage$3.mouseClicked');
+2018-07-08 10:26:54 INFO  ResetPasswordPage:168 - com1admin logout.
+2018-07-08 10:27:03 INFO  LoginPage:186 - Login with username: com1admin
+2018-07-08 10:27:03 INFO  LoginController:46 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin FROM Assessor where Assessor.UserName='com1admin' and (Password=md5('uvJKLx0u') or LastPassword=md5('uvJKLx0u'));
+2018-07-08 10:27:03 INFO  LoginPage:190 - Login OK
+2018-07-08 10:27:03 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'afsafa', 'Assessor', '', 'Login', '', '', 'Com1', 'MAC1', 'LoginPage.actionPerformed');
+2018-07-08 10:27:03 INFO  LoginPage:196 - isFirstTimeLogin: true
+2018-07-08 10:27:03 INFO  UserController:44 - SELECT AssessorID, UserName, Password, CompanyCode, IsActive, IsLocked FROM Assessor where Assessor.IsActive=1 and Assessor.CompanyCode = 'Com1';
+2018-07-08 10:27:03 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Assessor', '', 'ResetPasswordPage', '', '', 'Com1', 'MAC1', 'ResetPasswordPage.<init>');
+2018-07-08 10:28:05 INFO  UserController:125 - Update  Assessor set Assessor.Password = md5('aaa'), Assessor.IsFirstTimeLogin = 0 where Assessor.Username = 'com1admin' and Assessor.CompanyCode = 'Com1';
+2018-07-08 10:28:05 INFO  UserController:129 - 1 row(s) updated!
+2018-07-08 10:28:05 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Assessor', 'Password', 'FirstTimeChangePass', 'com1admin - uvJKLx0u', 'XXX', 'Com1', 'MAC1', 'ResetPasswordPage.actionPerformed');
+2018-07-08 10:28:07 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Assessor', '', 'Logout', '', '', 'Com1', 'MAC1', 'ResetPasswordPage.actionPerformed');
+2018-07-08 10:28:07 INFO  ResetPasswordPage:415 - com1admin logout.
+2018-07-08 10:28:14 INFO  LoginPage:186 - Login with username: com1admin
+2018-07-08 10:28:14 INFO  LoginController:46 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin FROM Assessor where Assessor.UserName='com1admin' and (Password=md5('aaa') or LastPassword=md5('aaa'));
+2018-07-08 10:28:14 INFO  LoginPage:190 - Login OK
+2018-07-08 10:28:14 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'asadasd', 'Assessor', '', 'Login', '', '', 'Com1', 'MAC1', 'LoginPage.actionPerformed');
+2018-07-08 10:28:14 INFO  LoginController:114 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'Com1' and assessor.UserName= 'com1admin'
+2018-07-08 10:28:15 INFO  LoginPage:207 - listRoles: [Roles [roleName=SubAdmin], Roles [roleName=Emp]]
+2018-07-08 10:28:15 INFO  LoginPage:227 - Show DashboardPage
+2018-07-08 10:28:15 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Assessor', '', 'ShowDashboard', '', '', 'Com1', 'MAC1', 'DashboardPage.<init>');
+2018-07-08 10:28:17 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Assessor', '', 'ResetPass', '', '', 'Com1', 'MAC1', 'DashboardPage.actionPerformed');
+2018-07-08 10:28:17 INFO  UserController:44 - SELECT AssessorID, UserName, Password, CompanyCode, IsActive, IsLocked FROM Assessor where Assessor.IsActive=1 and Assessor.CompanyCode = 'Com1';
+2018-07-08 10:28:17 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Assessor', '', 'ResetPasswordPage', '', '', 'Com1', 'MAC1', 'ResetPasswordPage.<init>');
+2018-07-08 10:30:45 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), '', 'ForgotPasswordPage', '', 'TimeOut', '', '', 'Com1', 'MAC1', 'ForgotPasswordPage$3.actionPerformed');
+2018-07-08 10:31:54 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'ResetPasswordPage', '', 'TimeOut', '', '', 'Com1', 'MAC1', 'ResetPasswordPage$9.actionPerformed');
+2018-07-08 10:33:07 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'ResetPasswordPage', '', 'TimeOut', '', '', 'Com1', 'MAC1', 'ResetPasswordPage$9.actionPerformed');
+2018-07-08 10:33:28 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'ResetPasswordPage', '', 'TimeOut', '', '', 'Com1', 'MAC1', 'ResetPasswordPage$9.actionPerformed');
+2018-07-08 10:55:04 INFO  ResetPasswordPage:308 - com1admin: RESET_PASS_PAGE time out.
+2018-07-08 10:55:05 INFO  ResetPasswordPage:308 - com1admin: RESET_PASS_PAGE time out.
+2018-07-08 10:55:06 INFO  ResetPasswordPage:308 - com1admin: RESET_PASS_PAGE time out.
+2018-07-08 10:55:06 INFO  ForgotPasswordPage:154 - : FORGOT_PASS_PAGE time out.

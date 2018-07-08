@@ -12,6 +12,7 @@ CREATE TABLE IF NOT EXISTS Company (
   CompanyType VARCHAR(100) NULL,
   Address VARCHAR(100) NULL,
   Location VARCHAR(100) NULL,
+  UpdatedDate DATETIME NULL,
   INDEX Company_CompanyCode (CompanyCode),
   PRIMARY KEY (CompanyID),
   UNIQUE KEY (CompanyCode)
@@ -39,6 +40,7 @@ CREATE TABLE IF NOT EXISTS Assessor (
   IsActive BOOLEAN NOT NULL,
   LastPassword VARCHAR(255) NULL,
   IsFirstTimeLogin BOOLEAN NULL,
+  UpdatedDate DATETIME NULL,
   PRIMARY KEY (AssessorID),
   INDEX UserName (UserName),
   FOREIGN KEY (CompanyCode) REFERENCES Company(CompanyCode)
@@ -49,7 +51,7 @@ INSERT INTO Assessor(AssessorID, UserName, Password, FirstName, LastName, EmailA
 	(2, "uhadmin1", "e10adc3949ba59abbe56e057f20f883e", "ADMIN", "UH", "admin1@aaa.bbb", "UHCom", 1),
 	(3, "uhacc1", "e10adc3949ba59abbe56e057f20f883e", "Acc1", "UH", "acc1@aaa.bbb", "UHCom", 1),
 	(4, "uhacc2", "e10adc3949ba59abbe56e057f20f883e", "Acc2", "UH", "acc2@aaa.bbb", "UHCom", 1),
-	(5, "com1admin", "e10adc3949ba59abbe56e057f20f883e", "ADMIN", "Com1", "quann169@gmail.com", "Com1", 1),
+	(5, "com1admin", "e10adc3949ba59abbe56e057f20f883e", "ADMIN", "Com1", "quannguyen@savarti.com", "Com1", 1),
 	(6, "com1user1", "e10adc3949ba59abbe56e057f20f883e", "User1", "Com1", "com1admin@aaa.bbb", "Com1", 1),
 	(7, "com1user2", "e10adc3949ba59abbe56e057f20f883e", "User2", "Com1", "com1admin@aaa.bbb", "Com1", 1),
 	(8, "com1user3", "e10adc3949ba59abbe56e057f20f883e", "User3", "Com1", "com1admin@aaa.bbb", "Com1", 1),
@@ -64,6 +66,7 @@ CREATE TABLE IF NOT EXISTS Roles (
   RoleName VARCHAR(100) NULL,
   RoleType INT(10) NULL,
   IsRole INT(10) NULL,
+  UpdatedDate DATETIME NULL,
   PRIMARY KEY (RoleID)
 );
 INSERT INTO Roles(RoleID, RoleName, IsRole) VALUES 
@@ -85,6 +88,7 @@ CREATE TABLE IF NOT EXISTS RoleAssessor (
   AssessorID INT(10) NULL,
   CreatedDate DATETIME NULL,
   IsActive BOOLEAN NOT NULL,
+  UpdatedDate DATETIME NULL,
   PRIMARY KEY (RoleAssessorID),
   INDEX CreatedDate (CreatedDate),
   INDEX RoleID (RoleID),
@@ -154,6 +158,7 @@ CREATE TABLE IF NOT EXISTS CompanyMachine (
   CompanyCode VARCHAR(100) NULL,
   CreatedDate DATETIME NULL,
   IsActive BOOLEAN NOT NULL,
+  UpdatedDate DATETIME NULL,
   PRIMARY KEY (CompanyMachineID),
   FOREIGN KEY (MachineCode) REFERENCES Machine(MachineCode),
   FOREIGN KEY (CompanyCode) REFERENCES Company(CompanyCode)
@@ -339,6 +344,7 @@ CREATE TABLE IF NOT EXISTS MasterLog (
   CompanyCode VARCHAR(100) NULL,
   MachineCode VARCHAR(100) NULL,
   Notes TEXT NULL,
+  UpdatedDate DATETIME NULL,
   PRIMARY KEY (LogID),
   INDEX RecordID (RecordID),
   INDEX AssessorName (AssessorName),
@@ -372,6 +378,7 @@ CREATE TABLE IF NOT EXISTS SyncHistory (
   SyncDate DATETIME NULL,
   Statistic TEXT NULL,
   Status VARCHAR(255) NULL,
+  SynType VARCHAR(255) NULL,
   PRIMARY KEY (SyncHistoryID)
 );
 
