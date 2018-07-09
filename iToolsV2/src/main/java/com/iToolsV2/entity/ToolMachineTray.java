@@ -36,6 +36,9 @@ public class ToolMachineTray implements Serializable {
     @Column(name = "UpdatedDate", nullable = true)
     private Date updatedDate;
     
+    @Column(name = "IsActive", length = 1, nullable = false)
+    private boolean active;
+    
     public int getToolsMachineTrayID() {
 		return toolsMachineTrayID;
 	}
@@ -90,9 +93,6 @@ public class ToolMachineTray implements Serializable {
 
 	public void setActive(boolean active) {
 		this.active = active;
-	}
-
-	@Column(name = "IsActive", length = 1, nullable = false)
-    private boolean active;
+	}	
  
 }

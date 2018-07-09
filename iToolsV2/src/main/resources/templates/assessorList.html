@@ -5,18 +5,6 @@
       <meta charset="UTF-8">
       <title>User List</title>
       <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}" />
-      <style>
-	      table th, table td {
-	        border: 1px solid #ccc;
-		    padding: 5px;
-		    width: 150px;
-		    display: inline-block;
-		    text-align: center;
-	      }
-	      .message {
-	         color: blue;
-	      }
-	  </style>
    </head>
    <body>
       <th:block th:include="/_header"></th:block>
@@ -26,18 +14,36 @@
       
       <table border="1" style="width:100%">
             <tr>
-               <th>User Name</th>
+               <th>User Code</th>
+               <th>UserName</th>
                <th>First Name</th>
                <th>Last Name</th>
                <th>Email</th>
-               <th>Active</th>
+               <th>Company</th>
+               <th>Status</th>
+               <th>Locked</th>
+               <th></th>
             </tr>
             <tr th:each ="assessorInfo : ${paginationAssessor.list}">
+               <td th:utext="${assessorInfo.assessorId}">...</td>
                <td th:utext="${assessorInfo.userName}">...</td>
-               <td th:utext="${assessorInfo.assessorId}">...</td>
-               <td th:utext="${assessorInfo.assessorId}">...</td>
-               <td th:utext="${assessorInfo.assessorId}">...</td>
-               <td th:utext="${assessorInfo.active}">...</td>
+               <td th:utext="${assessorInfo.firstName}">...</td>
+               <td th:utext="${assessorInfo.lastName}">...</td>
+               <td style="word-wrap: break-word" th:utext="${assessorInfo.emailAddress}">...</td>
+               <td th:utext="${assessorInfo.companyCode}">...</td>
+               <td>
+               	<div th:switch="${assessorInfo.active}"> 
+				  <div th:case=true>Active</div>
+				  <div th:case=false>Disabled</div>
+				</div>
+               </td>
+               <td>
+               	<div th:switch="${assessorInfo.locked}"> 
+				  <div th:case=true>Locked</div>
+				  <div th:case=false>Not be locked</div>
+				</div>               
+               </td>
+               <td><a th:href="@{|/admin/assessorDetail?assessorID=${assessorInfo.assessorId}|}">Edit</a></td>
             </tr>
       </table>      
        

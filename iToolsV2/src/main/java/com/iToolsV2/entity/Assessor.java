@@ -23,7 +23,7 @@ public class Assessor implements Serializable {
     
     @Id
     @Column(name = "AssessorID", nullable = false)
-    private int assessorID;
+    private Integer assessorID;
     
     @Column(name = "UserName", length = 100, nullable = false)
     private String userName;
@@ -49,20 +49,47 @@ public class Assessor implements Serializable {
 	@Column(name = "Phone", length = 255, nullable = false)
     private String phone;
     
-    @Column(name = "CompanyId", length = 100, nullable = false)
+    @Column(name = "CompanyCode", length = 255, nullable = true)
     private String companyCode;
     
-    @Column(name = "LastPassword", length = 255, nullable = false)
+    @Column(name = "LastPassword", length = 255, nullable = true)
     private String lastPassword;
  
     @Column(name = "IsActive", length = 1, nullable = false)
     private boolean active;
     
-    public int getAssessorID() {
+    @Column(name = "IsLocked", length = 1, nullable = false)
+    private boolean locked;
+    
+    /*@ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "CompanyID", nullable = false, //
+            foreignKey = @ForeignKey(name = "Assessor_ibfk_1"))
+    private Company company;*/
+    
+/*    @Column(name = "IsFirstTimeLogin", length = 1, nullable = true)
+    private boolean isFirstTimeLogin;*/
+    
+    public boolean isLocked() {
+		return locked;
+	}
+
+	public void setLocked(boolean locked) {
+		this.locked = locked;
+	}
+
+/*	public boolean isFirstTimeLogin() {
+		return isFirstTimeLogin;
+	}
+
+	public void setFirstTimeLogin(boolean isFirstTimeLogin) {
+		this.isFirstTimeLogin = isFirstTimeLogin;
+	}*/
+
+	public Integer getAssessorID() {
 		return assessorID;
 	}
 
-	public void setAssessorID(int assessorID) {
+	public void setAssessorID(Integer assessorID) {
 		this.assessorID = assessorID;
 	}
 

@@ -135,7 +135,7 @@ public class MainController {
         return "assessorList";
     }
     
-    @RequestMapping({ "companyList" })
+    @RequestMapping({ "/companyList" })
     public String listCompanyHandler(Model model, //
             @RequestParam(value = "name", defaultValue = "") String likeName,
             @RequestParam(value = "page", defaultValue = "1") int page) {
@@ -149,7 +149,7 @@ public class MainController {
         return "companyList";
     }
     
-    @RequestMapping({ "ctidList" })
+    @RequestMapping({ "/ctidList" })
     public String listToolHandler(Model model, //
             @RequestParam(value = "name", defaultValue = "") String likeName,
             @RequestParam(value = "page", defaultValue = "1") int page) {

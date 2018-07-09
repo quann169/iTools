@@ -382,4 +382,9 @@ CREATE TABLE IF NOT EXISTS SyncHistory (
   PRIMARY KEY (SyncHistoryID)
 );
 
+-- insert first synchistory record 
+insert into SyncHistory(SyncDate, Statistic, Status, SynType)
+VALUES 
+	(sysdate(), "first sync record", "SUCCESS", "FromHost"),
+	(sysdate(), "first sync record", "SUCCESS", "FromLocal");
 

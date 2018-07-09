@@ -7,7 +7,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+//import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import com.iToolsV2.utils.MD5PasswordEncoder;
  
 @Configuration
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
@@ -15,11 +16,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     UserDetailsServiceImpl userDetailsService;
  
-    @Bean
+    /*@Bean
     public BCryptPasswordEncoder passwordEncoder() {
         BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
-        //Md5PasswordEncoder md5CryptPasswordEncoder = new Md5PasswordEncoder();
         return bCryptPasswordEncoder;
+    }*/
+    
+    @Bean
+    public MD5PasswordEncoder passwordEncoder() {
+    	MD5PasswordEncoder md5CryptPasswordEncoder = new MD5PasswordEncoder();        
+        return md5CryptPasswordEncoder;
     }
  
     @Autowired
@@ -38,7 +44,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 //.access("hasAnyRole('ROLE_EMPLOYEE', 'ROLE_MANAGER')");
         		.access("hasAnyRole('ROLE_EMPLOYEE', 'ROLE_MANAGER','ROLE_Admin', 'ROLE_SubAdmin', 'ROLE_Accounting', 'ROLE_PutIns', 'ROLE_TakeOver', 'ROLE_UpdateReport')");
  
-        http.authorizeRequests().antMatchers("/admin/product", "/ctidList").access("hasRole('ROLE_Admin')");
+        http.authorizeRequests().antMatchers("/admin/product", "/ctidList", "/companyList", "/userList", "/admin/registerSuccessful", "/admin/register", "/admin/assessorDetail").access("hasRole('ROLE_Admin')");
         //http.authorizeRequests().antMatchers("/admin/product").access("hasRole('ROLE_Admin')");
  
         http.authorizeRequests().and().exceptionHandling().accessDeniedPage("/403");

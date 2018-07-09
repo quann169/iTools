@@ -1,17 +1,21 @@
 package com.iToolsV2.form;
  
+//import com.iToolsV2.entity.Assessor;
 import com.iToolsV2.model.AssessorInfo;
  
 public class AssessorForm {
- 
+	private int assessorId;
     private String name;
     private String firstName;
     private String lastName;
     private String address;
     private String emailAddress;
     private String phone;
-    private String companyCode;
-    private boolean active; 
+    private String companyCode;    
+    private boolean active;
+    private boolean locked;
+	private String password;
+    private String confirmPassword;
  
     public AssessorForm() {
  
@@ -19,6 +23,7 @@ public class AssessorForm {
  
     public AssessorForm(AssessorInfo assessorInfo) {
         if (assessorInfo != null) {
+        	this.assessorId = assessorInfo.getAssessorId();
             this.name = assessorInfo.getUserName();
             this.firstName = assessorInfo.getFirstName();
             this.lastName = assessorInfo.getLastName();
@@ -27,10 +32,60 @@ public class AssessorForm {
             this.phone = assessorInfo.getPhone();
             this.companyCode = assessorInfo.getCompanyCode();
             this.active = assessorInfo.isActive();
+            this.password = assessorInfo.getPassword();
+            this.confirmPassword = assessorInfo.getConfirmPassword();
+            this.assessorId = assessorInfo.getAssessorId();
+            this.locked = assessorInfo.isLocked();
         }
     }
- 
-    public String getName() {
+    
+    /*public AssessorForm(Assessor assessor) {
+            this.name = assessor.getUserName();
+            this.firstName = assessor.getFirstName();
+            this.lastName = assessor.getLastName();
+            this.address = assessor.getAddress();
+            this.emailAddress = assessor.getEmailAddress();
+            this.phone = assessor.getPhone();
+            this.companyCode = assessor.getCompanyCode();
+            this.active = assessor.isActive();
+            this.password = assessor.getEncrytedPassword();
+            this.confirmPassword = assessor.getEncrytedPassword();
+            this.assessorId = assessor.getAssessorID();
+    }*/
+    
+    public boolean isLocked() {
+		return locked;
+	}
+
+	public void setLocked(boolean locked) {
+		this.locked = locked;
+	}
+	
+    public int getAssessorId() {
+		return assessorId;
+	}
+
+	public void setAssessorId(int assessorId) {
+		this.assessorId = assessorId;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getConfirmPassword() {
+		return confirmPassword;
+	}
+
+	public void setConfirmPassword(String confirmPassword) {
+		this.confirmPassword = confirmPassword;
+	}
+
+	public String getName() {
         return name;
     }
  

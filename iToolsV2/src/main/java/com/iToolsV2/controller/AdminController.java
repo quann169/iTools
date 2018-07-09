@@ -1,16 +1,8 @@
 package com.iToolsV2.controller;
  
 import java.util.List;
- 
+
 import org.apache.commons.lang.exception.ExceptionUtils;
-import com.iToolsV2.dao.OrderDAO;
-import com.iToolsV2.dao.ProductDAO;
-import com.iToolsV2.entity.Product;
-import com.iToolsV2.form.ProductForm;
-import com.iToolsV2.model.OrderDetailInfo;
-import com.iToolsV2.model.OrderInfo;
-import com.iToolsV2.pagination.PaginationResult;
-import com.iToolsV2.validator.ProductFormValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -24,8 +16,23 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam; 
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import com.iToolsV2.dao.AssessorDAO;
+import com.iToolsV2.dao.CompanyDAO;
+import com.iToolsV2.dao.OrderDAO;
+import com.iToolsV2.dao.ProductDAO;
+import com.iToolsV2.entity.Assessor;
+import com.iToolsV2.entity.Company;
+import com.iToolsV2.entity.Product;
+import com.iToolsV2.form.AssessorForm;
+import com.iToolsV2.form.ProductForm;
+import com.iToolsV2.model.OrderDetailInfo;
+import com.iToolsV2.model.OrderInfo;
+import com.iToolsV2.pagination.PaginationResult;
+import com.iToolsV2.validator.AssessorFormValidator;
+import com.iToolsV2.validator.ProductFormValidator;
  
 @Controller
 @Transactional
@@ -39,6 +46,15 @@ public class AdminController {
  
     @Autowired
     private ProductFormValidator productFormValidator;
+    
+    @Autowired
+    private AssessorFormValidator assessorFormValidator;
+    
+    @Autowired
+    private AssessorDAO assessorDAO;
+    
+    @Autowired
+    private CompanyDAO companyDAO;
  
     @InitBinder
     public void myInitBinder(WebDataBinder dataBinder) {
@@ -50,6 +66,10 @@ public class AdminController {
  
         if (target.getClass() == ProductForm.class) {
             dataBinder.setValidator(productFormValidator); 
+        }
+        
+        if (target.getClass() == AssessorForm.class) {
+            dataBinder.setValidator(assessorFormValidator); 
         }
     }
  
@@ -144,6 +164,103 @@ public class AdminController {
         model.addAttribute("orderInfo", orderInfo);
  
         return "order";
+    }
+    
+    @RequestMapping("/admin/registerSuccessful")
+    public String viewRegisterSuccessful(Model model) {
+        return "registerAssessorSuccessfull";
+    }
+ 
+    @RequestMapping(value = "/admin/register", method = RequestMethod.GET)
+    public String viewRegister(Model model) {
+ 
+    	AssessorForm form = new AssessorForm();
+    	List<Company> companies = companyDAO.findAllCompany();
+ 
+        model.addAttribute("assessorForm", form);
+        model.addAttribute("companies", companies);
+ 
+        return "registerAssessor";
+    }
+    
+    @RequestMapping(value = "/admin/assessorDetail", method = RequestMethod.GET)
+    public String editAssessor(Model model, @RequestParam("assessorID") int assessorID) {
+    	AssessorForm form = assessorDAO.findAssessorFormByID(assessorID);
+ 
+    	List<Company> companies = companyDAO.findAllCompany();
+ 
+        model.addAttribute("assessorForm", form);
+        model.addAttribute("companies", companies);
+ 
+        return "assessorDetail";
+    }
+
+    @RequestMapping(value = "/admin/register", method = RequestMethod.POST)
+    public String saveRegister(Model model, //
+            @ModelAttribute("assessorForm") @Validated AssessorForm assessorForm, //
+            BindingResult result, //
+            final RedirectAttributes redirectAttributes) {
+ 
+        // Validate result
+        if (result.hasErrors()) {
+        	List<Company> companies = companyDAO.findAllCompany();
+        	model.addAttribute("companies", companies);
+            return "registerAssessor";
+        }
+        Assessor newAssessor= null;
+        try {
+        	newAssessor = assessorDAO.createAssessor(assessorForm);
+        }
+        // Other error!!
+        catch (Exception e) {
+            model.addAttribute("errorMessage", "Error: " + e.getMessage());
+            List<Company> companies = companyDAO.findAllCompany();
+        	model.addAttribute("companies", companies);
+            return "registerAssessor";
+        }
+ 
+        redirectAttributes.addFlashAttribute("flashUser", newAssessor);
+        System.out.println(assessorForm.getAssessorId());
+        System.out.println(assessorForm.getName());
+        System.out.println(assessorForm.isActive());
+        System.out.println(assessorForm.isLocked());
+        System.out.println(assessorForm.getPassword());
+         
+        return "redirect:/admin/registerSuccessful";
+    }
+    
+    @RequestMapping(value = "/admin/assessorDetail", method = RequestMethod.POST)
+    public String saveAssessor(Model model, //
+            @ModelAttribute("assessorForm") @Validated AssessorForm assessorForm, //
+            BindingResult result, //
+            final RedirectAttributes redirectAttributes) {
+ 
+        // Validate result
+        if (result.hasErrors()) {
+        	List<Company> companies = companyDAO.findAllCompany();
+        	model.addAttribute("companies", companies);
+            return "assessorDetail";
+        }
+        Assessor newAssessor= null;
+        try {
+        	newAssessor = assessorDAO.saveAssessor(assessorForm);
+        }
+        // Other error!!
+        catch (Exception e) {
+            model.addAttribute("errorMessage", "Error: " + e.getMessage());
+            List<Company> companies = companyDAO.findAllCompany();
+        	model.addAttribute("companies", companies);
+            return "assessorDetail";
+        }
+ 
+        redirectAttributes.addFlashAttribute("flashUser", newAssessor);
+        System.out.println(assessorForm.getAssessorId());
+        System.out.println(assessorForm.getName());
+        System.out.println(assessorForm.isActive());
+        System.out.println(assessorForm.isLocked());
+        //System.out.println(assessorForm.getPassword());
+         
+        return "redirect:/userList";
     }
  
 }

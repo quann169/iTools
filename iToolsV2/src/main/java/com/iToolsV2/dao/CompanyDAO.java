@@ -1,5 +1,10 @@
 package com.iToolsV2.dao;
  
+import java.util.List;
+
+import javax.persistence.NoResultException;
+
+import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
@@ -8,6 +13,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.iToolsV2.entity.Assessor;
 import com.iToolsV2.entity.Company;
 import com.iToolsV2.form.CompanyForm;
 import com.iToolsV2.model.CompanyInfo;
@@ -35,6 +41,32 @@ public class CompanyDAO {
             return null;
         }
         return new CompanyInfo(company.getCompanyID(), company.getCompanyName(), company.getCompanyCode(), company.getLocation(), company.getAddress());
+    }
+    
+    public List<Company> findAllCompany() {
+    	try {
+	    	Session session = this.sessionFactory.getCurrentSession();
+	        String sql = "from " + Company.class.getName() + " company ";
+	        Query<Company> query = session.createQuery(sql, Company.class);
+	        return query.getResultList();
+    	} catch (NoResultException e) {
+    		return null;
+    	}
+    }
+    
+    public Company findCompanyByCode(String companyCode) {
+    	Company company = null;
+        try {
+        	Session session = this.sessionFactory.getCurrentSession();
+        	 String sql = "from " + Company.class.getName() + " company " //
+                     + " Where company.companyCode = :companyCode ";
+             Query<Company> query = session.createQuery(sql, Company.class);
+             query.setParameter("companyCode", companyCode);
+             company = query.getSingleResult();
+        } catch (Exception e) {
+           e.printStackTrace();
+        } 
+        return company;
     }
  
     @Transactional(propagation = Propagation.REQUIRES_NEW, rollbackFor = Exception.class)

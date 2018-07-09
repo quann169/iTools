@@ -12,7 +12,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
  
 @Entity
-@Table(name = "Order_Details")
+@Table(name = "ORDER_DETAILS")
 public class OrderDetail implements Serializable {
  
     private static final long serialVersionUID = 7550745928843183535L;
@@ -31,13 +31,13 @@ public class OrderDetail implements Serializable {
             foreignKey = @ForeignKey(name = "ORDER_DETAIL_PROD_FK"))
     private Product product;
  
-    @Column(name = "Quanity", nullable = false)
+    @Column(name = "QUANTITY", nullable = false)
     private int quanity;
  
-    @Column(name = "Price", nullable = false)
+    @Column(name = "PRICE", nullable = false)
     private double price;
  
-    @Column(name = "Amount", nullable = false)
+    @Column(name = "AMOUNT", nullable = false)
     private double amount;
  
     public String getId() {

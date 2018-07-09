@@ -5,6 +5,7 @@ CREATE TABLE federated_Company (
   CompanyType VARCHAR(100) NULL,
   Address VARCHAR(100) NULL,
   Location VARCHAR(100) NULL,
+  UpdatedDate DATETIME NULL,
   INDEX Company_CompanyCode (CompanyCode),
   PRIMARY KEY (CompanyID),
   UNIQUE KEY (CompanyCode)
@@ -28,6 +29,7 @@ CREATE TABLE IF NOT EXISTS federated_Assessor (
   IsActive BOOLEAN NOT NULL,
   LastPassword VARCHAR(255) NULL,
   IsFirstTimeLogin BOOLEAN NULL,
+  UpdatedDate DATETIME NULL,
   PRIMARY KEY (AssessorID),
   INDEX UserName (UserName),
   FOREIGN KEY (CompanyCode) REFERENCES Company(CompanyCode)
@@ -40,6 +42,7 @@ CREATE TABLE IF NOT EXISTS federated_Roles (
   RoleName VARCHAR(100) NULL,
   RoleType INT(10) NULL,
   IsRole INT(10) NULL,
+  UpdatedDate DATETIME NULL,
   PRIMARY KEY (RoleID)
 )ENGINE=FEDERATED
 DEFAULT CHARSET=UTF8
@@ -52,12 +55,13 @@ CREATE TABLE IF NOT EXISTS federated_RoleAssessor (
   AssessorID INT(10) NULL,
   CreatedDate DATETIME NULL,
   IsActive BOOLEAN NOT NULL,
+  UpdatedDate DATETIME NULL,
   PRIMARY KEY (RoleAssessorID),
   INDEX CreatedDate (CreatedDate),
   INDEX RoleID (RoleID),
   INDEX AssessorID (AssessorID),
   FOREIGN KEY (RoleID) REFERENCES Roles(RoleID) ,
-  FOREIGN KEY (AssessorID) REFERENCES Assessor(AssessorID) 
+  FOREIGN KEY (AssessorID) REFERENCES Assessor(AssessorID)
 )ENGINE=FEDERATED
 DEFAULT CHARSET=UTF8
 CONNECTION='mysql://tqteamne_admin:Admin123@112.213.89.49:3306/tqteamne_iTools/RoleAssessor';
@@ -87,6 +91,7 @@ CREATE TABLE IF NOT EXISTS federated_CompanyMachine (
   CompanyCode VARCHAR(100) NULL,
   CreatedDate DATETIME NULL,
   IsActive BOOLEAN NOT NULL,
+  UpdatedDate DATETIME NULL,
   PRIMARY KEY (CompanyMachineID),
   FOREIGN KEY (MachineCode) REFERENCES Machine(MachineCode),
   FOREIGN KEY (CompanyCode) REFERENCES Company(CompanyCode)
@@ -144,19 +149,24 @@ CONNECTION='mysql://tqteamne_admin:Admin123@112.213.89.49:3306/tqteamne_iTools/T
 CREATE TABLE IF NOT EXISTS federated_WorkingTransaction (
   WorkingTransactionID INT(20) NOT NULL AUTO_INCREMENT,
   TransactionDate DATETIME NULL,
-  AssessorID INT(10) NOT NULL,
+  MachineCode VARCHAR(100) NOT NULL,
+  CompanyCode VARCHAR(100) NOT NULL,
+  AssessorID VARCHAR(100) NOT NULL,
   WOCode VARCHAR(100) NOT NULL,
   OPCode VARCHAR(100) NOT NULL,
   ToolCode VARCHAR(100) NOT NULL,
   TrayIndex VARCHAR(100) NULL,
+  Quantity INT(10) NULL,
   UpdatedDate DATETIME NULL,
+  TransactionStatus VARCHAR(255) NULL,
   RespondMessage VARCHAR(255) NULL,
   TransactionType VARCHAR(255) NULL,
   PRIMARY KEY (WorkingTransactionID),
   INDEX TransactionDate (TransactionDate),
   INDEX AssessorID (AssessorID),
   INDEX ToolCode (ToolCode),
-  FOREIGN KEY (AssessorID) REFERENCES Assessor(AssessorID),
+  FOREIGN KEY (MachineCode) REFERENCES Machine(MachineCode),
+  FOREIGN KEY (CompanyCode) REFERENCES Company(CompanyCode),
   FOREIGN KEY (ToolCode) REFERENCES Tools(ToolCode)
 )ENGINE=FEDERATED
 DEFAULT CHARSET=UTF8
@@ -175,6 +185,7 @@ CREATE TABLE IF NOT EXISTS federated_MasterLog (
   CompanyCode VARCHAR(100) NULL,
   MachineCode VARCHAR(100) NULL,
   Notes TEXT NULL,
+  UpdatedDate DATETIME NULL,
   PRIMARY KEY (LogID),
   INDEX RecordID (RecordID),
   INDEX AssessorName (AssessorName),
@@ -182,3 +193,33 @@ CREATE TABLE IF NOT EXISTS federated_MasterLog (
 )ENGINE=FEDERATED
 DEFAULT CHARSET=UTF8
 CONNECTION='mysql://tqteamne_admin:Admin123@112.213.89.49:3306/tqteamne_iTools/MasterLog';
+
+CREATE TABLE IF NOT EXISTS federated_PendingAction (
+  PendingActionID INT(20) NOT NULL AUTO_INCREMENT,
+  PendingActionDate DATETIME NULL,
+  PendingActionName VARCHAR(255) NULL,
+  ActionContent TEXT NULL,
+  Status VARCHAR(100) NULL,
+  UpdatedDate DATETIME NULL,
+  PRIMARY KEY (PendingActionID)
+)ENGINE=FEDERATED
+DEFAULT CHARSET=UTF8
+CONNECTION='mysql://tqteamne_admin:Admin123@112.213.89.49:3306/tqteamne_iTools/PendingAction';
+
+CREATE TABLE IF NOT EXISTS federated_DatabaseVersion (
+  iToolAppDatabase VARCHAR(255) NULL,
+  UpdatedDate DATETIME NULL
+)ENGINE=FEDERATED
+DEFAULT CHARSET=UTF8
+CONNECTION='mysql://tqteamne_admin:Admin123@112.213.89.49:3306/tqteamne_iTools/DatabaseVersion';
+
+CREATE TABLE IF NOT EXISTS federated_SyncHistory (
+  SyncHistoryID INT(20) NOT NULL AUTO_INCREMENT,
+  SyncDate DATETIME NULL,
+  Statistic TEXT NULL,
+  Status VARCHAR(255) NULL,
+  SynType VARCHAR(255) NULL,
+  PRIMARY KEY (SyncHistoryID)
+)ENGINE=FEDERATED
+DEFAULT CHARSET=UTF8
+CONNECTION='mysql://tqteamne_admin:Admin123@112.213.89.49:3306/tqteamne_iTools/SyncHistory';

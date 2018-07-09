@@ -71,7 +71,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         boolean enabled = asssessor.isActive();
         boolean accountNonExpired = true;
         boolean credentialsNonExpired = true;
-        boolean accountNonLocked = true;
+        boolean accountNonLocked = !asssessor.isLocked();
  
         /*UserDetails userDetails = (UserDetails) new User(account.getUserName(), //
                 account.getEncrytedPassword(), enabled, accountNonExpired, //

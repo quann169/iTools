@@ -18,15 +18,10 @@
          <th:block th:if="${#session != null && #session.getAttribute('SPRING_SECURITY_LAST_EXCEPTION') != null}">
              <div th:if= "${#request.getParameter('error') == 'true'}"
                 style="color: red; margin: 10px 0px;">
-                Login Failed!!!<br /> Reason :
+               Đăng nhập không thành công!!!<br /> Lý do:
                 <span th:utext="${#session.getAttribute('SPRING_SECURITY_LAST_EXCEPTION').message}"></span>
              </div>
              
-             <div th:if="${param.error}">
-                 <div class="alert alert-danger">
-                     Invalid username and password.
-                 </div>
-             </div>
              <div th:if="${param.logout}">
                  <div class="alert alert-info">
                      You have been logged out.
