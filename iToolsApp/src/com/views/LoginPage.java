@@ -10,6 +10,7 @@ import java.io.FileReader;
 import java.util.List;
 import java.util.Locale;
 import java.util.ResourceBundle;
+import java.util.concurrent.ThreadLocalRandom;
 
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -25,12 +26,14 @@ import org.apache.log4j.Logger;
 
 import com.controllers.LogController;
 import com.controllers.LoginController;
+import com.controllers.SyncController;
 import com.message.Enum;
 import com.models.Assessor;
 import com.models.Role;
 import com.utils.AdvancedEncryptionStandard;
 import com.utils.Config;
 import com.utils.EmailUtils;
+import com.utils.RandomString;
 import com.utils.StringUtils;
 
 public class LoginPage extends JFrame implements ActionListener {
@@ -59,8 +62,9 @@ public class LoginPage extends JFrame implements ActionListener {
 	private static final String companyCodeUH = AdvancedEncryptionStandard.decrypt(cfg.getProperty("COMPANY_CODE_UH"));
 	private static final String machineCode = AdvancedEncryptionStandard.decrypt(cfg.getProperty("MACHINE_CODE"));
 
+	static long timeInterval = Long.valueOf(cfg.getProperty("INTERVAL_SYNC"));
 	static String userName = "";
-
+	static SyncController syncCtl = new SyncController();
 	static EmailUtils emailUtils = new EmailUtils(Enum.LOGIN, userName, companyCode, machineCode);
 	final static Logger logger = Logger.getLogger(LoginPage.class);
 
@@ -180,8 +184,8 @@ public class LoginPage extends JFrame implements ActionListener {
 		if (e.getSource() == loginButton) {
 
 			userText = "com1admin";
-//			 userText = "uhacc1";
-//			 pwdText = "123456";
+			// userText = "uhacc1";
+			// pwdText = "123456";
 
 			logger.info("Login with username: " + userText);
 
@@ -232,7 +236,7 @@ public class LoginPage extends JFrame implements ActionListener {
 						root.setTitle(userText + " - " + result.getFirstName() + " " + result.getLastName());
 						// dashboardPage.setJMenuBar(StringUtils.addMenu());
 						root.show();
-						
+
 					}
 				}
 			} else {
@@ -272,6 +276,32 @@ public class LoginPage extends JFrame implements ActionListener {
 	public static void main(String[] a) {
 
 		printConfigInfo();
+
+		Thread one = new Thread() {
+			public void run() {
+
+				while (true) {
+					RandomString generate = new RandomString(8, ThreadLocalRandom.current());
+					String passwordTmp = generate.nextString();
+					logger.info("========================================");
+					logger.info("Start syncing thread - " + passwordTmp);
+					logger.info("========================================");
+					syncCtl.syncDataAutomatically(companyCode, machineCode);
+					
+					logger.info("========================================");
+					logger.info("End syncing thread - " + passwordTmp);
+					logger.info("========================================");
+					try {
+						Thread.sleep(timeInterval * 1000);
+					} catch (InterruptedException e) {
+						logger.error(e.getMessage());
+					}
+				}
+
+			}
+		};
+
+		one.start();
 
 		root = new LoginPage();
 		StringUtils.frameInit(root, bundleMessage);

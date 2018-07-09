@@ -244,7 +244,6 @@ public class ForgotPasswordPage extends JFrame implements ActionListener {
 					}
 
 					protected void done() {
-						System.out.println("Complete");
 						d.dispose();
 						masterLogObj.insertLog(userName, Enum.ASSESSOR, "", Enum.FORGOT_PASS_RESET_OK, "",
 								userName + " - " + email, companyCode, machineCode,

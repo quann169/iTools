@@ -37,5 +37,20 @@ public class SyncController {
 		List<String> result = new ArrayList<>();
 		return result;
 	}
+	
+	/**
+	 * 
+	 * @param username
+	 * @param password
+	 * @return
+	 */
+	public List<String> syncDataAutomatically(String companyCode, String machineCode) {
+		
+		
+		
+		
+		List<String> result = new ArrayList<>();
+		return result;
+	}
 
 }

@@ -12,7 +12,7 @@ CREATE TABLE IF NOT EXISTS Company (
   CompanyType VARCHAR(100) NULL,
   Address VARCHAR(100) NULL,
   Location VARCHAR(100) NULL,
-  UpdatedDate DATETIME NULL,
+  UpdatedDate timestamp not null default current_timestamp on update current_timestamp,
   INDEX Company_CompanyCode (CompanyCode),
   PRIMARY KEY (CompanyID),
   UNIQUE KEY (CompanyCode)
@@ -40,7 +40,7 @@ CREATE TABLE IF NOT EXISTS Assessor (
   IsActive BOOLEAN NOT NULL,
   LastPassword VARCHAR(255) NULL,
   IsFirstTimeLogin BOOLEAN NULL,
-  UpdatedDate DATETIME NULL,
+  UpdatedDate timestamp not null default current_timestamp on update current_timestamp,
   PRIMARY KEY (AssessorID),
   INDEX UserName (UserName),
   FOREIGN KEY (CompanyCode) REFERENCES Company(CompanyCode)
@@ -66,7 +66,7 @@ CREATE TABLE IF NOT EXISTS Roles (
   RoleName VARCHAR(100) NULL,
   RoleType INT(10) NULL,
   IsRole INT(10) NULL,
-  UpdatedDate DATETIME NULL,
+  UpdatedDate timestamp not null default current_timestamp on update current_timestamp,
   PRIMARY KEY (RoleID)
 );
 INSERT INTO Roles(RoleID, RoleName, IsRole) VALUES 
@@ -88,7 +88,7 @@ CREATE TABLE IF NOT EXISTS RoleAssessor (
   AssessorID INT(10) NULL,
   CreatedDate DATETIME NULL,
   IsActive BOOLEAN NOT NULL,
-  UpdatedDate DATETIME NULL,
+  UpdatedDate timestamp not null default current_timestamp on update current_timestamp,
   PRIMARY KEY (RoleAssessorID),
   INDEX CreatedDate (CreatedDate),
   INDEX RoleID (RoleID),
@@ -135,7 +135,7 @@ CREATE TABLE IF NOT EXISTS Machine (
   Location VARCHAR(100) NULL,
   Description VARCHAR(100) NULL,
   CreatedDate DATETIME NULL,
-  UpdatedDate DATETIME NULL,
+  UpdatedDate timestamp not null default current_timestamp on update current_timestamp,
   IsActive BOOLEAN NOT NULL,
   PRIMARY KEY (MachineID),
   INDEX Machine_MachineCode (MachineCode),
@@ -158,7 +158,7 @@ CREATE TABLE IF NOT EXISTS CompanyMachine (
   CompanyCode VARCHAR(100) NULL,
   CreatedDate DATETIME NULL,
   IsActive BOOLEAN NOT NULL,
-  UpdatedDate DATETIME NULL,
+  UpdatedDate timestamp not null default current_timestamp on update current_timestamp,
   PRIMARY KEY (CompanyMachineID),
   FOREIGN KEY (MachineCode) REFERENCES Machine(MachineCode),
   FOREIGN KEY (CompanyCode) REFERENCES Company(CompanyCode)
@@ -185,7 +185,7 @@ CREATE TABLE IF NOT EXISTS Tools (
   Barcode VARCHAR(100) NULL,
   Description VARCHAR(100) NULL,
   CreatedDate DATETIME NULL,
-  UpdatedDate DATETIME NULL,
+  UpdatedDate timestamp not null default current_timestamp on update current_timestamp,
   IsActive BOOLEAN NOT NULL,
   PRIMARY KEY (ToolID),
   UNIQUE KEY (ToolCode)
@@ -206,7 +206,7 @@ CREATE TABLE IF NOT EXISTS ToolsMachine (
   ToolCode VARCHAR(100) NOT NULL,
   MachineCode VARCHAR(100) NULL,
   CreatedDate DATETIME NULL,
-  UpdatedDate DATETIME NULL,
+  UpdatedDate timestamp not null default current_timestamp on update current_timestamp,
   IsActive BOOLEAN NOT NULL,
   PRIMARY KEY (ToolsMachineID),
   FOREIGN KEY (ToolCode) REFERENCES Tools(ToolCode),
@@ -244,7 +244,7 @@ CREATE TABLE IF NOT EXISTS ToolsMachineTray (
   TrayIndex VARCHAR(100) NULL,
   Quantity INT(10) NULL,
   CreatedDate DATETIME NULL,
-  UpdatedDate DATETIME NULL,
+  UpdatedDate timestamp not null default current_timestamp on update current_timestamp,
   IsActive BOOLEAN NOT NULL,
   PRIMARY KEY (ToolsMachineTrayID),
   FOREIGN KEY (ToolsMachineID) REFERENCES ToolsMachine(ToolsMachineID)
@@ -317,7 +317,7 @@ CREATE TABLE IF NOT EXISTS WorkingTransaction (
   ToolCode VARCHAR(100) NOT NULL,
   TrayIndex VARCHAR(100) NULL,
   Quantity INT(10) NULL,
-  UpdatedDate DATETIME NULL,
+  UpdatedDate timestamp not null default current_timestamp on update current_timestamp,
   TransactionStatus VARCHAR(255) NULL,
   RespondMessage VARCHAR(255) NULL,
   TransactionType VARCHAR(255) NULL,
@@ -344,7 +344,7 @@ CREATE TABLE IF NOT EXISTS MasterLog (
   CompanyCode VARCHAR(100) NULL,
   MachineCode VARCHAR(100) NULL,
   Notes TEXT NULL,
-  UpdatedDate DATETIME NULL,
+  UpdatedDate timestamp not null default current_timestamp on update current_timestamp,
   PRIMARY KEY (LogID),
   INDEX RecordID (RecordID),
   INDEX AssessorName (AssessorName),
@@ -359,7 +359,7 @@ CREATE TABLE IF NOT EXISTS PendingAction (
   PendingActionName VARCHAR(255) NULL,
   ActionContent TEXT NULL,
   Status VARCHAR(100) NULL,
-  UpdatedDate DATETIME NULL,
+  UpdatedDate timestamp not null default current_timestamp on update current_timestamp,
   PRIMARY KEY (PendingActionID)
 );
 
@@ -382,9 +382,12 @@ CREATE TABLE IF NOT EXISTS SyncHistory (
   PRIMARY KEY (SyncHistoryID)
 );
 
+
 -- insert first synchistory record 
 insert into SyncHistory(SyncDate, Statistic, Status, SynType)
 VALUES 
-	(sysdate(), "first sync record", "SUCCESS", "FromHost"),
-	(sysdate(), "first sync record", "SUCCESS", "FromLocal");
+	(now(), "first sync record", "SUCCESS", "FromHost"),
+	(now(), "first sync record", "SUCCESS", "FromLocal");
+
+
 
