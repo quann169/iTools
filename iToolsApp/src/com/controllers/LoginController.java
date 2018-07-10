@@ -63,7 +63,7 @@ public class LoginController {
 				return null;
 			}
 		} catch (SQLException e) {
-			logger.info(e.getMessage());
+			logger.error(e.getMessage());
 			return null;
 		} finally {
 			mysqlConnect.disconnect();

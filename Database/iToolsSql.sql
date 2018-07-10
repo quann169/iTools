@@ -1,4 +1,4 @@
-DROP DATABASE IF EXISTS  iTools_v1p0;
+-- DROP DATABASE IF EXISTS  iTools_v1p0;
 CREATE DATABASE  IF NOT EXISTS iTools_v1p0;
 USE iTools_v1p0;
 
@@ -86,7 +86,7 @@ CREATE TABLE IF NOT EXISTS RoleAssessor (
   RoleAssessorID INT(10) NOT NULL AUTO_INCREMENT,
   RoleID INT(10) NULL,
   AssessorID INT(10) NULL,
-  CreatedDate DATETIME NULL,
+  CreatedDate timestamp not null default current_timestamp,
   IsActive BOOLEAN NOT NULL,
   UpdatedDate timestamp not null default current_timestamp on update current_timestamp,
   PRIMARY KEY (RoleAssessorID),
@@ -134,7 +134,7 @@ CREATE TABLE IF NOT EXISTS Machine (
   Model VARCHAR(100) NULL,
   Location VARCHAR(100) NULL,
   Description VARCHAR(100) NULL,
-  CreatedDate DATETIME NULL,
+  CreatedDate timestamp not null default current_timestamp,
   UpdatedDate timestamp not null default current_timestamp on update current_timestamp,
   IsActive BOOLEAN NOT NULL,
   PRIMARY KEY (MachineID),
@@ -156,7 +156,7 @@ CREATE TABLE IF NOT EXISTS CompanyMachine (
   CompanyMachineID INT(10) NOT NULL AUTO_INCREMENT,
   MachineCode VARCHAR(100) NULL,
   CompanyCode VARCHAR(100) NULL,
-  CreatedDate DATETIME NULL,
+  CreatedDate timestamp not null default current_timestamp,
   IsActive BOOLEAN NOT NULL,
   UpdatedDate timestamp not null default current_timestamp on update current_timestamp,
   PRIMARY KEY (CompanyMachineID),
@@ -184,7 +184,7 @@ CREATE TABLE IF NOT EXISTS Tools (
   Model VARCHAR(100) NULL,
   Barcode VARCHAR(100) NULL,
   Description VARCHAR(100) NULL,
-  CreatedDate DATETIME NULL,
+  CreatedDate timestamp not null default current_timestamp,
   UpdatedDate timestamp not null default current_timestamp on update current_timestamp,
   IsActive BOOLEAN NOT NULL,
   PRIMARY KEY (ToolID),
@@ -205,7 +205,7 @@ CREATE TABLE IF NOT EXISTS ToolsMachine (
   ToolsMachineID INT(10) NOT NULL AUTO_INCREMENT,
   ToolCode VARCHAR(100) NOT NULL,
   MachineCode VARCHAR(100) NULL,
-  CreatedDate DATETIME NULL,
+  CreatedDate timestamp not null default current_timestamp,
   UpdatedDate timestamp not null default current_timestamp on update current_timestamp,
   IsActive BOOLEAN NOT NULL,
   PRIMARY KEY (ToolsMachineID),
@@ -243,7 +243,7 @@ CREATE TABLE IF NOT EXISTS ToolsMachineTray (
   ToolsMachineID INT(10) NOT NULL,
   TrayIndex VARCHAR(100) NULL,
   Quantity INT(10) NULL,
-  CreatedDate DATETIME NULL,
+  CreatedDate timestamp not null default current_timestamp,
   UpdatedDate timestamp not null default current_timestamp on update current_timestamp,
   IsActive BOOLEAN NOT NULL,
   PRIMARY KEY (ToolsMachineTrayID),
@@ -308,7 +308,7 @@ INSERT INTO ToolsMachineTray(ToolsMachineTrayID, ToolsMachineID, TrayIndex, Quan
 DROP TABLE IF EXISTS WorkingTransaction;
 CREATE TABLE IF NOT EXISTS WorkingTransaction (
   WorkingTransactionID INT(20) NOT NULL AUTO_INCREMENT,
-  TransactionDate DATETIME NULL,
+  TransactionDate timestamp not null default current_timestamp,
   MachineCode VARCHAR(100) NOT NULL,
   CompanyCode VARCHAR(100) NOT NULL,
   AssessorID VARCHAR(100) NOT NULL,
@@ -333,7 +333,7 @@ CREATE TABLE IF NOT EXISTS WorkingTransaction (
 DROP TABLE IF EXISTS MasterLog;
 CREATE TABLE IF NOT EXISTS MasterLog (
   LogID INT(20) NOT NULL AUTO_INCREMENT,
-  LogDate DATETIME NULL,
+  LogDate timestamp not null default current_timestamp,
   AssessorName VARCHAR(255) NULL,
   TblName VARCHAR(100) NULL,
   RecordID INT(10) NULL,
@@ -355,7 +355,7 @@ CREATE TABLE IF NOT EXISTS MasterLog (
 DROP TABLE IF EXISTS PendingAction;
 CREATE TABLE IF NOT EXISTS PendingAction (
   PendingActionID INT(20) NOT NULL AUTO_INCREMENT,
-  PendingActionDate DATETIME NULL,
+  PendingActionDate timestamp not null default current_timestamp,
   PendingActionName VARCHAR(255) NULL,
   ActionContent TEXT NULL,
   Status VARCHAR(100) NULL,
@@ -366,7 +366,7 @@ CREATE TABLE IF NOT EXISTS PendingAction (
 DROP TABLE IF EXISTS DatabaseVersion;
 CREATE TABLE IF NOT EXISTS DatabaseVersion (
   iToolAppDatabase VARCHAR(255) NULL,
-  UpdatedDate DATETIME NULL
+  UpdatedDate timestamp not null default current_timestamp
 );
 
 INSERT INTO DatabaseVersion(iToolAppDatabase, UpdatedDate) VALUES ("v1p0", now());
@@ -375,7 +375,7 @@ INSERT INTO DatabaseVersion(iToolAppDatabase, UpdatedDate) VALUES ("v1p0", now()
 DROP TABLE IF EXISTS SyncHistory;
 CREATE TABLE IF NOT EXISTS SyncHistory (
   SyncHistoryID INT(20) NOT NULL AUTO_INCREMENT,
-  SyncDate DATETIME NULL,
+  SyncDate timestamp not null default current_timestamp,
   Statistic TEXT NULL,
   Status VARCHAR(255) NULL,
   SynType VARCHAR(255) NULL,
@@ -386,8 +386,8 @@ CREATE TABLE IF NOT EXISTS SyncHistory (
 -- insert first synchistory record 
 insert into SyncHistory(SyncDate, Statistic, Status, SynType)
 VALUES 
-	(now(), "first sync record", "SUCCESS", "FromHost"),
-	(now(), "first sync record", "SUCCESS", "FromLocal");
+	(now(), "first sync record", "SUCCESS", "HostToLocal"),
+	(now(), "first sync record", "SUCCESS", "LocalToHost");
 
 
 

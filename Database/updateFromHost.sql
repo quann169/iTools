@@ -1,47 +1,54 @@
-CREATE DEFINER=`root`@`localhost` PROCEDURE `updateFromHost`()
+CREATE PROCEDURE `SyncHostToLocal`(IN CompanyCode VARCHAR(255), IN MachineCode VARCHAR(255), OUT returnResult TEXT)
 BEGIN
-	DECLARE EXIT HANDLER FOR SQLEXCEPTION ROLLBACK;
-	DECLARE EXIT HANDLER FOR SQLWARNING ROLLBACK;
+	#DECLARE EXIT HANDLER FOR SQLEXCEPTION ROLLBACK;
+	#DECLARE EXIT HANDLER FOR SQLWARNING ROLLBACK;
 	START TRANSACTION;
 	
     SET SQL_SAFE_UPDATES = 0;
-
-
-INSERT INTO assessor
-	SELECT a.* FROM federated_assessor a
-	LEFT OUTER JOIN assessor b ON b.AssessorID = a.AssessorID
-	WHERE b.AssessorID IS NULL;
-    
-update assessor lA
-left join federated_assessor fa on lA.AssessorID = fa.AssessorID
-	set lA.UserName = fa.UserName,
-		lA.FingerID = fa.FingerID,
-		lA.Password = fa.Password,
-		lA.FirstName = fa.FirstName,
-		lA.LastName = fa.LastName,
-		lA.EmailAddress = fa.EmailAddress,
-		lA.Address = fa.Address,
-		lA.Phone = fa.Phone,
-		lA.CompanyCode = fa.CompanyCode,
-		lA.IsLocked = fa.IsLocked,
-		lA.IsActive = fa.IsActive,
-		lA.LastPassword = fa.LastPassword,
-		lA.IsFirstTimeLogin = fa.IsFirstTimeLogin,
-		lA.UpdatedDate = sysdate()
-	where lA.AssessorID in (select AssessorID from federated_assessor) 
-	and fa.UpdatedDate > 
-		(select (Case when fs.SyncDate is null then '1900-01-01 00:00:00' else fs.SyncDate END) 
-			from synchistory fs
-			where fs.Status = 'SUCCESS' and fs.SynType = 'FromHost'
-			order by fs.SyncDate desc LIMIT 1)
-	and fa.UpdatedDate > (Case when lA.UpdatedDate is null then '1900-01-01 00:00:00' else lA.UpdatedDate END);  
-    
-    
-#insert missing record from Host to local
-    INSERT INTO Company
+	
+	INSERT INTO assessor
+		SELECT a.* FROM federated_assessor a
+		LEFT OUTER JOIN assessor b ON b.AssessorID = a.AssessorID
+		WHERE b.AssessorID IS NULL;
+		
+	set @insertAssessor = (SELECT ROW_COUNT());
+    set @finalResult = concat("insertAssessor: ", @insertAssessor );
+		
+	update assessor lA
+	left join federated_assessor fa on lA.AssessorID = fa.AssessorID
+		set lA.UserName = fa.UserName,
+			lA.FingerID = fa.FingerID,
+			lA.Password = fa.Password,
+			lA.FirstName = fa.FirstName,
+			lA.LastName = fa.LastName,
+			lA.EmailAddress = fa.EmailAddress,
+			lA.Address = fa.Address,
+			lA.Phone = fa.Phone,
+			lA.CompanyCode = fa.CompanyCode,
+			lA.IsLocked = fa.IsLocked,
+			lA.IsActive = fa.IsActive,
+			lA.LastPassword = fa.LastPassword,
+			lA.IsFirstTimeLogin = fa.IsFirstTimeLogin,
+			lA.UpdatedDate = sysdate()
+		where lA.AssessorID in (select AssessorID from federated_assessor) 
+		and fa.UpdatedDate > 
+			(select (Case when fs.SyncDate is null then '1900-01-01 00:00:00' else fs.SyncDate END) 
+				from synchistory fs
+				where fs.Status = 'SUCCESS' and fs.SynType = 'HostToLocal'
+				order by fs.SyncDate desc LIMIT 1)
+		and fa.UpdatedDate > (Case when lA.UpdatedDate is null then '1900-01-01 00:00:00' else lA.UpdatedDate END);  
+	
+	set @updateAssessor = (SELECT ROW_COUNT());
+    set @finalResult = concat(@finalResult, ",", "\n", "updateAssessor: ", @updateAssessor );
+		
+	#insert missing record from Host to local
+	INSERT INTO Company
 	SELECT a.* FROM federated_Company a
 	LEFT OUTER JOIN Company b ON b.CompanyID = a.CompanyID
 	WHERE b.CompanyID IS NULL;
+	
+	set @insertCompany = (SELECT ROW_COUNT());
+    set @finalResult = concat(@finalResult, ",", "\n", "insertCompany: ", @insertCompany );
 	
     #update all record from Host to local
 	update Company lC
@@ -56,16 +63,21 @@ left join federated_assessor fa on lA.AssessorID = fa.AssessorID
         and fC.UpdatedDate > 
 		(select (Case when fs.SyncDate is null then '1900-01-01 00:00:00' else fs.SyncDate END) 
 			from synchistory fs
-			where fs.Status = 'SUCCESS' and fs.SynType = 'FromHost'
+			where fs.Status = 'SUCCESS' and fs.SynType = 'HostToLocal'
 			order by fs.SyncDate desc LIMIT 1)
 	and fC.UpdatedDate > (Case when lC.UpdatedDate is null then '1900-01-01 00:00:00' else lC.UpdatedDate END);  
+	
+	set @updateCompany = (SELECT ROW_COUNT());
+    set @finalResult = concat(@finalResult, ",", "\n", "updateCompany: ", @updateCompany );
 
-
-#insert missing record from Host to local
+	#insert missing record from Host to local
     INSERT INTO Machine
 	SELECT a.* FROM federated_Machine a
 	LEFT OUTER JOIN Machine b ON b.MachineID = a.MachineID
 	WHERE b.MachineID IS NULL;
+	
+	set @insertMachine = (SELECT ROW_COUNT());
+    set @finalResult = concat(@finalResult, ",", "\n", "insertMachine: ", @insertMachine );
 	
     #update all record from Host to local
 	update Machine lM
@@ -82,40 +94,50 @@ left join federated_assessor fa on lA.AssessorID = fa.AssessorID
         and fM.UpdatedDate > 
 		(select (Case when fs.SyncDate is null then '1900-01-01 00:00:00' else fs.SyncDate END) 
 			from synchistory fs
-			where fs.Status = 'SUCCESS' and fs.SynType = 'FromHost'
+			where fs.Status = 'SUCCESS' and fs.SynType = 'HostToLocal'
 			order by fs.SyncDate desc LIMIT 1)
 	and fM.UpdatedDate > (Case when lM.UpdatedDate is null then '1900-01-01 00:00:00' else lM.UpdatedDate END);  
-
+	
+	set @updateMachine = (SELECT ROW_COUNT());
+    set @finalResult = concat(@finalResult, ",", "\n", "updateMachine: ", @updateMachine );
         
-select * from CompanyMachine;
-#insert missing record from Host to local
-    INSERT INTO CompanyMachine
-	SELECT a.* FROM federated_CompanyMachine a
-	LEFT OUTER JOIN CompanyMachine b ON b.CompanyMachineID = a.CompanyMachineID
-	WHERE b.CompanyMachineID IS NULL;
+	select * from CompanyMachine;
+	#insert missing record from Host to local
+		INSERT INTO CompanyMachine
+		SELECT a.* FROM federated_CompanyMachine a
+		LEFT OUTER JOIN CompanyMachine b ON b.CompanyMachineID = a.CompanyMachineID
+		WHERE b.CompanyMachineID IS NULL;
+		
+	set @insertCompanyMachine = (SELECT ROW_COUNT());
+    set @finalResult = concat(@finalResult, ",", "\n", "insertCompanyMachine: ", @insertCompanyMachine );
 	
     #update all record from Host to local
 	update CompanyMachine lCM
-	left join federated_CompanyMachine fCM on lCM.CompanyMachineID = fCM.CompanyMachineID
-		set lCM.CompanyCode = fCM.CompanyCode,
-			lCM.MachineCode = fCM.MachineCode,
-			lCM.CreatedDate = fCM.CreatedDate,
-            lCM.IsActive = fCM.IsActive,
-            lCM.UpdatedDate = sysdate()
-		where lCM.CompanyMachineID in (select CompanyMachineID from federated_CompanyMachine)
-		and fCM.UpdatedDate > 
-		(select (Case when fs.SyncDate is null then '1900-01-01 00:00:00' else fs.SyncDate END) 
-			from synchistory fs
-			where fs.Status = 'SUCCESS' and fs.SynType = 'FromHost'
-			order by fs.SyncDate desc LIMIT 1)
-	and fCM.UpdatedDate > (Case when lCM.UpdatedDate is null then '1900-01-01 00:00:00' else lCM.UpdatedDate END);  
+		left join federated_CompanyMachine fCM on lCM.CompanyMachineID = fCM.CompanyMachineID
+			set lCM.CompanyCode = fCM.CompanyCode,
+				lCM.MachineCode = fCM.MachineCode,
+				lCM.CreatedDate = fCM.CreatedDate,
+				lCM.IsActive = fCM.IsActive,
+				lCM.UpdatedDate = sysdate()
+			where lCM.CompanyMachineID in (select CompanyMachineID from federated_CompanyMachine)
+			and fCM.UpdatedDate > 
+			(select (Case when fs.SyncDate is null then '1900-01-01 00:00:00' else fs.SyncDate END) 
+				from synchistory fs
+				where fs.Status = 'SUCCESS' and fs.SynType = 'HostToLocal'
+				order by fs.SyncDate desc LIMIT 1)
+		and fCM.UpdatedDate > (Case when lCM.UpdatedDate is null then '1900-01-01 00:00:00' else lCM.UpdatedDate END);  
+	
+	set @updateCompanyMachine = (SELECT ROW_COUNT());
+    set @finalResult = concat(@finalResult, ",", "\n", "updateCompanyMachine: ", @updateCompanyMachine );
 
-
-#insert missing record from Host to local
+	#insert missing record from Host to local
     INSERT INTO RoleAssessor
-	SELECT a.* FROM federated_RoleAssessor a
-	LEFT OUTER JOIN RoleAssessor b ON b.RoleAssessorID = a.RoleAssessorID
-	WHERE b.RoleAssessorID IS NULL;
+		SELECT a.* FROM federated_RoleAssessor a
+		LEFT OUTER JOIN RoleAssessor b ON b.RoleAssessorID = a.RoleAssessorID
+		WHERE b.RoleAssessorID IS NULL;
+		
+	set @insertRoleAssessor = (SELECT ROW_COUNT());
+    set @finalResult = concat(@finalResult, ",", "\n", "insertRoleAssessor: ", @insertRoleAssessor );
 	
     #update all record from Host to local
 	update RoleAssessor lRA
@@ -129,15 +151,21 @@ select * from CompanyMachine;
 		and fRA.UpdatedDate > 
 		(select (Case when fs.SyncDate is null then '1900-01-01 00:00:00' else fs.SyncDate END) 
 			from synchistory fs
-			where fs.Status = 'SUCCESS' and fs.SynType = 'FromHost'
+			where fs.Status = 'SUCCESS' and fs.SynType = 'HostToLocal'
 			order by fs.SyncDate desc LIMIT 1)
 	and fRA.UpdatedDate > (Case when lRA.UpdatedDate is null then '1900-01-01 00:00:00' else lRA.UpdatedDate END);  
     
+	set @updateRoleAssessor = (SELECT ROW_COUNT());
+    set @finalResult = concat(@finalResult, ",", "\n", "updateRoleAssessor: ", @updateRoleAssessor );
+	
     #insert missing record from Host to local
     INSERT INTO Roles
 	SELECT a.* FROM federated_Roles a
 	LEFT OUTER JOIN Roles b ON b.RoleID = a.RoleID
 	WHERE b.RoleID IS NULL;
+	
+	set @insertRole = (SELECT ROW_COUNT());
+    set @finalResult = concat(@finalResult, ",", "\n", "insertRole: ", @insertRole);
 	
     #update all record from Host to local
 	update Roles lR
@@ -150,16 +178,21 @@ select * from CompanyMachine;
         and fR.UpdatedDate > 
 		(select (Case when fs.SyncDate is null then '1900-01-01 00:00:00' else fs.SyncDate END) 
 			from synchistory fs
-			where fs.Status = 'SUCCESS' and fs.SynType = 'FromHost'
+			where fs.Status = 'SUCCESS' and fs.SynType = 'HostToLocal'
 			order by fs.SyncDate desc LIMIT 1)
 	and fR.UpdatedDate > (Case when lR.UpdatedDate is null then '1900-01-01 00:00:00' else lR.UpdatedDate END);  
     
+	set @updateRole = (SELECT ROW_COUNT());
+    set @finalResult = concat(@finalResult, ",", "\n", "updateRole: ", @updateRole );
     
     #insert missing record from Host to local
     INSERT INTO Tools
 	SELECT a.* FROM federated_Tools a
 	LEFT OUTER JOIN Tools b ON b.ToolID = a.ToolID
 	WHERE b.ToolID IS NULL;
+	
+	set @insertTools = (SELECT ROW_COUNT());
+    set @finalResult = concat(@finalResult, ",", "\n", "insertTools: ", @insertTools);
 	
     #update all record from Host to local
 	update Tools lT
@@ -175,16 +208,21 @@ select * from CompanyMachine;
         and fT.UpdatedDate > 
 		(select (Case when fs.SyncDate is null then '1900-01-01 00:00:00' else fs.SyncDate END) 
 			from synchistory fs
-			where fs.Status = 'SUCCESS' and fs.SynType = 'FromHost'
+			where fs.Status = 'SUCCESS' and fs.SynType = 'HostToLocal'
 			order by fs.SyncDate desc LIMIT 1)
 	and fT.UpdatedDate > (Case when lT.UpdatedDate is null then '1900-01-01 00:00:00' else lT.UpdatedDate END);  
     
+	set @updateTools = (SELECT ROW_COUNT());
+    set @finalResult = concat(@finalResult, ",", "\n", "updateTools: ", @updateTools );
     
     #insert missing record from Host to local
     INSERT INTO ToolsMachine
 	SELECT a.* FROM federated_ToolsMachine a
 	LEFT OUTER JOIN ToolsMachine b ON b.ToolsMachineID = a.ToolsMachineID
 	WHERE b.ToolsMachineID IS NULL;
+	
+	set @insertToolsMachine = (SELECT ROW_COUNT());
+    set @finalResult = concat(@finalResult, ",", "\n", "insertToolsMachine: ", @insertToolsMachine);
 	
     #update all record from Host to local
 	update ToolsMachine lTM
@@ -198,13 +236,19 @@ select * from CompanyMachine;
         and fTM.UpdatedDate > 
 		(select (Case when fs.SyncDate is null then '1900-01-01 00:00:00' else fs.SyncDate END) 
 			from synchistory fs
-			where fs.Status = 'SUCCESS' and fs.SynType = 'FromHost'
+			where fs.Status = 'SUCCESS' and fs.SynType = 'HostToLocal'
 			order by fs.SyncDate desc LIMIT 1)
 	and fTM.UpdatedDate > (Case when lTM.UpdatedDate is null then '1900-01-01 00:00:00' else lTM.UpdatedDate END);  
-
+	
+	set @updateToolsMachine = (SELECT ROW_COUNT());
+    set @finalResult = concat(@finalResult, ",", "\n", "updateToolsMachine: ", @updateToolsMachine );
+	
 	insert into synchistory(SyncDate, Statistic, Status, SynType)
 		VALUES 
-	(sysdate(), "run store sync changed data from host to local", "SUCCESS", "FromHost");
-        
+	(now(), concat("run store sync changed data from host to local: ", @finalResult), "SUCCESS", "FromHost");
+       
+	insert into masterlog(AssessorName,Action, Notes, CompanyCode, MachineCode) values ("System", "SyncFromHost", @finalResult, CompanyCode, MachineCode);
 	commit;
+	
+	set  returnResult = @finalResult;
 END

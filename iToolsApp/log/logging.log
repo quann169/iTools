@@ -866,3 +866,370 @@
 2018-07-08 22:51:14 INFO  LoginPage:291 - ========================================
 2018-07-08 22:51:14 INFO  LoginPage:292 - End syncing thread - Y98qj6IF
 2018-07-08 22:51:14 INFO  LoginPage:293 - ========================================
+2018-07-10 23:58:11 INFO  LoginPage:315 - ************************************************************
+2018-07-10 23:58:11 INFO  LoginPage:316 - ************************************************************
+2018-07-10 23:58:11 INFO  LoginPage:317 - ************************************************************
+2018-07-10 23:58:11 INFO  LoginPage:318 - ************************************************************
+2018-07-10 23:58:11 INFO  LoginPage:319 - Starting iTool app.
+2018-07-10 23:58:11 INFO  LoginPage:320 - companyCode: Com1
+2018-07-10 23:58:11 INFO  LoginPage:321 - companyCodeUH: UHCom
+2018-07-10 23:58:11 INFO  LoginPage:322 - machineCode: MAC1
+2018-07-10 23:58:12 INFO  LoginPage:325 - mDbHost: localhost
+2018-07-10 23:58:12 INFO  LoginPage:326 - mDbUser: admin
+2018-07-10 23:58:12 INFO  LoginPage:327 - mDbPwds: 1qazxsw2
+2018-07-10 23:58:12 INFO  LoginPage:328 - mDbName: iTools_v1p0
+2018-07-10 23:58:12 INFO  LoginPage:329 - mDbPort: 3306
+2018-07-10 23:58:12 INFO  LoginPage:330 - Database version: v1p0 - 2018-07-10 23:28:08
+2018-07-10 23:58:12 INFO  LoginPage:332 - Last Sync: 2018-07-10 23:32:31
+2018-07-10 23:58:18 INFO  LoginPage:335 - checkEmailConfig: true
+2018-07-10 23:58:18 INFO  LoginPage:345 - App Version: 1.0
+2018-07-10 23:58:18 INFO  LoginPage:286 - ========================================
+2018-07-10 23:58:18 INFO  LoginPage:287 - Start syncing thread - rGdh83gw
+2018-07-10 23:58:18 INFO  LoginPage:288 - ========================================
+2018-07-10 23:58:43 INFO  LoginPage:291 - ========================================
+2018-07-10 23:58:43 INFO  LoginPage:292 - End syncing thread - rGdh83gw
+2018-07-10 23:58:43 INFO  LoginPage:293 - ========================================
+2018-07-10 23:59:25 INFO  LoginPage:315 - ************************************************************
+2018-07-10 23:59:25 INFO  LoginPage:316 - ************************************************************
+2018-07-10 23:59:25 INFO  LoginPage:317 - ************************************************************
+2018-07-10 23:59:25 INFO  LoginPage:318 - ************************************************************
+2018-07-10 23:59:25 INFO  LoginPage:319 - Starting iTool app.
+2018-07-10 23:59:25 INFO  LoginPage:320 - companyCode: Com1
+2018-07-10 23:59:25 INFO  LoginPage:321 - companyCodeUH: UHCom
+2018-07-10 23:59:25 INFO  LoginPage:322 - machineCode: MAC1
+2018-07-10 23:59:25 INFO  LoginPage:325 - mDbHost: localhost
+2018-07-10 23:59:26 INFO  LoginPage:326 - mDbUser: admin
+2018-07-10 23:59:26 INFO  LoginPage:327 - mDbPwds: 1qazxsw2
+2018-07-10 23:59:26 INFO  LoginPage:328 - mDbName: iTools_v1p0
+2018-07-10 23:59:26 INFO  LoginPage:329 - mDbPort: 3306
+2018-07-10 23:59:26 INFO  LoginPage:330 - Database version: v1p0 - 2018-07-10 23:28:08
+2018-07-10 23:59:26 INFO  LoginPage:332 - Last Sync: 2018-07-10 23:58:41
+2018-07-10 23:59:32 INFO  LoginPage:335 - checkEmailConfig: true
+2018-07-10 23:59:32 INFO  LoginPage:345 - App Version: 1.0
+2018-07-10 23:59:32 INFO  LoginPage:286 - ========================================
+2018-07-10 23:59:32 INFO  LoginPage:287 - Start syncing thread - 6JpAu2zQ
+2018-07-10 23:59:32 INFO  LoginPage:288 - ========================================
+2018-07-10 23:59:32 INFO  SyncController:66 - Start SyncHostToLocal
+2018-07-10 23:59:46 INFO  SyncController:71 - End SyncHostToLocal
+2018-07-10 23:59:46 INFO  SyncController:72 - Start SyncLocalToHost
+2018-07-10 23:59:55 INFO  SyncController:77 - Start SyncLocalToHost
+2018-07-10 23:59:55 INFO  LoginPage:291 - ========================================
+2018-07-10 23:59:55 INFO  LoginPage:292 - End syncing thread - 6JpAu2zQ
+2018-07-10 23:59:55 INFO  LoginPage:293 - ========================================
+2018-07-11 00:01:35 INFO  LoginPage:190 - Login with username: com1admin
+2018-07-11 00:01:35 INFO  LoginController:46 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin FROM Assessor where Assessor.UserName='com1admin' and (Password=md5('123456') or LastPassword=md5('123456'));
+2018-07-11 00:01:35 INFO  LoginPage:194 - Login OK
+2018-07-11 00:01:35 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'asdsad', 'Assessor', '', 'Login', '', '', 'Com1', 'MAC1', 'LoginPage.actionPerformed');
+2018-07-11 00:01:35 INFO  LoginController:114 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'Com1' and assessor.UserName= 'com1admin'
+2018-07-11 00:01:35 INFO  LoginPage:211 - listRoles: [Roles [roleName=SubAdmin], Roles [roleName=Emp]]
+2018-07-11 00:01:35 INFO  LoginPage:231 - Show DashboardPage
+2018-07-11 00:01:35 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Assessor', '', 'ShowDashboard', '', '', 'Com1', 'MAC1', 'DashboardPage.<init>');
+2018-07-11 00:01:37 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Assessor', '', 'GetTools', '', '', 'Com1', 'MAC1', 'DashboardPage.actionPerformed');
+2018-07-11 00:01:37 INFO  EmployeeController:135 -  select tools.ToolCode, tools.ToolCode, machine.MachineCode, toolsmachinetray.TrayIndex, toolsmachinetray.Quantity  from tools inner join toolsmachine on tools.ToolCode = toolsmachine.ToolCode  inner join machine on toolsmachine.MachineCode = machine.MachineCode  inner join toolsmachinetray on toolsmachinetray.toolsmachineID = toolsmachine.toolsmachineID  where machine.MachineCode = 'MAC1';
+2018-07-11 00:01:37 INFO  EmployeeController:178 - {CTID2=[[Tray_4, 5]], CTID1=[[Tray_1, 5], [Tray_5, 3]], CTID6=[[Tray_2, 2]]}
+2018-07-11 00:01:38 INFO  EmployeeController:51 - select tools.ToolId, tools.ToolCode  from tools inner join toolsmachine on tools.ToolCode = toolsmachine.ToolCode  inner join machine on toolsmachine.MachineCode = machine.MachineCode  where machine.MachineCode = 'MAC1';
+2018-07-11 00:01:38 INFO  EmployeeController:72 - [Tool [toolId=1, toolName=CTID1], Tool [toolId=2, toolName=CTID2], Tool [toolId=6, toolName=CTID6], Tool [toolId=4, toolName=CTID4], Tool [toolId=5, toolName=CTID5]]
+2018-07-11 00:01:38 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'WorkingTransaction', '', 'EmployeePage', '', '', 'Com1', 'MAC1', 'EmployeePage.<init>');
+2018-07-11 00:01:38 INFO  EmployeePage:145 - listAllTrays: [TRAY_1, TRAY_2, TRAY_3, TRAY_4, TRAY_5, TRAY_6, TRAY_7, TRAY_8, TRAY_9, TRAY_10, TRAY_11, TRAY_12, TRAY_13, TRAY_14, TRAY_15, TRAY_16, TRAY_17, TRAY_18, TRAY_19, TRAY_20, TRAY_21, TRAY_22, TRAY_23, TRAY_24, TRAY_25, TRAY_26, TRAY_27, TRAY_28, TRAY_29, TRAY_30, TRAY_31, TRAY_32, TRAY_33, TRAY_34, TRAY_35, TRAY_36, TRAY_37, TRAY_38, TRAY_39, TRAY_40, TRAY_41, TRAY_42, TRAY_43, TRAY_44, TRAY_45, TRAY_46, TRAY_47, TRAY_48, TRAY_49, TRAY_50, TRAY_51, TRAY_52, TRAY_53, TRAY_54, TRAY_55, TRAY_56, TRAY_57, TRAY_58, TRAY_59, TRAY_60]
+2018-07-11 00:01:38 INFO  EmployeePage:151 - hashMessage: {TRAY_2=02, TRAY_1=01, TRAY_4=01, TRAY_3=03, TRAY_6=03, TRAY_5=02}
+2018-07-11 00:01:43 INFO  EmployeePage:527 - com1admin confirm: WO: dasd<br/>OP: adasd<br/>CTID: CTID1<br/>Tray: Tray_5<br/>Quantity: 1
+2018-07-11 00:01:43 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'WorkingTransaction', '', 'SendRequest', '', '', 'Com1', 'MAC1', 'EmployeePage.actionPerformed');
+2018-07-11 00:01:46 INFO  TransactionController:43 - insert into WorkingTransaction( TransactionDate, MachineCode, CompanyCode, AssessorID, WOCode, OPCode, ToolCode, TrayIndex, Quantity, UpdatedDate, TransactionStatus, TransactionType) values (now(), 'MAC1', 'Com1', 'com1admin', '', '', 'CTID1', 'Tray_5', '3', now(), 'Send request to board', 'GetTools');
+2018-07-11 00:01:46 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'WorkingTransaction', '', 'Create', '', 'Create transaction', 'Com1', 'MAC1', 'EmployeePage$12.doInBackground');
+2018-07-11 00:01:46 INFO  EmployeePage:555 - hashMessage: {TRAY_2=02, TRAY_1=01, TRAY_4=01, TRAY_3=03, TRAY_6=03, TRAY_5=02}
+2018-07-11 00:01:46 INFO  EmployeePage:556 - hashMessage containsKey TRAY_5: true
+2018-07-11 00:01:46 INFO  EmployeePage:637 - Starting HID services.
+2018-07-11 00:01:48 ERROR EmployeePage:565 - executeAction exeoption: Hidapi did not initialise: Unable to load library 'hidapi': Native library (win32-x86/hidapi.dll) not found in resource path ([file:/C:/Users/svi-quannguyen/Documents/GIT/iTools/iToolsApp/bin/, file:/C:/Users/svi-quannguyen/Documents/GIT/iTools/iToolsApp/lib/c3p0-0.9.1-pre6.jar, file:/C:/Users/svi-quannguyen/Documents/GIT/iTools/iToolsApp/lib/commons-codec-1.11.jar, file:/C:/Users/svi-quannguyen/Documents/GIT/iTools/iToolsApp/lib/jboss-common-jdbc-wrapper-src.jar, file:/C:/Users/svi-quannguyen/Documents/GIT/iTools/iToolsApp/lib/jboss-common-jdbc-wrapper.jar, file:/C:/Users/svi-quannguyen/Documents/GIT/iTools/iToolsApp/lib/log4j.jar, file:/C:/Users/svi-quannguyen/Documents/GIT/iTools/iToolsApp/lib/mysql-connector-java-8.0.11.jar, file:/C:/Users/svi-quannguyen/Documents/GIT/iTools/iToolsApp/lib/mysql-connector.jar, file:/C:/Users/svi-quannguyen/Documents/GIT/iTools/iToolsApp/lib/protobuf-java-2.6.0.jar, file:/C:/Users/svi-quannguyen/Documents/GIT/iTools/iToolsApp/lib/slf4j-api-1.6.1.jar, file:/C:/Users/svi-quannguyen/Documents/GIT/iTools/iToolsApp/lib/swt-win64-3.6.2.jar, file:/C:/Users/svi-quannguyen/Documents/GIT/iTools/iToolsApp/lib/jna-4.2.2.jar, file:/C:/Users/svi-quannguyen/Documents/GIT/iTools/iToolsApp/lib/activation-1.1.jar, file:/C:/Users/svi-quannguyen/Documents/GIT/iTools/iToolsApp/lib/javax.mail-1.5.1.jar])
+2018-07-11 00:01:48 INFO  EmployeePage:605 - Complete with resultValue = 0
+2018-07-11 00:02:19 INFO  EmployeePage:527 - com1admin confirm: WO: asdasd<br/>OP: adad<br/>CTID: CTID1<br/>Tray: Tray_5<br/>Quantity: 1
+2018-07-11 00:02:19 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'WorkingTransaction', '', 'SendRequest', '', '', 'Com1', 'MAC1', 'EmployeePage.actionPerformed');
+2018-07-11 00:02:22 INFO  TransactionController:43 - insert into WorkingTransaction( TransactionDate, MachineCode, CompanyCode, AssessorID, WOCode, OPCode, ToolCode, TrayIndex, Quantity, UpdatedDate, TransactionStatus, TransactionType) values (now(), 'MAC1', 'Com1', 'com1admin', '', '', 'CTID1', 'Tray_5', '3', now(), 'Send request to board', 'GetTools');
+2018-07-11 00:02:22 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'WorkingTransaction', '', 'Create', '', 'Create transaction', 'Com1', 'MAC1', 'EmployeePage$12.doInBackground');
+2018-07-11 00:02:22 INFO  EmployeePage:555 - hashMessage: {TRAY_2=02, TRAY_1=01, TRAY_4=01, TRAY_3=03, TRAY_6=03, TRAY_5=02}
+2018-07-11 00:02:22 INFO  EmployeePage:556 - hashMessage containsKey TRAY_5: true
+2018-07-11 00:02:22 INFO  EmployeePage:637 - Starting HID services.
+2018-07-11 00:02:22 ERROR EmployeePage:565 - executeAction exeoption: Hidapi did not initialise: Could not initialize class com.lib.hid4java.jna.HidApi
+2018-07-11 00:02:22 INFO  EmployeePage:605 - Complete with resultValue = 0
+2018-07-11 00:02:22 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Assessor', '', 'ChangePass', '', '', 'Com1', 'MAC1', 'EmployeePage$2.mouseClicked');
+2018-07-11 00:02:26 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Assessor', '', 'Logout', '', '', 'Com1', 'MAC1', 'EmployeePage$3.mouseClicked');
+2018-07-11 00:02:26 INFO  EmployeePage:207 - com1admin logout.
+2018-07-11 00:02:27 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), '', 'Assessor', '', 'ForgotPass', '', '', 'Com1', 'MAC1', 'LoginPage.actionPerformed');
+2018-07-11 00:02:27 INFO  LoginPage:256 - Forgot Pass
+2018-07-11 00:02:27 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), '', 'Assessor', '', 'ForgotPasswordPage', '', '', 'Com1', 'MAC1', 'ForgotPasswordPage.<init>');
+2018-07-11 00:02:40 INFO  LoginPage:315 - ************************************************************
+2018-07-11 00:02:40 INFO  LoginPage:316 - ************************************************************
+2018-07-11 00:02:40 INFO  LoginPage:317 - ************************************************************
+2018-07-11 00:02:40 INFO  LoginPage:318 - ************************************************************
+2018-07-11 00:02:40 INFO  LoginPage:319 - Starting iTool app.
+2018-07-11 00:02:40 INFO  LoginPage:320 - companyCode: Com1
+2018-07-11 00:02:40 INFO  LoginPage:321 - companyCodeUH: UHCom
+2018-07-11 00:02:40 INFO  LoginPage:322 - machineCode: MAC1
+2018-07-11 00:02:40 INFO  LoginPage:325 - mDbHost: localhost
+2018-07-11 00:02:40 INFO  LoginPage:326 - mDbUser: admin
+2018-07-11 00:02:40 INFO  LoginPage:327 - mDbPwds: 1qazxsw2
+2018-07-11 00:02:40 INFO  LoginPage:328 - mDbName: iTools_v1p0
+2018-07-11 00:02:40 INFO  LoginPage:329 - mDbPort: 3306
+2018-07-11 00:02:40 INFO  LoginPage:330 - Database version: v1p0 - 2018-07-10 23:28:08
+2018-07-11 00:02:40 INFO  LoginPage:332 - Last Sync: 2018-07-10 23:59:53
+2018-07-11 00:02:46 INFO  LoginPage:335 - checkEmailConfig: true
+2018-07-11 00:02:46 INFO  LoginPage:345 - App Version: 1.0
+2018-07-11 00:02:46 INFO  LoginPage:286 - ========================================
+2018-07-11 00:02:46 INFO  LoginPage:287 - Start syncing thread - KrU5fwFG
+2018-07-11 00:02:46 INFO  LoginPage:288 - ========================================
+2018-07-11 00:02:46 INFO  SyncController:66 - Start SyncHostToLocal
+2018-07-11 00:03:05 INFO  SyncController:71 - End SyncHostToLocal
+2018-07-11 00:03:05 INFO  SyncController:72 - Start SyncLocalToHost
+2018-07-11 00:03:19 INFO  SyncController:77 - Start SyncLocalToHost
+2018-07-11 00:03:19 INFO  LoginPage:291 - ========================================
+2018-07-11 00:03:19 INFO  LoginPage:292 - End syncing thread - KrU5fwFG
+2018-07-11 00:03:19 INFO  LoginPage:293 - ========================================
+2018-07-11 00:05:00 INFO  LoginPage:315 - ************************************************************
+2018-07-11 00:05:00 INFO  LoginPage:316 - ************************************************************
+2018-07-11 00:05:00 INFO  LoginPage:317 - ************************************************************
+2018-07-11 00:05:00 INFO  LoginPage:318 - ************************************************************
+2018-07-11 00:05:00 INFO  LoginPage:319 - Starting iTool app.
+2018-07-11 00:05:00 INFO  LoginPage:320 - companyCode: Com1
+2018-07-11 00:05:00 INFO  LoginPage:321 - companyCodeUH: UHCom
+2018-07-11 00:05:00 INFO  LoginPage:322 - machineCode: MAC1
+2018-07-11 00:05:01 INFO  LoginPage:325 - mDbHost: localhost
+2018-07-11 00:05:01 INFO  LoginPage:326 - mDbUser: admin
+2018-07-11 00:05:01 INFO  LoginPage:327 - mDbPwds: 1qazxsw2
+2018-07-11 00:05:01 INFO  LoginPage:328 - mDbName: iTools_v1p0
+2018-07-11 00:05:01 INFO  LoginPage:329 - mDbPort: 3306
+2018-07-11 00:05:01 INFO  LoginPage:330 - Database version: v1p0 - 2018-07-10 23:28:08
+2018-07-11 00:05:01 INFO  LoginPage:332 - Last Sync: 2018-07-11 00:03:18
+2018-07-11 00:05:07 INFO  LoginPage:335 - checkEmailConfig: true
+2018-07-11 00:05:07 INFO  LoginPage:345 - App Version: 1.0
+2018-07-11 00:05:07 INFO  LoginPage:286 - ========================================
+2018-07-11 00:05:07 INFO  LoginPage:287 - Start syncing thread - gqX59XqJ
+2018-07-11 00:05:07 INFO  LoginPage:288 - ========================================
+2018-07-11 00:05:07 INFO  SyncController:66 - Start SyncHostToLocal
+2018-07-11 00:05:25 INFO  SyncController:74 - End SyncHostToLocal: 18209004s
+2018-07-11 00:05:25 INFO  SyncController:75 - Start SyncLocalToHost
+2018-07-11 00:05:38 INFO  SyncController:81 - Start SyncLocalToHost12725990s
+2018-07-11 00:05:38 INFO  LoginPage:291 - ========================================
+2018-07-11 00:05:38 INFO  LoginPage:292 - End syncing thread - gqX59XqJ
+2018-07-11 00:05:38 INFO  LoginPage:293 - ========================================
+2018-07-11 00:10:38 INFO  LoginPage:286 - ========================================
+2018-07-11 00:10:38 INFO  LoginPage:287 - Start syncing thread - Ao4HN6lI
+2018-07-11 00:10:38 INFO  LoginPage:288 - ========================================
+2018-07-11 00:10:38 INFO  SyncController:66 - Start SyncHostToLocal
+2018-07-11 00:10:38 ERROR SyncController:83 - Incorrect number of arguments for PROCEDURE itools_v1p0.SyncHostToLocal; expected 3, got 2
+2018-07-11 00:10:38 INFO  LoginPage:291 - ========================================
+2018-07-11 00:10:38 INFO  LoginPage:292 - End syncing thread - Ao4HN6lI
+2018-07-11 00:10:38 INFO  LoginPage:293 - ========================================
+2018-07-11 00:14:35 INFO  LoginPage:315 - ************************************************************
+2018-07-11 00:14:35 INFO  LoginPage:316 - ************************************************************
+2018-07-11 00:14:35 INFO  LoginPage:317 - ************************************************************
+2018-07-11 00:14:35 INFO  LoginPage:318 - ************************************************************
+2018-07-11 00:14:35 INFO  LoginPage:319 - Starting iTool app.
+2018-07-11 00:14:35 INFO  LoginPage:320 - companyCode: Com1
+2018-07-11 00:14:35 INFO  LoginPage:321 - companyCodeUH: UHCom
+2018-07-11 00:14:35 INFO  LoginPage:322 - machineCode: MAC1
+2018-07-11 00:14:35 INFO  LoginPage:325 - mDbHost: localhost
+2018-07-11 00:14:35 INFO  LoginPage:326 - mDbUser: admin
+2018-07-11 00:14:35 INFO  LoginPage:327 - mDbPwds: 1qazxsw2
+2018-07-11 00:14:35 INFO  LoginPage:328 - mDbName: iTools_v1p0
+2018-07-11 00:14:35 INFO  LoginPage:329 - mDbPort: 3306
+2018-07-11 00:14:35 INFO  LoginPage:330 - Database version: v1p0 - 2018-07-10 23:28:08
+2018-07-11 00:14:35 INFO  LoginPage:332 - Last Sync: 2018-07-11 00:05:36
+2018-07-11 00:14:45 INFO  LoginPage:335 - checkEmailConfig: true
+2018-07-11 00:14:45 INFO  LoginPage:345 - App Version: 1.0
+2018-07-11 00:14:45 INFO  LoginPage:286 - ========================================
+2018-07-11 00:14:45 INFO  LoginPage:287 - Start syncing thread - TsESdpAl
+2018-07-11 00:14:45 INFO  LoginPage:288 - ========================================
+2018-07-11 00:14:45 ERROR SyncController:114 - No value specified for parameter 2
+2018-07-11 00:14:45 INFO  LoginPage:291 - ========================================
+2018-07-11 00:14:45 INFO  LoginPage:292 - End syncing thread - TsESdpAl
+2018-07-11 00:14:45 INFO  LoginPage:293 - ========================================
+2018-07-11 00:14:59 INFO  LoginPage:315 - ************************************************************
+2018-07-11 00:14:59 INFO  LoginPage:316 - ************************************************************
+2018-07-11 00:14:59 INFO  LoginPage:317 - ************************************************************
+2018-07-11 00:14:59 INFO  LoginPage:318 - ************************************************************
+2018-07-11 00:14:59 INFO  LoginPage:319 - Starting iTool app.
+2018-07-11 00:14:59 INFO  LoginPage:320 - companyCode: Com1
+2018-07-11 00:14:59 INFO  LoginPage:321 - companyCodeUH: UHCom
+2018-07-11 00:14:59 INFO  LoginPage:322 - machineCode: MAC1
+2018-07-11 00:14:59 INFO  LoginPage:325 - mDbHost: localhost
+2018-07-11 00:14:59 INFO  LoginPage:326 - mDbUser: admin
+2018-07-11 00:14:59 INFO  LoginPage:327 - mDbPwds: 1qazxsw2
+2018-07-11 00:14:59 INFO  LoginPage:328 - mDbName: iTools_v1p0
+2018-07-11 00:14:59 INFO  LoginPage:329 - mDbPort: 3306
+2018-07-11 00:14:59 INFO  LoginPage:330 - Database version: v1p0 - 2018-07-10 23:28:08
+2018-07-11 00:14:59 INFO  LoginPage:332 - Last Sync: 2018-07-11 00:05:36
+2018-07-11 00:15:05 INFO  LoginPage:335 - checkEmailConfig: true
+2018-07-11 00:15:05 INFO  LoginPage:345 - App Version: 1.0
+2018-07-11 00:15:05 INFO  LoginPage:286 - ========================================
+2018-07-11 00:15:05 INFO  LoginPage:287 - Start syncing thread - 0LJfbZF1
+2018-07-11 00:15:05 INFO  LoginPage:288 - ========================================
+2018-07-11 00:15:24 ERROR SyncController:114 - Parameter 1 is not registered as an output parameter
+2018-07-11 00:15:24 INFO  LoginPage:291 - ========================================
+2018-07-11 00:15:24 INFO  LoginPage:292 - End syncing thread - 0LJfbZF1
+2018-07-11 00:15:24 INFO  LoginPage:293 - ========================================
+2018-07-11 00:16:09 INFO  LoginPage:315 - ************************************************************
+2018-07-11 00:16:09 INFO  LoginPage:316 - ************************************************************
+2018-07-11 00:16:09 INFO  LoginPage:317 - ************************************************************
+2018-07-11 00:16:09 INFO  LoginPage:318 - ************************************************************
+2018-07-11 00:16:09 INFO  LoginPage:319 - Starting iTool app.
+2018-07-11 00:16:09 INFO  LoginPage:320 - companyCode: Com1
+2018-07-11 00:16:09 INFO  LoginPage:321 - companyCodeUH: UHCom
+2018-07-11 00:16:09 INFO  LoginPage:322 - machineCode: MAC1
+2018-07-11 00:16:09 INFO  LoginPage:325 - mDbHost: localhost
+2018-07-11 00:16:09 INFO  LoginPage:326 - mDbUser: admin
+2018-07-11 00:16:09 INFO  LoginPage:327 - mDbPwds: 1qazxsw2
+2018-07-11 00:16:09 INFO  LoginPage:328 - mDbName: iTools_v1p0
+2018-07-11 00:16:09 INFO  LoginPage:329 - mDbPort: 3306
+2018-07-11 00:16:09 INFO  LoginPage:330 - Database version: v1p0 - 2018-07-10 23:28:08
+2018-07-11 00:16:09 INFO  LoginPage:332 - Last Sync: 2018-07-11 00:15:24
+2018-07-11 00:16:15 INFO  LoginPage:335 - checkEmailConfig: true
+2018-07-11 00:16:15 INFO  LoginPage:345 - App Version: 1.0
+2018-07-11 00:16:15 INFO  LoginPage:286 - ========================================
+2018-07-11 00:16:15 INFO  LoginPage:287 - Start syncing thread - PUDVUMqK
+2018-07-11 00:16:15 INFO  LoginPage:288 - ========================================
+2018-07-11 00:16:35 INFO  LoginPage:291 - ========================================
+2018-07-11 00:16:35 INFO  LoginPage:292 - End syncing thread - PUDVUMqK
+2018-07-11 00:16:35 INFO  LoginPage:293 - ========================================
+2018-07-11 00:20:04 INFO  LoginPage:315 - ************************************************************
+2018-07-11 00:20:04 INFO  LoginPage:316 - ************************************************************
+2018-07-11 00:20:04 INFO  LoginPage:317 - ************************************************************
+2018-07-11 00:20:04 INFO  LoginPage:318 - ************************************************************
+2018-07-11 00:20:04 INFO  LoginPage:319 - Starting iTool app.
+2018-07-11 00:20:04 INFO  LoginPage:320 - companyCode: Com1
+2018-07-11 00:20:04 INFO  LoginPage:321 - companyCodeUH: UHCom
+2018-07-11 00:20:04 INFO  LoginPage:322 - machineCode: MAC1
+2018-07-11 00:20:05 INFO  LoginPage:325 - mDbHost: localhost
+2018-07-11 00:20:05 INFO  LoginPage:326 - mDbUser: admin
+2018-07-11 00:20:05 INFO  LoginPage:327 - mDbPwds: 1qazxsw2
+2018-07-11 00:20:05 INFO  LoginPage:328 - mDbName: iTools_v1p0
+2018-07-11 00:20:05 INFO  LoginPage:329 - mDbPort: 3306
+2018-07-11 00:20:05 INFO  LoginPage:330 - Database version: v1p0 - 2018-07-10 23:28:08
+2018-07-11 00:20:05 INFO  LoginPage:332 - Last Sync: 2018-07-11 00:16:35
+2018-07-11 00:20:11 INFO  LoginPage:335 - checkEmailConfig: true
+2018-07-11 00:20:11 INFO  LoginPage:345 - App Version: 1.0
+2018-07-11 00:20:11 INFO  LoginPage:286 - ========================================
+2018-07-11 00:20:11 INFO  LoginPage:287 - Start syncing thread - mZT9Ev0Q
+2018-07-11 00:20:11 INFO  LoginPage:288 - ========================================
+2018-07-11 00:20:11 INFO  SyncController:67 - Start SyncHostToLocal
+2018-07-11 00:20:25 INFO  LoginPage:190 - Login with username: com1admin
+2018-07-11 00:20:25 INFO  LoginController:46 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin FROM Assessor where Assessor.UserName='com1admin' and (Password=md5('X') or LastPassword=md5('X'));
+2018-07-11 00:20:25 INFO  LoginPage:243 - Login Fail
+2018-07-11 00:20:27 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'xX', 'Assessor', '', 'LoginFail', '', '', 'Com1', 'MAC1', 'LoginPage.actionPerformed');
+2018-07-11 00:20:27 INFO  SyncController:76 - insertAssessor: 0,
+updateAssessor: 0,
+insertCompany: 0,
+updateCompany: 0,
+insertMachine: 0,
+updateMachine: 0,
+insertCompanyMachine: 0,
+updateCompanyMachine: 0,
+insertRoleAssessor: 0,
+updateRoleAssessor: 0,
+insertRole: 0,
+updateRole: 0,
+insertTools: 0,
+updateTools: 0,
+insertToolsMachine: 0,
+updateToolsMachine: 0
+2018-07-11 00:20:27 INFO  SyncController:83 - End SyncHostToLocal: 16590920s
+2018-07-11 00:20:27 INFO  SyncController:84 - Start SyncLocalToHost
+2018-07-11 00:20:27 INFO  SyncController:86 - Start SyncLocalToHost
+2018-07-11 00:20:36 INFO  LoginPage:190 - Login with username: com1admin
+2018-07-11 00:20:36 INFO  LoginController:46 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin FROM Assessor where Assessor.UserName='com1admin' and (Password=md5('123456') or LastPassword=md5('123456'));
+2018-07-11 00:20:36 INFO  LoginPage:194 - Login OK
+2018-07-11 00:20:36 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'xX', 'Assessor', '', 'Login', '', '', 'Com1', 'MAC1', 'LoginPage.actionPerformed');
+2018-07-11 00:20:40 INFO  SyncController:95 - insertMasterLog: 5,
+updateMasterLog: 114,
+insertToolsMachineTray: 0,
+updateToolsMachineTray: 0,
+insertWorkingTransaction: 0,
+updateWorkingTransaction: 0
+2018-07-11 00:20:40 INFO  SyncController:102 - End SyncLocalToHost: 12842320s
+2018-07-11 00:20:40 INFO  LoginPage:291 - ========================================
+2018-07-11 00:20:40 INFO  LoginPage:292 - End syncing thread - mZT9Ev0Q
+2018-07-11 00:20:40 INFO  LoginPage:293 - ========================================
+2018-07-11 00:20:40 INFO  LoginController:114 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'Com1' and assessor.UserName= 'com1admin'
+2018-07-11 00:20:40 INFO  LoginPage:211 - listRoles: [Roles [roleName=SubAdmin], Roles [roleName=Emp]]
+2018-07-11 00:20:40 INFO  LoginPage:231 - Show DashboardPage
+2018-07-11 00:20:40 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Assessor', '', 'ShowDashboard', '', '', 'Com1', 'MAC1', 'DashboardPage.<init>');
+2018-07-11 00:20:43 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Assessor', '', 'GetTools', '', '', 'Com1', 'MAC1', 'DashboardPage.actionPerformed');
+2018-07-11 00:20:43 INFO  EmployeeController:135 -  select tools.ToolCode, tools.ToolCode, machine.MachineCode, toolsmachinetray.TrayIndex, toolsmachinetray.Quantity  from tools inner join toolsmachine on tools.ToolCode = toolsmachine.ToolCode  inner join machine on toolsmachine.MachineCode = machine.MachineCode  inner join toolsmachinetray on toolsmachinetray.toolsmachineID = toolsmachine.toolsmachineID  where machine.MachineCode = 'MAC1';
+2018-07-11 00:20:43 INFO  EmployeeController:178 - {CTID2=[[Tray_4, 5]], CTID1=[[Tray_1, 5], [Tray_5, 3]], CTID6=[[Tray_2, 2]]}
+2018-07-11 00:20:43 INFO  EmployeeController:51 - select tools.ToolId, tools.ToolCode  from tools inner join toolsmachine on tools.ToolCode = toolsmachine.ToolCode  inner join machine on toolsmachine.MachineCode = machine.MachineCode  where machine.MachineCode = 'MAC1';
+2018-07-11 00:20:43 INFO  EmployeeController:72 - [Tool [toolId=1, toolName=CTID1], Tool [toolId=2, toolName=CTID2], Tool [toolId=6, toolName=CTID6], Tool [toolId=4, toolName=CTID4], Tool [toolId=5, toolName=CTID5]]
+2018-07-11 00:20:43 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'WorkingTransaction', '', 'EmployeePage', '', '', 'Com1', 'MAC1', 'EmployeePage.<init>');
+2018-07-11 00:20:43 INFO  EmployeePage:145 - listAllTrays: [TRAY_1, TRAY_2, TRAY_3, TRAY_4, TRAY_5, TRAY_6, TRAY_7, TRAY_8, TRAY_9, TRAY_10, TRAY_11, TRAY_12, TRAY_13, TRAY_14, TRAY_15, TRAY_16, TRAY_17, TRAY_18, TRAY_19, TRAY_20, TRAY_21, TRAY_22, TRAY_23, TRAY_24, TRAY_25, TRAY_26, TRAY_27, TRAY_28, TRAY_29, TRAY_30, TRAY_31, TRAY_32, TRAY_33, TRAY_34, TRAY_35, TRAY_36, TRAY_37, TRAY_38, TRAY_39, TRAY_40, TRAY_41, TRAY_42, TRAY_43, TRAY_44, TRAY_45, TRAY_46, TRAY_47, TRAY_48, TRAY_49, TRAY_50, TRAY_51, TRAY_52, TRAY_53, TRAY_54, TRAY_55, TRAY_56, TRAY_57, TRAY_58, TRAY_59, TRAY_60]
+2018-07-11 00:20:43 INFO  EmployeePage:151 - hashMessage: {TRAY_2=02, TRAY_1=01, TRAY_4=01, TRAY_3=03, TRAY_6=03, TRAY_5=02}
+2018-07-11 00:20:48 INFO  EmployeePage:527 - com1admin confirm: WO: asAS<br/>OP: sAD<br/>CTID: CTID1<br/>Tray: Tray_5<br/>Quantity: 1
+2018-07-11 00:20:48 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'WorkingTransaction', '', 'SendRequest', '', '', 'Com1', 'MAC1', 'EmployeePage.actionPerformed');
+2018-07-11 00:20:50 INFO  TransactionController:43 - insert into WorkingTransaction( TransactionDate, MachineCode, CompanyCode, AssessorID, WOCode, OPCode, ToolCode, TrayIndex, Quantity, UpdatedDate, TransactionStatus, TransactionType) values (now(), 'MAC1', 'Com1', 'com1admin', '', '', 'CTID1', 'Tray_5', '3', now(), 'Send request to board', 'GetTools');
+2018-07-11 00:20:50 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'WorkingTransaction', '', 'Create', '', 'Create transaction', 'Com1', 'MAC1', 'EmployeePage$12.doInBackground');
+2018-07-11 00:20:50 INFO  EmployeePage:555 - hashMessage: {TRAY_2=02, TRAY_1=01, TRAY_4=01, TRAY_3=03, TRAY_6=03, TRAY_5=02}
+2018-07-11 00:20:50 INFO  EmployeePage:556 - hashMessage containsKey TRAY_5: true
+2018-07-11 00:20:50 INFO  EmployeePage:637 - Starting HID services.
+2018-07-11 00:20:51 ERROR EmployeePage:565 - executeAction exeoption: Hidapi did not initialise: Unable to load library 'hidapi': Native library (win32-x86/hidapi.dll) not found in resource path ([file:/C:/Users/svi-quannguyen/Documents/GIT/iTools/iToolsApp/bin/, file:/C:/Users/svi-quannguyen/Documents/GIT/iTools/iToolsApp/lib/c3p0-0.9.1-pre6.jar, file:/C:/Users/svi-quannguyen/Documents/GIT/iTools/iToolsApp/lib/commons-codec-1.11.jar, file:/C:/Users/svi-quannguyen/Documents/GIT/iTools/iToolsApp/lib/jboss-common-jdbc-wrapper-src.jar, file:/C:/Users/svi-quannguyen/Documents/GIT/iTools/iToolsApp/lib/jboss-common-jdbc-wrapper.jar, file:/C:/Users/svi-quannguyen/Documents/GIT/iTools/iToolsApp/lib/log4j.jar, file:/C:/Users/svi-quannguyen/Documents/GIT/iTools/iToolsApp/lib/mysql-connector-java-8.0.11.jar, file:/C:/Users/svi-quannguyen/Documents/GIT/iTools/iToolsApp/lib/mysql-connector.jar, file:/C:/Users/svi-quannguyen/Documents/GIT/iTools/iToolsApp/lib/protobuf-java-2.6.0.jar, file:/C:/Users/svi-quannguyen/Documents/GIT/iTools/iToolsApp/lib/slf4j-api-1.6.1.jar, file:/C:/Users/svi-quannguyen/Documents/GIT/iTools/iToolsApp/lib/swt-win64-3.6.2.jar, file:/C:/Users/svi-quannguyen/Documents/GIT/iTools/iToolsApp/lib/jna-4.2.2.jar, file:/C:/Users/svi-quannguyen/Documents/GIT/iTools/iToolsApp/lib/activation-1.1.jar, file:/C:/Users/svi-quannguyen/Documents/GIT/iTools/iToolsApp/lib/javax.mail-1.5.1.jar])
+2018-07-11 00:20:51 INFO  EmployeePage:605 - Complete with resultValue = 0
+2018-07-11 00:20:55 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Assessor', '', 'Logout', '', '', 'Com1', 'MAC1', 'EmployeePage$3.mouseClicked');
+2018-07-11 00:20:55 INFO  EmployeePage:207 - com1admin logout.
+2018-07-11 00:20:58 INFO  LoginPage:190 - Login with username: com1admin
+2018-07-11 00:20:58 INFO  LoginController:46 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin FROM Assessor where Assessor.UserName='com1admin' and (Password=md5('DAd') or LastPassword=md5('DAd'));
+2018-07-11 00:20:58 INFO  LoginPage:243 - Login Fail
+2018-07-11 00:20:59 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'DadA', 'Assessor', '', 'LoginFail', '', '', 'Com1', 'MAC1', 'LoginPage.actionPerformed');
+2018-07-11 00:21:00 INFO  LoginPage:190 - Login with username: com1admin
+2018-07-11 00:21:00 INFO  LoginController:46 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin FROM Assessor where Assessor.UserName='com1admin' and (Password=md5('DAd') or LastPassword=md5('DAd'));
+2018-07-11 00:21:00 INFO  LoginPage:243 - Login Fail
+2018-07-11 00:21:01 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'DadA', 'Assessor', '', 'LoginFail', '', '', 'Com1', 'MAC1', 'LoginPage.actionPerformed');
+2018-07-11 00:21:02 INFO  LoginPage:190 - Login with username: com1admin
+2018-07-11 00:21:02 INFO  LoginController:46 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin FROM Assessor where Assessor.UserName='com1admin' and (Password=md5('DAd') or LastPassword=md5('DAd'));
+2018-07-11 00:21:02 INFO  LoginPage:243 - Login Fail
+2018-07-11 00:21:03 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'DadA', 'Assessor', '', 'LoginFail', '', '', 'Com1', 'MAC1', 'LoginPage.actionPerformed');
+2018-07-11 00:21:04 INFO  LoginPage:190 - Login with username: com1admin
+2018-07-11 00:21:04 INFO  LoginController:46 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin FROM Assessor where Assessor.UserName='com1admin' and (Password=md5('DAd') or LastPassword=md5('DAd'));
+2018-07-11 00:21:04 INFO  LoginPage:243 - Login Fail
+2018-07-11 00:21:05 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'DadA', 'Assessor', '', 'LoginFail', '', '', 'Com1', 'MAC1', 'LoginPage.actionPerformed');
+2018-07-11 00:21:07 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'DadA', 'Assessor', '', 'ForgotPass', '', '', 'Com1', 'MAC1', 'LoginPage.actionPerformed');
+2018-07-11 00:21:07 INFO  LoginPage:256 - Forgot Pass
+2018-07-11 00:21:07 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), '', 'Assessor', '', 'ForgotPasswordPage', '', '', 'Com1', 'MAC1', 'ForgotPasswordPage.<init>');
+2018-07-11 00:21:20 INFO  UserController:150 - SELECT * FROM assessor where assessor.UserName = 'com1admin' and assessor.EmailAddress = 'quann169@gmail.com' and assessor.CompanyCode = 'Com1';
+2018-07-11 00:21:21 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Assessor', '', 'ForgotPassUsernameNotMatchEmail', '', 'com1admin - quann169@gmail.com', 'Com1', 'MAC1', 'ForgotPasswordPage.actionPerformed');
+2018-07-11 00:21:21 INFO  ForgotPasswordPage:277 - com1admin - quann169@gmail.com fail validate
+2018-07-11 00:21:28 INFO  UserController:150 - SELECT * FROM assessor where assessor.UserName = 'com1admin' and assessor.EmailAddress = 'quannguyen@savarti.com' and assessor.CompanyCode = 'Com1';
+2018-07-11 00:21:28 INFO  UserController:181 - Update  Assessor set Assessor.LastPassword = md5('3ISPoMJB') , Assessor.IsFirstTimeLogin = 1  where Assessor.Username = 'com1admin' and Assessor.CompanyCode = 'Com1';
+2018-07-11 00:21:28 INFO  UserController:185 - 1 row(s) updated!
+2018-07-11 00:21:37 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Email', '', 'ForgotPasswordPage', '', 'To quannguyen@savarti.com - Subject: New password reset - Message: New password: 3ISPoMJB', 'Com1', 'MAC1', 'EmailUtils.sendEmail');
+2018-07-11 00:21:37 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Assessor', '', 'ForgotPassResetOk', '', 'com1admin - quannguyen@savarti.com', 'Com1', 'MAC1', 'ForgotPasswordPage$4.done');
+2018-07-11 00:21:37 INFO  ForgotPasswordPage:251 - com1admin - quannguyen@savarti.com forgot pass ok.
+2018-07-11 00:25:40 INFO  LoginPage:286 - ========================================
+2018-07-11 00:25:40 INFO  LoginPage:287 - Start syncing thread - C8fs69Yg
+2018-07-11 00:25:40 INFO  LoginPage:288 - ========================================
+2018-07-11 00:25:40 INFO  SyncController:67 - Start SyncHostToLocal
+2018-07-11 00:25:55 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'EmployeePage', '', 'TimeOut', '', '', 'Com1', 'MAC1', 'EmployeePage$9.actionPerformed');
+2018-07-11 00:25:57 INFO  SyncController:76 - insertAssessor: 0,
+updateAssessor: 0,
+insertCompany: 0,
+updateCompany: 0,
+insertMachine: 0,
+updateMachine: 0,
+insertCompanyMachine: 0,
+updateCompanyMachine: 0,
+insertRoleAssessor: 0,
+updateRoleAssessor: 0,
+insertRole: 0,
+updateRole: 0,
+insertTools: 0,
+updateTools: 0,
+insertToolsMachine: 0,
+updateToolsMachine: 0
+2018-07-11 00:25:57 INFO  SyncController:83 - End SyncHostToLocal: 16990493s
+2018-07-11 00:25:57 INFO  SyncController:84 - Start SyncLocalToHost
+2018-07-11 00:25:57 INFO  SyncController:86 - Start SyncLocalToHost
+2018-07-11 00:26:22 INFO  SyncController:95 - insertMasterLog: 19,
+updateMasterLog: 661,
+insertToolsMachineTray: 0,
+updateToolsMachineTray: 0,
+insertWorkingTransaction: 1,
+updateWorkingTransaction: 0
+2018-07-11 00:26:22 INFO  SyncController:102 - End SyncLocalToHost: 24378852s
+2018-07-11 00:26:22 INFO  LoginPage:291 - ========================================
+2018-07-11 00:26:22 INFO  LoginPage:292 - End syncing thread - C8fs69Yg
+2018-07-11 00:26:22 INFO  LoginPage:293 - ========================================
+2018-07-11 00:26:28 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), '', 'ForgotPasswordPage', '', 'TimeOut', '', '', 'Com1', 'MAC1', 'ForgotPasswordPage$3.actionPerformed');

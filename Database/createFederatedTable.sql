@@ -5,7 +5,7 @@ CREATE TABLE federated_Company (
   CompanyType VARCHAR(100) NULL,
   Address VARCHAR(100) NULL,
   Location VARCHAR(100) NULL,
-  UpdatedDate DATETIME NULL,
+  UpdatedDate timestamp not null default current_timestamp on update current_timestamp,
   INDEX Company_CompanyCode (CompanyCode),
   PRIMARY KEY (CompanyID),
   UNIQUE KEY (CompanyCode)
@@ -29,7 +29,7 @@ CREATE TABLE IF NOT EXISTS federated_Assessor (
   IsActive BOOLEAN NOT NULL,
   LastPassword VARCHAR(255) NULL,
   IsFirstTimeLogin BOOLEAN NULL,
-  UpdatedDate DATETIME NULL,
+  UpdatedDate timestamp not null default current_timestamp on update current_timestamp,
   PRIMARY KEY (AssessorID),
   INDEX UserName (UserName),
   FOREIGN KEY (CompanyCode) REFERENCES Company(CompanyCode)
@@ -42,7 +42,7 @@ CREATE TABLE IF NOT EXISTS federated_Roles (
   RoleName VARCHAR(100) NULL,
   RoleType INT(10) NULL,
   IsRole INT(10) NULL,
-  UpdatedDate DATETIME NULL,
+  UpdatedDate timestamp not null default current_timestamp on update current_timestamp,
   PRIMARY KEY (RoleID)
 )ENGINE=FEDERATED
 DEFAULT CHARSET=UTF8
@@ -53,9 +53,9 @@ CREATE TABLE IF NOT EXISTS federated_RoleAssessor (
   RoleAssessorID INT(10) NOT NULL AUTO_INCREMENT,
   RoleID INT(10) NULL,
   AssessorID INT(10) NULL,
-  CreatedDate DATETIME NULL,
+  CreatedDate timestamp not null default current_timestamp,
   IsActive BOOLEAN NOT NULL,
-  UpdatedDate DATETIME NULL,
+  UpdatedDate timestamp not null default current_timestamp on update current_timestamp,
   PRIMARY KEY (RoleAssessorID),
   INDEX CreatedDate (CreatedDate),
   INDEX RoleID (RoleID),
@@ -74,8 +74,8 @@ CREATE TABLE IF NOT EXISTS federated_Machine (
   Model VARCHAR(100) NULL,
   Location VARCHAR(100) NULL,
   Description VARCHAR(100) NULL,
-  CreatedDate DATETIME NULL,
-  UpdatedDate DATETIME NULL,
+  CreatedDate timestamp not null default current_timestamp,
+  UpdatedDate timestamp not null default current_timestamp on update current_timestamp,
   IsActive BOOLEAN NOT NULL,
   PRIMARY KEY (MachineID),
   INDEX Machine_MachineCode (MachineCode),
@@ -89,9 +89,9 @@ CREATE TABLE IF NOT EXISTS federated_CompanyMachine (
   CompanyMachineID INT(10) NOT NULL AUTO_INCREMENT,
   MachineCode VARCHAR(100) NULL,
   CompanyCode VARCHAR(100) NULL,
-  CreatedDate DATETIME NULL,
+  CreatedDate timestamp not null default current_timestamp,
   IsActive BOOLEAN NOT NULL,
-  UpdatedDate DATETIME NULL,
+  UpdatedDate timestamp not null default current_timestamp on update current_timestamp,
   PRIMARY KEY (CompanyMachineID),
   FOREIGN KEY (MachineCode) REFERENCES Machine(MachineCode),
   FOREIGN KEY (CompanyCode) REFERENCES Company(CompanyCode)
@@ -106,8 +106,8 @@ CREATE TABLE IF NOT EXISTS federated_Tools (
   Model VARCHAR(100) NULL,
   Barcode VARCHAR(100) NULL,
   Description VARCHAR(100) NULL,
-  CreatedDate DATETIME NULL,
-  UpdatedDate DATETIME NULL,
+  CreatedDate timestamp not null default current_timestamp,
+  UpdatedDate timestamp not null default current_timestamp on update current_timestamp,
   IsActive BOOLEAN NOT NULL,
   PRIMARY KEY (ToolID),
   UNIQUE KEY (ToolCode)
@@ -120,8 +120,8 @@ CREATE TABLE IF NOT EXISTS federated_ToolsMachine (
   ToolsMachineID INT(10) NOT NULL AUTO_INCREMENT,
   ToolCode VARCHAR(100) NOT NULL,
   MachineCode VARCHAR(100) NULL,
-  CreatedDate DATETIME NULL,
-  UpdatedDate DATETIME NULL,
+  CreatedDate timestamp not null default current_timestamp,
+  UpdatedDate timestamp not null default current_timestamp on update current_timestamp,
   IsActive BOOLEAN NOT NULL,
   PRIMARY KEY (ToolsMachineID),
   FOREIGN KEY (ToolCode) REFERENCES Tools(ToolCode),
@@ -136,8 +136,8 @@ CREATE TABLE IF NOT EXISTS federated_ToolsMachineTray (
   ToolsMachineID INT(10) NOT NULL,
   TrayIndex VARCHAR(100) NULL,
   Quantity INT(10) NULL,
-  CreatedDate DATETIME NULL,
-  UpdatedDate DATETIME NULL,
+  CreatedDate timestamp not null default current_timestamp,
+  UpdatedDate timestamp not null default current_timestamp on update current_timestamp,
   IsActive BOOLEAN NOT NULL,
   PRIMARY KEY (ToolsMachineTrayID),
   FOREIGN KEY (ToolsMachineID) REFERENCES ToolsMachine(ToolsMachineID)
@@ -148,7 +148,7 @@ CONNECTION='mysql://tqteamne_admin:Admin123@112.213.89.49:3306/tqteamne_iTools/T
 
 CREATE TABLE IF NOT EXISTS federated_WorkingTransaction (
   WorkingTransactionID INT(20) NOT NULL AUTO_INCREMENT,
-  TransactionDate DATETIME NULL,
+  TransactionDate timestamp not null default current_timestamp,
   MachineCode VARCHAR(100) NOT NULL,
   CompanyCode VARCHAR(100) NOT NULL,
   AssessorID VARCHAR(100) NOT NULL,
@@ -157,7 +157,7 @@ CREATE TABLE IF NOT EXISTS federated_WorkingTransaction (
   ToolCode VARCHAR(100) NOT NULL,
   TrayIndex VARCHAR(100) NULL,
   Quantity INT(10) NULL,
-  UpdatedDate DATETIME NULL,
+  UpdatedDate timestamp not null default current_timestamp on update current_timestamp,
   TransactionStatus VARCHAR(255) NULL,
   RespondMessage VARCHAR(255) NULL,
   TransactionType VARCHAR(255) NULL,
@@ -174,7 +174,7 @@ CONNECTION='mysql://tqteamne_admin:Admin123@112.213.89.49:3306/tqteamne_iTools/W
 
 CREATE TABLE IF NOT EXISTS federated_MasterLog (
   LogID INT(20) NOT NULL AUTO_INCREMENT,
-  LogDate DATETIME NULL,
+  LogDate timestamp not null default current_timestamp,
   AssessorName VARCHAR(255) NULL,
   TblName VARCHAR(100) NULL,
   RecordID INT(10) NULL,
@@ -185,7 +185,7 @@ CREATE TABLE IF NOT EXISTS federated_MasterLog (
   CompanyCode VARCHAR(100) NULL,
   MachineCode VARCHAR(100) NULL,
   Notes TEXT NULL,
-  UpdatedDate DATETIME NULL,
+  UpdatedDate timestamp not null default current_timestamp on update current_timestamp,
   PRIMARY KEY (LogID),
   INDEX RecordID (RecordID),
   INDEX AssessorName (AssessorName),
@@ -196,11 +196,11 @@ CONNECTION='mysql://tqteamne_admin:Admin123@112.213.89.49:3306/tqteamne_iTools/M
 
 CREATE TABLE IF NOT EXISTS federated_PendingAction (
   PendingActionID INT(20) NOT NULL AUTO_INCREMENT,
-  PendingActionDate DATETIME NULL,
+  PendingActionDate timestamp not null default current_timestamp,
   PendingActionName VARCHAR(255) NULL,
   ActionContent TEXT NULL,
   Status VARCHAR(100) NULL,
-  UpdatedDate DATETIME NULL,
+  UpdatedDate timestamp not null default current_timestamp on update current_timestamp,
   PRIMARY KEY (PendingActionID)
 )ENGINE=FEDERATED
 DEFAULT CHARSET=UTF8
@@ -208,14 +208,14 @@ CONNECTION='mysql://tqteamne_admin:Admin123@112.213.89.49:3306/tqteamne_iTools/P
 
 CREATE TABLE IF NOT EXISTS federated_DatabaseVersion (
   iToolAppDatabase VARCHAR(255) NULL,
-  UpdatedDate DATETIME NULL
+  UpdatedDate timestamp not null default current_timestamp on update current_timestamp
 )ENGINE=FEDERATED
 DEFAULT CHARSET=UTF8
 CONNECTION='mysql://tqteamne_admin:Admin123@112.213.89.49:3306/tqteamne_iTools/DatabaseVersion';
 
 CREATE TABLE IF NOT EXISTS federated_SyncHistory (
   SyncHistoryID INT(20) NOT NULL AUTO_INCREMENT,
-  SyncDate DATETIME NULL,
+  SyncDate timestamp not null default current_timestamp,
   Statistic TEXT NULL,
   Status VARCHAR(255) NULL,
   SynType VARCHAR(255) NULL,
