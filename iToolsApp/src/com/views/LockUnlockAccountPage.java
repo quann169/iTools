@@ -9,6 +9,8 @@ import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.text.MessageFormat;
 import java.util.Collections;
 import java.util.Comparator;
@@ -219,6 +221,10 @@ public class LockUnlockAccountPage extends JFrame implements ActionListener {
 		updateTimer.restart();
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	private boolean validateAllFields() {
 		try {
 			updateTimer.restart();
@@ -238,6 +244,9 @@ public class LockUnlockAccountPage extends JFrame implements ActionListener {
 		}
 	}
 
+	/**
+	 * 
+	 */
 	private void updateDisplayName() {
 		mapDisplayName = new HashMap<>();
 
@@ -256,6 +265,9 @@ public class LockUnlockAccountPage extends JFrame implements ActionListener {
 
 	}
 
+	/**
+	 * 
+	 */
 	public void addComponentsToContainer() {
 		container.add(splitLabel);
 		container.add(changePassLabel);
@@ -268,9 +280,25 @@ public class LockUnlockAccountPage extends JFrame implements ActionListener {
 		container.add(userNameComboBox);
 	}
 
+	/**
+	 * 
+	 */
 	public void addActionEvent() {
 		lockAccountButtom.addActionListener(this);
 		unLockAccountButton.addActionListener(this);
+		this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent we) {
+				String ObjButtons[] = { "Yes", "No" };
+				int PromptResult = JOptionPane.showOptionDialog(root, "Are you sure you want to exit?",
+						"Confirm Close", JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null,
+						ObjButtons, ObjButtons[1]);
+				if (PromptResult == JOptionPane.YES_OPTION) {
+					System.exit(0);
+				}
+			}
+		});
 	}
 
 	@Override

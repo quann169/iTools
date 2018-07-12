@@ -7,8 +7,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.awt.font.TextAttribute;
 import java.text.MessageFormat;
 import java.util.Collections;
@@ -27,7 +31,6 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
-import javax.swing.JTextField;
 import javax.swing.Timer;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
@@ -66,8 +69,8 @@ public class ResetPasswordPage extends JFrame implements ActionListener {
 	JLabel matchPasswordLabel = new JLabel();
 
 	JComboBox<String> usernameComboBox = new JComboBox<String>();
-	JTextField passwordTextField = new JPasswordField();
-	JTextField rePasswordTextField = new JPasswordField();
+	JPasswordField passwordTextField = new JPasswordField();
+	JPasswordField rePasswordTextField = new JPasswordField();
 
 	JButton resetPassButton = new JButton();
 
@@ -247,6 +250,13 @@ public class ResetPasswordPage extends JFrame implements ActionListener {
 				validateAllFields();
 			}
 		});
+		
+		passwordTextField.addKeyListener(new KeyAdapter() {
+		    public void keyTyped(KeyEvent e) { 
+		        if (passwordTextField.getPassword().length >= 8 )
+		            e.consume(); 
+		    }  
+		});
 
 		rePasswordLabel.setBounds(70, 240, 350, 60);
 		rePasswordLabel.setFont(new Font(labelFont.getName(), Font.BOLD, 28));
@@ -273,6 +283,13 @@ public class ResetPasswordPage extends JFrame implements ActionListener {
 			public void warn() {
 				validateAllFields();
 			}
+		});
+		
+		rePasswordTextField.addKeyListener(new KeyAdapter() {
+		    public void keyTyped(KeyEvent e) { 
+		        if (rePasswordTextField.getPassword().length >= 8 )
+		            e.consume(); 
+		    }  
 		});
 
 		isFirstChange.setBounds(320, 300, 400, 30);
@@ -374,6 +391,18 @@ public class ResetPasswordPage extends JFrame implements ActionListener {
 
 	public void addActionEvent() {
 		resetPassButton.addActionListener(this);
+		this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent we) {
+				String ObjButtons[] = { "Yes", "No" };
+				int PromptResult = JOptionPane.showOptionDialog(root, "Are you sure you want to exit?", "Confirm Close",
+						JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, ObjButtons, ObjButtons[1]);
+				if (PromptResult == JOptionPane.YES_OPTION) {
+					System.exit(0);
+				}
+			}
+		});
 	}
 
 	@Override
@@ -406,10 +435,8 @@ public class ResetPasswordPage extends JFrame implements ActionListener {
 							usernameResetPass + " - " + user.getPassword(), "XXX", companyCode, machineCode,
 							StringUtils.getCurrentClassAndMethodNames());
 					String confirm = "<html><font size=\"5\" face=\"arial\"><i>Completed Change Password</i></font></html>";
-					JOptionPane.showMessageDialog(container, confirm, "Notify result",
-							JOptionPane.INFORMATION_MESSAGE);
-					
-					
+					JOptionPane.showMessageDialog(container, confirm, "Notify result", JOptionPane.INFORMATION_MESSAGE);
+
 					masterLogObj.insertLog(userName, Enum.ASSESSOR, "", Enum.LOGOUT, "", "", companyCode, machineCode,
 							StringUtils.getCurrentClassAndMethodNames());
 					logger.info(userName + " logout.");
@@ -425,13 +452,10 @@ public class ResetPasswordPage extends JFrame implements ActionListener {
 					masterLogObj.insertLog(userName, Enum.ASSESSOR, "Password", Enum.RESET_PASS,
 							usernameResetPass + " - " + user.getPassword(), "XXX", companyCode, machineCode,
 							StringUtils.getCurrentClassAndMethodNames());
-					String confirm = "<html><font size=\"5\" face=\"arial\"><i>Completed Reset Password" + " " + usernameResetPass
-							+ "</i></font></html>";
-					JOptionPane.showMessageDialog(container, confirm, "Notify result",
-							JOptionPane.INFORMATION_MESSAGE);
+					String confirm = "<html><font size=\"5\" face=\"arial\"><i>Completed Reset Password" + " "
+							+ usernameResetPass + "</i></font></html>";
+					JOptionPane.showMessageDialog(container, confirm, "Notify result", JOptionPane.INFORMATION_MESSAGE);
 				}
-
-				
 
 				passwordTextField.setText("");
 				rePasswordTextField.setText("");

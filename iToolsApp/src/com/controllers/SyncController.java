@@ -65,7 +65,7 @@ public class SyncController {
 		CallableStatement cs = null;
 		try {
 			logger.info("Start SyncHostToLocal");
-			long startTime = System.nanoTime();
+			long startTime = System.currentTimeMillis();
 			cs = mysqlConnect.connect().prepareCall("{call SyncHostToLocal(?,?,?)}");
 			cs.registerOutParameter(3, Types.LONGVARCHAR);
 			cs.setString(1, companyCode);
@@ -83,7 +83,7 @@ public class SyncController {
 			logger.info("End SyncHostToLocal: " + duration / 1000 + "s");
 
 			logger.info("Start SyncLocalToHost");
-			startTime = System.nanoTime();
+			startTime = System.currentTimeMillis();
 			cs = mysqlConnect.connect().prepareCall("{call SyncLocalToHost(?,?,?)}");
 			cs.registerOutParameter(3, Types.LONGVARCHAR);
 			cs.setString(1, companyCode);
@@ -97,7 +97,6 @@ public class SyncController {
 			}
 
 			duration = System.currentTimeMillis() - startTime;
-			startTime = System.currentTimeMillis();
 			logger.info("End SyncLocalToHost: " + duration / 1000 + "s");
 
 		} catch (SQLException e) {

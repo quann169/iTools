@@ -1233,3 +1233,572 @@ updateWorkingTransaction: 0
 2018-07-11 00:26:22 INFO  LoginPage:292 - End syncing thread - C8fs69Yg
 2018-07-11 00:26:22 INFO  LoginPage:293 - ========================================
 2018-07-11 00:26:28 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), '', 'ForgotPasswordPage', '', 'TimeOut', '', '', 'Com1', 'MAC1', 'ForgotPasswordPage$3.actionPerformed');
+2018-07-12 23:14:46 INFO  LoginPage:339 - ************************************************************
+2018-07-12 23:14:46 INFO  LoginPage:340 - ************************************************************
+2018-07-12 23:14:46 INFO  LoginPage:341 - ************************************************************
+2018-07-12 23:14:46 INFO  LoginPage:342 - ************************************************************
+2018-07-12 23:14:46 INFO  LoginPage:343 - Starting iTool app.
+2018-07-12 23:14:46 INFO  LoginPage:344 - companyCode: Com1
+2018-07-12 23:14:46 INFO  LoginPage:345 - companyCodeUH: UHCom
+2018-07-12 23:14:46 INFO  LoginPage:346 - machineCode: MAC1
+2018-07-12 23:14:47 INFO  LoginPage:349 - mDbHost: localhost
+2018-07-12 23:14:47 INFO  LoginPage:350 - mDbUser: admin
+2018-07-12 23:14:47 INFO  LoginPage:351 - mDbPwds: 1qazxsw2
+2018-07-12 23:14:47 INFO  LoginPage:352 - mDbName: iTools_v1p0
+2018-07-12 23:14:47 INFO  LoginPage:353 - mDbPort: 3306
+2018-07-12 23:14:47 INFO  LoginPage:354 - Database version: v1p0 - 2018-07-10 23:28:08
+2018-07-12 23:14:47 INFO  LoginPage:356 - Last Sync: 2018-07-11 00:26:20
+2018-07-12 23:14:47 INFO  LoginPage:367 - App Version: 1.0
+2018-07-12 23:14:50 INFO  LoginPage:378 - checkEmailConfig: true
+2018-07-12 23:14:51 INFO  LoginPage:292 - ========================================
+2018-07-12 23:14:51 INFO  LoginPage:293 - Start syncing thread - JQPWWIw1
+2018-07-12 23:14:51 INFO  LoginPage:294 - ========================================
+2018-07-12 23:14:51 INFO  SyncController:67 - Start SyncHostToLocal
+2018-07-12 23:15:13 INFO  LoginPage:339 - ************************************************************
+2018-07-12 23:15:13 INFO  LoginPage:340 - ************************************************************
+2018-07-12 23:15:13 INFO  LoginPage:341 - ************************************************************
+2018-07-12 23:15:13 INFO  LoginPage:342 - ************************************************************
+2018-07-12 23:15:13 INFO  LoginPage:343 - Starting iTool app.
+2018-07-12 23:15:13 INFO  LoginPage:344 - companyCode: Com1
+2018-07-12 23:15:13 INFO  LoginPage:345 - companyCodeUH: UHCom
+2018-07-12 23:15:13 INFO  LoginPage:346 - machineCode: MAC1
+2018-07-12 23:15:13 INFO  LoginPage:349 - mDbHost: localhost
+2018-07-12 23:15:13 INFO  LoginPage:350 - mDbUser: admin
+2018-07-12 23:15:13 INFO  LoginPage:351 - mDbPwds: 1qazxsw2
+2018-07-12 23:15:13 INFO  LoginPage:352 - mDbName: iTools_v1p0
+2018-07-12 23:15:13 INFO  LoginPage:353 - mDbPort: 3306
+2018-07-12 23:15:13 INFO  LoginPage:354 - Database version: v1p0 - 2018-07-10 23:28:08
+2018-07-12 23:15:13 INFO  LoginPage:356 - Last Sync: 2018-07-12 23:15:11
+2018-07-12 23:15:13 INFO  LoginPage:367 - App Version: 1.0
+2018-07-12 23:15:16 INFO  LoginPage:378 - checkEmailConfig: true
+2018-07-12 23:15:17 INFO  LoginPage:292 - ========================================
+2018-07-12 23:15:17 INFO  LoginPage:293 - Start syncing thread - Xl3Qub5J
+2018-07-12 23:15:17 INFO  LoginPage:294 - ========================================
+2018-07-12 23:15:17 INFO  SyncController:67 - Start SyncHostToLocal
+2018-07-12 23:17:22 INFO  LoginPage:338 - ************************************************************
+2018-07-12 23:17:22 INFO  LoginPage:339 - ************************************************************
+2018-07-12 23:17:22 INFO  LoginPage:340 - ************************************************************
+2018-07-12 23:17:22 INFO  LoginPage:341 - ************************************************************
+2018-07-12 23:17:22 INFO  LoginPage:342 - Starting iTool app.
+2018-07-12 23:17:22 INFO  LoginPage:343 - companyCode: Com1
+2018-07-12 23:17:22 INFO  LoginPage:344 - companyCodeUH: UHCom
+2018-07-12 23:17:22 INFO  LoginPage:345 - machineCode: MAC1
+2018-07-12 23:17:22 INFO  LoginPage:348 - mDbHost: localhost
+2018-07-12 23:17:22 INFO  LoginPage:349 - mDbUser: admin
+2018-07-12 23:17:22 INFO  LoginPage:350 - mDbPwds: 1qazxsw2
+2018-07-12 23:17:22 INFO  LoginPage:351 - mDbName: iTools_v1p0
+2018-07-12 23:17:22 INFO  LoginPage:352 - mDbPort: 3306
+2018-07-12 23:17:22 INFO  LoginPage:353 - Database version: v1p0 - 2018-07-10 23:28:08
+2018-07-12 23:17:22 INFO  LoginPage:355 - Last Sync: 2018-07-12 23:15:31
+2018-07-12 23:17:23 INFO  LoginPage:366 - App Version: 1.0
+2018-07-12 23:17:26 INFO  LoginPage:377 - checkEmailConfig: true
+2018-07-12 23:17:27 INFO  LoginPage:291 - ========================================
+2018-07-12 23:17:27 INFO  LoginPage:292 - Start syncing thread - LSf85WoO
+2018-07-12 23:17:27 INFO  LoginPage:293 - ========================================
+2018-07-12 23:17:27 INFO  SyncController:67 - Start SyncHostToLocal
+2018-07-12 23:32:54 INFO  LoginPage:338 - ************************************************************
+2018-07-12 23:32:54 INFO  LoginPage:339 - ************************************************************
+2018-07-12 23:32:54 INFO  LoginPage:340 - ************************************************************
+2018-07-12 23:32:54 INFO  LoginPage:341 - ************************************************************
+2018-07-12 23:32:54 INFO  LoginPage:342 - Starting iTool app.
+2018-07-12 23:32:54 INFO  LoginPage:343 - companyCode: Com1
+2018-07-12 23:32:54 INFO  LoginPage:344 - companyCodeUH: UHCom
+2018-07-12 23:32:54 INFO  LoginPage:345 - machineCode: MAC1
+2018-07-12 23:32:54 INFO  LoginPage:348 - mDbHost: localhost
+2018-07-12 23:32:54 INFO  LoginPage:349 - mDbUser: admin
+2018-07-12 23:32:54 INFO  LoginPage:350 - mDbPwds: 1qazxsw2
+2018-07-12 23:32:54 INFO  LoginPage:351 - mDbName: iTools_v1p0
+2018-07-12 23:32:54 INFO  LoginPage:352 - mDbPort: 3306
+2018-07-12 23:32:54 INFO  LoginPage:353 - Database version: v1p0 - 2018-07-10 23:28:08
+2018-07-12 23:32:54 INFO  LoginPage:355 - Last Sync: 2018-07-12 23:15:31
+2018-07-12 23:32:55 INFO  LoginPage:366 - App Version: 1.0
+2018-07-12 23:32:57 INFO  LoginPage:377 - checkEmailConfig: true
+2018-07-12 23:32:59 INFO  LoginPage:291 - ========================================
+2018-07-12 23:32:59 INFO  LoginPage:292 - Start syncing thread - ldGms4Gs
+2018-07-12 23:32:59 INFO  LoginPage:293 - ========================================
+2018-07-12 23:32:59 INFO  SyncController:67 - Start SyncHostToLocal
+2018-07-12 23:33:15 INFO  SyncController:76 - insertAssessor: 0,
+updateAssessor: 0,
+insertCompany: 0,
+updateCompany: 0,
+insertMachine: 0,
+updateMachine: 0,
+insertCompanyMachine: 0,
+updateCompanyMachine: 0,
+insertRoleAssessor: 0,
+updateRoleAssessor: 0,
+insertRole: 0,
+updateRole: 0,
+insertTools: 0,
+updateTools: 0,
+insertToolsMachine: 0,
+updateToolsMachine: 0
+2018-07-12 23:33:15 INFO  SyncController:83 - End SyncHostToLocal: -302029058297s
+2018-07-12 23:33:15 INFO  SyncController:85 - Start SyncLocalToHost
+2018-07-12 23:37:11 INFO  LoginPage:338 - ************************************************************
+2018-07-12 23:37:11 INFO  LoginPage:339 - ************************************************************
+2018-07-12 23:37:11 INFO  LoginPage:340 - ************************************************************
+2018-07-12 23:37:11 INFO  LoginPage:341 - ************************************************************
+2018-07-12 23:37:11 INFO  LoginPage:342 - Starting iTool app.
+2018-07-12 23:37:11 INFO  LoginPage:343 - companyCode: Com1
+2018-07-12 23:37:11 INFO  LoginPage:344 - companyCodeUH: UHCom
+2018-07-12 23:37:11 INFO  LoginPage:345 - machineCode: MAC1
+2018-07-12 23:37:12 INFO  LoginPage:348 - mDbHost: localhost
+2018-07-12 23:37:12 INFO  LoginPage:349 - mDbUser: admin
+2018-07-12 23:37:12 INFO  LoginPage:350 - mDbPwds: 1qazxsw2
+2018-07-12 23:37:12 INFO  LoginPage:351 - mDbName: iTools_v1p0
+2018-07-12 23:37:12 INFO  LoginPage:352 - mDbPort: 3306
+2018-07-12 23:37:12 INFO  LoginPage:353 - Database version: v1p0 - 2018-07-10 23:28:08
+2018-07-12 23:37:12 INFO  LoginPage:355 - Last Sync: 2018-07-12 23:33:34
+2018-07-12 23:37:13 INFO  LoginPage:366 - App Version: 1.0
+2018-07-12 23:37:15 INFO  LoginPage:377 - checkEmailConfig: true
+2018-07-12 23:37:17 INFO  LoginPage:291 - ========================================
+2018-07-12 23:37:17 INFO  LoginPage:292 - Start syncing thread - 6nv0aHSO
+2018-07-12 23:37:17 INFO  LoginPage:293 - ========================================
+2018-07-12 23:37:17 INFO  SyncController:67 - Start SyncHostToLocal
+2018-07-12 23:37:31 INFO  SyncController:76 - insertAssessor: 0,
+updateAssessor: 0,
+insertCompany: 0,
+updateCompany: 0,
+insertMachine: 0,
+updateMachine: 0,
+insertCompanyMachine: 0,
+updateCompanyMachine: 0,
+insertRoleAssessor: 0,
+updateRoleAssessor: 0,
+insertRole: 0,
+updateRole: 0,
+insertTools: 0,
+updateTools: 0,
+insertToolsMachine: 0,
+updateToolsMachine: 0
+2018-07-12 23:37:31 INFO  SyncController:83 - End SyncHostToLocal: 14s
+2018-07-12 23:37:31 INFO  SyncController:85 - Start SyncLocalToHost
+2018-07-12 23:37:53 INFO  SyncController:94 - insertMasterLog: 2,
+updateMasterLog: 101,
+insertToolsMachineTray: 0,
+updateToolsMachineTray: 0,
+insertWorkingTransaction: 0,
+updateWorkingTransaction: 0
+2018-07-12 23:37:53 INFO  SyncController:100 - End SyncLocalToHost: -302301901100s
+2018-07-12 23:37:53 INFO  LoginPage:296 - ========================================
+2018-07-12 23:37:53 INFO  LoginPage:297 - End syncing thread - 6nv0aHSO
+2018-07-12 23:37:53 INFO  LoginPage:298 - ========================================
+2018-07-12 23:39:12 INFO  LoginPage:342 - ************************************************************
+2018-07-12 23:39:12 INFO  LoginPage:343 - ************************************************************
+2018-07-12 23:39:12 INFO  LoginPage:344 - ************************************************************
+2018-07-12 23:39:12 INFO  LoginPage:345 - ************************************************************
+2018-07-12 23:39:12 INFO  LoginPage:346 - Starting iTool app.
+2018-07-12 23:39:12 INFO  LoginPage:347 - companyCode: Com1
+2018-07-12 23:39:12 INFO  LoginPage:348 - companyCodeUH: UHCom
+2018-07-12 23:39:12 INFO  LoginPage:349 - machineCode: MAC1
+2018-07-12 23:39:12 INFO  LoginPage:352 - mDbHost: localhost
+2018-07-12 23:39:12 INFO  LoginPage:353 - mDbUser: admin
+2018-07-12 23:39:12 INFO  LoginPage:354 - mDbPwds: 1qazxsw2
+2018-07-12 23:39:12 INFO  LoginPage:355 - mDbName: iTools_v1p0
+2018-07-12 23:39:12 INFO  LoginPage:356 - mDbPort: 3306
+2018-07-12 23:39:12 INFO  LoginPage:357 - Database version: v1p0 - 2018-07-10 23:28:08
+2018-07-12 23:39:12 INFO  LoginPage:359 - Last Sync: 2018-07-12 23:37:51
+2018-07-12 23:39:13 INFO  LoginPage:370 - App Version: 1.0
+2018-07-12 23:39:16 INFO  LoginPage:381 - checkEmailConfig: true
+2018-07-12 23:39:17 INFO  LoginPage:295 - ========================================
+2018-07-12 23:39:17 INFO  LoginPage:296 - Start syncing thread - Ly8G9IHH
+2018-07-12 23:39:17 INFO  LoginPage:297 - ========================================
+2018-07-12 23:39:17 INFO  SyncController:67 - Start SyncHostToLocal
+2018-07-12 23:39:30 INFO  SyncController:76 - insertAssessor: 0,
+updateAssessor: 0,
+insertCompany: 0,
+updateCompany: 0,
+insertMachine: 0,
+updateMachine: 0,
+insertCompanyMachine: 0,
+updateCompanyMachine: 0,
+insertRoleAssessor: 0,
+updateRoleAssessor: 0,
+insertRole: 0,
+updateRole: 0,
+insertTools: 0,
+updateTools: 0,
+insertToolsMachine: 0,
+updateToolsMachine: 0
+2018-07-12 23:39:30 INFO  SyncController:83 - End SyncHostToLocal: 13s
+2018-07-12 23:39:30 INFO  SyncController:85 - Start SyncLocalToHost
+2018-07-12 23:39:53 INFO  SyncController:94 - insertMasterLog: 2,
+updateMasterLog: 105,
+insertToolsMachineTray: 0,
+updateToolsMachineTray: 0,
+insertWorkingTransaction: 0,
+updateWorkingTransaction: 0
+2018-07-12 23:39:53 INFO  SyncController:100 - End SyncLocalToHost: 22s
+2018-07-12 23:39:53 INFO  LoginPage:300 - ========================================
+2018-07-12 23:39:53 INFO  LoginPage:301 - End syncing thread - Ly8G9IHH
+2018-07-12 23:39:53 INFO  LoginPage:302 - ========================================
+2018-07-12 23:45:19 INFO  LoginPage:357 - ************************************************************
+2018-07-12 23:45:19 INFO  LoginPage:358 - ************************************************************
+2018-07-12 23:45:19 INFO  LoginPage:359 - ************************************************************
+2018-07-12 23:45:19 INFO  LoginPage:360 - ************************************************************
+2018-07-12 23:45:19 INFO  LoginPage:361 - Starting iTool app.
+2018-07-12 23:45:19 INFO  LoginPage:362 - companyCode: Com1
+2018-07-12 23:45:19 INFO  LoginPage:363 - companyCodeUH: UHCom
+2018-07-12 23:45:19 INFO  LoginPage:364 - machineCode: MAC1
+2018-07-12 23:45:19 INFO  LoginPage:367 - mDbHost: localhost
+2018-07-12 23:45:19 INFO  LoginPage:368 - mDbUser: admin
+2018-07-12 23:45:19 INFO  LoginPage:369 - mDbPwds: 1qazxsw2
+2018-07-12 23:45:19 INFO  LoginPage:370 - mDbName: iTools_v1p0
+2018-07-12 23:45:19 INFO  LoginPage:371 - mDbPort: 3306
+2018-07-12 23:45:19 INFO  LoginPage:372 - Database version: v1p0 - 2018-07-10 23:28:08
+2018-07-12 23:45:19 INFO  LoginPage:374 - Last Sync: 2018-07-12 23:39:50
+2018-07-12 23:45:20 INFO  LoginPage:385 - App Version: 1.0
+2018-07-12 23:45:23 INFO  LoginPage:396 - checkEmailConfig: true
+2018-07-12 23:45:24 INFO  LoginPage:310 - ========================================
+2018-07-12 23:45:24 INFO  LoginPage:311 - Start syncing thread - 6YD05AYn
+2018-07-12 23:45:24 INFO  LoginPage:312 - ========================================
+2018-07-12 23:45:24 INFO  SyncController:67 - Start SyncHostToLocal
+2018-07-12 23:47:28 INFO  LoginPage:357 - ************************************************************
+2018-07-12 23:47:28 INFO  LoginPage:358 - ************************************************************
+2018-07-12 23:47:28 INFO  LoginPage:359 - ************************************************************
+2018-07-12 23:47:28 INFO  LoginPage:360 - ************************************************************
+2018-07-12 23:47:28 INFO  LoginPage:361 - Starting iTool app.
+2018-07-12 23:47:28 INFO  LoginPage:362 - companyCode: Com1
+2018-07-12 23:47:28 INFO  LoginPage:363 - companyCodeUH: UHCom
+2018-07-12 23:47:28 INFO  LoginPage:364 - machineCode: MAC1
+2018-07-12 23:47:28 INFO  LoginPage:367 - mDbHost: localhost
+2018-07-12 23:47:28 INFO  LoginPage:368 - mDbUser: admin
+2018-07-12 23:47:28 INFO  LoginPage:369 - mDbPwds: 1qazxsw2
+2018-07-12 23:47:28 INFO  LoginPage:370 - mDbName: iTools_v1p0
+2018-07-12 23:47:28 INFO  LoginPage:371 - mDbPort: 3306
+2018-07-12 23:47:28 INFO  LoginPage:372 - Database version: v1p0 - 2018-07-10 23:28:08
+2018-07-12 23:47:28 INFO  LoginPage:374 - Last Sync: 2018-07-12 23:45:39
+2018-07-12 23:47:29 INFO  LoginPage:385 - App Version: 1.0
+2018-07-12 23:47:32 INFO  LoginPage:396 - checkEmailConfig: true
+2018-07-12 23:47:33 INFO  LoginPage:310 - ========================================
+2018-07-12 23:47:33 INFO  LoginPage:311 - Start syncing thread - SnmYhAKU
+2018-07-12 23:47:33 INFO  LoginPage:312 - ========================================
+2018-07-12 23:47:33 INFO  SyncController:67 - Start SyncHostToLocal
+2018-07-13 00:00:06 INFO  LoginPage:373 - ************************************************************
+2018-07-13 00:00:06 INFO  LoginPage:374 - ************************************************************
+2018-07-13 00:00:06 INFO  LoginPage:375 - ************************************************************
+2018-07-13 00:00:06 INFO  LoginPage:376 - ************************************************************
+2018-07-13 00:00:06 INFO  LoginPage:377 - Starting iTool app.
+2018-07-13 00:00:06 INFO  LoginPage:378 - companyCode: Com1
+2018-07-13 00:00:06 INFO  LoginPage:379 - companyCodeUH: UHCom
+2018-07-13 00:00:06 INFO  LoginPage:380 - machineCode: MAC1
+2018-07-13 00:00:06 INFO  LoginPage:383 - mDbHost: localhost
+2018-07-13 00:00:06 INFO  LoginPage:384 - mDbUser: admin
+2018-07-13 00:00:06 INFO  LoginPage:385 - mDbPwds: 1qazxsw2
+2018-07-13 00:00:06 INFO  LoginPage:386 - mDbName: iTools_v1p0
+2018-07-13 00:00:06 INFO  LoginPage:387 - mDbPort: 3306
+2018-07-13 00:00:06 INFO  LoginPage:388 - Database version: v1p0 - 2018-07-10 23:28:08
+2018-07-13 00:00:06 INFO  LoginPage:390 - Last Sync: 2018-07-12 23:47:47
+2018-07-13 00:00:07 INFO  LoginPage:401 - App Version: 1.0
+2018-07-13 00:00:11 INFO  LoginPage:412 - checkEmailConfig: true
+2018-07-13 00:00:12 INFO  LoginPage:326 - ========================================
+2018-07-13 00:00:12 INFO  LoginPage:327 - Start syncing thread - tWofQybN
+2018-07-13 00:00:12 INFO  LoginPage:328 - ========================================
+2018-07-13 00:00:12 INFO  SyncController:67 - Start SyncHostToLocal
+2018-07-13 00:00:47 INFO  LoginPage:373 - ************************************************************
+2018-07-13 00:00:47 INFO  LoginPage:374 - ************************************************************
+2018-07-13 00:00:47 INFO  LoginPage:375 - ************************************************************
+2018-07-13 00:00:47 INFO  LoginPage:376 - ************************************************************
+2018-07-13 00:00:47 INFO  LoginPage:377 - Starting iTool app.
+2018-07-13 00:00:47 INFO  LoginPage:378 - companyCode: Com1
+2018-07-13 00:00:47 INFO  LoginPage:379 - companyCodeUH: UHCom
+2018-07-13 00:00:47 INFO  LoginPage:380 - machineCode: MAC1
+2018-07-13 00:00:47 INFO  LoginPage:383 - mDbHost: localhost
+2018-07-13 00:00:47 INFO  LoginPage:384 - mDbUser: admin
+2018-07-13 00:00:47 INFO  LoginPage:385 - mDbPwds: 1qazxsw2
+2018-07-13 00:00:47 INFO  LoginPage:386 - mDbName: iTools_v1p0
+2018-07-13 00:00:47 INFO  LoginPage:387 - mDbPort: 3306
+2018-07-13 00:00:47 INFO  LoginPage:388 - Database version: v1p0 - 2018-07-10 23:28:08
+2018-07-13 00:00:47 INFO  LoginPage:390 - Last Sync: 2018-07-12 23:47:47
+2018-07-13 00:00:48 INFO  LoginPage:401 - App Version: 1.0
+2018-07-13 00:00:50 INFO  LoginPage:412 - checkEmailConfig: true
+2018-07-13 00:00:51 INFO  LoginPage:326 - ========================================
+2018-07-13 00:00:51 INFO  LoginPage:327 - Start syncing thread - 8r9hv7kj
+2018-07-13 00:00:51 INFO  LoginPage:328 - ========================================
+2018-07-13 00:00:51 INFO  SyncController:67 - Start SyncHostToLocal
+2018-07-13 00:01:06 INFO  SyncController:76 - insertAssessor: 0,
+updateAssessor: 0,
+insertCompany: 0,
+updateCompany: 0,
+insertMachine: 0,
+updateMachine: 0,
+insertCompanyMachine: 0,
+updateCompanyMachine: 0,
+insertRoleAssessor: 0,
+updateRoleAssessor: 0,
+insertRole: 0,
+updateRole: 0,
+insertTools: 0,
+updateTools: 0,
+insertToolsMachine: 0,
+updateToolsMachine: 0
+2018-07-13 00:01:06 INFO  SyncController:83 - End SyncHostToLocal: 14s
+2018-07-13 00:01:06 INFO  SyncController:85 - Start SyncLocalToHost
+2018-07-13 00:01:14 INFO  LoginPage:373 - ************************************************************
+2018-07-13 00:01:14 INFO  LoginPage:374 - ************************************************************
+2018-07-13 00:01:14 INFO  LoginPage:375 - ************************************************************
+2018-07-13 00:01:14 INFO  LoginPage:376 - ************************************************************
+2018-07-13 00:01:14 INFO  LoginPage:377 - Starting iTool app.
+2018-07-13 00:01:14 INFO  LoginPage:378 - companyCode: Com1
+2018-07-13 00:01:14 INFO  LoginPage:379 - companyCodeUH: UHCom
+2018-07-13 00:01:14 INFO  LoginPage:380 - machineCode: MAC1
+2018-07-13 00:01:15 INFO  LoginPage:383 - mDbHost: localhost
+2018-07-13 00:01:15 INFO  LoginPage:384 - mDbUser: admin
+2018-07-13 00:01:15 INFO  LoginPage:385 - mDbPwds: 1qazxsw2
+2018-07-13 00:01:15 INFO  LoginPage:386 - mDbName: iTools_v1p0
+2018-07-13 00:01:15 INFO  LoginPage:387 - mDbPort: 3306
+2018-07-13 00:01:15 INFO  LoginPage:388 - Database version: v1p0 - 2018-07-10 23:28:08
+2018-07-13 00:01:15 INFO  LoginPage:390 - Last Sync: 2018-07-13 00:01:06
+2018-07-13 00:01:16 INFO  LoginPage:401 - App Version: 1.0
+2018-07-13 00:01:18 INFO  LoginPage:412 - checkEmailConfig: true
+2018-07-13 00:01:19 INFO  LoginPage:326 - ========================================
+2018-07-13 00:01:19 INFO  LoginPage:327 - Start syncing thread - AWvKbb3k
+2018-07-13 00:01:19 INFO  LoginPage:328 - ========================================
+2018-07-13 00:01:19 INFO  SyncController:67 - Start SyncHostToLocal
+2018-07-13 00:01:45 INFO  LoginPage:373 - ************************************************************
+2018-07-13 00:01:45 INFO  LoginPage:374 - ************************************************************
+2018-07-13 00:01:45 INFO  LoginPage:375 - ************************************************************
+2018-07-13 00:01:45 INFO  LoginPage:376 - ************************************************************
+2018-07-13 00:01:45 INFO  LoginPage:377 - Starting iTool app.
+2018-07-13 00:01:45 INFO  LoginPage:378 - companyCode: Com1
+2018-07-13 00:01:45 INFO  LoginPage:379 - companyCodeUH: UHCom
+2018-07-13 00:01:45 INFO  LoginPage:380 - machineCode: MAC1
+2018-07-13 00:01:45 INFO  LoginPage:383 - mDbHost: localhost
+2018-07-13 00:01:45 INFO  LoginPage:384 - mDbUser: admin
+2018-07-13 00:01:45 INFO  LoginPage:385 - mDbPwds: 1qazxsw2
+2018-07-13 00:01:45 INFO  LoginPage:386 - mDbName: iTools_v1p0
+2018-07-13 00:01:45 INFO  LoginPage:387 - mDbPort: 3306
+2018-07-13 00:01:45 INFO  LoginPage:388 - Database version: v1p0 - 2018-07-10 23:28:08
+2018-07-13 00:01:45 INFO  LoginPage:390 - Last Sync: 2018-07-13 00:01:34
+2018-07-13 00:01:46 INFO  LoginPage:401 - App Version: 1.0
+2018-07-13 00:01:47 INFO  LoginPage:326 - ========================================
+2018-07-13 00:01:47 INFO  LoginPage:327 - Start syncing thread - lUAl9WEI
+2018-07-13 00:01:47 INFO  LoginPage:328 - ========================================
+2018-07-13 00:01:47 INFO  SyncController:67 - Start SyncHostToLocal
+2018-07-13 00:02:01 INFO  SyncController:76 - insertAssessor: 0,
+updateAssessor: 0,
+insertCompany: 0,
+updateCompany: 0,
+insertMachine: 0,
+updateMachine: 0,
+insertCompanyMachine: 0,
+updateCompanyMachine: 0,
+insertRoleAssessor: 0,
+updateRoleAssessor: 0,
+insertRole: 0,
+updateRole: 0,
+insertTools: 0,
+updateTools: 0,
+insertToolsMachine: 0,
+updateToolsMachine: 0
+2018-07-13 00:02:01 INFO  SyncController:83 - End SyncHostToLocal: 13s
+2018-07-13 00:02:01 INFO  SyncController:85 - Start SyncLocalToHost
+2018-07-13 00:02:36 INFO  SyncController:94 - insertMasterLog: 2,
+updateMasterLog: 117,
+insertToolsMachineTray: 0,
+updateToolsMachineTray: 0,
+insertWorkingTransaction: 0,
+updateWorkingTransaction: 0
+2018-07-13 00:02:36 INFO  SyncController:100 - End SyncLocalToHost: 34s
+2018-07-13 00:02:36 INFO  LoginPage:331 - ========================================
+2018-07-13 00:02:36 INFO  LoginPage:332 - End syncing thread - lUAl9WEI
+2018-07-13 00:02:36 INFO  LoginPage:333 - ========================================
+2018-07-13 00:03:32 INFO  LoginPage:373 - ************************************************************
+2018-07-13 00:03:32 INFO  LoginPage:374 - ************************************************************
+2018-07-13 00:03:32 INFO  LoginPage:375 - ************************************************************
+2018-07-13 00:03:32 INFO  LoginPage:376 - ************************************************************
+2018-07-13 00:03:32 INFO  LoginPage:377 - Starting iTool app.
+2018-07-13 00:03:32 INFO  LoginPage:378 - companyCode: Com1
+2018-07-13 00:03:32 INFO  LoginPage:379 - companyCodeUH: UHCom
+2018-07-13 00:03:32 INFO  LoginPage:380 - machineCode: MAC1
+2018-07-13 00:03:33 INFO  LoginPage:383 - mDbHost: localhost
+2018-07-13 00:03:33 INFO  LoginPage:384 - mDbUser: admin
+2018-07-13 00:03:33 INFO  LoginPage:385 - mDbPwds: 1qazxsw2
+2018-07-13 00:03:33 INFO  LoginPage:386 - mDbName: iTools_v1p0
+2018-07-13 00:03:33 INFO  LoginPage:387 - mDbPort: 3306
+2018-07-13 00:03:33 INFO  LoginPage:388 - Database version: v1p0 - 2018-07-10 23:28:08
+2018-07-13 00:03:33 INFO  LoginPage:390 - Last Sync: 2018-07-13 00:02:34
+2018-07-13 00:03:34 INFO  LoginPage:401 - App Version: 1.0
+2018-07-13 00:03:36 INFO  LoginPage:412 - checkEmailConfig: true
+2018-07-13 00:03:37 INFO  LoginPage:326 - ========================================
+2018-07-13 00:03:37 INFO  LoginPage:327 - Start syncing thread - YCcytkMZ
+2018-07-13 00:03:37 INFO  LoginPage:328 - ========================================
+2018-07-13 00:03:37 INFO  SyncController:67 - Start SyncHostToLocal
+2018-07-13 00:14:49 INFO  LoginPage:373 - ************************************************************
+2018-07-13 00:14:49 INFO  LoginPage:374 - ************************************************************
+2018-07-13 00:14:49 INFO  LoginPage:375 - ************************************************************
+2018-07-13 00:14:49 INFO  LoginPage:376 - ************************************************************
+2018-07-13 00:14:49 INFO  LoginPage:377 - Starting iTool app.
+2018-07-13 00:14:49 INFO  LoginPage:378 - companyCode: Com1
+2018-07-13 00:14:49 INFO  LoginPage:379 - companyCodeUH: UHCom
+2018-07-13 00:14:49 INFO  LoginPage:380 - machineCode: MAC1
+2018-07-13 00:14:50 INFO  LoginPage:383 - mDbHost: localhost
+2018-07-13 00:14:50 INFO  LoginPage:384 - mDbUser: admin
+2018-07-13 00:14:50 INFO  LoginPage:385 - mDbPwds: 1qazxsw2
+2018-07-13 00:14:50 INFO  LoginPage:386 - mDbName: iTools_v1p0
+2018-07-13 00:14:50 INFO  LoginPage:387 - mDbPort: 3306
+2018-07-13 00:14:50 INFO  LoginPage:388 - Database version: v1p0 - 2018-07-13 00:11:39
+2018-07-13 00:14:50 INFO  LoginPage:390 - Last Sync: 2018-07-13 00:11:40
+2018-07-13 00:14:51 INFO  LoginPage:401 - App Version: 1.0
+2018-07-13 00:14:54 INFO  LoginPage:412 - checkEmailConfig: true
+2018-07-13 00:14:55 INFO  LoginPage:326 - ========================================
+2018-07-13 00:14:55 INFO  LoginPage:327 - Start syncing thread - wtOcaK7N
+2018-07-13 00:14:55 INFO  LoginPage:328 - ========================================
+2018-07-13 00:14:55 INFO  SyncController:67 - Start SyncHostToLocal
+2018-07-13 00:15:14 INFO  SyncController:76 - insertAssessor: 2,
+updateAssessor: 0,
+insertCompany: 0,
+updateCompany: 0,
+insertMachine: 1,
+updateMachine: 0,
+insertCompanyMachine: 1,
+updateCompanyMachine: 0,
+insertRoleAssessor: 0,
+updateRoleAssessor: 0,
+insertRole: 0,
+updateRole: 0,
+insertTools: 1,
+updateTools: 0,
+insertToolsMachine: 0,
+updateToolsMachine: 0
+2018-07-13 00:15:14 INFO  SyncController:83 - End SyncHostToLocal: 19s
+2018-07-13 00:15:14 INFO  SyncController:85 - Start SyncLocalToHost
+2018-07-13 00:15:23 INFO  SyncController:94 - insertMasterLog: 0,
+updateMasterLog: 1,
+insertToolsMachineTray: 0,
+updateToolsMachineTray: 0,
+insertWorkingTransaction: 0,
+updateWorkingTransaction: 0
+2018-07-13 00:15:23 INFO  SyncController:100 - End SyncLocalToHost: 8s
+2018-07-13 00:15:23 INFO  LoginPage:331 - ========================================
+2018-07-13 00:15:23 INFO  LoginPage:332 - End syncing thread - wtOcaK7N
+2018-07-13 00:15:23 INFO  LoginPage:333 - ========================================
+2018-07-13 00:16:17 INFO  LoginPage:230 - Login with username: com1admin
+2018-07-13 00:16:17 INFO  LoginController:46 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin FROM Assessor where Assessor.UserName='com1admin' and (Password=md5('123456') or LastPassword=md5('123456'));
+2018-07-13 00:16:17 INFO  LoginPage:234 - Login OK
+2018-07-13 00:16:17 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'RO7LQKKG', 'Assessor', '', 'Login', '', '', 'Com1', 'MAC1', 'LoginPage.actionPerformed');
+2018-07-13 00:16:17 INFO  LoginController:114 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'Com1' and assessor.UserName= 'com1admin'
+2018-07-13 00:16:17 INFO  LoginPage:251 - listRoles: [Roles [roleName=SubAdmin], Roles [roleName=Emp]]
+2018-07-13 00:16:17 INFO  LoginPage:271 - Show DashboardPage
+2018-07-13 00:16:17 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Assessor', '', 'ShowDashboard', '', '', 'Com1', 'MAC1', 'DashboardPage.<init>');
+2018-07-13 00:16:48 INFO  LoginPage:373 - ************************************************************
+2018-07-13 00:16:48 INFO  LoginPage:374 - ************************************************************
+2018-07-13 00:16:48 INFO  LoginPage:375 - ************************************************************
+2018-07-13 00:16:48 INFO  LoginPage:376 - ************************************************************
+2018-07-13 00:16:48 INFO  LoginPage:377 - Starting iTool app.
+2018-07-13 00:16:48 INFO  LoginPage:378 - companyCode: Com1
+2018-07-13 00:16:48 INFO  LoginPage:379 - companyCodeUH: UHCom
+2018-07-13 00:16:48 INFO  LoginPage:380 - machineCode: MAC1
+2018-07-13 00:16:48 INFO  LoginPage:383 - mDbHost: localhost
+2018-07-13 00:16:48 INFO  LoginPage:384 - mDbUser: admin
+2018-07-13 00:16:48 INFO  LoginPage:385 - mDbPwds: 1qazxsw2
+2018-07-13 00:16:48 INFO  LoginPage:386 - mDbName: iTools_v1p0
+2018-07-13 00:16:48 INFO  LoginPage:387 - mDbPort: 3306
+2018-07-13 00:16:48 INFO  LoginPage:388 - Database version: v1p0 - 2018-07-13 00:11:39
+2018-07-13 00:16:48 INFO  LoginPage:390 - Last Sync: 2018-07-13 00:15:20
+2018-07-13 00:16:49 INFO  LoginPage:401 - App Version: 1.0
+2018-07-13 00:16:52 INFO  LoginPage:412 - checkEmailConfig: true
+2018-07-13 00:16:53 INFO  LoginPage:326 - ========================================
+2018-07-13 00:16:53 INFO  LoginPage:327 - Start syncing thread - SD8lw5cQ
+2018-07-13 00:16:53 INFO  LoginPage:328 - ========================================
+2018-07-13 00:16:53 INFO  SyncController:67 - Start SyncHostToLocal
+2018-07-13 00:17:04 INFO  LoginPage:230 - Login with username: RO7LQKKG
+2018-07-13 00:17:04 INFO  LoginController:46 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin FROM Assessor where Assessor.UserName='ro7lqkkg' and (Password=md5('123456') or LastPassword=md5('123456'));
+2018-07-13 00:17:04 INFO  LoginPage:234 - Login OK
+2018-07-13 00:17:04 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'RO7LQKKG', 'Assessor', '', 'Login', '', '', 'Com1', 'MAC1', 'LoginPage.actionPerformed');
+2018-07-13 00:17:04 INFO  LoginController:114 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'Com1' and assessor.UserName= 'ro7lqkkg'
+2018-07-13 00:17:04 INFO  LoginPage:251 - listRoles: []
+2018-07-13 00:17:04 INFO  LoginController:114 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'UHCom' and assessor.UserName= 'ro7lqkkg'
+2018-07-13 00:17:04 INFO  LoginPage:255 - listRolesUH: []
+2018-07-13 00:17:07 INFO  LoginPage:260 - User does not have role
+2018-07-13 00:17:10 INFO  SyncController:76 - insertAssessor: 0,
+updateAssessor: 0,
+insertCompany: 0,
+updateCompany: 0,
+insertMachine: 0,
+updateMachine: 0,
+insertCompanyMachine: 0,
+updateCompanyMachine: 0,
+insertRoleAssessor: 0,
+updateRoleAssessor: 0,
+insertRole: 0,
+updateRole: 0,
+insertTools: 0,
+updateTools: 0,
+insertToolsMachine: 0,
+updateToolsMachine: 0
+2018-07-13 00:17:10 INFO  SyncController:83 - End SyncHostToLocal: 17s
+2018-07-13 00:17:10 INFO  SyncController:85 - Start SyncLocalToHost
+2018-07-13 00:17:11 INFO  LoginPage:230 - Login with username: RO7LQKKG
+2018-07-13 00:17:11 INFO  LoginController:46 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin FROM Assessor where Assessor.UserName='ro7lqkkg' and (Password=md5('123457') or LastPassword=md5('123457'));
+2018-07-13 00:17:11 INFO  LoginPage:283 - Login Fail
+2018-07-13 00:17:12 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'RO7LQKKG', 'Assessor', '', 'LoginFail', '', '', 'Com1', 'MAC1', 'LoginPage.actionPerformed');
+2018-07-13 00:17:19 INFO  SyncController:94 - insertMasterLog: 0,
+updateMasterLog: 35,
+insertToolsMachineTray: 0,
+updateToolsMachineTray: 0,
+insertWorkingTransaction: 0,
+updateWorkingTransaction: 0
+2018-07-13 00:17:19 INFO  SyncController:100 - End SyncLocalToHost: 8s
+2018-07-13 00:17:19 INFO  LoginPage:331 - ========================================
+2018-07-13 00:17:19 INFO  LoginPage:332 - End syncing thread - SD8lw5cQ
+2018-07-13 00:17:19 INFO  LoginPage:333 - ========================================
+2018-07-13 00:18:40 INFO  LoginPage:373 - ************************************************************
+2018-07-13 00:18:40 INFO  LoginPage:374 - ************************************************************
+2018-07-13 00:18:40 INFO  LoginPage:375 - ************************************************************
+2018-07-13 00:18:40 INFO  LoginPage:376 - ************************************************************
+2018-07-13 00:18:40 INFO  LoginPage:377 - Starting iTool app.
+2018-07-13 00:18:40 INFO  LoginPage:378 - companyCode: Com1
+2018-07-13 00:18:40 INFO  LoginPage:379 - companyCodeUH: UHCom
+2018-07-13 00:18:40 INFO  LoginPage:380 - machineCode: MAC1
+2018-07-13 00:18:40 INFO  LoginPage:383 - mDbHost: localhost
+2018-07-13 00:18:40 INFO  LoginPage:384 - mDbUser: admin
+2018-07-13 00:18:40 INFO  LoginPage:385 - mDbPwds: 1qazxsw2
+2018-07-13 00:18:40 INFO  LoginPage:386 - mDbName: iTools_v1p0
+2018-07-13 00:18:40 INFO  LoginPage:387 - mDbPort: 3306
+2018-07-13 00:18:40 INFO  LoginPage:388 - Database version: v1p0 - 2018-07-13 00:11:39
+2018-07-13 00:18:40 INFO  LoginPage:390 - Last Sync: 2018-07-13 00:17:16
+2018-07-13 00:18:41 INFO  LoginPage:401 - App Version: 1.0
+2018-07-13 00:18:45 INFO  LoginPage:412 - checkEmailConfig: true
+2018-07-13 00:18:46 INFO  LoginPage:326 - ========================================
+2018-07-13 00:18:46 INFO  LoginPage:327 - Start syncing thread - ca93HoGK
+2018-07-13 00:18:46 INFO  LoginPage:328 - ========================================
+2018-07-13 00:18:46 INFO  SyncController:67 - Start SyncHostToLocal
+2018-07-13 00:18:52 INFO  LoginPage:230 - Login with username: RO7LQKKG
+2018-07-13 00:18:52 INFO  LoginController:46 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin FROM Assessor where Assessor.UserName='ro7lqkkg' and (Password=md5('123456') or LastPassword=md5('123456'));
+2018-07-13 00:18:52 INFO  LoginPage:234 - Login OK
+2018-07-13 00:18:52 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'RO7LQKKG', 'Assessor', '', 'Login', '', '', 'Com1', 'MAC1', 'LoginPage.actionPerformed');
+2018-07-13 00:18:52 INFO  LoginController:114 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'Com1' and assessor.UserName= 'ro7lqkkg'
+2018-07-13 00:18:52 INFO  LoginPage:251 - listRoles: []
+2018-07-13 00:18:52 INFO  LoginController:114 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'UHCom' and assessor.UserName= 'ro7lqkkg'
+2018-07-13 00:18:52 INFO  LoginPage:255 - listRolesUH: []
+2018-07-13 00:18:55 INFO  LoginPage:260 - User does not have role
+2018-07-13 00:19:02 INFO  SyncController:76 - insertAssessor: 0,
+updateAssessor: 0,
+insertCompany: 0,
+updateCompany: 0,
+insertMachine: 0,
+updateMachine: 0,
+insertCompanyMachine: 0,
+updateCompanyMachine: 0,
+insertRoleAssessor: 0,
+updateRoleAssessor: 0,
+insertRole: 0,
+updateRole: 0,
+insertTools: 0,
+updateTools: 0,
+insertToolsMachine: 0,
+updateToolsMachine: 0
+2018-07-13 00:19:02 INFO  SyncController:83 - End SyncHostToLocal: 16s
+2018-07-13 00:19:02 INFO  SyncController:85 - Start SyncLocalToHost
+2018-07-13 00:19:09 INFO  SyncController:94 - insertMasterLog: 0,
+updateMasterLog: 4,
+insertToolsMachineTray: 0,
+updateToolsMachineTray: 0,
+insertWorkingTransaction: 0,
+updateWorkingTransaction: 0
+2018-07-13 00:19:09 INFO  SyncController:100 - End SyncLocalToHost: 6s
+2018-07-13 00:19:09 INFO  LoginPage:331 - ========================================
+2018-07-13 00:19:09 INFO  LoginPage:332 - End syncing thread - ca93HoGK
+2018-07-13 00:19:09 INFO  LoginPage:333 - ========================================

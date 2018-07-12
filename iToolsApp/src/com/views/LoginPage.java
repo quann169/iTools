@@ -2,8 +2,14 @@ package com.views;
 
 import java.awt.Container;
 import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -14,11 +20,14 @@ import java.util.concurrent.ThreadLocalRandom;
 
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import javax.swing.SwingWorker;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
@@ -115,8 +124,17 @@ public class LoginPage extends JFrame implements ActionListener {
 			public void warn() {
 				if (userTextField.getText().length() > 0 && passwordField.getText().length() > 0) {
 					loginButton.setEnabled(true);
+				} else {
+					loginButton.setEnabled(false);
 				}
 			}
+		});
+		
+		userTextField.addKeyListener(new KeyAdapter() {
+		    public void keyTyped(KeyEvent e) { 
+		        if (userTextField.getText().length() >= 20 )
+		            e.consume(); 
+		    }  
 		});
 
 		passwordLabel.setBounds(80, 260, 250, 60);
@@ -141,8 +159,17 @@ public class LoginPage extends JFrame implements ActionListener {
 			public void warn() {
 				if (userTextField.getText().length() > 0 && passwordField.getText().length() > 0) {
 					loginButton.setEnabled(true);
+				} else {
+					loginButton.setEnabled(false);
 				}
 			}
+		});
+		
+		passwordField.addKeyListener(new KeyAdapter() {
+		    public void keyTyped(KeyEvent e) { 
+		        if (passwordField.getPassword().length >= 8 )
+		            e.consume(); 
+		    }  
 		});
 
 		showPassword.setBounds(295, 315, 350, 50);
@@ -172,6 +199,19 @@ public class LoginPage extends JFrame implements ActionListener {
 		loginButton.addActionListener(this);
 		forgotPwdButton.addActionListener(this);
 		showPassword.addActionListener(this);
+		this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent we) {
+				String ObjButtons[] = { "Yes", "No" };
+				int PromptResult = JOptionPane.showOptionDialog(root, "Are you sure you want to exit?",
+						"Confirm Close", JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null,
+						ObjButtons, ObjButtons[1]);
+				if (PromptResult == JOptionPane.YES_OPTION) {
+					System.exit(0);
+				}
+			}
+		});
 	}
 
 	@SuppressWarnings("deprecation")
@@ -183,7 +223,7 @@ public class LoginPage extends JFrame implements ActionListener {
 		userName = userTextField.getText();
 		if (e.getSource() == loginButton) {
 
-			userText = "com1admin";
+//			userText = "com1admin";
 			// userText = "uhacc1";
 			// pwdText = "123456";
 
@@ -287,7 +327,7 @@ public class LoginPage extends JFrame implements ActionListener {
 					logger.info("Start syncing thread - " + passwordTmp);
 					logger.info("========================================");
 					syncCtl.syncDataAutomatically(companyCode, machineCode);
-					
+
 					logger.info("========================================");
 					logger.info("End syncing thread - " + passwordTmp);
 					logger.info("========================================");
@@ -311,44 +351,84 @@ public class LoginPage extends JFrame implements ActionListener {
 
 	}
 
+	/**
+	 * 
+	 */
 	private static void printConfigInfo() {
-		logger.info("************************************************************");
-		logger.info("************************************************************");
-		logger.info("************************************************************");
-		logger.info("************************************************************");
-		logger.info("Starting iTool app.");
-		logger.info("companyCode: " + companyCode);
-		logger.info("companyCodeUH: " + companyCodeUH);
-		logger.info("machineCode: " + machineCode);
+		final JDialog d = new JDialog();
+		JPanel p1 = new JPanel(new GridBagLayout());
+		JLabel progress = new JLabel("Checking configuration...");
+		p1.add(progress, new GridBagConstraints());
+		d.getContentPane().add(p1);
+		d.setBounds(100, 100, 500, 200);
+		// d.setLocationRelativeTo(f);
+		d.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
+		d.setModal(true);
 
-		List<String> databaseInfo = ctlObj.getDatabaseVersion();
-		logger.info("mDbHost: " + databaseInfo.get(0));
-		logger.info("mDbUser: " + databaseInfo.get(1));
-		logger.info("mDbPwds: " + databaseInfo.get(2));
-		logger.info("mDbName: " + databaseInfo.get(3));
-		logger.info("mDbPort: " + databaseInfo.get(4));
-		logger.info("Database version: " + databaseInfo.get(5));
+		SwingWorker<?, ?> worker = new SwingWorker<Void, String>() {
+			protected Void doInBackground() throws InterruptedException {
 
-		logger.info("Last Sync: " + databaseInfo.get(6));
+				publish("Checking database configuration...");
+				Thread.sleep(1000);
+				logger.info("************************************************************");
+				logger.info("************************************************************");
+				logger.info("************************************************************");
+				logger.info("************************************************************");
+				logger.info("Starting iTool app.");
+				logger.info("companyCode: " + companyCode);
+				logger.info("companyCodeUH: " + companyCodeUH);
+				logger.info("machineCode: " + machineCode);
 
-		boolean checkEmailConfig = emailUtils.checkEmailConnection();
-		logger.info("checkEmailConfig: " + checkEmailConfig);
+				List<String> databaseInfo = ctlObj.getDatabaseVersion();
+				logger.info("mDbHost: " + databaseInfo.get(0));
+				logger.info("mDbUser: " + databaseInfo.get(1));
+				logger.info("mDbPwds: " + databaseInfo.get(2));
+				logger.info("mDbName: " + databaseInfo.get(3));
+				logger.info("mDbPort: " + databaseInfo.get(4));
+				logger.info("Database version: " + databaseInfo.get(5));
 
-		File versionFile = new File("");
-		try {
-			versionFile = new File(LoginPage.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath()
-					+ "/com/message/version");
+				logger.info("Last Sync: " + databaseInfo.get(6));
+				Thread.sleep(1000);
+				File versionFile = new File("");
+				try {
+					versionFile = new File(
+							LoginPage.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath()
+									+ "/com/message/version");
 
-			if (versionFile.isFile()) {
-				BufferedReader cfgBuffer = new BufferedReader(new FileReader(versionFile));
-				String text = cfgBuffer.readLine();
-				logger.info("App Version: " + text);
-				cfgBuffer.close();
+					if (versionFile.isFile()) {
+						BufferedReader cfgBuffer = new BufferedReader(new FileReader(versionFile));
+						String text = cfgBuffer.readLine();
+						logger.info("App Version: " + text);
+						cfgBuffer.close();
+					}
+				} catch (Exception e1) {
+					logger.info("Verison err: " + e1.getMessage());
+				}
+
+				publish("Checking email...");
+				Thread.sleep(1000);
+
+				boolean checkEmailConfig = emailUtils.checkEmailConnection();
+				logger.info("checkEmailConfig: " + checkEmailConfig);
+
+				publish("Done checking...");
+				Thread.sleep(1000);
+
+				return null;
 			}
-		} catch (Exception e1) {
-			logger.info("Verison err: " + e1.getMessage());
-		}
 
+			protected void process(List<String> chunks) {
+				String selection = chunks.get(chunks.size() - 1);
+				progress.setText(selection);
+			}
+
+			protected void done() {
+				d.dispose();
+
+			}
+		};
+		worker.execute();
+		d.setVisible(true);
 	}
 
 }
