@@ -1,4 +1,4 @@
-CREATE TABLE federated_Company (
+CREATE TABLE  IF NOT EXISTS federated_Company (
   CompanyID INT(10) NOT NULL AUTO_INCREMENT,
   CompanyCode VARCHAR(100) NOT NULL,
   CompanyName VARCHAR(100) NULL,
