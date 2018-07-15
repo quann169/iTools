@@ -34,10 +34,11 @@ CREATE TABLE IF NOT EXISTS Assessor (
   Address VARCHAR(255) NULL,
   Phone VARCHAR(255) NULL,
   CompanyCode VARCHAR(100) NULL,
-  IsLocked BOOLEAN DEFAULT 0,
-  IsActive BOOLEAN NOT NULL,
+  IsLocked INT(10) NOT NULL DEFAULT 0,
+  IsActive INT(10) NOT NULL DEFAULT 1,
   LastPassword VARCHAR(255) NULL,
   IsFirstTimeLogin BOOLEAN NULL,
+  FailTimes INT(10) NOT NULL DEFAULT 0,
   UpdatedDate timestamp not null default current_timestamp on update current_timestamp,
   PRIMARY KEY (AssessorID),
   INDEX UserName (UserName),
@@ -45,8 +46,8 @@ CREATE TABLE IF NOT EXISTS Assessor (
 );
 
 INSERT INTO Assessor(AssessorID, UserName, Password, FirstName, LastName, EmailAddress, CompanyCode, IsActive) VALUES 
-	(1, "itools_admin", "e10adc3949ba59abbe56e057f20f883e", "ADMIN", "ADMIN", "quann169@gmail.com", "UHCom", 1) -- ,
-	
+	(1, "admin", "e10adc3949ba59abbe56e057f20f883e", "ADMIN", "ADMIN", "quann169@gmail.com", "UHCom", 1) -- ,
+	,(5, "com1admin", "e10adc3949ba59abbe56e057f20f883e", "ADMIN", "Com1", "quann169@gmail.com", "Com1", 1)
 	/*(2, "uhadmin1", "e10adc3949ba59abbe56e057f20f883e", "ADMIN", "UH", "admin1@aaa.bbb", "UHCom", 1),
 	(3, "uhacc1", "e10adc3949ba59abbe56e057f20f883e", "Acc1", "UH", "acc1@aaa.bbb", "UHCom", 1),
 	(4, "uhacc2", "e10adc3949ba59abbe56e057f20f883e", "Acc2", "UH", "acc2@aaa.bbb", "UHCom", 1),
@@ -1016,6 +1017,7 @@ BEGIN
 	
 	set  returnResult = @finalResult;
 END
+
 
 
 DELIMITER ;

@@ -40,7 +40,7 @@ public enum Enum {
 	FORGOT_PASS_USERNAME_EMAIL_NOT_MATCH("ForgotPassUsernameNotMatchEmail"),
 	FORGOT_PASS_RESET_OK("ForgotPassResetOk"),
 
-	SHOW_DASHBOARD("ShowDashboard"), LOGIN("Login"), LOGIN_FAIL("LoginFail"), FORGOT_PASS("ForgotPass"), CREATE(
+	SHOW_DASHBOARD("ShowDashboard"), LOGIN("Login"), LOCKED_ACC("LockedAcc"), LOGIN_FAIL("LoginFail"), FORGOT_PASS("ForgotPass"), CREATE(
 			"Create"), UPDATE("Update"), CREATE_FAIL("CreateFail"), UPDATE_FAIL("UpdateFail"), DELETE(
 					"Delete"), CHANGE_PASS("ChangePass"), RESET_PASS("ResetPass"), CHANGE_PASS_FAIL(
 							"ChangePassFail"), RESET_PASS_FAIL("ResetPassFail"), LOGOUT("Logout"), UNLOCK_MACHINE(

@@ -70,7 +70,7 @@ public class StringUtils {
 		frame.setVisible(true);
 //		frame.setBounds(0, 0, 700, 460);
 		frame.setBounds(0, 0, 800, 600);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		frame.addComponentListener(new ComponentAdapter() {
 			@Override
 			public void componentResized(ComponentEvent e) {

@@ -144,8 +144,12 @@ public class Assessor {
 	/**
 	 * @return the isActive
 	 */
-	public String isLocked() {
-		return isLocked;
+	public boolean isLocked() {
+		if ("1".equals(isLocked) || isLocked.toUpperCase().equals("LOCKED")) {
+			return true;
+		}
+		
+		return false;
 	}
 
 	/**

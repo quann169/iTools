@@ -29,6 +29,7 @@ CREATE TABLE IF NOT EXISTS federated_Assessor (
   IsActive BOOLEAN NOT NULL,
   LastPassword VARCHAR(255) NULL,
   IsFirstTimeLogin BOOLEAN NULL,
+  FailTimes INT(10) NOT NULL DEFAULT 0,
   UpdatedDate timestamp not null default current_timestamp on update current_timestamp,
   PRIMARY KEY (AssessorID),
   INDEX UserName (UserName),

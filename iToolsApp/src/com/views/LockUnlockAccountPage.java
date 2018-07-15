@@ -306,7 +306,7 @@ public class LockUnlockAccountPage extends JFrame implements ActionListener {
 		updateTimer.restart();
 		String displayName = userNameComboBox.getSelectedItem().toString();
 		String userNameLock = mapDisplayName.get(displayName).getUsername();
-		String oldIsActiveValue = mapDisplayName.get(displayName).isLocked();
+		boolean oldIsActiveValue = mapDisplayName.get(displayName).isLocked();
 		if (e.getSource() == lockAccountButtom) {
 			empCtlObj.updateIsLocked(userNameLock, companyCode, 0);
 			masterLogObj.insertLog(userName, Enum.ASSESSOR, "IsLocked", Enum.UPDATE,

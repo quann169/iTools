@@ -13,6 +13,7 @@ import java.awt.event.WindowEvent;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.ResourceBundle;
@@ -129,12 +130,12 @@ public class LoginPage extends JFrame implements ActionListener {
 				}
 			}
 		});
-		
+
 		userTextField.addKeyListener(new KeyAdapter() {
-		    public void keyTyped(KeyEvent e) { 
-		        if (userTextField.getText().length() >= 20 )
-		            e.consume(); 
-		    }  
+			public void keyTyped(KeyEvent e) {
+				if (userTextField.getText().length() >= 20)
+					e.consume();
+			}
 		});
 
 		passwordLabel.setBounds(80, 260, 250, 60);
@@ -164,12 +165,12 @@ public class LoginPage extends JFrame implements ActionListener {
 				}
 			}
 		});
-		
+
 		passwordField.addKeyListener(new KeyAdapter() {
-		    public void keyTyped(KeyEvent e) { 
-		        if (passwordField.getPassword().length >= 8 )
-		            e.consume(); 
-		    }  
+			public void keyTyped(KeyEvent e) {
+				if (passwordField.getPassword().length >= 8)
+					e.consume();
+			}
 		});
 
 		showPassword.setBounds(295, 315, 350, 50);
@@ -204,9 +205,8 @@ public class LoginPage extends JFrame implements ActionListener {
 			@Override
 			public void windowClosing(WindowEvent we) {
 				String ObjButtons[] = { "Yes", "No" };
-				int PromptResult = JOptionPane.showOptionDialog(root, "Are you sure you want to exit?",
-						"Confirm Close", JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null,
-						ObjButtons, ObjButtons[1]);
+				int PromptResult = JOptionPane.showOptionDialog(root, "Are you sure you want to exit?", "Confirm Close",
+						JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, ObjButtons, ObjButtons[1]);
 				if (PromptResult == JOptionPane.YES_OPTION) {
 					System.exit(0);
 				}
@@ -223,7 +223,7 @@ public class LoginPage extends JFrame implements ActionListener {
 		userName = userTextField.getText();
 		if (e.getSource() == loginButton) {
 
-//			userText = "com1admin";
+			// userText = "com1admin";
 			// userText = "uhacc1";
 			// pwdText = "123456";
 
@@ -235,8 +235,12 @@ public class LoginPage extends JFrame implements ActionListener {
 
 				masterLogObj.insertLog(userName, Enum.ASSESSOR, "", Enum.LOGIN, "", "", companyCode, machineCode,
 						StringUtils.getCurrentClassAndMethodNames());
-
-				if (result.isFirstTimeLogin()) {
+				if (result.isLocked()) {
+					logger.info("User blocked");
+					JOptionPane.showMessageDialog(this, bundleMessage.getString("Login_Page_Login_Acc_Locked"));
+					masterLogObj.insertLog(userName, Enum.ASSESSOR, "", Enum.LOCKED_ACC, "", "", companyCode,
+							machineCode, StringUtils.getCurrentClassAndMethodNames());
+				} else if (result.isFirstTimeLogin()) {
 					logger.info("isFirstTimeLogin: " + result.isFirstTimeLogin());
 					JFrame old = root;
 					root = new ResetPasswordPage(result, false, result.isFirstTimeLogin());
@@ -281,9 +285,35 @@ public class LoginPage extends JFrame implements ActionListener {
 				}
 			} else {
 				logger.info("Login Fail");
-				JOptionPane.showMessageDialog(this, bundleMessage.getString("Login_Page_Login_Fail"));
-				masterLogObj.insertLog(userName, Enum.ASSESSOR, "", Enum.LOGIN_FAIL, "", "", companyCode, machineCode,
-						StringUtils.getCurrentClassAndMethodNames());
+
+				logger.info("Update Fail Time");
+				ctlObj.updateFailTimes(companyCode, userText);
+
+				boolean lockUsers = ctlObj.lockUser(companyCode, userText);
+				if (lockUsers) {
+					String email = ctlObj.getEmailUser(companyCode, userText);
+					logger.info("Lock User");
+					Thread one = new Thread() {
+						public void run() {
+							List<String> listCCEmail = new ArrayList<>();
+							listCCEmail.add("quann169@gmail.com");
+							listCCEmail.add("quannguyen@savarti.com");
+							emailUtils.sendEmail(email, listCCEmail, "Login_Fail_3_Times",
+									"Login fail 3 times. Application will lock your account. Please contact your admin to unlock.");
+
+						}
+					};
+
+					one.start();
+					masterLogObj.insertLog(userName, Enum.ASSESSOR, "", Enum.LOCK_USER, "", "", companyCode,
+							machineCode, StringUtils.getCurrentClassAndMethodNames());
+					JOptionPane.showMessageDialog(this, bundleMessage.getString("Login_Page_Login_Fail_3_Times"));
+
+				} else {
+					JOptionPane.showMessageDialog(this, bundleMessage.getString("Login_Page_Login_Fail"));
+					masterLogObj.insertLog(userName, Enum.ASSESSOR, "", Enum.LOGIN_FAIL, "", "", companyCode,
+							machineCode, StringUtils.getCurrentClassAndMethodNames());
+				}
 
 			}
 

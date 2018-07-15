@@ -41,6 +41,7 @@ CREATE TABLE IF NOT EXISTS Assessor (
   IsActive BOOLEAN NOT NULL,
   LastPassword VARCHAR(255) NULL,
   IsFirstTimeLogin BOOLEAN NULL,
+  FailTimes INT(10) NOT NULL DEFAULT 0,
   UpdatedDate timestamp not null default current_timestamp on update current_timestamp,
   PRIMARY KEY (AssessorID),
   INDEX UserName (UserName),
@@ -48,19 +49,19 @@ CREATE TABLE IF NOT EXISTS Assessor (
 );
 
 INSERT INTO Assessor(AssessorID, UserName, Password, FirstName, LastName, EmailAddress, CompanyCode, IsActive) VALUES 
-	(1, "administrator", "e10adc3949ba59abbe56e057f20f883e", "ADMIN", "ADMIN", "quann169@gmail.com", "UHCom", 1),
-	(2, "uhadmin1", "e10adc3949ba59abbe56e057f20f883e", "ADMIN", "UH", "admin1@aaa.bbb", "UHCom", 1),
-	(3, "uhacc1", "e10adc3949ba59abbe56e057f20f883e", "Acc1", "UH", "acc1@aaa.bbb", "UHCom", 1),
-	(4, "uhacc2", "e10adc3949ba59abbe56e057f20f883e", "Acc2", "UH", "acc2@aaa.bbb", "UHCom", 1),
-	(5, "com1admin", "e10adc3949ba59abbe56e057f20f883e", "ADMIN", "Com1", "quannguyen@savarti.com", "Com1", 1),
-	(6, "com1user1", "e10adc3949ba59abbe56e057f20f883e", "User1", "Com1", "com1admin@aaa.bbb", "Com1", 1),
-	(7, "com1user2", "e10adc3949ba59abbe56e057f20f883e", "User2", "Com1", "com1admin@aaa.bbb", "Com1", 1),
-	(8, "com1user3", "e10adc3949ba59abbe56e057f20f883e", "User3", "Com1", "com1admin@aaa.bbb", "Com1", 1),
-	(9, "com2admin", "e10adc3949ba59abbe56e057f20f883e", "ADMIN", "Com2", "com1admin@aaa.bbb", "Com2", 1),
-	(10, "com2user1", "e10adc3949ba59abbe56e057f20f883e", "User1", "Com2", "com1admin@aaa.bbb", "Com2", 1),
-    (11, "RO7LQKKG", "e10adc3949ba59abbe56e057f20f883e", "User1", "Com2", "com1admin@aaa.bbb", "Com2", 1);
+	(1, "admin", "e10adc3949ba59abbe56e057f20f883e", "ADMIN", "ADMIN", "quann169@gmail.com", "UHCom", 1),
+	(2, "uhadmin1", "e10adc3949ba59abbe56e057f20f883e", "ADMIN", "UH", "quann169@gmail.com", "UHCom", 1),
+	(3, "uhacc1", "e10adc3949ba59abbe56e057f20f883e", "Acc1", "UH", "quann169@gmail.com", "UHCom", 1),
+	(4, "uhacc2", "e10adc3949ba59abbe56e057f20f883e", "Acc2", "UH", "quann169@gmail.com", "UHCom", 1),
+	(5, "com1admin", "e10adc3949ba59abbe56e057f20f883e", "ADMIN", "Com1", "quann169@gmail.com", "Com1", 1),
+	(6, "com1user1", "e10adc3949ba59abbe56e057f20f883e", "User1", "Com1", "quann169@gmail.com", "Com1", 1),
+	(7, "com1user2", "e10adc3949ba59abbe56e057f20f883e", "User2", "Com1", "quann169@gmail.com", "Com1", 1),
+	(8, "com1user3", "e10adc3949ba59abbe56e057f20f883e", "User3", "Com1", "quann169@gmail.com", "Com1", 1),
+	(9, "com2admin", "e10adc3949ba59abbe56e057f20f883e", "ADMIN", "Com2", "quann169@gmail.com", "Com2", 1),
+	(10, "com2user1", "e10adc3949ba59abbe56e057f20f883e", "User1", "Com2", "quann169@gmail.com", "Com2", 1),
+    (11, "RO7LQKKG", "e10adc3949ba59abbe56e057f20f883e", "User1", "Com2", "quann169@gmail.com", "Com2", 1);
 
-update Assessor set IsFirstTimeLogin = 0 where UserName = 'com1admin';
+update Assessor set IsFirstTimeLogin = 1 where UserName = 'com1admin';
 
 DROP TABLE IF EXISTS Roles;
 CREATE TABLE IF NOT EXISTS Roles (

@@ -1802,3 +1802,615 @@ updateWorkingTransaction: 0
 2018-07-13 00:19:09 INFO  LoginPage:331 - ========================================
 2018-07-13 00:19:09 INFO  LoginPage:332 - End syncing thread - ca93HoGK
 2018-07-13 00:19:09 INFO  LoginPage:333 - ========================================
+2018-07-14 10:00:02 INFO  LoginPage:392 - ************************************************************
+2018-07-14 10:00:02 INFO  LoginPage:393 - ************************************************************
+2018-07-14 10:00:02 INFO  LoginPage:394 - ************************************************************
+2018-07-14 10:00:02 INFO  LoginPage:395 - ************************************************************
+2018-07-14 10:00:02 INFO  LoginPage:396 - Starting iTool app.
+2018-07-14 10:00:02 INFO  LoginPage:397 - companyCode: Com1
+2018-07-14 10:00:02 INFO  LoginPage:398 - companyCodeUH: UHCom
+2018-07-14 10:00:02 INFO  LoginPage:399 - machineCode: MAC1
+2018-07-14 10:00:02 INFO  LoginPage:402 - mDbHost: localhost
+2018-07-14 10:00:02 INFO  LoginPage:403 - mDbUser: admin
+2018-07-14 10:00:02 INFO  LoginPage:404 - mDbPwds: 1qazxsw2
+2018-07-14 10:00:02 INFO  LoginPage:405 - mDbName: iTools_v1p0
+2018-07-14 10:00:02 INFO  LoginPage:406 - mDbPort: 3306
+2018-07-14 10:00:02 INFO  LoginPage:407 - Database version: v1p0 - 2018-07-14 09:58:43
+2018-07-14 10:00:02 INFO  LoginPage:409 - Last Sync: 2018-07-14 09:58:44
+2018-07-14 10:00:03 INFO  LoginPage:420 - App Version: 1.0
+2018-07-14 10:00:15 INFO  LoginPage:431 - checkEmailConfig: true
+2018-07-14 10:00:16 INFO  LoginPage:345 - ========================================
+2018-07-14 10:00:16 INFO  LoginPage:346 - Start syncing thread - f780OIXb
+2018-07-14 10:00:16 INFO  LoginPage:347 - ========================================
+2018-07-14 10:00:16 INFO  SyncController:67 - Start SyncHostToLocal
+2018-07-14 10:00:16 ERROR SyncController:103 - Parameter number 3 is not an OUT parameter
+2018-07-14 10:00:16 INFO  LoginPage:350 - ========================================
+2018-07-14 10:00:16 INFO  LoginPage:351 - End syncing thread - f780OIXb
+2018-07-14 10:00:16 INFO  LoginPage:352 - ========================================
+2018-07-14 10:00:27 INFO  LoginPage:230 - Login with username: itools_admin
+2018-07-14 10:00:27 INFO  LoginController:46 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin, IsLocked FROM Assessor where Assessor.IsActive = 1 and Assessor.UserName='itools_admin' and (Password=md5('111') or LastPassword=md5('111'));
+2018-07-14 10:00:27 INFO  LoginPage:287 - Login Fail
+2018-07-14 10:00:27 INFO  LoginPage:289 - Update Fail Time
+2018-07-14 10:00:27 INFO  LoginController:85 - update Assessor set FailTimes = FailTimes + 1 where Assessor.UserName = 'itools_admin' and Assessor.CompanyCode = 'Com1' ;
+2018-07-14 10:00:27 INFO  LoginPage:292 - Check Locked User
+2018-07-14 10:00:27 INFO  LoginController:114 - update Assessor set Assessor.IsLocked = 1 where Assessor.UserName = 'itools_admin' and Assessor.CompanyCode = 'Com1' and Assessor.FailTimes > 2;
+2018-07-14 10:00:36 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'itools_admin', 'Assessor', '', 'LockUser', '', '', 'Com1', 'MAC1', 'LoginPage.actionPerformed');
+2018-07-14 10:09:19 INFO  LoginPage:392 - ************************************************************
+2018-07-14 10:09:19 INFO  LoginPage:393 - ************************************************************
+2018-07-14 10:09:19 INFO  LoginPage:394 - ************************************************************
+2018-07-14 10:09:19 INFO  LoginPage:395 - ************************************************************
+2018-07-14 10:09:19 INFO  LoginPage:396 - Starting iTool app.
+2018-07-14 10:09:19 INFO  LoginPage:397 - companyCode: Com1
+2018-07-14 10:09:19 INFO  LoginPage:398 - companyCodeUH: UHCom
+2018-07-14 10:09:19 INFO  LoginPage:399 - machineCode: MAC1
+2018-07-14 10:09:20 INFO  LoginPage:402 - mDbHost: localhost
+2018-07-14 10:09:20 INFO  LoginPage:403 - mDbUser: admin
+2018-07-14 10:09:20 INFO  LoginPage:404 - mDbPwds: 1qazxsw2
+2018-07-14 10:09:20 INFO  LoginPage:405 - mDbName: iTools_v1p0
+2018-07-14 10:09:20 INFO  LoginPage:406 - mDbPort: 3306
+2018-07-14 10:09:20 INFO  LoginPage:407 - Database version: v1p0 - 2018-07-14 09:58:43
+2018-07-14 10:09:20 INFO  LoginPage:409 - Last Sync: 2018-07-14 09:58:44
+2018-07-14 10:09:21 INFO  LoginPage:420 - App Version: 1.0
+2018-07-14 10:09:27 INFO  LoginPage:431 - checkEmailConfig: true
+2018-07-14 10:09:28 INFO  LoginPage:345 - ========================================
+2018-07-14 10:09:28 INFO  LoginPage:346 - Start syncing thread - n8O9jG5O
+2018-07-14 10:09:28 INFO  LoginPage:347 - ========================================
+2018-07-14 10:09:28 INFO  SyncController:67 - Start SyncHostToLocal
+2018-07-14 10:09:28 ERROR SyncController:103 - Parameter number 3 is not an OUT parameter
+2018-07-14 10:09:28 INFO  LoginPage:350 - ========================================
+2018-07-14 10:09:28 INFO  LoginPage:351 - End syncing thread - n8O9jG5O
+2018-07-14 10:09:28 INFO  LoginPage:352 - ========================================
+2018-07-14 10:09:33 INFO  LoginPage:230 - Login with username: dqsda
+2018-07-14 10:09:33 INFO  LoginController:46 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin, IsLocked FROM Assessor where Assessor.IsActive = 1 and Assessor.UserName='dqsda' and (Password=md5('adad') or LastPassword=md5('adad'));
+2018-07-14 10:09:33 INFO  LoginPage:287 - Login Fail
+2018-07-14 10:09:33 INFO  LoginPage:289 - Update Fail Time
+2018-07-14 10:09:33 INFO  LoginController:85 - update Assessor set FailTimes = FailTimes + 1 where Assessor.UserName = 'dqsda' and Assessor.CompanyCode = 'Com1' ;
+2018-07-14 10:09:33 INFO  LoginPage:292 - Check Locked User
+2018-07-14 10:09:33 INFO  LoginController:114 - update Assessor set Assessor.IsLocked = 1 where Assessor.UserName = 'dqsda' and Assessor.CompanyCode = 'Com1' and Assessor.FailTimes > 2;
+2018-07-14 10:10:19 INFO  LoginPage:392 - ************************************************************
+2018-07-14 10:10:19 INFO  LoginPage:393 - ************************************************************
+2018-07-14 10:10:19 INFO  LoginPage:394 - ************************************************************
+2018-07-14 10:10:19 INFO  LoginPage:395 - ************************************************************
+2018-07-14 10:10:19 INFO  LoginPage:396 - Starting iTool app.
+2018-07-14 10:10:19 INFO  LoginPage:397 - companyCode: Com1
+2018-07-14 10:10:19 INFO  LoginPage:398 - companyCodeUH: UHCom
+2018-07-14 10:10:19 INFO  LoginPage:399 - machineCode: MAC1
+2018-07-14 10:10:20 INFO  LoginPage:402 - mDbHost: localhost
+2018-07-14 10:10:20 INFO  LoginPage:403 - mDbUser: admin
+2018-07-14 10:10:20 INFO  LoginPage:404 - mDbPwds: 1qazxsw2
+2018-07-14 10:10:20 INFO  LoginPage:405 - mDbName: iTools_v1p0
+2018-07-14 10:10:20 INFO  LoginPage:406 - mDbPort: 3306
+2018-07-14 10:10:20 INFO  LoginPage:407 - Database version: v1p0 - 2018-07-14 09:58:43
+2018-07-14 10:10:20 INFO  LoginPage:409 - Last Sync: 2018-07-14 09:58:44
+2018-07-14 10:10:21 INFO  LoginPage:420 - App Version: 1.0
+2018-07-14 10:10:27 INFO  LoginPage:431 - checkEmailConfig: true
+2018-07-14 10:10:28 INFO  LoginPage:345 - ========================================
+2018-07-14 10:10:28 INFO  LoginPage:346 - Start syncing thread - kg31klnf
+2018-07-14 10:10:28 INFO  LoginPage:347 - ========================================
+2018-07-14 10:10:28 INFO  SyncController:67 - Start SyncHostToLocal
+2018-07-14 10:10:28 ERROR SyncController:103 - Parameter number 3 is not an OUT parameter
+2018-07-14 10:10:28 INFO  LoginPage:350 - ========================================
+2018-07-14 10:10:28 INFO  LoginPage:351 - End syncing thread - kg31klnf
+2018-07-14 10:10:28 INFO  LoginPage:352 - ========================================
+2018-07-14 10:10:32 INFO  LoginPage:230 - Login with username: itools_admin
+2018-07-14 10:10:32 INFO  LoginController:46 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin, IsLocked FROM Assessor where Assessor.IsActive = 1 and Assessor.UserName='itools_admin' and (Password=md5('aaa') or LastPassword=md5('aaa'));
+2018-07-14 10:10:32 INFO  LoginPage:287 - Login Fail
+2018-07-14 10:10:32 INFO  LoginPage:289 - Update Fail Time
+2018-07-14 10:10:32 INFO  LoginController:85 - update Assessor set FailTimes = FailTimes + 1 where Assessor.UserName = 'itools_admin' and Assessor.CompanyCode = 'Com1' ;
+2018-07-14 10:10:32 INFO  LoginPage:292 - Check Locked User
+2018-07-14 10:10:32 INFO  LoginController:114 - update Assessor set Assessor.IsLocked = 1 where Assessor.UserName = 'itools_admin' and Assessor.CompanyCode = 'Com1' and Assessor.FailTimes > 2;
+2018-07-14 10:10:36 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'itools_admin', 'Assessor', '', 'LoginFail', '', '', 'Com1', 'MAC1', 'LoginPage.actionPerformed');
+2018-07-14 10:10:37 INFO  LoginPage:230 - Login with username: itools_admin
+2018-07-14 10:10:37 INFO  LoginController:46 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin, IsLocked FROM Assessor where Assessor.IsActive = 1 and Assessor.UserName='itools_admin' and (Password=md5('aaa') or LastPassword=md5('aaa'));
+2018-07-14 10:10:37 INFO  LoginPage:287 - Login Fail
+2018-07-14 10:10:37 INFO  LoginPage:289 - Update Fail Time
+2018-07-14 10:10:37 INFO  LoginController:85 - update Assessor set FailTimes = FailTimes + 1 where Assessor.UserName = 'itools_admin' and Assessor.CompanyCode = 'Com1' ;
+2018-07-14 10:10:37 INFO  LoginPage:292 - Check Locked User
+2018-07-14 10:10:37 INFO  LoginController:114 - update Assessor set Assessor.IsLocked = 1 where Assessor.UserName = 'itools_admin' and Assessor.CompanyCode = 'Com1' and Assessor.FailTimes > 2;
+2018-07-14 10:10:38 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'itools_admin', 'Assessor', '', 'LoginFail', '', '', 'Com1', 'MAC1', 'LoginPage.actionPerformed');
+2018-07-14 10:10:40 INFO  LoginPage:230 - Login with username: itools_admin
+2018-07-14 10:10:40 INFO  LoginController:46 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin, IsLocked FROM Assessor where Assessor.IsActive = 1 and Assessor.UserName='itools_admin' and (Password=md5('aaa') or LastPassword=md5('aaa'));
+2018-07-14 10:10:40 INFO  LoginPage:287 - Login Fail
+2018-07-14 10:10:40 INFO  LoginPage:289 - Update Fail Time
+2018-07-14 10:10:40 INFO  LoginController:85 - update Assessor set FailTimes = FailTimes + 1 where Assessor.UserName = 'itools_admin' and Assessor.CompanyCode = 'Com1' ;
+2018-07-14 10:10:40 INFO  LoginPage:292 - Check Locked User
+2018-07-14 10:10:40 INFO  LoginController:114 - update Assessor set Assessor.IsLocked = 1 where Assessor.UserName = 'itools_admin' and Assessor.CompanyCode = 'Com1' and Assessor.FailTimes > 2;
+2018-07-14 10:10:41 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'itools_admin', 'Assessor', '', 'LoginFail', '', '', 'Com1', 'MAC1', 'LoginPage.actionPerformed');
+2018-07-14 10:12:35 INFO  LoginPage:230 - Login with username: itools_admin
+2018-07-14 10:12:35 INFO  LoginController:46 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin, IsLocked FROM Assessor where Assessor.IsActive = 1 and Assessor.UserName='itools_admin' and (Password=md5('aaa') or LastPassword=md5('aaa'));
+2018-07-14 10:12:35 INFO  LoginPage:287 - Login Fail
+2018-07-14 10:12:35 INFO  LoginPage:289 - Update Fail Time
+2018-07-14 10:12:35 INFO  LoginController:85 - update Assessor set FailTimes = FailTimes + 1 where Assessor.UserName = 'itools_admin' and Assessor.CompanyCode = 'Com1' ;
+2018-07-14 10:12:35 INFO  LoginPage:292 - Check Locked User
+2018-07-14 10:12:35 INFO  LoginController:114 - update Assessor set Assessor.IsLocked = 1 where Assessor.UserName = 'itools_admin' and Assessor.CompanyCode = 'Com1' and Assessor.FailTimes > 2;
+2018-07-14 10:12:37 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'itools_admin', 'Assessor', '', 'LoginFail', '', '', 'Com1', 'MAC1', 'LoginPage.actionPerformed');
+2018-07-14 10:12:38 INFO  LoginPage:230 - Login with username: itools_admin
+2018-07-14 10:12:38 INFO  LoginController:46 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin, IsLocked FROM Assessor where Assessor.IsActive = 1 and Assessor.UserName='itools_admin' and (Password=md5('aaa') or LastPassword=md5('aaa'));
+2018-07-14 10:12:38 INFO  LoginPage:287 - Login Fail
+2018-07-14 10:12:38 INFO  LoginPage:289 - Update Fail Time
+2018-07-14 10:12:38 INFO  LoginController:85 - update Assessor set FailTimes = FailTimes + 1 where Assessor.UserName = 'itools_admin' and Assessor.CompanyCode = 'Com1' ;
+2018-07-14 10:12:38 INFO  LoginPage:292 - Check Locked User
+2018-07-14 10:12:38 INFO  LoginController:114 - update Assessor set Assessor.IsLocked = 1 where Assessor.UserName = 'itools_admin' and Assessor.CompanyCode = 'Com1' and Assessor.FailTimes > 2;
+2018-07-14 10:12:39 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'itools_admin', 'Assessor', '', 'LoginFail', '', '', 'Com1', 'MAC1', 'LoginPage.actionPerformed');
+2018-07-14 10:12:40 INFO  LoginPage:230 - Login with username: itools_admin
+2018-07-14 10:12:40 INFO  LoginController:46 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin, IsLocked FROM Assessor where Assessor.IsActive = 1 and Assessor.UserName='itools_admin' and (Password=md5('aaa') or LastPassword=md5('aaa'));
+2018-07-14 10:12:40 INFO  LoginPage:287 - Login Fail
+2018-07-14 10:12:40 INFO  LoginPage:289 - Update Fail Time
+2018-07-14 10:12:40 INFO  LoginController:85 - update Assessor set FailTimes = FailTimes + 1 where Assessor.UserName = 'itools_admin' and Assessor.CompanyCode = 'Com1' ;
+2018-07-14 10:12:40 INFO  LoginPage:292 - Check Locked User
+2018-07-14 10:12:40 INFO  LoginController:114 - update Assessor set Assessor.IsLocked = 1 where Assessor.UserName = 'itools_admin' and Assessor.CompanyCode = 'Com1' and Assessor.FailTimes > 2;
+2018-07-14 10:12:45 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'itools_admin', 'Assessor', '', 'LockUser', '', '', 'Com1', 'MAC1', 'LoginPage.actionPerformed');
+2018-07-14 10:13:45 INFO  LoginPage:392 - ************************************************************
+2018-07-14 10:13:45 INFO  LoginPage:393 - ************************************************************
+2018-07-14 10:13:45 INFO  LoginPage:394 - ************************************************************
+2018-07-14 10:13:45 INFO  LoginPage:395 - ************************************************************
+2018-07-14 10:13:45 INFO  LoginPage:396 - Starting iTool app.
+2018-07-14 10:13:45 INFO  LoginPage:397 - companyCode: Com1
+2018-07-14 10:13:45 INFO  LoginPage:398 - companyCodeUH: UHCom
+2018-07-14 10:13:45 INFO  LoginPage:399 - machineCode: MAC1
+2018-07-14 10:13:46 INFO  LoginPage:402 - mDbHost: localhost
+2018-07-14 10:13:46 INFO  LoginPage:403 - mDbUser: admin
+2018-07-14 10:13:46 INFO  LoginPage:404 - mDbPwds: 1qazxsw2
+2018-07-14 10:13:46 INFO  LoginPage:405 - mDbName: iTools_v1p0
+2018-07-14 10:13:46 INFO  LoginPage:406 - mDbPort: 3306
+2018-07-14 10:13:46 INFO  LoginPage:407 - Database version: v1p0 - 2018-07-14 10:13:30
+2018-07-14 10:13:46 INFO  LoginPage:409 - Last Sync: 2018-07-14 10:13:32
+2018-07-14 10:13:47 INFO  LoginPage:420 - App Version: 1.0
+2018-07-14 10:13:53 INFO  LoginPage:431 - checkEmailConfig: true
+2018-07-14 10:13:54 INFO  LoginPage:345 - ========================================
+2018-07-14 10:13:54 INFO  LoginPage:346 - Start syncing thread - 5jQPXyl2
+2018-07-14 10:13:54 INFO  LoginPage:347 - ========================================
+2018-07-14 10:13:54 INFO  SyncController:67 - Start SyncHostToLocal
+2018-07-14 10:13:54 ERROR SyncController:103 - Parameter number 3 is not an OUT parameter
+2018-07-14 10:13:54 INFO  LoginPage:350 - ========================================
+2018-07-14 10:13:54 INFO  LoginPage:351 - End syncing thread - 5jQPXyl2
+2018-07-14 10:13:54 INFO  LoginPage:352 - ========================================
+2018-07-14 10:14:02 INFO  LoginPage:230 - Login with username: com1admin
+2018-07-14 10:14:02 INFO  LoginController:46 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin, IsLocked FROM Assessor where Assessor.IsActive = 1 and Assessor.UserName='com1admin' and (Password=md5('123456') or LastPassword=md5('123456'));
+2018-07-14 10:14:02 INFO  LoginPage:234 - Login OK
+2018-07-14 10:14:02 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Assessor', '', 'Login', '', '', 'Com1', 'MAC1', 'LoginPage.actionPerformed');
+2018-07-14 10:14:02 INFO  LoginController:173 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'Com1' and assessor.UserName= 'com1admin'
+2018-07-14 10:14:02 INFO  LoginPage:255 - listRoles: []
+2018-07-14 10:14:02 INFO  LoginController:173 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'UHCom' and assessor.UserName= 'com1admin'
+2018-07-14 10:14:02 INFO  LoginPage:259 - listRolesUH: []
+2018-07-14 10:14:05 INFO  LoginPage:264 - User does not have role
+2018-07-14 10:14:35 INFO  LoginPage:230 - Login with username: com1admin
+2018-07-14 10:14:35 INFO  LoginController:46 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin, IsLocked FROM Assessor where Assessor.IsActive = 1 and Assessor.UserName='com1admin' and (Password=md5('123456') or LastPassword=md5('123456'));
+2018-07-14 10:14:35 INFO  LoginPage:287 - Login Fail
+2018-07-14 10:14:35 INFO  LoginPage:289 - Update Fail Time
+2018-07-14 10:14:35 INFO  LoginController:85 - update Assessor set FailTimes = FailTimes + 1 where Assessor.UserName = 'com1admin' and Assessor.CompanyCode = 'Com1' ;
+2018-07-14 10:14:35 INFO  LoginPage:292 - Check Locked User
+2018-07-14 10:14:35 INFO  LoginController:114 - update Assessor set Assessor.IsLocked = 1 where Assessor.UserName = 'com1admin' and Assessor.CompanyCode = 'Com1' and Assessor.FailTimes > 2;
+2018-07-14 10:14:37 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Assessor', '', 'LoginFail', '', '', 'Com1', 'MAC1', 'LoginPage.actionPerformed');
+2018-07-14 10:14:49 INFO  LoginPage:230 - Login with username: com1admin
+2018-07-14 10:14:49 INFO  LoginController:46 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin, IsLocked FROM Assessor where Assessor.IsActive = 1 and Assessor.UserName='com1admin' and (Password=md5('123456') or LastPassword=md5('123456'));
+2018-07-14 10:14:49 INFO  LoginPage:234 - Login OK
+2018-07-14 10:14:49 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Assessor', '', 'Login', '', '', 'Com1', 'MAC1', 'LoginPage.actionPerformed');
+2018-07-14 10:14:49 INFO  LoginController:173 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'Com1' and assessor.UserName= 'com1admin'
+2018-07-14 10:14:49 INFO  LoginPage:255 - listRoles: []
+2018-07-14 10:14:49 INFO  LoginController:173 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'UHCom' and assessor.UserName= 'com1admin'
+2018-07-14 10:14:49 INFO  LoginPage:259 - listRolesUH: []
+2018-07-14 10:14:57 INFO  LoginPage:264 - User does not have role
+2018-07-14 10:15:24 INFO  LoginPage:392 - ************************************************************
+2018-07-14 10:15:24 INFO  LoginPage:393 - ************************************************************
+2018-07-14 10:15:24 INFO  LoginPage:394 - ************************************************************
+2018-07-14 10:15:24 INFO  LoginPage:395 - ************************************************************
+2018-07-14 10:15:24 INFO  LoginPage:396 - Starting iTool app.
+2018-07-14 10:15:24 INFO  LoginPage:397 - companyCode: Com1
+2018-07-14 10:15:24 INFO  LoginPage:398 - companyCodeUH: UHCom
+2018-07-14 10:15:24 INFO  LoginPage:399 - machineCode: MAC1
+2018-07-14 10:15:25 INFO  LoginPage:402 - mDbHost: localhost
+2018-07-14 10:15:25 INFO  LoginPage:403 - mDbUser: admin
+2018-07-14 10:15:25 INFO  LoginPage:404 - mDbPwds: 1qazxsw2
+2018-07-14 10:15:25 INFO  LoginPage:405 - mDbName: iTools_v1p0
+2018-07-14 10:15:25 INFO  LoginPage:406 - mDbPort: 3306
+2018-07-14 10:15:25 INFO  LoginPage:407 - Database version: v1p0 - 2018-07-14 10:13:30
+2018-07-14 10:15:25 INFO  LoginPage:409 - Last Sync: 2018-07-14 10:13:32
+2018-07-14 10:15:26 INFO  LoginPage:420 - App Version: 1.0
+2018-07-14 10:15:32 INFO  LoginPage:431 - checkEmailConfig: true
+2018-07-14 10:15:33 INFO  LoginPage:345 - ========================================
+2018-07-14 10:15:33 INFO  LoginPage:346 - Start syncing thread - zdgIXwrD
+2018-07-14 10:15:33 INFO  LoginPage:347 - ========================================
+2018-07-14 10:15:33 INFO  SyncController:67 - Start SyncHostToLocal
+2018-07-14 10:15:33 ERROR SyncController:103 - Parameter number 3 is not an OUT parameter
+2018-07-14 10:15:33 INFO  LoginPage:350 - ========================================
+2018-07-14 10:15:33 INFO  LoginPage:351 - End syncing thread - zdgIXwrD
+2018-07-14 10:15:33 INFO  LoginPage:352 - ========================================
+2018-07-14 10:15:44 INFO  LoginPage:230 - Login with username: com1admin
+2018-07-14 10:15:49 INFO  LoginController:46 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin, IsLocked FROM Assessor where Assessor.IsActive = 1 and Assessor.UserName='com1admin' and (Password=md5('123456') or LastPassword=md5('123456'));
+2018-07-14 10:16:17 INFO  LoginPage:234 - Login OK
+2018-07-14 10:16:19 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Assessor', '', 'Login', '', '', 'Com1', 'MAC1', 'LoginPage.actionPerformed');
+2018-07-14 10:16:55 INFO  LoginController:173 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'Com1' and assessor.UserName= 'com1admin'
+2018-07-14 10:16:55 INFO  LoginPage:255 - listRoles: []
+2018-07-14 10:16:55 INFO  LoginController:173 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'UHCom' and assessor.UserName= 'com1admin'
+2018-07-14 10:16:55 INFO  LoginPage:259 - listRolesUH: []
+2018-07-14 10:16:58 INFO  LoginPage:264 - User does not have role
+2018-07-14 10:16:59 INFO  LoginPage:230 - Login with username: com1admin
+2018-07-14 10:17:04 INFO  LoginController:46 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin, IsLocked FROM Assessor where Assessor.IsActive = 1 and Assessor.UserName='com1admin' and (Password=md5('123456') or LastPassword=md5('123456'));
+2018-07-14 10:17:07 INFO  LoginPage:234 - Login OK
+2018-07-14 10:17:09 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Assessor', '', 'Login', '', '', 'Com1', 'MAC1', 'LoginPage.actionPerformed');
+2018-07-14 10:17:11 INFO  LoginPage:239 - User blocked
+2018-07-14 10:17:16 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Assessor', '', 'LockedAcc', '', '', 'Com1', 'MAC1', 'LoginPage.actionPerformed');
+2018-07-14 10:17:24 INFO  LoginPage:392 - ************************************************************
+2018-07-14 10:17:24 INFO  LoginPage:393 - ************************************************************
+2018-07-14 10:17:24 INFO  LoginPage:394 - ************************************************************
+2018-07-14 10:17:24 INFO  LoginPage:395 - ************************************************************
+2018-07-14 10:17:24 INFO  LoginPage:396 - Starting iTool app.
+2018-07-14 10:17:24 INFO  LoginPage:397 - companyCode: Com1
+2018-07-14 10:17:24 INFO  LoginPage:398 - companyCodeUH: UHCom
+2018-07-14 10:17:24 INFO  LoginPage:399 - machineCode: MAC1
+2018-07-14 10:17:24 INFO  LoginPage:402 - mDbHost: localhost
+2018-07-14 10:17:24 INFO  LoginPage:403 - mDbUser: admin
+2018-07-14 10:17:24 INFO  LoginPage:404 - mDbPwds: 1qazxsw2
+2018-07-14 10:17:24 INFO  LoginPage:405 - mDbName: iTools_v1p0
+2018-07-14 10:17:24 INFO  LoginPage:406 - mDbPort: 3306
+2018-07-14 10:17:24 INFO  LoginPage:407 - Database version: v1p0 - 2018-07-14 10:13:30
+2018-07-14 10:17:24 INFO  LoginPage:409 - Last Sync: 2018-07-14 10:13:32
+2018-07-14 10:17:25 INFO  LoginPage:420 - App Version: 1.0
+2018-07-14 10:17:31 INFO  LoginPage:431 - checkEmailConfig: true
+2018-07-14 10:17:32 INFO  LoginPage:345 - ========================================
+2018-07-14 10:17:32 INFO  LoginPage:346 - Start syncing thread - 5dDcAJ97
+2018-07-14 10:17:32 INFO  LoginPage:347 - ========================================
+2018-07-14 10:17:32 INFO  SyncController:67 - Start SyncHostToLocal
+2018-07-14 10:17:32 ERROR SyncController:103 - Parameter number 3 is not an OUT parameter
+2018-07-14 10:17:32 INFO  LoginPage:350 - ========================================
+2018-07-14 10:17:32 INFO  LoginPage:351 - End syncing thread - 5dDcAJ97
+2018-07-14 10:17:32 INFO  LoginPage:352 - ========================================
+2018-07-14 10:17:39 INFO  LoginPage:230 - Login with username: com1admin
+2018-07-14 10:17:39 INFO  LoginController:46 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin, IsLocked FROM Assessor where Assessor.IsActive = 1 and Assessor.UserName='com1admin' and (Password=md5('123456') or LastPassword=md5('123456'));
+2018-07-14 10:17:39 INFO  LoginPage:234 - Login OK
+2018-07-14 10:17:39 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Assessor', '', 'Login', '', '', 'Com1', 'MAC1', 'LoginPage.actionPerformed');
+2018-07-14 10:17:39 INFO  LoginPage:239 - User blocked
+2018-07-14 10:17:43 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Assessor', '', 'LockedAcc', '', '', 'Com1', 'MAC1', 'LoginPage.actionPerformed');
+2018-07-14 10:28:56 INFO  LoginPage:392 - ************************************************************
+2018-07-14 10:28:56 INFO  LoginPage:393 - ************************************************************
+2018-07-14 10:28:56 INFO  LoginPage:394 - ************************************************************
+2018-07-14 10:28:56 INFO  LoginPage:395 - ************************************************************
+2018-07-14 10:28:56 INFO  LoginPage:396 - Starting iTool app.
+2018-07-14 10:28:56 INFO  LoginPage:397 - companyCode: Com1
+2018-07-14 10:28:56 INFO  LoginPage:398 - companyCodeUH: UHCom
+2018-07-14 10:28:56 INFO  LoginPage:399 - machineCode: MAC1
+2018-07-14 10:28:56 INFO  LoginPage:402 - mDbHost: localhost
+2018-07-14 10:28:56 INFO  LoginPage:403 - mDbUser: admin
+2018-07-14 10:28:56 INFO  LoginPage:404 - mDbPwds: 1qazxsw2
+2018-07-14 10:28:56 INFO  LoginPage:405 - mDbName: iTools_v1p0
+2018-07-14 10:28:56 INFO  LoginPage:406 - mDbPort: 3306
+2018-07-14 10:28:56 INFO  LoginPage:407 - Database version: v1p0 - 2018-07-14 10:18:20
+2018-07-14 10:28:56 INFO  LoginPage:409 - Last Sync: 2018-07-14 10:18:22
+2018-07-14 10:28:57 INFO  LoginPage:420 - App Version: 1.0
+2018-07-14 10:29:03 INFO  LoginPage:431 - checkEmailConfig: true
+2018-07-14 10:29:04 INFO  LoginPage:345 - ========================================
+2018-07-14 10:29:04 INFO  LoginPage:346 - Start syncing thread - emHoDVXz
+2018-07-14 10:29:04 INFO  LoginPage:347 - ========================================
+2018-07-14 10:29:04 INFO  SyncController:67 - Start SyncHostToLocal
+2018-07-14 10:29:04 ERROR SyncController:103 - Parameter number 3 is not an OUT parameter
+2018-07-14 10:29:04 INFO  LoginPage:350 - ========================================
+2018-07-14 10:29:04 INFO  LoginPage:351 - End syncing thread - emHoDVXz
+2018-07-14 10:29:04 INFO  LoginPage:352 - ========================================
+2018-07-14 10:29:10 INFO  LoginPage:230 - Login with username: com1admin
+2018-07-14 10:29:10 INFO  LoginController:46 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin, IsLocked FROM Assessor where Assessor.IsActive = 1 and Assessor.UserName='com1admin' and (Password=md5('123') or LastPassword=md5('123'));
+2018-07-14 10:29:10 INFO  LoginPage:287 - Login Fail
+2018-07-14 10:29:10 INFO  LoginPage:289 - Update Fail Time
+2018-07-14 10:29:10 INFO  LoginController:85 - update Assessor set FailTimes = FailTimes + 1 where Assessor.UserName = 'com1admin' and Assessor.CompanyCode = 'Com1' ;
+2018-07-14 10:29:10 INFO  LoginPage:292 - Check Locked User
+2018-07-14 10:29:10 INFO  LoginController:114 - update Assessor set Assessor.IsLocked = 1 where Assessor.UserName = 'com1admin' and Assessor.CompanyCode = 'Com1' and Assessor.FailTimes > 2;
+2018-07-14 10:29:11 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Assessor', '', 'LoginFail', '', '', 'Com1', 'MAC1', 'LoginPage.actionPerformed');
+2018-07-14 10:29:14 INFO  LoginPage:230 - Login with username: com1admin
+2018-07-14 10:29:14 INFO  LoginController:46 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin, IsLocked FROM Assessor where Assessor.IsActive = 1 and Assessor.UserName='com1admin' and (Password=md5('123456') or LastPassword=md5('123456'));
+2018-07-14 10:29:14 INFO  LoginPage:234 - Login OK
+2018-07-14 10:29:14 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Assessor', '', 'Login', '', '', 'Com1', 'MAC1', 'LoginPage.actionPerformed');
+2018-07-14 10:29:14 INFO  LoginPage:244 - isFirstTimeLogin: true
+2018-07-14 10:29:15 INFO  UserController:44 - SELECT AssessorID, UserName, Password, CompanyCode, IsActive, IsLocked FROM Assessor where Assessor.IsActive=1 and Assessor.CompanyCode = 'Com1';
+2018-07-14 10:29:15 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Assessor', '', 'ResetPasswordPage', '', '', 'Com1', 'MAC1', 'ResetPasswordPage.<init>');
+2018-07-14 10:29:24 INFO  UserController:125 - Update  Assessor set Assessor.Password = md5('aaa'), Assessor.IsFirstTimeLogin = 0 where Assessor.Username = 'com1admin' and Assessor.CompanyCode = 'Com1';
+2018-07-14 10:29:24 INFO  UserController:129 - 1 row(s) updated!
+2018-07-14 10:29:24 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Assessor', 'Password', 'FirstTimeChangePass', 'com1admin - 123456', 'XXX', 'Com1', 'MAC1', 'ResetPasswordPage.actionPerformed');
+2018-07-14 10:29:26 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Assessor', '', 'Logout', '', '', 'Com1', 'MAC1', 'ResetPasswordPage.actionPerformed');
+2018-07-14 10:29:26 INFO  ResetPasswordPage:442 - com1admin logout.
+2018-07-14 10:29:38 INFO  LoginPage:230 - Login with username: com1admin
+2018-07-14 10:29:38 INFO  LoginController:46 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin, IsLocked FROM Assessor where Assessor.IsActive = 1 and Assessor.UserName='com1admin' and (Password=md5('aaa') or LastPassword=md5('aaa'));
+2018-07-14 10:29:38 INFO  LoginPage:234 - Login OK
+2018-07-14 10:29:38 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Assessor', '', 'Login', '', '', 'Com1', 'MAC1', 'LoginPage.actionPerformed');
+2018-07-14 10:29:38 INFO  LoginController:173 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'Com1' and assessor.UserName= 'com1admin'
+2018-07-14 10:29:38 INFO  LoginPage:255 - listRoles: []
+2018-07-14 10:29:38 INFO  LoginController:173 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'UHCom' and assessor.UserName= 'com1admin'
+2018-07-14 10:29:38 INFO  LoginPage:259 - listRolesUH: []
+2018-07-14 10:29:40 INFO  LoginPage:264 - User does not have role
+2018-07-14 11:12:46 INFO  LoginPage:403 - ************************************************************
+2018-07-14 11:12:46 INFO  LoginPage:404 - ************************************************************
+2018-07-14 11:12:46 INFO  LoginPage:405 - ************************************************************
+2018-07-14 11:12:46 INFO  LoginPage:406 - ************************************************************
+2018-07-14 11:12:46 INFO  LoginPage:407 - Starting iTool app.
+2018-07-14 11:12:46 INFO  LoginPage:408 - companyCode: Com1
+2018-07-14 11:12:46 INFO  LoginPage:409 - companyCodeUH: UHCom
+2018-07-14 11:12:46 INFO  LoginPage:410 - machineCode: MAC1
+2018-07-14 11:12:47 INFO  LoginPage:413 - mDbHost: localhost
+2018-07-14 11:12:47 INFO  LoginPage:414 - mDbUser: admin
+2018-07-14 11:12:47 INFO  LoginPage:415 - mDbPwds: 1qazxsw2
+2018-07-14 11:12:47 INFO  LoginPage:416 - mDbName: iTools_v1p0
+2018-07-14 11:12:47 INFO  LoginPage:417 - mDbPort: 3306
+2018-07-14 11:12:47 INFO  LoginPage:418 - Database version: v1p0 - 2018-07-14 10:18:20
+2018-07-14 11:12:47 INFO  LoginPage:420 - Last Sync: 2018-07-14 10:18:22
+2018-07-14 11:12:48 INFO  LoginPage:431 - App Version: 1.0
+2018-07-14 11:12:54 INFO  LoginPage:442 - checkEmailConfig: true
+2018-07-14 11:12:55 INFO  LoginPage:356 - ========================================
+2018-07-14 11:12:55 INFO  LoginPage:357 - Start syncing thread - 9mNjFgzT
+2018-07-14 11:12:55 INFO  LoginPage:358 - ========================================
+2018-07-14 11:12:55 INFO  SyncController:67 - Start SyncHostToLocal
+2018-07-14 11:12:55 ERROR SyncController:103 - Parameter number 3 is not an OUT parameter
+2018-07-14 11:12:55 INFO  LoginPage:361 - ========================================
+2018-07-14 11:12:55 INFO  LoginPage:362 - End syncing thread - 9mNjFgzT
+2018-07-14 11:12:55 INFO  LoginPage:363 - ========================================
+2018-07-14 11:13:29 INFO  LoginPage:230 - Login with username: com1admin
+2018-07-14 11:13:29 INFO  LoginController:46 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin, IsLocked FROM Assessor where Assessor.IsActive = 1 and Assessor.UserName='com1admin' and (Password=md5('ddd') or LastPassword=md5('ddd'));
+2018-07-14 11:13:29 INFO  LoginPage:287 - Login Fail
+2018-07-14 11:13:29 INFO  LoginPage:289 - Update Fail Time
+2018-07-14 11:13:29 INFO  LoginController:85 - update Assessor set FailTimes = FailTimes + 1 where Assessor.UserName = 'com1admin' and Assessor.CompanyCode = 'Com1' ;
+2018-07-14 11:13:29 INFO  LoginController:114 - update Assessor set Assessor.IsLocked = 1 where Assessor.UserName = 'com1admin' and Assessor.CompanyCode = 'Com1' and Assessor.FailTimes > 2;
+2018-07-14 11:13:31 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Assessor', '', 'LoginFail', '', '', 'Com1', 'MAC1', 'LoginPage.actionPerformed');
+2018-07-14 11:13:34 INFO  LoginPage:230 - Login with username: com1admin
+2018-07-14 11:13:34 INFO  LoginController:46 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin, IsLocked FROM Assessor where Assessor.IsActive = 1 and Assessor.UserName='com1admin' and (Password=md5('ddd') or LastPassword=md5('ddd'));
+2018-07-14 11:13:34 INFO  LoginPage:287 - Login Fail
+2018-07-14 11:13:34 INFO  LoginPage:289 - Update Fail Time
+2018-07-14 11:13:34 INFO  LoginController:85 - update Assessor set FailTimes = FailTimes + 1 where Assessor.UserName = 'com1admin' and Assessor.CompanyCode = 'Com1' ;
+2018-07-14 11:13:34 INFO  LoginController:114 - update Assessor set Assessor.IsLocked = 1 where Assessor.UserName = 'com1admin' and Assessor.CompanyCode = 'Com1' and Assessor.FailTimes > 2;
+2018-07-14 11:13:34 INFO  LoginController:249 - SELECT EmailAddress FROM Assessor where Assessor.UserName = 'com1admin' and Assessor.CompanyCode = 'Com1';
+2018-07-14 11:13:34 INFO  LoginPage:295 - Lock User
+2018-07-14 11:13:34 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Assessor', '', 'LockUser', '', '', 'Com1', 'MAC1', 'LoginPage.actionPerformed');
+2018-07-14 11:13:40 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), '', 'Email', '', 'Login', '', 'To quannguyen@savarti.com - CC: [quann169@gmail.com, quannguyen@savarti.com] - Subject: Login_Fail_3_Times - Message: Login fail 3 times. Application will lock your account. Please contact your admin to unlock.', 'Com1', 'MAC1', 'EmailUtils.sendEmail');
+2018-07-15 19:10:19 INFO  LoginPage:356 - ========================================
+2018-07-15 19:10:19 INFO  LoginPage:357 - Start syncing thread - eiLu4Rx0
+2018-07-15 19:10:19 INFO  LoginPage:358 - ========================================
+2018-07-15 19:10:19 INFO  SyncController:67 - Start SyncHostToLocal
+2018-07-15 19:10:19 ERROR SyncController:103 - Parameter number 3 is not an OUT parameter
+2018-07-15 19:10:19 INFO  LoginPage:361 - ========================================
+2018-07-15 19:10:19 INFO  LoginPage:362 - End syncing thread - eiLu4Rx0
+2018-07-15 19:10:19 INFO  LoginPage:363 - ========================================
+2018-07-15 19:15:19 INFO  LoginPage:356 - ========================================
+2018-07-15 19:15:19 INFO  LoginPage:357 - Start syncing thread - X5ATzIzD
+2018-07-15 19:15:19 INFO  LoginPage:358 - ========================================
+2018-07-15 19:15:19 INFO  SyncController:67 - Start SyncHostToLocal
+2018-07-15 19:15:19 ERROR SyncController:103 - Parameter number 3 is not an OUT parameter
+2018-07-15 19:15:19 INFO  LoginPage:361 - ========================================
+2018-07-15 19:15:19 INFO  LoginPage:362 - End syncing thread - X5ATzIzD
+2018-07-15 19:15:19 INFO  LoginPage:363 - ========================================
+2018-07-15 19:20:19 INFO  LoginPage:356 - ========================================
+2018-07-15 19:20:19 INFO  LoginPage:357 - Start syncing thread - HOgjvCoD
+2018-07-15 19:20:19 INFO  LoginPage:358 - ========================================
+2018-07-15 19:20:19 INFO  SyncController:67 - Start SyncHostToLocal
+2018-07-15 19:20:19 ERROR SyncController:103 - Parameter number 3 is not an OUT parameter
+2018-07-15 19:20:19 INFO  LoginPage:361 - ========================================
+2018-07-15 19:20:19 INFO  LoginPage:362 - End syncing thread - HOgjvCoD
+2018-07-15 19:20:19 INFO  LoginPage:363 - ========================================
+2018-07-15 19:25:19 INFO  LoginPage:356 - ========================================
+2018-07-15 19:25:19 INFO  LoginPage:357 - Start syncing thread - cxwuEqT7
+2018-07-15 19:25:19 INFO  LoginPage:358 - ========================================
+2018-07-15 19:25:19 INFO  SyncController:67 - Start SyncHostToLocal
+2018-07-15 19:25:20 ERROR SyncController:103 - Parameter number 3 is not an OUT parameter
+2018-07-15 19:25:20 INFO  LoginPage:361 - ========================================
+2018-07-15 19:25:20 INFO  LoginPage:362 - End syncing thread - cxwuEqT7
+2018-07-15 19:25:20 INFO  LoginPage:363 - ========================================
+2018-07-15 19:30:20 INFO  LoginPage:356 - ========================================
+2018-07-15 19:30:20 INFO  LoginPage:357 - Start syncing thread - kg2Gux4O
+2018-07-15 19:30:20 INFO  LoginPage:358 - ========================================
+2018-07-15 19:30:20 INFO  SyncController:67 - Start SyncHostToLocal
+2018-07-15 19:30:20 ERROR SyncController:103 - Parameter number 3 is not an OUT parameter
+2018-07-15 19:30:20 INFO  LoginPage:361 - ========================================
+2018-07-15 19:30:20 INFO  LoginPage:362 - End syncing thread - kg2Gux4O
+2018-07-15 19:30:20 INFO  LoginPage:363 - ========================================
+2018-07-15 19:35:20 INFO  LoginPage:356 - ========================================
+2018-07-15 19:35:20 INFO  LoginPage:357 - Start syncing thread - EdFg63JW
+2018-07-15 19:35:20 INFO  LoginPage:358 - ========================================
+2018-07-15 19:35:20 INFO  SyncController:67 - Start SyncHostToLocal
+2018-07-15 19:35:20 ERROR SyncController:103 - Parameter number 3 is not an OUT parameter
+2018-07-15 19:35:20 INFO  LoginPage:361 - ========================================
+2018-07-15 19:35:20 INFO  LoginPage:362 - End syncing thread - EdFg63JW
+2018-07-15 19:35:20 INFO  LoginPage:363 - ========================================
+2018-07-15 19:40:20 INFO  LoginPage:356 - ========================================
+2018-07-15 19:40:20 INFO  LoginPage:357 - Start syncing thread - 9HwpmEaz
+2018-07-15 19:40:20 INFO  LoginPage:358 - ========================================
+2018-07-15 19:40:20 INFO  SyncController:67 - Start SyncHostToLocal
+2018-07-15 19:40:20 ERROR SyncController:103 - Parameter number 3 is not an OUT parameter
+2018-07-15 19:40:20 INFO  LoginPage:361 - ========================================
+2018-07-15 19:40:20 INFO  LoginPage:362 - End syncing thread - 9HwpmEaz
+2018-07-15 19:40:20 INFO  LoginPage:363 - ========================================
+2018-07-15 19:51:17 INFO  LoginPage:403 - ************************************************************
+2018-07-15 19:51:17 INFO  LoginPage:404 - ************************************************************
+2018-07-15 19:51:17 INFO  LoginPage:405 - ************************************************************
+2018-07-15 19:51:17 INFO  LoginPage:406 - ************************************************************
+2018-07-15 19:51:17 INFO  LoginPage:407 - Starting iTool app.
+2018-07-15 19:51:17 INFO  LoginPage:408 - companyCode: Com1
+2018-07-15 19:51:17 INFO  LoginPage:409 - companyCodeUH: UHCom
+2018-07-15 19:51:17 INFO  LoginPage:410 - machineCode: MAC1
+2018-07-15 19:51:17 INFO  LoginPage:413 - mDbHost: localhost
+2018-07-15 19:51:17 INFO  LoginPage:414 - mDbUser: admin
+2018-07-15 19:51:17 INFO  LoginPage:415 - mDbPwds: 1qazxsw2
+2018-07-15 19:51:17 INFO  LoginPage:416 - mDbName: iTools_v1p0
+2018-07-15 19:51:17 INFO  LoginPage:417 - mDbPort: 3306
+2018-07-15 19:51:17 INFO  LoginPage:418 - Database version: v1p0 - 2018-07-15 19:51:07
+2018-07-15 19:51:17 INFO  LoginPage:420 - Last Sync: 2018-07-15 19:51:08
+2018-07-15 19:51:18 INFO  LoginPage:431 - App Version: 1.0
+2018-07-15 19:51:26 INFO  LoginPage:442 - checkEmailConfig: true
+2018-07-15 19:51:27 INFO  LoginPage:356 - ========================================
+2018-07-15 19:51:27 INFO  LoginPage:357 - Start syncing thread - DyQWESOH
+2018-07-15 19:51:27 INFO  LoginPage:358 - ========================================
+2018-07-15 19:51:27 INFO  SyncController:67 - Start SyncHostToLocal
+2018-07-15 19:51:27 ERROR SyncController:103 - Parameter number 3 is not an OUT parameter
+2018-07-15 19:51:27 INFO  LoginPage:361 - ========================================
+2018-07-15 19:51:27 INFO  LoginPage:362 - End syncing thread - DyQWESOH
+2018-07-15 19:51:27 INFO  LoginPage:363 - ========================================
+2018-07-15 19:51:34 INFO  LoginPage:230 - Login with username: com1admin
+2018-07-15 19:51:34 INFO  LoginController:46 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin, IsLocked FROM Assessor where Assessor.IsActive = 1 and Assessor.UserName='com1admin' and (Password=md5('123456') or LastPassword=md5('123456'));
+2018-07-15 19:51:34 INFO  LoginPage:234 - Login OK
+2018-07-15 19:51:34 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Assessor', '', 'Login', '', '', 'Com1', 'MAC1', 'LoginPage.actionPerformed');
+2018-07-15 19:51:34 INFO  LoginController:173 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'Com1' and assessor.UserName= 'com1admin'
+2018-07-15 19:51:34 INFO  LoginPage:255 - listRoles: [Roles [roleName=SubAdmin], Roles [roleName=Emp]]
+2018-07-15 19:51:34 INFO  LoginPage:275 - Show DashboardPage
+2018-07-15 19:51:34 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Assessor', '', 'ShowDashboard', '', '', 'Com1', 'MAC1', 'DashboardPage.<init>');
+2018-07-15 19:53:50 INFO  LoginPage:403 - ************************************************************
+2018-07-15 19:53:50 INFO  LoginPage:404 - ************************************************************
+2018-07-15 19:53:50 INFO  LoginPage:405 - ************************************************************
+2018-07-15 19:53:50 INFO  LoginPage:406 - ************************************************************
+2018-07-15 19:53:50 INFO  LoginPage:407 - Starting iTool app.
+2018-07-15 19:53:50 INFO  LoginPage:408 - companyCode: Com1
+2018-07-15 19:53:50 INFO  LoginPage:409 - companyCodeUH: UHCom
+2018-07-15 19:53:50 INFO  LoginPage:410 - machineCode: MAC1
+2018-07-15 19:53:51 INFO  LoginPage:413 - mDbHost: localhost
+2018-07-15 19:53:51 INFO  LoginPage:414 - mDbUser: admin
+2018-07-15 19:53:51 INFO  LoginPage:415 - mDbPwds: 1qazxsw2
+2018-07-15 19:53:51 INFO  LoginPage:416 - mDbName: iTools_v1p0
+2018-07-15 19:53:51 INFO  LoginPage:417 - mDbPort: 3306
+2018-07-15 19:53:51 INFO  LoginPage:418 - Database version: v1p0 - 2018-07-15 19:53:38
+2018-07-15 19:53:51 INFO  LoginPage:420 - Last Sync: 2018-07-15 19:53:39
+2018-07-15 19:53:52 INFO  LoginPage:431 - App Version: 1.0
+2018-07-15 19:53:55 INFO  LoginPage:442 - checkEmailConfig: true
+2018-07-15 19:53:56 INFO  LoginPage:356 - ========================================
+2018-07-15 19:53:56 INFO  LoginPage:357 - Start syncing thread - Z98xjdQg
+2018-07-15 19:53:56 INFO  LoginPage:358 - ========================================
+2018-07-15 19:53:56 INFO  SyncController:67 - Start SyncHostToLocal
+2018-07-15 19:53:56 ERROR SyncController:103 - Parameter number 3 is not an OUT parameter
+2018-07-15 19:53:56 INFO  LoginPage:361 - ========================================
+2018-07-15 19:53:56 INFO  LoginPage:362 - End syncing thread - Z98xjdQg
+2018-07-15 19:53:56 INFO  LoginPage:363 - ========================================
+2018-07-15 19:54:03 INFO  LoginPage:230 - Login with username: com1admin
+2018-07-15 19:54:03 INFO  LoginController:46 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin, IsLocked FROM Assessor where Assessor.IsActive = 1 and Assessor.UserName='com1admin' and (Password=md5('123456') or LastPassword=md5('123456'));
+2018-07-15 19:54:03 INFO  LoginPage:234 - Login OK
+2018-07-15 19:54:03 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Assessor', '', 'Login', '', '', 'Com1', 'MAC1', 'LoginPage.actionPerformed');
+2018-07-15 19:54:03 INFO  LoginPage:244 - isFirstTimeLogin: true
+2018-07-15 19:54:03 INFO  UserController:44 - SELECT AssessorID, UserName, Password, CompanyCode, IsActive, IsLocked FROM Assessor where Assessor.IsActive=1 and Assessor.CompanyCode = 'Com1';
+2018-07-15 19:54:03 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Assessor', '', 'ResetPasswordPage', '', '', 'Com1', 'MAC1', 'ResetPasswordPage.<init>');
+2018-07-15 19:54:54 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Assessor', '', 'Logout', '', '', 'Com1', 'MAC1', 'ResetPasswordPage$3.mouseClicked');
+2018-07-15 19:54:55 INFO  ResetPasswordPage:171 - com1admin logout.
+2018-07-15 19:55:04 INFO  LoginPage:230 - Login with username: com1admin
+2018-07-15 19:55:04 INFO  LoginController:46 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin, IsLocked FROM Assessor where Assessor.IsActive = 1 and Assessor.UserName='com1admin' and (Password=md5('aaa') or LastPassword=md5('aaa'));
+2018-07-15 19:55:04 INFO  LoginPage:287 - Login Fail
+2018-07-15 19:55:04 INFO  LoginPage:289 - Update Fail Time
+2018-07-15 19:55:04 INFO  LoginController:85 - update Assessor set FailTimes = FailTimes + 1 where Assessor.UserName = 'com1admin' and Assessor.CompanyCode = 'Com1' ;
+2018-07-15 19:55:04 INFO  LoginController:114 - update Assessor set Assessor.IsLocked = 1 where Assessor.UserName = 'com1admin' and Assessor.CompanyCode = 'Com1' and Assessor.FailTimes > 2;
+2018-07-15 19:55:05 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Assessor', '', 'LoginFail', '', '', 'Com1', 'MAC1', 'LoginPage.actionPerformed');
+2018-07-15 19:55:09 INFO  LoginPage:230 - Login with username: com1admin
+2018-07-15 19:55:09 INFO  LoginController:46 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin, IsLocked FROM Assessor where Assessor.IsActive = 1 and Assessor.UserName='com1admin' and (Password=md5('123456') or LastPassword=md5('123456'));
+2018-07-15 19:55:09 INFO  LoginPage:234 - Login OK
+2018-07-15 19:55:09 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Assessor', '', 'Login', '', '', 'Com1', 'MAC1', 'LoginPage.actionPerformed');
+2018-07-15 19:55:09 INFO  LoginPage:244 - isFirstTimeLogin: true
+2018-07-15 19:55:09 INFO  UserController:44 - SELECT AssessorID, UserName, Password, CompanyCode, IsActive, IsLocked FROM Assessor where Assessor.IsActive=1 and Assessor.CompanyCode = 'Com1';
+2018-07-15 19:55:09 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Assessor', '', 'ResetPasswordPage', '', '', 'Com1', 'MAC1', 'ResetPasswordPage.<init>');
+2018-07-15 19:55:48 INFO  LoginPage:403 - ************************************************************
+2018-07-15 19:55:48 INFO  LoginPage:404 - ************************************************************
+2018-07-15 19:55:48 INFO  LoginPage:405 - ************************************************************
+2018-07-15 19:55:48 INFO  LoginPage:406 - ************************************************************
+2018-07-15 19:55:48 INFO  LoginPage:407 - Starting iTool app.
+2018-07-15 19:55:48 INFO  LoginPage:408 - companyCode: Com1
+2018-07-15 19:55:48 INFO  LoginPage:409 - companyCodeUH: UHCom
+2018-07-15 19:55:48 INFO  LoginPage:410 - machineCode: MAC1
+2018-07-15 19:55:48 INFO  LoginPage:413 - mDbHost: localhost
+2018-07-15 19:55:48 INFO  LoginPage:414 - mDbUser: admin
+2018-07-15 19:55:48 INFO  LoginPage:415 - mDbPwds: 1qazxsw2
+2018-07-15 19:55:48 INFO  LoginPage:416 - mDbName: iTools_v1p0
+2018-07-15 19:55:48 INFO  LoginPage:417 - mDbPort: 3306
+2018-07-15 19:55:48 INFO  LoginPage:418 - Database version: v1p0 - 2018-07-15 19:53:38
+2018-07-15 19:55:48 INFO  LoginPage:420 - Last Sync: 2018-07-15 19:53:39
+2018-07-15 19:55:49 INFO  LoginPage:431 - App Version: 1.0
+2018-07-15 19:55:52 INFO  LoginPage:442 - checkEmailConfig: true
+2018-07-15 19:55:53 INFO  LoginPage:356 - ========================================
+2018-07-15 19:55:53 INFO  LoginPage:357 - Start syncing thread - iY2IyVoi
+2018-07-15 19:55:53 INFO  LoginPage:358 - ========================================
+2018-07-15 19:55:53 INFO  SyncController:67 - Start SyncHostToLocal
+2018-07-15 19:55:53 ERROR SyncController:103 - Parameter number 3 is not an OUT parameter
+2018-07-15 19:55:53 INFO  LoginPage:361 - ========================================
+2018-07-15 19:55:53 INFO  LoginPage:362 - End syncing thread - iY2IyVoi
+2018-07-15 19:55:53 INFO  LoginPage:363 - ========================================
+2018-07-15 20:09:15 INFO  LoginPage:403 - ************************************************************
+2018-07-15 20:09:15 INFO  LoginPage:404 - ************************************************************
+2018-07-15 20:09:15 INFO  LoginPage:405 - ************************************************************
+2018-07-15 20:09:15 INFO  LoginPage:406 - ************************************************************
+2018-07-15 20:09:15 INFO  LoginPage:407 - Starting iTool app.
+2018-07-15 20:09:15 INFO  LoginPage:408 - companyCode: Com1
+2018-07-15 20:09:15 INFO  LoginPage:409 - companyCodeUH: UHCom
+2018-07-15 20:09:15 INFO  LoginPage:410 - machineCode: MAC1
+2018-07-15 20:09:15 INFO  LoginPage:413 - mDbHost: localhost
+2018-07-15 20:09:15 INFO  LoginPage:414 - mDbUser: admin
+2018-07-15 20:09:15 INFO  LoginPage:415 - mDbPwds: 1qazxsw2
+2018-07-15 20:09:15 INFO  LoginPage:416 - mDbName: iTools_v1p0
+2018-07-15 20:09:15 INFO  LoginPage:417 - mDbPort: 3306
+2018-07-15 20:09:15 INFO  LoginPage:418 - Database version: v1p0 - 2018-07-15 19:53:38
+2018-07-15 20:09:15 INFO  LoginPage:420 - Last Sync: 2018-07-15 19:53:39
+2018-07-15 20:09:16 INFO  LoginPage:431 - App Version: 1.0
+2018-07-15 20:09:22 INFO  LoginPage:442 - checkEmailConfig: true
+2018-07-15 20:09:23 INFO  LoginPage:356 - ========================================
+2018-07-15 20:09:23 INFO  LoginPage:357 - Start syncing thread - aMDaUWdv
+2018-07-15 20:09:23 INFO  LoginPage:358 - ========================================
+2018-07-15 20:09:23 INFO  SyncController:67 - Start SyncHostToLocal
+2018-07-15 20:09:23 ERROR SyncController:103 - Parameter number 3 is not an OUT parameter
+2018-07-15 20:09:23 INFO  LoginPage:361 - ========================================
+2018-07-15 20:09:23 INFO  LoginPage:362 - End syncing thread - aMDaUWdv
+2018-07-15 20:09:23 INFO  LoginPage:363 - ========================================
+2018-07-15 20:11:15 INFO  LoginPage:403 - ************************************************************
+2018-07-15 20:11:15 INFO  LoginPage:404 - ************************************************************
+2018-07-15 20:11:15 INFO  LoginPage:405 - ************************************************************
+2018-07-15 20:11:15 INFO  LoginPage:406 - ************************************************************
+2018-07-15 20:11:15 INFO  LoginPage:407 - Starting iTool app.
+2018-07-15 20:11:15 INFO  LoginPage:408 - companyCode: Com1
+2018-07-15 20:11:15 INFO  LoginPage:409 - companyCodeUH: UHCom
+2018-07-15 20:11:15 INFO  LoginPage:410 - machineCode: MAC1
+2018-07-15 20:11:15 INFO  LoginPage:413 - mDbHost: localhost
+2018-07-15 20:11:15 INFO  LoginPage:414 - mDbUser: admin
+2018-07-15 20:11:15 INFO  LoginPage:415 - mDbPwds: 1qazxsw2
+2018-07-15 20:11:15 INFO  LoginPage:416 - mDbName: iTools_v1p0
+2018-07-15 20:11:15 INFO  LoginPage:417 - mDbPort: 3306
+2018-07-15 20:11:15 INFO  LoginPage:418 - Database version: v1p0 - 2018-07-15 19:53:38
+2018-07-15 20:11:15 INFO  LoginPage:420 - Last Sync: 2018-07-15 19:53:39
+2018-07-15 20:11:16 INFO  LoginPage:431 - App Version: 1.0
+2018-07-15 20:11:22 INFO  LoginPage:442 - checkEmailConfig: true
+2018-07-15 20:11:23 INFO  LoginPage:356 - ========================================
+2018-07-15 20:11:23 INFO  LoginPage:357 - Start syncing thread - HY2jTsiS
+2018-07-15 20:11:23 INFO  LoginPage:358 - ========================================
+2018-07-15 20:11:23 INFO  SyncController:67 - Start SyncHostToLocal
+2018-07-15 20:11:23 ERROR SyncController:103 - Parameter number 3 is not an OUT parameter
+2018-07-15 20:11:23 INFO  LoginPage:361 - ========================================
+2018-07-15 20:11:23 INFO  LoginPage:362 - End syncing thread - HY2jTsiS
+2018-07-15 20:11:23 INFO  LoginPage:363 - ========================================
+2018-07-15 20:11:30 INFO  LoginPage:230 - Login with username: com1admin
+2018-07-15 20:11:30 INFO  LoginController:46 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin, IsLocked FROM Assessor where Assessor.IsActive = 1 and Assessor.UserName='com1admin' and (Password=md5('123456') or LastPassword=md5('123456'));
+2018-07-15 20:11:30 INFO  LoginPage:234 - Login OK
+2018-07-15 20:11:30 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Assessor', '', 'Login', '', '', 'Com1', 'MAC1', 'LoginPage.actionPerformed');
+2018-07-15 20:11:30 INFO  LoginPage:244 - isFirstTimeLogin: true
+2018-07-15 20:11:30 INFO  UserController:44 - SELECT AssessorID, UserName, Password, CompanyCode, IsActive, IsLocked FROM Assessor where Assessor.IsActive=1 and Assessor.CompanyCode = 'Com1';
+2018-07-15 20:11:30 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Assessor', '', 'ResetPasswordPage', '', '', 'Com1', 'MAC1', 'ResetPasswordPage.<init>');
+2018-07-15 20:11:36 INFO  UserController:125 - Update  Assessor set Assessor.Password = md5('aaa'), Assessor.IsFirstTimeLogin = 0 where Assessor.Username = 'com1admin' and Assessor.CompanyCode = 'Com1';
+2018-07-15 20:11:36 INFO  UserController:129 - 1 row(s) updated!
+2018-07-15 20:11:36 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Assessor', 'Password', 'FirstTimeChangePass', 'com1admin - 123456', 'XXX', 'Com1', 'MAC1', 'ResetPasswordPage.actionPerformed');
+2018-07-15 20:12:07 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Assessor', '', 'Logout', '', '', 'Com1', 'MAC1', 'ResetPasswordPage.actionPerformed');
+2018-07-15 20:12:07 INFO  ResetPasswordPage:442 - com1admin logout.
+2018-07-15 20:13:25 INFO  LoginPage:230 - Login with username: com1admin
+2018-07-15 20:13:25 INFO  LoginController:46 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin, IsLocked FROM Assessor where Assessor.IsActive = 1 and Assessor.UserName='com1admin' and (Password=md5('123456') or LastPassword=md5('123456'));
+2018-07-15 20:13:25 INFO  LoginPage:234 - Login OK
+2018-07-15 20:13:25 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Assessor', '', 'Login', '', '', 'Com1', 'MAC1', 'LoginPage.actionPerformed');
+2018-07-15 20:13:25 INFO  LoginPage:244 - isFirstTimeLogin: true
+2018-07-15 20:13:25 INFO  UserController:44 - SELECT AssessorID, UserName, Password, CompanyCode, IsActive, IsLocked FROM Assessor where Assessor.IsActive=1 and Assessor.CompanyCode = 'Com1';
+2018-07-15 20:13:25 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Assessor', '', 'ResetPasswordPage', '', '', 'Com1', 'MAC1', 'ResetPasswordPage.<init>');
+2018-07-15 20:13:58 INFO  LoginPage:403 - ************************************************************
+2018-07-15 20:13:58 INFO  LoginPage:404 - ************************************************************
+2018-07-15 20:13:58 INFO  LoginPage:405 - ************************************************************
+2018-07-15 20:13:58 INFO  LoginPage:406 - ************************************************************
+2018-07-15 20:13:58 INFO  LoginPage:407 - Starting iTool app.
+2018-07-15 20:13:58 INFO  LoginPage:408 - companyCode: Com1
+2018-07-15 20:13:58 INFO  LoginPage:409 - companyCodeUH: UHCom
+2018-07-15 20:13:58 INFO  LoginPage:410 - machineCode: MAC1
+2018-07-15 20:13:59 INFO  LoginPage:413 - mDbHost: localhost
+2018-07-15 20:13:59 INFO  LoginPage:414 - mDbUser: admin
+2018-07-15 20:13:59 INFO  LoginPage:415 - mDbPwds: 1qazxsw2
+2018-07-15 20:13:59 INFO  LoginPage:416 - mDbName: iTools_v1p0
+2018-07-15 20:13:59 INFO  LoginPage:417 - mDbPort: 3306
+2018-07-15 20:13:59 INFO  LoginPage:418 - Database version: v1p0 - 2018-07-15 20:13:13
+2018-07-15 20:13:59 INFO  LoginPage:420 - Last Sync: 2018-07-15 20:13:14
+2018-07-15 20:14:00 INFO  LoginPage:431 - App Version: 1.0
+2018-07-15 20:14:06 INFO  LoginPage:442 - checkEmailConfig: true
+2018-07-15 20:14:07 INFO  LoginPage:356 - ========================================
+2018-07-15 20:14:07 INFO  LoginPage:357 - Start syncing thread - Kg4NNJWX
+2018-07-15 20:14:07 INFO  LoginPage:358 - ========================================
+2018-07-15 20:14:07 INFO  SyncController:67 - Start SyncHostToLocal
+2018-07-15 20:14:07 ERROR SyncController:103 - Parameter number 3 is not an OUT parameter
+2018-07-15 20:14:07 INFO  LoginPage:361 - ========================================
+2018-07-15 20:14:07 INFO  LoginPage:362 - End syncing thread - Kg4NNJWX
+2018-07-15 20:14:07 INFO  LoginPage:363 - ========================================

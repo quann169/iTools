@@ -39,7 +39,7 @@ public class LoginController {
 	 * @return
 	 */
 	public Assessor validateUser(String username, String password) {
-		String sql = "SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin FROM Assessor where Assessor.UserName='"
+		String sql = "SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin, IsLocked FROM Assessor where Assessor.IsActive = 1 and Assessor.UserName='"
 				+ username.toLowerCase() + "' and (Password=md5('" + password + "') or LastPassword=md5('" + password
 				+ "'));";
 		// System.out.println(sql);
@@ -57,6 +57,7 @@ public class LoginController {
 					user.setPassword(password);
 					user.setLastName(rs.getString(4));
 					user.setFirstTimeLogin(StringUtils.converToBoolean(rs.getString(6)));
+					user.setLocked(rs.getString(7));
 					return user;
 				}
 			} else {
@@ -69,6 +70,64 @@ public class LoginController {
 			mysqlConnect.disconnect();
 		}
 		return null;
+	}
+
+	/**
+	 * 
+	 * @param companyCode
+	 * @param username
+	 * @return
+	 */
+	public boolean updateFailTimes(String companyCode, String username) {
+
+		String sql = "update Assessor set FailTimes = FailTimes + 1 where Assessor.UserName = '" + username
+				+ "' and Assessor.CompanyCode = '" + companyCode + "' ;";
+		logger.info(sql);
+
+		try {
+
+			PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
+			int countResult = statement.executeUpdate();
+			if (countResult > 0) {
+				return true;
+			}
+		} catch (SQLException e) {
+			logger.info(e.getMessage());
+			return false;
+		} finally {
+			mysqlConnect.disconnect();
+		}
+
+		return true;
+	}
+
+	/**
+	 * 
+	 * @param companyCode
+	 * @param username
+	 * @return
+	 */
+	public boolean lockUser(String companyCode, String username) {
+
+		String sql = "update Assessor set Assessor.IsLocked = 1 where Assessor.UserName = '" + username
+				+ "' and Assessor.CompanyCode = '" + companyCode + "' and Assessor.FailTimes > 2;";
+		logger.info(sql);
+
+		try {
+
+			PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
+			int countResult = statement.executeUpdate();
+			if (countResult > 0) {
+				return true;
+			}
+		} catch (SQLException e) {
+			logger.info(e.getMessage());
+			return false;
+		} finally {
+			mysqlConnect.disconnect();
+		}
+
+		return false;
 	}
 
 	/**
@@ -143,11 +202,10 @@ public class LoginController {
 		result.add(MysqlConnect.getPassword());
 		result.add(MysqlConnect.getDatabaseName());
 		result.add(MysqlConnect.getPort());
-		
-		
+
 		String lastSync = "";
 		String sql = "select SyncDate from SyncHistory order by SyncHistory.SyncDate desc limit 1;";
-//		logger.info(sql);
+		// logger.info(sql);
 		try {
 			PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
 			ResultSet rs = statement.executeQuery(sql);
@@ -160,11 +218,11 @@ public class LoginController {
 		} finally {
 			mysqlConnect.disconnect();
 		}
-		
+
 		String version = "";
 		String updatedDate = "";
 		sql = "select iToolAppDatabase, UpdatedDate from DatabaseVersion";
-//		logger.info(sql);
+		// logger.info(sql);
 		try {
 			PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
 			ResultSet rs = statement.executeQuery(sql);
@@ -178,10 +236,32 @@ public class LoginController {
 		} finally {
 			mysqlConnect.disconnect();
 		}
-		
+
 		result.add(version + " - " + updatedDate);
 		result.add(lastSync);
 		return result;
+	}
+
+	public String getEmailUser(String companycode, String username) {
+		String emailUser = "";
+		String sql = "SELECT EmailAddress FROM Assessor where Assessor.UserName = '" + username
+				+ "' and Assessor.CompanyCode = '" + companycode + "';";
+		logger.info(sql);
+		try {
+			PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
+			ResultSet rs = statement.executeQuery(sql);
+
+			while (rs.next()) {
+				emailUser = rs.getString(1);
+				break;
+			}
+		} catch (SQLException e) {
+			logger.info(e.getMessage());
+			return "";
+		} finally {
+			mysqlConnect.disconnect();
+		}
+		return emailUser;
 	}
 
 }

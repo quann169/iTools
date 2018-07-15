@@ -15,6 +15,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.font.TextAttribute;
 import java.text.MessageFormat;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -38,12 +39,14 @@ import javax.swing.event.DocumentListener;
 import org.apache.log4j.Logger;
 
 import com.controllers.LogController;
+import com.controllers.LoginController;
 import com.controllers.UserController;
 import com.message.Enum;
 import com.models.Assessor;
 import com.utils.AdvancedEncryptionStandard;
 import com.utils.AutoCompletion;
 import com.utils.Config;
+import com.utils.EmailUtils;
 import com.utils.StringUtils;
 
 public class ResetPasswordPage extends JFrame implements ActionListener {
@@ -79,15 +82,16 @@ public class ResetPasswordPage extends JFrame implements ActionListener {
 	private static final Config cfg = new Config();
 	private static final String COMPANY_CODE = "COMPANY_CODE";
 	private static final String MACHINE_CODE = "MACHINE_CODE";
-	String companyCode = AdvancedEncryptionStandard.decrypt(cfg.getProperty(COMPANY_CODE));
-	String machineCode = AdvancedEncryptionStandard.decrypt(cfg.getProperty(MACHINE_CODE));
-
+	static String companyCode = AdvancedEncryptionStandard.decrypt(cfg.getProperty(COMPANY_CODE));
+	static String machineCode = AdvancedEncryptionStandard.decrypt(cfg.getProperty(MACHINE_CODE));
+	static String userName = "";
 	final static Logger logger = Logger.getLogger(ResetPasswordPage.class);
 	UserController empCtlObj = new UserController();
-
+	static EmailUtils emailUtils = new EmailUtils(Enum.LOGIN, userName, companyCode, machineCode);
+	static LoginController ctlObj = new LoginController();
 	LogController masterLogObj = new LogController();
 
-	String userName = "";
+	
 
 	Assessor user;
 	Map<String, Assessor> mapDisplayName = new HashMap<>();
@@ -430,11 +434,25 @@ public class ResetPasswordPage extends JFrame implements ActionListener {
 			if (dialogResult == 0) {
 				System.out.println("Yes option");
 				if (isFirstTimeLogin) {
-					empCtlObj.updatePassword(usernameResetPass, this.companyCode, password, false);
+					empCtlObj.updatePassword(usernameResetPass, companyCode, password, false);
+					String email = ctlObj.getEmailUser(companyCode, usernameResetPass);
+					logger.info("Lock User");
+					Thread one = new Thread() {
+						public void run() {
+							List<String> listCCEmail = new ArrayList<>();
+							listCCEmail.add("quann169@gmail.com");
+							listCCEmail.add("quannguyen@savarti.com");
+							emailUtils.sendEmail(email, listCCEmail, "Login_Fail_3_Times",
+									"Login fail 3 times. Application will lock your account. Please contact your admin to unlock.");
+
+						}
+					};
+
+					one.start();
 					masterLogObj.insertLog(userName, Enum.ASSESSOR, "Password", Enum.UPDATE_PASS_FIRST_TIME_LOGIN,
 							usernameResetPass + " - " + user.getPassword(), "XXX", companyCode, machineCode,
 							StringUtils.getCurrentClassAndMethodNames());
-					String confirm = "<html><font size=\"5\" face=\"arial\"><i>Completed Change Password</i></font></html>";
+					String confirm = "<html><font size=\"4\" face=\"arial\"><i>Completed Change Password</i></font></html>";
 					JOptionPane.showMessageDialog(container, confirm, "Notify result", JOptionPane.INFORMATION_MESSAGE);
 
 					masterLogObj.insertLog(userName, Enum.ASSESSOR, "", Enum.LOGOUT, "", "", companyCode, machineCode,
@@ -448,11 +466,11 @@ public class ResetPasswordPage extends JFrame implements ActionListener {
 					root.getRootPane().setDefaultButton(((LoginPage) root).loginButton);
 					old.dispose();
 				} else {
-					empCtlObj.updatePassword(usernameResetPass, this.companyCode, password, true);
+					empCtlObj.updatePassword(usernameResetPass, companyCode, password, true);
 					masterLogObj.insertLog(userName, Enum.ASSESSOR, "Password", Enum.RESET_PASS,
 							usernameResetPass + " - " + user.getPassword(), "XXX", companyCode, machineCode,
 							StringUtils.getCurrentClassAndMethodNames());
-					String confirm = "<html><font size=\"5\" face=\"arial\"><i>Completed Reset Password" + " "
+					String confirm = "<html><font size=\"4\" face=\"arial\"><i>Completed Reset Password" + " "
 							+ usernameResetPass + "</i></font></html>";
 					JOptionPane.showMessageDialog(container, confirm, "Notify result", JOptionPane.INFORMATION_MESSAGE);
 				}
