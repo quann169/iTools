@@ -40,9 +40,10 @@ public class SyncController {
 		PreparedStatement ps = null;
 
 		try {
-			ps = mysqlConnect.connect().prepareStatement("call SyncHostToLocal(?, ?)");
+			ps = mysqlConnect.connect().prepareStatement("call SyncHostToLocal(?, ?,?)");
 			ps.setString(1, companyCode);
 			ps.setString(2, machineCode);
+			
 			ps.executeUpdate();
 		} catch (SQLException e) {
 			logger.error(e.getMessage());

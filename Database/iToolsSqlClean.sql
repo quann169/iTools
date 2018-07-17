@@ -99,6 +99,11 @@ CREATE TABLE IF NOT EXISTS RoleAssessor (
   FOREIGN KEY (AssessorID) REFERENCES Assessor(AssessorID) 
 );
 
+insert into RoleAssessor (RoleID, AssessorID, CreatedDate, IsActive) values (1,1,now(), 1);
+insert into RoleAssessor (RoleID, AssessorID, CreatedDate, IsActive) values (2,1,now(), 1);
+insert into RoleAssessor (RoleID, AssessorID, CreatedDate, IsActive) values (3,1,now(), 1);
+insert into RoleAssessor (RoleID, AssessorID, CreatedDate, IsActive) values (4,1,now(), 1);
+
 -- Admin UH has Admin, SubAdmin, Accounting, PutIns, TakeOver, UpdateReport
 /*
 INSERT INTO RoleAssessor(RoleAssessorID, RoleID, AssessorID, CreatedDate, IsActive) VALUES 
@@ -405,7 +410,7 @@ VALUES
 	(now(), "first sync record", "SUCCESS", "HostToLocal"),
 	(now(), "first sync record", "SUCCESS", "LocalToHost");
 
-	
+DROP TABLE IF EXISTS federated_Company;
 CREATE TABLE IF NOT EXISTS federated_Company (
   CompanyID INT(10) NOT NULL AUTO_INCREMENT,
   CompanyCode VARCHAR(100) NOT NULL,
@@ -422,6 +427,7 @@ ENGINE=FEDERATED
 DEFAULT CHARSET=UTF8
 CONNECTION='mysql://tqteamne_admin:Admin123@112.213.89.49:3306/tqteamne_iTools/Company';
 
+DROP TABLE IF EXISTS federated_Assessor;
 CREATE TABLE IF NOT EXISTS federated_Assessor (
   AssessorID INT(10) NOT NULL AUTO_INCREMENT,
   UserName VARCHAR(100) NULL,
@@ -437,6 +443,7 @@ CREATE TABLE IF NOT EXISTS federated_Assessor (
   IsActive BOOLEAN NOT NULL,
   LastPassword VARCHAR(255) NULL,
   IsFirstTimeLogin BOOLEAN NULL,
+  FailTimes INT(10) NOT NULL DEFAULT 0,
   UpdatedDate timestamp not null default current_timestamp on update current_timestamp,
   PRIMARY KEY (AssessorID),
   INDEX UserName (UserName),
@@ -445,6 +452,7 @@ CREATE TABLE IF NOT EXISTS federated_Assessor (
 DEFAULT CHARSET=UTF8
 CONNECTION='mysql://tqteamne_admin:Admin123@112.213.89.49:3306/tqteamne_iTools/Assessor';
 
+DROP TABLE IF EXISTS federated_Roles;
 CREATE TABLE IF NOT EXISTS federated_Roles (
   RoleID INT(10) NOT NULL AUTO_INCREMENT,
   RoleName VARCHAR(100) NULL,
@@ -456,7 +464,7 @@ CREATE TABLE IF NOT EXISTS federated_Roles (
 DEFAULT CHARSET=UTF8
 CONNECTION='mysql://tqteamne_admin:Admin123@112.213.89.49:3306/tqteamne_iTools/Roles';
 
-
+DROP TABLE IF EXISTS federated_RoleAssessor;
 CREATE TABLE IF NOT EXISTS federated_RoleAssessor (
   RoleAssessorID INT(10) NOT NULL AUTO_INCREMENT,
   RoleID INT(10) NULL,
@@ -474,7 +482,7 @@ CREATE TABLE IF NOT EXISTS federated_RoleAssessor (
 DEFAULT CHARSET=UTF8
 CONNECTION='mysql://tqteamne_admin:Admin123@112.213.89.49:3306/tqteamne_iTools/RoleAssessor';
 
-
+DROP TABLE IF EXISTS federated_Machine;
 CREATE TABLE IF NOT EXISTS federated_Machine (
   MachineID INT(10) NOT NULL AUTO_INCREMENT,
   MachineName VARCHAR(100) NULL,
@@ -492,7 +500,7 @@ CREATE TABLE IF NOT EXISTS federated_Machine (
 DEFAULT CHARSET=UTF8
 CONNECTION='mysql://tqteamne_admin:Admin123@112.213.89.49:3306/tqteamne_iTools/Machine';
 
-
+DROP TABLE IF EXISTS federated_CompanyMachine;
 CREATE TABLE IF NOT EXISTS federated_CompanyMachine (
   CompanyMachineID INT(10) NOT NULL AUTO_INCREMENT,
   MachineCode VARCHAR(100) NULL,
@@ -507,7 +515,7 @@ CREATE TABLE IF NOT EXISTS federated_CompanyMachine (
 DEFAULT CHARSET=UTF8
 CONNECTION='mysql://tqteamne_admin:Admin123@112.213.89.49:3306/tqteamne_iTools/CompanyMachine';
 
-
+DROP TABLE IF EXISTS federated_Tools;
 CREATE TABLE IF NOT EXISTS federated_Tools (
   ToolID INT(10) NOT NULL AUTO_INCREMENT,
   ToolCode VARCHAR(100) NULL,
@@ -523,7 +531,7 @@ CREATE TABLE IF NOT EXISTS federated_Tools (
 DEFAULT CHARSET=UTF8
 CONNECTION='mysql://tqteamne_admin:Admin123@112.213.89.49:3306/tqteamne_iTools/Tools';
 
-
+DROP TABLE IF EXISTS federated_ToolsMachine;
 CREATE TABLE IF NOT EXISTS federated_ToolsMachine (
   ToolsMachineID INT(10) NOT NULL AUTO_INCREMENT,
   ToolCode VARCHAR(100) NOT NULL,
@@ -538,7 +546,7 @@ CREATE TABLE IF NOT EXISTS federated_ToolsMachine (
 DEFAULT CHARSET=UTF8
 CONNECTION='mysql://tqteamne_admin:Admin123@112.213.89.49:3306/tqteamne_iTools/ToolsMachine';
 
-
+DROP TABLE IF EXISTS federated_ToolsMachineTray;
 CREATE TABLE IF NOT EXISTS federated_ToolsMachineTray (
   ToolsMachineTrayID INT(10) NOT NULL AUTO_INCREMENT,
   ToolsMachineID INT(10) NOT NULL,
@@ -553,7 +561,7 @@ CREATE TABLE IF NOT EXISTS federated_ToolsMachineTray (
 DEFAULT CHARSET=UTF8
 CONNECTION='mysql://tqteamne_admin:Admin123@112.213.89.49:3306/tqteamne_iTools/ToolsMachineTray';
 
-
+DROP TABLE IF EXISTS federated_WorkingTransaction;
 CREATE TABLE IF NOT EXISTS federated_WorkingTransaction (
   WorkingTransactionID INT(20) NOT NULL AUTO_INCREMENT,
   TransactionDate timestamp not null default current_timestamp,
@@ -580,6 +588,7 @@ CREATE TABLE IF NOT EXISTS federated_WorkingTransaction (
 DEFAULT CHARSET=UTF8
 CONNECTION='mysql://tqteamne_admin:Admin123@112.213.89.49:3306/tqteamne_iTools/WorkingTransaction';
 
+DROP TABLE IF EXISTS federated_MasterLog;
 CREATE TABLE IF NOT EXISTS federated_MasterLog (
   LogID INT(20) NOT NULL AUTO_INCREMENT,
   LogDate timestamp not null default current_timestamp,
@@ -602,6 +611,7 @@ CREATE TABLE IF NOT EXISTS federated_MasterLog (
 DEFAULT CHARSET=UTF8
 CONNECTION='mysql://tqteamne_admin:Admin123@112.213.89.49:3306/tqteamne_iTools/MasterLog';
 
+DROP TABLE IF EXISTS federated_PendingAction;
 CREATE TABLE IF NOT EXISTS federated_PendingAction (
   PendingActionID INT(20) NOT NULL AUTO_INCREMENT,
   PendingActionDate timestamp not null default current_timestamp,
@@ -614,6 +624,7 @@ CREATE TABLE IF NOT EXISTS federated_PendingAction (
 DEFAULT CHARSET=UTF8
 CONNECTION='mysql://tqteamne_admin:Admin123@112.213.89.49:3306/tqteamne_iTools/PendingAction';
 
+DROP TABLE IF EXISTS federated_DatabaseVersion;
 CREATE TABLE IF NOT EXISTS federated_DatabaseVersion (
   iToolAppDatabase VARCHAR(255) NULL,
   UpdatedDate timestamp not null default current_timestamp on update current_timestamp
@@ -621,6 +632,7 @@ CREATE TABLE IF NOT EXISTS federated_DatabaseVersion (
 DEFAULT CHARSET=UTF8
 CONNECTION='mysql://tqteamne_admin:Admin123@112.213.89.49:3306/tqteamne_iTools/DatabaseVersion';
 
+DROP TABLE IF EXISTS federated_SyncHistory;
 CREATE TABLE IF NOT EXISTS federated_SyncHistory (
   SyncHistoryID INT(20) NOT NULL AUTO_INCREMENT,
   SyncDate timestamp not null default current_timestamp,
@@ -634,8 +646,8 @@ CONNECTION='mysql://tqteamne_admin:Admin123@112.213.89.49:3306/tqteamne_iTools/S
 
 DELIMITER $$
 
-DROP PROCEDURE IF EXISTS `SyncLocalToHost`$$
-DROP PROCEDURE IF EXISTS `SyncHostToLocal`$$
+# DROP PROCEDURE IF EXISTS `SyncLocalToHost`;
+# DROP PROCEDURE IF EXISTS `SyncHostToLocal`;
 
 CREATE PROCEDURE `SyncLocalToHost`(IN CompanyCode VARCHAR(255), IN MachineCode VARCHAR(255), OUT returnResult TEXT)
 BEGIN
@@ -765,48 +777,15 @@ END
 
 CREATE PROCEDURE `SyncHostToLocal`(IN CompanyCode VARCHAR(255), IN MachineCode VARCHAR(255), OUT returnResult TEXT)
 BEGIN
-	#DECLARE EXIT HANDLER FOR SQLEXCEPTION ROLLBACK;
-	#DECLARE EXIT HANDLER FOR SQLWARNING ROLLBACK;
+	DECLARE EXIT HANDLER FOR SQLEXCEPTION ROLLBACK;
+	DECLARE EXIT HANDLER FOR SQLWARNING ROLLBACK;
 	START TRANSACTION;
 	
     SET SQL_SAFE_UPDATES = 0;
-	
-	INSERT INTO assessor
-		SELECT a.* FROM federated_assessor a
-		LEFT OUTER JOIN assessor b ON b.AssessorID = a.AssessorID
-		WHERE b.AssessorID IS NULL;
-		
-	set @insertAssessor = (SELECT ROW_COUNT());
-    set @finalResult = concat("insertAssessor: ", @insertAssessor );
-		
-	update assessor lA
-	left join federated_assessor fa on lA.AssessorID = fa.AssessorID
-		set lA.UserName = fa.UserName,
-			lA.FingerID = fa.FingerID,
-			lA.Password = fa.Password,
-			lA.FirstName = fa.FirstName,
-			lA.LastName = fa.LastName,
-			lA.EmailAddress = fa.EmailAddress,
-			lA.Address = fa.Address,
-			lA.Phone = fa.Phone,
-			lA.CompanyCode = fa.CompanyCode,
-			lA.IsLocked = fa.IsLocked,
-			lA.IsActive = fa.IsActive,
-			lA.LastPassword = fa.LastPassword,
-			lA.IsFirstTimeLogin = fa.IsFirstTimeLogin,
-			lA.UpdatedDate = sysdate()
-		where lA.AssessorID in (select AssessorID from federated_assessor) 
-		and fa.UpdatedDate > 
-			(select (Case when fs.SyncDate is null then '1900-01-01 00:00:00' else fs.SyncDate END) 
-				from synchistory fs
-				where fs.Status = 'SUCCESS' and fs.SynType = 'HostToLocal'
-				order by fs.SyncDate desc LIMIT 1)
-		and fa.UpdatedDate > (Case when lA.UpdatedDate is null then '1900-01-01 00:00:00' else lA.UpdatedDate END);  
-	
-	set @updateAssessor = (SELECT ROW_COUNT());
-    set @finalResult = concat(@finalResult, ",", "\n", "updateAssessor: ", @updateAssessor );
-		
-	#insert missing record from Host to local
+    
+    set @finalResult = "========Start=======\n";
+    
+    #insert missing record from Host to local
 	INSERT INTO Company
 	SELECT a.* FROM federated_Company a
 	LEFT OUTER JOIN Company b ON b.CompanyID = a.CompanyID
@@ -834,6 +813,43 @@ BEGIN
 	
 	set @updateCompany = (SELECT ROW_COUNT());
     set @finalResult = concat(@finalResult, ",", "\n", "updateCompany: ", @updateCompany );
+	
+	INSERT INTO assessor
+		SELECT a.* FROM federated_assessor a
+		LEFT OUTER JOIN assessor b ON b.AssessorID = a.AssessorID
+		WHERE b.AssessorID IS NULL;
+		
+	set @insertAssessor = (SELECT ROW_COUNT());
+    set @finalResult = concat(@finalResult, ",", "\n", "insertAssessor: ", @insertAssessor );
+    
+	update assessor lA
+	left join federated_assessor fa on lA.AssessorID = fa.AssessorID
+		set lA.UserName = fa.UserName,
+			lA.FingerID = fa.FingerID,
+			lA.Password = fa.Password,
+			lA.FirstName = fa.FirstName,
+			lA.LastName = fa.LastName,
+			lA.EmailAddress = fa.EmailAddress,
+			lA.Address = fa.Address,
+			lA.Phone = fa.Phone,
+			lA.CompanyCode = fa.CompanyCode,
+			lA.IsLocked = fa.IsLocked,
+			lA.IsActive = fa.IsActive,
+			lA.LastPassword = fa.LastPassword,
+			lA.IsFirstTimeLogin = fa.IsFirstTimeLogin,
+			lA.UpdatedDate = sysdate()
+		where lA.AssessorID in (select AssessorID from federated_assessor) 
+		and fa.UpdatedDate > 
+			(select (Case when fs.SyncDate is null then '1900-01-01 00:00:00' else fs.SyncDate END) 
+				from synchistory fs
+				where fs.Status = 'SUCCESS' and fs.SynType = 'HostToLocal'
+				order by fs.SyncDate desc LIMIT 1)
+		and fa.UpdatedDate > (Case when lA.UpdatedDate is null then '1900-01-01 00:00:00' else lA.UpdatedDate END);  
+	
+	set @updateAssessor = (SELECT ROW_COUNT());
+    set @finalResult = concat(@finalResult, ",", "\n", "updateAssessor: ", @updateAssessor );
+		
+	
 
 	#insert missing record from Host to local
     INSERT INTO Machine
