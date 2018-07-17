@@ -308,7 +308,7 @@ public class LockUnlockAccountPage extends JFrame implements ActionListener {
 		String userNameLock = mapDisplayName.get(displayName).getUsername();
 		boolean oldIsActiveValue = mapDisplayName.get(displayName).isLocked();
 		if (e.getSource() == lockAccountButtom) {
-			empCtlObj.updateIsLocked(userNameLock, companyCode, 0);
+			empCtlObj.updateIsLocked(userNameLock, companyCode, 1);
 			masterLogObj.insertLog(userName, Enum.ASSESSOR, "IsLocked", Enum.UPDATE,
 					userNameLock + " - " + oldIsActiveValue, userNameLock + " - 0", companyCode, machineCode,
 					StringUtils.getCurrentClassAndMethodNames());
@@ -318,7 +318,7 @@ public class LockUnlockAccountPage extends JFrame implements ActionListener {
 		}
 
 		if (e.getSource() == unLockAccountButton) {
-			empCtlObj.updateIsLocked(userNameLock, companyCode, 1);
+			empCtlObj.updateIsLocked(userNameLock, companyCode,0);
 			masterLogObj.insertLog(userName, Enum.ASSESSOR, "IsLocked", Enum.UPDATE,
 					userNameLock + " - " + oldIsActiveValue, userNameLock + " - 1", companyCode, machineCode,
 					StringUtils.getCurrentClassAndMethodNames());

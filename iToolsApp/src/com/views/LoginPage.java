@@ -250,7 +250,7 @@ public class LoginPage extends JFrame implements ActionListener {
 					root.show();
 					old.dispose();
 				} else {
-
+					System.out.println("AAAA");
 					List<Role> listRoles = ctlObj.getUserRoles(userText, companyCode);
 					logger.info("listRoles: " + listRoles);
 

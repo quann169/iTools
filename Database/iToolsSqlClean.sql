@@ -314,7 +314,7 @@ INSERT INTO ToolsMachineTray(ToolsMachineTrayID, ToolsMachineID, TrayIndex, Quan
 DROP TABLE IF EXISTS WorkingTransaction;
 CREATE TABLE IF NOT EXISTS WorkingTransaction (
   WorkingTransactionID INT(20) NOT NULL AUTO_INCREMENT,
-  TransactionDate timestamp not null default current_timestamp,
+  TransactionDate timestamp null,
   MachineCode VARCHAR(100) NOT NULL,
   CompanyCode VARCHAR(100) NOT NULL,
   AssessorID VARCHAR(100) NOT NULL,
@@ -339,7 +339,7 @@ CREATE TABLE IF NOT EXISTS WorkingTransaction (
 DROP TABLE IF EXISTS MasterLog;
 CREATE TABLE IF NOT EXISTS MasterLog (
   LogID INT(20) NOT NULL AUTO_INCREMENT,
-  LogDate timestamp not null default current_timestamp,
+  LogDate timestamp null,
   AssessorName VARCHAR(255) NULL,
   TblName VARCHAR(100) NULL,
   RecordID INT(10) NULL,

@@ -289,13 +289,13 @@ public class DashboardPage extends JFrame implements ActionListener {
 				protected void done() {
 					System.out.println("Complete");
 					d.dispose();
-					if (listRoleName.contains(Enum.PUTIN.text().toLowerCase())) {
+//					if (listRoleName.contains(Enum.PUTIN.text().toLowerCase())) {
 						putInsButton.setEnabled(true);
-					}
-
-					if (listRoleName.contains(Enum.TKOVER.text().toLowerCase())) {
+//					}
+//
+//					if (listRoleName.contains(Enum.TKOVER.text().toLowerCase())) {
 						takeOverButton.setEnabled(true);
-					}
+//					}
 				}
 			};
 			worker.execute();
