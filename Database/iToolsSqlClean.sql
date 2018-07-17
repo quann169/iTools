@@ -646,8 +646,8 @@ CONNECTION='mysql://tqteamne_admin:Admin123@112.213.89.49:3306/tqteamne_iTools/S
 
 DELIMITER $$
 
-# DROP PROCEDURE IF EXISTS `SyncLocalToHost`;
-# DROP PROCEDURE IF EXISTS `SyncHostToLocal`;
+DROP PROCEDURE IF EXISTS `SyncLocalToHost`;
+DROP PROCEDURE IF EXISTS `SyncHostToLocal`;
 
 CREATE PROCEDURE `SyncLocalToHost`(IN CompanyCode VARCHAR(255), IN MachineCode VARCHAR(255), OUT returnResult TEXT)
 BEGIN
@@ -773,7 +773,7 @@ BEGIN
 	commit;
 	
 	set  returnResult = @finalResult;
-END
+END$$
 
 CREATE PROCEDURE `SyncHostToLocal`(IN CompanyCode VARCHAR(255), IN MachineCode VARCHAR(255), OUT returnResult TEXT)
 BEGIN
@@ -1032,11 +1032,11 @@ BEGIN
 	commit;
 	
 	set  returnResult = @finalResult;
-END
+END$$
 
 
 
-DELIMITER ;
+DELIMITER $
 	
 	
 	
