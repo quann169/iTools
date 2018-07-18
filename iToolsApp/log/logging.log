@@ -2414,3 +2414,489 @@ updateWorkingTransaction: 0
 2018-07-15 20:14:07 INFO  LoginPage:361 - ========================================
 2018-07-15 20:14:07 INFO  LoginPage:362 - End syncing thread - Kg4NNJWX
 2018-07-15 20:14:07 INFO  LoginPage:363 - ========================================
+2018-07-15 21:50:58 INFO  LoginPage:403 - ************************************************************
+2018-07-15 21:50:58 INFO  LoginPage:404 - ************************************************************
+2018-07-15 21:50:58 INFO  LoginPage:405 - ************************************************************
+2018-07-15 21:50:58 INFO  LoginPage:406 - ************************************************************
+2018-07-15 21:50:58 INFO  LoginPage:407 - Starting iTool app.
+2018-07-15 21:50:58 INFO  LoginPage:408 - companyCode: Com1
+2018-07-15 21:50:58 INFO  LoginPage:409 - companyCodeUH: UHCom
+2018-07-15 21:50:58 INFO  LoginPage:410 - machineCode: MAC1
+2018-07-15 21:50:58 INFO  LoginPage:413 - mDbHost: localhost
+2018-07-15 21:50:58 INFO  LoginPage:414 - mDbUser: admin
+2018-07-15 21:50:58 INFO  LoginPage:415 - mDbPwds: 1qazxsw2
+2018-07-15 21:50:58 INFO  LoginPage:416 - mDbName: iTools_v1p0
+2018-07-15 21:50:58 INFO  LoginPage:417 - mDbPort: 3306
+2018-07-15 21:50:58 INFO  LoginPage:418 - Database version: v1p0 - 2018-07-15 20:37:42
+2018-07-15 21:50:58 INFO  LoginPage:420 - Last Sync: 2018-07-15 20:37:44
+2018-07-15 21:50:59 INFO  LoginPage:431 - App Version: 1.0
+2018-07-15 21:51:02 INFO  LoginPage:442 - checkEmailConfig: true
+2018-07-15 21:51:04 INFO  LoginPage:356 - ========================================
+2018-07-15 21:51:04 INFO  LoginPage:357 - Start syncing thread - T8ApwRO8
+2018-07-15 21:51:04 INFO  LoginPage:358 - ========================================
+2018-07-15 21:51:04 INFO  SyncController:67 - Start SyncHostToLocal
+2018-07-15 21:51:04 ERROR SyncController:103 - Parameter number 3 is not an OUT parameter
+2018-07-15 21:51:04 INFO  LoginPage:361 - ========================================
+2018-07-15 21:51:04 INFO  LoginPage:362 - End syncing thread - T8ApwRO8
+2018-07-15 21:51:04 INFO  LoginPage:363 - ========================================
+2018-07-15 21:53:15 INFO  LoginPage:230 - Login with username: com1admin
+2018-07-15 21:53:15 INFO  LoginController:46 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin, IsLocked FROM Assessor where Assessor.IsActive = 1 and Assessor.UserName='com1admin' and (Password=md5('123456') or LastPassword=md5('123456'));
+2018-07-15 21:53:15 INFO  LoginPage:234 - Login OK
+2018-07-15 21:53:15 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Assessor', '', 'Login', '', '', 'Com1', 'MAC1', 'LoginPage.actionPerformed');
+2018-07-15 21:53:15 INFO  LoginController:173 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'Com1' and assessor.UserName= 'com1admin'
+2018-07-15 21:53:15 INFO  LoginPage:255 - listRoles: []
+2018-07-15 21:53:15 INFO  LoginController:173 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'UHCom' and assessor.UserName= 'com1admin'
+2018-07-15 21:53:15 INFO  LoginPage:259 - listRolesUH: []
+2018-07-15 21:53:17 INFO  LoginPage:264 - User does not have role
+2018-07-15 21:56:04 INFO  LoginPage:356 - ========================================
+2018-07-15 21:56:04 INFO  LoginPage:357 - Start syncing thread - QTLBmYrJ
+2018-07-15 21:56:04 INFO  LoginPage:358 - ========================================
+2018-07-15 21:56:04 INFO  SyncController:67 - Start SyncHostToLocal
+2018-07-15 21:56:04 ERROR SyncController:103 - Parameter number 3 is not an OUT parameter
+2018-07-15 21:56:04 INFO  LoginPage:361 - ========================================
+2018-07-15 21:56:04 INFO  LoginPage:362 - End syncing thread - QTLBmYrJ
+2018-07-15 21:56:04 INFO  LoginPage:363 - ========================================
+2018-07-15 22:01:04 INFO  LoginPage:356 - ========================================
+2018-07-15 22:01:04 INFO  LoginPage:357 - Start syncing thread - PpnNzBCB
+2018-07-15 22:01:04 INFO  LoginPage:358 - ========================================
+2018-07-15 22:01:04 INFO  SyncController:67 - Start SyncHostToLocal
+2018-07-15 22:01:04 ERROR SyncController:103 - Parameter number 3 is not an OUT parameter
+2018-07-15 22:01:04 INFO  LoginPage:361 - ========================================
+2018-07-15 22:01:04 INFO  LoginPage:362 - End syncing thread - PpnNzBCB
+2018-07-15 22:01:04 INFO  LoginPage:363 - ========================================
+2018-07-15 22:02:22 INFO  LoginPage:403 - ************************************************************
+2018-07-15 22:02:22 INFO  LoginPage:404 - ************************************************************
+2018-07-15 22:02:22 INFO  LoginPage:405 - ************************************************************
+2018-07-15 22:02:22 INFO  LoginPage:406 - ************************************************************
+2018-07-15 22:02:22 INFO  LoginPage:407 - Starting iTool app.
+2018-07-15 22:02:22 INFO  LoginPage:408 - companyCode: Com1
+2018-07-15 22:02:22 INFO  LoginPage:409 - companyCodeUH: UHCom
+2018-07-15 22:02:22 INFO  LoginPage:410 - machineCode: MAC1
+2018-07-15 22:02:22 INFO  LoginPage:413 - mDbHost: localhost
+2018-07-15 22:02:22 INFO  LoginPage:414 - mDbUser: admin
+2018-07-15 22:02:22 INFO  LoginPage:415 - mDbPwds: 1qazxsw2
+2018-07-15 22:02:22 INFO  LoginPage:416 - mDbName: iTools_v1p0
+2018-07-15 22:02:22 INFO  LoginPage:417 - mDbPort: 3306
+2018-07-15 22:02:22 INFO  LoginPage:418 - Database version: v1p0 - 2018-07-15 22:00:06
+2018-07-15 22:02:22 INFO  LoginPage:420 - Last Sync: 2018-07-15 22:00:07
+2018-07-15 22:02:23 INFO  LoginPage:431 - App Version: 1.0
+2018-07-15 22:02:26 INFO  LoginPage:442 - checkEmailConfig: true
+2018-07-15 22:02:27 INFO  LoginPage:356 - ========================================
+2018-07-15 22:02:27 INFO  LoginPage:357 - Start syncing thread - Esfll1Xw
+2018-07-15 22:02:27 INFO  LoginPage:358 - ========================================
+2018-07-15 22:02:27 INFO  SyncController:68 - Start SyncHostToLocal
+2018-07-15 22:02:27 ERROR SyncController:104 - Column count doesn't match value count at row 1
+2018-07-15 22:02:27 INFO  LoginPage:361 - ========================================
+2018-07-15 22:02:27 INFO  LoginPage:362 - End syncing thread - Esfll1Xw
+2018-07-15 22:02:27 INFO  LoginPage:363 - ========================================
+2018-07-15 22:07:27 INFO  LoginPage:356 - ========================================
+2018-07-15 22:07:27 INFO  LoginPage:357 - Start syncing thread - Vvxzajut
+2018-07-15 22:07:27 INFO  LoginPage:358 - ========================================
+2018-07-15 22:07:27 INFO  SyncController:68 - Start SyncHostToLocal
+2018-07-15 22:07:27 ERROR SyncController:104 - Column count doesn't match value count at row 1
+2018-07-15 22:07:27 INFO  LoginPage:361 - ========================================
+2018-07-15 22:07:27 INFO  LoginPage:362 - End syncing thread - Vvxzajut
+2018-07-15 22:07:27 INFO  LoginPage:363 - ========================================
+2018-07-15 22:12:27 INFO  LoginPage:356 - ========================================
+2018-07-15 22:12:27 INFO  LoginPage:357 - Start syncing thread - 9DV2SjnD
+2018-07-15 22:12:27 INFO  LoginPage:358 - ========================================
+2018-07-15 22:12:27 INFO  SyncController:68 - Start SyncHostToLocal
+2018-07-15 22:12:27 ERROR SyncController:104 - Column count doesn't match value count at row 1
+2018-07-15 22:12:27 INFO  LoginPage:361 - ========================================
+2018-07-15 22:12:27 INFO  LoginPage:362 - End syncing thread - 9DV2SjnD
+2018-07-15 22:12:27 INFO  LoginPage:363 - ========================================
+2018-07-15 22:17:27 INFO  LoginPage:356 - ========================================
+2018-07-15 22:17:27 INFO  LoginPage:357 - Start syncing thread - YgaLgPbS
+2018-07-15 22:17:27 INFO  LoginPage:358 - ========================================
+2018-07-15 22:17:27 INFO  SyncController:68 - Start SyncHostToLocal
+2018-07-15 22:17:27 ERROR SyncController:104 - Column count doesn't match value count at row 1
+2018-07-15 22:17:27 INFO  LoginPage:361 - ========================================
+2018-07-15 22:17:27 INFO  LoginPage:362 - End syncing thread - YgaLgPbS
+2018-07-15 22:17:27 INFO  LoginPage:363 - ========================================
+2018-07-15 22:22:27 INFO  LoginPage:356 - ========================================
+2018-07-15 22:22:27 INFO  LoginPage:357 - Start syncing thread - LYrKiKmY
+2018-07-15 22:22:27 INFO  LoginPage:358 - ========================================
+2018-07-15 22:22:27 INFO  SyncController:68 - Start SyncHostToLocal
+2018-07-15 22:22:27 ERROR SyncController:104 - Column count doesn't match value count at row 1
+2018-07-15 22:22:27 INFO  LoginPage:361 - ========================================
+2018-07-15 22:22:27 INFO  LoginPage:362 - End syncing thread - LYrKiKmY
+2018-07-15 22:22:27 INFO  LoginPage:363 - ========================================
+2018-07-15 22:27:28 INFO  LoginPage:356 - ========================================
+2018-07-15 22:27:28 INFO  LoginPage:357 - Start syncing thread - o4jeRCQ7
+2018-07-15 22:27:28 INFO  LoginPage:358 - ========================================
+2018-07-15 22:27:28 INFO  SyncController:68 - Start SyncHostToLocal
+2018-07-15 22:27:28 ERROR SyncController:104 - Column count doesn't match value count at row 1
+2018-07-15 22:27:28 INFO  LoginPage:361 - ========================================
+2018-07-15 22:27:28 INFO  LoginPage:362 - End syncing thread - o4jeRCQ7
+2018-07-15 22:27:28 INFO  LoginPage:363 - ========================================
+2018-07-15 22:32:28 INFO  LoginPage:356 - ========================================
+2018-07-15 22:32:28 INFO  LoginPage:357 - Start syncing thread - 2L1CZ3J2
+2018-07-15 22:32:28 INFO  LoginPage:358 - ========================================
+2018-07-15 22:32:28 INFO  SyncController:68 - Start SyncHostToLocal
+2018-07-15 22:32:28 ERROR SyncController:104 - Column count doesn't match value count at row 1
+2018-07-15 22:32:28 INFO  LoginPage:361 - ========================================
+2018-07-15 22:32:28 INFO  LoginPage:362 - End syncing thread - 2L1CZ3J2
+2018-07-15 22:32:28 INFO  LoginPage:363 - ========================================
+2018-07-15 22:37:28 INFO  LoginPage:356 - ========================================
+2018-07-15 22:37:28 INFO  LoginPage:357 - Start syncing thread - bAThBZU3
+2018-07-15 22:37:28 INFO  LoginPage:358 - ========================================
+2018-07-15 22:37:28 INFO  SyncController:68 - Start SyncHostToLocal
+2018-07-15 22:37:28 ERROR SyncController:104 - Column count doesn't match value count at row 1
+2018-07-15 22:37:28 INFO  LoginPage:361 - ========================================
+2018-07-15 22:37:28 INFO  LoginPage:362 - End syncing thread - bAThBZU3
+2018-07-15 22:37:28 INFO  LoginPage:363 - ========================================
+2018-07-15 22:42:28 INFO  LoginPage:356 - ========================================
+2018-07-15 22:42:28 INFO  LoginPage:357 - Start syncing thread - 6kw01KL5
+2018-07-15 22:42:28 INFO  LoginPage:358 - ========================================
+2018-07-15 22:42:28 INFO  SyncController:68 - Start SyncHostToLocal
+2018-07-15 22:42:28 ERROR SyncController:104 - Column count doesn't match value count at row 1
+2018-07-15 22:42:28 INFO  LoginPage:361 - ========================================
+2018-07-15 22:42:28 INFO  LoginPage:362 - End syncing thread - 6kw01KL5
+2018-07-15 22:42:28 INFO  LoginPage:363 - ========================================
+2018-07-15 22:47:28 INFO  LoginPage:356 - ========================================
+2018-07-15 22:47:28 INFO  LoginPage:357 - Start syncing thread - BH0wXQaN
+2018-07-15 22:47:28 INFO  LoginPage:358 - ========================================
+2018-07-15 22:47:28 INFO  SyncController:68 - Start SyncHostToLocal
+2018-07-15 22:47:28 ERROR SyncController:104 - Column count doesn't match value count at row 1
+2018-07-15 22:47:28 INFO  LoginPage:361 - ========================================
+2018-07-15 22:47:28 INFO  LoginPage:362 - End syncing thread - BH0wXQaN
+2018-07-15 22:47:28 INFO  LoginPage:363 - ========================================
+2018-07-15 22:52:28 INFO  LoginPage:356 - ========================================
+2018-07-15 22:52:28 INFO  LoginPage:357 - Start syncing thread - knjXvBA8
+2018-07-15 22:52:28 INFO  LoginPage:358 - ========================================
+2018-07-15 22:52:28 INFO  SyncController:68 - Start SyncHostToLocal
+2018-07-15 22:52:28 ERROR SyncController:104 - Column count doesn't match value count at row 1
+2018-07-15 22:52:28 INFO  LoginPage:361 - ========================================
+2018-07-15 22:52:28 INFO  LoginPage:362 - End syncing thread - knjXvBA8
+2018-07-15 22:52:28 INFO  LoginPage:363 - ========================================
+2018-07-15 22:57:28 INFO  LoginPage:356 - ========================================
+2018-07-15 22:57:28 INFO  LoginPage:357 - Start syncing thread - 6VZIQxHU
+2018-07-15 22:57:28 INFO  LoginPage:358 - ========================================
+2018-07-15 22:57:28 INFO  SyncController:68 - Start SyncHostToLocal
+2018-07-15 22:57:28 ERROR SyncController:104 - Column count doesn't match value count at row 1
+2018-07-15 22:57:28 INFO  LoginPage:361 - ========================================
+2018-07-15 22:57:28 INFO  LoginPage:362 - End syncing thread - 6VZIQxHU
+2018-07-15 22:57:28 INFO  LoginPage:363 - ========================================
+2018-07-15 23:02:28 INFO  LoginPage:356 - ========================================
+2018-07-15 23:02:28 INFO  LoginPage:357 - Start syncing thread - VeXFbSQh
+2018-07-15 23:02:28 INFO  LoginPage:358 - ========================================
+2018-07-15 23:02:28 INFO  SyncController:68 - Start SyncHostToLocal
+2018-07-15 23:02:28 ERROR SyncController:104 - Column count doesn't match value count at row 1
+2018-07-15 23:02:28 INFO  LoginPage:361 - ========================================
+2018-07-15 23:02:28 INFO  LoginPage:362 - End syncing thread - VeXFbSQh
+2018-07-15 23:02:28 INFO  LoginPage:363 - ========================================
+2018-07-15 23:07:28 INFO  LoginPage:356 - ========================================
+2018-07-15 23:07:28 INFO  LoginPage:357 - Start syncing thread - YYlYmYGx
+2018-07-15 23:07:28 INFO  LoginPage:358 - ========================================
+2018-07-15 23:07:28 INFO  SyncController:68 - Start SyncHostToLocal
+2018-07-15 23:07:28 ERROR SyncController:104 - Column count doesn't match value count at row 1
+2018-07-15 23:07:28 INFO  LoginPage:361 - ========================================
+2018-07-15 23:07:28 INFO  LoginPage:362 - End syncing thread - YYlYmYGx
+2018-07-15 23:07:28 INFO  LoginPage:363 - ========================================
+2018-07-15 23:12:28 INFO  LoginPage:356 - ========================================
+2018-07-15 23:12:28 INFO  LoginPage:357 - Start syncing thread - pBKMRZbd
+2018-07-15 23:12:28 INFO  LoginPage:358 - ========================================
+2018-07-15 23:12:28 INFO  SyncController:68 - Start SyncHostToLocal
+2018-07-15 23:12:28 ERROR SyncController:104 - Column count doesn't match value count at row 1
+2018-07-15 23:12:28 INFO  LoginPage:361 - ========================================
+2018-07-15 23:12:28 INFO  LoginPage:362 - End syncing thread - pBKMRZbd
+2018-07-15 23:12:28 INFO  LoginPage:363 - ========================================
+2018-07-15 23:17:28 INFO  LoginPage:356 - ========================================
+2018-07-15 23:17:28 INFO  LoginPage:357 - Start syncing thread - MWMe1sXK
+2018-07-15 23:17:28 INFO  LoginPage:358 - ========================================
+2018-07-15 23:17:28 INFO  SyncController:68 - Start SyncHostToLocal
+2018-07-15 23:17:28 ERROR SyncController:104 - Column count doesn't match value count at row 1
+2018-07-15 23:17:28 INFO  LoginPage:361 - ========================================
+2018-07-15 23:17:28 INFO  LoginPage:362 - End syncing thread - MWMe1sXK
+2018-07-15 23:17:28 INFO  LoginPage:363 - ========================================
+2018-07-15 23:22:28 INFO  LoginPage:356 - ========================================
+2018-07-15 23:22:28 INFO  LoginPage:357 - Start syncing thread - 5vLNowhe
+2018-07-15 23:22:28 INFO  LoginPage:358 - ========================================
+2018-07-15 23:22:28 INFO  SyncController:68 - Start SyncHostToLocal
+2018-07-15 23:22:29 ERROR SyncController:104 - Column count doesn't match value count at row 1
+2018-07-15 23:22:29 INFO  LoginPage:361 - ========================================
+2018-07-15 23:22:29 INFO  LoginPage:362 - End syncing thread - 5vLNowhe
+2018-07-15 23:22:29 INFO  LoginPage:363 - ========================================
+2018-07-15 23:27:29 INFO  LoginPage:356 - ========================================
+2018-07-15 23:27:29 INFO  LoginPage:357 - Start syncing thread - TQKhhKs0
+2018-07-15 23:27:29 INFO  LoginPage:358 - ========================================
+2018-07-15 23:27:29 INFO  SyncController:68 - Start SyncHostToLocal
+2018-07-15 23:27:30 ERROR SyncController:104 - Column count doesn't match value count at row 1
+2018-07-15 23:27:30 INFO  LoginPage:361 - ========================================
+2018-07-15 23:27:30 INFO  LoginPage:362 - End syncing thread - TQKhhKs0
+2018-07-15 23:27:30 INFO  LoginPage:363 - ========================================
+2018-07-15 23:32:30 INFO  LoginPage:356 - ========================================
+2018-07-15 23:32:30 INFO  LoginPage:357 - Start syncing thread - Q07IGIn0
+2018-07-15 23:32:30 INFO  LoginPage:358 - ========================================
+2018-07-15 23:32:30 INFO  SyncController:68 - Start SyncHostToLocal
+2018-07-15 23:32:30 ERROR SyncController:104 - Column count doesn't match value count at row 1
+2018-07-15 23:32:30 INFO  LoginPage:361 - ========================================
+2018-07-15 23:32:30 INFO  LoginPage:362 - End syncing thread - Q07IGIn0
+2018-07-15 23:32:30 INFO  LoginPage:363 - ========================================
+2018-07-15 23:37:30 INFO  LoginPage:356 - ========================================
+2018-07-15 23:37:30 INFO  LoginPage:357 - Start syncing thread - BRoHObWm
+2018-07-15 23:37:30 INFO  LoginPage:358 - ========================================
+2018-07-15 23:37:30 INFO  SyncController:68 - Start SyncHostToLocal
+2018-07-15 23:37:30 ERROR SyncController:104 - Column count doesn't match value count at row 1
+2018-07-15 23:37:30 INFO  LoginPage:361 - ========================================
+2018-07-15 23:37:30 INFO  LoginPage:362 - End syncing thread - BRoHObWm
+2018-07-15 23:37:30 INFO  LoginPage:363 - ========================================
+2018-07-15 23:42:30 INFO  LoginPage:356 - ========================================
+2018-07-15 23:42:30 INFO  LoginPage:357 - Start syncing thread - 5e39zldI
+2018-07-15 23:42:30 INFO  LoginPage:358 - ========================================
+2018-07-15 23:42:30 INFO  SyncController:68 - Start SyncHostToLocal
+2018-07-15 23:42:30 ERROR SyncController:104 - Column count doesn't match value count at row 1
+2018-07-15 23:42:30 INFO  LoginPage:361 - ========================================
+2018-07-15 23:42:30 INFO  LoginPage:362 - End syncing thread - 5e39zldI
+2018-07-15 23:42:30 INFO  LoginPage:363 - ========================================
+2018-07-15 23:47:30 INFO  LoginPage:356 - ========================================
+2018-07-15 23:47:30 INFO  LoginPage:357 - Start syncing thread - BIZs1v3U
+2018-07-15 23:47:30 INFO  LoginPage:358 - ========================================
+2018-07-15 23:47:30 INFO  SyncController:68 - Start SyncHostToLocal
+2018-07-15 23:47:30 ERROR SyncController:104 - Column count doesn't match value count at row 1
+2018-07-15 23:47:30 INFO  LoginPage:361 - ========================================
+2018-07-15 23:47:30 INFO  LoginPage:362 - End syncing thread - BIZs1v3U
+2018-07-15 23:47:30 INFO  LoginPage:363 - ========================================
+2018-07-15 23:52:30 INFO  LoginPage:356 - ========================================
+2018-07-15 23:52:30 INFO  LoginPage:357 - Start syncing thread - lJ4U8vPu
+2018-07-15 23:52:30 INFO  LoginPage:358 - ========================================
+2018-07-15 23:52:30 INFO  SyncController:68 - Start SyncHostToLocal
+2018-07-15 23:52:30 ERROR SyncController:104 - Column count doesn't match value count at row 1
+2018-07-15 23:52:30 INFO  LoginPage:361 - ========================================
+2018-07-15 23:52:30 INFO  LoginPage:362 - End syncing thread - lJ4U8vPu
+2018-07-15 23:52:30 INFO  LoginPage:363 - ========================================
+2018-07-16 15:16:27 INFO  LoginPage:403 - ************************************************************
+2018-07-16 15:16:27 INFO  LoginPage:404 - ************************************************************
+2018-07-16 15:16:27 INFO  LoginPage:405 - ************************************************************
+2018-07-16 15:16:27 INFO  LoginPage:406 - ************************************************************
+2018-07-16 15:16:27 INFO  LoginPage:407 - Starting iTool app.
+2018-07-16 15:16:27 INFO  LoginPage:408 - companyCode: Com1
+2018-07-16 15:16:27 INFO  LoginPage:409 - companyCodeUH: UHCom
+2018-07-16 15:16:27 INFO  LoginPage:410 - machineCode: MAC1
+2018-07-16 15:16:28 INFO  LoginPage:413 - mDbHost: localhost
+2018-07-16 15:16:28 INFO  LoginPage:414 - mDbUser: admin
+2018-07-16 15:16:28 INFO  LoginPage:415 - mDbPwds: 1qazxsw2
+2018-07-16 15:16:28 INFO  LoginPage:416 - mDbName: iTools_v1p0
+2018-07-16 15:16:28 INFO  LoginPage:417 - mDbPort: 3306
+2018-07-16 15:16:28 INFO  LoginPage:418 - Database version: v1p0 - 2018-07-15 22:00:06
+2018-07-16 15:16:28 INFO  LoginPage:420 - Last Sync: 2018-07-15 22:00:07
+2018-07-16 15:16:29 INFO  LoginPage:431 - App Version: 1.0
+2018-07-16 15:16:35 INFO  LoginPage:442 - checkEmailConfig: true
+2018-07-16 15:16:36 INFO  LoginPage:356 - ========================================
+2018-07-16 15:16:36 INFO  LoginPage:357 - Start syncing thread - uQb5BkN0
+2018-07-16 15:16:36 INFO  LoginPage:358 - ========================================
+2018-07-16 15:16:36 INFO  SyncController:68 - Start SyncHostToLocal
+2018-07-16 15:16:36 ERROR SyncController:104 - Column count doesn't match value count at row 1
+2018-07-16 15:16:36 INFO  LoginPage:361 - ========================================
+2018-07-16 15:16:36 INFO  LoginPage:362 - End syncing thread - uQb5BkN0
+2018-07-16 15:16:36 INFO  LoginPage:363 - ========================================
+2018-07-16 15:23:05 INFO  LoginPage:403 - ************************************************************
+2018-07-16 15:23:05 INFO  LoginPage:404 - ************************************************************
+2018-07-16 15:23:05 INFO  LoginPage:405 - ************************************************************
+2018-07-16 15:23:05 INFO  LoginPage:406 - ************************************************************
+2018-07-16 15:23:05 INFO  LoginPage:407 - Starting iTool app.
+2018-07-16 15:23:05 INFO  LoginPage:408 - companyCode: Com1
+2018-07-16 15:23:05 INFO  LoginPage:409 - companyCodeUH: UHCom
+2018-07-16 15:23:05 INFO  LoginPage:410 - machineCode: MAC1
+2018-07-16 15:23:05 INFO  LoginPage:413 - mDbHost: localhost
+2018-07-16 15:23:05 INFO  LoginPage:414 - mDbUser: admin
+2018-07-16 15:23:05 INFO  LoginPage:415 - mDbPwds: 1qazxsw2
+2018-07-16 15:23:05 INFO  LoginPage:416 - mDbName: iTools_v1p0
+2018-07-16 15:23:05 INFO  LoginPage:417 - mDbPort: 3306
+2018-07-16 15:23:05 INFO  LoginPage:418 - Database version: v1p0 - 2018-07-16 15:22:45
+2018-07-16 15:23:05 INFO  LoginPage:420 - Last Sync: 2018-07-16 15:22:46
+2018-07-16 15:23:06 INFO  LoginPage:431 - App Version: 1.0
+2018-07-16 15:23:12 INFO  LoginPage:442 - checkEmailConfig: true
+2018-07-16 15:23:13 INFO  LoginPage:356 - ========================================
+2018-07-16 15:23:13 INFO  LoginPage:357 - Start syncing thread - gxGgUvLb
+2018-07-16 15:23:13 INFO  LoginPage:358 - ========================================
+2018-07-16 15:23:13 INFO  SyncController:68 - Start SyncHostToLocal
+2018-07-16 15:23:14 ERROR SyncController:104 - Column count doesn't match value count at row 1
+2018-07-16 15:23:14 INFO  LoginPage:361 - ========================================
+2018-07-16 15:23:14 INFO  LoginPage:362 - End syncing thread - gxGgUvLb
+2018-07-16 15:23:14 INFO  LoginPage:363 - ========================================
+2018-07-16 15:27:34 INFO  LoginPage:403 - ************************************************************
+2018-07-16 15:27:34 INFO  LoginPage:404 - ************************************************************
+2018-07-16 15:27:34 INFO  LoginPage:405 - ************************************************************
+2018-07-16 15:27:34 INFO  LoginPage:406 - ************************************************************
+2018-07-16 15:27:34 INFO  LoginPage:407 - Starting iTool app.
+2018-07-16 15:27:34 INFO  LoginPage:408 - companyCode: Com1
+2018-07-16 15:27:34 INFO  LoginPage:409 - companyCodeUH: UHCom
+2018-07-16 15:27:34 INFO  LoginPage:410 - machineCode: MAC1
+2018-07-16 15:27:35 INFO  LoginPage:413 - mDbHost: localhost
+2018-07-16 15:27:35 INFO  LoginPage:414 - mDbUser: admin
+2018-07-16 15:27:35 INFO  LoginPage:415 - mDbPwds: 1qazxsw2
+2018-07-16 15:27:35 INFO  LoginPage:416 - mDbName: iTools_v1p0
+2018-07-16 15:27:35 INFO  LoginPage:417 - mDbPort: 3306
+2018-07-16 15:27:35 INFO  LoginPage:418 - Database version: v1p0 - 2018-07-16 15:26:48
+2018-07-16 15:27:35 INFO  LoginPage:420 - Last Sync: 2018-07-16 15:26:49
+2018-07-16 15:27:36 INFO  LoginPage:431 - App Version: 1.0
+2018-07-16 15:27:42 INFO  LoginPage:442 - checkEmailConfig: true
+2018-07-16 15:27:43 INFO  LoginPage:356 - ========================================
+2018-07-16 15:27:43 INFO  LoginPage:357 - Start syncing thread - MmwbsN6W
+2018-07-16 15:27:43 INFO  LoginPage:358 - ========================================
+2018-07-16 15:27:43 INFO  SyncController:68 - Start SyncHostToLocal
+2018-07-16 15:28:04 ERROR SyncController:104 - Unable to connect to foreign data source: Can't connect to MySQL server on '112.213.89.49' (10060)
+2018-07-16 15:28:04 INFO  LoginPage:361 - ========================================
+2018-07-16 15:28:04 INFO  LoginPage:362 - End syncing thread - MmwbsN6W
+2018-07-16 15:28:04 INFO  LoginPage:363 - ========================================
+2018-07-16 15:30:50 INFO  LoginPage:403 - ************************************************************
+2018-07-16 15:30:50 INFO  LoginPage:404 - ************************************************************
+2018-07-16 15:30:50 INFO  LoginPage:405 - ************************************************************
+2018-07-16 15:30:50 INFO  LoginPage:406 - ************************************************************
+2018-07-16 15:30:50 INFO  LoginPage:407 - Starting iTool app.
+2018-07-16 15:30:50 INFO  LoginPage:408 - companyCode: Com1
+2018-07-16 15:30:50 INFO  LoginPage:409 - companyCodeUH: UHCom
+2018-07-16 15:30:50 INFO  LoginPage:410 - machineCode: MAC1
+2018-07-16 15:30:51 INFO  LoginPage:413 - mDbHost: localhost
+2018-07-16 15:30:51 INFO  LoginPage:414 - mDbUser: admin
+2018-07-16 15:30:51 INFO  LoginPage:415 - mDbPwds: 1qazxsw2
+2018-07-16 15:30:51 INFO  LoginPage:416 - mDbName: iTools_v1p0
+2018-07-16 15:30:51 INFO  LoginPage:417 - mDbPort: 3306
+2018-07-16 15:30:51 INFO  LoginPage:418 - Database version: v1p0 - 2018-07-16 15:26:48
+2018-07-16 15:30:51 INFO  LoginPage:420 - Last Sync: 2018-07-16 15:26:49
+2018-07-16 15:30:52 INFO  LoginPage:431 - App Version: 1.0
+2018-07-16 15:30:58 INFO  LoginPage:442 - checkEmailConfig: true
+2018-07-16 15:30:59 INFO  LoginPage:356 - ========================================
+2018-07-16 15:30:59 INFO  LoginPage:357 - Start syncing thread - SOx8vwUc
+2018-07-16 15:30:59 INFO  LoginPage:358 - ========================================
+2018-07-16 15:30:59 INFO  SyncController:68 - Start SyncHostToLocal
+2018-07-16 15:31:20 ERROR SyncController:104 - Unable to connect to foreign data source: Can't connect to MySQL server on '112.213.89.49' (10060)
+2018-07-16 15:31:20 INFO  LoginPage:361 - ========================================
+2018-07-16 15:31:20 INFO  LoginPage:362 - End syncing thread - SOx8vwUc
+2018-07-16 15:31:20 INFO  LoginPage:363 - ========================================
+2018-07-16 15:33:04 INFO  LoginPage:356 - ========================================
+2018-07-16 15:33:04 INFO  LoginPage:357 - Start syncing thread - XD4UTgmw
+2018-07-16 15:33:04 INFO  LoginPage:358 - ========================================
+2018-07-16 15:33:04 INFO  SyncController:68 - Start SyncHostToLocal
+2018-07-16 15:33:25 ERROR SyncController:104 - Unable to connect to foreign data source: Can't connect to MySQL server on '112.213.89.49' (10060)
+2018-07-16 15:33:25 INFO  LoginPage:361 - ========================================
+2018-07-16 15:33:25 INFO  LoginPage:362 - End syncing thread - XD4UTgmw
+2018-07-16 15:33:25 INFO  LoginPage:363 - ========================================
+2018-07-17 21:09:33 INFO  LoginPage:403 - ************************************************************
+2018-07-17 21:09:33 INFO  LoginPage:404 - ************************************************************
+2018-07-17 21:09:33 INFO  LoginPage:405 - ************************************************************
+2018-07-17 21:09:33 INFO  LoginPage:406 - ************************************************************
+2018-07-17 21:09:33 INFO  LoginPage:407 - Starting iTool app.
+2018-07-17 21:09:33 INFO  LoginPage:408 - companyCode: Com1
+2018-07-17 21:09:33 INFO  LoginPage:409 - companyCodeUH: UHCom
+2018-07-17 21:09:33 INFO  LoginPage:410 - machineCode: MAC1
+2018-07-17 21:09:33 INFO  LoginPage:413 - mDbHost: localhost
+2018-07-17 21:09:33 INFO  LoginPage:414 - mDbUser: admin
+2018-07-17 21:09:33 INFO  LoginPage:415 - mDbPwds: 1qazxsw2
+2018-07-17 21:09:33 INFO  LoginPage:416 - mDbName: iTools_v1p0
+2018-07-17 21:09:33 INFO  LoginPage:417 - mDbPort: 3306
+2018-07-17 21:09:33 INFO  LoginPage:418 - Database version: v1p0 - 2018-07-16 15:31:42
+2018-07-17 21:09:33 INFO  LoginPage:420 - Last Sync: 2018-07-16 15:31:44
+2018-07-17 21:09:34 INFO  LoginPage:431 - App Version: 1.0
+2018-07-17 21:09:41 INFO  LoginPage:442 - checkEmailConfig: true
+2018-07-17 21:09:42 INFO  LoginPage:356 - ========================================
+2018-07-17 21:09:42 INFO  LoginPage:357 - Start syncing thread - NlkZ7Uh4
+2018-07-17 21:09:42 INFO  LoginPage:358 - ========================================
+2018-07-17 21:09:42 INFO  SyncController:68 - Start SyncHostToLocal
+2018-07-17 21:09:44 ERROR SyncController:104 - Cannot add or update a child row: a foreign key constraint fails (`itools_v1p0`.`assessor`, CONSTRAINT `assessor_ibfk_1` FOREIGN KEY (`CompanyCode`) REFERENCES `company` (`CompanyCode`))
+2018-07-17 21:09:44 INFO  LoginPage:361 - ========================================
+2018-07-17 21:09:44 INFO  LoginPage:362 - End syncing thread - NlkZ7Uh4
+2018-07-17 21:09:44 INFO  LoginPage:363 - ========================================
+2018-07-17 21:14:44 INFO  LoginPage:356 - ========================================
+2018-07-17 21:14:44 INFO  LoginPage:357 - Start syncing thread - GFDKyaJz
+2018-07-17 21:14:44 INFO  LoginPage:358 - ========================================
+2018-07-17 21:14:44 INFO  SyncController:68 - Start SyncHostToLocal
+2018-07-17 21:14:48 INFO  SyncController:77 - insertAssessor: 0,
+updateAssessor: 0,
+insertMachine: 0,
+updateMachine: 0,
+insertCompanyMachine: 0,
+updateCompanyMachine: 0,
+insertRoleAssessor: 0,
+updateRoleAssessor: 0,
+insertRole: 0,
+updateRole: 0,
+insertTools: 0,
+updateTools: 0,
+insertToolsMachine: 0,
+updateToolsMachine: 0
+2018-07-17 21:14:48 INFO  SyncController:84 - End SyncHostToLocal: 4s
+2018-07-17 21:14:48 INFO  SyncController:86 - Start SyncLocalToHost
+2018-07-17 21:14:49 INFO  SyncController:95 - insertMasterLog: 2,
+updateMasterLog: 1,
+insertToolsMachineTray: 0,
+updateToolsMachineTray: 0,
+insertWorkingTransaction: 0,
+updateWorkingTransaction: 0
+2018-07-17 21:14:49 INFO  SyncController:101 - End SyncLocalToHost: 1s
+2018-07-17 21:14:49 INFO  LoginPage:361 - ========================================
+2018-07-17 21:14:49 INFO  LoginPage:362 - End syncing thread - GFDKyaJz
+2018-07-17 21:14:49 INFO  LoginPage:363 - ========================================
+2018-07-17 21:19:17 INFO  LoginPage:403 - ************************************************************
+2018-07-17 21:19:17 INFO  LoginPage:404 - ************************************************************
+2018-07-17 21:19:17 INFO  LoginPage:405 - ************************************************************
+2018-07-17 21:19:17 INFO  LoginPage:406 - ************************************************************
+2018-07-17 21:19:17 INFO  LoginPage:407 - Starting iTool app.
+2018-07-17 21:19:17 INFO  LoginPage:408 - companyCode: Com1
+2018-07-17 21:19:17 INFO  LoginPage:409 - companyCodeUH: UHCom
+2018-07-17 21:19:17 INFO  LoginPage:410 - machineCode: MAC1
+2018-07-17 21:19:18 INFO  LoginPage:413 - mDbHost: localhost
+2018-07-17 21:19:18 INFO  LoginPage:414 - mDbUser: admin
+2018-07-17 21:19:18 INFO  LoginPage:415 - mDbPwds: 1qazxsw2
+2018-07-17 21:19:18 INFO  LoginPage:416 - mDbName: iTools_v1p0
+2018-07-17 21:19:18 INFO  LoginPage:417 - mDbPort: 3306
+2018-07-17 21:19:18 INFO  LoginPage:418 - Database version: v1p0 - 2018-07-17 21:18:42
+2018-07-17 21:19:18 INFO  LoginPage:420 - Last Sync: 2018-07-17 21:18:42
+2018-07-17 21:19:19 INFO  LoginPage:431 - App Version: 1.0
+2018-07-17 21:19:25 INFO  LoginPage:442 - checkEmailConfig: true
+2018-07-17 21:19:26 INFO  LoginPage:356 - ========================================
+2018-07-17 21:19:26 INFO  LoginPage:357 - Start syncing thread - Z8zn1U49
+2018-07-17 21:19:26 INFO  LoginPage:358 - ========================================
+2018-07-17 21:19:26 INFO  SyncController:68 - Start SyncHostToLocal
+2018-07-17 21:19:26 ERROR SyncController:104 - Parameter number 3 is not an OUT parameter
+2018-07-17 21:19:26 INFO  LoginPage:361 - ========================================
+2018-07-17 21:19:26 INFO  LoginPage:362 - End syncing thread - Z8zn1U49
+2018-07-17 21:19:26 INFO  LoginPage:363 - ========================================
+2018-07-17 21:22:02 INFO  LoginPage:403 - ************************************************************
+2018-07-17 21:22:02 INFO  LoginPage:404 - ************************************************************
+2018-07-17 21:22:02 INFO  LoginPage:405 - ************************************************************
+2018-07-17 21:22:02 INFO  LoginPage:406 - ************************************************************
+2018-07-17 21:22:02 INFO  LoginPage:407 - Starting iTool app.
+2018-07-17 21:22:02 INFO  LoginPage:408 - companyCode: Com1
+2018-07-17 21:22:02 INFO  LoginPage:409 - companyCodeUH: UHCom
+2018-07-17 21:22:02 INFO  LoginPage:410 - machineCode: MAC1
+2018-07-17 21:22:02 INFO  LoginPage:413 - mDbHost: localhost
+2018-07-17 21:22:02 INFO  LoginPage:414 - mDbUser: admin
+2018-07-17 21:22:02 INFO  LoginPage:415 - mDbPwds: 1qazxsw2
+2018-07-17 21:22:02 INFO  LoginPage:416 - mDbName: iTools_v1p0
+2018-07-17 21:22:02 INFO  LoginPage:417 - mDbPort: 3306
+2018-07-17 21:22:02 INFO  LoginPage:418 - Database version: v1p0 - 2018-07-17 21:18:42
+2018-07-17 21:22:02 INFO  LoginPage:420 - Last Sync: 2018-07-17 21:18:42
+2018-07-17 21:22:03 INFO  LoginPage:431 - App Version: 1.0
+2018-07-17 21:22:10 INFO  LoginPage:442 - checkEmailConfig: true
+2018-07-17 21:22:11 INFO  LoginPage:356 - ========================================
+2018-07-17 21:22:11 INFO  LoginPage:357 - Start syncing thread - k5wTcVGL
+2018-07-17 21:22:11 INFO  LoginPage:358 - ========================================
+2018-07-17 21:22:11 INFO  SyncController:68 - Start SyncHostToLocal
+2018-07-17 21:22:16 INFO  SyncController:77 - insertAssessor: 8,
+updateAssessor: 0,
+insertMachine: 4,
+updateMachine: 0,
+insertCompanyMachine: 4,
+updateCompanyMachine: 0,
+insertRoleAssessor: 9,
+updateRoleAssessor: 0,
+insertRole: 0,
+updateRole: 0,
+insertTools: 5,
+updateTools: 0,
+insertToolsMachine: 9,
+updateToolsMachine: 0
+2018-07-17 21:22:16 INFO  SyncController:84 - End SyncHostToLocal: 5s
+2018-07-17 21:22:16 INFO  SyncController:86 - Start SyncLocalToHost
+2018-07-17 21:22:17 INFO  SyncController:95 - insertMasterLog: 0,
+updateMasterLog: 1,
+insertToolsMachineTray: 0,
+updateToolsMachineTray: 0,
+insertWorkingTransaction: 0,
+updateWorkingTransaction: 0
+2018-07-17 21:22:17 INFO  SyncController:101 - End SyncLocalToHost: 1s
+2018-07-17 21:22:17 INFO  LoginPage:361 - ========================================
+2018-07-17 21:22:17 INFO  LoginPage:362 - End syncing thread - k5wTcVGL
+2018-07-17 21:22:17 INFO  LoginPage:363 - ========================================
