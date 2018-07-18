@@ -1,0 +1,99 @@
+package com.iToolsV2.service;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.sql.DataSource;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Service;
+
+import com.iToolsV2.form.TransactionReport;
+import com.iToolsV2.form.TransactionSearch;
+
+import lombok.extern.slf4j.Slf4j;
+
+@Service
+@Slf4j
+public class TransactionReportService {
+	
+	@Value("${itool.sql.getTransaction}")
+	private String sqlGetTransaction;
+	
+	@Autowired
+	private DataSource dataSource;
+	
+	public List<TransactionReport> searchTransaction(TransactionSearch search) throws Exception {
+		List<TransactionReport> lstResult = new ArrayList<>();
+		try {
+			JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+			
+			int sizeParam = (search.getCompanyCode().isEmpty()? 0 : 1) + (search.getToolCode().isEmpty()? 0 : 1) +
+					(search.getUserId() == 0 ? 0 : 1) + (search.getTransactionType().isEmpty()? 0 : 1) + 
+					(search.getMachineCode().isEmpty()? 0 : 1) + (search.getTray().isEmpty()? 0 : 1) + 
+					(search.getFromDate() == null ? 0 : 1) + (search.getToDate() == null? 0 : 1);
+			
+			Object[] objectParams = new Object[sizeParam];
+			
+			String where = "";
+			int indexParams = 0;
+			if (!search.getCompanyCode().isEmpty()) {
+				where += " AND wk.CompanyCode = ?";
+				objectParams[indexParams++] = search.getCompanyCode();
+			}
+			if (!search.getToolCode().isEmpty()) {
+				where += " AND wk.ToolCode = ?";
+				objectParams[indexParams++] = search.getToolCode();
+			}
+			if (search.getUserId() > 0) {
+				where += " AND wk.AssessorID = ?";
+				objectParams[indexParams++] = search.getUserId();
+			}
+			if (!search.getTransactionType().isEmpty()) {
+				where += " AND wk.TransactionType = ?";
+				objectParams[indexParams++] = search.getTransactionType();
+			}
+			if (!search.getMachineCode().isEmpty()) {
+				where += " AND wk.MachineCode = ?";
+				objectParams[indexParams++] = search.getMachineCode();
+			}
+			if (!search.getTray().isEmpty()) {
+				where += " AND wk.TrayIndex = ?";
+				objectParams[indexParams++] = search.getTray();
+			}
+			if (search.getFromDate() != null) {
+				where += " AND wk.TransactionDate >= ?";
+				objectParams[indexParams++] = search.getFromDate();
+			}
+			if (search.getToDate() != null) {
+				where += " AND wk.TransactionDate <= ?";
+				objectParams[indexParams++] = search.getToDate();
+			}
+			lstResult = jdbcTemplate.query(sqlGetTransaction + where, objectParams, new RowMapper<TransactionReport>() {
+				@Override
+				public TransactionReport mapRow(ResultSet rs, int rowNum) throws SQLException {
+					TransactionReport report = new TransactionReport();
+					report.setTransactionId(rs.getInt("WorkingTransactionID"));
+					report.setCompanyName(rs.getString("CompanyName"));
+					report.setUserName(rs.getString("UserName"));
+					report.setMachineName(rs.getString("MachineName"));
+					report.setTray(rs.getString("TrayIndex"));
+					report.setToolCode(rs.getString("ToolCode"));
+					report.setQuantity(rs.getInt("Quantity"));
+					report.setTypeTransaction(rs.getString("TransactionType"));
+					report.setTransactionDate(rs.getDate("TransactionDate"));
+					return report;
+				}
+			});
+			return lstResult;
+		} catch (Exception e) {
+			log.error(e.getMessage());
+			throw e;
+		}
+	}
+}

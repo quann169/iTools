@@ -3,25 +3,38 @@
    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
    <head>
       <meta charset="UTF-8">
-      <title>CTID List</title>
-      <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}" />
+      <title>Tool List</title> 
+      <link type="text/css" th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
+      <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}" />  	
    </head>
    <body>
       <th:block th:include="/_header"></th:block>
       <th:block th:include="/_menu"></th:block>
-       
-      <div class="page-title">CTID List</div>
+      <th:block th:include="/_subMenuTool"></th:block>  
+      <div class="page-title">Tool List</div>
       
-      <table border="1" style="width:100%">
+      <table border="1" style="width:100%" class="display hover">
             <tr>
-               <th>CTID Code</th>
-               <th>CTID Details</th>
+               <th>Code</th>
+               <th>Model</th>
+               <th>Barcode</th>
+               <th>Details</th>
                <th>Status</th>
+               <th>Created Date</th>
+               <th>Updated Date</th>
+               <th></th>
+               <th></th>
             </tr>
-            <tr th:each ="toolInfo : ${paginationTool.list}">
+            <tr class="detail status1" th:each ="toolInfo : ${paginationTool.list}">
                <td th:utext="${toolInfo.toolCode}">...</td>
-               <td th:utext="${toolInfo.decription} == null ? 'None' : ${toolInfo.decription}">...</td>
-               <td th:utext="${toolInfo.active} ? 'active' : 'disabled'">...</td>
+               <td th:utext="${toolInfo.model}">...</td>
+               <td th:utext="${toolInfo.barcode}">...</td>
+               <td th:utext="${toolInfo.description}">...</td>
+               <td th:utext="${toolInfo.active} ? 'Active' : 'Disabled'">...</td>
+               <td th:utext="${toolInfo.createdDate}">...</td>
+               <td th:utext="${toolInfo.updatedDate}">...</td>
+               <td><a th:href="@{|/admin/toolDetail?toolID=${toolInfo.toolID}|}">Edit</a></td>
+               <td><a th:href="@{|/admin/assignToolToMachine?toolID=${toolInfo.toolID}|}">Assign to Machine</a></td>
             </tr>
       </table>      
        

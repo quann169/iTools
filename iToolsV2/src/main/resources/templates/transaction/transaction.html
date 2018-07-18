@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+   xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+	<head>
+		<meta charset="UTF-8">
+		<title>Working Transaction</title>
+		<th:block>
+	        <link rel="stylesheet" href="../../static/vendor/datatables/css/jquery.dataTables.css"
+	              th:href="@{/vendor/datatables/css/jquery.dataTables.css}"/>
+	    </th:block>
+	    <th:block>
+	        <link rel="stylesheet" href="../../static/vendor/jquery-ui/jquery-ui.css"
+	              th:href="@{/vendor/jquery-ui/jquery-ui.css}"/>
+	        <link rel="stylesheet" href="../../static/vendor/font-awesome/css/font-awesome.css"
+	              th:href="@{/vendor/font-awesome/css/font-awesome.css}"/>
+	        <link rel="stylesheet" href="../../static/css/style.min.css"
+	              th:href="@{/css/style.min.css}"/>
+	        <link rel="stylesheet" href="../../static/css/styles.css"
+	              th:href="@{/css/styles.css}"/>
+	    </th:block>
+	    <th:block>
+	        <script src="../../static/vendor/js/main.min.js"
+	                th:src="@{/vendor/js/main.min.js}"></script>
+	        <script src="../../static/vendor/jquery-ui/jquery-ui.js"
+	                th:src="@{/vendor/jquery-ui/jquery-ui.js}"></script>
+	        <script src="../../static/vendor/js/jquery.mask.js"
+	                th:src="@{/vendor/js/jquery.mask.js}"></script>
+	    </th:block>
+	    <th:block>
+	        <script src="../../static/vendor/datatables/js/jquery.dataTables.js"
+	                th:src="@{/vendor/datatables/js/jquery.dataTables.js}"></script>
+	        <script type="text/javascript" language="javascript"
+	                src="../../static/vendor/dataTables.buttons.min.js"
+	                th:src="@{/vendor/dataTables.buttons.min.js}">
+	        </script>
+	        <script type="text/javascript" language="javascript"
+	                src="../../static/vendor/buttons.flash.min.js"
+	                th:src="@{/vendor/buttons.flash.min.js}">
+	        </script>
+	        <script type="text/javascript" language="javascript"
+	                src="../../static/vendor/jszip.min.js"
+	                th:src="@{/vendor/jszip.min.js}">
+	        </script>
+	        <script type="text/javascript" language="javascript"
+	                src="../../static/vendor/pdfmake.min.js"
+	                th:src="@{/vendor/pdfmake.min.js}">
+	        </script>
+	        <script type="text/javascript" language="javascript"
+	                src="../../static/vendor/vfs_fonts.js"
+	                th:src="@{/vendor/vfs_fonts.js}">
+	        </script>
+	        <script type="text/javascript" language="javascript"
+	                src="../../static/vendor/buttons.html5.min.js"
+	                th:src="@{/vendor/buttons.html5.min.js}">
+	        </script>
+	        <script type="text/javascript" language="javascript"
+	                src="../../static/vendor/buttons.print.min.js"
+	                th:src="@{/vendor/buttons.print.min.js}">
+	        </script>
+	    </th:block>
+	    <script type="text/javascript" th:inline="javascript">
+	        /*<![CDATA[*/
+	        var contextPath = /*[[${#httpServletRequest.getContextPath()}]]*/ '';
+	        /*]]>*/
+	    </script>
+	</head>
+	<body style="margin-top: 45px; background-color: rgb(238, 238, 238)">
+		<!-- <header th:replace="_fragments/layout::header"></header> -->
+		<th:block th:include="/_header"></th:block>
+      	<th:block th:include="/_menu"></th:block>
+		<hr/>
+    	<div class="page-title">Working Transaction</div>
+		<form action="report.html" class="form-horizontal" method="post"
+			  th:action="@{/transaction/query}"
+			  th:object="${transactionSearch}">
+			<fieldset>
+				<div class="row" style="padding-bottom: 10px;">
+					<div class="col-sm-2" style="text-align: right"><label>Company</label></div>
+					<div class="col-sm-4">
+						<select id="company" class="form-control" title="company" th:field="*{companyCode}">
+		                    <option value="" th:value="null">--Vui lòng chọn--</option>
+		                    <option th:each="company : ${lstCompany}" th:value="${company.companyCode}" th:text="${company.companyName}">
+		                        Company
+		                    </option>
+		                </select>
+					</div>
+					<div class="col-sm-2" style="text-align: right"><label>CTID</label></div>
+					<div class="col-sm-4">
+						<select id="tool" class="form-control" title="CTID" th:field="*{toolCode}">
+		                    <option value="" th:value="null">--Vui lòng chọn--</option>
+		                    <option th:each="tool : ${lstTool}" th:value="${tool.toolCode}" th:text="${tool.toolCode}">
+		                        Tool
+		                    </option>
+		                </select>
+					</div>
+				</div>
+				<div class="row" style="padding-bottom: 10px;">
+					<div class="col-sm-2" style="text-align: right"><label>User</label></div>
+					<div class="col-sm-4">
+						<select id="user" class="form-control" title="User" th:field="*{userId}">
+		                    <option value="" th:value="0">--Vui lòng chọn--</option>
+		                    <option th:each="user : ${lstUser}" th:value="${user.assessorID}" th:text="${user.userName}">
+		                        User
+		                    </option>
+		                </select>
+					</div>
+					<div class="col-sm-2" style="text-align: right"><label>Type of Transaction</label></div>
+					<div class="col-sm-4">
+						<select id="transactionType" class="form-control" title="Type of Transaction" th:field="*{transactionType}">
+		                    <option value="" th:value="null">--Vui lòng chọn--</option>
+		                    <option value="GetTools" >Get Tools</option>
+		                    <option value="PutIn" >Put in</option>
+		                    <option value="TakeOut" >take out</option>
+		                </select>
+					</div>
+				</div>
+				<div class="row" style="padding-bottom: 10px;">
+					<div class="col-sm-2" style="text-align: right"><label>Machine</label></div>
+					<div class="col-sm-4">
+						<select id="Machine" class="form-control" title="Machine" th:field="*{machineCode}">
+		                    <option value="" th:value="null">--Vui lòng chọn--</option>
+		                    <option th:each="machine : ${lstMachine}" th:value="${machine.machineCode}" th:text="${machine.machineName}">
+		                        Company
+		                    </option>
+		                </select>
+					</div>
+					<div class="col-sm-2" style="text-align: right"><label>Tray</label></div>
+					<div class="col-sm-4">
+						<select id="Tray" class="form-control" title="Tray" th:field="*{tray}">
+		                    <option value="" th:value="null">--Vui lòng chọn--</option>
+		                    <option th:each="tray : ${lstTray}" th:value="${tray}" th:text="${tray}">
+		                        Tool
+		                    </option>
+		                </select>
+					</div>
+				</div>
+				<div class="row" style="padding-bottom: 5px;">
+					<div class="col-sm-2" style="text-align: right"><label>From Date</label></div>
+					<div class="col-sm-4">
+						<input id="FromDate" class="form-control date-placeholder" th:field="*{fromDate}"/>
+					</div>
+					<div class="col-sm-2" style="text-align: right"><label>To Date</label></div>
+					<div class="col-sm-4">
+						<input id="ToDate" class="form-control date-placeholder" th:field="*{toDate}"/>
+					</div>
+				</div>
+			</fieldset>
+			<button style="margin-top: 15px;margin-bottom: 15px;" type="submit" class="btn btn-primary text-uppercase full-width">SEARCH</button>
+		</form>
+		
+		<div class="margin-top-l"></div>
+		<table id="search-result" class="display hover">
+            <thead>
+            <tr>
+                <td>Transaction ID</td>
+                <td>Company</td>
+                <td>User</td>
+                <td>Machine</td>
+                <td>Tray</td>
+                <td>CTID</td>
+                <td>Quantity</td>
+                <td>Type of Transaction</td>
+                <td>Date of Transaction</td>
+            </tr>
+            </thead>
+            <tbody>
+            <!--/*@thymesVar id="leads" type="java.util.List<vn.com.fwd.banca.lead.model.Lead>"*/-->
+            <tr class="detail status1" th:each="tran : ${lstTransaction}">
+                <td th:text="${tran.transactionId}">1</td>
+                <td th:text="${tran.companyName}">ABC</td>
+                <td th:text="${tran.userName}">userName</td>
+                <td th:text="${tran.machineName}">machineName</td>
+                <td th:text="${tran.tray}">tray</td>
+                <td th:text="${tran.toolCode}">toolCode</td>
+                <td th:text="${tran.quantity}">1</td>
+                <td th:text="${tran.typeTransaction}">typeTransaction</td>
+                <td th:text="${tran.transactionDate}">20/07/2018</td>
+            </tr>
+           	</tbody>
+       	</table>
+		
+	<th:block th:include="/_footer"></th:block>
+       
+	<script type="text/javascript">
+		/*<![CDATA[*/
+	    $(document).ready(function () {
+	        $('.date-placeholder').mask("00/00/0000", {placeholder: "dd/mm/yyyy"});
+	        $( ".date-placeholder" ).datepicker({ 
+	        	changeMonth: true,
+	            changeYear: true,
+	            yearRange: "-150:+0",
+	            dateFormat: 'dd/mm/yy'
+	        });
+
+	        $('#search-result').DataTable({
+	            "info": false,
+	            "lengthChange": false,
+	            "searching": false,
+	            "language": {
+	                "paginate": {
+	                    "previous": " < ",
+	                    "next": " > "
+	                }
+	            },
+	            "order": [],
+	            dom: 'frtipB',
+	            buttons: [
+	                {
+	                    extend: 'excel',
+	                    text: 'Export excel'
+	                },
+	                {
+	                    extend: 'pdf',
+	                    text: 'Export pdf'
+	                }
+	            ]
+	        });
+
+	        $('#Machine').change(function () {
+	            $.ajax({
+	                dataType: 'json',
+	                url: contextPath + '/getTrayByMachineCode',
+	                data: {machineCode: $('#Machine').val()},
+	                success: function (data) {
+	                    $('#Tray').html("");
+	                    $('#Tray').append(
+	                        $('<option/>', {
+	                            value: '',
+	                            text: "--Vui lòng chọn--"
+	                        })
+	                    );
+	                    $.each(data, function (index, value) {
+	                        $('#Tray').append(
+	                            $('<option/>', {
+	                                value: value,
+	                                text: value
+	                            })
+	                        );
+	                    })
+	                }
+	            });
+	        });
+
+	    });
+	    /*]]>*/
+	</script>
+	</body>
+</html>

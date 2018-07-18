@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+   <head>
+      <title>Successfully assign Tool</title>
+      <link type="text/css" th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
+      <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}" />     
+      <script th:src="@{/jquery/jquery.min.js}"></script>  
+      <script th:src="@{/popper/popper.min.js}"></script>  
+      <script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>  
+      <style>
+        span {color: blue;}
+      </style>
+   </head>
+    
+   <body>
+    
+      <!-- Include _menu.html -->
+      <th:block th:include="/_header"></th:block>
+      	<th:block th:include="/_menu"></th:block>
+      	<th:block th:include="/_subMenuTool"></th:block>
+       
+      <h2>You have successfully assign!</h2>
+       
+      <div th:if="${flashUser != null}">
+         <ul>         	
+            <li th:each ="currentRecord : ${flashUser}">Success assign to Machine: <span th:utext="${currentRecord}">.</span></li>
+         </ul>
+      </div>
+      
+      <div>
+      <a href="/ctidList">Go to List</a> 
+      </div>
+      <th:block th:include="/_footer"></th:block> 
+   </body>
+</html>

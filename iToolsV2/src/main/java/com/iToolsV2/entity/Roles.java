@@ -1,6 +1,7 @@
 package com.iToolsV2.entity;
  
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -27,10 +28,21 @@ public class Roles implements Serializable {
     private String roleName;
  
     @Column(name = "RoleType", nullable = true)
-    private int roleType;
+    private Integer roleType;
     
     @Column(name = "IsRole", nullable = true)
     private int isRole;
+    
+    @Column(name = "UpdatedDate", nullable = true)
+    private Date updatedDate;
+ 
+    public Date getUpdatedDate() {
+		return updatedDate;
+	}
+
+	public void setUpdatedDate(Date updatedDate) {
+		this.updatedDate = updatedDate;
+	}
 
 	public int getRoleID() {
 		return roleID;
@@ -48,11 +60,11 @@ public class Roles implements Serializable {
 		this.roleName = roleName;
 	}
 
-	public int getRoleType() {
+	public Integer getRoleType() {
 		return roleType;
 	}
 
-	public void setRoleType(int roleType) {
+	public void setRoleType(Integer roleType) {
 		this.roleType = roleType;
 	}
 

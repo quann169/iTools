@@ -32,6 +32,17 @@ public class CompanyMachine implements Serializable {
  
     @Column(name = "CreatedDate", nullable = true)
     private Date createdDate;
+    
+    @Column(name = "UpdatedDate", nullable = true)
+    private Date updatedDate;
+
+	public Date getUpdatedDate() {
+		return updatedDate;
+	}
+
+	public void setUpdatedDate(Date updatedDate) {
+		this.updatedDate = updatedDate;
+	}
 
 	public int getCompanyMachineID() {
 		return companyMachineID;

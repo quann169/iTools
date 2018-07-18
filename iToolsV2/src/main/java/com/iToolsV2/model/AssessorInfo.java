@@ -1,10 +1,5 @@
 package com.iToolsV2.model;
 
-/*import org.springframework.beans.factory.annotation.Autowired;
-
-import com.iToolsV2.dao.CompanyDAO;*/
-import com.iToolsV2.entity.Company;
-
 public class AssessorInfo {
  
     private int assessorId;
@@ -21,6 +16,7 @@ public class AssessorInfo {
     private boolean locked;
     private String password;
     private String confirmPassword;
+    private String rolesList;
  
     public AssessorInfo() {
  
@@ -71,6 +67,30 @@ public class AssessorInfo {
         this.locked = locked;
         this.password = password;
         this.confirmPassword = confirmPassword;
+    }
+    
+    public AssessorInfo(int assessorId, String userName, String encrytedPassword, boolean active, 
+    		String firstName, String lastName, String emailAddress, String address, String phone, 
+    		String companyCode, 
+    		boolean locked, 
+    		String password, String confirmPassword,
+    		String rolesList) {
+    	
+        this.assessorId = assessorId;
+        this.userName = userName;
+        this.encrytedPassword = encrytedPassword;
+        this.active = active;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.emailAddress = emailAddress;
+        this.address = address;
+        this.phone = phone;
+        //this.company = this.getCompanyByCode(companyCode);
+        this.companyCode = companyCode;
+        this.locked = locked;
+        this.password = password;
+        this.confirmPassword = confirmPassword;
+        this.rolesList = rolesList;
     }
 
 /*    public AssessorInfo(int assessorId, String userName, String encrytedPassword, boolean active, 
@@ -211,5 +231,15 @@ public class AssessorInfo {
 	public void setLastPassword(String lastPassword) {
 		this.lastPassword = lastPassword;
 	}
+
+	public String getRolesList() {
+		return rolesList;
+	}
+
+	public void setRolesList(String rolesList) {
+		this.rolesList = rolesList;
+	}
+	
+	
  
 }

@@ -3,21 +3,21 @@
    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
    <head>
       <meta charset="UTF-8">
-      <title>Product List</title>
-      <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}" />
+      <title>Machine List</title>
+      <link type="text/css" th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
+      <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}" />     
    </head>
    <body>
       <th:block th:include="/_header"></th:block>
       <th:block th:include="/_menu"></th:block>
-       
+      <th:block th:include="/_subMenuMachine"></th:block>  
       <div class="page-title">Machine List</div>
        
       <div class="product-preview-container" th:each="machineInfo : ${paginationMachine.list}">
          <ul>
-            <li><img class="machine-image"
-               th:src="@{/image/machine.jpg}" /></li>
-            <li>Code: <span th:utext="${machineInfo.machineCode}"></span></li>
-            <li>Name: <span th:utext="${machineInfo.machineName}"></span></li>
+            <li><a th:href="@{|/admin/machineDetail?machineID=${machineInfo.machineID}|}"><img class="machine-image"
+               th:src="@{/image/machine.jpg}" /></a></li>
+            <li style="text-align:center"><a th:href="@{|/admin/machineDetail?machineID=${machineInfo.machineID}|}"><span th:utext="${machineInfo.machineName}"></span></a></li>
          </ul>
       </div>      
        

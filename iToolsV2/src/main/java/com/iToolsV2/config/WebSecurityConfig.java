@@ -40,15 +40,18 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
  
         http.csrf().disable();
  
-        http.authorizeRequests().antMatchers("/admin/orderList", "/admin/order", "/admin/accountInfo", "/machineList")//
-                //.access("hasAnyRole('ROLE_EMPLOYEE', 'ROLE_MANAGER')");
-        		.access("hasAnyRole('ROLE_EMPLOYEE', 'ROLE_MANAGER','ROLE_Admin', 'ROLE_SubAdmin', 'ROLE_Accounting', 'ROLE_PutIns', 'ROLE_TakeOver', 'ROLE_UpdateReport')");
+        http.authorizeRequests().antMatchers("/admin/accountInfo", "/machineList")//
+        		.access("hasAnyRole('ROLE_Admin', 'ROLE_SubAdmin', 'ROLE_Accounting', 'ROLE_PutIns', 'ROLE_TakeOver', 'ROLE_UpdateReport')");
  
-        http.authorizeRequests().antMatchers("/admin/product", "/ctidList", "/companyList", "/userList", "/admin/registerSuccessful", "/admin/register", "/admin/assessorDetail").access("hasRole('ROLE_Admin')");
-        //http.authorizeRequests().antMatchers("/admin/product").access("hasRole('ROLE_Admin')");
+        http.authorizeRequests().antMatchers("/ctidList", "/companyList", "/userList", "/admin/registerSuccessful", "/admin/register", "/admin/assessorDetail").access("hasRole('ROLE_Admin')");
  
         http.authorizeRequests().and().exceptionHandling().accessDeniedPage("/403");
  
+		// begin NamLP : 2018-07-14
+        http.authorizeRequests().antMatchers("/css**", "/css/**", "/fonts**", "/fonts/**", "/img**", "/img/**", "/js**", "/js/**", "/vendor**", "/vendor/**", "/pdf.jpg", "/userguide.pdf", "/reset-password", "/reset-password/**").permitAll();
+        http.authorizeRequests().antMatchers("/transaction", "/transaction/**").access("hasAnyRole('ROLE_Admin', 'ROLE_Accounting')");
+//        http.authorizeRequests().anyRequest().authenticated().and().formLogin().loginPage("/login").permitAll();
+        // end NamLP : 2018-07-14
         http.authorizeRequests().and().formLogin()//
  
                 // 

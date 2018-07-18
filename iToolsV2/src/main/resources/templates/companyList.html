@@ -3,29 +3,30 @@
    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
    <head>
       <meta charset="UTF-8">
-      <title>User List</title>
-      <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}" />
+      <title>Company List</title>
+      <link type="text/css" th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
+      <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}" />   
    </head>
    <body>
       <th:block th:include="/_header"></th:block>
       <th:block th:include="/_menu"></th:block>
-       
-      <div class="page-title">User List</div>
+      <th:block th:include="/_subMenuCompany"></th:block>  
+      <div class="page-title">Company List</div>
       
       <table border="1" style="width:100%">
             <tr>
-               <th>Company ID</th>
-               <th>Company Name</th>
-               <th>Company Code</th>
-               <th>Address</th>
-               <th>Location</th>
+            	<th>Company Code</th>
+            	<th>Company Name</th>               
+            	<th>Address</th>
+            	<th>Location</th>
+            	<th></th>
             </tr>
             <tr th:each ="companyInfo : ${paginationCompany.list}">
-               <td th:utext="${companyInfo.companyId}">...</td>
-               <td th:utext="${companyInfo.companyName}">...</td>
                <td th:utext="${companyInfo.companyCode}">...</td>
+               <td th:utext="${companyInfo.companyName}">...</td>               
                <td th:utext="${companyInfo.address}">...</td>
                <td th:utext="${companyInfo.location}">...</td>
+               <td><a th:href="@{|/admin/companyDetail?companyId=${companyInfo.companyId}|}">Edit</a></td>
             </tr>
       </table>      
        

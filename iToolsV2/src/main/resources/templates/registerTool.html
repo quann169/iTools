@@ -1,0 +1,91 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+   <head>
+      <title th:utext="${title}"></title>
+      <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}" />     
+    <link rel="stylesheet" type="text/css" th:href="@{/css/chosen.css}"/> 
+	      <link rel="stylesheet" href="../../static/vendor/jquery-ui/jquery-ui.css"
+	              th:href="@{/vendor/jquery-ui/jquery-ui.css}"/> 
+      <script type="text/javascript" src="../../static/vendor/jquery-ui/jquery.js"
+	                th:src="@{/vendor/jquery/jquery.js}"></script> 
+	  <script type="text/javascript" src="../../static/vendor/jquery-ui/jquery-ui.js"
+	                th:src="@{/vendor/jquery-ui/jquery-ui.js}"></script>
+	  <script type="text/javascript" src="../../static/js/chosen.jquery.js"
+	                th:src="@{/js/chosen.jquery.js}"></script>  
+	  <script type="text/javascript">
+		$(function() {
+		    $(".chzn-select").chosen();
+		});
+		</script>  
+      <style>
+         th, td {
+         padding: 5px;
+         }
+         td span  {
+         font-size:90%;
+         font-style: italic;
+         color: red;
+         }
+         .error {
+         color: red;
+         font-style: italic;
+         }
+      </style>
+   </head>
+   <body>
+      <!-- Include _menu.html -->
+      <th:block th:include="/_header"></th:block>
+      	<th:block th:include="/_menu"></th:block>
+      	<th:block th:include="/_subMenu"></th:block>
+      <div class="page-title">Tool Details</div> 
+      
+      <div th:if="${errorMessage != null}"
+           th:utext="${errorMessage}" class="error">...</div>
+       
+      <form th:action="@{/admin/registerTool}" th:object="${toolForm}" method="POST">
+         <table>
+            <tr>
+               <td align="left">Tool Code</td>
+               <td align="left"><input type="text" th:field="*{toolCode}" /></td>
+               <td>
+                  <span th:if="${#fields.hasErrors('toolCode')}" th:errors="*{toolCode}">..</span>
+               </td>
+            </tr>
+			<tr>
+               <td align="left">Model</td>
+               <td align="left"><input type="text" th:field="*{model}" /> </td>
+            </tr>
+            <tr>
+               <td align="left">Barcode</td>
+               <td align="left"><input type="text" th:field="*{barcode}" /> </td>
+            </tr>
+            <tr>
+               <td align="left">Description</td>
+               <td align="left"><textarea  rows="4" cols="50" th:field="*{description}"></textarea></td>
+            </tr>
+            
+            <tr>
+               <td align="left">Active</td>
+               <td align="left">
+                  <select th:field="*{active}">
+                     <option value=true>Active</option>
+                     <option value=false>Disable</option>
+                  </select>
+               </td>
+               <td>
+                  <span th:if="${#fields.hasErrors('active')}" th:errors="*{active}">..</span>
+               </td>
+            </tr>         
+            
+            <tr>
+               <td colspan="3" align="left">
+                  <input type="submit" value="Create" />
+                  <input type="reset" value="Reset" />
+                  <input type="button" onclick="location.href='/ctidList'" value="Back To List" >
+               </td>
+            </tr>
+         </table>
+      </form>
+      <th:block th:include="/_footer"></th:block> 
+   </body>
+</html>

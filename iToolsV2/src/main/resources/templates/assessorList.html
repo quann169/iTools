@@ -4,24 +4,29 @@
    <head>
       <meta charset="UTF-8">
       <title>User List</title>
-      <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}" />
+      <link type="text/css" th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
+      <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}" />  
+
    </head>
    <body>
       <th:block th:include="/_header"></th:block>
       <th:block th:include="/_menu"></th:block>
-       
+      <th:block th:include="/_subMenuUser"></th:block> 
       <div class="page-title">User List</div>
       
       <table border="1" style="width:100%">
             <tr>
-               <th>User Code</th>
+               <th>STT</th>
                <th>UserName</th>
                <th>First Name</th>
                <th>Last Name</th>
                <th>Email</th>
+               <th>Address</th>
+               <th>Phone</th>
                <th>Company</th>
                <th>Status</th>
                <th>Locked</th>
+               <th></th>
                <th></th>
             </tr>
             <tr th:each ="assessorInfo : ${paginationAssessor.list}">
@@ -30,6 +35,8 @@
                <td th:utext="${assessorInfo.firstName}">...</td>
                <td th:utext="${assessorInfo.lastName}">...</td>
                <td style="word-wrap: break-word" th:utext="${assessorInfo.emailAddress}">...</td>
+               <td th:utext="${assessorInfo.address}">...</td>
+               <td th:utext="${assessorInfo.phone}">...</td>
                <td th:utext="${assessorInfo.companyCode}">...</td>
                <td>
                	<div th:switch="${assessorInfo.active}"> 
@@ -44,6 +51,7 @@
 				</div>               
                </td>
                <td><a th:href="@{|/admin/assessorDetail?assessorID=${assessorInfo.assessorId}|}">Edit</a></td>
+               <td><a th:href="@{|/admin/setRoleAssessor?assessorID=${assessorInfo.assessorId}|}">Add Role</a></td>
             </tr>
       </table>      
        

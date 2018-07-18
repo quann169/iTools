@@ -5,17 +5,14 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
  
 @Entity
-@Table(name = "RoleAssessor", //
+@Table(name = "RoleAssessor")
+/*@Table(name = "RoleAssessor", //
 		uniqueConstraints = { //
-        @UniqueConstraint(columnNames = { "AssessorID", "RoleID" }) })
+        @UniqueConstraint(columnNames = { "AssessorID", "RoleID" }) })*/
 public class RoleAssessor implements Serializable {
  
 	/**
@@ -27,11 +24,11 @@ public class RoleAssessor implements Serializable {
     @Column(name = "RoleAssessorID", nullable = false)
     private int roleAssessorID;
  
-/*    @Column(name = "RoleID", nullable = true)
-    private int RoleID;
+    @Column(name = "RoleID", nullable = true)
+    private int roleID;
     
     @Column(name = "AssessorID", nullable = true)
-    private int AssessorID;*/
+    private int assessorID;
     
 	@Column(name = "IsActive", length = 1, nullable = false)
     private boolean active;
@@ -39,15 +36,26 @@ public class RoleAssessor implements Serializable {
     @Column(name = "CreatedDate", nullable = true)
     private Date createdDate;
     
-    @ManyToOne(fetch = FetchType.LAZY)
+    /*@ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "AssessorID", nullable = false)
     private Assessor assessor;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "RoleID", nullable = false)
-    private Roles roles;
+    private Roles roles;*/
+    
+    @Column(name = "UpdatedDate", nullable = true)
+    private Date updatedDate;
  
-    public int getRoleAssessorID() {
+    public Date getUpdatedDate() {
+		return updatedDate;
+	}
+
+	public void setUpdatedDate(Date updatedDate) {
+		this.updatedDate = updatedDate;
+	}
+
+	public int getRoleAssessorID() {
 		return roleAssessorID;
 	}
 
@@ -55,21 +63,21 @@ public class RoleAssessor implements Serializable {
 		this.roleAssessorID = roleAssessorID;
 	}
 
-/*	public int getRoleID() {
-		return RoleID;
+	public int getRoleID() {
+		return roleID;
 	}
 
 	public void setRoleID(int roleID) {
-		RoleID = roleID;
+		this.roleID = roleID;
 	}
 
 	public int getAssessorID() {
-		return AssessorID;
+		return assessorID;
 	}
 
 	public void setAssessorID(int assessorID) {
-		AssessorID = assessorID;
-	}*/
+		this.assessorID = assessorID;
+	}
 
 	public boolean isActive() {
 		return active;
@@ -87,7 +95,7 @@ public class RoleAssessor implements Serializable {
 		this.createdDate = createdDate;
 	}
 
-	public Assessor getAssessor() {
+/*	public Assessor getAssessor() {
 		return assessor;
 	}
 
@@ -101,6 +109,6 @@ public class RoleAssessor implements Serializable {
 
 	public void setRoles(Roles roles) {
 		this.roles = roles;
-	}
+	}*/
  
 }

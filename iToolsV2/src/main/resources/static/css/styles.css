@@ -4,6 +4,7 @@ html {
 h3 {
     margin: 0px;
     padding: 0px;
+    font-size:120%;
 }
 body {
     max-width: 1280px;
@@ -12,6 +13,7 @@ body {
     background: #F8F8F8;
     padding:0px 5px;
     text-align:center;
+    font-size:14px;
 }
   
 .page-title  {
@@ -46,8 +48,9 @@ body {
     border-top: 1px solid #ccc;
 }
 .menu-container {
-    text-align: right;
+    text-align: center;
     margin: 10px 5px;
+    font-size:110%;
 }
 .menu-container a {
     margin: 5px 5px 5px 10px;
@@ -147,3 +150,13 @@ ul {
 table td {
     padding: 5px;
 }
+.dataTable > thead {
+	background-color: #f68b1f;
+    color: white;
+}
+div.dt-buttons {
+    position: relative;
+    float: left;
+    padding-top: 5px;
+}
+
