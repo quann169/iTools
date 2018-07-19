@@ -1,4 +1,4 @@
-﻿package com.iToolsV2.pagination;
+package com.iToolsV2.pagination;
  
 import java.util.ArrayList;
 import java.util.List;

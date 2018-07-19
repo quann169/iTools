@@ -1,0 +1,136 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+   <head>
+      <title th:utext="${title}"></title>
+      <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}" />     
+      <style>
+         th, td {
+         padding: 5px;
+         }
+         td span  {
+         font-size:90%;
+         font-style: italic;
+         color: red;
+         }
+         .error {
+         color: red;
+         font-style: italic;
+         }
+      </style>      
+   </head>
+   <body>
+      <!-- Include _menu.html -->
+      <th:block th:include="/_header"></th:block>
+      	<th:block th:include="/_menu"></th:block>
+
+      <div class="page-title">User Details</div> 
+      
+      <div th:if="${errorMessage != null}"
+           th:utext="${errorMessage}" class="error">...</div>
+       
+      <form th:action="@{/admin/registerUser}" th:object="${assessorForm}" method="POST">
+         <table>
+            <tr>
+               <td align="left">User Name</td>
+               <td align="left"><input type="text" th:field="*{name}" size="40" /></td>
+               <td>
+                  <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}">..</span>
+               </td>
+            </tr>
+			<tr>
+               <td align="left">Password</td>
+               <td align="left"><input type="password" th:field="*{password}" size="40" /> </td>
+               <td>
+                  <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}">..</span>
+               </td>
+            </tr>
+            <tr>
+               <td align="left">Confirm</td>
+               <td align="left"><input type="password" th:field="*{confirmPassword}" size="40" /> </td>
+               <td>
+                  <span th:if="${#fields.hasErrors('confirmPassword')}" th:errors="*{confirmPassword}">..</span>
+               </td>
+            </tr>
+            <tr>
+               <td align="left">First Name</td>
+               <td align="left"><input type="text" th:field="*{firstName}" size="40" /> </td>
+               <td>
+                  <span th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">..</span>
+               </td>
+            </tr>
+            <tr>
+               <td align="left">Last Name</td>
+               <td align="left"><input type="text" th:field="*{lastName}" size="40" /> </td>
+               <td>
+                  <span th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">..</span>
+               </td>
+            </tr>
+            <tr>
+               <td align="left">Email</td>
+               <td align="left"><input type="text" th:field="*{emailAddress}" size="40" /> </td>
+               <td>
+                  <span th:if="${#fields.hasErrors('emailAddress')}" th:errors="*{emailAddress}">..</span>
+               </td>
+            </tr>
+            <tr>
+               <td align="left">Address</td>
+               <td align="left"><input type="text" th:field="*{address}" size="40" /> </td>
+               <td>
+                  <span th:if="${#fields.hasErrors('address')}" th:errors="*{address}">..</span>
+               </td>
+            </tr>
+            <tr>
+               <td align="left">Phone</td>
+               <td align="left"><input type="text" th:field="*{phone}" size="40" /> </td>
+               <td>
+                  <span th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}">..</span>
+               </td>
+            </tr>
+            <tr>
+               <td align="left">Company</td>
+               <td align="left">
+                  <select th:field="*{companyCode}">
+                     <!-- <option value=""> -- </option> -->
+                     <option th:each="company : ${companies}"
+                        th:value="${company.companyCode}"
+                        th:utext="${company.companyName}"/>
+                  </select>
+               <td><span th:if="${#fields.hasErrors('companyCode')}" th:errors="*{companyCode}">..</span></td>
+            </tr>
+            <tr>
+               <td align="left">Active</td>
+               <td align="left">
+                  <select th:field="*{active}">
+                     <option value=true>Active</option>
+                     <option value=false>Disable</option>
+                  </select>
+               </td>
+               <td>
+                  <span th:if="${#fields.hasErrors('active')}" th:errors="*{active}">..</span>
+               </td>
+            </tr>
+            <tr>
+               <td align="left">Is Locked</td>
+               <td align="left">
+                  <select th:field="*{locked}">
+                     <option value=false>No Lock</option>
+                     <option value=true>Locked</option>
+                  </select>
+               </td>
+               <td>
+                  <span th:if="${#fields.hasErrors('locked')}" th:errors="*{locked}">..</span>
+               </td>
+            </tr>            
+            
+            <tr>
+               <td colspan="3" align="left">
+                  <input type="submit" value="Create" />
+                  <input type="reset" value="Reset" />
+                  <input type="button" onclick="location.href='/userList'" value="Back To List" >
+               </td>
+            </tr>
+         </table>
+      </form>
+      <th:block th:include="/_footer"></th:block> 
+   </body>
+</html>

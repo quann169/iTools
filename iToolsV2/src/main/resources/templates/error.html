@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+   <head>
+      <meta charset="UTF-8">
+      <title>Error</title>
+      <link type="text/css" th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
+      <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}" />     
+      <script th:src="@{/jquery/jquery.min.js}"></script>  
+      <script th:src="@{/popper/popper.min.js}"></script>  
+      <script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>  
+   </head>
+   <body>
+      <th:block th:include="/_header"></th:block>
+      	<th:block th:include="/_menuLite"></th:block>
+       
+      <div class="page-title">Error</div>       
+      	<h1>Something went wrong! </h1>
+		<a href="/">Go Home</a>          
+      <th:block th:include="/_footer"></th:block>
+       
+   </body>
+</html>

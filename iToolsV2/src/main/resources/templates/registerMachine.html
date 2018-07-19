@@ -1,0 +1,98 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+   <head>
+      <title th:utext="${title}"></title>
+      <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}" />     
+    <link rel="stylesheet" type="text/css" th:href="@{/css/chosen.css}"/> 
+	      <link rel="stylesheet" href="../../static/vendor/jquery-ui/jquery-ui.css"
+	              th:href="@{/vendor/jquery-ui/jquery-ui.css}"/> 
+      <script type="text/javascript" src="../../static/vendor/jquery-ui/jquery.js"
+	                th:src="@{/vendor/jquery/jquery.js}"></script> 
+	  <script type="text/javascript" src="../../static/vendor/jquery-ui/jquery-ui.js"
+	                th:src="@{/vendor/jquery-ui/jquery-ui.js}"></script>
+	  <script type="text/javascript" src="../../static/js/chosen.jquery.js"
+	                th:src="@{/js/chosen.jquery.js}"></script>  
+	  <script type="text/javascript">
+		$(function() {
+		    $(".chzn-select").chosen();
+		});
+		</script>  
+      <style>
+         th, td {
+         padding: 5px;
+         }
+         td span  {
+         font-size:90%;
+         font-style: italic;
+         color: red;
+         }
+         .error {
+         color: red;
+         font-style: italic;
+         }
+      </style>
+   </head>
+   <body>
+      <!-- Include _menu.html -->
+      <th:block th:include="/_header"></th:block>
+      	<th:block th:include="/_menu"></th:block>
+
+      <div class="page-title">Tool Details</div> 
+      
+      <div th:if="${errorMessage != null}"
+           th:utext="${errorMessage}" class="error">...</div>
+       
+      <form th:action="@{/admin/registerMachine}" th:object="${machineForm}" method="POST">
+         <table>
+            <tr>
+               <td align="left">Machine Code</td>
+               <td align="left"><input type="text" th:field="*{machineCode}" /></td>
+               <td>
+                  <span th:if="${#fields.hasErrors('machineCode')}" th:errors="*{machineCode}">..</span>
+               </td>
+            </tr>
+            <tr>
+               <td align="left">Machine Name</td>
+               <td align="left"><input type="text" th:field="*{machineName}" /></td>
+               <td>
+                  <span th:if="${#fields.hasErrors('machineName')}" th:errors="*{mmachineName}">..</span>
+               </td>
+            </tr>
+			<tr>
+               <td align="left">Model</td>
+               <td align="left"><input type="text" th:field="*{model}" /> </td>
+            </tr>
+            <tr>
+               <td align="left">Location</td>
+               <td align="left"><input type="text" th:field="*{location}" /> </td>
+            </tr>
+            <tr>
+               <td align="left">Description</td>
+               <td align="left"><textarea  rows="4" cols="50" th:field="*{description}"></textarea></td>
+            </tr>
+            
+            <tr>
+               <td align="left">Active</td>
+               <td align="left">
+                  <select th:field="*{active}">
+                     <option value=true>Active</option>
+                     <option value=false>Disable</option>
+                  </select>
+               </td>
+               <td>
+                  <span th:if="${#fields.hasErrors('active')}" th:errors="*{active}">..</span>
+               </td>
+            </tr>         
+            
+            <tr>
+               <td colspan="3" align="left">
+                  <input type="submit" value="Create" />
+                  <input type="reset" value="Reset" />
+                  <input type="button" onclick="location.href='/machineList'" value="Back To List" >
+               </td>
+            </tr>
+         </table>
+      </form>
+      <th:block th:include="/_footer"></th:block> 
+   </body>
+</html>

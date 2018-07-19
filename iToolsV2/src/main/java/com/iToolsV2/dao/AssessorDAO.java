@@ -17,9 +17,11 @@ import com.iToolsV2.entity.Assessor;
 import com.iToolsV2.form.AssessorForm;
 import com.iToolsV2.model.AssessorInfo;
 import com.iToolsV2.pagination.PaginationResult;
+import lombok.extern.slf4j.Slf4j;
  
 @Transactional
 @Repository
+@Slf4j
 public class AssessorDAO {
 	
 	 // Config in WebSecurityConfig
@@ -83,7 +85,12 @@ public class AssessorDAO {
 	                + " Where assessor.emailAddress = :emailAddress ";
 	        Query<Assessor> query = session.createQuery(sql, Assessor.class);
 	        query.setParameter("emailAddress", emailAddress);
-	        return query.getSingleResult();
+	        List<Assessor> lstAssessor = query.getResultList();
+	        if (lstAssessor != null && lstAssessor.size() > 0)
+	        	return lstAssessor.get(0);
+	        else
+	        	return null;
+	        //return query.getSingleResult();
     	} catch (NoResultException e) {
     		return null;
     	}
@@ -226,4 +233,27 @@ public class AssessorDAO {
         return queryAssessor(page, maxResult, maxNavigationPage, null);
     }
  
+	public Assessor findByUserNameAndActiveAndLocked(String userName, boolean active, boolean locked) {
+    	try {
+	    	Session session = this.sessionFactory.getCurrentSession();
+	        String sql = "from " + Assessor.class.getName() + " assessor " //
+	                + " Where assessor.userName = :userName "
+	                + " and assessor.active = :active "
+	                + " and assessor.locked = :locked";
+	        Query<Assessor> query = session.createQuery(sql, Assessor.class);
+	        query.setParameter("userName", userName);
+	        query.setParameter("active", active);
+	        query.setParameter("locked", locked);
+	        return query.getSingleResult();
+    	} catch (NoResultException e) {
+    		//log.error(e.getMessage());
+    		return null;
+    	}
+    }
+    
+    public void update(Assessor assessor) {
+    	Session session = this.sessionFactory.getCurrentSession();
+    	session.update(assessor);
+        session.flush();
+    }
 }

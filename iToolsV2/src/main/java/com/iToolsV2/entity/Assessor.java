@@ -66,8 +66,16 @@ public class Assessor implements Serializable {
             foreignKey = @ForeignKey(name = "Assessor_ibfk_1"))
     private Company company;*/
     
-/*    @Column(name = "IsFirstTimeLogin", length = 1, nullable = true)
-    private boolean isFirstTimeLogin;*/
+	@Column(name = "IsFirstTimeLogin", length = 1, nullable = true)
+    private boolean isFirstTimeLogin;
+    
+    public boolean isFirstTimeLogin() {
+		return isFirstTimeLogin;
+	}
+
+	public void setFirstTimeLogin(boolean isFirstTimeLogin) {
+		this.isFirstTimeLogin = isFirstTimeLogin;
+	}
     
     public boolean isLocked() {
 		return locked;

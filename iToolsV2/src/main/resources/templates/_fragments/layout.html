@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      lang="en">
+<head>
+    <th:block th:fragment="meta">
+        <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+        <meta name="description"
+              content="iTools Management"/>
+        <meta name="keywords" content=""/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+    </th:block>
+
+    <th:block th:fragment="title">
+        <title>iTools Management</title>
+        <base href="/" th:href="${#httpServletRequest.getContextPath()}"/>
+    </th:block>
+
+    <th:block th:fragment="stylesheet">
+        <link rel="stylesheet" href="../../static/vendor/font-awesome/css/font-awesome.css"
+              th:href="@{/vendor/font-awesome/css/font-awesome.css}"/>
+        <link rel="stylesheet" href="../../static/vendor/jqueryui/jquery-ui.css"
+              th:href="@{/vendor/jqueryui/jquery-ui.css}"/>
+        <link rel="stylesheet" href="../../static/vendor/css/style.min.css"
+              th:href="@{/vendor/css/style.min.css}"/>
+        <link rel="stylesheet" href="../../static/vendor/primeui/primeui.css"
+              th:href="@{/vendor/primeui/primeui.css}"/>
+        <link rel="stylesheet" href="../../static/css/styles.css"
+              th:href="@{/css/styles.css}"/>
+    </th:block>
+
+    <th:block th:fragment="script">
+        <script src="../../static/vendor/jquery/jquery.js"
+                th:src="@{/vendor/jquery/jquery.js}"></script>
+        <script src="../../static/vendor/jqueryui/jquery-ui.js"
+                th:src="@{/vendor/jqueryui/jquery-ui.js}"></script>
+        <script src="../../static/vendor/primeui/primeui.js"
+                th:src="@{/vendor/primeui/primeui.js}"></script>
+        <script src="../../static/vendor/x-tag/dist/x-tag-core.js"
+                th:src="@{/vendor/x-tag/dist/x-tag-core.js}"></script>
+        <script src="../../static/vendor/primeui/primeelements.js"
+                th:src="@{/vendor/primeui/primeelements.js}"></script>
+    </th:block>
+</head>
+<body style="margin-top: 45px; background-color: rgb(238, 238, 238)">
+<header th:fragment="header">
+    <nav class="navbar navbar-fixed-top navbar-inverse" role="navigation">
+        <div class="navbar-header text-center">
+            <a class="gtm-nav navbar-brand visible-xs" target="_blank" href="/" th:href="@{/}">
+                iTools Management
+            </a>
+        </div>
+        <div class="mobile-menu-overlay"></div>
+        <div class="navmenu collapse navbar-collapse desktop"
+             aria-expanded="false">
+            <div class="mobile-menu">
+                <div class="top-nav">
+                    <div class="container" style="width: 98%; margin-left: 0; padding-left: 0">
+                        <div class="row">
+                            <ul class="nav navbar-nav left">
+                                <li class="text-center">
+                                    <a href="#" class="gtm-nav" th:href="@{/}">
+                                       iTools Management
+                                    </a>
+                                </li>
+                            </ul>
+                            <ul class="nav navbar-nav navbar-right" sec:authorize="isAuthenticated()">
+                                <li class="dropdown">
+                                    <a class="dropdown-toggle" type="button"
+                                       data-toggle="dropdown">Manage
+                                        <span class="caret"></span></a>
+                                    <ul class="dropdown-menu">
+                                        <li sec:authorize="hasRole('ROLE_Admin')"><a href="/ctidList" th:href="@{/ctidList}">CTID Management</a></li>
+                                        <li sec:authorize="hasAnyRole('ROLE_Admin', 'ROLE_SubAdmin')"><a href="/userList" th:href="@{/userList}">User Management</a></li>
+                                        <li sec:authorize="hasAnyRole('ROLE_Admin', 'ROLE_SubAdmin', 'ROLE_Accounting')"><a href="/machineList" th:href="@{/machineList}">Machine List</a></li>
+                                        <li sec:authorize="hasRole('ROLE_Admin')"><a href="/companyList" th:href="@{/companyList}">Company Management</a></li>
+                                        <li sec:authorize="hasRole('ROLE_Admin')"><a href="/admin/register" th:href="@{/admin/register}">New User</a></li>
+                                        <li sec:authorize="hasAnyRole('ROLE_Admin', 'ROLE_SubAdmin')"><a href="/transaction" th:href="@{/transaction}">Transaction</a></li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown">
+                                	<a class="dropdown-toggle" type="button" data-toggle="dropdown" ><span>Welcome</span> <span sec:authentication="name" ></span><span class="caret"></span></a>
+                                	<ul class="dropdown-menu">
+                                        <li><a th:href="@{/admin/accountInfo}">Information</a></li>
+                                        <li><a href="/change-password" th:href="@{/change-password}">Change Password</a></li>
+                                    </ul>
+                                </li>
+                                <li class="text-center">
+                                    <a th:href="@{/admin/logout}">Logout</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
+<div>
+    <h1>BODY</h1>
+</div>
+</body>
+</html>

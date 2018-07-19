@@ -1,0 +1,32 @@
+<div class="menu-container"
+   xmlns:th="http://www.thymeleaf.org"
+   xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4" >   
+   <th:block sec:authorize="hasRole('ROLE_Admin')">
+   |
+   <a th:href="@{/admin/registerUser}">
+   New User
+   </a>
+   </th:block> 
+   <th:block sec:authorize="hasRole('ROLE_Admin')">
+   |
+   <a th:href="@{/admin/registerCompany}">
+   New Company
+   </a>
+    </th:block> 
+   <th:block sec:authorize="hasRole('ROLE_Admin')">
+   |
+   <a th:href="@{/admin/registerTool}">
+   New Tool
+   </a>
+    </th:block> 
+   <th:block sec:authorize="hasRole('ROLE_Admin')">
+   |
+   <a th:href="@{/admin/registerMachine}">
+   New Machine
+   </a>
+    </th:block> 
+   <th:block sec:authorize="hasRole('ROLE_Admin')">
+   |
+   <a href="/change-password" th:href="@{/change-password}">Change Password</a>
+    </th:block> 
+</div>

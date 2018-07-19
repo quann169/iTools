@@ -33,6 +33,17 @@ public class MachineInfo {
         this.active = active;
         //this.machineID = machine.getMachineID();
     }
+    
+    public MachineInfo(int machineID, String machineCode, String machineName, boolean active) {
+    	this.machineID = machineID;
+    	this.machineCode = machineCode;
+        this.machineName = machineName;
+        //this.model = machine.getModel();
+        //this.location = machine.getLocation();
+        //this.description = machine.getDescription();
+        this.active = active;
+        //this.machineID = machine.getMachineID();
+    }
 
 	public int getMachineID() {
 		return machineID;

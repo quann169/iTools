@@ -3,14 +3,15 @@
    <head>
       <meta charset="UTF-8">
       <title>Login</title>
-      <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}" />
+      <link type="text/css" th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
+      <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}" />  
    </head>
    <body>
       <th:block th:include="/_header"></th:block>
-      <th:block th:include="/_menu"></th:block>
+      	<th:block th:include="/_menuLite"></th:block>
        
       <div class="page-title">Login</div>
-       
+
       <div class="login-container">
          <h3>Enter username and password</h3>
          <br>
@@ -18,7 +19,7 @@
          <th:block th:if="${#session != null && #session.getAttribute('SPRING_SECURITY_LAST_EXCEPTION') != null}">
              <div th:if= "${#request.getParameter('error') == 'true'}"
                 style="color: red; margin: 10px 0px;">
-               Đăng nhập không thành công!!!<br /> Lý do:
+               Login failed!!!<br /> Reason:
                 <span th:utext="${#session.getAttribute('SPRING_SECURITY_LAST_EXCEPTION').message}"></span>
              </div>
              
@@ -46,6 +47,15 @@
                       <input type="submit" value="Login" />
                       <input type="reset"  value="Reset" />
                   </td>
+               </tr>
+               <tr>
+               	<td colspan="2">
+               		<span>
+                        <a href="forgotPassword.html"
+                           id="forget-password"
+                           th:href="@{/reset-password}">Forgot password</a>
+                    </span>
+               	</td>
                </tr>
             </table>
          </form>
