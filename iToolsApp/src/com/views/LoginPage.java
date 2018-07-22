@@ -43,6 +43,8 @@ import com.models.Role;
 import com.utils.AdvancedEncryptionStandard;
 import com.utils.Config;
 import com.utils.EmailUtils;
+import com.utils.MyFocusListener;
+import com.utils.PopUpKeyboard;
 import com.utils.RandomString;
 import com.utils.StringUtils;
 
@@ -77,7 +79,7 @@ public class LoginPage extends JFrame implements ActionListener {
 	static SyncController syncCtl = new SyncController();
 	static EmailUtils emailUtils = new EmailUtils(Enum.LOGIN, userName, companyCode, machineCode);
 	final static Logger logger = Logger.getLogger(LoginPage.class);
-
+	public PopUpKeyboard keyboard;
 	static JFrame root;
 
 	LoginPage() {
@@ -97,17 +99,23 @@ public class LoginPage extends JFrame implements ActionListener {
 
 	}
 
+	public void addVirtualKeyboardListener() {
+		MyFocusListener focus1 = new MyFocusListener(keyboard);
+		userTextField.addFocusListener(focus1);
+		passwordField.addFocusListener(focus1);
+	}
+
 	public void setLocationAndSize() {
 		Font labelFont = logoLabel.getFont();
 
-		logoLabel.setBounds(240, 70, 350, 70);
-		logoLabel.setFont(new Font(labelFont.getName(), Font.ITALIC + Font.BOLD, 60));
+		logoLabel.setBounds(300, 40, 350, 70);
+		logoLabel.setFont(new Font(labelFont.getName(), Font.ITALIC + Font.BOLD, 40));
 
-		userLabel.setBounds(80, 170, 250, 60);
-		userLabel.setFont(new Font(labelFont.getName(), Font.BOLD, 40));
+		userLabel.setBounds(80, 120, 250, 60);
+		userLabel.setFont(new Font(labelFont.getName(), Font.BOLD, 30));
 
-		userTextField.setBounds(300, 180, 400, 50);
-		userTextField.setFont(new Font(labelFont.getName(), Font.PLAIN, 30));
+		userTextField.setBounds(300, 130, 400, 40);
+		userTextField.setFont(new Font(labelFont.getName(), Font.PLAIN, 25));
 		userTextField.getDocument().addDocumentListener(new DocumentListener() {
 			public void changedUpdate(DocumentEvent e) {
 				warn();
@@ -138,11 +146,11 @@ public class LoginPage extends JFrame implements ActionListener {
 			}
 		});
 
-		passwordLabel.setBounds(80, 260, 250, 60);
-		passwordLabel.setFont(new Font(labelFont.getName(), Font.BOLD, 40));
+		passwordLabel.setBounds(80, 200, 250, 60);
+		passwordLabel.setFont(new Font(labelFont.getName(), Font.BOLD, 30));
 
-		passwordField.setBounds(300, 260, 400, 50);
-		passwordField.setFont(new Font(labelFont.getName(), Font.PLAIN, 30));
+		passwordField.setBounds(300, 210, 400, 40);
+		passwordField.setFont(new Font(labelFont.getName(), Font.PLAIN, 25));
 		passwordField.getDocument().addDocumentListener(new DocumentListener() {
 			public void changedUpdate(DocumentEvent e) {
 				warn();
@@ -173,14 +181,14 @@ public class LoginPage extends JFrame implements ActionListener {
 			}
 		});
 
-		showPassword.setBounds(295, 315, 350, 50);
+		showPassword.setBounds(295, 260, 350, 40);
 		showPassword.setFont(new Font(labelFont.getName(), Font.BOLD + Font.ITALIC, 20));
 
 		loginButton.setEnabled(false);
-		loginButton.setBounds(200, 380, 210, 50);
+		loginButton.setBounds(300, 310, 140, 40);
 		loginButton.setFont(new Font(labelFont.getName(), Font.BOLD, 25));
 
-		forgotPwdButton.setBounds(435, 380, 270, 50);
+		forgotPwdButton.setBounds(460, 310, 240, 40);
 		forgotPwdButton.setFont(new Font(labelFont.getName(), Font.BOLD, 25));
 
 	}
@@ -223,9 +231,10 @@ public class LoginPage extends JFrame implements ActionListener {
 		userName = userTextField.getText();
 		if (e.getSource() == loginButton) {
 
-			// userText = "com1admin";
-			// userText = "uhacc1";
-			// pwdText = "123456";
+			userText = "com1user1";
+			userText = "com1admin";
+//			 userText = "uhacc1";
+			 pwdText = "123456";
 
 			logger.info("Login with username: " + userText);
 
@@ -345,7 +354,7 @@ public class LoginPage extends JFrame implements ActionListener {
 
 	public static void main(String[] a) {
 
-		printConfigInfo();
+		// printConfigInfo();
 
 		Thread one = new Thread() {
 			public void run() {
@@ -371,11 +380,10 @@ public class LoginPage extends JFrame implements ActionListener {
 			}
 		};
 
-		one.start();
+		// one.start();
 
 		root = new LoginPage();
 		StringUtils.frameInit(root, bundleMessage);
-
 		root.setTitle(bundleMessage.getString("Login_Page_Title"));
 		root.getRootPane().setDefaultButton(((LoginPage) root).loginButton);
 

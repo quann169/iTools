@@ -54,14 +54,14 @@ INSERT INTO Assessor(AssessorID, UserName, Password, FirstName, LastName, EmailA
 	(3, "uhacc1", "e10adc3949ba59abbe56e057f20f883e", "Acc1", "UH", "quann169@gmail.com", "UHCom", 1),
 	(4, "uhacc2", "e10adc3949ba59abbe56e057f20f883e", "Acc2", "UH", "quann169@gmail.com", "UHCom", 1),
 	(5, "com1admin", "e10adc3949ba59abbe56e057f20f883e", "ADMIN", "Com1", "quann169@gmail.com", "Com1", 1),
-	(6, "com1user1", "e10adc3949ba59abbe56e057f20f883e", "User1", "Com1", "quann169@gmail.com", "Com1", 1),
-	(7, "com1user2", "e10adc3949ba59abbe56e057f20f883e", "User2", "Com1", "quann169@gmail.com", "Com1", 1),
+	(6, "com1user1", "e10adc3949ba59abbe56e057f20f883e", "Nguyen", "Quan", "quann169@gmail.com", "Com1", 1),
+	(7, "com1user2", "e10adc3949ba59abbe56e057f20f883e", "Tran Quang Hoang", "Tien", "quann169@gmail.com", "Com1", 1),
 	(8, "com1user3", "e10adc3949ba59abbe56e057f20f883e", "User3", "Com1", "quann169@gmail.com", "Com1", 1),
 	(9, "com2admin", "e10adc3949ba59abbe56e057f20f883e", "ADMIN", "Com2", "quann169@gmail.com", "Com2", 1),
 	(10, "com2user1", "e10adc3949ba59abbe56e057f20f883e", "User1", "Com2", "quann169@gmail.com", "Com2", 1),
     (11, "RO7LQKKG", "e10adc3949ba59abbe56e057f20f883e", "User1", "Com2", "quann169@gmail.com", "Com2", 1);
 
-update Assessor set IsFirstTimeLogin = 1 where UserName = 'com1admin';
+-- update Assessor set IsFirstTimeLogin = 1 where UserName = 'com1admin';
 
 DROP TABLE IF EXISTS Roles;
 CREATE TABLE IF NOT EXISTS Roles (
@@ -195,13 +195,13 @@ CREATE TABLE IF NOT EXISTS Tools (
 );
 
 INSERT INTO Tools(ToolID, ToolCode, CreatedDate, IsActive) VALUES 
-	(1, "CTID1",  now(), 1),
-	(2, "CTID2",  now(), 1),
-	(3, "CTID3",  now(), 1),
-	(4, "CTID4",  now(), 1),
-	(5, "CTID5",  now(), 1),
-	(6, "CTID6",  now(), 1),
-	(7, "CTID7",  now(), 1);
+	(1, "ACTID111",  now(), 1),
+	(2, "BCTID211",  now(), 1),
+	(3, "CCTID311",  now(), 1),
+	(4, "DCTID4",  now(), 1),
+	(5, "ECTID5",  now(), 1),
+	(6, "FCTID6",  now(), 1),
+	(7, "GCTID7",  now(), 1);
 	
 DROP TABLE IF EXISTS ToolsMachine;
 CREATE TABLE IF NOT EXISTS ToolsMachine (
@@ -218,24 +218,24 @@ CREATE TABLE IF NOT EXISTS ToolsMachine (
 
 INSERT INTO ToolsMachine(ToolsMachineID, ToolCode, MachineCode,CreatedDate, IsActive) VALUES 
 	-- ToolID at UHCom, do not add to Machine yet
-	(1, "CTID1", "UHMAC", now(), 1),
-	(2, "CTID2", "UHMAC", now(), 1),
-	(3, "CTID3", "UHMAC", now(), 1),
-	(4, "CTID4", "UHMAC", now(), 1),
-	(5, "CTID5", "UHMAC", now(), 1),
-	(6, "CTID6", "UHMAC", now(), 1),
-	(7, "CTID7", "UHMAC", now(), 1),
+	(1, "ACTID111", "UHMAC", now(), 1),
+	(2, "BCTID211", "UHMAC", now(), 1),
+	(3, "CCTID311", "UHMAC", now(), 1),
+	(4, "DCTID4", "UHMAC", now(), 1),
+	(5, "ECTID5", "UHMAC", now(), 1),
+	(6, "FCTID6", "UHMAC", now(), 1),
+	(7, "GCTID7", "UHMAC", now(), 1),
 	-- Tool for MAC1
-	(8, "CTID1", "MAC1", now(), 1),
-	(9, "CTID2", "MAC1", now(), 1),
-	(10, "CTID6", "MAC1", now(), 1),
-	(11, "CTID4", "MAC1", now(), 1), -- out of stock
-	(12, "CTID5", "MAC1", now(), 1), -- out of stock
+	(8, "ACTID111", "MAC1", now(), 1),
+	(9, "BCTID211", "MAC1", now(), 1),
+	(10, "FCTID6", "MAC1", now(), 1),
+	(11, "DCTID4", "MAC1", now(), 1), -- out of stock
+	(12, "ECTID5", "MAC1", now(), 1), -- out of stock
 	-- Tool for MAC2
-	(13, "CTID1", "MAC2", now(), 1), -- out of stock
-	(14, "CTID2", "MAC2", now(), 1),
-	(15, "CTID3", "MAC2", now(), 1),
-	(16, "CTID4", "MAC2", now(), 1);
+	(13, "ACTID111", "MAC2", now(), 1), -- out of stock
+	(14, "BCTID211", "MAC2", now(), 1),
+	(15, "CCTID311", "MAC2", now(), 1),
+	(16, "DCTID4", "MAC2", now(), 1);
 	
 	
 	

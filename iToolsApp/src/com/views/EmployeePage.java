@@ -61,6 +61,9 @@ import com.models.Tool;
 import com.utils.AdvancedEncryptionStandard;
 import com.utils.AutoCompletion;
 import com.utils.Config;
+import com.utils.FilterComboBox;
+import com.utils.MyFocusListener;
+import com.utils.PopUpKeyboard;
 import com.utils.StringUtils;
 
 public class EmployeePage extends JFrame implements ActionListener, HidServicesListener {
@@ -90,7 +93,7 @@ public class EmployeePage extends JFrame implements ActionListener, HidServicesL
 	JComboBox<String> toolComboBox = new JComboBox<String>();
 	JTextField quantityTextField = new JTextField();
 	boolean isReceiveResult = false;
-	
+
 	JLabel progress = new JLabel();
 
 	Map<String, List<List<Object>>> toolVstrayAndQuantityMap = new HashMap<>();
@@ -128,8 +131,12 @@ public class EmployeePage extends JFrame implements ActionListener, HidServicesL
 	int PRODUCT_OK = Integer.valueOf(cfg.getProperty("PRODUCT_OK"));
 	int PRODUCT_FAIL = Integer.valueOf(cfg.getProperty("PRODUCT_FAIL"));
 
+	AutoCompletion combox1;
+
 	int resultValue;
 	boolean isDashboard;
+	public PopUpKeyboard keyboard;
+	List<String> allToolNames = new ArrayList<>();
 
 	// JFrame parent;
 
@@ -138,6 +145,7 @@ public class EmployeePage extends JFrame implements ActionListener, HidServicesL
 		this.isDashboard = isDashboard;
 		// this.parent = parent;
 		toolVstrayAndQuantityMap = empCtlObj.getToolTrayQuantity(machineCode, 0);
+		allToolNames = empCtlObj.getAllTools();
 		setLayoutManager();
 		setLocationAndSize();
 		addComponentsToContainer();
@@ -162,10 +170,10 @@ public class EmployeePage extends JFrame implements ActionListener, HidServicesL
 	public void setLocationAndSize() {
 		Font labelFont = woLabel.getFont();
 
-		backToDashboardLabel.setText("<html><html><font size=\"6\" face=\"arial\" color=\"#0181BE\"><b><i><u>"
+		backToDashboardLabel.setText("<html><html><font size=\"5\" face=\"arial\" color=\"#0181BE\"><b><i><u>"
 				+ bundleMessage.getString("Employee_Back_To_Dashboard") + "</u></i></b></font></html></html>");
 		backToDashboardLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		backToDashboardLabel.setBounds(15, 10, 270, 60);
+		backToDashboardLabel.setBounds(15, 5, 270, 60);
 		backToDashboardLabel.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -181,10 +189,10 @@ public class EmployeePage extends JFrame implements ActionListener, HidServicesL
 			backToDashboardLabel.setEnabled(false);
 		}
 
-		changePassLabel.setText("<html><html><font size=\"6\" face=\"arial\" color=\"#0181BE\"><b><i><u>"
+		changePassLabel.setText("<html><html><font size=\"5\" face=\"arial\" color=\"#0181BE\"><b><i><u>"
 				+ bundleMessage.getString("App_ChangePassword") + "</u></i></b></font></html></html>");
 		changePassLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		changePassLabel.setBounds(450, 10, 250, 60);
+		changePassLabel.setBounds(530, 5, 250, 60);
 		changePassLabel.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -195,13 +203,13 @@ public class EmployeePage extends JFrame implements ActionListener, HidServicesL
 			}
 		});
 
-		splitLabel.setBounds(665, 10, 20, 60);
-		splitLabel.setFont(new Font(labelFont.getName(), Font.BOLD, 20));
+		splitLabel.setBounds(693, 5, 25, 60);
+		splitLabel.setFont(new Font(labelFont.getName(), Font.BOLD, 25));
 
-		logOutLabel.setText("<html><font size=\"6\" face=\"arial\" color=\"#0181BE\"><b><i><u>"
+		logOutLabel.setText("<html><font size=\"5\" face=\"arial\" color=\"#0181BE\"><b><i><u>"
 				+ bundleMessage.getString("App_Logout") + "</u></i></b></font></html>");
 		logOutLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		logOutLabel.setBounds(685, 10, 150, 60);
+		logOutLabel.setBounds(715, 5, 150, 60);
 		logOutLabel.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -219,10 +227,10 @@ public class EmployeePage extends JFrame implements ActionListener, HidServicesL
 			}
 		});
 
-		woLabel.setBounds(130, 90, 150, 60);
-		woLabel.setFont(new Font(labelFont.getName(), Font.BOLD, 30));
+		woLabel.setBounds(180, 70, 150, 60);
+		woLabel.setFont(new Font(labelFont.getName(), Font.BOLD, 25));
 
-		woTextField.setBounds(250, 110, 400, 40);
+		woTextField.setBounds(250, 80, 400, 35);
 
 		woTextField.getDocument().addDocumentListener(new DocumentListener() {
 			public void changedUpdate(DocumentEvent e) {
@@ -241,22 +249,21 @@ public class EmployeePage extends JFrame implements ActionListener, HidServicesL
 				validateAllFields();
 			}
 		});
-		woTextField.setFont(new Font(labelFont.getName(), Font.BOLD, 25));
+		woTextField.setFont(new Font(labelFont.getName(), Font.BOLD, 22));
 
 		woTextField.requestFocus();
 		woTextField.addKeyListener(new KeyAdapter() {
-		    public void keyTyped(KeyEvent e) { 
-		        if (woTextField.getText().length() >= 20 )
-		            e.consume(); 
-		    }  
+			public void keyTyped(KeyEvent e) {
+				if (woTextField.getText().length() >= 20)
+					e.consume();
+			}
 		});
-		
 
-		opLabel.setBounds(130, 175, 150, 60);
-		opLabel.setFont(new Font(labelFont.getName(), Font.BOLD, 30));
+		opLabel.setBounds(180, 125, 150, 60);
+		opLabel.setFont(new Font(labelFont.getName(), Font.BOLD, 25));
 
-		opTextField.setBounds(250, 185, 400, 40);
-		opTextField.setFont(new Font(labelFont.getName(), Font.BOLD, 30));
+		opTextField.setBounds(250, 135, 400, 35);
+		opTextField.setFont(new Font(labelFont.getName(), Font.BOLD, 22));
 		opTextField.getDocument().addDocumentListener(new DocumentListener() {
 			public void changedUpdate(DocumentEvent e) {
 				warn();
@@ -275,19 +282,21 @@ public class EmployeePage extends JFrame implements ActionListener, HidServicesL
 				validateAllFields();
 			}
 		});
-		
+
 		opTextField.addKeyListener(new KeyAdapter() {
-		    public void keyTyped(KeyEvent e) { 
-		        if (opTextField.getText().length() >= 20 )
-		            e.consume(); 
-		    }  
+			public void keyTyped(KeyEvent e) {
+				if (opTextField.getText().length() >= 20)
+					e.consume();
+			}
 		});
 
-		toolLabel.setBounds(130, 250, 150, 60);
-		toolLabel.setFont(new Font(labelFont.getName(), Font.BOLD, 30));
+		toolLabel.setBounds(180, 180, 150, 60);
+		toolLabel.setFont(new Font(labelFont.getName(), Font.BOLD, 25));
 
-		toolComboBox.setBounds(250, 260, 400, 40);
-		toolComboBox.setFont(new Font(labelFont.getName(), Font.BOLD, 25));
+		updateToolCombobox();
+
+		toolComboBox.setBounds(250, 190, 400, 35);
+		toolComboBox.setFont(new Font(labelFont.getName(), Font.BOLD, 22));
 		toolComboBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (toolComboBox.getItemCount() == 0) {
@@ -315,7 +324,7 @@ public class EmployeePage extends JFrame implements ActionListener, HidServicesL
 					trayTextField.setText("");
 					quantityTextField.setText("0");
 
-					if (!selectValue.equals("")) {
+					if (!selectValue.equals("") && allToolNames.contains(selectValue)) {
 						List<Machine> availableMachine = empCtlObj.findAvailableMachine(machineCode, selectValue);
 						String availableMachineNotify = MessageFormat.format(
 								bundleMessage.getString("Employee_AvailableMachine"), selectValue, machineCode,
@@ -329,19 +338,18 @@ public class EmployeePage extends JFrame implements ActionListener, HidServicesL
 				}
 			}
 		});
-//		toolComboBox.addFocusListener(new FocusAdapter() {
-//
-//			@Override
-//			public void focusGained(FocusEvent e) {
-//				toolComboBox.showPopup();
-//			}
-//		});
-		updateToolCombobox();
+		// toolComboBox.addFocusListener(new FocusAdapter() {
+		//
+		// @Override
+		// public void focusGained(FocusEvent e) {
+		// toolComboBox.showPopup();
+		// }
+		// });
 
-		trayLabel.setBounds(250, 295, 150, 60);
-		trayLabel.setFont(new Font(labelFont.getName(), Font.ITALIC + Font.BOLD, 22));
+		trayLabel.setBounds(250, 215, 150, 60);
+		trayLabel.setFont(new Font(labelFont.getName(), Font.ITALIC + Font.BOLD, 15));
 
-		trayTextField.setBounds(250, 350, 200, 40);
+		trayTextField.setBounds(250, 265, 220, 35);
 		trayTextField.setEditable(false);
 		trayTextField.getDocument().addDocumentListener(new DocumentListener() {
 			public void changedUpdate(DocumentEvent e) {
@@ -363,12 +371,12 @@ public class EmployeePage extends JFrame implements ActionListener, HidServicesL
 			}
 		});
 
-		trayTextField.setFont(new Font(labelFont.getName(), Font.BOLD, 22));
+		trayTextField.setFont(new Font(labelFont.getName(), Font.BOLD, 18));
 
-		quantityLabel.setBounds(470, 295, 200, 60);
-		quantityLabel.setFont(new Font(labelFont.getName(), Font.ITALIC + Font.BOLD, 25));
+		quantityLabel.setBounds(490, 215, 210, 60);
+		quantityLabel.setFont(new Font(labelFont.getName(), Font.ITALIC + Font.BOLD, 15));
 
-		quantityTextField.setBounds(470, 350, 180, 40);
+		quantityTextField.setBounds(490, 265, 160, 35);
 		quantityTextField.setEditable(false);
 		quantityTextField.getDocument().addDocumentListener(new DocumentListener() {
 			public void changedUpdate(DocumentEvent e) {
@@ -390,12 +398,14 @@ public class EmployeePage extends JFrame implements ActionListener, HidServicesL
 			}
 		});
 
-		sendRequestButton.setEnabled(false);
-		sendRequestButton.setBounds(250, 420, 230, 40);
-		sendRequestButton.setFont(new Font(labelFont.getName(), Font.BOLD, 25));
+		quantityTextField.setFont(new Font(labelFont.getName(), Font.BOLD, 18));
 
-		cancelButton.setBounds(500, 420, 150, 40);
-		cancelButton.setFont(new Font(labelFont.getName(), Font.BOLD, 25));
+		sendRequestButton.setEnabled(false);
+		sendRequestButton.setBounds(250, 320, 220, 35);
+		sendRequestButton.setFont(new Font(labelFont.getName(), Font.BOLD, 20));
+
+		cancelButton.setBounds(490, 320, 160, 35);
+		cancelButton.setFont(new Font(labelFont.getName(), Font.BOLD, 20));
 
 		updateTimer = new Timer(expiredTime, new ActionListener() {
 			@Override
@@ -420,8 +430,10 @@ public class EmployeePage extends JFrame implements ActionListener, HidServicesL
 		updateTimer.restart();
 
 	}
-	
-	private void updateToolCombobox () {
+
+	private void updateToolCombobox() {
+		toolComboBox.removeAllItems();
+
 		List<Tool> listTools = empCtlObj.getToolsOfMachine(machineCode);
 		Collections.sort(listTools, new Comparator<Tool>() {
 			public int compare(Tool o1, Tool o2) {
@@ -430,14 +442,20 @@ public class EmployeePage extends JFrame implements ActionListener, HidServicesL
 				return o1.getToolName().compareToIgnoreCase(o2.getToolName());
 			}
 		});
-		toolComboBox.removeAllItems();
 
-		toolComboBox.addItem("");
+		List<String> listToolNames = new ArrayList<>();
+		listToolNames.add("");
 		for (Tool tool : listTools) {
-			toolComboBox.addItem(tool.getToolName());
+			listToolNames.add(tool.getToolName());
 		}
-		
-		AutoCompletion.enable(toolComboBox);
+		toolComboBox = new FilterComboBox(listToolNames, keyboard);
+
+		// toolComboBox.addItem("");
+		// for (Tool tool : listTools) {
+		// toolComboBox.addItem(tool.getToolName());
+		// }
+		//
+		// new AutoCompletion(toolComboBox, keyboard);
 	}
 
 	private boolean validateAllFields() {
@@ -446,12 +464,12 @@ public class EmployeePage extends JFrame implements ActionListener, HidServicesL
 		} catch (Exception e) {
 			logger.error("validateAllFields of emppage");
 		}
-		
+
 		if (toolComboBox.getItemCount() == 0) {
 			sendRequestButton.setEnabled(false);
 			return false;
 		}
-		
+
 		int woLength = woTextField.getText().length();
 		int opLength = opTextField.getText().length();
 		int trayLength = trayTextField.getText().length();
@@ -472,7 +490,10 @@ public class EmployeePage extends JFrame implements ActionListener, HidServicesL
 		container.add(splitLabel);
 		container.add(changePassLabel);
 		container.add(logOutLabel);
-		container.add(backToDashboardLabel);
+		if (this.isDashboard) {
+			container.add(backToDashboardLabel);
+		}
+
 		container.add(woLabel);
 		container.add(opLabel);
 		container.add(toolLabel);
@@ -490,15 +511,14 @@ public class EmployeePage extends JFrame implements ActionListener, HidServicesL
 	public void addActionEvent() {
 		sendRequestButton.addActionListener(this);
 		cancelButton.addActionListener(this);
-		
+
 		this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent we) {
 				String ObjButtons[] = { "Yes", "No" };
-				int PromptResult = JOptionPane.showOptionDialog(root, "Are you sure you want to exit?",
-						"Confirm Close", JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null,
-						ObjButtons, ObjButtons[1]);
+				int PromptResult = JOptionPane.showOptionDialog(root, "Are you sure you want to exit?", "Confirm Close",
+						JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, ObjButtons, ObjButtons[1]);
 				if (PromptResult == JOptionPane.YES_OPTION) {
 					System.exit(0);
 				}
@@ -592,7 +612,7 @@ public class EmployeePage extends JFrame implements ActionListener, HidServicesL
 							try {
 								publish("Send message to board");
 								resultValue = executeAction(message);
-//								resultValue = 1;
+								// resultValue = 1;
 							} catch (Exception e2) {
 								logger.error("executeAction exeoption: " + e2.getMessage());
 								return null;
@@ -698,7 +718,7 @@ public class EmployeePage extends JFrame implements ActionListener, HidServicesL
 		HidDevice hidDevice = hidServices.getHidDevice(VENDOR_ID, PRODUCT_ID, null);
 		logger.info("hidDevice: " + hidDevice);
 		logger.info("messageData: " + messageData);
-		
+
 		progress.setText("Get HidDevice " + hidDevice);
 		int result = -1;
 		if (hidDevice != null) {
@@ -814,7 +834,7 @@ public class EmployeePage extends JFrame implements ActionListener, HidServicesL
 						} else if (receivedCode == PRODUCT_FAIL) {
 							progress.setText("PRODUCT_FAIL");
 						}
-						
+
 					} else {
 						masterLogObj.insertLog(userName, Enum.WORKINGTRANSACTION, "", Enum.INVALID_SIGNAL_RECEIVE, "",
 								Arrays.toString(data), companyCode, machineCode,
@@ -854,6 +874,14 @@ public class EmployeePage extends JFrame implements ActionListener, HidServicesL
 		logger.info("Complete send and receive all messages!!!: ");
 		hidDevice.close();
 		return result;
+	}
+
+	public void addVirtualKeyboardListener() {
+		MyFocusListener focus1 = new MyFocusListener(keyboard);
+		woTextField.addFocusListener(focus1);
+		opTextField.addFocusListener(focus1);
+		toolComboBox.getEditor().getEditorComponent().addFocusListener(focus1);
+		// combox1.getEditor().addFocusListener(focus1);
 	}
 
 }

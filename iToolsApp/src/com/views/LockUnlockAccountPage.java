@@ -12,6 +12,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.text.MessageFormat;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -36,6 +37,9 @@ import com.models.Assessor;
 import com.utils.AdvancedEncryptionStandard;
 import com.utils.AutoCompletion;
 import com.utils.Config;
+import com.utils.FilterComboBox;
+import com.utils.MyFocusListener;
+import com.utils.PopUpKeyboard;
 import com.utils.StringUtils;
 
 public class LockUnlockAccountPage extends JFrame implements ActionListener {
@@ -77,6 +81,7 @@ public class LockUnlockAccountPage extends JFrame implements ActionListener {
 	Timer updateTimer;
 	int expiredTime = Integer.valueOf(cfg.getProperty("Expired_Time")) * 1000;
 	String userName = "";
+	public PopUpKeyboard keyboard;
 
 	LockUnlockAccountPage(Assessor user, boolean isDashboard) {
 		this.user = user;
@@ -99,10 +104,10 @@ public class LockUnlockAccountPage extends JFrame implements ActionListener {
 
 		Font labelFont = container.getFont();
 
-		backToDashboardLabel.setText("<html><html><font size=\"6\" face=\"arial\" color=\"#0181BE\"><b><i><u>"
+		backToDashboardLabel.setText("<html><html><font size=\"5\" face=\"arial\" color=\"#0181BE\"><b><i><u>"
 				+ bundleMessage.getString("Employee_Back_To_Dashboard") + "</u></i></b></font></html></html>");
 		backToDashboardLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		backToDashboardLabel.setBounds(15, 10, 270, 60);
+		backToDashboardLabel.setBounds(15, 5, 270, 60);
 		backToDashboardLabel.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -118,10 +123,10 @@ public class LockUnlockAccountPage extends JFrame implements ActionListener {
 			backToDashboardLabel.setEnabled(false);
 		}
 
-		changePassLabel.setText("<html><html><font size=\"6\" face=\"arial\" color=\"#0181BE\"><b><i><u>"
+		changePassLabel.setText("<html><html><font size=\"5\" face=\"arial\" color=\"#0181BE\"><b><i><u>"
 				+ bundleMessage.getString("App_ChangePassword") + "</u></i></b></font></html></html>");
 		changePassLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		changePassLabel.setBounds(450, 10, 250, 60);
+		changePassLabel.setBounds(530, 5, 250, 60);
 		changePassLabel.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -132,13 +137,13 @@ public class LockUnlockAccountPage extends JFrame implements ActionListener {
 			}
 		});
 
-		splitLabel.setBounds(665, 10, 20, 60);
-		splitLabel.setFont(new Font(labelFont.getName(), Font.BOLD, 20));
+		splitLabel.setBounds(693, 5, 25, 60);
+		splitLabel.setFont(new Font(labelFont.getName(), Font.BOLD, 25));
 
-		logOutLabel.setText("<html><font size=\"6\" face=\"arial\" color=\"#0181BE\"><b><i><u>"
+		logOutLabel.setText("<html><font size=\"5\" face=\"arial\" color=\"#0181BE\"><b><i><u>"
 				+ bundleMessage.getString("App_Logout") + "</u></i></b></font></html>");
 		logOutLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		logOutLabel.setBounds(685, 10, 150, 60);
+		logOutLabel.setBounds(715, 5, 150, 60);
 		logOutLabel.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -156,25 +161,11 @@ public class LockUnlockAccountPage extends JFrame implements ActionListener {
 			}
 		});
 		
-		usernameLabel.setBounds(100, 200, 150, 60);
-		usernameLabel.setFont(new Font(labelFont.getName(), Font.BOLD, 30));
+		usernameLabel.setBounds(100, 150, 150, 60);
+		usernameLabel.setFont(new Font(labelFont.getName(), Font.BOLD, 20));
 
-		userNameComboBox.setBounds(280, 210, 400, 40);
-		userNameComboBox.setFont(new Font(labelFont.getName(), Font.BOLD, 30));
-		
-		userNameComboBox.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				validateAllFields();
-			}
-		});
-		userNameComboBox.addFocusListener(new FocusAdapter() {
-
-			@Override
-			public void focusGained(FocusEvent e) {
-				userNameComboBox.showPopup();
-			}
-		});
-
+		List<String> listAllUserNames = new ArrayList<>();
+		listAllUserNames.add("");
 		updateDisplayName();
 
 		userNameComboBox.addItem("");
@@ -183,18 +174,39 @@ public class LockUnlockAccountPage extends JFrame implements ActionListener {
 			mapDisplayName.put(displayName, user);
 			if (!user.getUsername().equals(this.user.getUsername())) {
 				userNameComboBox.addItem(displayName);
+				listAllUserNames.add(displayName);
 			}
 
 		}
-		AutoCompletion.enable(userNameComboBox);
+		
+		userNameComboBox = new FilterComboBox(listAllUserNames, keyboard);
+				
+		userNameComboBox.setBounds(230, 160, 450, 30);
+		userNameComboBox.setFont(new Font(labelFont.getName(), Font.BOLD, 20));
+		
+		userNameComboBox.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				validateAllFields();
+			}
+		});
+//		userNameComboBox.addFocusListener(new FocusAdapter() {
+//
+//			@Override
+//			public void focusGained(FocusEvent e) {
+//				userNameComboBox.showPopup();
+//			}
+//		});
+
+		
+//		new AutoCompletion(userNameComboBox, keyboard);
 
 		
 
-		lockAccountButtom.setBounds(150, 300, 250, 40);
-		lockAccountButtom.setFont(new Font(labelFont.getName(), Font.BOLD, 25));
+		lockAccountButtom.setBounds(230, 220, 220, 35);
+		lockAccountButtom.setFont(new Font(labelFont.getName(), Font.BOLD, 20));
 
-		unLockAccountButton.setBounds(430, 300, 250, 40);
-		unLockAccountButton.setFont(new Font(labelFont.getName(), Font.BOLD, 25));
+		unLockAccountButton.setBounds(460, 220, 220, 35);
+		unLockAccountButton.setFont(new Font(labelFont.getName(), Font.BOLD, 20));
 		validateAllFields();
 
 		updateTimer = new Timer(expiredTime, new ActionListener() {
@@ -328,5 +340,11 @@ public class LockUnlockAccountPage extends JFrame implements ActionListener {
 		}
 
 	}
+
+	public void addVirtualKeyboardListener() {
+		MyFocusListener focus1 = new MyFocusListener(keyboard);
+		userNameComboBox.getEditor().getEditorComponent().addFocusListener(focus1);
+	}
+
 
 }

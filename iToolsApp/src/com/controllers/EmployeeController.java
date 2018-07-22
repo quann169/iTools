@@ -94,11 +94,11 @@ public class EmployeeController {
 			mysqlConnect.disconnect();
 		}
 		if ("-1".equals(quantity)) {
-			sql = " update toolsmachinetray set quantity = quantity - 1 where ToolsMachineID = '"
-					+ toolsMachineID + "' and trayIndex = '" + tray + "';";
+			sql = " update toolsmachinetray set quantity = quantity - 1 where ToolsMachineID = '" + toolsMachineID
+					+ "' and trayIndex = '" + tray + "';";
 		} else {
-			sql = " update toolsmachinetray set quantity = '" + quantity + "' where ToolsMachineID = '"
-					+ toolsMachineID + "' and trayIndex = '" + tray + "';";
+			sql = " update toolsmachinetray set quantity = '" + quantity + "' where ToolsMachineID = '" + toolsMachineID
+					+ "' and trayIndex = '" + tray + "';";
 		}
 		logger.info(sql);
 
@@ -181,6 +181,37 @@ public class EmployeeController {
 
 	/**
 	 * 
+	 * @param username
+	 * @param password
+	 * @return
+	 */
+	public List<String> getAllTools() {
+		String sql = " select tools.ToolCode from tools;";
+		// System.out.println(sql);
+		logger.info(sql);
+		HashMap<String, List<List<Object>>> result = new HashMap<>();
+		List<String> availableTools = new ArrayList<>();
+		try {
+
+			PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
+			ResultSet rs = statement.executeQuery(sql);
+			while (rs.next()) {
+				String toolName = rs.getString(1);
+				availableTools.add(toolName);
+			}
+
+		} catch (SQLException e) {
+			logger.info(e.getMessage());
+			return null;
+		} finally {
+			mysqlConnect.disconnect();
+		}
+		logger.info(result);
+		return availableTools;
+	}
+
+	/**
+	 * 
 	 * @return
 	 */
 	public List<Assessor> getAllUsers() {
@@ -217,7 +248,7 @@ public class EmployeeController {
 		String sql = "select distinct RoleName "
 				+ " from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID"
 				+ " inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = '" + companyCode
-				+ "' and assessor.UserName= '" + userName.toLowerCase() + "'";
+				+ "' and assessor.UserName= '" + userName + "'";
 		logger.info(sql);
 		List<Role> listAllRoles = new ArrayList<>();
 		try {

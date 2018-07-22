@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS Assessor (
   IsLocked INT(10) NOT NULL DEFAULT 0,
   IsActive INT(10) NOT NULL DEFAULT 1,
   LastPassword VARCHAR(255) NULL,
-  IsFirstTimeLogin BOOLEAN NULL,
+  IsFirstTimeLogin BOOLEAN DEFAULT 0,
   FailTimes INT(10) NOT NULL DEFAULT 0,
   UpdatedDate timestamp not null default current_timestamp on update current_timestamp,
   PRIMARY KEY (AssessorID),
@@ -45,23 +45,28 @@ CREATE TABLE IF NOT EXISTS Assessor (
   FOREIGN KEY (CompanyCode) REFERENCES Company(CompanyCode)
 );
 
+
+INSERT INTO Assessor(AssessorID, UserName, Password, FirstName, LastName, EmailAddress, CompanyCode, IsActive) VALUES 
+	(1, "admin", "e10adc3949ba59abbe56e057f20f883e", "ADMIN", "ADMIN", "quann169@gmail.com", "UHCom", 1),
+	(2, "uhadmin1", "e10adc3949ba59abbe56e057f20f883e", "ADMIN", "UH", "quann169@gmail.com", "UHCom", 1),
+	(3, "uhacc1", "e10adc3949ba59abbe56e057f20f883e", "Acc1", "UH", "quann169@gmail.com", "UHCom", 1),
+	(4, "uhacc2", "e10adc3949ba59abbe56e057f20f883e", "Acc2", "UH", "quann169@gmail.com", "UHCom", 1),
+	(5, "com1admin", "e10adc3949ba59abbe56e057f20f883e", "ADMIN", "Com1", "quann169@gmail.com", "Com1", 1),
+	(6, "com1user1", "e10adc3949ba59abbe56e057f20f883e", "User1", "Com1", "quann169@gmail.com", "Com1", 1),
+	(7, "com1user2", "e10adc3949ba59abbe56e057f20f883e", "User2", "Com1", "quann169@gmail.com", "Com1", 1),
+	(8, "com1user3", "e10adc3949ba59abbe56e057f20f883e", "User3", "Com1", "quann169@gmail.com", "Com1", 1),
+	(9, "com2admin", "e10adc3949ba59abbe56e057f20f883e", "ADMIN", "Com2", "quann169@gmail.com", "Com2", 1),
+	(10, "com2user1", "e10adc3949ba59abbe56e057f20f883e", "User1", "Com2", "quann169@gmail.com", "Com2", 1),
+    (11, "RO7LQKKG", "e10adc3949ba59abbe56e057f20f883e", "User1", "Com2", "quann169@gmail.com", "Com2", 1);
+    
+    /*
 INSERT INTO Assessor(AssessorID, UserName, Password, FirstName, LastName, EmailAddress, CompanyCode, IsActive) VALUES 
 	(1, "admin", "e10adc3949ba59abbe56e057f20f883e", "ADMIN", "ADMIN", "quann169@gmail.com", "UHCom", 1) -- ,
-	,(5, "com1admin", "e10adc3949ba59abbe56e057f20f883e", "ADMIN", "Com1", "quann169@gmail.com", "Com1", 1)
-	/*(2, "uhadmin1", "e10adc3949ba59abbe56e057f20f883e", "ADMIN", "UH", "admin1@aaa.bbb", "UHCom", 1),
-	(3, "uhacc1", "e10adc3949ba59abbe56e057f20f883e", "Acc1", "UH", "acc1@aaa.bbb", "UHCom", 1),
-	(4, "uhacc2", "e10adc3949ba59abbe56e057f20f883e", "Acc2", "UH", "acc2@aaa.bbb", "UHCom", 1),
-	(5, "com1admin", "e10adc3949ba59abbe56e057f20f883e", "ADMIN", "Com1", "quannguyen@savarti.com", "Com1", 1),
-	(6, "com1user1", "e10adc3949ba59abbe56e057f20f883e", "User1", "Com1", "com1admin@aaa.bbb", "Com1", 1),
-	(7, "com1user2", "e10adc3949ba59abbe56e057f20f883e", "User2", "Com1", "com1admin@aaa.bbb", "Com1", 1),
-	(8, "com1user3", "e10adc3949ba59abbe56e057f20f883e", "User3", "Com1", "com1admin@aaa.bbb", "Com1", 1),
-	(9, "com2admin", "e10adc3949ba59abbe56e057f20f883e", "ADMIN", "Com2", "com1admin@aaa.bbb", "Com2", 1),
-	(10, "com2user1", "e10adc3949ba59abbe56e057f20f883e", "User1", "Com2", "com1admin@aaa.bbb", "Com2", 1),
-    (11, "RO7LQKKG", "e10adc3949ba59abbe56e057f20f883e", "User1", "Com2", "com1admin@aaa.bbb", "Com2", 1) */
+	-- ,(5, "com1admin", "e10adc3949ba59abbe56e057f20f883e", "ADMIN", "Com1", "quann169@gmail.com", "Com1", 1)
 	;
 
 update Assessor set IsFirstTimeLogin = 0 where UserName = 'com1admin';
-
+**/
 DROP TABLE IF EXISTS Roles;
 CREATE TABLE IF NOT EXISTS Roles (
   RoleID INT(10) NOT NULL AUTO_INCREMENT,
@@ -99,13 +104,14 @@ CREATE TABLE IF NOT EXISTS RoleAssessor (
   FOREIGN KEY (AssessorID) REFERENCES Assessor(AssessorID) 
 );
 
+/*
 insert into RoleAssessor (RoleID, AssessorID, CreatedDate, IsActive) values (1,1,now(), 1);
 insert into RoleAssessor (RoleID, AssessorID, CreatedDate, IsActive) values (2,1,now(), 1);
 insert into RoleAssessor (RoleID, AssessorID, CreatedDate, IsActive) values (3,1,now(), 1);
 insert into RoleAssessor (RoleID, AssessorID, CreatedDate, IsActive) values (4,1,now(), 1);
-
+*/
 -- Admin UH has Admin, SubAdmin, Accounting, PutIns, TakeOver, UpdateReport
-/*
+
 INSERT INTO RoleAssessor(RoleAssessorID, RoleID, AssessorID, CreatedDate, IsActive) VALUES 
 	(1, 1, 2, now(), 1),
 	(2, 2, 2, now(), 1),
@@ -133,7 +139,7 @@ INSERT INTO RoleAssessor(RoleAssessorID, RoleID, AssessorID, CreatedDate, IsActi
 	(19, 4, 9, now(), 1),
 -- Com2 emp
 	(20, 4, 10, now(), 1);
-*/
+
 
 DROP TABLE IF EXISTS Machine;
 CREATE TABLE IF NOT EXISTS Machine (
@@ -651,8 +657,8 @@ DROP PROCEDURE IF EXISTS `SyncHostToLocal`;
 
 CREATE PROCEDURE `SyncLocalToHost`(IN CompanyCode VARCHAR(255), IN MachineCode VARCHAR(255), OUT returnResult TEXT)
 BEGIN
-	DECLARE EXIT HANDLER FOR SQLEXCEPTION ROLLBACK;
-	DECLARE EXIT HANDLER FOR SQLWARNING ROLLBACK;
+	-- DECLARE EXIT HANDLER FOR SQLEXCEPTION ROLLBACK;
+	-- DECLARE EXIT HANDLER FOR SQLWARNING ROLLBACK;
 	START TRANSACTION;
 	
     SET SQL_SAFE_UPDATES = 0;
@@ -777,8 +783,8 @@ END$$
 
 CREATE PROCEDURE `SyncHostToLocal`(IN CompanyCode VARCHAR(255), IN MachineCode VARCHAR(255), OUT returnResult TEXT)
 BEGIN
-	DECLARE EXIT HANDLER FOR SQLEXCEPTION ROLLBACK;
-	DECLARE EXIT HANDLER FOR SQLWARNING ROLLBACK;
+	-- DECLARE EXIT HANDLER FOR SQLEXCEPTION ROLLBACK;
+	-- DECLARE EXIT HANDLER FOR SQLWARNING ROLLBACK;
 	START TRANSACTION;
 	
     SET SQL_SAFE_UPDATES = 0;
@@ -1023,6 +1029,41 @@ BEGIN
 	
 	set @updateToolsMachine = (SELECT ROW_COUNT());
     set @finalResult = concat(@finalResult, ",", "\n", "updateToolsMachine: ", @updateToolsMachine );
+	
+	
+	
+	
+	#insert missing record from Host to local
+    INSERT INTO ToolsMachineTray
+	SELECT a.* FROM federated_ToolsMachineTray a
+	LEFT OUTER JOIN ToolsMachineTray b ON b.ToolsMachineTrayID = a.ToolsMachineTrayID
+	WHERE b.ToolsMachineTrayID IS NULL;
+	
+	set @insertToolsMachineTray = (SELECT ROW_COUNT());
+    set @finalResult = concat(@finalResult, ",", "\n", "insertToolsMachineTray: ", @insertToolsMachineTray);
+	
+		
+	
+	
+    #update all record from Host to local
+	update ToolsMachineTray lTM
+	left join federated_ToolsMachineTray fTM on lTM.ToolsMachineTrayID = fTM.ToolsMachineTrayID
+		set lTM.ToolsMachineID = fTM.ToolsMachineID,
+            lTM.TrayIndex = fTM.TrayIndex,
+			lTM.Quantity = fTM.Quantity,
+            lTM.UpdatedDate = sysdate()
+		where lTM.ToolsMachineTrayID in (select ToolsMachineTrayID from federated_ToolsMachineTray)
+        and fTM.UpdatedDate > 
+		(select (Case when fs.SyncDate is null then '1900-01-01 00:00:00' else fs.SyncDate END) 
+			from synchistory fs
+			where fs.Status = 'SUCCESS' and fs.SynType = 'HostToLocal'
+			order by fs.SyncDate desc LIMIT 1)
+	and fTM.UpdatedDate > (Case when lTM.UpdatedDate is null then '1900-01-01 00:00:00' else lTM.UpdatedDate END);  
+	
+	set @updateToolsMachineTray = (SELECT ROW_COUNT());
+    set @finalResult = concat(@finalResult, ",", "\n", "updateToolsMachineTray: ", @updateToolsMachineTray );
+	
+	
 	
 	insert into synchistory(SyncDate, Statistic, Status, SynType)
 		VALUES 

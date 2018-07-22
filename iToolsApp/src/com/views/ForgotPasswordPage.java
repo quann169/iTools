@@ -36,6 +36,8 @@ import com.controllers.UserController;
 import com.message.Enum;
 import com.utils.AdvancedEncryptionStandard;
 import com.utils.Config;
+import com.utils.MyFocusListener;
+import com.utils.PopUpKeyboard;
 import com.utils.StringUtils;
 
 public class ForgotPasswordPage extends JFrame implements ActionListener {
@@ -67,6 +69,7 @@ public class ForgotPasswordPage extends JFrame implements ActionListener {
 	UserController empCtlObj = new UserController();
 
 	LogController masterLogObj = new LogController();
+	public PopUpKeyboard keyboard;
 
 	JFrame root = this;
 	Timer updateTimer;
@@ -88,11 +91,11 @@ public class ForgotPasswordPage extends JFrame implements ActionListener {
 	public void setLocationAndSize() {
 		Font labelFont = usernameLabel.getFont();
 
-		usernameLabel.setBounds(100, 150, 250, 60);
-		usernameLabel.setFont(new Font(labelFont.getName(), Font.BOLD, 30));
+		usernameLabel.setBounds(120, 100, 250, 40);
+		usernameLabel.setFont(new Font(labelFont.getName(), Font.BOLD, 25));
 
-		usernameTextField.setBounds(260, 160, 430, 40);
-		usernameTextField.setFont(new Font(labelFont.getName(), Font.BOLD, 28));
+		usernameTextField.setBounds(260, 105, 430, 40);
+		usernameTextField.setFont(new Font(labelFont.getName(), Font.BOLD, 20));
 		usernameTextField.setText("");
 
 		usernameTextField.getDocument().addDocumentListener(new DocumentListener() {
@@ -120,11 +123,11 @@ public class ForgotPasswordPage extends JFrame implements ActionListener {
 		    }  
 		});
 
-		emailLabel.setBounds(110, 240, 250, 60);
-		emailLabel.setFont(new Font(labelFont.getName(), Font.BOLD, 30));
+		emailLabel.setBounds(120, 190, 250, 40);
+		emailLabel.setFont(new Font(labelFont.getName(), Font.BOLD, 25));
 
-		emailTextField.setBounds(260, 240, 430, 40);
-		emailTextField.setFont(new Font(labelFont.getName(), Font.BOLD, 28));
+		emailTextField.setBounds(260, 195, 430, 40);
+		emailTextField.setFont(new Font(labelFont.getName(), Font.BOLD, 20));
 		emailTextField.setText("");
 
 		emailTextField.getDocument().addDocumentListener(new DocumentListener() {
@@ -146,10 +149,10 @@ public class ForgotPasswordPage extends JFrame implements ActionListener {
 		});
 
 		forgotPassButton.setEnabled(false);
-		forgotPassButton.setBounds(260, 320, 230, 50);
+		forgotPassButton.setBounds(260, 280, 230, 50);
 		forgotPassButton.setFont(new Font(labelFont.getName(), Font.BOLD, 25));
 
-		cancelButton.setBounds(510, 320, 180, 50);
+		cancelButton.setBounds(510, 280, 180, 50);
 		cancelButton.setFont(new Font(labelFont.getName(), Font.BOLD, 25));
 
 		updateTimer = new Timer(expiredTime, new ActionListener() {
@@ -304,6 +307,12 @@ public class ForgotPasswordPage extends JFrame implements ActionListener {
 			}
 
 		}
+	}
+
+	public void addVirtualKeyboardListener() {
+		MyFocusListener focus1 = new MyFocusListener(keyboard);
+		emailTextField.addFocusListener(focus1);
+		usernameTextField.addFocusListener(focus1);
 	}
 
 }

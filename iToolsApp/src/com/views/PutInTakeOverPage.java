@@ -9,14 +9,13 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.FocusAdapter;
-import java.awt.event.FocusEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.font.TextAttribute;
 import java.text.MessageFormat;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -50,8 +49,10 @@ import com.message.Enum;
 import com.models.Assessor;
 import com.models.Tool;
 import com.utils.AdvancedEncryptionStandard;
-import com.utils.AutoCompletion;
 import com.utils.Config;
+import com.utils.FilterComboBox;
+import com.utils.MyFocusListener;
+import com.utils.PopUpKeyboard;
 import com.utils.StringUtils;
 
 public class PutInTakeOverPage extends JFrame implements ActionListener {
@@ -75,9 +76,14 @@ public class PutInTakeOverPage extends JFrame implements ActionListener {
 
 	JLabel quantityMessage = new JLabel("");
 
-	JComboBox<String> trayCombobox = new JComboBox<String>();
-	JComboBox<String> toolComboBox = new JComboBox<String>();
+	JComboBox<String> trayCombobox;
+	JComboBox<String> toolComboBox;
 	JTextField quantityTextField = new JTextField();
+	// JTextField toolTextField = new JTextField();
+	// JTextField trayTextField = new JTextField();
+
+	// public AutoCompletion comboBox1, comboBox2;
+
 	boolean isReceiveResult = false;
 
 	Map<String, List<List<Object>>> toolVstrayAndQuantityMap = new HashMap<>();
@@ -104,10 +110,15 @@ public class PutInTakeOverPage extends JFrame implements ActionListener {
 
 	LogController masterLogObj = new LogController();
 	String userName = "";
+	public PopUpKeyboard keyboard;
+	// AutoCompletion combox1;
 
 	JFrame root = this;
 	Timer updateTimer;
 	int expiredTime = Integer.valueOf(cfg.getProperty("Expired_Time")) * 1000;
+	String previousCombo = "";
+
+	// AutoCompletion comboBoxComplete;
 
 	PutInTakeOverPage(Assessor user, String pageType) {
 		toolVstrayAndQuantityMap = empCtlObj.getToolTrayQuantity(machineCode, -1);
@@ -130,10 +141,10 @@ public class PutInTakeOverPage extends JFrame implements ActionListener {
 		Map<TextAttribute, Integer> fontAttributes = new HashMap<TextAttribute, Integer>();
 		fontAttributes.put(TextAttribute.UNDERLINE, TextAttribute.UNDERLINE_ON);
 
-		backToDashboardLabel.setText("<html><html><font size=\"6\" face=\"arial\" color=\"#0181BE\"><b><i><u>"
+		backToDashboardLabel.setText("<html><html><font size=\"5\" face=\"arial\" color=\"#0181BE\"><b><i><u>"
 				+ bundleMessage.getString("Employee_Back_To_Dashboard") + "</u></i></b></font></html></html>");
 		backToDashboardLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		backToDashboardLabel.setBounds(15, 10, 270, 60);
+		backToDashboardLabel.setBounds(15, 5, 270, 60);
 		backToDashboardLabel.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -145,10 +156,10 @@ public class PutInTakeOverPage extends JFrame implements ActionListener {
 
 		backToDashboardLabel.setEnabled(true);
 
-		changePassLabel.setText("<html><html><font size=\"6\" face=\"arial\" color=\"#0181BE\"><b><i><u>"
+		changePassLabel.setText("<html><html><font size=\"5\" face=\"arial\" color=\"#0181BE\"><b><i><u>"
 				+ bundleMessage.getString("App_ChangePassword") + "</u></i></b></font></html></html>");
 		changePassLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		changePassLabel.setBounds(450, 10, 250, 60);
+		changePassLabel.setBounds(530, 5, 250, 60);
 		changePassLabel.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -159,13 +170,13 @@ public class PutInTakeOverPage extends JFrame implements ActionListener {
 			}
 		});
 
-		splitLabel.setBounds(665, 10, 20, 60);
-		splitLabel.setFont(new Font(labelFont.getName(), Font.BOLD, 20));
+		splitLabel.setBounds(693, 5, 25, 60);
+		splitLabel.setFont(new Font(labelFont.getName(), Font.BOLD, 25));
 
-		logOutLabel.setText("<html><font size=\"6\" face=\"arial\" color=\"#0181BE\"><b><i><u>"
+		logOutLabel.setText("<html><font size=\"5\" face=\"arial\" color=\"#0181BE\"><b><i><u>"
 				+ bundleMessage.getString("App_Logout") + "</u></i></b></font></html>");
 		logOutLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		logOutLabel.setBounds(685, 10, 150, 60);
+		logOutLabel.setBounds(715, 5, 150, 60);
 		logOutLabel.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -184,12 +195,28 @@ public class PutInTakeOverPage extends JFrame implements ActionListener {
 		});
 
 		////////////////////////////////////////
-		toolLabel.setBounds(100, 105, 250, 60);
-		toolLabel.setFont(new Font(labelFont.getName(), Font.BOLD, 30));
-		
-		
-		toolComboBox.setBounds(250, 110, 400, 40);
-		toolComboBox.setFont(new Font(labelFont.getName(), Font.BOLD, 25));
+		toolLabel.setBounds(100, 85, 250, 40);
+		toolLabel.setFont(new Font(labelFont.getName(), Font.BOLD, 25));
+
+		List<Tool> listTools = empCtlObj.getToolsOfMachine(machineCode);
+		Collections.sort(listTools, new Comparator<Tool>() {
+			public int compare(Tool o1, Tool o2) {
+				if (o1.getToolName() == o2.getToolName())
+					return 0;
+				return o1.getToolName().compareToIgnoreCase(o2.getToolName());
+			}
+		});
+
+		List<String> listToolNames = new ArrayList<>();
+		listToolNames.add("");
+		for (Tool tool : listTools) {
+			listToolNames.add(tool.getToolName());
+		}
+		toolComboBox = new FilterComboBox(listToolNames, keyboard);
+
+		toolComboBox.setBounds(250, 90, 400, 35);
+		toolComboBox.setFont(new Font(labelFont.getName(), Font.BOLD, 22));
+
 
 		toolComboBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -198,6 +225,7 @@ public class PutInTakeOverPage extends JFrame implements ActionListener {
 				}
 
 				quantityTextField.setText("");
+				System.out.println("QQQQQQ: " + toolComboBox.getSelectedItem());
 				String selectValue = toolComboBox.getSelectedItem().toString();
 				// System.out.println(toolVstrayAndQuantityMap);
 				// System.out.println("selectValue: " + selectValue);
@@ -220,49 +248,26 @@ public class PutInTakeOverPage extends JFrame implements ActionListener {
 						}
 
 					} else {
-						toolComboBox.setSelectedIndex(0);
+						// toolComboBox.setSelectedIndex(0);
 						quantityTextField.setText("0");
-						JOptionPane.showMessageDialog(container, MessageFormat
-								.format(bundleMessage.getString("Putin_TakeOver_Page_toolNotTrayMessage"), selectValue),
-								"Warning", JOptionPane.WARNING_MESSAGE);
+//						JOptionPane.showMessageDialog(container, MessageFormat
+//								.format(bundleMessage.getString("Putin_TakeOver_Page_toolNotTrayMessage"), selectValue),
+//								"Warning", JOptionPane.WARNING_MESSAGE);
 						sendRequestButton.setEnabled(false);
 					}
 				}
 
 			}
 		});
-		toolComboBox.addFocusListener(new FocusAdapter() {
-
-			@Override
-			public void focusGained(FocusEvent e) {
-				toolComboBox.showPopup();
-			}
-		});
-		List<Tool> listTools = empCtlObj.getToolsOfMachine(machineCode);
-		Collections.sort(listTools, new Comparator<Tool>() {
-			public int compare(Tool o1, Tool o2) {
-				if (o1.getToolName() == o2.getToolName())
-					return 0;
-				return o1.getToolName().compareToIgnoreCase(o2.getToolName());
-			}
-		});
-
-		toolComboBox.addItem("");
-		for (Tool tool : listTools) {
-			toolComboBox.addItem(tool.getToolName());
-		}
-
-		AutoCompletion.enable(toolComboBox);
 
 		//////////////////////////////////////////////////////////////////
-		trayLabel.setBounds(100, 180, 250, 60);
-		trayLabel.setFont(new Font(labelFont.getName(), Font.BOLD, 30));
-		
-		
-		trayCombobox.setBounds(250, 190, 400, 40);
-		trayCombobox.setFont(new Font(labelFont.getName(), Font.BOLD, 25));
+		trayLabel.setBounds(100, 150, 250, 40);
+		trayLabel.setFont(new Font(labelFont.getName(), Font.BOLD, 25));
 
-		
+//		trayCombobox = new FilterComboBox(new ArrayList<>(), keyboard);
+		trayCombobox = new JComboBox<>();
+		trayCombobox.setBounds(250, 155, 400, 35);
+		trayCombobox.setFont(new Font(labelFont.getName(), Font.BOLD, 22));
 
 		trayCombobox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -284,53 +289,54 @@ public class PutInTakeOverPage extends JFrame implements ActionListener {
 				}
 			}
 		});
-		trayCombobox.addFocusListener(new FocusAdapter() {
-
-			@Override
-			public void focusGained(FocusEvent e) {
-				trayCombobox.showPopup();
-			}
-		});
+		// trayCombobox.addFocusListener(new FocusAdapter() {
+		//
+		// @Override
+		// public void focusGained(FocusEvent e) {
+		// System.out.println("EEEEEEEEEEEEEEEE");
+		// trayCombobox.showPopup();
+		// }
+		// });
 
 		trayCombobox.addItem("");
-		AutoCompletion.enable(trayCombobox);
+		// comboBox2 = new AutoCompletion(trayCombobox, trayTextField);
 
-		quantityLabel.setBounds(100, 260, 250, 60);
-		quantityLabel.setFont(new Font(labelFont.getName(), Font.BOLD, 30));
+		quantityLabel.setBounds(100, 210, 250, 40);
+		quantityLabel.setFont(new Font(labelFont.getName(), Font.BOLD, 25));
 
-		quantityTextField.setBounds(250, 270, 180, 40);
-		quantityTextField.setFont(new Font(labelFont.getName(), Font.BOLD, 25));
+		quantityTextField.setBounds(250, 215, 180, 35);
+		quantityTextField.setFont(new Font(labelFont.getName(), Font.BOLD, 22));
 		// quantityTextField.setEditable(false);
 		quantityTextField.getDocument().addDocumentListener(new DocumentListener() {
 			public void changedUpdate(DocumentEvent e) {
-				warn();
+				updateCombo();
 			}
 
 			public void removeUpdate(DocumentEvent e) {
-				warn();
+				updateCombo();
 			}
 
 			public void insertUpdate(DocumentEvent e) {
-				warn();
+				updateCombo();
 			}
 
-			public void warn() {
-				
+			public void updateCombo() {
+
 				if (validateAllFields()) {
 					sendRequestButton.setEnabled(true);
 				}
 			}
 		});
 
-		quantityMessage.setBounds(250, 310, 550, 40);
-		quantityMessage.setFont(new Font(labelFont.getName(), Font.BOLD, 20));
-		
-		sendRequestButton.setEnabled(false);
-		sendRequestButton.setBounds(250, 350, 250, 40);
-		sendRequestButton.setFont(new Font(labelFont.getName(), Font.BOLD, 25));
+		quantityMessage.setBounds(250, 250, 550, 35);
+		quantityMessage.setFont(new Font(labelFont.getName(), Font.BOLD, 18));
 
-		cancelButton.setBounds(510, 350, 140, 40);
-		cancelButton.setFont(new Font(labelFont.getName(), Font.BOLD, 25));
+		sendRequestButton.setEnabled(false);
+		sendRequestButton.setBounds(250, 290, 250, 35);
+		sendRequestButton.setFont(new Font(labelFont.getName(), Font.BOLD, 22));
+
+		cancelButton.setBounds(510, 290, 140, 35);
+		cancelButton.setFont(new Font(labelFont.getName(), Font.BOLD, 22));
 
 		updateTimer = new Timer(expiredTime, new ActionListener() {
 			@Override
@@ -340,8 +346,7 @@ public class PutInTakeOverPage extends JFrame implements ActionListener {
 				String timeoutMess = MessageFormat.format(bundleMessage.getString("App_TimeOut"),
 						cfg.getProperty("Expired_Time"));
 				JOptionPane.showMessageDialog(container, timeoutMess, "Time Out Putin", JOptionPane.WARNING_MESSAGE);
-				
-				
+
 				logger.info(userName + ": " + Enum.PUTIN_TAKEOVER_PAGE + " time out.");
 				JFrame old = root;
 				root = new LoginPage();
@@ -364,7 +369,7 @@ public class PutInTakeOverPage extends JFrame implements ActionListener {
 		try {
 			updateTimer.restart();
 		} catch (Exception e) {
-			System.err.println("validateAllFields of putintakeover");
+			logger.error(userName + ": validateAllFields of putintakeover");
 		}
 		if (trayCombobox == null || toolComboBox == null || trayCombobox.getSelectedItem() == null
 				|| toolComboBox.getSelectedItem() == null || quantityTextField.getText() == null) {
@@ -372,22 +377,21 @@ public class PutInTakeOverPage extends JFrame implements ActionListener {
 		}
 		int trayLength = ((String) trayCombobox.getSelectedItem()).length();
 		int toolLength = ((String) toolComboBox.getSelectedItem()).length();
-		String strTmp = quantityTextField.getText().replaceAll("\\D+","");
+		String strTmp = quantityTextField.getText().replaceAll("\\D+", "");
 		int quantityLength = strTmp.length();
 
 		if (toolLength > 0 && trayLength > 0 && quantityLength > 0) {
 			defaultQuantity = mapTrayQuantity.get(trayCombobox.getSelectedItem());
-			
+
 			newQuantity = Integer.parseInt(strTmp);
 			if (defaultQuantity != newQuantity) {
 				if (this.pageType.equals(Enum.TKOVER.text())) {
 					if (newQuantity > defaultQuantity) {
 						sendRequestButton.setEnabled(false);
-						quantityMessage
-								.setText("<html><html><font face=\"arial\" color=\"RED\"><b>" + MessageFormat
-										.format(bundleMessage.getString("Putin_TakeOver_Page_TakeOverErrMessage"),
-												defaultQuantity)
-										+ "</b></font></html></html>");
+						quantityMessage.setText("<html><html><font face=\"arial\" color=\"RED\"><b>" + MessageFormat
+								.format(bundleMessage.getString("Putin_TakeOver_Page_TakeOverErrMessage"),
+										defaultQuantity)
+								+ "</b></font></html></html>");
 						return false;
 					}
 				} else {
@@ -430,6 +434,10 @@ public class PutInTakeOverPage extends JFrame implements ActionListener {
 		container.add(sendRequestButton);
 		container.add(cancelButton);
 		container.add(quantityMessage);
+
+		// container.add(toolTextField);
+		// container.add(trayTextField);
+
 	}
 
 	/**
@@ -443,9 +451,8 @@ public class PutInTakeOverPage extends JFrame implements ActionListener {
 			@Override
 			public void windowClosing(WindowEvent we) {
 				String ObjButtons[] = { "Yes", "No" };
-				int PromptResult = JOptionPane.showOptionDialog(root, "Are you sure you want to exit?",
-						"Confirm Close", JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null,
-						ObjButtons, ObjButtons[1]);
+				int PromptResult = JOptionPane.showOptionDialog(root, "Are you sure you want to exit?", "Confirm Close",
+						JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, ObjButtons, ObjButtons[1]);
 				if (PromptResult == JOptionPane.YES_OPTION) {
 					System.exit(0);
 				}
@@ -480,7 +487,7 @@ public class PutInTakeOverPage extends JFrame implements ActionListener {
 
 			String ctid = toolComboBox.getSelectedItem().toString();
 			String tray = trayCombobox.getSelectedItem().toString();
-			String quantity = quantityTextField.getText().replaceAll("\\D+","");
+			String quantity = quantityTextField.getText().replaceAll("\\D+", "");
 
 			JLabel label2 = new JLabel("<html>Review and confirm information<br/>CTID: " + ctid + "<br/>Tray: " + tray
 					+ "<br/>Quantity: " + quantity + "</html>", SwingConstants.CENTER);
@@ -594,6 +601,17 @@ public class PutInTakeOverPage extends JFrame implements ActionListener {
 			toolComboBox.setSelectedIndex(0);
 			quantityTextField.setText("");
 		}
+	}
+
+	public void addVirtualKeyboardListener() {
+		MyFocusListener focus1 = new MyFocusListener(keyboard);
+		quantityTextField.addFocusListener(focus1);
+		toolComboBox.getEditor().getEditorComponent().addFocusListener(focus1);
+
+		toolComboBox.addFocusListener(focus1);
+
+		trayCombobox.getEditor().getEditorComponent().addFocusListener(focus1);
+		System.out.println("BBBBBBBB");
 	}
 
 }

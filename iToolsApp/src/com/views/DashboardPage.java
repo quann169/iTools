@@ -120,10 +120,10 @@ public class DashboardPage extends JFrame implements ActionListener {
 		// fontAttributes.put(TextAttribute.UNDERLINE,
 		// TextAttribute.UNDERLINE_ON);
 
-		changePassLabel.setText("<html><html><font size=\"6\" face=\"arial\" color=\"#0181BE\"><b><i><u>"
+		changePassLabel.setText("<html><html><font size=\"5\" face=\"arial\" color=\"#0181BE\"><b><i><u>"
 				+ bundleMessage.getString("App_ChangePassword") + "</u></i></b></font></html></html>");
 		changePassLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		changePassLabel.setBounds(450, 10, 250, 60);
+		changePassLabel.setBounds(530, 5, 250, 60);
 		changePassLabel.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -134,13 +134,13 @@ public class DashboardPage extends JFrame implements ActionListener {
 			}
 		});
 
-		splitLabel.setBounds(663, 10, 25, 60);
+		splitLabel.setBounds(693, 5, 25, 60);
 		splitLabel.setFont(new Font(labelFont.getName(), Font.BOLD, 25));
 
-		logOutLabel.setText("<html><font size=\"6\" face=\"arial\" color=\"#0181BE\"><b><i><u>"
+		logOutLabel.setText("<html><font size=\"5\" face=\"arial\" color=\"#0181BE\"><b><i><u>"
 				+ bundleMessage.getString("App_Logout") + "</u></i></b></font></html>");
 		logOutLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		logOutLabel.setBounds(685, 10, 150, 60);
+		logOutLabel.setBounds(715, 5, 150, 60);
 		logOutLabel.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -159,26 +159,26 @@ public class DashboardPage extends JFrame implements ActionListener {
 		});
 
 		// accounting role
-		unlockMachineButton.setBounds(80, 170, 305, 60);
+		unlockMachineButton.setBounds(80, 100, 305, 60);
 		unlockMachineButton.setFont(new Font(labelFont.getName(), Font.BOLD, 25));
 
-		takeOverButton.setBounds(420, 170, 305, 60);
+		takeOverButton.setBounds(420, 100, 305, 60);
 		takeOverButton.setFont(new Font(labelFont.getName(), Font.BOLD, 25));
 
-		putInsButton.setBounds(80, 320, 305, 60);
+		putInsButton.setBounds(80, 240, 305, 60);
 		putInsButton.setFont(new Font(labelFont.getName(), Font.BOLD, 25));
 
 		// sub admin role
-		resetPasswordButton.setBounds(80, 170, 305, 60);
+		resetPasswordButton.setBounds(80, 100, 305, 60);
 		resetPasswordButton.setFont(new Font(labelFont.getName(), Font.BOLD, 25));
 
-		lockAccountButton.setBounds(420, 170, 305, 60);
+		lockAccountButton.setBounds(420, 100, 305, 60);
 		lockAccountButton.setFont(new Font(labelFont.getName(), Font.BOLD, 25));
 
-		manualSyncButton.setBounds(80, 320, 305, 60);
+		manualSyncButton.setBounds(80, 240, 305, 60);
 		manualSyncButton.setFont(new Font(labelFont.getName(), Font.BOLD, 25));
 
-		getToolButton.setBounds(420, 320, 305, 60);
+		getToolButton.setBounds(420, 240, 305, 60);
 		getToolButton.setFont(new Font(labelFont.getName(), Font.BOLD, 25));
 
 		updateTimer = new Timer(expiredTime, new ActionListener() {
