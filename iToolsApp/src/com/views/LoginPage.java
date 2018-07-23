@@ -274,7 +274,7 @@ public class LoginPage extends JFrame implements ActionListener {
 					} else if (listRoles.size() == 1 && Enum.EMP.text().equals(listRoles.get(0).getRoleName())) {
 						logger.info("Show EmployeePage");
 						JFrame old = root;
-						root = new EmployeePage(userName, false);
+						root = new EmployeePage(result, false);
 						StringUtils.frameInit(root, bundleMessage);
 						// empPage.setJMenuBar(StringUtils.addMenu());
 						root.setTitle(userText + " - " + result.getFirstName() + " " + result.getLastName());

@@ -44,9 +44,11 @@ import org.apache.log4j.Logger;
 
 import com.controllers.EmployeeController;
 import com.controllers.LogController;
+import com.controllers.LoginController;
 import com.controllers.TransactionController;
 import com.message.Enum;
 import com.models.Assessor;
+import com.models.Role;
 import com.models.Tool;
 import com.utils.AdvancedEncryptionStandard;
 import com.utils.Config;
@@ -107,7 +109,7 @@ public class PutInTakeOverPage extends JFrame implements ActionListener {
 	String pageType;
 	int defaultQuantity = -1;
 	int newQuantity = -1;
-
+	Assessor user;
 	LogController masterLogObj = new LogController();
 	String userName = "";
 	public PopUpKeyboard keyboard;
@@ -117,13 +119,14 @@ public class PutInTakeOverPage extends JFrame implements ActionListener {
 	Timer updateTimer;
 	int expiredTime = Integer.valueOf(cfg.getProperty("Expired_Time")) * 1000;
 	String previousCombo = "";
+	static LoginController ctlObj = new LoginController();
 
 	// AutoCompletion comboBoxComplete;
 
 	PutInTakeOverPage(Assessor user, String pageType) {
 		toolVstrayAndQuantityMap = empCtlObj.getToolTrayQuantity(machineCode, -1);
 		this.pageType = pageType;
-		System.out.println(toolVstrayAndQuantityMap);
+		this.user = user;
 		setLayoutManager();
 		setLocationAndSize();
 		addComponentsToContainer();
@@ -148,9 +151,16 @@ public class PutInTakeOverPage extends JFrame implements ActionListener {
 		backToDashboardLabel.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				System.out.println("backToDashboardLabel");
-				masterLogObj.insertLog(userName, Enum.ASSESSOR, "", Enum.SHOW_DASHBOARD, "", "", companyCode,
-						machineCode, StringUtils.getCurrentClassAndMethodNames());
+				updateTimer.restart();
+				logger.info(userName + " back to dashboard from " + Enum.PUTIN_TAKEOVER_PAGE);
+				JFrame old = root;
+
+				List<Role> listRoles = ctlObj.getUserRoles(userName, companyCode);
+				root = new DashboardPage(listRoles, user);
+				StringUtils.frameInit(root, bundleMessage);
+
+				root.setTitle(userName);
+				old.dispose();
 			}
 		});
 
@@ -217,7 +227,6 @@ public class PutInTakeOverPage extends JFrame implements ActionListener {
 		toolComboBox.setBounds(250, 90, 400, 35);
 		toolComboBox.setFont(new Font(labelFont.getName(), Font.BOLD, 22));
 
-
 		toolComboBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (trayCombobox.getItemCount() > 0) {
@@ -250,9 +259,11 @@ public class PutInTakeOverPage extends JFrame implements ActionListener {
 					} else {
 						// toolComboBox.setSelectedIndex(0);
 						quantityTextField.setText("0");
-//						JOptionPane.showMessageDialog(container, MessageFormat
-//								.format(bundleMessage.getString("Putin_TakeOver_Page_toolNotTrayMessage"), selectValue),
-//								"Warning", JOptionPane.WARNING_MESSAGE);
+						// JOptionPane.showMessageDialog(container,
+						// MessageFormat
+						// .format(bundleMessage.getString("Putin_TakeOver_Page_toolNotTrayMessage"),
+						// selectValue),
+						// "Warning", JOptionPane.WARNING_MESSAGE);
 						sendRequestButton.setEnabled(false);
 					}
 				}
@@ -264,7 +275,7 @@ public class PutInTakeOverPage extends JFrame implements ActionListener {
 		trayLabel.setBounds(100, 150, 250, 40);
 		trayLabel.setFont(new Font(labelFont.getName(), Font.BOLD, 25));
 
-//		trayCombobox = new FilterComboBox(new ArrayList<>(), keyboard);
+		// trayCombobox = new FilterComboBox(new ArrayList<>(), keyboard);
 		trayCombobox = new JComboBox<>();
 		trayCombobox.setBounds(250, 155, 400, 35);
 		trayCombobox.setFont(new Font(labelFont.getName(), Font.BOLD, 22));

@@ -3402,3 +3402,575 @@
 2018-07-22 21:29:25 INFO  LogController:97 - ======================MasterLog executeUpdate done
 2018-07-22 21:29:25 INFO  LogController:99 - ======================MasterLog insertLog done
 2018-07-22 21:29:25 INFO  LogController:108 - ======================MasterLog disconnect done
+2018-07-23 22:34:57 INFO  LoginPage:239 - Login with username: com1admin
+2018-07-23 22:34:57 INFO  LoginController:46 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin, IsLocked FROM Assessor where Assessor.IsActive = 1 and Assessor.UserName='com1admin' and (Password=md5('123456') or LastPassword=md5('123456'));
+2018-07-23 22:34:58 INFO  LoginPage:243 - Login OK
+2018-07-23 22:34:58 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), '33445665555', 'Assessor', '', 'Login', '', '', 'Com1', 'MAC1', 'LoginPage.actionPerformed');
+2018-07-23 22:34:58 INFO  LogController:95 - ======================MasterLog prepareStatement done
+2018-07-23 22:34:58 INFO  LogController:97 - ======================MasterLog executeUpdate done
+2018-07-23 22:34:58 INFO  LogController:99 - ======================MasterLog insertLog done
+2018-07-23 22:34:58 INFO  LogController:108 - ======================MasterLog disconnect done
+2018-07-23 22:34:58 INFO  LoginController:173 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'Com1' and assessor.UserName= 'com1admin'
+2018-07-23 22:34:58 INFO  LoginPage:264 - listRoles: [Roles [roleName=SubAdmin], Roles [roleName=Emp]]
+2018-07-23 22:34:58 INFO  LoginPage:284 - Show DashboardPage
+2018-07-23 22:34:58 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Assessor', '', 'ShowDashboard', '', '', 'Com1', 'MAC1', 'DashboardPage.<init>');
+2018-07-23 22:34:58 INFO  LogController:95 - ======================MasterLog prepareStatement done
+2018-07-23 22:34:58 INFO  LogController:97 - ======================MasterLog executeUpdate done
+2018-07-23 22:34:58 INFO  LogController:99 - ======================MasterLog insertLog done
+2018-07-23 22:34:58 INFO  LogController:108 - ======================MasterLog disconnect done
+2018-07-23 22:35:01 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Assessor', '', 'ResetPass', '', '', 'Com1', 'MAC1', 'DashboardPage.actionPerformed');
+2018-07-23 22:35:01 INFO  LogController:95 - ======================MasterLog prepareStatement done
+2018-07-23 22:35:01 INFO  LogController:97 - ======================MasterLog executeUpdate done
+2018-07-23 22:35:01 INFO  LogController:99 - ======================MasterLog insertLog done
+2018-07-23 22:35:01 INFO  LogController:108 - ======================MasterLog disconnect done
+2018-07-23 22:35:01 INFO  UserController:44 - SELECT AssessorID, UserName, Password, CompanyCode, IsActive, IsLocked, FirstName, LastName FROM Assessor where Assessor.IsActive=1 and Assessor.CompanyCode = 'Com1';
+2018-07-23 22:35:02 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Assessor', '', 'ResetPasswordPage', '', '', 'Com1', 'MAC1', 'ResetPasswordPage.<init>');
+2018-07-23 22:35:02 INFO  LogController:95 - ======================MasterLog prepareStatement done
+2018-07-23 22:35:02 INFO  LogController:97 - ======================MasterLog executeUpdate done
+2018-07-23 22:35:02 INFO  LogController:99 - ======================MasterLog insertLog done
+2018-07-23 22:35:02 INFO  LogController:108 - ======================MasterLog disconnect done
+2018-07-23 22:35:31 INFO  LoginPage:239 - Login with username: com1admin
+2018-07-23 22:35:31 INFO  LoginController:46 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin, IsLocked FROM Assessor where Assessor.IsActive = 1 and Assessor.UserName='com1admin' and (Password=md5('123456') or LastPassword=md5('123456'));
+2018-07-23 22:35:31 INFO  LoginPage:243 - Login OK
+2018-07-23 22:35:31 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'dasdada', 'Assessor', '', 'Login', '', '', 'Com1', 'MAC1', 'LoginPage.actionPerformed');
+2018-07-23 22:35:31 INFO  LogController:95 - ======================MasterLog prepareStatement done
+2018-07-23 22:35:31 INFO  LogController:97 - ======================MasterLog executeUpdate done
+2018-07-23 22:35:31 INFO  LogController:99 - ======================MasterLog insertLog done
+2018-07-23 22:35:31 INFO  LogController:108 - ======================MasterLog disconnect done
+2018-07-23 22:35:31 INFO  LoginController:173 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'Com1' and assessor.UserName= 'com1admin'
+2018-07-23 22:35:31 INFO  LoginPage:264 - listRoles: [Roles [roleName=SubAdmin], Roles [roleName=Emp]]
+2018-07-23 22:35:31 INFO  LoginPage:284 - Show DashboardPage
+2018-07-23 22:35:31 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Assessor', '', 'ShowDashboard', '', '', 'Com1', 'MAC1', 'DashboardPage.<init>');
+2018-07-23 22:35:31 INFO  LogController:95 - ======================MasterLog prepareStatement done
+2018-07-23 22:35:31 INFO  LogController:97 - ======================MasterLog executeUpdate done
+2018-07-23 22:35:31 INFO  LogController:99 - ======================MasterLog insertLog done
+2018-07-23 22:35:31 INFO  LogController:108 - ======================MasterLog disconnect done
+2018-07-23 22:35:38 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Assessor', '', 'ChangePass', '', '', 'Com1', 'MAC1', 'DashboardPage$1.mouseClicked');
+2018-07-23 22:35:38 INFO  LogController:95 - ======================MasterLog prepareStatement done
+2018-07-23 22:35:38 INFO  LogController:97 - ======================MasterLog executeUpdate done
+2018-07-23 22:35:38 INFO  LogController:99 - ======================MasterLog insertLog done
+2018-07-23 22:35:38 INFO  LogController:108 - ======================MasterLog disconnect done
+2018-07-23 22:35:40 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Assessor', '', 'ChangePass', '', '', 'Com1', 'MAC1', 'DashboardPage$1.mouseClicked');
+2018-07-23 22:35:40 INFO  LogController:95 - ======================MasterLog prepareStatement done
+2018-07-23 22:35:40 INFO  LogController:97 - ======================MasterLog executeUpdate done
+2018-07-23 22:35:40 INFO  LogController:99 - ======================MasterLog insertLog done
+2018-07-23 22:35:40 INFO  LogController:108 - ======================MasterLog disconnect done
+2018-07-23 22:36:10 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Assessor', '', 'ChangePass', '', '', 'Com1', 'MAC1', 'DashboardPage$1.mouseClicked');
+2018-07-23 22:36:10 INFO  LogController:95 - ======================MasterLog prepareStatement done
+2018-07-23 22:36:10 INFO  LogController:97 - ======================MasterLog executeUpdate done
+2018-07-23 22:36:10 INFO  LogController:99 - ======================MasterLog insertLog done
+2018-07-23 22:36:10 INFO  LogController:108 - ======================MasterLog disconnect done
+2018-07-23 22:36:12 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Assessor', '', 'ChangePass', '', '', 'Com1', 'MAC1', 'DashboardPage$1.mouseClicked');
+2018-07-23 22:36:12 INFO  LogController:95 - ======================MasterLog prepareStatement done
+2018-07-23 22:36:13 INFO  LogController:97 - ======================MasterLog executeUpdate done
+2018-07-23 22:36:13 INFO  LogController:99 - ======================MasterLog insertLog done
+2018-07-23 22:36:13 INFO  LogController:108 - ======================MasterLog disconnect done
+2018-07-23 22:37:07 INFO  LoginPage:239 - Login with username: com1admin
+2018-07-23 22:37:07 INFO  LoginController:46 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin, IsLocked FROM Assessor where Assessor.IsActive = 1 and Assessor.UserName='com1admin' and (Password=md5('123456') or LastPassword=md5('123456'));
+2018-07-23 22:37:08 INFO  LoginPage:243 - Login OK
+2018-07-23 22:37:08 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'sada', 'Assessor', '', 'Login', '', '', 'Com1', 'MAC1', 'LoginPage.actionPerformed');
+2018-07-23 22:37:08 INFO  LogController:95 - ======================MasterLog prepareStatement done
+2018-07-23 22:37:08 INFO  LogController:97 - ======================MasterLog executeUpdate done
+2018-07-23 22:37:08 INFO  LogController:99 - ======================MasterLog insertLog done
+2018-07-23 22:37:08 INFO  LogController:108 - ======================MasterLog disconnect done
+2018-07-23 22:37:08 INFO  LoginController:173 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'Com1' and assessor.UserName= 'com1admin'
+2018-07-23 22:37:08 INFO  LoginPage:264 - listRoles: [Roles [roleName=SubAdmin], Roles [roleName=Emp]]
+2018-07-23 22:37:08 INFO  LoginPage:284 - Show DashboardPage
+2018-07-23 22:37:08 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Assessor', '', 'ShowDashboard', '', '', 'Com1', 'MAC1', 'DashboardPage.<init>');
+2018-07-23 22:37:08 INFO  LogController:95 - ======================MasterLog prepareStatement done
+2018-07-23 22:37:08 INFO  LogController:97 - ======================MasterLog executeUpdate done
+2018-07-23 22:37:08 INFO  LogController:99 - ======================MasterLog insertLog done
+2018-07-23 22:37:08 INFO  LogController:108 - ======================MasterLog disconnect done
+2018-07-23 22:37:11 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Assessor', '', 'ChangePass', '', '', 'Com1', 'MAC1', 'DashboardPage$1.mouseClicked');
+2018-07-23 22:37:11 INFO  LogController:95 - ======================MasterLog prepareStatement done
+2018-07-23 22:37:11 INFO  LogController:97 - ======================MasterLog executeUpdate done
+2018-07-23 22:37:11 INFO  LogController:99 - ======================MasterLog insertLog done
+2018-07-23 22:37:11 INFO  LogController:108 - ======================MasterLog disconnect done
+2018-07-23 22:37:15 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Assessor', '', 'ChangePass', '', '', 'Com1', 'MAC1', 'DashboardPage$1.mouseClicked');
+2018-07-23 22:37:15 INFO  LogController:95 - ======================MasterLog prepareStatement done
+2018-07-23 22:37:15 INFO  LogController:97 - ======================MasterLog executeUpdate done
+2018-07-23 22:37:15 INFO  LogController:99 - ======================MasterLog insertLog done
+2018-07-23 22:37:15 INFO  LogController:108 - ======================MasterLog disconnect done
+2018-07-23 22:37:58 INFO  LoginPage:239 - Login with username: com1admin
+2018-07-23 22:37:58 INFO  LoginController:46 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin, IsLocked FROM Assessor where Assessor.IsActive = 1 and Assessor.UserName='com1admin' and (Password=md5('123456') or LastPassword=md5('123456'));
+2018-07-23 22:37:59 INFO  LoginPage:243 - Login OK
+2018-07-23 22:37:59 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'dada', 'Assessor', '', 'Login', '', '', 'Com1', 'MAC1', 'LoginPage.actionPerformed');
+2018-07-23 22:37:59 INFO  LogController:95 - ======================MasterLog prepareStatement done
+2018-07-23 22:37:59 INFO  LogController:97 - ======================MasterLog executeUpdate done
+2018-07-23 22:37:59 INFO  LogController:99 - ======================MasterLog insertLog done
+2018-07-23 22:37:59 INFO  LogController:108 - ======================MasterLog disconnect done
+2018-07-23 22:37:59 INFO  LoginController:173 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'Com1' and assessor.UserName= 'com1admin'
+2018-07-23 22:37:59 INFO  LoginPage:264 - listRoles: [Roles [roleName=SubAdmin], Roles [roleName=Emp]]
+2018-07-23 22:37:59 INFO  LoginPage:284 - Show DashboardPage
+2018-07-23 22:37:59 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Assessor', '', 'ShowDashboard', '', '', 'Com1', 'MAC1', 'DashboardPage.<init>');
+2018-07-23 22:37:59 INFO  LogController:95 - ======================MasterLog prepareStatement done
+2018-07-23 22:37:59 INFO  LogController:97 - ======================MasterLog executeUpdate done
+2018-07-23 22:37:59 INFO  LogController:99 - ======================MasterLog insertLog done
+2018-07-23 22:37:59 INFO  LogController:108 - ======================MasterLog disconnect done
+2018-07-23 22:38:01 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Assessor', '', 'Logout', '', '', 'Com1', 'MAC1', 'DashboardPage$2.mouseClicked');
+2018-07-23 22:38:01 INFO  LogController:95 - ======================MasterLog prepareStatement done
+2018-07-23 22:38:01 INFO  LogController:97 - ======================MasterLog executeUpdate done
+2018-07-23 22:38:01 INFO  LogController:99 - ======================MasterLog insertLog done
+2018-07-23 22:38:01 INFO  LogController:108 - ======================MasterLog disconnect done
+2018-07-23 22:38:01 INFO  DashboardPage:150 - com1admin logout.
+2018-07-23 22:38:12 INFO  LoginPage:239 - Login with username: com1admin
+2018-07-23 22:38:12 INFO  LoginController:46 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin, IsLocked FROM Assessor where Assessor.IsActive = 1 and Assessor.UserName='com1admin' and (Password=md5('123456') or LastPassword=md5('123456'));
+2018-07-23 22:38:12 INFO  LoginPage:243 - Login OK
+2018-07-23 22:38:12 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'sasdad', 'Assessor', '', 'Login', '', '', 'Com1', 'MAC1', 'LoginPage.actionPerformed');
+2018-07-23 22:38:12 INFO  LogController:95 - ======================MasterLog prepareStatement done
+2018-07-23 22:38:12 INFO  LogController:97 - ======================MasterLog executeUpdate done
+2018-07-23 22:38:12 INFO  LogController:99 - ======================MasterLog insertLog done
+2018-07-23 22:38:12 INFO  LogController:108 - ======================MasterLog disconnect done
+2018-07-23 22:38:12 INFO  LoginController:173 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'Com1' and assessor.UserName= 'com1admin'
+2018-07-23 22:38:13 INFO  LoginPage:264 - listRoles: [Roles [roleName=SubAdmin], Roles [roleName=Emp]]
+2018-07-23 22:38:13 INFO  LoginPage:284 - Show DashboardPage
+2018-07-23 22:38:13 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Assessor', '', 'ShowDashboard', '', '', 'Com1', 'MAC1', 'DashboardPage.<init>');
+2018-07-23 22:38:13 INFO  LogController:95 - ======================MasterLog prepareStatement done
+2018-07-23 22:38:13 INFO  LogController:97 - ======================MasterLog executeUpdate done
+2018-07-23 22:38:13 INFO  LogController:99 - ======================MasterLog insertLog done
+2018-07-23 22:38:13 INFO  LogController:108 - ======================MasterLog disconnect done
+2018-07-23 22:38:24 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Assessor', '', 'ChangePass', '', '', 'Com1', 'MAC1', 'DashboardPage$1.mouseClicked');
+2018-07-23 22:38:24 INFO  LogController:95 - ======================MasterLog prepareStatement done
+2018-07-23 22:38:24 INFO  LogController:97 - ======================MasterLog executeUpdate done
+2018-07-23 22:38:24 INFO  LogController:99 - ======================MasterLog insertLog done
+2018-07-23 22:38:24 INFO  LogController:108 - ======================MasterLog disconnect done
+2018-07-23 22:38:27 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Assessor', '', 'ChangePass', '', '', 'Com1', 'MAC1', 'DashboardPage$1.mouseClicked');
+2018-07-23 22:38:27 INFO  LogController:95 - ======================MasterLog prepareStatement done
+2018-07-23 22:38:27 INFO  LogController:97 - ======================MasterLog executeUpdate done
+2018-07-23 22:38:27 INFO  LogController:99 - ======================MasterLog insertLog done
+2018-07-23 22:38:27 INFO  LogController:108 - ======================MasterLog disconnect done
+2018-07-23 22:38:28 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Assessor', '', 'ChangePass', '', '', 'Com1', 'MAC1', 'DashboardPage$1.mouseClicked');
+2018-07-23 22:38:28 INFO  LogController:95 - ======================MasterLog prepareStatement done
+2018-07-23 22:38:28 INFO  LogController:97 - ======================MasterLog executeUpdate done
+2018-07-23 22:38:28 INFO  LogController:99 - ======================MasterLog insertLog done
+2018-07-23 22:38:28 INFO  LogController:108 - ======================MasterLog disconnect done
+2018-07-23 23:06:47 INFO  LoginPage:239 - Login with username: com1admin
+2018-07-23 23:06:47 INFO  LoginController:46 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin, IsLocked FROM Assessor where Assessor.IsActive = 1 and Assessor.UserName='com1admin' and (Password=md5('123456') or LastPassword=md5('123456'));
+2018-07-23 23:06:47 INFO  LoginPage:243 - Login OK
+2018-07-23 23:06:47 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'sfsd', 'Assessor', '', 'Login', '', '', 'Com1', 'MAC1', 'LoginPage.actionPerformed');
+2018-07-23 23:06:47 INFO  LogController:95 - ======================MasterLog prepareStatement done
+2018-07-23 23:06:48 INFO  LogController:97 - ======================MasterLog executeUpdate done
+2018-07-23 23:06:48 INFO  LogController:99 - ======================MasterLog insertLog done
+2018-07-23 23:06:48 INFO  LogController:108 - ======================MasterLog disconnect done
+2018-07-23 23:06:48 INFO  LoginController:173 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'Com1' and assessor.UserName= 'com1admin'
+2018-07-23 23:06:48 INFO  LoginPage:264 - listRoles: [Roles [roleName=SubAdmin], Roles [roleName=Emp]]
+2018-07-23 23:06:48 INFO  LoginPage:284 - Show DashboardPage
+2018-07-23 23:06:48 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Assessor', '', 'ShowDashboard', '', '', 'Com1', 'MAC1', 'DashboardPage.<init>');
+2018-07-23 23:06:48 INFO  LogController:95 - ======================MasterLog prepareStatement done
+2018-07-23 23:06:48 INFO  LogController:97 - ======================MasterLog executeUpdate done
+2018-07-23 23:06:48 INFO  LogController:99 - ======================MasterLog insertLog done
+2018-07-23 23:06:48 INFO  LogController:108 - ======================MasterLog disconnect done
+2018-07-23 23:06:50 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Assessor', '', 'ChangePass', '', '', 'Com1', 'MAC1', 'DashboardPage$1.mouseClicked');
+2018-07-23 23:06:50 INFO  LogController:95 - ======================MasterLog prepareStatement done
+2018-07-23 23:06:50 INFO  LogController:97 - ======================MasterLog executeUpdate done
+2018-07-23 23:06:50 INFO  LogController:99 - ======================MasterLog insertLog done
+2018-07-23 23:06:50 INFO  LogController:108 - ======================MasterLog disconnect done
+2018-07-23 23:06:57 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Assessor', '', 'ChangePass', '', '', 'Com1', 'MAC1', 'DashboardPage$1.mouseClicked');
+2018-07-23 23:06:57 INFO  LogController:95 - ======================MasterLog prepareStatement done
+2018-07-23 23:06:57 INFO  LogController:97 - ======================MasterLog executeUpdate done
+2018-07-23 23:06:57 INFO  LogController:99 - ======================MasterLog insertLog done
+2018-07-23 23:06:57 INFO  LogController:108 - ======================MasterLog disconnect done
+2018-07-23 23:10:31 INFO  LoginPage:239 - Login with username: com1admin
+2018-07-23 23:10:31 INFO  LoginController:46 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin, IsLocked FROM Assessor where Assessor.IsActive = 1 and Assessor.UserName='com1admin' and (Password=md5('123456') or LastPassword=md5('123456'));
+2018-07-23 23:10:31 INFO  LoginPage:243 - Login OK
+2018-07-23 23:10:31 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'dasd', 'Assessor', '', 'Login', '', '', 'Com1', 'MAC1', 'LoginPage.actionPerformed');
+2018-07-23 23:10:31 INFO  LogController:95 - ======================MasterLog prepareStatement done
+2018-07-23 23:10:31 INFO  LogController:97 - ======================MasterLog executeUpdate done
+2018-07-23 23:10:31 INFO  LogController:99 - ======================MasterLog insertLog done
+2018-07-23 23:10:31 INFO  LogController:108 - ======================MasterLog disconnect done
+2018-07-23 23:10:31 INFO  LoginController:173 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'Com1' and assessor.UserName= 'com1admin'
+2018-07-23 23:10:31 INFO  LoginPage:264 - listRoles: [Roles [roleName=SubAdmin], Roles [roleName=Emp]]
+2018-07-23 23:10:31 INFO  LoginPage:284 - Show DashboardPage
+2018-07-23 23:10:31 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Assessor', '', 'ShowDashboard', '', '', 'Com1', 'MAC1', 'DashboardPage.<init>');
+2018-07-23 23:10:31 INFO  LogController:95 - ======================MasterLog prepareStatement done
+2018-07-23 23:10:31 INFO  LogController:97 - ======================MasterLog executeUpdate done
+2018-07-23 23:10:31 INFO  LogController:99 - ======================MasterLog insertLog done
+2018-07-23 23:10:31 INFO  LogController:108 - ======================MasterLog disconnect done
+2018-07-23 23:10:33 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Assessor', '', 'ChangePass', '', '', 'Com1', 'MAC1', 'DashboardPage$1.mouseClicked');
+2018-07-23 23:10:33 INFO  LogController:95 - ======================MasterLog prepareStatement done
+2018-07-23 23:10:33 INFO  LogController:97 - ======================MasterLog executeUpdate done
+2018-07-23 23:10:33 INFO  LogController:99 - ======================MasterLog insertLog done
+2018-07-23 23:10:33 INFO  LogController:108 - ======================MasterLog disconnect done
+2018-07-23 23:10:33 INFO  DashboardPage:138 - com1admin click change password.
+2018-07-23 23:10:33 INFO  ChangePasswordPage:106 - Init ChangePasswordPage of com1admin
+2018-07-23 23:11:38 INFO  LoginPage:239 - Login with username: com1admin
+2018-07-23 23:11:38 INFO  LoginController:46 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin, IsLocked FROM Assessor where Assessor.IsActive = 1 and Assessor.UserName='com1admin' and (Password=md5('123456') or LastPassword=md5('123456'));
+2018-07-23 23:11:39 INFO  LoginPage:243 - Login OK
+2018-07-23 23:11:39 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'dasd', 'Assessor', '', 'Login', '', '', 'Com1', 'MAC1', 'LoginPage.actionPerformed');
+2018-07-23 23:11:39 INFO  LogController:95 - ======================MasterLog prepareStatement done
+2018-07-23 23:11:39 INFO  LogController:97 - ======================MasterLog executeUpdate done
+2018-07-23 23:11:39 INFO  LogController:99 - ======================MasterLog insertLog done
+2018-07-23 23:11:39 INFO  LogController:108 - ======================MasterLog disconnect done
+2018-07-23 23:11:39 INFO  LoginController:173 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'Com1' and assessor.UserName= 'com1admin'
+2018-07-23 23:11:39 INFO  LoginPage:264 - listRoles: [Roles [roleName=SubAdmin], Roles [roleName=Emp]]
+2018-07-23 23:11:39 INFO  LoginPage:284 - Show DashboardPage
+2018-07-23 23:11:39 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Assessor', '', 'ShowDashboard', '', '', 'Com1', 'MAC1', 'DashboardPage.<init>');
+2018-07-23 23:11:39 INFO  LogController:95 - ======================MasterLog prepareStatement done
+2018-07-23 23:11:39 INFO  LogController:97 - ======================MasterLog executeUpdate done
+2018-07-23 23:11:39 INFO  LogController:99 - ======================MasterLog insertLog done
+2018-07-23 23:11:39 INFO  LogController:108 - ======================MasterLog disconnect done
+2018-07-23 23:11:40 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Assessor', '', 'ChangePass', '', '', 'Com1', 'MAC1', 'DashboardPage$1.mouseClicked');
+2018-07-23 23:11:40 INFO  LogController:95 - ======================MasterLog prepareStatement done
+2018-07-23 23:11:40 INFO  LogController:97 - ======================MasterLog executeUpdate done
+2018-07-23 23:11:40 INFO  LogController:99 - ======================MasterLog insertLog done
+2018-07-23 23:11:40 INFO  LogController:108 - ======================MasterLog disconnect done
+2018-07-23 23:11:40 INFO  DashboardPage:138 - com1admin click change password.
+2018-07-23 23:11:40 INFO  ChangePasswordPage:106 - Init ChangePasswordPage of com1admin
+2018-07-23 23:12:10 INFO  LoginController:46 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin, IsLocked FROM Assessor where Assessor.IsActive = 1 and Assessor.UserName='com1admin' and (Password=md5('123456') or LastPassword=md5('123456'));
+2018-07-23 23:12:10 INFO  LoginController:249 - SELECT EmailAddress FROM Assessor where Assessor.UserName = 'com1admin' and Assessor.CompanyCode = 'Com1';
+2018-07-23 23:12:10 INFO  ChangePasswordPage:355 - Lock User
+2018-07-23 23:12:10 INFO  UserController:129 - Update  Assessor set Assessor.Password = md5('aaa'), Assessor.IsFirstTimeLogin = 0 where Assessor.Username = 'com1admin' and Assessor.CompanyCode = 'Com1';
+2018-07-23 23:12:11 INFO  UserController:133 - 1 row(s) updated!
+2018-07-23 23:12:11 INFO  ChangePasswordPage:369 - Change password ok - com1admin - aaa
+2018-07-23 23:12:17 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), '', 'Email', '', 'Login', '', 'To quann169@gmail.com - CC: [quann169@gmail.com] - Subject: First Time Login Change Pass - Message: Hi com1admin,
+Your pass has been change to aaa', 'Com1', 'MAC1', 'EmailUtils.sendEmail');
+2018-07-23 23:12:17 INFO  LogController:95 - ======================MasterLog prepareStatement done
+2018-07-23 23:12:17 INFO  LogController:97 - ======================MasterLog executeUpdate done
+2018-07-23 23:12:17 INFO  LogController:99 - ======================MasterLog insertLog done
+2018-07-23 23:12:17 INFO  LogController:108 - ======================MasterLog disconnect done
+2018-07-23 23:12:19 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Assessor', '', 'Logout', '', '', 'Com1', 'MAC1', 'ChangePasswordPage$1.mouseClicked');
+2018-07-23 23:12:19 INFO  LogController:95 - ======================MasterLog prepareStatement done
+2018-07-23 23:12:19 INFO  LogController:97 - ======================MasterLog executeUpdate done
+2018-07-23 23:12:19 INFO  LogController:99 - ======================MasterLog insertLog done
+2018-07-23 23:12:19 INFO  LogController:108 - ======================MasterLog disconnect done
+2018-07-23 23:12:19 INFO  ChangePasswordPage:129 - com1admin logout.
+2018-07-23 23:12:23 INFO  LoginPage:239 - Login with username: com1admin
+2018-07-23 23:12:23 INFO  LoginController:46 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin, IsLocked FROM Assessor where Assessor.IsActive = 1 and Assessor.UserName='com1admin' and (Password=md5('123456') or LastPassword=md5('123456'));
+2018-07-23 23:12:23 INFO  LoginPage:296 - Login Fail
+2018-07-23 23:12:23 INFO  LoginPage:298 - Update Fail Time
+2018-07-23 23:12:23 INFO  LoginController:85 - update Assessor set FailTimes = FailTimes + 1 where Assessor.UserName = 'com1admin' and Assessor.CompanyCode = 'Com1' ;
+2018-07-23 23:12:23 INFO  LoginController:114 - update Assessor set Assessor.IsLocked = 1 where Assessor.UserName = 'com1admin' and Assessor.CompanyCode = 'Com1' and Assessor.FailTimes > 2;
+2018-07-23 23:12:24 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'aa', 'Assessor', '', 'LoginFail', '', '', 'Com1', 'MAC1', 'LoginPage.actionPerformed');
+2018-07-23 23:12:24 INFO  LogController:95 - ======================MasterLog prepareStatement done
+2018-07-23 23:12:25 INFO  LogController:97 - ======================MasterLog executeUpdate done
+2018-07-23 23:12:25 INFO  LogController:99 - ======================MasterLog insertLog done
+2018-07-23 23:12:25 INFO  LogController:108 - ======================MasterLog disconnect done
+2018-07-23 23:14:39 INFO  LoginPage:239 - Login with username: com1admin
+2018-07-23 23:14:39 INFO  LoginController:46 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin, IsLocked FROM Assessor where Assessor.IsActive = 1 and Assessor.UserName='com1admin' and (Password=md5('123456') or LastPassword=md5('123456'));
+2018-07-23 23:14:39 INFO  LoginPage:296 - Login Fail
+2018-07-23 23:14:39 INFO  LoginPage:298 - Update Fail Time
+2018-07-23 23:14:39 INFO  LoginController:85 - update Assessor set FailTimes = FailTimes + 1 where Assessor.UserName = 'com1admin' and Assessor.CompanyCode = 'Com1' ;
+2018-07-23 23:14:39 INFO  LoginController:114 - update Assessor set Assessor.IsLocked = 1 where Assessor.UserName = 'com1admin' and Assessor.CompanyCode = 'Com1' and Assessor.FailTimes > 2;
+2018-07-23 23:14:40 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'sdfsdfsf', 'Assessor', '', 'LoginFail', '', '', 'Com1', 'MAC1', 'LoginPage.actionPerformed');
+2018-07-23 23:14:41 INFO  LogController:95 - ======================MasterLog prepareStatement done
+2018-07-23 23:14:41 INFO  LogController:97 - ======================MasterLog executeUpdate done
+2018-07-23 23:14:41 INFO  LogController:99 - ======================MasterLog insertLog done
+2018-07-23 23:14:41 INFO  LogController:108 - ======================MasterLog disconnect done
+2018-07-23 23:36:05 INFO  LoginPage:239 - Login with username: com1admin
+2018-07-23 23:36:05 INFO  LoginController:46 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin, IsLocked FROM Assessor where Assessor.IsActive = 1 and Assessor.UserName='com1admin' and (Password=md5('123456') or LastPassword=md5('123456'));
+2018-07-23 23:36:05 INFO  LoginPage:243 - Login OK
+2018-07-23 23:36:05 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'asdsadasd', 'Assessor', '', 'Login', '', '', 'Com1', 'MAC1', 'LoginPage.actionPerformed');
+2018-07-23 23:36:05 INFO  LogController:95 - ======================MasterLog prepareStatement done
+2018-07-23 23:36:05 INFO  LogController:97 - ======================MasterLog executeUpdate done
+2018-07-23 23:36:05 INFO  LogController:99 - ======================MasterLog insertLog done
+2018-07-23 23:36:05 INFO  LogController:108 - ======================MasterLog disconnect done
+2018-07-23 23:36:05 INFO  LoginController:173 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'Com1' and assessor.UserName= 'com1admin'
+2018-07-23 23:36:05 INFO  LoginPage:264 - listRoles: [Roles [roleName=SubAdmin], Roles [roleName=Emp]]
+2018-07-23 23:36:05 INFO  LoginPage:284 - Show DashboardPage
+2018-07-23 23:36:06 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Assessor', '', 'ShowDashboard', '', '', 'Com1', 'MAC1', 'DashboardPage.<init>');
+2018-07-23 23:36:06 INFO  LogController:95 - ======================MasterLog prepareStatement done
+2018-07-23 23:36:06 INFO  LogController:97 - ======================MasterLog executeUpdate done
+2018-07-23 23:36:06 INFO  LogController:99 - ======================MasterLog insertLog done
+2018-07-23 23:36:06 INFO  LogController:108 - ======================MasterLog disconnect done
+2018-07-23 23:36:09 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Assessor', '', 'ChangePass', '', '', 'Com1', 'MAC1', 'DashboardPage$1.mouseClicked');
+2018-07-23 23:36:09 INFO  LogController:95 - ======================MasterLog prepareStatement done
+2018-07-23 23:36:09 INFO  LogController:97 - ======================MasterLog executeUpdate done
+2018-07-23 23:36:09 INFO  LogController:99 - ======================MasterLog insertLog done
+2018-07-23 23:36:09 INFO  LogController:108 - ======================MasterLog disconnect done
+2018-07-23 23:36:09 INFO  DashboardPage:138 - com1admin click change password.
+2018-07-23 23:36:09 INFO  ChangePasswordPage:106 - Init ChangePasswordPage of com1admin
+2018-07-23 23:37:21 INFO  LoginPage:239 - Login with username: com1admin
+2018-07-23 23:37:21 INFO  LoginController:46 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin, IsLocked FROM Assessor where Assessor.IsActive = 1 and Assessor.UserName='com1admin' and (Password=md5('123456') or LastPassword=md5('123456'));
+2018-07-23 23:37:22 INFO  LoginPage:243 - Login OK
+2018-07-23 23:37:22 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'das', 'Assessor', '', 'Login', '', '', 'Com1', 'MAC1', 'LoginPage.actionPerformed');
+2018-07-23 23:37:22 INFO  LogController:95 - ======================MasterLog prepareStatement done
+2018-07-23 23:37:22 INFO  LogController:97 - ======================MasterLog executeUpdate done
+2018-07-23 23:37:22 INFO  LogController:99 - ======================MasterLog insertLog done
+2018-07-23 23:37:22 INFO  LogController:108 - ======================MasterLog disconnect done
+2018-07-23 23:37:22 INFO  LoginController:173 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'Com1' and assessor.UserName= 'com1admin'
+2018-07-23 23:37:22 INFO  LoginPage:264 - listRoles: [Roles [roleName=SubAdmin], Roles [roleName=Emp]]
+2018-07-23 23:37:22 INFO  LoginPage:284 - Show DashboardPage
+2018-07-23 23:37:22 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Assessor', '', 'ShowDashboard', '', '', 'Com1', 'MAC1', 'DashboardPage.<init>');
+2018-07-23 23:37:22 INFO  LogController:95 - ======================MasterLog prepareStatement done
+2018-07-23 23:37:22 INFO  LogController:97 - ======================MasterLog executeUpdate done
+2018-07-23 23:37:22 INFO  LogController:99 - ======================MasterLog insertLog done
+2018-07-23 23:37:22 INFO  LogController:108 - ======================MasterLog disconnect done
+2018-07-23 23:37:24 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Assessor', '', 'ChangePass', '', '', 'Com1', 'MAC1', 'DashboardPage$1.mouseClicked');
+2018-07-23 23:37:24 INFO  LogController:95 - ======================MasterLog prepareStatement done
+2018-07-23 23:37:24 INFO  LogController:97 - ======================MasterLog executeUpdate done
+2018-07-23 23:37:24 INFO  LogController:99 - ======================MasterLog insertLog done
+2018-07-23 23:37:24 INFO  LogController:108 - ======================MasterLog disconnect done
+2018-07-23 23:37:24 INFO  DashboardPage:138 - com1admin click change password.
+2018-07-23 23:37:24 INFO  ChangePasswordPage:106 - Init ChangePasswordPage of com1admin
+2018-07-23 23:38:05 INFO  LoginController:46 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin, IsLocked FROM Assessor where Assessor.IsActive = 1 and Assessor.UserName='com1admin' and (Password=md5('1234567') or LastPassword=md5('1234567'));
+2018-07-23 23:38:18 INFO  LoginController:46 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin, IsLocked FROM Assessor where Assessor.IsActive = 1 and Assessor.UserName='com1admin' and (Password=md5('123456') or LastPassword=md5('123456'));
+2018-07-23 23:38:18 INFO  LoginController:249 - SELECT EmailAddress FROM Assessor where Assessor.UserName = 'com1admin' and Assessor.CompanyCode = 'Com1';
+2018-07-23 23:38:18 INFO  ChangePasswordPage:355 - Lock User
+2018-07-23 23:38:18 INFO  UserController:129 - Update  Assessor set Assessor.Password = md5('1234567'), Assessor.IsFirstTimeLogin = 0 where Assessor.Username = 'com1admin' and Assessor.CompanyCode = 'Com1';
+2018-07-23 23:38:18 INFO  UserController:133 - 1 row(s) updated!
+2018-07-23 23:38:18 INFO  ChangePasswordPage:369 - Change password ok - com1admin - 1234567
+2018-07-23 23:38:21 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Assessor', '', 'Logout', '', '', 'Com1', 'MAC1', 'ChangePasswordPage.actionPerformed');
+2018-07-23 23:38:21 INFO  LogController:95 - ======================MasterLog prepareStatement done
+2018-07-23 23:38:21 INFO  LogController:97 - ======================MasterLog executeUpdate done
+2018-07-23 23:38:21 INFO  LogController:99 - ======================MasterLog insertLog done
+2018-07-23 23:38:21 INFO  LogController:108 - ======================MasterLog disconnect done
+2018-07-23 23:38:21 INFO  ChangePasswordPage:380 - com1admin logout.
+2018-07-23 23:38:24 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), '', 'Email', '', 'Login', '', 'To quann169@gmail.com - CC: [quann169@gmail.com] - Subject: First Time Login Change Pass - Message: Hi com1admin,
+Your pass has been change to 1234567', 'Com1', 'MAC1', 'EmailUtils.sendEmail');
+2018-07-23 23:38:24 INFO  LogController:95 - ======================MasterLog prepareStatement done
+2018-07-23 23:38:24 INFO  LogController:97 - ======================MasterLog executeUpdate done
+2018-07-23 23:38:24 INFO  LogController:99 - ======================MasterLog insertLog done
+2018-07-23 23:38:24 INFO  LogController:108 - ======================MasterLog disconnect done
+2018-07-23 23:39:09 INFO  LoginPage:239 - Login with username: com1admin
+2018-07-23 23:39:09 INFO  LoginController:46 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin, IsLocked FROM Assessor where Assessor.IsActive = 1 and Assessor.UserName='com1admin' and (Password=md5('123456') or LastPassword=md5('123456'));
+2018-07-23 23:39:09 INFO  LoginPage:296 - Login Fail
+2018-07-23 23:39:09 INFO  LoginPage:298 - Update Fail Time
+2018-07-23 23:39:09 INFO  LoginController:85 - update Assessor set FailTimes = FailTimes + 1 where Assessor.UserName = 'com1admin' and Assessor.CompanyCode = 'Com1' ;
+2018-07-23 23:39:09 INFO  LoginController:114 - update Assessor set Assessor.IsLocked = 1 where Assessor.UserName = 'com1admin' and Assessor.CompanyCode = 'Com1' and Assessor.FailTimes > 2;
+2018-07-23 23:39:11 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'dasdadad', 'Assessor', '', 'LoginFail', '', '', 'Com1', 'MAC1', 'LoginPage.actionPerformed');
+2018-07-23 23:39:11 INFO  LogController:95 - ======================MasterLog prepareStatement done
+2018-07-23 23:39:11 INFO  LogController:97 - ======================MasterLog executeUpdate done
+2018-07-23 23:39:11 INFO  LogController:99 - ======================MasterLog insertLog done
+2018-07-23 23:39:11 INFO  LogController:108 - ======================MasterLog disconnect done
+2018-07-23 23:42:38 INFO  LoginPage:239 - Login with username: com1admin
+2018-07-23 23:42:38 INFO  LoginController:46 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin, IsLocked FROM Assessor where Assessor.IsActive = 1 and Assessor.UserName='com1admin' and (Password=md5('1234567') or LastPassword=md5('1234567'));
+2018-07-23 23:42:39 INFO  LoginPage:243 - Login OK
+2018-07-23 23:42:39 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'dasdada', 'Assessor', '', 'Login', '', '', 'Com1', 'MAC1', 'LoginPage.actionPerformed');
+2018-07-23 23:42:39 INFO  LogController:95 - ======================MasterLog prepareStatement done
+2018-07-23 23:42:39 INFO  LogController:97 - ======================MasterLog executeUpdate done
+2018-07-23 23:42:39 INFO  LogController:99 - ======================MasterLog insertLog done
+2018-07-23 23:42:39 INFO  LogController:108 - ======================MasterLog disconnect done
+2018-07-23 23:42:39 INFO  LoginController:173 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'Com1' and assessor.UserName= 'com1admin'
+2018-07-23 23:42:39 INFO  LoginPage:264 - listRoles: [Roles [roleName=SubAdmin], Roles [roleName=Emp]]
+2018-07-23 23:42:39 INFO  LoginPage:284 - Show DashboardPage
+2018-07-23 23:42:39 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Assessor', '', 'ShowDashboard', '', '', 'Com1', 'MAC1', 'DashboardPage.<init>');
+2018-07-23 23:42:39 INFO  LogController:95 - ======================MasterLog prepareStatement done
+2018-07-23 23:42:39 INFO  LogController:97 - ======================MasterLog executeUpdate done
+2018-07-23 23:42:39 INFO  LogController:99 - ======================MasterLog insertLog done
+2018-07-23 23:42:39 INFO  LogController:108 - ======================MasterLog disconnect done
+2018-07-23 23:42:41 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Assessor', '', 'ChangePass', '', '', 'Com1', 'MAC1', 'DashboardPage$1.mouseClicked');
+2018-07-23 23:42:41 INFO  LogController:95 - ======================MasterLog prepareStatement done
+2018-07-23 23:42:41 INFO  LogController:97 - ======================MasterLog executeUpdate done
+2018-07-23 23:42:41 INFO  LogController:99 - ======================MasterLog insertLog done
+2018-07-23 23:42:41 INFO  LogController:108 - ======================MasterLog disconnect done
+2018-07-23 23:42:41 INFO  DashboardPage:138 - com1admin click change password.
+2018-07-23 23:42:41 INFO  ChangePasswordPage:100 - Init ChangePasswordPage of com1admin
+2018-07-23 23:42:58 INFO  LoginController:46 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin, IsLocked FROM Assessor where Assessor.IsActive = 1 and Assessor.UserName='com1admin' and (Password=md5('1234567') or LastPassword=md5('1234567'));
+2018-07-23 23:42:58 INFO  LoginController:249 - SELECT EmailAddress FROM Assessor where Assessor.UserName = 'com1admin' and Assessor.CompanyCode = 'Com1';
+2018-07-23 23:42:58 INFO  ChangePasswordPage:345 - Lock User
+2018-07-23 23:42:58 INFO  UserController:129 - Update  Assessor set Assessor.Password = md5('123456'), Assessor.IsFirstTimeLogin = 0 where Assessor.Username = 'com1admin' and Assessor.CompanyCode = 'Com1';
+2018-07-23 23:42:58 INFO  UserController:133 - 1 row(s) updated!
+2018-07-23 23:42:58 INFO  ChangePasswordPage:359 - Change password ok - com1admin - 123456
+2018-07-23 23:43:00 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Assessor', '', 'Logout', '', '', 'Com1', 'MAC1', 'ChangePasswordPage.actionPerformed');
+2018-07-23 23:43:00 INFO  LogController:95 - ======================MasterLog prepareStatement done
+2018-07-23 23:43:01 INFO  LogController:97 - ======================MasterLog executeUpdate done
+2018-07-23 23:43:01 INFO  LogController:99 - ======================MasterLog insertLog done
+2018-07-23 23:43:01 INFO  LogController:108 - ======================MasterLog disconnect done
+2018-07-23 23:43:01 INFO  ChangePasswordPage:370 - com1admin logout.
+2018-07-23 23:43:04 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), '', 'Email', '', 'Login', '', 'To quann169@gmail.com - CC: [quann169@gmail.com] - Subject: Change Pass Successfully - Message: Hi com1admin,
+Your pass has been change to 123456', 'Com1', 'MAC1', 'EmailUtils.sendEmail');
+2018-07-23 23:43:04 INFO  LogController:95 - ======================MasterLog prepareStatement done
+2018-07-23 23:43:04 INFO  LogController:97 - ======================MasterLog executeUpdate done
+2018-07-23 23:43:04 INFO  LogController:99 - ======================MasterLog insertLog done
+2018-07-23 23:43:04 INFO  LogController:108 - ======================MasterLog disconnect done
+2018-07-23 23:43:56 INFO  LoginPage:239 - Login with username: com1admin
+2018-07-23 23:43:56 INFO  LoginController:46 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin, IsLocked FROM Assessor where Assessor.IsActive = 1 and Assessor.UserName='com1admin' and (Password=md5('123456') or LastPassword=md5('123456'));
+2018-07-23 23:43:57 INFO  LoginPage:243 - Login OK
+2018-07-23 23:43:57 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'dasda', 'Assessor', '', 'Login', '', '', 'Com1', 'MAC1', 'LoginPage.actionPerformed');
+2018-07-23 23:43:57 INFO  LogController:95 - ======================MasterLog prepareStatement done
+2018-07-23 23:43:57 INFO  LogController:97 - ======================MasterLog executeUpdate done
+2018-07-23 23:43:57 INFO  LogController:99 - ======================MasterLog insertLog done
+2018-07-23 23:43:57 INFO  LogController:108 - ======================MasterLog disconnect done
+2018-07-23 23:43:57 INFO  LoginController:173 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'Com1' and assessor.UserName= 'com1admin'
+2018-07-23 23:43:57 INFO  LoginPage:264 - listRoles: [Roles [roleName=SubAdmin], Roles [roleName=Emp]]
+2018-07-23 23:43:57 INFO  LoginPage:284 - Show DashboardPage
+2018-07-23 23:43:57 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Assessor', '', 'ShowDashboard', '', '', 'Com1', 'MAC1', 'DashboardPage.<init>');
+2018-07-23 23:43:57 INFO  LogController:95 - ======================MasterLog prepareStatement done
+2018-07-23 23:43:57 INFO  LogController:97 - ======================MasterLog executeUpdate done
+2018-07-23 23:43:57 INFO  LogController:99 - ======================MasterLog insertLog done
+2018-07-23 23:43:57 INFO  LogController:108 - ======================MasterLog disconnect done
+2018-07-23 23:44:04 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Assessor', '', 'ChangePass', '', '', 'Com1', 'MAC1', 'DashboardPage$1.mouseClicked');
+2018-07-23 23:44:04 INFO  LogController:95 - ======================MasterLog prepareStatement done
+2018-07-23 23:44:04 INFO  LogController:97 - ======================MasterLog executeUpdate done
+2018-07-23 23:44:04 INFO  LogController:99 - ======================MasterLog insertLog done
+2018-07-23 23:44:04 INFO  LogController:108 - ======================MasterLog disconnect done
+2018-07-23 23:44:04 INFO  DashboardPage:138 - com1admin click change password.
+2018-07-23 23:44:04 INFO  ChangePasswordPage:100 - Init ChangePasswordPage of com1admin
+2018-07-23 23:44:10 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Assessor', '', 'Logout', '', '', 'Com1', 'MAC1', 'ChangePasswordPage$1.mouseClicked');
+2018-07-23 23:44:10 INFO  LogController:95 - ======================MasterLog prepareStatement done
+2018-07-23 23:44:10 INFO  LogController:97 - ======================MasterLog executeUpdate done
+2018-07-23 23:44:10 INFO  LogController:99 - ======================MasterLog insertLog done
+2018-07-23 23:44:10 INFO  LogController:108 - ======================MasterLog disconnect done
+2018-07-23 23:44:10 INFO  ChangePasswordPage:123 - com1admin logout.
+2018-07-23 23:44:12 INFO  LoginPage:239 - Login with username: com1admin
+2018-07-23 23:44:12 INFO  LoginController:46 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin, IsLocked FROM Assessor where Assessor.IsActive = 1 and Assessor.UserName='com1admin' and (Password=md5('123456') or LastPassword=md5('123456'));
+2018-07-23 23:44:12 INFO  LoginPage:243 - Login OK
+2018-07-23 23:44:12 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'da', 'Assessor', '', 'Login', '', '', 'Com1', 'MAC1', 'LoginPage.actionPerformed');
+2018-07-23 23:44:12 INFO  LogController:95 - ======================MasterLog prepareStatement done
+2018-07-23 23:44:12 INFO  LogController:97 - ======================MasterLog executeUpdate done
+2018-07-23 23:44:12 INFO  LogController:99 - ======================MasterLog insertLog done
+2018-07-23 23:44:12 INFO  LogController:108 - ======================MasterLog disconnect done
+2018-07-23 23:44:12 INFO  LoginController:173 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'Com1' and assessor.UserName= 'com1admin'
+2018-07-23 23:44:12 INFO  LoginPage:264 - listRoles: [Roles [roleName=SubAdmin], Roles [roleName=Emp]]
+2018-07-23 23:44:12 INFO  LoginPage:284 - Show DashboardPage
+2018-07-23 23:44:12 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Assessor', '', 'ShowDashboard', '', '', 'Com1', 'MAC1', 'DashboardPage.<init>');
+2018-07-23 23:44:12 INFO  LogController:95 - ======================MasterLog prepareStatement done
+2018-07-23 23:44:12 INFO  LogController:97 - ======================MasterLog executeUpdate done
+2018-07-23 23:44:12 INFO  LogController:99 - ======================MasterLog insertLog done
+2018-07-23 23:44:12 INFO  LogController:108 - ======================MasterLog disconnect done
+2018-07-23 23:44:15 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Assessor', '', 'ChangePass', '', '', 'Com1', 'MAC1', 'DashboardPage$1.mouseClicked');
+2018-07-23 23:44:15 INFO  LogController:95 - ======================MasterLog prepareStatement done
+2018-07-23 23:44:15 INFO  LogController:97 - ======================MasterLog executeUpdate done
+2018-07-23 23:44:15 INFO  LogController:99 - ======================MasterLog insertLog done
+2018-07-23 23:44:15 INFO  LogController:108 - ======================MasterLog disconnect done
+2018-07-23 23:44:15 INFO  DashboardPage:138 - com1admin click change password.
+2018-07-23 23:44:15 INFO  ChangePasswordPage:100 - Init ChangePasswordPage of com1admin
+2018-07-23 23:45:04 INFO  LoginPage:239 - Login with username: com1admin
+2018-07-23 23:45:04 INFO  LoginController:46 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin, IsLocked FROM Assessor where Assessor.IsActive = 1 and Assessor.UserName='com1admin' and (Password=md5('123456') or LastPassword=md5('123456'));
+2018-07-23 23:45:04 INFO  LoginPage:243 - Login OK
+2018-07-23 23:45:04 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'dasda', 'Assessor', '', 'Login', '', '', 'Com1', 'MAC1', 'LoginPage.actionPerformed');
+2018-07-23 23:45:04 INFO  LogController:95 - ======================MasterLog prepareStatement done
+2018-07-23 23:45:04 INFO  LogController:97 - ======================MasterLog executeUpdate done
+2018-07-23 23:45:04 INFO  LogController:99 - ======================MasterLog insertLog done
+2018-07-23 23:45:04 INFO  LogController:108 - ======================MasterLog disconnect done
+2018-07-23 23:45:04 INFO  LoginController:173 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'Com1' and assessor.UserName= 'com1admin'
+2018-07-23 23:45:04 INFO  LoginPage:264 - listRoles: [Roles [roleName=SubAdmin], Roles [roleName=Emp]]
+2018-07-23 23:45:04 INFO  LoginPage:284 - Show DashboardPage
+2018-07-23 23:45:04 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Assessor', '', 'ShowDashboard', '', '', 'Com1', 'MAC1', 'DashboardPage.<init>');
+2018-07-23 23:45:04 INFO  LogController:95 - ======================MasterLog prepareStatement done
+2018-07-23 23:45:04 INFO  LogController:97 - ======================MasterLog executeUpdate done
+2018-07-23 23:45:04 INFO  LogController:99 - ======================MasterLog insertLog done
+2018-07-23 23:45:04 INFO  LogController:108 - ======================MasterLog disconnect done
+2018-07-23 23:45:08 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Assessor', '', 'ChangePass', '', '', 'Com1', 'MAC1', 'DashboardPage$1.mouseClicked');
+2018-07-23 23:45:08 INFO  LogController:95 - ======================MasterLog prepareStatement done
+2018-07-23 23:45:08 INFO  LogController:97 - ======================MasterLog executeUpdate done
+2018-07-23 23:45:08 INFO  LogController:99 - ======================MasterLog insertLog done
+2018-07-23 23:45:08 INFO  LogController:108 - ======================MasterLog disconnect done
+2018-07-23 23:45:08 INFO  DashboardPage:138 - com1admin click change password.
+2018-07-23 23:45:08 INFO  ChangePasswordPage:100 - Init ChangePasswordPage of com1admin
+2018-07-23 23:45:22 INFO  LoginController:46 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin, IsLocked FROM Assessor where Assessor.IsActive = 1 and Assessor.UserName='com1admin' and (Password=md5('dasdada') or LastPassword=md5('dasdada'));
+2018-07-23 23:45:39 INFO  LoginController:46 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin, IsLocked FROM Assessor where Assessor.IsActive = 1 and Assessor.UserName='com1admin' and (Password=md5('123456') or LastPassword=md5('123456'));
+2018-07-23 23:45:39 INFO  LoginController:249 - SELECT EmailAddress FROM Assessor where Assessor.UserName = 'com1admin' and Assessor.CompanyCode = 'Com1';
+2018-07-23 23:45:39 INFO  ChangePasswordPage:345 - Lock User
+2018-07-23 23:45:39 INFO  UserController:129 - Update  Assessor set Assessor.Password = md5('123456'), Assessor.IsFirstTimeLogin = 0 where Assessor.Username = 'com1admin' and Assessor.CompanyCode = 'Com1';
+2018-07-23 23:45:39 INFO  UserController:133 - 1 row(s) updated!
+2018-07-23 23:45:39 INFO  ChangePasswordPage:359 - Change password ok - com1admin - 123456
+2018-07-23 23:45:42 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Assessor', '', 'Logout', '', '', 'Com1', 'MAC1', 'ChangePasswordPage.actionPerformed');
+2018-07-23 23:45:42 INFO  LogController:95 - ======================MasterLog prepareStatement done
+2018-07-23 23:45:42 INFO  LogController:97 - ======================MasterLog executeUpdate done
+2018-07-23 23:45:42 INFO  LogController:99 - ======================MasterLog insertLog done
+2018-07-23 23:45:42 INFO  LogController:108 - ======================MasterLog disconnect done
+2018-07-23 23:45:42 INFO  ChangePasswordPage:370 - com1admin logout.
+2018-07-23 23:45:44 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), '', 'Email', '', 'Login', '', 'To quann169@gmail.com - CC: [quann169@gmail.com] - Subject: Change Pass Successfully - Message: Hi com1admin,
+Your pass has been change to 123456', 'Com1', 'MAC1', 'EmailUtils.sendEmail');
+2018-07-23 23:45:44 INFO  LogController:95 - ======================MasterLog prepareStatement done
+2018-07-23 23:45:44 INFO  LogController:97 - ======================MasterLog executeUpdate done
+2018-07-23 23:45:44 INFO  LogController:99 - ======================MasterLog insertLog done
+2018-07-23 23:45:44 INFO  LogController:108 - ======================MasterLog disconnect done
+2018-07-23 23:46:21 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'ss', 'Assessor', '', 'ForgotPass', '', '', 'Com1', 'MAC1', 'LoginPage.actionPerformed');
+2018-07-23 23:46:21 INFO  LogController:95 - ======================MasterLog prepareStatement done
+2018-07-23 23:46:21 INFO  LogController:97 - ======================MasterLog executeUpdate done
+2018-07-23 23:46:21 INFO  LogController:99 - ======================MasterLog insertLog done
+2018-07-23 23:46:21 INFO  LogController:108 - ======================MasterLog disconnect done
+2018-07-23 23:46:21 INFO  LoginPage:335 - Forgot Pass
+2018-07-23 23:46:21 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), '', 'Assessor', '', 'ForgotPasswordPage', '', '', 'Com1', 'MAC1', 'ForgotPasswordPage.<init>');
+2018-07-23 23:46:21 INFO  LogController:95 - ======================MasterLog prepareStatement done
+2018-07-23 23:46:21 INFO  LogController:97 - ======================MasterLog executeUpdate done
+2018-07-23 23:46:21 INFO  LogController:99 - ======================MasterLog insertLog done
+2018-07-23 23:46:21 INFO  LogController:108 - ======================MasterLog disconnect done
+2018-07-23 23:48:24 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), '', 'Assessor', '', 'ForgotPass', '', '', 'Com1', 'MAC1', 'LoginPage.actionPerformed');
+2018-07-23 23:48:24 INFO  LogController:95 - ======================MasterLog prepareStatement done
+2018-07-23 23:48:24 INFO  LogController:97 - ======================MasterLog executeUpdate done
+2018-07-23 23:48:24 INFO  LogController:99 - ======================MasterLog insertLog done
+2018-07-23 23:48:24 INFO  LogController:108 - ======================MasterLog disconnect done
+2018-07-23 23:48:24 INFO  LoginPage:335 - Forgot Pass
+2018-07-23 23:48:24 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), '', 'Assessor', '', 'ForgotPasswordPage', '', '', 'Com1', 'MAC1', 'ForgotPasswordPage.<init>');
+2018-07-23 23:48:24 INFO  LogController:95 - ======================MasterLog prepareStatement done
+2018-07-23 23:48:24 INFO  LogController:97 - ======================MasterLog executeUpdate done
+2018-07-23 23:48:24 INFO  LogController:99 - ======================MasterLog insertLog done
+2018-07-23 23:48:24 INFO  LogController:108 - ======================MasterLog disconnect done
+2018-07-23 23:48:28 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), '', 'Assessor', '', 'ForgotPass', '', '', 'Com1', 'MAC1', 'LoginPage.actionPerformed');
+2018-07-23 23:48:28 INFO  LogController:95 - ======================MasterLog prepareStatement done
+2018-07-23 23:48:28 INFO  LogController:97 - ======================MasterLog executeUpdate done
+2018-07-23 23:48:28 INFO  LogController:99 - ======================MasterLog insertLog done
+2018-07-23 23:48:28 INFO  LogController:108 - ======================MasterLog disconnect done
+2018-07-23 23:48:28 INFO  LoginPage:335 - Forgot Pass
+2018-07-23 23:48:28 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), '', 'Assessor', '', 'ForgotPasswordPage', '', '', 'Com1', 'MAC1', 'ForgotPasswordPage.<init>');
+2018-07-23 23:48:28 INFO  LogController:95 - ======================MasterLog prepareStatement done
+2018-07-23 23:48:28 INFO  LogController:97 - ======================MasterLog executeUpdate done
+2018-07-23 23:48:28 INFO  LogController:99 - ======================MasterLog insertLog done
+2018-07-23 23:48:28 INFO  LogController:108 - ======================MasterLog disconnect done
+2018-07-23 23:48:35 INFO  LoginPage:239 - Login with username: com1admin
+2018-07-23 23:48:35 INFO  LoginController:46 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin, IsLocked FROM Assessor where Assessor.IsActive = 1 and Assessor.UserName='com1admin' and (Password=md5('123456') or LastPassword=md5('123456'));
+2018-07-23 23:48:35 INFO  LoginPage:243 - Login OK
+2018-07-23 23:48:35 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'zsd', 'Assessor', '', 'Login', '', '', 'Com1', 'MAC1', 'LoginPage.actionPerformed');
+2018-07-23 23:48:35 INFO  LogController:95 - ======================MasterLog prepareStatement done
+2018-07-23 23:48:35 INFO  LogController:97 - ======================MasterLog executeUpdate done
+2018-07-23 23:48:35 INFO  LogController:99 - ======================MasterLog insertLog done
+2018-07-23 23:48:35 INFO  LogController:108 - ======================MasterLog disconnect done
+2018-07-23 23:48:35 INFO  LoginController:173 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'Com1' and assessor.UserName= 'com1admin'
+2018-07-23 23:48:35 INFO  LoginPage:264 - listRoles: [Roles [roleName=SubAdmin], Roles [roleName=Emp]]
+2018-07-23 23:48:35 INFO  LoginPage:284 - Show DashboardPage
+2018-07-23 23:48:35 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Assessor', '', 'ShowDashboard', '', '', 'Com1', 'MAC1', 'DashboardPage.<init>');
+2018-07-23 23:48:35 INFO  LogController:95 - ======================MasterLog prepareStatement done
+2018-07-23 23:48:35 INFO  LogController:97 - ======================MasterLog executeUpdate done
+2018-07-23 23:48:35 INFO  LogController:99 - ======================MasterLog insertLog done
+2018-07-23 23:48:35 INFO  LogController:108 - ======================MasterLog disconnect done
+2018-07-23 23:48:39 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Assessor', '', 'Logout', '', '', 'Com1', 'MAC1', 'DashboardPage$2.mouseClicked');
+2018-07-23 23:48:39 INFO  LogController:95 - ======================MasterLog prepareStatement done
+2018-07-23 23:48:39 INFO  LogController:97 - ======================MasterLog executeUpdate done
+2018-07-23 23:48:39 INFO  LogController:99 - ======================MasterLog insertLog done
+2018-07-23 23:48:39 INFO  LogController:108 - ======================MasterLog disconnect done
+2018-07-23 23:48:39 INFO  DashboardPage:162 - com1admin logout.
+2018-07-23 23:48:42 INFO  LoginPage:239 - Login with username: com1admin
+2018-07-23 23:48:42 INFO  LoginController:46 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin, IsLocked FROM Assessor where Assessor.IsActive = 1 and Assessor.UserName='com1admin' and (Password=md5('123456') or LastPassword=md5('123456'));
+2018-07-23 23:48:42 INFO  LoginPage:243 - Login OK
+2018-07-23 23:48:42 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'zxczxcz', 'Assessor', '', 'Login', '', '', 'Com1', 'MAC1', 'LoginPage.actionPerformed');
+2018-07-23 23:48:42 INFO  LogController:95 - ======================MasterLog prepareStatement done
+2018-07-23 23:48:42 INFO  LogController:97 - ======================MasterLog executeUpdate done
+2018-07-23 23:48:42 INFO  LogController:99 - ======================MasterLog insertLog done
+2018-07-23 23:48:42 INFO  LogController:108 - ======================MasterLog disconnect done
+2018-07-23 23:48:42 INFO  LoginController:173 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'Com1' and assessor.UserName= 'com1admin'
+2018-07-23 23:48:42 INFO  LoginPage:264 - listRoles: [Roles [roleName=SubAdmin], Roles [roleName=Emp]]
+2018-07-23 23:48:42 INFO  LoginPage:284 - Show DashboardPage
+2018-07-23 23:48:42 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Assessor', '', 'ShowDashboard', '', '', 'Com1', 'MAC1', 'DashboardPage.<init>');
+2018-07-23 23:48:42 INFO  LogController:95 - ======================MasterLog prepareStatement done
+2018-07-23 23:48:42 INFO  LogController:97 - ======================MasterLog executeUpdate done
+2018-07-23 23:48:42 INFO  LogController:99 - ======================MasterLog insertLog done
+2018-07-23 23:48:42 INFO  LogController:108 - ======================MasterLog disconnect done
+2018-07-23 23:48:43 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Assessor', '', 'ResetPass', '', '', 'Com1', 'MAC1', 'DashboardPage.actionPerformed');
+2018-07-23 23:48:43 INFO  LogController:95 - ======================MasterLog prepareStatement done
+2018-07-23 23:48:43 INFO  LogController:97 - ======================MasterLog executeUpdate done
+2018-07-23 23:48:43 INFO  LogController:99 - ======================MasterLog insertLog done
+2018-07-23 23:48:43 INFO  LogController:108 - ======================MasterLog disconnect done
+2018-07-23 23:48:43 INFO  UserController:44 - SELECT AssessorID, UserName, Password, CompanyCode, IsActive, IsLocked, FirstName, LastName FROM Assessor where Assessor.IsActive=1 and Assessor.CompanyCode = 'Com1';
+2018-07-23 23:48:43 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Assessor', '', 'ResetPasswordPage', '', '', 'Com1', 'MAC1', 'ResetPasswordPage.<init>');
+2018-07-23 23:48:43 INFO  LogController:95 - ======================MasterLog prepareStatement done
+2018-07-23 23:48:43 INFO  LogController:97 - ======================MasterLog executeUpdate done
+2018-07-23 23:48:43 INFO  LogController:99 - ======================MasterLog insertLog done
+2018-07-23 23:48:43 INFO  LogController:108 - ======================MasterLog disconnect done
+2018-07-23 23:48:48 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Assessor', '', 'ShowDashboard', '', '', 'Com1', 'MAC1', 'ResetPasswordPage$1.mouseClicked');
+2018-07-23 23:48:48 INFO  LogController:95 - ======================MasterLog prepareStatement done
+2018-07-23 23:48:48 INFO  LogController:97 - ======================MasterLog executeUpdate done
+2018-07-23 23:48:48 INFO  LogController:99 - ======================MasterLog insertLog done
+2018-07-23 23:48:48 INFO  LogController:108 - ======================MasterLog disconnect done
+2018-07-23 23:48:48 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Assessor', '', 'ShowDashboard', '', '', 'Com1', 'MAC1', 'ResetPasswordPage$1.mouseClicked');
+2018-07-23 23:48:48 INFO  LogController:95 - ======================MasterLog prepareStatement done
+2018-07-23 23:48:49 INFO  LogController:97 - ======================MasterLog executeUpdate done
+2018-07-23 23:48:49 INFO  LogController:99 - ======================MasterLog insertLog done
+2018-07-23 23:48:49 INFO  LogController:108 - ======================MasterLog disconnect done
+2018-07-23 23:48:49 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Assessor', '', 'ShowDashboard', '', '', 'Com1', 'MAC1', 'ResetPasswordPage$1.mouseClicked');
+2018-07-23 23:48:49 INFO  LogController:95 - ======================MasterLog prepareStatement done
+2018-07-23 23:48:49 INFO  LogController:97 - ======================MasterLog executeUpdate done
+2018-07-23 23:48:49 INFO  LogController:99 - ======================MasterLog insertLog done
+2018-07-23 23:48:49 INFO  LogController:108 - ======================MasterLog disconnect done
+2018-07-23 23:48:51 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Assessor', '', 'ShowDashboard', '', '', 'Com1', 'MAC1', 'ResetPasswordPage$1.mouseClicked');
+2018-07-23 23:48:51 INFO  LogController:95 - ======================MasterLog prepareStatement done
+2018-07-23 23:48:51 INFO  LogController:97 - ======================MasterLog executeUpdate done
+2018-07-23 23:48:51 INFO  LogController:99 - ======================MasterLog insertLog done
+2018-07-23 23:48:51 INFO  LogController:108 - ======================MasterLog disconnect done
+2018-07-23 23:48:51 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Assessor', '', 'ShowDashboard', '', '', 'Com1', 'MAC1', 'ResetPasswordPage$1.mouseClicked');
+2018-07-23 23:48:51 INFO  LogController:95 - ======================MasterLog prepareStatement done
+2018-07-23 23:48:51 INFO  LogController:97 - ======================MasterLog executeUpdate done
+2018-07-23 23:48:51 INFO  LogController:99 - ======================MasterLog insertLog done
+2018-07-23 23:48:51 INFO  LogController:108 - ======================MasterLog disconnect done

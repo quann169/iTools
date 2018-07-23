@@ -307,6 +307,18 @@ public class ForgotPasswordPage extends JFrame implements ActionListener {
 			}
 
 		}
+		
+		if (e.getSource() == cancelButton) {
+			updateTimer.restart();
+			
+			JFrame old = root;
+			root = new LoginPage();
+			StringUtils.frameInit(root, bundleMessage);
+
+			root.setTitle(bundleMessage.getString("Login_Page_Title"));
+			root.getRootPane().setDefaultButton(((LoginPage) root).loginButton);
+			old.dispose();
+		}
 	}
 
 	public void addVirtualKeyboardListener() {

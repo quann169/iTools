@@ -123,7 +123,7 @@ public class DashboardPage extends JFrame implements ActionListener {
 		changePassLabel.setText("<html><html><font size=\"5\" face=\"arial\" color=\"#0181BE\"><b><i><u>"
 				+ bundleMessage.getString("App_ChangePassword") + "</u></i></b></font></html></html>");
 		changePassLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		changePassLabel.setBounds(530, 5, 250, 60);
+		changePassLabel.setBounds(530, 5, 200, 60);
 		changePassLabel.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -131,6 +131,18 @@ public class DashboardPage extends JFrame implements ActionListener {
 				masterLogObj.insertLog(userName, Enum.ASSESSOR, "", Enum.CHANGE_PASS, "", "", companyCode, machineCode,
 						StringUtils.getCurrentClassAndMethodNames());
 				updateTimer.restart();
+				
+				
+				updateTimer.restart();
+				
+				logger.info(userName + " click change password.");
+				JFrame old = root;
+				root = new ChangePasswordPage(user);
+				StringUtils.frameInit(root, bundleMessage);
+
+				root.setTitle(bundleMessage.getString("Change_Password_Page_Title"));
+				root.getRootPane().setDefaultButton(((ChangePasswordPage) root).changePassButton);
+				old.dispose();
 			}
 		});
 
@@ -354,7 +366,7 @@ public class DashboardPage extends JFrame implements ActionListener {
 			masterLogObj.insertLog(userName, Enum.ASSESSOR, "", Enum.GETTOOL, "", "", companyCode, machineCode,
 					StringUtils.getCurrentClassAndMethodNames());
 			JFrame old = root;
-			root = new EmployeePage(userName, true);
+			root = new EmployeePage(user, true);
 			StringUtils.frameInit(root, bundleMessage);
 			// empPage.setJMenuBar(StringUtils.addMenu());
 			root.setTitle(user.getUsername() + " - " + user.getFirstName() + " " + user.getLastName());

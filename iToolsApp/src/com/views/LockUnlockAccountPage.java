@@ -31,9 +31,11 @@ import javax.swing.Timer;
 import org.apache.log4j.Logger;
 
 import com.controllers.LogController;
+import com.controllers.LoginController;
 import com.controllers.UserController;
 import com.message.Enum;
 import com.models.Assessor;
+import com.models.Role;
 import com.utils.AdvancedEncryptionStandard;
 import com.utils.AutoCompletion;
 import com.utils.Config;
@@ -73,6 +75,7 @@ public class LockUnlockAccountPage extends JFrame implements ActionListener {
 	final static Logger logger = Logger.getLogger(LockUnlockAccountPage.class);
 
 	LogController masterLogObj = new LogController();
+	static LoginController ctlObj = new LoginController();
 	JFrame parent;
 
 	private static final String companyCode = AdvancedEncryptionStandard.decrypt(cfg.getProperty("COMPANY_CODE"));
@@ -111,9 +114,17 @@ public class LockUnlockAccountPage extends JFrame implements ActionListener {
 		backToDashboardLabel.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				System.out.println("backToDashboardLabel");
-				masterLogObj.insertLog(userName, Enum.ASSESSOR, "", Enum.SHOW_DASHBOARD, "", "", companyCode,
-						machineCode, StringUtils.getCurrentClassAndMethodNames());
+				
+				updateTimer.restart();
+				logger.info(userName + " back to dashboard from " + Enum.LOCK_UNLOCK_PAGE);
+				JFrame old = root;
+				
+				List<Role> listRoles = ctlObj.getUserRoles(userName, companyCode);
+				root = new DashboardPage(listRoles, user);
+				StringUtils.frameInit(root, bundleMessage);
+
+				root.setTitle(userName );
+				old.dispose();
 			}
 		});
 

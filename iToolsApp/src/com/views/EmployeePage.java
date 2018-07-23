@@ -46,6 +46,7 @@ import org.apache.log4j.Logger;
 
 import com.controllers.EmployeeController;
 import com.controllers.LogController;
+import com.controllers.LoginController;
 import com.controllers.TransactionController;
 import com.lib.hid4java.HidDevice;
 import com.lib.hid4java.HidException;
@@ -56,7 +57,9 @@ import com.lib.hid4java.HidServicesSpecification;
 import com.lib.hid4java.ScanMode;
 import com.lib.hid4java.event.HidServicesEvent;
 import com.message.Enum;
+import com.models.Assessor;
 import com.models.Machine;
+import com.models.Role;
 import com.models.Tool;
 import com.utils.AdvancedEncryptionStandard;
 import com.utils.AutoCompletion;
@@ -80,6 +83,8 @@ public class EmployeePage extends JFrame implements ActionListener, HidServicesL
 	JLabel splitLabel = new JLabel(" | ");
 
 	JLabel backToDashboardLabel = new JLabel(bundleMessage.getString("Employee_Back_To_Dashboard"));
+	
+	static LoginController ctlObj = new LoginController();
 
 	JLabel woLabel = new JLabel(bundleMessage.getString("Employee_Page_WO"));
 	JLabel opLabel = new JLabel(bundleMessage.getString("Employee_Page_OP"));
@@ -137,11 +142,12 @@ public class EmployeePage extends JFrame implements ActionListener, HidServicesL
 	boolean isDashboard;
 	public PopUpKeyboard keyboard;
 	List<String> allToolNames = new ArrayList<>();
-
+	Assessor user ;
 	// JFrame parent;
 
-	EmployeePage(String userName, boolean isDashboard) {
-		this.userName = userName;
+	EmployeePage(Assessor user, boolean isDashboard) {
+		this.userName = user.getUsername();
+		this.user = user;
 		this.isDashboard = isDashboard;
 		// this.parent = parent;
 		toolVstrayAndQuantityMap = empCtlObj.getToolTrayQuantity(machineCode, 0);
@@ -177,9 +183,18 @@ public class EmployeePage extends JFrame implements ActionListener, HidServicesL
 		backToDashboardLabel.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				System.out.println("backToDashboardLabel");
-				masterLogObj.insertLog(userName, Enum.ASSESSOR, "", Enum.SHOW_DASHBOARD, "", "", companyCode,
-						machineCode, StringUtils.getCurrentClassAndMethodNames());
+				
+				updateTimer.restart();
+				logger.info(userName + " back to dashboard from " + Enum.GETTOOL);
+				JFrame old = root;
+				
+				List<Role> listRoles = ctlObj.getUserRoles(userName, companyCode);
+				root = new DashboardPage(listRoles, user);
+				StringUtils.frameInit(root, bundleMessage);
+
+				root.setTitle(userName );
+				old.dispose();
+				
 			}
 		});
 

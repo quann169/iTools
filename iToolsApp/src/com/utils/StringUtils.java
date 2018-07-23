@@ -21,6 +21,7 @@ import javax.swing.event.MenuEvent;
 import javax.swing.event.MenuListener;
 
 import com.mysql.cj.exceptions.RSAException;
+import com.views.ChangePasswordPage;
 import com.views.EmployeePage;
 import com.views.ForgotPasswordPage;
 import com.views.LockUnlockAccountPage;
@@ -104,12 +105,22 @@ public class StringUtils {
 			obj.keyboard = typing;
 			obj.addVirtualKeyboardListener(); 
 		}
-		
+
 		if (frame instanceof ResetPasswordPage) {
 			ResetPasswordPage obj = (ResetPasswordPage)frame;
 			obj.keyboard = typing;
 			obj.addVirtualKeyboardListener(); 
 		}
+		
+		
+
+		if (frame instanceof ChangePasswordPage) {
+			ChangePasswordPage obj = (ChangePasswordPage)frame;
+			obj.keyboard = typing;
+			obj.addVirtualKeyboardListener(); 
+		}
+		
+		
 		frame.setLayout(new BorderLayout());
 		
 //		frame.setBounds(0, 0, 700, 460);

@@ -41,6 +41,7 @@ import com.controllers.LoginController;
 import com.controllers.UserController;
 import com.message.Enum;
 import com.models.Assessor;
+import com.models.Role;
 import com.utils.AdvancedEncryptionStandard;
 import com.utils.Config;
 import com.utils.EmailUtils;
@@ -104,6 +105,7 @@ public class ResetPasswordPage extends JFrame implements ActionListener {
 	Timer updateTimer;
 	int expiredTime = Integer.valueOf(cfg.getProperty("Expired_Time")) * 1000;
 
+	@SuppressWarnings("static-access")
 	ResetPasswordPage(Assessor user, boolean isDashboard, boolean isFirstTimeLogin) {
 		this.isFirstTimeLogin = isFirstTimeLogin;
 		this.isDashboard = isDashboard;
@@ -134,9 +136,17 @@ public class ResetPasswordPage extends JFrame implements ActionListener {
 		backToDashboardLabel.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				System.out.println("backToDashboardLabel");
-				masterLogObj.insertLog(userName, Enum.ASSESSOR, "", Enum.SHOW_DASHBOARD, "", "", companyCode,
-						machineCode, StringUtils.getCurrentClassAndMethodNames());
+				
+				updateTimer.restart();
+				logger.info(userName + " back to dashboard from " + Enum.RESET_PASS_PAGE);
+				JFrame old = root;
+				
+				List<Role> listRoles = ctlObj.getUserRoles(userName, companyCode);
+				root = new DashboardPage(listRoles, user);
+				StringUtils.frameInit(root, bundleMessage);
+
+				root.setTitle(userName + " - " + user.getFirstName() + " " + user.getLastName());
+				old.dispose();
 			}
 		});
 
