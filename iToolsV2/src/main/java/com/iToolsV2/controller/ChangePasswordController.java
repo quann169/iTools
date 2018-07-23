@@ -44,13 +44,25 @@ public class ChangePasswordController extends AbstractController {
             bindingResult.rejectValue("verifyPassword", "Invalid");
         }
         if (bindingResult.hasErrors()) return "public/change-password";
+// check old password
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        Assessor assessor = assessorDao.findByUserNameAndActiveAndLocked(username, true, false);
+        String encrytedPassword = this.passwordEncoder.encode(form.getPassword());
+        String encrytedPasswordOld = this.passwordEncoder.encode(form.getPasswordOld());
+        if (!assessor.getEncrytedPassword().equals(encrytedPasswordOld)) {
+        	bindingResult.rejectValue("passwordOld", "Invalid");
+        	return "public/change-password";
+        }
+        if (assessor.getEncrytedPassword().equals(encrytedPassword)) {
+        	bindingResult.rejectValue("password", "samePassword");
+        	return "public/change-password";
+        } 
         try {
         	 // save pass
-            Assessor assessor = assessorDao.findByUserNameAndActiveAndLocked(username, true, false);
-            String encrytedPassword = this.passwordEncoder.encode(form.getPassword());
+            //Assessor assessor = assessorDao.findByUserNameAndActiveAndLocked(username, true, false);
+            //String encrytedPassword = this.passwordEncoder.encode(form.getPassword());
             assessor.setEncrytedPassword(encrytedPassword);
-            assessor.setFirstTimeLogin(true);
+            assessor.setFirstTimeLogin(false);
             assessorDao.update(assessor);
             HttpSession session = request.getSession(false);
             if (session != null) session.invalidate();

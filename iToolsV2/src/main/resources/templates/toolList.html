@@ -4,16 +4,65 @@
    <head>
       <meta charset="UTF-8">
       <title>Tool List</title> 
-      <link type="text/css" th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
-      <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}" />  	
+      <th:block>
+	        <link rel="stylesheet" href="../../static/vendor/datatables/css/jquery.dataTables.css"
+	              th:href="@{/vendor/datatables/css/jquery.dataTables.css}"/>
+	    </th:block>
+	    <th:block>
+	        <link rel="stylesheet" href="../../static/vendor/jquery-ui/jquery-ui.css"
+	              th:href="@{/vendor/jquery-ui/jquery-ui.css}"/>
+	        <link rel="stylesheet" href="../../static/vendor/font-awesome/css/font-awesome.css"
+	              th:href="@{/vendor/font-awesome/css/font-awesome.css}"/>
+	        <link rel="stylesheet" href="../../static/css/style.min.css"
+	              th:href="@{/css/style.min.css}"/>
+	        <link rel="stylesheet" href="../../static/css/styles.css"
+	              th:href="@{/css/styles.css}"/>
+	    </th:block>
+	    <th:block>
+	        <script src="../../static/vendor/js/main.min.js"
+	                th:src="@{/vendor/js/main.min.js}"></script>
+	        <script src="../../static/vendor/jquery-ui/jquery-ui.js"
+	                th:src="@{/vendor/jquery-ui/jquery-ui.js}"></script>
+	        <script src="../../static/vendor/js/jquery.mask.js"
+	                th:src="@{/vendor/js/jquery.mask.js}"></script>
+	    </th:block>
+	    <th:block>
+	        <script src="../../static/vendor/datatables/js/jquery.dataTables.js"
+	                th:src="@{/vendor/datatables/js/jquery.dataTables.js}"></script>
+	        <script type="text/javascript" src="../../static/vendor/dataTables.buttons.min.js"
+	                th:src="@{/vendor/dataTables.buttons.min.js}">
+	        </script>
+	        <script type="text/javascript" src="../../static/vendor/buttons.flash.min.js"
+	                th:src="@{/vendor/buttons.flash.min.js}">
+	        </script>
+	        <script type="text/javascript" src="../../static/vendor/jszip.min.js"
+	                th:src="@{/vendor/jszip.min.js}">
+	        </script>
+	        <script type="text/javascript" src="../../static/vendor/pdfmake.min.js"
+	                th:src="@{/vendor/pdfmake.min.js}">
+	        </script>
+	        <script type="text/javascript" src="../../static/vendor/vfs_fonts.js"
+	                th:src="@{/vendor/vfs_fonts.js}">
+	        </script>
+	        <script type="text/javascript" src="../../static/vendor/buttons.html5.min.js"
+	                th:src="@{/vendor/buttons.html5.min.js}">
+	        </script>
+	        <script type="text/javascript" src="../../static/vendor/buttons.print.min.js"
+	                th:src="@{/vendor/buttons.print.min.js}">
+	        </script>
+	    </th:block> 	
    </head>
    <body>
       <th:block th:include="/_header"></th:block>
       <th:block th:include="/_menu"></th:block>
-      <th:block th:include="/_subMenuTool"></th:block>  
-      <div class="page-title">Tool List</div>
-      
-      <table border="1" style="width:100%" class="display hover">
+	<!--       <th:block th:include="/_subMenuTool"></th:block>   -->
+      <div class="page-title">Tool List</div>  
+	  <table style="width:100%">
+	  <tr>
+           <td align="left"><input class="btn btn-primary text-uppercase" style="width:70px; font-size:12px" onclick="location.href='/admin/registerTool'" value="New" ></td>
+      </tr>
+	  </table>   
+      <table border="1" style="width:100%">
             <tr>
                <th>Code</th>
                <th>Model</th>
@@ -33,8 +82,8 @@
                <td th:utext="${toolInfo.active} ? 'Active' : 'Disabled'">...</td>
                <td th:utext="${toolInfo.createdDate}">...</td>
                <td th:utext="${toolInfo.updatedDate}">...</td>
-               <td><a th:href="@{|/admin/toolDetail?toolID=${toolInfo.toolID}|}">Edit</a></td>
-               <td><a th:href="@{|/admin/assignToolToMachine?toolID=${toolInfo.toolID}|}">Assign to Machine</a></td>
+               <td><a class="btn btn-primary text-uppercase" style="width:70px; font-size:12px" th:href="@{|/admin/toolDetail?toolID=${toolInfo.toolID}|}">Edit</a></td>
+               <td><a class="btn btn-primary text-uppercase" style="width:180px; font-size:12px" th:href="@{|/admin/assignToolToMachine?toolID=${toolInfo.toolID}|}">Assign to Machine</a></td>
             </tr>
       </table>      
        

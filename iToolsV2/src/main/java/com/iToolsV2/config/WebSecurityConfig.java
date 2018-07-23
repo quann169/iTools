@@ -15,6 +15,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
  
     @Autowired
     UserDetailsServiceImpl userDetailsService;
+    
+    @Autowired
+    private CustomHandlerLogin customHandleLogin;
  
     /*@Bean
     public BCryptPasswordEncoder passwordEncoder() {
@@ -56,8 +59,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
  
                 // 
                 .loginProcessingUrl("/j_spring_security_check") // Submit URL
-                .loginPage("/admin/login")//
-                .defaultSuccessUrl("/machineList")//
+                .loginPage("/admin/login").permitAll().successHandler(customHandleLogin)//
+                //.defaultSuccessUrl("/machineList")//
                 //.defaultSuccessUrl("/admin/accountInfo")//
                 .failureUrl("/admin/login?error=true")//
                 .usernameParameter("userName")//

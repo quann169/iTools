@@ -1303,7 +1303,7 @@ Copyright (c) 2015 Daniel Eden
  caption 
  {padding-top:8px;padding-bottom:8px;color:#f1f1f1;text-align:left} 
  th 
- {text-align:left} 
+ {text-align:center} 
  .table 
  {width:100%;max-width:100%;margin-bottom:20px} 
  .table>tbody>tr>td,.table>tbody>tr>th,.table>tfoot>tr>td,.table>tfoot>tr>th,.table>thead>tr>td,.table>thead>tr>th 
@@ -4055,7 +4055,7 @@ Copyright (c) 2015 Daniel Eden
  body,html 
  {height:100%} 
  body 
- {color:#575757;margin-top:125px;font-family:focoregular,sans-serif;font-size:16px;line-height:1.5} 
+ {color:#575757;margin-top:125px;font-family:time new roman;font-size:16px;line-height:1.5} 
  body.vi-vn 
  {font-family:Arial,sans-serif;font-size:14px} 
  .primary-color 

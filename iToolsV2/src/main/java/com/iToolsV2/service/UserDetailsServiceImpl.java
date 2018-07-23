@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.DependsOn;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -17,6 +18,7 @@ import com.iToolsV2.dao.RolesDAO;
 import com.iToolsV2.entity.Assessor;
  
 @Service
+@DependsOn("assessorDao")
 public class UserDetailsServiceImpl implements UserDetailsService {
  
    /* @Autowired
