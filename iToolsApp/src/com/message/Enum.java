@@ -52,8 +52,8 @@ public enum Enum {
 																			"SyncManually"), SYNC_MANUALLY_FAIL(
 																					"SyncManuallyFail"),
 
-	TRAY_1("TRAY_1"), TRAY_2("TRAY_2"), TRAY_3("TRAY_3"), TRAY_4("TRAY_4"), TRAY_5("TRAY_5"), TRAY_6("TRAY_6"), TRAY_7(
-			"TRAY_7"), TRAY_8("TRAY_8"), TRAY_9("TRAY_9"), TRAY_10("TRAY_10"), TRAY_11("TRAY_11"), TRAY_12(
+	TRAY_1("TRAY_01"), TRAY_2("TRAY_02"), TRAY_3("TRAY_03"), TRAY_4("TRAY_04"), TRAY_5("TRAY_05"), TRAY_6("TRAY_06"), TRAY_7(
+			"TRAY_07"), TRAY_8("TRAY_08"), TRAY_9("TRAY_09"), TRAY_10("TRAY_10"), TRAY_11("TRAY_11"), TRAY_12(
 					"TRAY_12"), TRAY_13("TRAY_13"), TRAY_14("TRAY_14"), TRAY_15("TRAY_15"), TRAY_16("TRAY_16"), TRAY_17(
 							"TRAY_17"), TRAY_18("TRAY_18"), TRAY_19("TRAY_19"), TRAY_20("TRAY_20"), TRAY_21(
 									"TRAY_21"), TRAY_22("TRAY_22"), TRAY_23("TRAY_23"), TRAY_24("TRAY_24"), TRAY_25(
