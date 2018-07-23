@@ -14,7 +14,6 @@ import java.beans.PropertyChangeListener;
 import javax.swing.ComboBoxEditor;
 import javax.swing.ComboBoxModel;
 import javax.swing.JComboBox;
-import javax.swing.JTextField;
 import javax.swing.text.AttributeSet;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.JTextComponent;
@@ -28,20 +27,17 @@ public class AutoCompletion extends PlainDocument {
 	JComboBox comboBox;
 	ComboBoxModel model;
 	JTextComponent editor;
-	JTextField textField;
 	// flag to indicate if setSelectedItem has been called
 	// subsequent calls to remove/insertString should be ignored
 	boolean selecting = false;
 	boolean hidePopupOnFocusLoss;
 	boolean hitBackspace = false;
 	boolean hitBackspaceOnSelection;
-	
-	public PopUpKeyboard keyboard;
 
 	KeyListener editorKeyListener;
 	FocusListener editorFocusListener;
 
-	public void AutoCompletion1 (final JComboBox comboBox) {
+	public AutoCompletion(final JComboBox comboBox) {
 		this.comboBox = comboBox;
 		model = comboBox.getModel();
 		comboBox.addActionListener(new ActionListener() {
@@ -84,144 +80,6 @@ public class AutoCompletion extends PlainDocument {
 		// Highlight whole text when gaining focus
 		editorFocusListener = new FocusAdapter() {
 			public void focusGained(FocusEvent e) {
-				System.out.println(e.getComponent());
-				highlightCompletedText(0);
-			}
-
-			public void focusLost(FocusEvent e) {
-				// Workaround for Bug 5100422 - Hide Popup on focus loss
-				if (hidePopupOnFocusLoss)
-					comboBox.setPopupVisible(false);
-			}
-		};
-		configureEditor(comboBox.getEditor());
-		// Handle initially selected object
-		Object selected = comboBox.getSelectedItem();
-		if (selected != null)
-			setText(selected.toString());
-		highlightCompletedText(0);
-	}
-	
-	
-	public AutoCompletion(JComboBox comboBox, PopUpKeyboard keyboard) {
-		comboBox.setEditable(true);
-		this.comboBox = comboBox;
-		model = comboBox.getModel();
-		comboBox.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if (!selecting)
-					highlightCompletedText(0);
-			}
-		});
-		comboBox.addPropertyChangeListener(new PropertyChangeListener() {
-			public void propertyChange(PropertyChangeEvent e) {
-				if (e.getPropertyName().equals("editor"))
-					configureEditor((ComboBoxEditor) e.getNewValue());
-				if (e.getPropertyName().equals("model"))
-					model = (ComboBoxModel) e.getNewValue();
-			}
-		});
-		editorKeyListener = new KeyAdapter() {
-			public void keyPressed(KeyEvent e) {
-				if (comboBox.isDisplayable())
-					comboBox.setPopupVisible(true);
-				hitBackspace = false;
-				switch (e.getKeyCode()) {
-				// determine if the pressed key is backspace (needed by the
-				// remove method)
-				case KeyEvent.VK_BACK_SPACE:
-					// hitBackspace = true;
-					hitBackspaceOnSelection = editor.getSelectionStart() != editor.getSelectionEnd();
-					break;
-				// ignore delete key
-				case KeyEvent.VK_DELETE:
-					e.consume();
-					comboBox.getToolkit().beep();
-					break;
-				}
-			}
-		};
-		// Bug 5100422 on Java 1.5: Editable JComboBox won't hide popup when
-		// tabbing out
-		hidePopupOnFocusLoss = System.getProperty("java.version").startsWith("1.5");
-		// Highlight whole text when gaining focus
-		editorFocusListener = new FocusAdapter() {
-			public void focusGained(FocusEvent e) {
-				System.out.println(e.getComponent());
-				System.out.println(keyboard);
-				if (keyboard != null) {
-					keyboard.setTextField(textField);
-				}
-				
-				highlightCompletedText(0);
-			}
-
-			public void focusLost(FocusEvent e) {
-				// Workaround for Bug 5100422 - Hide Popup on focus loss
-				if (hidePopupOnFocusLoss)
-					comboBox.setPopupVisible(false);
-			}
-		};
-		configureEditor(comboBox.getEditor());
-		// Handle initially selected object
-		Object selected = comboBox.getSelectedItem();
-		if (selected != null)
-			setText(selected.toString());
-		highlightCompletedText(0);
-	}
-	
-	
-	public AutoCompletion(JComboBox comboBox,JTextField textField) {
-		this.textField = textField;
-		comboBox.setEditable(true);
-		this.comboBox = comboBox;
-		model = comboBox.getModel();
-		comboBox.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if (!selecting)
-					highlightCompletedText(0);
-			}
-		});
-		comboBox.addPropertyChangeListener(new PropertyChangeListener() {
-			public void propertyChange(PropertyChangeEvent e) {
-				if (e.getPropertyName().equals("editor"))
-					configureEditor((ComboBoxEditor) e.getNewValue());
-				if (e.getPropertyName().equals("model"))
-					model = (ComboBoxModel) e.getNewValue();
-			}
-		});
-		editorKeyListener = new KeyAdapter() {
-			public void keyPressed(KeyEvent e) {
-				if (comboBox.isDisplayable())
-					comboBox.setPopupVisible(true);
-				hitBackspace = false;
-				switch (e.getKeyCode()) {
-				// determine if the pressed key is backspace (needed by the
-				// remove method)
-				case KeyEvent.VK_BACK_SPACE:
-					// hitBackspace = true;
-					hitBackspaceOnSelection = editor.getSelectionStart() != editor.getSelectionEnd();
-					break;
-				// ignore delete key
-				case KeyEvent.VK_DELETE:
-					e.consume();
-					comboBox.getToolkit().beep();
-					break;
-				}
-			}
-		};
-		// Bug 5100422 on Java 1.5: Editable JComboBox won't hide popup when
-		// tabbing out
-		hidePopupOnFocusLoss = System.getProperty("java.version").startsWith("1.5");
-		// Highlight whole text when gaining focus
-		editorFocusListener = new FocusAdapter() {
-			public void focusGained(FocusEvent e) {
-				System.out.println(e.getComponent());
-				System.out.println(keyboard);
-				if (keyboard != null) {
-					keyboard.setTextField(textField);
-				}
-				
 				highlightCompletedText(0);
 			}
 
@@ -239,13 +97,11 @@ public class AutoCompletion extends PlainDocument {
 		highlightCompletedText(0);
 	}
 
-
-
-	public void enable(JComboBox comboBox, PopUpKeyboard keyboard) {
+	public static void enable(JComboBox comboBox) {
 		// has to be editable
 		comboBox.setEditable(true);
 		// change the editor's document
-		new AutoCompletion(comboBox, keyboard);
+		new AutoCompletion(comboBox);
 	}
 
 	void configureEditor(ComboBoxEditor newEditor) {
@@ -310,12 +166,11 @@ public class AutoCompletion extends PlainDocument {
 		highlightCompletedText(offs + str.length());
 	}
 
-	public void setText(String text) {
+	private void setText(String text) {
 		try {
 			// remove all text and insert the completed string
 			super.remove(0, getLength());
 			super.insertString(0, text, null);
-			highlightCompletedText(0);
 		} catch (BadLocationException e) {
 			throw new RuntimeException(e.toString());
 		}

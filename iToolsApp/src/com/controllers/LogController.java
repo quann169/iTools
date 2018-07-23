@@ -92,20 +92,15 @@ public class LogController {
 
 		try {
 			PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
-			logger.info("======================MasterLog prepareStatement done");
 			int result = statement.executeUpdate(sql);
-			logger.info("======================MasterLog executeUpdate done");
 			if (result > 0) {
-				logger.info("======================MasterLog insertLog done");
 				return true;
 			}
 		} catch (SQLException e) {
 			logger.info(e.getMessage());
-			logger.info("======================MasterLog insertLog fail");
 			return false;
 		} finally {
 			mysqlConnect.disconnect();
-			logger.info("======================MasterLog disconnect done");
 		}
 		return false;
 	}

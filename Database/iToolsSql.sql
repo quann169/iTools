@@ -225,7 +225,7 @@ INSERT INTO ToolsMachine(ToolsMachineID, ToolCode, MachineCode,CreatedDate, IsAc
 	(5, "ECTID5", "UHMAC", now(), 1),
 	(6, "FCTID6", "UHMAC", now(), 1),
 	(7, "GCTID7", "UHMAC", now(), 1),
-	-- Tool for MAC1
+	-- Tool for MAC1 
 	(8, "ACTID111", "MAC1", now(), 1),
 	(9, "BCTID211", "MAC1", now(), 1),
 	(10, "FCTID6", "MAC1", now(), 1),

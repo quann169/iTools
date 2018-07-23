@@ -1,6 +1,5 @@
 package com.utils;
 
-import java.awt.AWTException;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -8,13 +7,11 @@ import java.awt.GridLayout;
 import java.awt.Robot;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.text.JTextComponent;
-import static java.awt.event.KeyEvent.*;
 
 public class PopUpKeyboard extends JPanel implements ActionListener {
 	/**
@@ -148,15 +145,15 @@ public class PopUpKeyboard extends JPanel implements ActionListener {
 			} else {
 				textField.setText(textField.getText() + action);
 			}
-//			Robot robot;
-//			try {
-//				robot = new Robot();
-//				System.out.println("Press : " + action);
-//				type(robot, action.toCharArray()[0]);
-//			} catch (AWTException e1) {
-//				// TODO Auto-generated catch block
-//				e1.printStackTrace();
-//			}
+			// Robot robot;
+			// try {
+			// robot = new Robot();
+			// System.out.println("Press : " + action);
+			// type(robot, action.toCharArray()[0]);
+			// } catch (AWTException e1) {
+			// // TODO Auto-generated catch block
+			// e1.printStackTrace();
+			// }
 
 		}
 
@@ -193,15 +190,15 @@ public class PopUpKeyboard extends JPanel implements ActionListener {
 
 	public void type(Robot robot, char c) {
 		String altCode = Integer.toString(c);
-//		for (int i = 0; i < altCode.length(); i++) {
-//			c = (char) (altCode.charAt(i) + '0');
-//			// delay(20);//may be needed for certain applications
+		// for (int i = 0; i < altCode.length(); i++) {
+		// c = (char) (altCode.charAt(i) + '0');
+		// // delay(20);//may be needed for certain applications
 		robot.keyPress(c);
-//		robot.notifyAll();
-			System.out.println("keyPress: " + c);
-			// delay(20);//uncomment if necessary
-			robot.keyRelease(c);
-//		}
+		// robot.notifyAll();
+		System.out.println("keyPress: " + c);
+		// delay(20);//uncomment if necessary
+		robot.keyRelease(c);
+		// }
 	}
 
 	/**

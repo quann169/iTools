@@ -40,7 +40,7 @@ public class LoginController {
 	 */
 	public Assessor validateUser(String username, String password) {
 		String sql = "SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin, IsLocked FROM Assessor where Assessor.IsActive = 1 and Assessor.UserName='"
-				+ username + "' and (Password=md5('" + password + "') or LastPassword=md5('" + password
+				+ username.toLowerCase() + "' and (Password=md5('" + password + "') or LastPassword=md5('" + password
 				+ "'));";
 		// System.out.println(sql);
 		logger.info(sql);
@@ -168,7 +168,7 @@ public class LoginController {
 		String sql = "select distinct RoleName "
 				+ " from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID"
 				+ " inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = '" + companyCode
-				+ "' and assessor.UserName= '" + userName + "'";
+				+ "' and assessor.UserName= '" + userName.toLowerCase() + "'";
 		// System.out.println(sql);
 		logger.info(sql);
 		List<Role> listAllRoles = new ArrayList<>();

@@ -209,7 +209,7 @@ INSERT INTO Tools(ToolID, ToolCode, CreatedDate, IsActive) VALUES
 	(4, "CTID4",  now(), 1),
 	(5, "CTID5",  now(), 1),
 	(6, "CTID6",  now(), 1),
-	(7, "CTID7",  now(), 1);
+	(7, "CTID7",  now(), 1); 
 */
 DROP TABLE IF EXISTS ToolsMachine;
 CREATE TABLE IF NOT EXISTS ToolsMachine (

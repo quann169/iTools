@@ -39,7 +39,7 @@ public class UserController {
 	 * @return
 	 */
 	public List<Assessor> getUsersOfCompany(String companyCode) {
-		String sql = "SELECT AssessorID, UserName, Password, CompanyCode, IsActive, IsLocked, FirstName, LastName FROM Assessor where Assessor.IsActive=1 and Assessor.CompanyCode = '"
+		String sql = "SELECT AssessorID, UserName, Password, CompanyCode, IsActive, IsLocked FROM Assessor where Assessor.IsActive=1 and Assessor.CompanyCode = '"
 				+ companyCode + "';";
 		logger.info(sql);
 		List<Assessor> listAllUsers = new ArrayList<>();
@@ -53,14 +53,10 @@ public class UserController {
 				String password = rs.getString(3);
 				String isActive = rs.getString(5);
 				String isLocked = rs.getString(6);
-				String firstName = rs.getString(7);
-				String lastName = rs.getString(8);
 				Assessor user = new Assessor(username, password, companyCode);
 				user.setAssessorId(userId);
 				user.setActive(isActive);
 				user.setLocked(isLocked);
-				user.setFirstName(firstName);
-				user.setLastName(lastName);
 				listAllUsers.add(user);
 			}
 			return listAllUsers;
@@ -118,7 +114,7 @@ public class UserController {
 	 * 
 	 * @return
 	 */
-	public String updatePassword(String username, String companyCode, String password, boolean isFirstChange) {
+	public boolean updatePassword(String username, String companyCode, String password, boolean isFirstChange) {
 		int isFirstChangeInt = 0;
 		if (isFirstChange) {
 			isFirstChangeInt = 1;
@@ -131,10 +127,10 @@ public class UserController {
 			PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
 			int rows = statement.executeUpdate();
 			logger.info(rows + " row(s) updated!");
-			return password;
+			return true;
 		} catch (SQLException e) {
 			logger.info(e.getMessage());
-			return "Err";
+			return false;
 		} finally {
 			mysqlConnect.disconnect();
 		}
