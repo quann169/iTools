@@ -115,8 +115,7 @@ public class ResetPasswordPage extends JFrame implements ActionListener {
 		setLocationAndSize();
 		addComponentsToContainer();
 		addActionEvent();
-		masterLogObj.insertLog(userName, Enum.ASSESSOR, "", Enum.RESET_PASS_PAGE, "", "", companyCode, machineCode,
-				StringUtils.getCurrentClassAndMethodNames());
+		logger.info("Init " + Enum.RESET_PASS_PAGE);
 	}
 
 	public void setLayoutManager() {
@@ -159,14 +158,20 @@ public class ResetPasswordPage extends JFrame implements ActionListener {
 		changePassLabel.setText("<html><html><font size=\"5\" face=\"arial\" color=\"#0181BE\"><b><i><u>"
 				+ bundleMessage.getString("App_ChangePassword") + "</u></i></b></font></html></html>");
 		changePassLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		changePassLabel.setBounds(530, 5, 250, 60);
+		changePassLabel.setBounds(530, 5, 170, 60);
 		changePassLabel.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent e) {
-				System.out.println("changePassLabel");
-				masterLogObj.insertLog(userName, Enum.ASSESSOR, "", Enum.CHANGE_PASS, "", "", companyCode, machineCode,
-						StringUtils.getCurrentClassAndMethodNames());
+			public void mouseClicked(MouseEvent e) {				
 				updateTimer.restart();
+				
+				logger.info(userName + " click change password from " + Enum.RESET_PASS_PAGE);
+				JFrame old = root;
+				root = new ChangePasswordPage(user);
+				StringUtils.frameInit(root, bundleMessage);
+
+				root.setTitle(bundleMessage.getString("Change_Password_Page_Title"));
+				root.getRootPane().setDefaultButton(((ChangePasswordPage) root).changePassButton);
+				old.dispose();
 			}
 		});
 
@@ -181,8 +186,6 @@ public class ResetPasswordPage extends JFrame implements ActionListener {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				updateTimer.restart();
-				masterLogObj.insertLog(userName, Enum.ASSESSOR, "", Enum.LOGOUT, "", "", companyCode, machineCode,
-						StringUtils.getCurrentClassAndMethodNames());
 				logger.info(userName + " logout.");
 				JFrame old = root;
 				root = new LoginPage();
@@ -333,8 +336,6 @@ public class ResetPasswordPage extends JFrame implements ActionListener {
 		updateTimer = new Timer(expiredTime, new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				masterLogObj.insertLog(userName, Enum.RESET_PASS_PAGE, "", Enum.TIME_OUT, "", "", companyCode,
-						machineCode, StringUtils.getCurrentClassAndMethodNames());
 				String timeoutMess = MessageFormat.format(bundleMessage.getString("App_TimeOut"),
 						cfg.getProperty("Expired_Time"));
 				JOptionPane.showMessageDialog(container, timeoutMess, "Time Out Reset Pass",
@@ -358,7 +359,7 @@ public class ResetPasswordPage extends JFrame implements ActionListener {
 		try {
 			updateTimer.restart();
 		} catch (Exception e) {
-			System.err.println("validateAllFields of resetpasspage");
+			logger.error("validateAllFields of resetpasspage");
 		}
 
 		String password = passwordTextField.getText();
@@ -446,7 +447,7 @@ public class ResetPasswordPage extends JFrame implements ActionListener {
 						JOptionPane.YES_NO_OPTION);
 			}
 			if (dialogResult == 0) {
-				System.out.println("Yes option");
+				logger.info("Yes option");
 				if (isFirstTimeLogin) {
 					String newPass = empCtlObj.updatePassword(usernameResetPass, companyCode, password, false);
 					String email = ctlObj.getEmailUser(companyCode, usernameResetPass);
@@ -462,14 +463,11 @@ public class ResetPasswordPage extends JFrame implements ActionListener {
 					};
 
 					one.start();
-					masterLogObj.insertLog(userName, Enum.ASSESSOR, "Password", Enum.UPDATE_PASS_FIRST_TIME_LOGIN,
-							usernameResetPass + " - " + user.getPassword(), "XXX", companyCode, machineCode,
-							StringUtils.getCurrentClassAndMethodNames());
+					logger.info("Change Pass of " + usernameResetPass);
+					
 					String confirm = "<html><font size=\"4\" face=\"arial\"><i>Completed Change Password</i></font></html>";
 					JOptionPane.showMessageDialog(container, confirm, "Notify result", JOptionPane.INFORMATION_MESSAGE);
-
-					masterLogObj.insertLog(userName, Enum.ASSESSOR, "", Enum.LOGOUT, "", "", companyCode, machineCode,
-							StringUtils.getCurrentClassAndMethodNames());
+					logger.info("log out");
 					logger.info(userName + " logout.");
 					JFrame old = root;
 					root = new LoginPage();
@@ -480,9 +478,7 @@ public class ResetPasswordPage extends JFrame implements ActionListener {
 					old.dispose();
 				} else {
 					empCtlObj.updatePassword(usernameResetPass, companyCode, password, true);
-					masterLogObj.insertLog(userName, Enum.ASSESSOR, "Password", Enum.RESET_PASS,
-							usernameResetPass + " - " + user.getPassword(), "XXX", companyCode, machineCode,
-							StringUtils.getCurrentClassAndMethodNames());
+					logger.info("Reset Pass of " + usernameResetPass);
 					String confirm = "<html><font size=\"4\" face=\"arial\"><i>Completed Reset Password" + " "
 							+ usernameResetPass + "</i></font></html>";
 					JOptionPane.showMessageDialog(container, confirm, "Notify result", JOptionPane.INFORMATION_MESSAGE);
@@ -494,7 +490,7 @@ public class ResetPasswordPage extends JFrame implements ActionListener {
 				usernameComboBox.setSelectedIndex(0);
 
 			} else {
-				System.out.println("No Option");
+				logger.info("No Option");
 			}
 
 		}

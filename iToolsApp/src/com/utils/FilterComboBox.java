@@ -32,7 +32,7 @@ public class FilterComboBox extends JComboBox {
 		final JTextField textfield = (JTextField) this.getEditor().getEditorComponent();
 		textfield.addKeyListener(new KeyAdapter() {
 			public void keyPressed(KeyEvent ke) {
-				System.out.println("ke: " + ke);
+//				System.out.println("ke: " + ke);
 				SwingUtilities.invokeLater(new Runnable() {
 					public void run() {
 						currentCaretPosition = textfield.getCaretPosition();
@@ -47,14 +47,14 @@ public class FilterComboBox extends JComboBox {
 			
 			
 			public void keyReleased(KeyEvent e) {
-				System.out.println("keyReleased: " + e);
+//				System.out.println("keyReleased: " + e);
 		        JTextField textField = (JTextField) e.getSource();
 		        String text = textField.getText();
 		        textField.setText(text.toUpperCase());
 		      }
 
 		      public void keyTyped(KeyEvent e) {
-		    	  System.out.println("keyTyped: " + e);
+//		    	  System.out.println("keyTyped: " + e);
 		      }
 
 			

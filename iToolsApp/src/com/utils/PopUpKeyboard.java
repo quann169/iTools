@@ -122,11 +122,7 @@ public class PopUpKeyboard extends JPanel implements ActionListener {
 		String action = e.getActionCommand();
 		// boolean capslock = false;
 		// boolean shift = true;
-		System.out.println(e);
-		System.out.println("RRRRRRRRRRRRRRRRR");
 
-		System.out.println("isTextFieldFocus: " + this.isTextFieldFocus);
-		System.out.println("isComboBoxFocus: " + this.isComboBoxFocus);
 		if (this.isTextFieldFocus) {
 			if (textField == null) {
 				return;
@@ -137,7 +133,7 @@ public class PopUpKeyboard extends JPanel implements ActionListener {
 				}
 
 			} else if (action == "Tab") {
-				System.out.println("AAAAAAAAAAAAA");
+
 			} else if (action == "Space") {
 				textField.setText(textField.getText() + " ");
 			} else if (action == "Enter") {
@@ -195,7 +191,7 @@ public class PopUpKeyboard extends JPanel implements ActionListener {
 		// // delay(20);//may be needed for certain applications
 		robot.keyPress(c);
 		// robot.notifyAll();
-		System.out.println("keyPress: " + c);
+
 		// delay(20);//uncomment if necessary
 		robot.keyRelease(c);
 		// }
@@ -206,7 +202,7 @@ public class PopUpKeyboard extends JPanel implements ActionListener {
 	 *            the textField to set
 	 */
 	public void setTextField(JTextField textField) {
-		System.out.println("XXXXXXXX");
+
 		this.textField = textField;
 		this.isComboBoxFocus = false;
 		this.isTextFieldFocus = true;

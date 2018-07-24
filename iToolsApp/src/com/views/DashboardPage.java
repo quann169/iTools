@@ -90,18 +90,7 @@ public class DashboardPage extends JFrame implements ActionListener {
 		setLocationAndSize();
 		addComponentsToContainer();
 		addActionEvent();
-		masterLogObj.insertLog(userName, Enum.ASSESSOR, "", Enum.SHOW_DASHBOARD, "", "", companyCode, machineCode,
-				StringUtils.getCurrentClassAndMethodNames());
-		
-		
-//		Frame[] allFrame = JFrame.getFrames();
-//		for (Frame frame : allFrame) {
-//			System.out.println("----");
-//			System.out.println(frame);
-//			System.out.println(frame.getName());
-//			System.out.println(frame.getTitle());
-//			System.out.println(frame.getType().name());
-//		}
+		logger.info("Init " + Enum.DASHBOARD_PAGE);
 		
 		
 	}
@@ -123,19 +112,13 @@ public class DashboardPage extends JFrame implements ActionListener {
 		changePassLabel.setText("<html><html><font size=\"5\" face=\"arial\" color=\"#0181BE\"><b><i><u>"
 				+ bundleMessage.getString("App_ChangePassword") + "</u></i></b></font></html></html>");
 		changePassLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		changePassLabel.setBounds(530, 5, 200, 60);
+		changePassLabel.setBounds(530, 5, 170, 60);
 		changePassLabel.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				System.out.println("changePassLabel");
-				masterLogObj.insertLog(userName, Enum.ASSESSOR, "", Enum.CHANGE_PASS, "", "", companyCode, machineCode,
-						StringUtils.getCurrentClassAndMethodNames());
 				updateTimer.restart();
 				
-				
-				updateTimer.restart();
-				
-				logger.info(userName + " click change password.");
+				logger.info(userName + " click change password from " + Enum.DASHBOARD_PAGE);
 				JFrame old = root;
 				root = new ChangePasswordPage(user);
 				StringUtils.frameInit(root, bundleMessage);
@@ -157,8 +140,6 @@ public class DashboardPage extends JFrame implements ActionListener {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				updateTimer.restart();
-				masterLogObj.insertLog(userName, Enum.ASSESSOR, "", Enum.LOGOUT, "", "", companyCode, machineCode,
-						StringUtils.getCurrentClassAndMethodNames());
 				logger.info(userName + " logout.");
 				JFrame old = root;
 				root = new LoginPage();
@@ -196,8 +177,6 @@ public class DashboardPage extends JFrame implements ActionListener {
 		updateTimer = new Timer(expiredTime, new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				masterLogObj.insertLog(userName, Enum.DASHBOARD_PAGE, "", Enum.TIME_OUT, "", "", companyCode,
-						machineCode, StringUtils.getCurrentClassAndMethodNames());
 				String timeoutMess = MessageFormat.format(bundleMessage.getString("App_TimeOut"),
 						cfg.getProperty("Expired_Time"));
 				JOptionPane.showMessageDialog(container, timeoutMess, "Time Out Dashboard",
@@ -268,8 +247,7 @@ public class DashboardPage extends JFrame implements ActionListener {
 		updateTimer.restart();
 		if (e.getSource() == unlockMachineButton) {
 			updateTimer.stop();
-			masterLogObj.insertLog(userName, Enum.ASSESSOR, "", Enum.UNLOCK_MACHINE, "", "", companyCode, machineCode,
-					StringUtils.getCurrentClassAndMethodNames());
+			logger.info(userName + " - " + Enum.UNLOCK_MACHINE);
 			final JDialog d = new JDialog();
 			JPanel p1 = new JPanel(new GridBagLayout());
 			JLabel progress = new JLabel("Please Wait...");
@@ -299,7 +277,7 @@ public class DashboardPage extends JFrame implements ActionListener {
 				}
 
 				protected void done() {
-					System.out.println("Complete");
+					logger.info("Complete");
 					d.dispose();
 //					if (listRoleName.contains(Enum.PUTIN.text().toLowerCase())) {
 						putInsButton.setEnabled(true);
@@ -315,8 +293,7 @@ public class DashboardPage extends JFrame implements ActionListener {
 		}
 		if (e.getSource() == takeOverButton) {
 			updateTimer.stop();
-			masterLogObj.insertLog(userName, Enum.ASSESSOR, "", Enum.TKOVER, "", "", companyCode, machineCode,
-					StringUtils.getCurrentClassAndMethodNames());
+			logger.info(userName + " - " + Enum.TKOVER);
 			JFrame old = root;
 			root = new PutInTakeOverPage(user, Enum.TKOVER.text());
 			StringUtils.frameInit(root, bundleMessage);
@@ -326,8 +303,7 @@ public class DashboardPage extends JFrame implements ActionListener {
 		}
 		if (e.getSource() == putInsButton) {
 			updateTimer.stop();
-			masterLogObj.insertLog(userName, Enum.ASSESSOR, "", Enum.PUTIN, "", "", companyCode, machineCode,
-					StringUtils.getCurrentClassAndMethodNames());
+			logger.info(userName + " - " + Enum.PUTIN);
 			JFrame old = root;
 			root = new PutInTakeOverPage(user, Enum.PUTIN.text());
 			StringUtils.frameInit(root, bundleMessage);
@@ -338,8 +314,7 @@ public class DashboardPage extends JFrame implements ActionListener {
 
 		if (e.getSource() == resetPasswordButton) {
 			updateTimer.stop();
-			masterLogObj.insertLog(userName, Enum.ASSESSOR, "", Enum.RESET_PASS, "", "", companyCode, machineCode,
-					StringUtils.getCurrentClassAndMethodNames());
+			logger.info(resetPasswordButton.getText() + " clicked by " + userName);
 			JFrame old = root;
 			root = new ResetPasswordPage(user, true, false);
 			StringUtils.frameInit(root, bundleMessage);
@@ -350,8 +325,7 @@ public class DashboardPage extends JFrame implements ActionListener {
 		}
 		if (e.getSource() == lockAccountButton) {
 			updateTimer.stop();
-			masterLogObj.insertLog(userName, Enum.ASSESSOR, "", Enum.LOCK_USER, "", "", companyCode, machineCode,
-					StringUtils.getCurrentClassAndMethodNames());
+			logger.info(lockAccountButton.getText() + " clicked by " + userName);
 			JFrame old = root;
 			root = new LockUnlockAccountPage(user, true);
 			StringUtils.frameInit(root, bundleMessage);
@@ -363,8 +337,7 @@ public class DashboardPage extends JFrame implements ActionListener {
 
 		if (e.getSource() == getToolButton) {
 			updateTimer.stop();
-			masterLogObj.insertLog(userName, Enum.ASSESSOR, "", Enum.GETTOOL, "", "", companyCode, machineCode,
-					StringUtils.getCurrentClassAndMethodNames());
+			logger.info(getToolButton.getText() + " clicked by " + userName);
 			JFrame old = root;
 			root = new EmployeePage(user, true);
 			StringUtils.frameInit(root, bundleMessage);
@@ -377,8 +350,7 @@ public class DashboardPage extends JFrame implements ActionListener {
 		if (e.getSource() == manualSyncButton) {
 			SyncController syncCtl = new SyncController();
 			List<String> syncResult = syncCtl.syncDataManually(companyCode, machineCode);
-			masterLogObj.insertLog(userName, Enum.ASSESSOR, "", Enum.SYNC_MANUALLY, "", syncResult.toString(),
-					companyCode, machineCode, StringUtils.getCurrentClassAndMethodNames());
+			logger.info(manualSyncButton.getText() + " clicked by " + userName);
 
 		}
 	}

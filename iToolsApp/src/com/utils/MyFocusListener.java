@@ -16,28 +16,20 @@ public class MyFocusListener implements FocusListener{
 	}
 
 	@Override
-	public void focusGained(FocusEvent event) {
-		System.out.println("--MMMMMMMMMMMMMMMMMMMMMMMMMM-");
-		System.out.println(event);
-		System.out.println(keyboard);
-		
+	public void focusGained(FocusEvent event) {		
 		if (keyboard == null) {
 			return;
 		}
 		Object obj = event.getSource();
-		System.out.println("QQQQQQQQQQQQQQQQQQQQQQQQQQQQQ: " + obj);
 		if (obj instanceof JTextField) {
 			keyboard.setTextField((JTextField) obj);
 		}
 		
 		
 		if (obj instanceof JComboBox) {
-			System.out.println("---------------------DDDDDDDDDDDD-----------------");
 //			keyboard.setTextComponent((MetalComboBoxEditor) obj);
 		}
 		
-		System.out.println(obj instanceof BasicComboBoxEditor);
-		System.out.println(obj.getClass());
 //		keyboard.setTextField(textField);
 	}
 

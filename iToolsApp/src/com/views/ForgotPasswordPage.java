@@ -80,8 +80,7 @@ public class ForgotPasswordPage extends JFrame implements ActionListener {
 		setLocationAndSize();
 		addComponentsToContainer();
 		addActionEvent();
-		masterLogObj.insertLog("", Enum.ASSESSOR, "", Enum.FORGOT_PASS_PAGE, "", "", companyCode, machineCode,
-				StringUtils.getCurrentClassAndMethodNames());
+		logger.info("Init " + Enum.FORGOT_PASS_PAGE);
 	}
 
 	public void setLayoutManager() {
@@ -158,8 +157,6 @@ public class ForgotPasswordPage extends JFrame implements ActionListener {
 		updateTimer = new Timer(expiredTime, new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				masterLogObj.insertLog("", Enum.FORGOT_PASS_PAGE, "", Enum.TIME_OUT, "", "", companyCode, machineCode,
-						StringUtils.getCurrentClassAndMethodNames());
 				String timeoutMess = MessageFormat.format(bundleMessage.getString("App_TimeOut"),
 						cfg.getProperty("Expired_Time"));
 				JOptionPane.showMessageDialog(container, timeoutMess, "Time Out Reset Pass",
@@ -183,7 +180,7 @@ public class ForgotPasswordPage extends JFrame implements ActionListener {
 		try {
 			updateTimer.restart();
 		} catch (Exception e) {
-			System.err.println("validateAllFields of resetpasspage");
+			logger.error("validateAllFields of Forgotpass");
 		}
 
 		String username = usernameTextField.getText();
@@ -273,9 +270,6 @@ public class ForgotPasswordPage extends JFrame implements ActionListener {
 
 					protected void done() {
 						d.dispose();
-						masterLogObj.insertLog(userName, Enum.ASSESSOR, "", Enum.FORGOT_PASS_RESET_OK, "",
-								userName + " - " + email, companyCode, machineCode,
-								StringUtils.getCurrentClassAndMethodNames());
 						logger.info(userName + " - " + email + " forgot pass ok.");
 
 						JOptionPane.showMessageDialog(container,
@@ -299,9 +293,6 @@ public class ForgotPasswordPage extends JFrame implements ActionListener {
 				JOptionPane.showMessageDialog(container,
 						bundleMessage.getString("Forgot_Password_Page_Username_Email_Not_Match"), "Wrong Validation",
 						JOptionPane.WARNING_MESSAGE);
-				masterLogObj.insertLog(userName, Enum.ASSESSOR, "", Enum.FORGOT_PASS_USERNAME_EMAIL_NOT_MATCH, "",
-						userName + " - " + email, companyCode, machineCode,
-						StringUtils.getCurrentClassAndMethodNames());
 				logger.info(userName + " - " + email + " fail validate");
 				return;
 			}

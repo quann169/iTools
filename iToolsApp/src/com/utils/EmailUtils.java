@@ -86,21 +86,15 @@ public class EmailUtils {
 			String response = t.getLastServerResponse();
 			t.close();
 			if (response.contains("OK")) {
-				masterLogObj.insertLog(username, Enum.EMAIL, "", page, "",
-						"To " + toAddr + " - Subject: " + subject + " - Message: " + message, companyCode, machineCode,
-						StringUtils.getCurrentClassAndMethodNames());
+				String logInfo = username + " - " + page + " - Send Mail" + " To " + toAddr + " - Subject: " + subject
+						+ " - Message: " + message;
+				logger.info(logInfo);
 				return true;
 			}
 		} catch (AuthenticationFailedException e) {
-			logger.warn("AuthenticationFailedException: Cannot connect to email" + e.getMessage());
-			masterLogObj.insertLog(username, Enum.EMAIL, "", page, "",
-					"AuthenticationFailedException: Cannot connect to email" + e.getMessage(), companyCode, machineCode,
-					StringUtils.getCurrentClassAndMethodNames());
+			logger.error("AuthenticationFailedException: Cannot connect to email" + e.getMessage());
 		} catch (MessagingException e) {
-			logger.warn("MessagingException: Cannot connect to email" + e.getMessage());
-			masterLogObj.insertLog(username, Enum.EMAIL, "", page, "",
-					"AuthenticationFailedException: Cannot connect to email" + e.getMessage(), companyCode, machineCode,
-					StringUtils.getCurrentClassAndMethodNames());
+			logger.error("MessagingException: Cannot connect to email" + e.getMessage());
 		}
 		return false;
 
@@ -121,8 +115,7 @@ public class EmailUtils {
 			for (String ccEmail : listCCEmail) {
 				msg.setRecipients(Message.RecipientType.CC, InternetAddress.parse(ccEmail, false));
 			}
-			
-			
+
 			msg.setSubject(subject);
 			msg.setText(message);
 			msg.setHeader("iTool_App", "Email from system");
@@ -133,22 +126,15 @@ public class EmailUtils {
 			String response = t.getLastServerResponse();
 			t.close();
 			if (response.contains("OK")) {
-				masterLogObj.insertLog(username, Enum.EMAIL, "",
-						page, "", "To " + mainEmail + " - CC: " + listCCEmail + " - Subject: " + subject
-								+ " - Message: " + message,
-						companyCode, machineCode, StringUtils.getCurrentClassAndMethodNames());
+				String logInfo = username + " - " + page + " - Send Mail" + " To " + mainEmail + " - CC: " + listCCEmail
+						+ " - Subject: " + subject + " - Message: " + message;
+				logger.info(logInfo);
 				return true;
 			}
 		} catch (AuthenticationFailedException e) {
-			logger.warn("AuthenticationFailedException: Cannot connect to email" + e.getMessage());
-			masterLogObj.insertLog(username, Enum.EMAIL, "", page, "",
-					"AuthenticationFailedException: Cannot connect to email" + e.getMessage(), companyCode, machineCode,
-					StringUtils.getCurrentClassAndMethodNames());
+			logger.error("AuthenticationFailedException: Cannot connect to email" + e.getMessage());
 		} catch (MessagingException e) {
-			logger.warn("MessagingException: Cannot connect to email" + e.getMessage());
-			masterLogObj.insertLog(username, Enum.EMAIL, "", page, "",
-					"AuthenticationFailedException: Cannot connect to email" + e.getMessage(), companyCode, machineCode,
-					StringUtils.getCurrentClassAndMethodNames());
+			logger.error("MessagingException: Cannot connect to email" + e.getMessage());
 		}
 		return false;
 

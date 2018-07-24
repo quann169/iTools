@@ -118,8 +118,6 @@ public class ChangePasswordPage extends JFrame implements ActionListener {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				updateTimer.restart();
-				masterLogObj.insertLog(userName, Enum.ASSESSOR, "", Enum.LOGOUT, "", "", companyCode, machineCode,
-						StringUtils.getCurrentClassAndMethodNames());
 				logger.info(userName + " logout.");
 				JFrame old = root;
 				root = new LoginPage();
@@ -240,8 +238,6 @@ public class ChangePasswordPage extends JFrame implements ActionListener {
 		updateTimer = new Timer(expiredTime, new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				masterLogObj.insertLog(userName, Enum.RESET_PASS_PAGE, "", Enum.TIME_OUT, "", "", companyCode,
-						machineCode, StringUtils.getCurrentClassAndMethodNames());
 				String timeoutMess = MessageFormat.format(bundleMessage.getString("App_TimeOut"),
 						cfg.getProperty("Expired_Time"));
 				JOptionPane.showMessageDialog(container, timeoutMess, "Time Out Reset Pass",
@@ -332,7 +328,7 @@ public class ChangePasswordPage extends JFrame implements ActionListener {
 					+ bundleMessage.getString("ChangePassword_Page_Reset_Confirmation") + "?</i></font></html>";
 			dialogResult = JOptionPane.showConfirmDialog(container, confirm, "Confirmation", JOptionPane.YES_NO_OPTION);
 			if (dialogResult == 0) {
-				System.out.println("Yes option");
+				logger.info("Yes option");
 
 				Assessor validateOldPass = ctlObj.validateUser(userName, oldPassword);
 
@@ -365,8 +361,6 @@ public class ChangePasswordPage extends JFrame implements ActionListener {
 					JOptionPane.showMessageDialog(container, confirm, "Notify result", JOptionPane.INFORMATION_MESSAGE);
 					
 					
-					masterLogObj.insertLog(userName, Enum.ASSESSOR, "", Enum.LOGOUT, "", "", companyCode, machineCode,
-							StringUtils.getCurrentClassAndMethodNames());
 					logger.info(userName + " logout.");
 					JFrame old = root;
 					root = new LoginPage();
@@ -377,7 +371,7 @@ public class ChangePasswordPage extends JFrame implements ActionListener {
 					old.dispose();
 				}
 			} else {
-				System.out.println("No Option");
+				logger.info("No Option");
 			}
 
 		}

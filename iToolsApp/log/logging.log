@@ -3974,3 +3974,627 @@ Your pass has been change to 123456', 'Com1', 'MAC1', 'EmailUtils.sendEmail');
 2018-07-23 23:48:51 INFO  LogController:97 - ======================MasterLog executeUpdate done
 2018-07-23 23:48:51 INFO  LogController:99 - ======================MasterLog insertLog done
 2018-07-23 23:48:51 INFO  LogController:108 - ======================MasterLog disconnect done
+2018-07-24 00:30:59 INFO  LoginPage:239 - Login with username: com1admin
+2018-07-24 00:30:59 INFO  LoginController:46 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin, IsLocked FROM Assessor where Assessor.IsActive = 1 and Assessor.UserName='com1admin' and (Password=md5('123456') or LastPassword=md5('123456'));
+2018-07-24 00:31:00 INFO  LoginPage:243 - Login OK
+2018-07-24 00:31:00 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'dasdd', 'Assessor', '', 'Login', '', '', 'Com1', 'MAC1', 'LoginPage.actionPerformed');
+2018-07-24 00:31:00 INFO  LogController:95 - ======================MasterLog prepareStatement done
+2018-07-24 00:31:00 INFO  LogController:97 - ======================MasterLog executeUpdate done
+2018-07-24 00:31:00 INFO  LogController:99 - ======================MasterLog insertLog done
+2018-07-24 00:31:00 INFO  LogController:108 - ======================MasterLog disconnect done
+2018-07-24 00:31:00 INFO  LoginController:173 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'Com1' and assessor.UserName= 'com1admin'
+2018-07-24 00:31:00 INFO  LoginPage:264 - listRoles: [Roles [roleName=SubAdmin], Roles [roleName=Emp]]
+2018-07-24 00:31:00 INFO  LoginPage:284 - Show DashboardPage
+2018-07-24 00:31:00 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Assessor', '', 'ShowDashboard', '', '', 'Com1', 'MAC1', 'DashboardPage.<init>');
+2018-07-24 00:31:00 INFO  LogController:95 - ======================MasterLog prepareStatement done
+2018-07-24 00:31:00 INFO  LogController:97 - ======================MasterLog executeUpdate done
+2018-07-24 00:31:00 INFO  LogController:99 - ======================MasterLog insertLog done
+2018-07-24 00:31:00 INFO  LogController:108 - ======================MasterLog disconnect done
+2018-07-24 00:31:02 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Assessor', '', 'ChangePass', '', '', 'Com1', 'MAC1', 'DashboardPage$1.mouseClicked');
+2018-07-24 00:31:02 INFO  LogController:95 - ======================MasterLog prepareStatement done
+2018-07-24 00:31:03 INFO  LogController:97 - ======================MasterLog executeUpdate done
+2018-07-24 00:31:03 INFO  LogController:99 - ======================MasterLog insertLog done
+2018-07-24 00:31:03 INFO  LogController:108 - ======================MasterLog disconnect done
+2018-07-24 00:31:03 INFO  DashboardPage:138 - com1admin click change password.
+2018-07-24 00:31:03 INFO  ChangePasswordPage:100 - Init ChangePasswordPage of com1admin
+2018-07-24 00:31:04 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Assessor', '', 'Logout', '', '', 'Com1', 'MAC1', 'ChangePasswordPage$1.mouseClicked');
+2018-07-24 00:31:04 INFO  LogController:95 - ======================MasterLog prepareStatement done
+2018-07-24 00:31:04 INFO  LogController:97 - ======================MasterLog executeUpdate done
+2018-07-24 00:31:04 INFO  LogController:99 - ======================MasterLog insertLog done
+2018-07-24 00:31:04 INFO  LogController:108 - ======================MasterLog disconnect done
+2018-07-24 00:31:04 INFO  ChangePasswordPage:123 - com1admin logout.
+2018-07-24 00:31:06 INFO  LoginPage:239 - Login with username: com1admin
+2018-07-24 00:31:06 INFO  LoginController:46 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin, IsLocked FROM Assessor where Assessor.IsActive = 1 and Assessor.UserName='com1admin' and (Password=md5('123456') or LastPassword=md5('123456'));
+2018-07-24 00:31:06 INFO  LoginPage:243 - Login OK
+2018-07-24 00:31:06 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'dasda', 'Assessor', '', 'Login', '', '', 'Com1', 'MAC1', 'LoginPage.actionPerformed');
+2018-07-24 00:31:06 INFO  LogController:95 - ======================MasterLog prepareStatement done
+2018-07-24 00:31:06 INFO  LogController:97 - ======================MasterLog executeUpdate done
+2018-07-24 00:31:06 INFO  LogController:99 - ======================MasterLog insertLog done
+2018-07-24 00:31:06 INFO  LogController:108 - ======================MasterLog disconnect done
+2018-07-24 00:31:06 INFO  LoginController:173 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'Com1' and assessor.UserName= 'com1admin'
+2018-07-24 00:31:06 INFO  LoginPage:264 - listRoles: [Roles [roleName=SubAdmin], Roles [roleName=Emp]]
+2018-07-24 00:31:06 INFO  LoginPage:284 - Show DashboardPage
+2018-07-24 00:31:06 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Assessor', '', 'ShowDashboard', '', '', 'Com1', 'MAC1', 'DashboardPage.<init>');
+2018-07-24 00:31:06 INFO  LogController:95 - ======================MasterLog prepareStatement done
+2018-07-24 00:31:06 INFO  LogController:97 - ======================MasterLog executeUpdate done
+2018-07-24 00:31:06 INFO  LogController:99 - ======================MasterLog insertLog done
+2018-07-24 00:31:06 INFO  LogController:108 - ======================MasterLog disconnect done
+2018-07-24 00:31:07 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Assessor', '', 'GetTools', '', '', 'Com1', 'MAC1', 'DashboardPage.actionPerformed');
+2018-07-24 00:31:07 INFO  LogController:95 - ======================MasterLog prepareStatement done
+2018-07-24 00:31:07 INFO  LogController:97 - ======================MasterLog executeUpdate done
+2018-07-24 00:31:07 INFO  LogController:99 - ======================MasterLog insertLog done
+2018-07-24 00:31:07 INFO  LogController:108 - ======================MasterLog disconnect done
+2018-07-24 00:31:07 INFO  EmployeeController:135 -  select tools.ToolCode, tools.ToolCode, machine.MachineCode, toolsmachinetray.TrayIndex, toolsmachinetray.Quantity  from tools inner join toolsmachine on tools.ToolCode = toolsmachine.ToolCode  inner join machine on toolsmachine.MachineCode = machine.MachineCode  inner join toolsmachinetray on toolsmachinetray.toolsmachineID = toolsmachine.toolsmachineID  where machine.MachineCode = 'MAC1';
+2018-07-24 00:31:07 INFO  EmployeeController:178 - {ACTID111=[[Tray_1, 5], [Tray_5, 3]], BCTID211=[[Tray_4, 5]], FCTID6=[[Tray_2, 2]]}
+2018-07-24 00:31:07 INFO  EmployeeController:191 -  select tools.ToolCode from tools;
+2018-07-24 00:31:07 INFO  EmployeeController:209 - {}
+2018-07-24 00:31:07 INFO  EmployeeController:51 - select tools.ToolId, tools.ToolCode  from tools inner join toolsmachine on tools.ToolCode = toolsmachine.ToolCode  inner join machine on toolsmachine.MachineCode = machine.MachineCode  where machine.MachineCode = 'MAC1';
+2018-07-24 00:31:07 INFO  EmployeeController:72 - [Tool [toolId=1, toolName=ACTID111], Tool [toolId=2, toolName=BCTID211], Tool [toolId=6, toolName=FCTID6], Tool [toolId=4, toolName=DCTID4], Tool [toolId=5, toolName=ECTID5]]
+2018-07-24 00:31:07 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'WorkingTransaction', '', 'EmployeePage', '', '', 'Com1', 'MAC1', 'EmployeePage.<init>');
+2018-07-24 00:31:07 INFO  LogController:95 - ======================MasterLog prepareStatement done
+2018-07-24 00:31:08 INFO  LogController:97 - ======================MasterLog executeUpdate done
+2018-07-24 00:31:08 INFO  LogController:99 - ======================MasterLog insertLog done
+2018-07-24 00:31:08 INFO  LogController:108 - ======================MasterLog disconnect done
+2018-07-24 00:31:08 INFO  EmployeePage:163 - listAllTrays: [TRAY_01, TRAY_02, TRAY_03, TRAY_04, TRAY_05, TRAY_06, TRAY_07, TRAY_08, TRAY_09, TRAY_10, TRAY_11, TRAY_12, TRAY_13, TRAY_14, TRAY_15, TRAY_16, TRAY_17, TRAY_18, TRAY_19, TRAY_20, TRAY_21, TRAY_22, TRAY_23, TRAY_24, TRAY_25, TRAY_26, TRAY_27, TRAY_28, TRAY_29, TRAY_30, TRAY_31, TRAY_32, TRAY_33, TRAY_34, TRAY_35, TRAY_36, TRAY_37, TRAY_38, TRAY_39, TRAY_40, TRAY_41, TRAY_42, TRAY_43, TRAY_44, TRAY_45, TRAY_46, TRAY_47, TRAY_48, TRAY_49, TRAY_50, TRAY_51, TRAY_52, TRAY_53, TRAY_54, TRAY_55, TRAY_56, TRAY_57, TRAY_58, TRAY_59, TRAY_60]
+2018-07-24 00:31:08 INFO  EmployeePage:169 - hashMessage: {}
+2018-07-24 00:31:14 INFO  EmployeePage:594 - com1admin confirm: WO: dada<br/>OP: dadad<br/>CTID: ACTID111<br/>Tray: Tray_5<br/>Quantity: 1
+2018-07-24 00:31:14 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'WorkingTransaction', '', 'SendRequest', '', '', 'Com1', 'MAC1', 'EmployeePage.actionPerformed');
+2018-07-24 00:31:14 INFO  LogController:95 - ======================MasterLog prepareStatement done
+2018-07-24 00:31:15 INFO  LogController:97 - ======================MasterLog executeUpdate done
+2018-07-24 00:31:15 INFO  LogController:99 - ======================MasterLog insertLog done
+2018-07-24 00:31:15 INFO  LogController:108 - ======================MasterLog disconnect done
+2018-07-24 00:31:17 INFO  TransactionController:43 - insert into WorkingTransaction( TransactionDate, MachineCode, CompanyCode, AssessorID, WOCode, OPCode, ToolCode, TrayIndex, Quantity, UpdatedDate, TransactionStatus, TransactionType) values (now(), 'MAC1', 'Com1', 'com1admin', '', '', 'ACTID111', 'Tray_5', '3', now(), 'Send request to board', 'GetTools');
+2018-07-24 00:31:17 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'WorkingTransaction', '', 'Create', '', 'Create transaction', 'Com1', 'MAC1', 'EmployeePage$15.doInBackground');
+2018-07-24 00:31:17 INFO  LogController:95 - ======================MasterLog prepareStatement done
+2018-07-24 00:31:17 INFO  LogController:97 - ======================MasterLog executeUpdate done
+2018-07-24 00:31:17 INFO  LogController:99 - ======================MasterLog insertLog done
+2018-07-24 00:31:17 INFO  LogController:108 - ======================MasterLog disconnect done
+2018-07-24 00:31:17 INFO  EmployeePage:622 - hashMessage: {}
+2018-07-24 00:31:17 INFO  EmployeePage:623 - hashMessage containsKey TRAY_5: false
+2018-07-24 00:31:17 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'WorkingTransaction', '', 'Create', '', 'Tray Tray_5is not defined in config file', 'Com1', 'MAC1', 'EmployeePage$15.doInBackground');
+2018-07-24 00:31:17 INFO  LogController:95 - ======================MasterLog prepareStatement done
+2018-07-24 00:31:17 INFO  LogController:97 - ======================MasterLog executeUpdate done
+2018-07-24 00:31:17 INFO  LogController:99 - ======================MasterLog insertLog done
+2018-07-24 00:31:17 INFO  LogController:108 - ======================MasterLog disconnect done
+2018-07-24 00:31:20 INFO  EmployeePage:644 - resultValue: 0
+2018-07-24 00:31:21 INFO  EmployeePage:672 - Complete with resultValue = 0
+2018-07-24 00:31:23 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Assessor', '', 'ChangePass', '', '', 'Com1', 'MAC1', 'EmployeePage$2.mouseClicked');
+2018-07-24 00:31:23 INFO  LogController:95 - ======================MasterLog prepareStatement done
+2018-07-24 00:31:23 INFO  LogController:97 - ======================MasterLog executeUpdate done
+2018-07-24 00:31:23 INFO  LogController:99 - ======================MasterLog insertLog done
+2018-07-24 00:31:23 INFO  LogController:108 - ======================MasterLog disconnect done
+2018-07-24 00:31:25 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Assessor', '', 'ChangePass', '', '', 'Com1', 'MAC1', 'EmployeePage$2.mouseClicked');
+2018-07-24 00:31:25 INFO  LogController:95 - ======================MasterLog prepareStatement done
+2018-07-24 00:31:25 INFO  LogController:97 - ======================MasterLog executeUpdate done
+2018-07-24 00:31:25 INFO  LogController:99 - ======================MasterLog insertLog done
+2018-07-24 00:31:25 INFO  LogController:108 - ======================MasterLog disconnect done
+2018-07-24 00:31:26 INFO  EmployeePage:188 - com1admin back to dashboard from GETTOOL
+2018-07-24 00:31:26 INFO  LoginController:173 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'Com1' and assessor.UserName= 'com1admin'
+2018-07-24 00:31:26 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Assessor', '', 'ShowDashboard', '', '', 'Com1', 'MAC1', 'DashboardPage.<init>');
+2018-07-24 00:31:26 INFO  LogController:95 - ======================MasterLog prepareStatement done
+2018-07-24 00:31:26 INFO  LogController:97 - ======================MasterLog executeUpdate done
+2018-07-24 00:31:26 INFO  LogController:99 - ======================MasterLog insertLog done
+2018-07-24 00:31:26 INFO  LogController:108 - ======================MasterLog disconnect done
+2018-07-24 00:31:28 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Assessor', '', 'ResetPass', '', '', 'Com1', 'MAC1', 'DashboardPage.actionPerformed');
+2018-07-24 00:31:28 INFO  LogController:95 - ======================MasterLog prepareStatement done
+2018-07-24 00:31:28 INFO  LogController:97 - ======================MasterLog executeUpdate done
+2018-07-24 00:31:28 INFO  LogController:99 - ======================MasterLog insertLog done
+2018-07-24 00:31:28 INFO  LogController:108 - ======================MasterLog disconnect done
+2018-07-24 00:31:28 INFO  UserController:44 - SELECT AssessorID, UserName, Password, CompanyCode, IsActive, IsLocked, FirstName, LastName FROM Assessor where Assessor.IsActive=1 and Assessor.CompanyCode = 'Com1';
+2018-07-24 00:31:28 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Assessor', '', 'ResetPasswordPage', '', '', 'Com1', 'MAC1', 'ResetPasswordPage.<init>');
+2018-07-24 00:31:28 INFO  LogController:95 - ======================MasterLog prepareStatement done
+2018-07-24 00:31:28 INFO  LogController:97 - ======================MasterLog executeUpdate done
+2018-07-24 00:31:28 INFO  LogController:99 - ======================MasterLog insertLog done
+2018-07-24 00:31:28 INFO  LogController:108 - ======================MasterLog disconnect done
+2018-07-24 15:13:57 INFO  LoginPage:239 - Login with username: com1admin
+2018-07-24 15:13:57 INFO  LoginController:46 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin, IsLocked FROM Assessor where Assessor.IsActive = 1 and Assessor.UserName='com1admin' and (Password=md5('123456') or LastPassword=md5('123456'));
+2018-07-24 15:13:58 INFO  LoginPage:243 - Login OK
+2018-07-24 15:13:58 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'sdfs', 'Assessor', '', 'Login', '', '', 'Com1', 'MAC1', 'LoginPage.actionPerformed');
+2018-07-24 15:13:58 INFO  LogController:95 - ======================MasterLog prepareStatement done
+2018-07-24 15:13:58 INFO  LogController:97 - ======================MasterLog executeUpdate done
+2018-07-24 15:13:58 INFO  LogController:99 - ======================MasterLog insertLog done
+2018-07-24 15:13:58 INFO  LogController:108 - ======================MasterLog disconnect done
+2018-07-24 15:13:58 INFO  LoginController:173 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'Com1' and assessor.UserName= 'com1admin'
+2018-07-24 15:13:58 INFO  LoginPage:264 - listRoles: [Roles [roleName=SubAdmin], Roles [roleName=Emp]]
+2018-07-24 15:13:58 INFO  LoginPage:284 - Show DashboardPage
+2018-07-24 15:13:59 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Assessor', '', 'ShowDashboard', '', '', 'Com1', 'MAC1', 'DashboardPage.<init>');
+2018-07-24 15:13:59 INFO  LogController:95 - ======================MasterLog prepareStatement done
+2018-07-24 15:13:59 INFO  LogController:97 - ======================MasterLog executeUpdate done
+2018-07-24 15:13:59 INFO  LogController:99 - ======================MasterLog insertLog done
+2018-07-24 15:13:59 INFO  LogController:108 - ======================MasterLog disconnect done
+2018-07-24 15:14:03 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Assessor', '', 'ResetPass', '', '', 'Com1', 'MAC1', 'DashboardPage.actionPerformed');
+2018-07-24 15:14:03 INFO  LogController:95 - ======================MasterLog prepareStatement done
+2018-07-24 15:14:03 INFO  LogController:97 - ======================MasterLog executeUpdate done
+2018-07-24 15:14:03 INFO  LogController:99 - ======================MasterLog insertLog done
+2018-07-24 15:14:03 INFO  LogController:108 - ======================MasterLog disconnect done
+2018-07-24 15:14:04 INFO  UserController:44 - SELECT AssessorID, UserName, Password, CompanyCode, IsActive, IsLocked, FirstName, LastName FROM Assessor where Assessor.IsActive=1 and Assessor.CompanyCode = 'Com1';
+2018-07-24 15:14:04 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Assessor', '', 'ResetPasswordPage', '', '', 'Com1', 'MAC1', 'ResetPasswordPage.<init>');
+2018-07-24 15:14:04 INFO  LogController:95 - ======================MasterLog prepareStatement done
+2018-07-24 15:14:04 INFO  LogController:97 - ======================MasterLog executeUpdate done
+2018-07-24 15:14:04 INFO  LogController:99 - ======================MasterLog insertLog done
+2018-07-24 15:14:04 INFO  LogController:108 - ======================MasterLog disconnect done
+2018-07-24 15:14:05 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Assessor', '', 'ChangePass', '', '', 'Com1', 'MAC1', 'ResetPasswordPage$2.mouseClicked');
+2018-07-24 15:14:05 INFO  LogController:95 - ======================MasterLog prepareStatement done
+2018-07-24 15:14:06 INFO  LogController:97 - ======================MasterLog executeUpdate done
+2018-07-24 15:14:06 INFO  LogController:99 - ======================MasterLog insertLog done
+2018-07-24 15:14:06 INFO  LogController:108 - ======================MasterLog disconnect done
+2018-07-24 15:14:10 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Assessor', '', 'ChangePass', '', '', 'Com1', 'MAC1', 'ResetPasswordPage$2.mouseClicked');
+2018-07-24 15:14:10 INFO  LogController:95 - ======================MasterLog prepareStatement done
+2018-07-24 15:14:10 INFO  LogController:97 - ======================MasterLog executeUpdate done
+2018-07-24 15:14:10 INFO  LogController:99 - ======================MasterLog insertLog done
+2018-07-24 15:14:10 INFO  LogController:108 - ======================MasterLog disconnect done
+2018-07-24 15:14:11 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Assessor', '', 'ChangePass', '', '', 'Com1', 'MAC1', 'ResetPasswordPage$2.mouseClicked');
+2018-07-24 15:14:11 INFO  LogController:95 - ======================MasterLog prepareStatement done
+2018-07-24 15:14:11 INFO  LogController:97 - ======================MasterLog executeUpdate done
+2018-07-24 15:14:11 INFO  LogController:99 - ======================MasterLog insertLog done
+2018-07-24 15:14:11 INFO  LogController:108 - ======================MasterLog disconnect done
+2018-07-24 15:14:12 INFO  ResetPasswordPage:141 - com1admin back to dashboard from RESET_PASS_PAGE
+2018-07-24 15:14:12 INFO  LoginController:173 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'Com1' and assessor.UserName= 'com1admin'
+2018-07-24 15:14:12 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Assessor', '', 'ShowDashboard', '', '', 'Com1', 'MAC1', 'DashboardPage.<init>');
+2018-07-24 15:14:12 INFO  LogController:95 - ======================MasterLog prepareStatement done
+2018-07-24 15:14:12 INFO  LogController:97 - ======================MasterLog executeUpdate done
+2018-07-24 15:14:12 INFO  LogController:99 - ======================MasterLog insertLog done
+2018-07-24 15:14:12 INFO  LogController:108 - ======================MasterLog disconnect done
+2018-07-24 15:41:12 INFO  LoginPage:239 - Login with username: com1admin
+2018-07-24 15:41:12 INFO  LoginController:46 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin, IsLocked FROM Assessor where Assessor.IsActive = 1 and Assessor.UserName='com1admin' and (Password=md5('123456') or LastPassword=md5('123456'));
+2018-07-24 15:41:13 INFO  LoginPage:243 - Login OK
+2018-07-24 15:41:13 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'dá', 'Assessor', '', 'Login', '', '', 'Com1', 'MAC1', 'LoginPage.actionPerformed');
+2018-07-24 15:41:13 INFO  LogController:95 - ======================MasterLog prepareStatement done
+2018-07-24 15:41:13 INFO  LogController:97 - ======================MasterLog executeUpdate done
+2018-07-24 15:41:13 INFO  LogController:99 - ======================MasterLog insertLog done
+2018-07-24 15:41:13 INFO  LogController:108 - ======================MasterLog disconnect done
+2018-07-24 15:41:13 INFO  LoginController:173 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'Com1' and assessor.UserName= 'com1admin'
+2018-07-24 15:41:13 INFO  LoginPage:264 - listRoles: [Roles [roleName=SubAdmin], Roles [roleName=Emp]]
+2018-07-24 15:41:13 INFO  LoginPage:284 - Show DashboardPage
+2018-07-24 15:41:13 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Assessor', '', 'ShowDashboard', '', '', 'Com1', 'MAC1', 'DashboardPage.<init>');
+2018-07-24 15:41:13 INFO  LogController:95 - ======================MasterLog prepareStatement done
+2018-07-24 15:41:13 INFO  LogController:97 - ======================MasterLog executeUpdate done
+2018-07-24 15:41:13 INFO  LogController:99 - ======================MasterLog insertLog done
+2018-07-24 15:41:13 INFO  LogController:108 - ======================MasterLog disconnect done
+2018-07-24 15:41:16 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Assessor', '', 'ResetPass', '', '', 'Com1', 'MAC1', 'DashboardPage.actionPerformed');
+2018-07-24 15:41:16 INFO  LogController:95 - ======================MasterLog prepareStatement done
+2018-07-24 15:41:16 INFO  LogController:97 - ======================MasterLog executeUpdate done
+2018-07-24 15:41:16 INFO  LogController:99 - ======================MasterLog insertLog done
+2018-07-24 15:41:16 INFO  LogController:108 - ======================MasterLog disconnect done
+2018-07-24 15:41:16 INFO  UserController:44 - SELECT AssessorID, UserName, Password, CompanyCode, IsActive, IsLocked, FirstName, LastName FROM Assessor where Assessor.IsActive=1 and Assessor.CompanyCode = 'Com1';
+2018-07-24 15:41:16 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Assessor', '', 'ResetPasswordPage', '', '', 'Com1', 'MAC1', 'ResetPasswordPage.<init>');
+2018-07-24 15:41:16 INFO  LogController:95 - ======================MasterLog prepareStatement done
+2018-07-24 15:41:16 INFO  LogController:97 - ======================MasterLog executeUpdate done
+2018-07-24 15:41:16 INFO  LogController:99 - ======================MasterLog insertLog done
+2018-07-24 15:41:16 INFO  LogController:108 - ======================MasterLog disconnect done
+2018-07-24 15:41:17 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Assessor', '', 'ChangePass', '', '', 'Com1', 'MAC1', 'ResetPasswordPage$2.mouseClicked');
+2018-07-24 15:41:17 INFO  LogController:95 - ======================MasterLog prepareStatement done
+2018-07-24 15:41:17 INFO  LogController:97 - ======================MasterLog executeUpdate done
+2018-07-24 15:41:17 INFO  LogController:99 - ======================MasterLog insertLog done
+2018-07-24 15:41:17 INFO  LogController:108 - ======================MasterLog disconnect done
+2018-07-24 15:41:18 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Assessor', '', 'ChangePass', '', '', 'Com1', 'MAC1', 'ResetPasswordPage$2.mouseClicked');
+2018-07-24 15:41:18 INFO  LogController:95 - ======================MasterLog prepareStatement done
+2018-07-24 15:41:18 INFO  LogController:97 - ======================MasterLog executeUpdate done
+2018-07-24 15:41:18 INFO  LogController:99 - ======================MasterLog insertLog done
+2018-07-24 15:41:18 INFO  LogController:108 - ======================MasterLog disconnect done
+2018-07-24 15:50:35 INFO  LoginPage:239 - Login with username: com1admin
+2018-07-24 15:50:35 INFO  LoginController:46 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin, IsLocked FROM Assessor where Assessor.IsActive = 1 and Assessor.UserName='com1admin' and (Password=md5('123456') or LastPassword=md5('123456'));
+2018-07-24 15:50:36 INFO  LoginPage:243 - Login OK
+2018-07-24 15:50:36 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'fsfs', 'Assessor', '', 'Login', '', '', 'Com1', 'MAC1', 'LoginPage.actionPerformed');
+2018-07-24 15:50:36 INFO  LogController:95 - ======================MasterLog prepareStatement done
+2018-07-24 15:50:36 INFO  LogController:97 - ======================MasterLog executeUpdate done
+2018-07-24 15:50:36 INFO  LogController:99 - ======================MasterLog insertLog done
+2018-07-24 15:50:36 INFO  LogController:108 - ======================MasterLog disconnect done
+2018-07-24 15:50:36 INFO  LoginController:173 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'Com1' and assessor.UserName= 'com1admin'
+2018-07-24 15:50:36 INFO  LoginPage:264 - listRoles: [Roles [roleName=SubAdmin], Roles [roleName=Emp]]
+2018-07-24 15:50:36 INFO  LoginPage:284 - Show DashboardPage
+2018-07-24 15:50:36 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Assessor', '', 'ShowDashboard', '', '', 'Com1', 'MAC1', 'DashboardPage.<init>');
+2018-07-24 15:50:36 INFO  LogController:95 - ======================MasterLog prepareStatement done
+2018-07-24 15:50:36 INFO  LogController:97 - ======================MasterLog executeUpdate done
+2018-07-24 15:50:36 INFO  LogController:99 - ======================MasterLog insertLog done
+2018-07-24 15:50:36 INFO  LogController:108 - ======================MasterLog disconnect done
+2018-07-24 15:50:37 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Assessor', '', 'ResetPass', '', '', 'Com1', 'MAC1', 'DashboardPage.actionPerformed');
+2018-07-24 15:50:37 INFO  LogController:95 - ======================MasterLog prepareStatement done
+2018-07-24 15:50:37 INFO  LogController:97 - ======================MasterLog executeUpdate done
+2018-07-24 15:50:37 INFO  LogController:99 - ======================MasterLog insertLog done
+2018-07-24 15:50:37 INFO  LogController:108 - ======================MasterLog disconnect done
+2018-07-24 15:50:37 INFO  UserController:44 - SELECT AssessorID, UserName, Password, CompanyCode, IsActive, IsLocked, FirstName, LastName FROM Assessor where Assessor.IsActive=1 and Assessor.CompanyCode = 'Com1';
+2018-07-24 15:50:37 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Assessor', '', 'ResetPasswordPage', '', '', 'Com1', 'MAC1', 'ResetPasswordPage.<init>');
+2018-07-24 15:50:37 INFO  LogController:95 - ======================MasterLog prepareStatement done
+2018-07-24 15:50:37 INFO  LogController:97 - ======================MasterLog executeUpdate done
+2018-07-24 15:50:37 INFO  LogController:99 - ======================MasterLog insertLog done
+2018-07-24 15:50:37 INFO  LogController:108 - ======================MasterLog disconnect done
+2018-07-24 15:50:44 INFO  ResetPasswordPage:168 - com1admin click change password from RESET_PASS_PAGE
+2018-07-24 15:50:45 INFO  ChangePasswordPage:100 - Init ChangePasswordPage of com1admin
+2018-07-24 15:51:05 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), 'com1admin', 'Assessor', '', 'Logout', '', '', 'Com1', 'MAC1', 'ChangePasswordPage$1.mouseClicked');
+2018-07-24 15:51:05 INFO  LogController:95 - ======================MasterLog prepareStatement done
+2018-07-24 15:51:05 INFO  LogController:97 - ======================MasterLog executeUpdate done
+2018-07-24 15:51:05 INFO  LogController:99 - ======================MasterLog insertLog done
+2018-07-24 15:51:05 INFO  LogController:108 - ======================MasterLog disconnect done
+2018-07-24 15:51:05 INFO  ChangePasswordPage:123 - com1admin logout.
+2018-07-24 15:51:10 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), '', 'Assessor', '', 'ForgotPass', '', '', 'Com1', 'MAC1', 'LoginPage.actionPerformed');
+2018-07-24 15:51:10 INFO  LogController:95 - ======================MasterLog prepareStatement done
+2018-07-24 15:51:10 INFO  LogController:97 - ======================MasterLog executeUpdate done
+2018-07-24 15:51:10 INFO  LogController:99 - ======================MasterLog insertLog done
+2018-07-24 15:51:10 INFO  LogController:108 - ======================MasterLog disconnect done
+2018-07-24 15:51:10 INFO  LoginPage:335 - Forgot Pass
+2018-07-24 15:51:10 INFO  LogController:91 - insert into MasterLog (LogDate, AssessorName, TblName, ColumnName, Action, OldValue, NewValue, companyCode, machineCode, Notes)  values (now(), '', 'Assessor', '', 'ForgotPasswordPage', '', '', 'Com1', 'MAC1', 'ForgotPasswordPage.<init>');
+2018-07-24 15:51:10 INFO  LogController:95 - ======================MasterLog prepareStatement done
+2018-07-24 15:51:10 INFO  LogController:97 - ======================MasterLog executeUpdate done
+2018-07-24 15:51:10 INFO  LogController:99 - ======================MasterLog insertLog done
+2018-07-24 15:51:10 INFO  LogController:108 - ======================MasterLog disconnect done
+2018-07-24 16:57:34 INFO  LoginPage:239 - Login with username: com1admin
+2018-07-24 16:57:34 INFO  LoginController:46 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin, IsLocked FROM Assessor where Assessor.IsActive = 1 and Assessor.UserName='com1admin' and (Password=md5('123456') or LastPassword=md5('123456'));
+2018-07-24 16:57:34 INFO  LoginPage:243 - Login OK
+2018-07-24 16:57:34 INFO  LoginController:173 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'Com1' and assessor.UserName= 'com1admin'
+2018-07-24 16:57:35 INFO  LoginPage:258 - listRoles: [Roles [roleName=SubAdmin], Roles [roleName=Emp]]
+2018-07-24 16:57:35 INFO  LoginPage:278 - Show DashboardPage
+2018-07-24 16:57:35 INFO  DashboardPage:93 - Init DASHBOARD_PAGE
+2018-07-24 16:57:38 INFO  DashboardPage:317 - Reset Password clicked by com1admin
+2018-07-24 16:57:38 INFO  UserController:44 - SELECT AssessorID, UserName, Password, CompanyCode, IsActive, IsLocked, FirstName, LastName FROM Assessor where Assessor.IsActive=1 and Assessor.CompanyCode = 'Com1';
+2018-07-24 16:57:38 INFO  ResetPasswordPage:118 - Init RESET_PASS_PAGE
+2018-07-24 16:57:43 INFO  ResetPasswordPage:167 - com1admin click change password from RESET_PASS_PAGE
+2018-07-24 16:57:43 INFO  ChangePasswordPage:100 - Init ChangePasswordPage of com1admin
+2018-07-24 16:57:45 INFO  ChangePasswordPage:121 - com1admin logout.
+2018-07-24 16:57:47 INFO  LoginPage:239 - Login with username: com1admin
+2018-07-24 16:57:47 INFO  LoginController:46 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin, IsLocked FROM Assessor where Assessor.IsActive = 1 and Assessor.UserName='com1admin' and (Password=md5('123456') or LastPassword=md5('123456'));
+2018-07-24 16:57:47 INFO  LoginPage:243 - Login OK
+2018-07-24 16:57:47 INFO  LoginController:173 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'Com1' and assessor.UserName= 'com1admin'
+2018-07-24 16:57:47 INFO  LoginPage:258 - listRoles: [Roles [roleName=SubAdmin], Roles [roleName=Emp]]
+2018-07-24 16:57:47 INFO  LoginPage:278 - Show DashboardPage
+2018-07-24 16:57:47 INFO  DashboardPage:93 - Init DASHBOARD_PAGE
+2018-07-24 16:57:48 INFO  DashboardPage:328 - Lock - Unlock Account clicked by com1admin
+2018-07-24 16:57:48 INFO  UserController:44 - SELECT AssessorID, UserName, Password, CompanyCode, IsActive, IsLocked, FirstName, LastName FROM Assessor where Assessor.IsActive=1 and Assessor.CompanyCode = 'Com1';
+2018-07-24 16:57:48 ERROR LockUnlockAccountPage:253 - validateAllFields of lockunlockpage
+2018-07-24 16:57:48 INFO  LockUnlockAccountPage:94 - Init LOCK_UNLOCK_PAGE
+2018-07-24 16:57:49 INFO  LockUnlockAccountPage:115 - com1admin back to dashboard from LOCK_UNLOCK_PAGE
+2018-07-24 16:57:49 INFO  LoginController:173 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'Com1' and assessor.UserName= 'com1admin'
+2018-07-24 16:57:49 INFO  DashboardPage:93 - Init DASHBOARD_PAGE
+2018-07-24 16:57:51 INFO  DashboardPage:121 - com1admin click change password from DASHBOARD_PAGE
+2018-07-24 16:57:51 INFO  ChangePasswordPage:100 - Init ChangePasswordPage of com1admin
+2018-07-24 16:57:52 INFO  ChangePasswordPage:121 - com1admin logout.
+2018-07-24 16:57:54 INFO  LoginPage:239 - Login with username: com1admin
+2018-07-24 16:57:54 INFO  LoginController:46 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin, IsLocked FROM Assessor where Assessor.IsActive = 1 and Assessor.UserName='com1admin' and (Password=md5('123456') or LastPassword=md5('123456'));
+2018-07-24 16:57:54 INFO  LoginPage:243 - Login OK
+2018-07-24 16:57:54 INFO  LoginController:173 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'Com1' and assessor.UserName= 'com1admin'
+2018-07-24 16:57:54 INFO  LoginPage:258 - listRoles: [Roles [roleName=SubAdmin], Roles [roleName=Emp]]
+2018-07-24 16:57:54 INFO  LoginPage:278 - Show DashboardPage
+2018-07-24 16:57:54 INFO  DashboardPage:93 - Init DASHBOARD_PAGE
+2018-07-24 16:57:56 INFO  DashboardPage:328 - Lock - Unlock Account clicked by com1admin
+2018-07-24 16:57:56 INFO  UserController:44 - SELECT AssessorID, UserName, Password, CompanyCode, IsActive, IsLocked, FirstName, LastName FROM Assessor where Assessor.IsActive=1 and Assessor.CompanyCode = 'Com1';
+2018-07-24 16:57:56 ERROR LockUnlockAccountPage:253 - validateAllFields of lockunlockpage
+2018-07-24 16:57:56 INFO  LockUnlockAccountPage:94 - Init LOCK_UNLOCK_PAGE
+2018-07-24 16:57:57 INFO  LockUnlockAccountPage:142 - com1admin click change password from LOCK_UNLOCK_PAGE
+2018-07-24 16:57:57 INFO  ChangePasswordPage:100 - Init ChangePasswordPage of com1admin
+2018-07-24 16:58:00 INFO  ChangePasswordPage:121 - com1admin logout.
+2018-07-24 16:58:02 INFO  LoginPage:239 - Login with username: com1admin
+2018-07-24 16:58:02 INFO  LoginController:46 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin, IsLocked FROM Assessor where Assessor.IsActive = 1 and Assessor.UserName='com1admin' and (Password=md5('123456') or LastPassword=md5('123456'));
+2018-07-24 16:58:02 INFO  LoginPage:243 - Login OK
+2018-07-24 16:58:02 INFO  LoginController:173 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'Com1' and assessor.UserName= 'com1admin'
+2018-07-24 16:58:02 INFO  LoginPage:258 - listRoles: [Roles [roleName=SubAdmin], Roles [roleName=Emp]]
+2018-07-24 16:58:02 INFO  LoginPage:278 - Show DashboardPage
+2018-07-24 16:58:02 INFO  DashboardPage:93 - Init DASHBOARD_PAGE
+2018-07-24 16:58:03 INFO  DashboardPage:328 - Lock - Unlock Account clicked by com1admin
+2018-07-24 16:58:03 INFO  UserController:44 - SELECT AssessorID, UserName, Password, CompanyCode, IsActive, IsLocked, FirstName, LastName FROM Assessor where Assessor.IsActive=1 and Assessor.CompanyCode = 'Com1';
+2018-07-24 16:58:03 ERROR LockUnlockAccountPage:253 - validateAllFields of lockunlockpage
+2018-07-24 16:58:03 INFO  LockUnlockAccountPage:94 - Init LOCK_UNLOCK_PAGE
+2018-07-24 16:58:09 INFO  LockUnlockAccountPage:142 - com1admin click change password from LOCK_UNLOCK_PAGE
+2018-07-24 16:58:09 INFO  ChangePasswordPage:100 - Init ChangePasswordPage of com1admin
+2018-07-24 16:58:15 INFO  ChangePasswordPage:121 - com1admin logout.
+2018-07-24 16:58:17 INFO  LoginPage:239 - Login with username: com1admin
+2018-07-24 16:58:17 INFO  LoginController:46 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin, IsLocked FROM Assessor where Assessor.IsActive = 1 and Assessor.UserName='com1admin' and (Password=md5('123456') or LastPassword=md5('123456'));
+2018-07-24 16:58:17 INFO  LoginPage:243 - Login OK
+2018-07-24 16:58:17 INFO  LoginController:173 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'Com1' and assessor.UserName= 'com1admin'
+2018-07-24 16:58:17 INFO  LoginPage:258 - listRoles: [Roles [roleName=SubAdmin], Roles [roleName=Emp]]
+2018-07-24 16:58:17 INFO  LoginPage:278 - Show DashboardPage
+2018-07-24 16:58:17 INFO  DashboardPage:93 - Init DASHBOARD_PAGE
+2018-07-24 16:58:24 INFO  DashboardPage:121 - com1admin click change password from DASHBOARD_PAGE
+2018-07-24 16:58:24 INFO  ChangePasswordPage:100 - Init ChangePasswordPage of com1admin
+2018-07-24 16:58:27 INFO  ChangePasswordPage:121 - com1admin logout.
+2018-07-24 16:58:30 INFO  LoginPage:239 - Login with username: com1admin
+2018-07-24 16:58:30 INFO  LoginController:46 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin, IsLocked FROM Assessor where Assessor.IsActive = 1 and Assessor.UserName='com1admin' and (Password=md5('123456') or LastPassword=md5('123456'));
+2018-07-24 16:58:30 INFO  LoginPage:243 - Login OK
+2018-07-24 16:58:30 INFO  LoginController:173 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'Com1' and assessor.UserName= 'com1admin'
+2018-07-24 16:58:30 INFO  LoginPage:258 - listRoles: [Roles [roleName=SubAdmin], Roles [roleName=Emp]]
+2018-07-24 16:58:30 INFO  LoginPage:278 - Show DashboardPage
+2018-07-24 16:58:30 INFO  DashboardPage:93 - Init DASHBOARD_PAGE
+2018-07-24 16:58:32 INFO  DashboardPage:328 - Lock - Unlock Account clicked by com1admin
+2018-07-24 16:58:32 INFO  UserController:44 - SELECT AssessorID, UserName, Password, CompanyCode, IsActive, IsLocked, FirstName, LastName FROM Assessor where Assessor.IsActive=1 and Assessor.CompanyCode = 'Com1';
+2018-07-24 16:58:32 ERROR LockUnlockAccountPage:253 - validateAllFields of lockunlockpage
+2018-07-24 16:58:32 INFO  LockUnlockAccountPage:94 - Init LOCK_UNLOCK_PAGE
+2018-07-24 17:00:50 INFO  LoginPage:239 - Login with username: com1admin
+2018-07-24 17:00:50 INFO  LoginController:46 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin, IsLocked FROM Assessor where Assessor.IsActive = 1 and Assessor.UserName='com1admin' and (Password=md5('123456') or LastPassword=md5('123456'));
+2018-07-24 17:00:50 INFO  LoginPage:243 - Login OK
+2018-07-24 17:00:50 INFO  LoginController:173 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'Com1' and assessor.UserName= 'com1admin'
+2018-07-24 17:00:51 INFO  LoginPage:258 - listRoles: [Roles [roleName=SubAdmin], Roles [roleName=Emp]]
+2018-07-24 17:00:51 INFO  LoginPage:278 - Show DashboardPage
+2018-07-24 17:00:51 INFO  DashboardPage:93 - Init DASHBOARD_PAGE
+2018-07-24 17:00:55 INFO  DashboardPage:121 - com1admin click change password from DASHBOARD_PAGE
+2018-07-24 17:00:55 INFO  ChangePasswordPage:100 - Init ChangePasswordPage of com1admin
+2018-07-24 17:00:59 INFO  ChangePasswordPage:121 - com1admin logout.
+2018-07-24 17:01:26 INFO  LoginPage:239 - Login with username: com1admin
+2018-07-24 17:01:26 INFO  LoginController:46 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin, IsLocked FROM Assessor where Assessor.IsActive = 1 and Assessor.UserName='com1admin' and (Password=md5('123456') or LastPassword=md5('123456'));
+2018-07-24 17:01:26 INFO  LoginPage:243 - Login OK
+2018-07-24 17:01:26 INFO  LoginController:173 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'Com1' and assessor.UserName= 'com1admin'
+2018-07-24 17:01:26 INFO  LoginPage:258 - listRoles: [Roles [roleName=SubAdmin], Roles [roleName=Emp]]
+2018-07-24 17:01:26 INFO  LoginPage:278 - Show DashboardPage
+2018-07-24 17:01:26 INFO  DashboardPage:93 - Init DASHBOARD_PAGE
+2018-07-24 17:01:46 INFO  LoginPage:239 - Login with username: com1admin
+2018-07-24 17:01:46 INFO  LoginController:46 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin, IsLocked FROM Assessor where Assessor.IsActive = 1 and Assessor.UserName='com1admin' and (Password=md5('123456') or LastPassword=md5('123456'));
+2018-07-24 17:01:47 INFO  LoginPage:243 - Login OK
+2018-07-24 17:01:47 INFO  LoginController:173 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'Com1' and assessor.UserName= 'com1admin'
+2018-07-24 17:01:47 INFO  LoginPage:258 - listRoles: [Roles [roleName=SubAdmin], Roles [roleName=Emp]]
+2018-07-24 17:01:47 INFO  LoginPage:278 - Show DashboardPage
+2018-07-24 17:01:47 INFO  DashboardPage:93 - Init DASHBOARD_PAGE
+2018-07-24 17:01:51 INFO  DashboardPage:121 - com1admin click change password from DASHBOARD_PAGE
+2018-07-24 17:01:51 INFO  ChangePasswordPage:100 - Init ChangePasswordPage of com1admin
+2018-07-24 17:01:55 INFO  ChangePasswordPage:121 - com1admin logout.
+2018-07-24 17:02:11 INFO  LoginPage:239 - Login with username: com1admin
+2018-07-24 17:02:11 INFO  LoginController:46 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin, IsLocked FROM Assessor where Assessor.IsActive = 1 and Assessor.UserName='com1admin' and (Password=md5('123456') or LastPassword=md5('123456'));
+2018-07-24 17:02:11 INFO  LoginPage:243 - Login OK
+2018-07-24 17:02:11 INFO  LoginController:173 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'Com1' and assessor.UserName= 'com1admin'
+2018-07-24 17:02:11 INFO  LoginPage:258 - listRoles: [Roles [roleName=SubAdmin], Roles [roleName=Emp]]
+2018-07-24 17:02:11 INFO  LoginPage:278 - Show DashboardPage
+2018-07-24 17:02:11 INFO  DashboardPage:93 - Init DASHBOARD_PAGE
+2018-07-24 17:02:16 INFO  DashboardPage:143 - com1admin logout.
+2018-07-24 17:02:19 INFO  LoginPage:239 - Login with username: com1admin
+2018-07-24 17:02:19 INFO  LoginController:46 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin, IsLocked FROM Assessor where Assessor.IsActive = 1 and Assessor.UserName='com1admin' and (Password=md5('123456') or LastPassword=md5('123456'));
+2018-07-24 17:02:19 INFO  LoginPage:243 - Login OK
+2018-07-24 17:02:19 INFO  LoginController:173 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'Com1' and assessor.UserName= 'com1admin'
+2018-07-24 17:02:19 INFO  LoginPage:258 - listRoles: [Roles [roleName=SubAdmin], Roles [roleName=Emp]]
+2018-07-24 17:02:19 INFO  LoginPage:278 - Show DashboardPage
+2018-07-24 17:02:19 INFO  DashboardPage:93 - Init DASHBOARD_PAGE
+2018-07-24 17:02:21 INFO  DashboardPage:121 - com1admin click change password from DASHBOARD_PAGE
+2018-07-24 17:02:21 INFO  ChangePasswordPage:100 - Init ChangePasswordPage of com1admin
+2018-07-24 17:02:23 INFO  ChangePasswordPage:121 - com1admin logout.
+2018-07-24 17:02:36 INFO  LoginPage:239 - Login with username: com1admin
+2018-07-24 17:02:36 INFO  LoginController:46 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin, IsLocked FROM Assessor where Assessor.IsActive = 1 and Assessor.UserName='com1admin' and (Password=md5('123456') or LastPassword=md5('123456'));
+2018-07-24 17:02:36 INFO  LoginPage:243 - Login OK
+2018-07-24 17:02:36 INFO  LoginController:173 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'Com1' and assessor.UserName= 'com1admin'
+2018-07-24 17:02:36 INFO  LoginPage:258 - listRoles: [Roles [roleName=SubAdmin], Roles [roleName=Emp]]
+2018-07-24 17:02:36 INFO  LoginPage:278 - Show DashboardPage
+2018-07-24 17:02:37 INFO  DashboardPage:93 - Init DASHBOARD_PAGE
+2018-07-24 17:04:10 INFO  LoginPage:239 - Login with username: com1admin
+2018-07-24 17:04:10 INFO  LoginController:46 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin, IsLocked FROM Assessor where Assessor.IsActive = 1 and Assessor.UserName='com1admin' and (Password=md5('123456') or LastPassword=md5('123456'));
+2018-07-24 17:04:10 INFO  LoginPage:243 - Login OK
+2018-07-24 17:04:10 INFO  LoginController:173 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'Com1' and assessor.UserName= 'com1admin'
+2018-07-24 17:04:10 INFO  LoginPage:258 - listRoles: [Roles [roleName=SubAdmin], Roles [roleName=Emp]]
+2018-07-24 17:04:10 INFO  LoginPage:278 - Show DashboardPage
+2018-07-24 17:04:10 INFO  DashboardPage:93 - Init DASHBOARD_PAGE
+2018-07-24 17:04:15 INFO  DashboardPage:143 - com1admin logout.
+2018-07-24 17:04:17 INFO  LoginPage:239 - Login with username: com1admin
+2018-07-24 17:04:17 INFO  LoginController:46 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin, IsLocked FROM Assessor where Assessor.IsActive = 1 and Assessor.UserName='com1admin' and (Password=md5('123456') or LastPassword=md5('123456'));
+2018-07-24 17:04:17 INFO  LoginPage:243 - Login OK
+2018-07-24 17:04:17 INFO  LoginController:173 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'Com1' and assessor.UserName= 'com1admin'
+2018-07-24 17:04:17 INFO  LoginPage:258 - listRoles: [Roles [roleName=SubAdmin], Roles [roleName=Emp]]
+2018-07-24 17:04:17 INFO  LoginPage:278 - Show DashboardPage
+2018-07-24 17:04:17 INFO  DashboardPage:93 - Init DASHBOARD_PAGE
+2018-07-24 17:04:18 INFO  DashboardPage:121 - com1admin click change password from DASHBOARD_PAGE
+2018-07-24 17:04:18 INFO  ChangePasswordPage:100 - Init ChangePasswordPage of com1admin
+2018-07-24 17:04:19 INFO  ChangePasswordPage:121 - com1admin logout.
+2018-07-24 17:04:21 INFO  LoginPage:239 - Login with username: com1admin
+2018-07-24 17:04:21 INFO  LoginController:46 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin, IsLocked FROM Assessor where Assessor.IsActive = 1 and Assessor.UserName='com1admin' and (Password=md5('123456') or LastPassword=md5('123456'));
+2018-07-24 17:04:21 INFO  LoginPage:243 - Login OK
+2018-07-24 17:04:21 INFO  LoginController:173 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'Com1' and assessor.UserName= 'com1admin'
+2018-07-24 17:04:21 INFO  LoginPage:258 - listRoles: [Roles [roleName=SubAdmin], Roles [roleName=Emp]]
+2018-07-24 17:04:21 INFO  LoginPage:278 - Show DashboardPage
+2018-07-24 17:04:21 INFO  DashboardPage:93 - Init DASHBOARD_PAGE
+2018-07-24 17:04:23 INFO  DashboardPage:328 - Lock - Unlock Account clicked by com1admin
+2018-07-24 17:04:23 INFO  UserController:44 - SELECT AssessorID, UserName, Password, CompanyCode, IsActive, IsLocked, FirstName, LastName FROM Assessor where Assessor.IsActive=1 and Assessor.CompanyCode = 'Com1';
+2018-07-24 17:04:23 ERROR LockUnlockAccountPage:253 - validateAllFields of lockunlockpage
+2018-07-24 17:04:23 INFO  LockUnlockAccountPage:94 - Init LOCK_UNLOCK_PAGE
+2018-07-24 17:04:24 INFO  LockUnlockAccountPage:142 - com1admin click change password from LOCK_UNLOCK_PAGE
+2018-07-24 17:04:24 INFO  ChangePasswordPage:100 - Init ChangePasswordPage of com1admin
+2018-07-24 17:04:26 INFO  ChangePasswordPage:121 - com1admin logout.
+2018-07-24 17:04:27 INFO  LoginPage:239 - Login with username: com1admin
+2018-07-24 17:04:27 INFO  LoginController:46 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin, IsLocked FROM Assessor where Assessor.IsActive = 1 and Assessor.UserName='com1admin' and (Password=md5('123456') or LastPassword=md5('123456'));
+2018-07-24 17:04:27 INFO  LoginPage:243 - Login OK
+2018-07-24 17:04:27 INFO  LoginController:173 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'Com1' and assessor.UserName= 'com1admin'
+2018-07-24 17:04:27 INFO  LoginPage:258 - listRoles: [Roles [roleName=SubAdmin], Roles [roleName=Emp]]
+2018-07-24 17:04:27 INFO  LoginPage:278 - Show DashboardPage
+2018-07-24 17:04:27 INFO  DashboardPage:93 - Init DASHBOARD_PAGE
+2018-07-24 17:04:33 INFO  DashboardPage:328 - Lock - Unlock Account clicked by com1admin
+2018-07-24 17:04:33 INFO  UserController:44 - SELECT AssessorID, UserName, Password, CompanyCode, IsActive, IsLocked, FirstName, LastName FROM Assessor where Assessor.IsActive=1 and Assessor.CompanyCode = 'Com1';
+2018-07-24 17:04:33 ERROR LockUnlockAccountPage:253 - validateAllFields of lockunlockpage
+2018-07-24 17:04:33 INFO  LockUnlockAccountPage:94 - Init LOCK_UNLOCK_PAGE
+2018-07-24 17:04:35 INFO  LockUnlockAccountPage:164 - com1admin logout.
+2018-07-24 17:04:36 INFO  LoginPage:239 - Login with username: com1admin
+2018-07-24 17:04:36 INFO  LoginController:46 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin, IsLocked FROM Assessor where Assessor.IsActive = 1 and Assessor.UserName='com1admin' and (Password=md5('123456') or LastPassword=md5('123456'));
+2018-07-24 17:04:36 INFO  LoginPage:243 - Login OK
+2018-07-24 17:04:36 INFO  LoginController:173 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'Com1' and assessor.UserName= 'com1admin'
+2018-07-24 17:04:36 INFO  LoginPage:258 - listRoles: [Roles [roleName=SubAdmin], Roles [roleName=Emp]]
+2018-07-24 17:04:36 INFO  LoginPage:278 - Show DashboardPage
+2018-07-24 17:04:36 INFO  DashboardPage:93 - Init DASHBOARD_PAGE
+2018-07-24 17:04:38 INFO  DashboardPage:340 - Get Tool clicked by com1admin
+2018-07-24 17:04:38 INFO  EmployeeController:135 -  select tools.ToolCode, tools.ToolCode, machine.MachineCode, toolsmachinetray.TrayIndex, toolsmachinetray.Quantity  from tools inner join toolsmachine on tools.ToolCode = toolsmachine.ToolCode  inner join machine on toolsmachine.MachineCode = machine.MachineCode  inner join toolsmachinetray on toolsmachinetray.toolsmachineID = toolsmachine.toolsmachineID  where machine.MachineCode = 'MAC1';
+2018-07-24 17:04:38 INFO  EmployeeController:178 - {ACTID111=[[Tray_1, 5], [Tray_5, 3]], BCTID211=[[Tray_4, 5]], FCTID6=[[Tray_2, 2]]}
+2018-07-24 17:04:38 INFO  EmployeeController:191 -  select tools.ToolCode from tools;
+2018-07-24 17:04:38 INFO  EmployeeController:209 - {}
+2018-07-24 17:04:38 INFO  EmployeeController:51 - select tools.ToolId, tools.ToolCode  from tools inner join toolsmachine on tools.ToolCode = toolsmachine.ToolCode  inner join machine on toolsmachine.MachineCode = machine.MachineCode  where machine.MachineCode = 'MAC1';
+2018-07-24 17:04:38 INFO  EmployeeController:72 - [Tool [toolId=1, toolName=ACTID111], Tool [toolId=2, toolName=BCTID211], Tool [toolId=6, toolName=FCTID6], Tool [toolId=4, toolName=DCTID4], Tool [toolId=5, toolName=ECTID5]]
+2018-07-24 17:04:38 INFO  EmployeePage:159 - Init EMP_PAGE
+2018-07-24 17:04:38 INFO  EmployeePage:163 - listAllTrays: [TRAY_01, TRAY_02, TRAY_03, TRAY_04, TRAY_05, TRAY_06, TRAY_07, TRAY_08, TRAY_09, TRAY_10, TRAY_11, TRAY_12, TRAY_13, TRAY_14, TRAY_15, TRAY_16, TRAY_17, TRAY_18, TRAY_19, TRAY_20, TRAY_21, TRAY_22, TRAY_23, TRAY_24, TRAY_25, TRAY_26, TRAY_27, TRAY_28, TRAY_29, TRAY_30, TRAY_31, TRAY_32, TRAY_33, TRAY_34, TRAY_35, TRAY_36, TRAY_37, TRAY_38, TRAY_39, TRAY_40, TRAY_41, TRAY_42, TRAY_43, TRAY_44, TRAY_45, TRAY_46, TRAY_47, TRAY_48, TRAY_49, TRAY_50, TRAY_51, TRAY_52, TRAY_53, TRAY_54, TRAY_55, TRAY_56, TRAY_57, TRAY_58, TRAY_59, TRAY_60]
+2018-07-24 17:04:38 INFO  EmployeePage:169 - hashMessage: {}
+2018-07-24 17:04:39 INFO  EmployeePage:238 - com1admin logout.
+2018-07-24 17:08:20 INFO  LoginPage:239 - Login with username: com1admin
+2018-07-24 17:08:20 INFO  LoginController:46 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin, IsLocked FROM Assessor where Assessor.IsActive = 1 and Assessor.UserName='com1admin' and (Password=md5('123456') or LastPassword=md5('123456'));
+2018-07-24 17:08:20 INFO  LoginPage:243 - Login OK
+2018-07-24 17:08:20 INFO  LoginController:173 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'Com1' and assessor.UserName= 'com1admin'
+2018-07-24 17:08:20 INFO  LoginPage:258 - listRoles: [Roles [roleName=SubAdmin], Roles [roleName=Emp]]
+2018-07-24 17:08:20 INFO  LoginPage:278 - Show DashboardPage
+2018-07-24 17:08:20 INFO  DashboardPage:93 - Init DASHBOARD_PAGE
+2018-07-24 17:08:22 INFO  DashboardPage:317 - Reset Password clicked by com1admin
+2018-07-24 17:08:22 INFO  UserController:44 - SELECT AssessorID, UserName, Password, CompanyCode, IsActive, IsLocked, FirstName, LastName FROM Assessor where Assessor.IsActive=1 and Assessor.CompanyCode = 'Com1';
+2018-07-24 17:08:22 INFO  ResetPasswordPage:118 - Init RESET_PASS_PAGE
+2018-07-24 17:08:52 INFO  ResetPasswordPage:140 - com1admin back to dashboard from RESET_PASS_PAGE
+2018-07-24 17:08:52 INFO  LoginController:173 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'Com1' and assessor.UserName= 'com1admin'
+2018-07-24 17:08:52 INFO  DashboardPage:93 - Init DASHBOARD_PAGE
+2018-07-24 17:08:53 INFO  DashboardPage:328 - Lock - Unlock Account clicked by com1admin
+2018-07-24 17:08:53 INFO  UserController:44 - SELECT AssessorID, UserName, Password, CompanyCode, IsActive, IsLocked, FirstName, LastName FROM Assessor where Assessor.IsActive=1 and Assessor.CompanyCode = 'Com1';
+2018-07-24 17:08:53 ERROR LockUnlockAccountPage:253 - validateAllFields of lockunlockpage
+2018-07-24 17:08:53 INFO  LockUnlockAccountPage:94 - Init LOCK_UNLOCK_PAGE
+2018-07-24 17:08:54 INFO  LockUnlockAccountPage:115 - com1admin back to dashboard from LOCK_UNLOCK_PAGE
+2018-07-24 17:08:54 INFO  LoginController:173 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'Com1' and assessor.UserName= 'com1admin'
+2018-07-24 17:08:54 INFO  DashboardPage:93 - Init DASHBOARD_PAGE
+2018-07-24 17:08:55 INFO  DashboardPage:340 - Get Tool clicked by com1admin
+2018-07-24 17:08:55 INFO  EmployeeController:135 -  select tools.ToolCode, tools.ToolCode, machine.MachineCode, toolsmachinetray.TrayIndex, toolsmachinetray.Quantity  from tools inner join toolsmachine on tools.ToolCode = toolsmachine.ToolCode  inner join machine on toolsmachine.MachineCode = machine.MachineCode  inner join toolsmachinetray on toolsmachinetray.toolsmachineID = toolsmachine.toolsmachineID  where machine.MachineCode = 'MAC1';
+2018-07-24 17:08:55 INFO  EmployeeController:178 - {ACTID111=[[Tray_1, 5], [Tray_5, 3]], BCTID211=[[Tray_4, 5]], FCTID6=[[Tray_2, 2]]}
+2018-07-24 17:08:55 INFO  EmployeeController:191 -  select tools.ToolCode from tools;
+2018-07-24 17:08:55 INFO  EmployeeController:209 - {}
+2018-07-24 17:08:55 INFO  EmployeeController:51 - select tools.ToolId, tools.ToolCode  from tools inner join toolsmachine on tools.ToolCode = toolsmachine.ToolCode  inner join machine on toolsmachine.MachineCode = machine.MachineCode  where machine.MachineCode = 'MAC1';
+2018-07-24 17:08:55 INFO  EmployeeController:72 - [Tool [toolId=1, toolName=ACTID111], Tool [toolId=2, toolName=BCTID211], Tool [toolId=6, toolName=FCTID6], Tool [toolId=4, toolName=DCTID4], Tool [toolId=5, toolName=ECTID5]]
+2018-07-24 17:08:55 INFO  EmployeePage:159 - Init EMP_PAGE
+2018-07-24 17:08:55 INFO  EmployeePage:163 - listAllTrays: [TRAY_01, TRAY_02, TRAY_03, TRAY_04, TRAY_05, TRAY_06, TRAY_07, TRAY_08, TRAY_09, TRAY_10, TRAY_11, TRAY_12, TRAY_13, TRAY_14, TRAY_15, TRAY_16, TRAY_17, TRAY_18, TRAY_19, TRAY_20, TRAY_21, TRAY_22, TRAY_23, TRAY_24, TRAY_25, TRAY_26, TRAY_27, TRAY_28, TRAY_29, TRAY_30, TRAY_31, TRAY_32, TRAY_33, TRAY_34, TRAY_35, TRAY_36, TRAY_37, TRAY_38, TRAY_39, TRAY_40, TRAY_41, TRAY_42, TRAY_43, TRAY_44, TRAY_45, TRAY_46, TRAY_47, TRAY_48, TRAY_49, TRAY_50, TRAY_51, TRAY_52, TRAY_53, TRAY_54, TRAY_55, TRAY_56, TRAY_57, TRAY_58, TRAY_59, TRAY_60]
+2018-07-24 17:08:55 INFO  EmployeePage:169 - hashMessage: {}
+2018-07-24 17:08:56 INFO  EmployeePage:188 - com1admin back to dashboard from GETTOOL
+2018-07-24 17:08:56 INFO  LoginController:173 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'Com1' and assessor.UserName= 'com1admin'
+2018-07-24 17:08:56 INFO  DashboardPage:93 - Init DASHBOARD_PAGE
+2018-07-24 17:09:06 INFO  DashboardPage:328 - Lock - Unlock Account clicked by com1admin
+2018-07-24 17:09:06 INFO  UserController:44 - SELECT AssessorID, UserName, Password, CompanyCode, IsActive, IsLocked, FirstName, LastName FROM Assessor where Assessor.IsActive=1 and Assessor.CompanyCode = 'Com1';
+2018-07-24 17:09:06 ERROR LockUnlockAccountPage:253 - validateAllFields of lockunlockpage
+2018-07-24 17:09:06 INFO  LockUnlockAccountPage:94 - Init LOCK_UNLOCK_PAGE
+2018-07-24 17:09:17 INFO  DashboardPage:185 - com1admin: DASHBOARD_PAGE time out.
+2018-07-24 17:09:20 INFO  ChangePasswordPage:246 - com1admin: RESET_PASS_PAGE time out.
+2018-07-24 17:09:31 INFO  LoginPage:239 - Login with username: com1admin
+2018-07-24 17:09:31 INFO  LoginController:46 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin, IsLocked FROM Assessor where Assessor.IsActive = 1 and Assessor.UserName='com1admin' and (Password=md5('123456') or LastPassword=md5('123456'));
+2018-07-24 17:09:32 INFO  LoginPage:243 - Login OK
+2018-07-24 17:09:32 INFO  LoginController:173 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'Com1' and assessor.UserName= 'com1admin'
+2018-07-24 17:09:32 INFO  LoginPage:258 - listRoles: [Roles [roleName=SubAdmin], Roles [roleName=Emp]]
+2018-07-24 17:09:32 INFO  LoginPage:278 - Show DashboardPage
+2018-07-24 17:09:32 INFO  DashboardPage:93 - Init DASHBOARD_PAGE
+2018-07-24 17:09:33 INFO  DashboardPage:317 - Reset Password clicked by com1admin
+2018-07-24 17:09:33 INFO  UserController:44 - SELECT AssessorID, UserName, Password, CompanyCode, IsActive, IsLocked, FirstName, LastName FROM Assessor where Assessor.IsActive=1 and Assessor.CompanyCode = 'Com1';
+2018-07-24 17:09:33 INFO  ResetPasswordPage:118 - Init RESET_PASS_PAGE
+2018-07-24 17:09:42 INFO  ResetPasswordPage:140 - com1admin back to dashboard from RESET_PASS_PAGE
+2018-07-24 17:09:42 INFO  LoginController:173 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'Com1' and assessor.UserName= 'com1admin'
+2018-07-24 17:09:42 INFO  DashboardPage:93 - Init DASHBOARD_PAGE
+2018-07-24 17:09:44 INFO  DashboardPage:340 - Get Tool clicked by com1admin
+2018-07-24 17:09:44 INFO  EmployeeController:135 -  select tools.ToolCode, tools.ToolCode, machine.MachineCode, toolsmachinetray.TrayIndex, toolsmachinetray.Quantity  from tools inner join toolsmachine on tools.ToolCode = toolsmachine.ToolCode  inner join machine on toolsmachine.MachineCode = machine.MachineCode  inner join toolsmachinetray on toolsmachinetray.toolsmachineID = toolsmachine.toolsmachineID  where machine.MachineCode = 'MAC1';
+2018-07-24 17:09:44 INFO  EmployeeController:178 - {ACTID111=[[Tray_1, 5], [Tray_5, 3]], BCTID211=[[Tray_4, 5]], FCTID6=[[Tray_2, 2]]}
+2018-07-24 17:09:44 INFO  EmployeeController:191 -  select tools.ToolCode from tools;
+2018-07-24 17:09:44 INFO  EmployeeController:209 - {}
+2018-07-24 17:09:44 INFO  EmployeeController:51 - select tools.ToolId, tools.ToolCode  from tools inner join toolsmachine on tools.ToolCode = toolsmachine.ToolCode  inner join machine on toolsmachine.MachineCode = machine.MachineCode  where machine.MachineCode = 'MAC1';
+2018-07-24 17:09:45 INFO  EmployeeController:72 - [Tool [toolId=1, toolName=ACTID111], Tool [toolId=2, toolName=BCTID211], Tool [toolId=6, toolName=FCTID6], Tool [toolId=4, toolName=DCTID4], Tool [toolId=5, toolName=ECTID5]]
+2018-07-24 17:09:45 INFO  EmployeePage:159 - Init EMP_PAGE
+2018-07-24 17:09:45 INFO  EmployeePage:163 - listAllTrays: [TRAY_01, TRAY_02, TRAY_03, TRAY_04, TRAY_05, TRAY_06, TRAY_07, TRAY_08, TRAY_09, TRAY_10, TRAY_11, TRAY_12, TRAY_13, TRAY_14, TRAY_15, TRAY_16, TRAY_17, TRAY_18, TRAY_19, TRAY_20, TRAY_21, TRAY_22, TRAY_23, TRAY_24, TRAY_25, TRAY_26, TRAY_27, TRAY_28, TRAY_29, TRAY_30, TRAY_31, TRAY_32, TRAY_33, TRAY_34, TRAY_35, TRAY_36, TRAY_37, TRAY_38, TRAY_39, TRAY_40, TRAY_41, TRAY_42, TRAY_43, TRAY_44, TRAY_45, TRAY_46, TRAY_47, TRAY_48, TRAY_49, TRAY_50, TRAY_51, TRAY_52, TRAY_53, TRAY_54, TRAY_55, TRAY_56, TRAY_57, TRAY_58, TRAY_59, TRAY_60]
+2018-07-24 17:09:45 INFO  EmployeePage:169 - hashMessage: {}
+2018-07-24 17:10:21 INFO  EmployeePage:596 - com1admin confirm: WO: 3ER5<br/>OP: R5TTUUY<br/>CTID: ACTID111<br/>Tray: Tray_5<br/>Quantity: 1
+2018-07-24 17:10:21 INFO  EmployeePage:598 - com1admin getTools
+2018-07-24 17:10:23 INFO  TransactionController:43 - insert into WorkingTransaction( TransactionDate, MachineCode, CompanyCode, AssessorID, WOCode, OPCode, ToolCode, TrayIndex, Quantity, UpdatedDate, TransactionStatus, TransactionType) values (now(), 'MAC1', 'Com1', 'com1admin', '', '', 'ACTID111', 'Tray_5', '3', now(), 'Send request to board', 'GetTools');
+2018-07-24 17:10:23 INFO  EmployeePage:620 - Create transaction
+2018-07-24 17:10:23 INFO  EmployeePage:621 - hashMessage: {}
+2018-07-24 17:10:23 INFO  EmployeePage:622 - hashMessage containsKey TRAY_5: false
+2018-07-24 17:10:23 ERROR EmployeePage:636 - Tray Tray_5is not defined in config file
+2018-07-24 17:10:30 INFO  EmployeePage:641 - resultValue: 0
+2018-07-24 17:10:32 INFO  EmployeePage:667 - Complete with resultValue = 0
+2018-07-24 17:12:52 INFO  LoginPage:239 - Login with username: com1admin
+2018-07-24 17:12:52 INFO  LoginController:46 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin, IsLocked FROM Assessor where Assessor.IsActive = 1 and Assessor.UserName='com1admin' and (Password=md5('123456') or LastPassword=md5('123456'));
+2018-07-24 17:12:53 INFO  LoginPage:243 - Login OK
+2018-07-24 17:12:53 INFO  LoginController:173 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'Com1' and assessor.UserName= 'com1admin'
+2018-07-24 17:12:53 INFO  LoginPage:258 - listRoles: [Roles [roleName=SubAdmin], Roles [roleName=Emp]]
+2018-07-24 17:12:53 INFO  LoginPage:278 - Show DashboardPage
+2018-07-24 17:12:53 INFO  DashboardPage:93 - Init DASHBOARD_PAGE
+2018-07-24 17:12:53 INFO  DashboardPage:340 - Get Tool clicked by com1admin
+2018-07-24 17:12:53 INFO  EmployeeController:135 -  select tools.ToolCode, tools.ToolCode, machine.MachineCode, toolsmachinetray.TrayIndex, toolsmachinetray.Quantity  from tools inner join toolsmachine on tools.ToolCode = toolsmachine.ToolCode  inner join machine on toolsmachine.MachineCode = machine.MachineCode  inner join toolsmachinetray on toolsmachinetray.toolsmachineID = toolsmachine.toolsmachineID  where machine.MachineCode = 'MAC1';
+2018-07-24 17:12:53 INFO  EmployeeController:178 - {ACTID111=[[Tray_1, 5], [Tray_5, 3]], BCTID211=[[Tray_4, 5]], FCTID6=[[Tray_2, 2]]}
+2018-07-24 17:12:53 INFO  EmployeeController:191 -  select tools.ToolCode from tools;
+2018-07-24 17:12:53 INFO  EmployeeController:209 - {}
+2018-07-24 17:12:53 INFO  EmployeeController:51 - select tools.ToolId, tools.ToolCode  from tools inner join toolsmachine on tools.ToolCode = toolsmachine.ToolCode  inner join machine on toolsmachine.MachineCode = machine.MachineCode  where machine.MachineCode = 'MAC1';
+2018-07-24 17:12:54 INFO  EmployeeController:72 - [Tool [toolId=1, toolName=ACTID111], Tool [toolId=2, toolName=BCTID211], Tool [toolId=6, toolName=FCTID6], Tool [toolId=4, toolName=DCTID4], Tool [toolId=5, toolName=ECTID5]]
+2018-07-24 17:12:54 INFO  EmployeePage:159 - Init EMP_PAGE
+2018-07-24 17:12:54 INFO  EmployeePage:163 - listAllTrays: [TRAY_01, TRAY_02, TRAY_03, TRAY_04, TRAY_05, TRAY_06, TRAY_07, TRAY_08, TRAY_09, TRAY_10, TRAY_11, TRAY_12, TRAY_13, TRAY_14, TRAY_15, TRAY_16, TRAY_17, TRAY_18, TRAY_19, TRAY_20, TRAY_21, TRAY_22, TRAY_23, TRAY_24, TRAY_25, TRAY_26, TRAY_27, TRAY_28, TRAY_29, TRAY_30, TRAY_31, TRAY_32, TRAY_33, TRAY_34, TRAY_35, TRAY_36, TRAY_37, TRAY_38, TRAY_39, TRAY_40, TRAY_41, TRAY_42, TRAY_43, TRAY_44, TRAY_45, TRAY_46, TRAY_47, TRAY_48, TRAY_49, TRAY_50, TRAY_51, TRAY_52, TRAY_53, TRAY_54, TRAY_55, TRAY_56, TRAY_57, TRAY_58, TRAY_59, TRAY_60]
+2018-07-24 17:12:54 INFO  EmployeePage:169 - hashMessage: {}
+2018-07-24 17:13:07 INFO  EmployeePage:685 - Choose No Option
+2018-07-24 17:19:35 INFO  LoginPage:239 - Login with username: com1admin
+2018-07-24 17:19:35 INFO  LoginController:46 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin, IsLocked FROM Assessor where Assessor.IsActive = 1 and Assessor.UserName='com1admin' and (Password=md5('123456') or LastPassword=md5('123456'));
+2018-07-24 17:19:35 INFO  LoginPage:243 - Login OK
+2018-07-24 17:19:35 INFO  LoginController:173 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'Com1' and assessor.UserName= 'com1admin'
+2018-07-24 17:19:35 INFO  LoginPage:258 - listRoles: [Roles [roleName=SubAdmin], Roles [roleName=Emp]]
+2018-07-24 17:19:35 INFO  LoginPage:278 - Show DashboardPage
+2018-07-24 17:19:35 INFO  DashboardPage:93 - Init DASHBOARD_PAGE
+2018-07-24 17:19:36 INFO  DashboardPage:340 - Get Tool clicked by com1admin
+2018-07-24 17:19:36 INFO  EmployeeController:135 -  select tools.ToolCode, tools.ToolCode, machine.MachineCode, toolsmachinetray.TrayIndex, toolsmachinetray.Quantity  from tools inner join toolsmachine on tools.ToolCode = toolsmachine.ToolCode  inner join machine on toolsmachine.MachineCode = machine.MachineCode  inner join toolsmachinetray on toolsmachinetray.toolsmachineID = toolsmachine.toolsmachineID  where machine.MachineCode = 'MAC1';
+2018-07-24 17:19:36 INFO  EmployeeController:178 - {ACTID111=[[Tray_1, 5], [Tray_5, 3]], BCTID211=[[Tray_4, 5]], FCTID6=[[Tray_2, 2]]}
+2018-07-24 17:19:36 INFO  EmployeeController:191 -  select tools.ToolCode from tools;
+2018-07-24 17:19:36 INFO  EmployeeController:209 - {}
+2018-07-24 17:19:36 INFO  EmployeeController:51 - select tools.ToolId, tools.ToolCode  from tools inner join toolsmachine on tools.ToolCode = toolsmachine.ToolCode  inner join machine on toolsmachine.MachineCode = machine.MachineCode  where machine.MachineCode = 'MAC1';
+2018-07-24 17:19:36 INFO  EmployeeController:72 - [Tool [toolId=1, toolName=ACTID111], Tool [toolId=2, toolName=BCTID211], Tool [toolId=6, toolName=FCTID6], Tool [toolId=4, toolName=DCTID4], Tool [toolId=5, toolName=ECTID5]]
+2018-07-24 17:19:36 INFO  EmployeePage:159 - Init EMP_PAGE
+2018-07-24 17:19:36 INFO  EmployeePage:162 - listAllTrays: [TRAY_01, TRAY_02, TRAY_03, TRAY_04, TRAY_05, TRAY_06, TRAY_07, TRAY_08, TRAY_09, TRAY_10, TRAY_11, TRAY_12, TRAY_13, TRAY_14, TRAY_15, TRAY_16, TRAY_17, TRAY_18, TRAY_19, TRAY_20, TRAY_21, TRAY_22, TRAY_23, TRAY_24, TRAY_25, TRAY_26, TRAY_27, TRAY_28, TRAY_29, TRAY_30, TRAY_31, TRAY_32, TRAY_33, TRAY_34, TRAY_35, TRAY_36, TRAY_37, TRAY_38, TRAY_39, TRAY_40, TRAY_41, TRAY_42, TRAY_43, TRAY_44, TRAY_45, TRAY_46, TRAY_47, TRAY_48, TRAY_49, TRAY_50, TRAY_51, TRAY_52, TRAY_53, TRAY_54, TRAY_55, TRAY_56, TRAY_57, TRAY_58, TRAY_59, TRAY_60]
+2018-07-24 17:19:36 INFO  EmployeePage:168 - hashMessage: {}
+2018-07-24 17:19:52 INFO  EmployeePage:690 - Choose No Option
+2018-07-24 17:20:10 INFO  LoginPage:239 - Login with username: com1admin
+2018-07-24 17:20:10 INFO  LoginController:46 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin, IsLocked FROM Assessor where Assessor.IsActive = 1 and Assessor.UserName='com1admin' and (Password=md5('123456') or LastPassword=md5('123456'));
+2018-07-24 17:20:10 INFO  LoginPage:243 - Login OK
+2018-07-24 17:20:10 INFO  LoginController:173 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'Com1' and assessor.UserName= 'com1admin'
+2018-07-24 17:20:10 INFO  LoginPage:258 - listRoles: [Roles [roleName=SubAdmin], Roles [roleName=Emp]]
+2018-07-24 17:20:10 INFO  LoginPage:278 - Show DashboardPage
+2018-07-24 17:20:10 INFO  DashboardPage:93 - Init DASHBOARD_PAGE
+2018-07-24 17:20:12 INFO  DashboardPage:340 - Get Tool clicked by com1admin
+2018-07-24 17:20:12 INFO  EmployeeController:135 -  select tools.ToolCode, tools.ToolCode, machine.MachineCode, toolsmachinetray.TrayIndex, toolsmachinetray.Quantity  from tools inner join toolsmachine on tools.ToolCode = toolsmachine.ToolCode  inner join machine on toolsmachine.MachineCode = machine.MachineCode  inner join toolsmachinetray on toolsmachinetray.toolsmachineID = toolsmachine.toolsmachineID  where machine.MachineCode = 'MAC1';
+2018-07-24 17:20:12 INFO  EmployeeController:178 - {ACTID111=[[Tray_1, 5], [Tray_5, 3]], BCTID211=[[Tray_4, 5]], FCTID6=[[Tray_2, 2]]}
+2018-07-24 17:20:12 INFO  EmployeeController:191 -  select tools.ToolCode from tools;
+2018-07-24 17:20:12 INFO  EmployeeController:209 - {}
+2018-07-24 17:20:12 INFO  EmployeeController:51 - select tools.ToolId, tools.ToolCode  from tools inner join toolsmachine on tools.ToolCode = toolsmachine.ToolCode  inner join machine on toolsmachine.MachineCode = machine.MachineCode  where machine.MachineCode = 'MAC1';
+2018-07-24 17:20:12 INFO  EmployeeController:72 - [Tool [toolId=1, toolName=ACTID111], Tool [toolId=2, toolName=BCTID211], Tool [toolId=6, toolName=FCTID6], Tool [toolId=4, toolName=DCTID4], Tool [toolId=5, toolName=ECTID5]]
+2018-07-24 17:20:12 INFO  EmployeePage:159 - Init EMP_PAGE
+2018-07-24 17:20:12 INFO  EmployeePage:162 - listAllTrays: [TRAY_01, TRAY_02, TRAY_03, TRAY_04, TRAY_05, TRAY_06, TRAY_07, TRAY_08, TRAY_09, TRAY_10, TRAY_11, TRAY_12, TRAY_13, TRAY_14, TRAY_15, TRAY_16, TRAY_17, TRAY_18, TRAY_19, TRAY_20, TRAY_21, TRAY_22, TRAY_23, TRAY_24, TRAY_25, TRAY_26, TRAY_27, TRAY_28, TRAY_29, TRAY_30, TRAY_31, TRAY_32, TRAY_33, TRAY_34, TRAY_35, TRAY_36, TRAY_37, TRAY_38, TRAY_39, TRAY_40, TRAY_41, TRAY_42, TRAY_43, TRAY_44, TRAY_45, TRAY_46, TRAY_47, TRAY_48, TRAY_49, TRAY_50, TRAY_51, TRAY_52, TRAY_53, TRAY_54, TRAY_55, TRAY_56, TRAY_57, TRAY_58, TRAY_59, TRAY_60]
+2018-07-24 17:20:12 INFO  EmployeePage:168 - hashMessage: {}
+2018-07-24 17:20:30 INFO  EmployeePage:690 - Choose No Option
+2018-07-24 17:21:36 INFO  LoginPage:239 - Login with username: com1admin
+2018-07-24 17:21:36 INFO  LoginController:46 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin, IsLocked FROM Assessor where Assessor.IsActive = 1 and Assessor.UserName='com1admin' and (Password=md5('123456') or LastPassword=md5('123456'));
+2018-07-24 17:21:36 INFO  LoginPage:243 - Login OK
+2018-07-24 17:21:36 INFO  LoginController:173 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'Com1' and assessor.UserName= 'com1admin'
+2018-07-24 17:21:36 INFO  LoginPage:258 - listRoles: [Roles [roleName=SubAdmin], Roles [roleName=Emp]]
+2018-07-24 17:21:36 INFO  LoginPage:278 - Show DashboardPage
+2018-07-24 17:21:36 INFO  DashboardPage:93 - Init DASHBOARD_PAGE
+2018-07-24 17:21:37 INFO  DashboardPage:340 - Get Tool clicked by com1admin
+2018-07-24 17:21:37 INFO  EmployeeController:135 -  select tools.ToolCode, tools.ToolCode, machine.MachineCode, toolsmachinetray.TrayIndex, toolsmachinetray.Quantity  from tools inner join toolsmachine on tools.ToolCode = toolsmachine.ToolCode  inner join machine on toolsmachine.MachineCode = machine.MachineCode  inner join toolsmachinetray on toolsmachinetray.toolsmachineID = toolsmachine.toolsmachineID  where machine.MachineCode = 'MAC1';
+2018-07-24 17:21:37 INFO  EmployeeController:178 - {ACTID111=[[Tray_1, 5], [Tray_5, 3]], BCTID211=[[Tray_4, 5]], FCTID6=[[Tray_2, 2]]}
+2018-07-24 17:21:37 INFO  EmployeeController:191 -  select tools.ToolCode from tools;
+2018-07-24 17:21:37 INFO  EmployeeController:209 - {}
+2018-07-24 17:21:37 INFO  EmployeeController:51 - select tools.ToolId, tools.ToolCode  from tools inner join toolsmachine on tools.ToolCode = toolsmachine.ToolCode  inner join machine on toolsmachine.MachineCode = machine.MachineCode  where machine.MachineCode = 'MAC1';
+2018-07-24 17:21:37 INFO  EmployeeController:72 - [Tool [toolId=1, toolName=ACTID111], Tool [toolId=2, toolName=BCTID211], Tool [toolId=6, toolName=FCTID6], Tool [toolId=4, toolName=DCTID4], Tool [toolId=5, toolName=ECTID5]]
+2018-07-24 17:21:37 INFO  EmployeePage:159 - Init EMP_PAGE
+2018-07-24 17:21:37 INFO  EmployeePage:162 - listAllTrays: [TRAY_01, TRAY_02, TRAY_03, TRAY_04, TRAY_05, TRAY_06, TRAY_07, TRAY_08, TRAY_09, TRAY_10, TRAY_11, TRAY_12, TRAY_13, TRAY_14, TRAY_15, TRAY_16, TRAY_17, TRAY_18, TRAY_19, TRAY_20, TRAY_21, TRAY_22, TRAY_23, TRAY_24, TRAY_25, TRAY_26, TRAY_27, TRAY_28, TRAY_29, TRAY_30, TRAY_31, TRAY_32, TRAY_33, TRAY_34, TRAY_35, TRAY_36, TRAY_37, TRAY_38, TRAY_39, TRAY_40, TRAY_41, TRAY_42, TRAY_43, TRAY_44, TRAY_45, TRAY_46, TRAY_47, TRAY_48, TRAY_49, TRAY_50, TRAY_51, TRAY_52, TRAY_53, TRAY_54, TRAY_55, TRAY_56, TRAY_57, TRAY_58, TRAY_59, TRAY_60]
+2018-07-24 17:21:37 INFO  EmployeePage:168 - hashMessage: {}
+2018-07-24 17:21:52 INFO  EmployeePage:690 - Choose No Option
+2018-07-24 17:22:53 INFO  LoginPage:239 - Login with username: com1admin
+2018-07-24 17:22:53 INFO  LoginController:46 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin, IsLocked FROM Assessor where Assessor.IsActive = 1 and Assessor.UserName='com1admin' and (Password=md5('123456') or LastPassword=md5('123456'));
+2018-07-24 17:22:54 INFO  LoginPage:243 - Login OK
+2018-07-24 17:22:54 INFO  LoginController:173 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'Com1' and assessor.UserName= 'com1admin'
+2018-07-24 17:22:54 INFO  LoginPage:258 - listRoles: [Roles [roleName=SubAdmin], Roles [roleName=Emp]]
+2018-07-24 17:22:54 INFO  LoginPage:278 - Show DashboardPage
+2018-07-24 17:22:54 INFO  DashboardPage:93 - Init DASHBOARD_PAGE
+2018-07-24 17:22:55 INFO  DashboardPage:340 - Get Tool clicked by com1admin
+2018-07-24 17:22:55 INFO  EmployeeController:135 -  select tools.ToolCode, tools.ToolCode, machine.MachineCode, toolsmachinetray.TrayIndex, toolsmachinetray.Quantity  from tools inner join toolsmachine on tools.ToolCode = toolsmachine.ToolCode  inner join machine on toolsmachine.MachineCode = machine.MachineCode  inner join toolsmachinetray on toolsmachinetray.toolsmachineID = toolsmachine.toolsmachineID  where machine.MachineCode = 'MAC1';
+2018-07-24 17:22:55 INFO  EmployeeController:178 - {ACTID111=[[Tray_1, 5], [Tray_5, 3]], BCTID211=[[Tray_4, 5]], FCTID6=[[Tray_2, 2]]}
+2018-07-24 17:22:55 INFO  EmployeeController:191 -  select tools.ToolCode from tools;
+2018-07-24 17:22:55 INFO  EmployeeController:209 - {}
+2018-07-24 17:22:55 INFO  EmployeeController:51 - select tools.ToolId, tools.ToolCode  from tools inner join toolsmachine on tools.ToolCode = toolsmachine.ToolCode  inner join machine on toolsmachine.MachineCode = machine.MachineCode  where machine.MachineCode = 'MAC1';
+2018-07-24 17:22:55 INFO  EmployeeController:72 - [Tool [toolId=1, toolName=ACTID111], Tool [toolId=2, toolName=BCTID211], Tool [toolId=6, toolName=FCTID6], Tool [toolId=4, toolName=DCTID4], Tool [toolId=5, toolName=ECTID5]]
+2018-07-24 17:22:56 INFO  EmployeePage:159 - Init EMP_PAGE
+2018-07-24 17:22:56 INFO  EmployeePage:162 - listAllTrays: [TRAY_01, TRAY_02, TRAY_03, TRAY_04, TRAY_05, TRAY_06, TRAY_07, TRAY_08, TRAY_09, TRAY_10, TRAY_11, TRAY_12, TRAY_13, TRAY_14, TRAY_15, TRAY_16, TRAY_17, TRAY_18, TRAY_19, TRAY_20, TRAY_21, TRAY_22, TRAY_23, TRAY_24, TRAY_25, TRAY_26, TRAY_27, TRAY_28, TRAY_29, TRAY_30, TRAY_31, TRAY_32, TRAY_33, TRAY_34, TRAY_35, TRAY_36, TRAY_37, TRAY_38, TRAY_39, TRAY_40, TRAY_41, TRAY_42, TRAY_43, TRAY_44, TRAY_45, TRAY_46, TRAY_47, TRAY_48, TRAY_49, TRAY_50, TRAY_51, TRAY_52, TRAY_53, TRAY_54, TRAY_55, TRAY_56, TRAY_57, TRAY_58, TRAY_59, TRAY_60]
+2018-07-24 17:22:56 INFO  EmployeePage:168 - hashMessage: {}
+2018-07-24 17:23:04 INFO  EmployeePage:690 - Choose No Option
+2018-07-24 17:23:21 INFO  LoginPage:239 - Login with username: com1admin
+2018-07-24 17:23:21 INFO  LoginController:46 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin, IsLocked FROM Assessor where Assessor.IsActive = 1 and Assessor.UserName='com1admin' and (Password=md5('123456') or LastPassword=md5('123456'));
+2018-07-24 17:23:22 INFO  LoginPage:243 - Login OK
+2018-07-24 17:23:22 INFO  LoginController:173 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'Com1' and assessor.UserName= 'com1admin'
+2018-07-24 17:23:22 INFO  LoginPage:258 - listRoles: [Roles [roleName=SubAdmin], Roles [roleName=Emp]]
+2018-07-24 17:23:22 INFO  LoginPage:278 - Show DashboardPage
+2018-07-24 17:23:22 INFO  DashboardPage:93 - Init DASHBOARD_PAGE
+2018-07-24 17:23:23 INFO  DashboardPage:340 - Get Tool clicked by com1admin
+2018-07-24 17:23:23 INFO  EmployeeController:135 -  select tools.ToolCode, tools.ToolCode, machine.MachineCode, toolsmachinetray.TrayIndex, toolsmachinetray.Quantity  from tools inner join toolsmachine on tools.ToolCode = toolsmachine.ToolCode  inner join machine on toolsmachine.MachineCode = machine.MachineCode  inner join toolsmachinetray on toolsmachinetray.toolsmachineID = toolsmachine.toolsmachineID  where machine.MachineCode = 'MAC1';
+2018-07-24 17:23:23 INFO  EmployeeController:178 - {ACTID111=[[Tray_1, 5], [Tray_5, 3]], BCTID211=[[Tray_4, 5]], FCTID6=[[Tray_2, 2]]}
+2018-07-24 17:23:23 INFO  EmployeeController:191 -  select tools.ToolCode from tools;
+2018-07-24 17:23:23 INFO  EmployeeController:209 - {}
+2018-07-24 17:23:23 INFO  EmployeeController:51 - select tools.ToolId, tools.ToolCode  from tools inner join toolsmachine on tools.ToolCode = toolsmachine.ToolCode  inner join machine on toolsmachine.MachineCode = machine.MachineCode  where machine.MachineCode = 'MAC1';
+2018-07-24 17:23:23 INFO  EmployeeController:72 - [Tool [toolId=1, toolName=ACTID111], Tool [toolId=2, toolName=BCTID211], Tool [toolId=6, toolName=FCTID6], Tool [toolId=4, toolName=DCTID4], Tool [toolId=5, toolName=ECTID5]]
+2018-07-24 17:23:23 INFO  EmployeePage:159 - Init EMP_PAGE
+2018-07-24 17:23:23 INFO  EmployeePage:162 - listAllTrays: [TRAY_01, TRAY_02, TRAY_03, TRAY_04, TRAY_05, TRAY_06, TRAY_07, TRAY_08, TRAY_09, TRAY_10, TRAY_11, TRAY_12, TRAY_13, TRAY_14, TRAY_15, TRAY_16, TRAY_17, TRAY_18, TRAY_19, TRAY_20, TRAY_21, TRAY_22, TRAY_23, TRAY_24, TRAY_25, TRAY_26, TRAY_27, TRAY_28, TRAY_29, TRAY_30, TRAY_31, TRAY_32, TRAY_33, TRAY_34, TRAY_35, TRAY_36, TRAY_37, TRAY_38, TRAY_39, TRAY_40, TRAY_41, TRAY_42, TRAY_43, TRAY_44, TRAY_45, TRAY_46, TRAY_47, TRAY_48, TRAY_49, TRAY_50, TRAY_51, TRAY_52, TRAY_53, TRAY_54, TRAY_55, TRAY_56, TRAY_57, TRAY_58, TRAY_59, TRAY_60]
+2018-07-24 17:23:23 INFO  EmployeePage:168 - hashMessage: {}
+2018-07-24 17:23:33 INFO  EmployeePage:601 - com1admin confirm: <head><style>table {    font-family: arial, sans-serif;    border: none;    width: 100%;} td, th {    text-align: left;    padding: 2px;} tr:nth-child(even) {    background-color: #dddddd;}</style></head><body><table> <tr>    <th>WO:</th>    <th>sdgsdgsd</th>  </tr>  <tr>    <td>OP:</td>    <td>gsdfgsdgsdg</td>  </tr>  <tr>    <td>CTID:</td>    <td>BCTID211</td>  </tr>  <tr>    <td>Tray:</td>    <td>Tray_4</td>  </tr>  <tr>    <td>Quantity:</td>    <td>1</td>  </tr> </table></body>
+2018-07-24 17:23:33 INFO  EmployeePage:603 - com1admin getTools
+2018-07-24 17:23:35 INFO  TransactionController:43 - insert into WorkingTransaction( TransactionDate, MachineCode, CompanyCode, AssessorID, WOCode, OPCode, ToolCode, TrayIndex, Quantity, UpdatedDate, TransactionStatus, TransactionType) values (now(), 'MAC1', 'Com1', 'com1admin', '', '', 'BCTID211', 'Tray_4', '5', now(), 'Send request to board', 'GetTools');
+2018-07-24 17:23:35 INFO  EmployeePage:625 - Create transaction
+2018-07-24 17:23:35 INFO  EmployeePage:626 - hashMessage: {}
+2018-07-24 17:23:35 INFO  EmployeePage:627 - hashMessage containsKey TRAY_4: false
+2018-07-24 17:23:35 ERROR EmployeePage:641 - Tray Tray_4is not defined in config file
+2018-07-24 17:23:37 INFO  EmployeePage:646 - resultValue: 0
+2018-07-24 17:23:39 INFO  EmployeePage:672 - Complete with resultValue = 0

@@ -241,14 +241,9 @@ public class LoginPage extends JFrame implements ActionListener {
 			Assessor result = ctlObj.validateUser(userText, pwdText);
 			if (result != null) {
 				logger.info("Login OK");
-
-				masterLogObj.insertLog(userName, Enum.ASSESSOR, "", Enum.LOGIN, "", "", companyCode, machineCode,
-						StringUtils.getCurrentClassAndMethodNames());
 				if (result.isLocked()) {
 					logger.info("User blocked");
 					JOptionPane.showMessageDialog(this, bundleMessage.getString("Login_Page_Login_Acc_Locked"));
-					masterLogObj.insertLog(userName, Enum.ASSESSOR, "", Enum.LOCKED_ACC, "", "", companyCode,
-							machineCode, StringUtils.getCurrentClassAndMethodNames());
 				} else if (result.isFirstTimeLogin()) {
 					logger.info("isFirstTimeLogin: " + result.isFirstTimeLogin());
 					JFrame old = root;
@@ -259,7 +254,6 @@ public class LoginPage extends JFrame implements ActionListener {
 					root.show();
 					old.dispose();
 				} else {
-					System.out.println("AAAA");
 					List<Role> listRoles = ctlObj.getUserRoles(userText, companyCode);
 					logger.info("listRoles: " + listRoles);
 
@@ -301,7 +295,7 @@ public class LoginPage extends JFrame implements ActionListener {
 				boolean lockUsers = ctlObj.lockUser(companyCode, userText);
 				if (lockUsers) {
 					String email = ctlObj.getEmailUser(companyCode, userText);
-					logger.info("Lock User");
+					logger.info("Lock User By Fail 3 times");
 					Thread one = new Thread() {
 						public void run() {
 							List<String> listCCEmail = new ArrayList<>();
@@ -314,14 +308,10 @@ public class LoginPage extends JFrame implements ActionListener {
 					};
 
 					one.start();
-					masterLogObj.insertLog(userName, Enum.ASSESSOR, "", Enum.LOCK_USER, "", "", companyCode,
-							machineCode, StringUtils.getCurrentClassAndMethodNames());
 					JOptionPane.showMessageDialog(this, bundleMessage.getString("Login_Page_Login_Fail_3_Times"));
 
 				} else {
 					JOptionPane.showMessageDialog(this, bundleMessage.getString("Login_Page_Login_Fail"));
-					masterLogObj.insertLog(userName, Enum.ASSESSOR, "", Enum.LOGIN_FAIL, "", "", companyCode,
-							machineCode, StringUtils.getCurrentClassAndMethodNames());
 				}
 
 			}
@@ -330,9 +320,7 @@ public class LoginPage extends JFrame implements ActionListener {
 		if (e.getSource() == forgotPwdButton) {
 			userTextField.setText("");
 			passwordField.setText("");
-			masterLogObj.insertLog(userName, Enum.ASSESSOR, "", Enum.FORGOT_PASS, "", "", companyCode, machineCode,
-					StringUtils.getCurrentClassAndMethodNames());
-			logger.info("Forgot Pass");
+			logger.info("Forgot Pass Button Click");
 			JFrame old = root;
 			root = new ForgotPasswordPage();
 			StringUtils.frameInit(root, bundleMessage);

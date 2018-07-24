@@ -91,8 +91,7 @@ public class LockUnlockAccountPage extends JFrame implements ActionListener {
 		addComponentsToContainer();
 		addActionEvent();
 		this.userName = user.getUsername();
-		masterLogObj.insertLog(userName, Enum.ASSESSOR, "", Enum.LOCK_UNLOCK_PAGE, "", "", companyCode, machineCode,
-				StringUtils.getCurrentClassAndMethodNames());
+		logger.info("Init " + Enum.LOCK_UNLOCK_PAGE);
 	}
 
 	public void setLayoutManager() {
@@ -134,14 +133,20 @@ public class LockUnlockAccountPage extends JFrame implements ActionListener {
 		changePassLabel.setText("<html><html><font size=\"5\" face=\"arial\" color=\"#0181BE\"><b><i><u>"
 				+ bundleMessage.getString("App_ChangePassword") + "</u></i></b></font></html></html>");
 		changePassLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		changePassLabel.setBounds(530, 5, 250, 60);
+		changePassLabel.setBounds(530, 5, 170, 60);
 		changePassLabel.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent e) {
-				System.out.println("changePassLabel");
-				masterLogObj.insertLog(userName, Enum.ASSESSOR, "", Enum.CHANGE_PASS, "", "", companyCode, machineCode,
-						StringUtils.getCurrentClassAndMethodNames());
+			public void mouseClicked(MouseEvent e) {				
 				updateTimer.restart();
+				
+				logger.info(userName + " click change password from " + Enum.LOCK_UNLOCK_PAGE);
+				JFrame old = root;
+				root = new ChangePasswordPage(user);
+				StringUtils.frameInit(root, bundleMessage);
+
+				root.setTitle(bundleMessage.getString("Change_Password_Page_Title"));
+				root.getRootPane().setDefaultButton(((ChangePasswordPage) root).changePassButton);
+				old.dispose();
 			}
 		});
 
@@ -156,8 +161,6 @@ public class LockUnlockAccountPage extends JFrame implements ActionListener {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				updateTimer.restart();
-				masterLogObj.insertLog(userName, Enum.ASSESSOR, "", Enum.LOGOUT, "", "", companyCode, machineCode,
-						StringUtils.getCurrentClassAndMethodNames());
 				logger.info(userName + " logout.");
 				JFrame old = root;
 				root = new LoginPage();
@@ -220,8 +223,6 @@ public class LockUnlockAccountPage extends JFrame implements ActionListener {
 		updateTimer = new Timer(expiredTime, new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				masterLogObj.insertLog(userName, Enum.LOCK_UNLOCK_PAGE, "", Enum.TIME_OUT, "", "", companyCode,
-						machineCode, StringUtils.getCurrentClassAndMethodNames());
 				String timeoutMess = MessageFormat.format(bundleMessage.getString("App_TimeOut"),
 						cfg.getProperty("Expired_Time"));
 				JOptionPane.showMessageDialog(container, timeoutMess, "Time Out Lock Unlock",
@@ -249,7 +250,7 @@ public class LockUnlockAccountPage extends JFrame implements ActionListener {
 		try {
 			updateTimer.restart();
 		} catch (Exception e) {
-			System.err.println("validateAllFields of lockunlockpage");
+			logger.error("validateAllFields of lockunlockpage");
 		}
 		String selectedValue = userNameComboBox.getSelectedItem().toString();
 
@@ -329,9 +330,7 @@ public class LockUnlockAccountPage extends JFrame implements ActionListener {
 		boolean oldIsActiveValue = mapDisplayName.get(displayName).isLocked();
 		if (e.getSource() == lockAccountButtom) {
 			empCtlObj.updateIsLocked(userNameLock, companyCode, 1);
-			masterLogObj.insertLog(userName, Enum.ASSESSOR, "IsLocked", Enum.UPDATE,
-					userNameLock + " - " + oldIsActiveValue, userNameLock + " - 0", companyCode, machineCode,
-					StringUtils.getCurrentClassAndMethodNames());
+			logger.info(userNameLock + " - locked");
 			JOptionPane.showMessageDialog(container, "Completed Lock Account!", "Notify result",
 					JOptionPane.INFORMATION_MESSAGE);
 			updateDisplayName();
@@ -339,9 +338,7 @@ public class LockUnlockAccountPage extends JFrame implements ActionListener {
 
 		if (e.getSource() == unLockAccountButton) {
 			empCtlObj.updateIsLocked(userNameLock, companyCode,0);
-			masterLogObj.insertLog(userName, Enum.ASSESSOR, "IsLocked", Enum.UPDATE,
-					userNameLock + " - " + oldIsActiveValue, userNameLock + " - 1", companyCode, machineCode,
-					StringUtils.getCurrentClassAndMethodNames());
+			logger.info(userNameLock + " - unlocked");
 			JOptionPane.showMessageDialog(container, "Completed UnLock Account!", "Notify result",
 					JOptionPane.INFORMATION_MESSAGE);
 			updateDisplayName();

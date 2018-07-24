@@ -83,7 +83,7 @@ public class EmployeePage extends JFrame implements ActionListener, HidServicesL
 	JLabel splitLabel = new JLabel(" | ");
 
 	JLabel backToDashboardLabel = new JLabel(bundleMessage.getString("Employee_Back_To_Dashboard"));
-	
+
 	static LoginController ctlObj = new LoginController();
 
 	JLabel woLabel = new JLabel(bundleMessage.getString("Employee_Page_WO"));
@@ -142,7 +142,7 @@ public class EmployeePage extends JFrame implements ActionListener, HidServicesL
 	boolean isDashboard;
 	public PopUpKeyboard keyboard;
 	List<String> allToolNames = new ArrayList<>();
-	Assessor user ;
+	Assessor user;
 	// JFrame parent;
 
 	EmployeePage(Assessor user, boolean isDashboard) {
@@ -156,8 +156,7 @@ public class EmployeePage extends JFrame implements ActionListener, HidServicesL
 		setLocationAndSize();
 		addComponentsToContainer();
 		addActionEvent();
-		masterLogObj.insertLog(userName, Enum.WORKINGTRANSACTION, "", Enum.EMP_PAGE, "", "", companyCode, machineCode,
-				StringUtils.getCurrentClassAndMethodNames());
+		logger.info("Init " + Enum.EMP_PAGE);
 
 		List<String> listAllTrays = Enum.getTrays();
 		logger.info("listAllTrays: " + listAllTrays);
@@ -183,18 +182,18 @@ public class EmployeePage extends JFrame implements ActionListener, HidServicesL
 		backToDashboardLabel.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				
+
 				updateTimer.restart();
 				logger.info(userName + " back to dashboard from " + Enum.GETTOOL);
 				JFrame old = root;
-				
+
 				List<Role> listRoles = ctlObj.getUserRoles(userName, companyCode);
 				root = new DashboardPage(listRoles, user);
 				StringUtils.frameInit(root, bundleMessage);
 
-				root.setTitle(userName );
+				root.setTitle(userName);
 				old.dispose();
-				
+
 			}
 		});
 
@@ -207,14 +206,20 @@ public class EmployeePage extends JFrame implements ActionListener, HidServicesL
 		changePassLabel.setText("<html><html><font size=\"5\" face=\"arial\" color=\"#0181BE\"><b><i><u>"
 				+ bundleMessage.getString("App_ChangePassword") + "</u></i></b></font></html></html>");
 		changePassLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		changePassLabel.setBounds(530, 5, 250, 60);
+		changePassLabel.setBounds(530, 5, 170, 60);
 		changePassLabel.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				System.out.println("changePassLabel");
-				masterLogObj.insertLog(userName, Enum.ASSESSOR, "", Enum.CHANGE_PASS, "", "", companyCode, machineCode,
-						StringUtils.getCurrentClassAndMethodNames());
 				updateTimer.restart();
+
+				logger.info(userName + " click change password from " + Enum.EMP_PAGE);
+				JFrame old = root;
+				root = new ChangePasswordPage(user);
+				StringUtils.frameInit(root, bundleMessage);
+
+				root.setTitle(bundleMessage.getString("Change_Password_Page_Title"));
+				root.getRootPane().setDefaultButton(((ChangePasswordPage) root).changePassButton);
+				old.dispose();
 			}
 		});
 
@@ -229,8 +234,6 @@ public class EmployeePage extends JFrame implements ActionListener, HidServicesL
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				updateTimer.restart();
-				masterLogObj.insertLog(userName, Enum.ASSESSOR, "", Enum.LOGOUT, "", "", companyCode, machineCode,
-						StringUtils.getCurrentClassAndMethodNames());
 				logger.info(userName + " logout.");
 				JFrame old = root;
 				root = new LoginPage();
@@ -425,8 +428,6 @@ public class EmployeePage extends JFrame implements ActionListener, HidServicesL
 		updateTimer = new Timer(expiredTime, new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				masterLogObj.insertLog(userName, Enum.EMP_PAGE, "", Enum.TIME_OUT, "", "", companyCode, machineCode,
-						StringUtils.getCurrentClassAndMethodNames());
 				String timeoutMess = MessageFormat.format(bundleMessage.getString("App_TimeOut"),
 						cfg.getProperty("Expired_Time"));
 				JOptionPane.showMessageDialog(container, timeoutMess, "Time Out Emp", JOptionPane.WARNING_MESSAGE);
@@ -572,17 +573,23 @@ public class EmployeePage extends JFrame implements ActionListener, HidServicesL
 			String tray = trayTextField.getText();
 			int quantity = 1;
 
-			String messConfirm = "WO: " + wo + "<br/>OP: " + op + "<br/>CTID: " + ctid + "<br/>Tray: " + tray
-					+ "<br/>Quantity: " + quantity;
-			JLabel label2 = new JLabel("<html>Review and confirm information<br/>" + messConfirm + "</html>",
-					SwingConstants.CENTER);
+			String messConfirm = "<head><style>table {    font-family: arial, sans-serif;    border: none;   "
+					+ " width: 100%;} td, th {    text-align: left;    padding: 2px;} tr:nth-child(even) { "
+					+ "   background-color: #dddddd;}</style></head><body><table> <tr>    <th>WO:</th>    <th>" + wo
+					+ "</th>  </tr>  <tr>    <td>OP:</td>    <td>" + op + "</td>  </tr>  <tr>    <td>CTID:</td>    <td>"
+					+ ctid + "</td>  </tr>  <tr>    <td>Tray:</td>    <td>" + tray
+					+ "</td>  </tr>  <tr>    <td>Quantity:</td>    <td>" + quantity
+					+ "</td>  </tr> </table></body>";
+//			String messConfirm = "WO: " + wo + "<br/>OP: " + op + "<br/>CTID: " + ctid + "<br/>Tray: " + tray
+//					+ "<br/>Quantity: " + quantity;
+			JLabel label2 = new JLabel("<html>" + messConfirm + "</html>", SwingConstants.CENTER);
 			label2.setVerticalAlignment(SwingConstants.CENTER);
 			label2.setHorizontalAlignment(SwingConstants.CENTER);
-			label2.setFont(new Font("Arial", Font.BOLD, 17));
+			label2.setFont(new Font("Arial", Font.BOLD, 15));
 			label2.setBounds(0, 0, 350, 150);
 			panel.add(label2);
 
-			int dialogResult = JOptionPane.showConfirmDialog(this, panel, "Admin Rights Confirmation",
+			int dialogResult = JOptionPane.showConfirmDialog(this, panel, "Confirm information",
 					JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, null);
 
 			JTextArea textArea = new JTextArea();
@@ -593,8 +600,7 @@ public class EmployeePage extends JFrame implements ActionListener, HidServicesL
 			if (dialogResult == 0) {
 				logger.info(userName + " confirm: " + messConfirm);
 				updateTimer.restart();
-				masterLogObj.insertLog(userName, Enum.WORKINGTRANSACTION, "", Enum.REQUEST_TOOL, "", "", companyCode,
-						machineCode, StringUtils.getCurrentClassAndMethodNames());
+				logger.info(userName + " getTools");
 				final JDialog d = new JDialog();
 				JPanel p1 = new JPanel(new GridBagLayout());
 				progress.setText("Please Wait...");
@@ -616,9 +622,7 @@ public class EmployeePage extends JFrame implements ActionListener, HidServicesL
 								toolComboBox.getSelectedItem().toString(), tray, quantityTextField.getText(),
 								Enum.GETTOOL.text(), "Send request to board");
 
-						masterLogObj.insertLog(userName, Enum.WORKINGTRANSACTION, "", Enum.CREATE, "",
-								"Create transaction", companyCode, machineCode,
-								StringUtils.getCurrentClassAndMethodNames());
+						logger.info("Create transaction");
 						logger.info("hashMessage: " + hashMessage);
 						logger.info("hashMessage containsKey " + trayTextField.getText().toUpperCase() + ": "
 								+ hashMessage.containsKey(trayTextField.getText().toUpperCase()));
@@ -634,9 +638,7 @@ public class EmployeePage extends JFrame implements ActionListener, HidServicesL
 							}
 
 						} else {
-							masterLogObj.insertLog(userName, Enum.WORKINGTRANSACTION, "", Enum.CREATE, "",
-									"Tray " + trayTextField.getText() + "is not defined in config file", companyCode,
-									machineCode, StringUtils.getCurrentClassAndMethodNames());
+							logger.error("Tray " + trayTextField.getText() + " is not defined in config file");
 							JOptionPane.showMessageDialog(container,
 									"Tray " + trayTextField.getText() + "is not defined in config file",
 									"Notify result", JOptionPane.ERROR_MESSAGE);
@@ -651,9 +653,7 @@ public class EmployeePage extends JFrame implements ActionListener, HidServicesL
 						} else if (resultValue == 1) {
 							empCtlObj.updateToolTray(machineCode, toolComboBox.getSelectedItem().toString(),
 									trayTextField.getText(), "-1");
-
-							masterLogObj.insertLog(userName, Enum.TOOLSMACHINETRAY, "", Enum.UPDATE, "X", "X - 1",
-									companyCode, machineCode, StringUtils.getCurrentClassAndMethodNames());
+							logger.info("Completed");
 
 							JOptionPane.showMessageDialog(container, "Completed!", "Notify result",
 									JOptionPane.INFORMATION_MESSAGE);
@@ -791,11 +791,9 @@ public class EmployeePage extends JFrame implements ActionListener, HidServicesL
 		try {
 			val = hidDevice.write(message, 2, (byte) 0x00);
 		} catch (Exception e) {
-			logger.error("[ERR] Cannot send data. " + e.getMessage());
+			logger.error("[ERR] Cannot send data. " + e.getMessage() + " " + Enum.SEND_SIGNAL_TO_BOARD_FAIL);
 
 			transCtl.updateTransaction(transactionID, "TransactionStatus", Enum.SEND_SIGNAL_TO_BOARD_FAIL.text());
-			masterLogObj.insertLog(userName, Enum.WORKINGTRANSACTION, "", Enum.SEND_SIGNAL_TO_BOARD_FAIL, "",
-					e.getMessage(), companyCode, machineCode, StringUtils.getCurrentClassAndMethodNames());
 			hidDevice.close();
 			return -1;
 		}
@@ -807,9 +805,6 @@ public class EmployeePage extends JFrame implements ActionListener, HidServicesL
 		} else {
 			logger.error(hidDevice.getLastErrorMessage());
 			transCtl.updateTransaction(transactionID, "TransactionStatus", Enum.SEND_SIGNAL_TO_BOARD_FAIL.text());
-			masterLogObj.insertLog(userName, Enum.WORKINGTRANSACTION, "", Enum.SEND_SIGNAL_TO_BOARD_FAIL, "",
-					hidDevice.getLastErrorMessage(), companyCode, machineCode,
-					StringUtils.getCurrentClassAndMethodNames());
 		}
 		progress.setText("Begin wait to read data");
 		logger.info("-------------Begin wait to read data in " + readWaitTime + "s------------");
@@ -851,9 +846,7 @@ public class EmployeePage extends JFrame implements ActionListener, HidServicesL
 						}
 
 					} else {
-						masterLogObj.insertLog(userName, Enum.WORKINGTRANSACTION, "", Enum.INVALID_SIGNAL_RECEIVE, "",
-								Arrays.toString(data), companyCode, machineCode,
-								StringUtils.getCurrentClassAndMethodNames());
+						logger.error("INVALID_SIGNAL_RECEIVE " + Arrays.toString(data));
 					}
 					logger.info("<Data received from board [" + Arrays.toString(data) + "]");
 					moreData = false;
@@ -867,22 +860,18 @@ public class EmployeePage extends JFrame implements ActionListener, HidServicesL
 		for (int dataReceived : listDataReceived) {
 			if (dataReceived == MOTOR_START) {
 				transCtl.updateTransaction(transactionID, "TransactionStatus", Enum.MOTOR_START.text());
-				masterLogObj.insertLog(userName, Enum.WORKINGTRANSACTION, "", Enum.MOTOR_START, "", "" + dataReceived,
-						companyCode, machineCode, StringUtils.getCurrentClassAndMethodNames());
+				logger.info(Enum.MOTOR_START);
 			} else if (dataReceived == MOTOR_STOP) {
 				transCtl.updateTransaction(transactionID, "TransactionStatus", Enum.MOTOR_STOP.text());
-				masterLogObj.insertLog(userName, Enum.WORKINGTRANSACTION, "", Enum.MOTOR_STOP, "", "" + dataReceived,
-						companyCode, machineCode, StringUtils.getCurrentClassAndMethodNames());
+				logger.info(Enum.MOTOR_STOP);
 			} else if (dataReceived == PRODUCT_OK) {
 				result = 1;
 				transCtl.updateTransaction(transactionID, "TransactionStatus", Enum.PRODUCT_OK.text());
-				masterLogObj.insertLog(userName, Enum.WORKINGTRANSACTION, "", Enum.PRODUCT_OK, "", "" + dataReceived,
-						companyCode, machineCode, StringUtils.getCurrentClassAndMethodNames());
+				logger.info(Enum.PRODUCT_OK);
 			} else if (dataReceived == PRODUCT_FAIL) {
 				result = 0;
 				transCtl.updateTransaction(transactionID, "TransactionStatus", Enum.PRODUCT_FAIL.text());
-				masterLogObj.insertLog(userName, Enum.WORKINGTRANSACTION, "", Enum.PRODUCT_FAIL, "", "" + dataReceived,
-						companyCode, machineCode, StringUtils.getCurrentClassAndMethodNames());
+				logger.info(Enum.PRODUCT_FAIL);
 			}
 		}
 

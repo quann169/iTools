@@ -169,14 +169,20 @@ public class PutInTakeOverPage extends JFrame implements ActionListener {
 		changePassLabel.setText("<html><html><font size=\"5\" face=\"arial\" color=\"#0181BE\"><b><i><u>"
 				+ bundleMessage.getString("App_ChangePassword") + "</u></i></b></font></html></html>");
 		changePassLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		changePassLabel.setBounds(530, 5, 250, 60);
+		changePassLabel.setBounds(530, 5, 170, 60);
 		changePassLabel.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent e) {
-				System.out.println("changePassLabel");
-				masterLogObj.insertLog(userName, Enum.ASSESSOR, "", Enum.CHANGE_PASS, "", "", companyCode, machineCode,
-						StringUtils.getCurrentClassAndMethodNames());
+			public void mouseClicked(MouseEvent e) {				
 				updateTimer.restart();
+				
+				logger.info(userName + " click change password from " + Enum.PUTIN_TAKEOVER_PAGE);
+				JFrame old = root;
+				root = new ChangePasswordPage(user);
+				StringUtils.frameInit(root, bundleMessage);
+
+				root.setTitle(bundleMessage.getString("Change_Password_Page_Title"));
+				root.getRootPane().setDefaultButton(((ChangePasswordPage) root).changePassButton);
+				old.dispose();
 			}
 		});
 
@@ -191,8 +197,6 @@ public class PutInTakeOverPage extends JFrame implements ActionListener {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				updateTimer.restart();
-				masterLogObj.insertLog(userName, Enum.ASSESSOR, "", Enum.LOGOUT, "", "", companyCode, machineCode,
-						StringUtils.getCurrentClassAndMethodNames());
 				logger.info(userName + " logout.");
 				JFrame old = root;
 				root = new LoginPage();
@@ -234,7 +238,6 @@ public class PutInTakeOverPage extends JFrame implements ActionListener {
 				}
 
 				quantityTextField.setText("");
-				System.out.println("QQQQQQ: " + toolComboBox.getSelectedItem());
 				String selectValue = toolComboBox.getSelectedItem().toString();
 				// System.out.println(toolVstrayAndQuantityMap);
 				// System.out.println("selectValue: " + selectValue);
@@ -253,7 +256,7 @@ public class PutInTakeOverPage extends JFrame implements ActionListener {
 							}
 							// trayCombobox.setSelectedIndex(0);
 						} else {
-							System.out.println("AAAAAAAAAAAAAAa");
+							logger.info("AAAAAAAAAAAAAAa");
 						}
 
 					} else {
@@ -352,8 +355,6 @@ public class PutInTakeOverPage extends JFrame implements ActionListener {
 		updateTimer = new Timer(expiredTime, new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				masterLogObj.insertLog(userName, Enum.PUTIN_TAKEOVER_PAGE, "", Enum.TIME_OUT, "", "", companyCode,
-						machineCode, StringUtils.getCurrentClassAndMethodNames());
 				String timeoutMess = MessageFormat.format(bundleMessage.getString("App_TimeOut"),
 						cfg.getProperty("Expired_Time"));
 				JOptionPane.showMessageDialog(container, timeoutMess, "Time Out Putin", JOptionPane.WARNING_MESSAGE);
@@ -537,7 +538,7 @@ public class PutInTakeOverPage extends JFrame implements ActionListener {
 			// JOptionPane.ERROR_MESSAGE); // Message type
 
 			if (dialogResult == 0) {
-				System.out.println("Yes option");
+				logger.info("Yes option");
 				final JDialog d = new JDialog();
 				JPanel p1 = new JPanel(new GridBagLayout());
 				JLabel progress = new JLabel("Please Wait...");
@@ -557,9 +558,7 @@ public class PutInTakeOverPage extends JFrame implements ActionListener {
 						transCtl.insertTransaction(userName, companyCode, machineCode, "", "",
 								toolComboBox.getSelectedItem().toString(), trayCombobox.getSelectedItem().toString(),
 								quantityTextField.getText(), action, "Complete");
-
-						masterLogObj.insertLog(userName, Enum.WORKINGTRANSACTION, "", Enum.CREATE, "", "", companyCode,
-								machineCode, StringUtils.getCurrentClassAndMethodNames());
+						logger.info("Create transaction");
 
 						publish("Update value");
 						Thread.sleep(1000);
@@ -595,7 +594,7 @@ public class PutInTakeOverPage extends JFrame implements ActionListener {
 					}
 
 					protected void done() {
-						System.out.println("Complete");
+						logger.info("Complete");
 						d.dispose();
 
 					}
@@ -603,7 +602,7 @@ public class PutInTakeOverPage extends JFrame implements ActionListener {
 				worker.execute();
 				d.setVisible(true);
 			} else {
-				System.out.println("No Option");
+				logger.info("No Option");
 			}
 
 		}
@@ -622,7 +621,6 @@ public class PutInTakeOverPage extends JFrame implements ActionListener {
 		toolComboBox.addFocusListener(focus1);
 
 		trayCombobox.getEditor().getEditorComponent().addFocusListener(focus1);
-		System.out.println("BBBBBBBB");
 	}
 
 }
