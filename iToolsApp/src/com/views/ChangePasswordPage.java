@@ -231,7 +231,7 @@ public class ChangePasswordPage extends JFrame implements ActionListener {
 
 		changePassButton.setText(bundleMessage.getString("ChangePassword_Page_ChangePassword"));
 		changePassButton.setBounds(260, 290, 300, 35);
-		changePassButton.setFont(new Font(labelFont.getName(), Font.BOLD, 25));
+		changePassButton.setFont(new Font(labelFont.getName(), Font.BOLD, 22));
 
 		changePassButton.setEnabled(false);
 
@@ -339,6 +339,10 @@ public class ChangePasswordPage extends JFrame implements ActionListener {
 
 					String email = ctlObj.getEmailUser(companyCode, userName);
 					logger.info("Lock User");
+
+					empCtlObj.updatePassword(userName, companyCode, password, false);
+					logger.info("Change password ok - " + userName + " - " + password);
+					
 					Thread one = new Thread() {
 						public void run() {
 							List<String> listCCEmail = new ArrayList<>();
@@ -348,15 +352,10 @@ public class ChangePasswordPage extends JFrame implements ActionListener {
 
 						}
 					};
-
+					one.start();
 					
-
-					empCtlObj.updatePassword(userName, companyCode, password, false);
-					logger.info("Change password ok - " + userName + " - " + password);
 					confirm = "<html><font size=\"4\" face=\"arial\"><i>Completed change password" + " " + userName
 							+ "</i></font></html>";
-					
-					one.start();
 					
 					JOptionPane.showMessageDialog(container, confirm, "Notify result", JOptionPane.INFORMATION_MESSAGE);
 					

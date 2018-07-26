@@ -4,12 +4,18 @@
 package com.controllers;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import org.apache.log4j.Logger;
 
 import com.message.Enum;
+import com.models.Assessor;
 import com.utils.MysqlConnect;
+import com.utils.StringUtils;
 
 /**
  * @author svi-quannguyen
@@ -92,22 +98,84 @@ public class LogController {
 
 		try {
 			PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
-			logger.info("======================MasterLog prepareStatement done");
+			// logger.info("======================MasterLog prepareStatement
+			// done");
 			int result = statement.executeUpdate(sql);
-			logger.info("======================MasterLog executeUpdate done");
+			// logger.info("======================MasterLog executeUpdate
+			// done");
 			if (result > 0) {
-				logger.info("======================MasterLog insertLog done");
+				// logger.info("======================MasterLog insertLog
+				// done");
 				return true;
 			}
 		} catch (SQLException e) {
 			logger.info(e.getMessage());
-			logger.info("======================MasterLog insertLog fail");
+			// logger.info("======================MasterLog insertLog fail");
 			return false;
 		} finally {
 			mysqlConnect.disconnect();
-			logger.info("======================MasterLog disconnect done");
+			// logger.info("======================MasterLog disconnect done");
 		}
 		return false;
+	}
+
+	/**
+	 * 
+	 * @param username
+	 * @param password
+	 * @return
+	 */
+	public String getLatestEmailLog() {
+
+		String sql = "select NewValue from MasterLog where Action = 'SendLog' order by NewValue desc limit 1;";
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		Date date = new Date(0);
+		String dateTime = dateFormat.format(date);
+		logger.info(sql);
+
+		try {
+			PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
+			ResultSet rs = statement.executeQuery(sql);
+
+			while (rs.next()) {
+				String newValue = rs.getString(1);
+				return newValue;
+			}
+		} catch (SQLException e) {
+			logger.error(e.getMessage());
+			return dateTime;
+		} finally {
+			mysqlConnect.disconnect();
+		}
+		System.out.println(dateTime);
+		return dateTime;
+	}
+
+	/**
+	 * 
+	 * @param strDate
+	 * @return
+	 */
+	public boolean updateLatestEmailLog(String strDate) {
+
+		String sql = "insert into MasterLog(Action, NewValue) values('SendLog', '" + strDate + "')";
+		logger.info(sql);
+
+		try {
+
+			PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
+			int countResult = statement.executeUpdate();
+			if (countResult > 0) {
+				return true;
+			}
+		} catch (SQLException e) {
+			logger.info(e.getMessage());
+			return false;
+		} finally {
+			mysqlConnect.disconnect();
+		}
+
+		return true;
 	}
 
 }

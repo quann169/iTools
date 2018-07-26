@@ -64,6 +64,7 @@ import com.models.Tool;
 import com.utils.AdvancedEncryptionStandard;
 import com.utils.AutoCompletion;
 import com.utils.Config;
+import com.utils.EmailUtils;
 import com.utils.FilterComboBox;
 import com.utils.MyFocusListener;
 import com.utils.PopUpKeyboard;
@@ -578,10 +579,10 @@ public class EmployeePage extends JFrame implements ActionListener, HidServicesL
 					+ "   background-color: #dddddd;}</style></head><body><table> <tr>    <th>WO:</th>    <th>" + wo
 					+ "</th>  </tr>  <tr>    <td>OP:</td>    <td>" + op + "</td>  </tr>  <tr>    <td>CTID:</td>    <td>"
 					+ ctid + "</td>  </tr>  <tr>    <td>Tray:</td>    <td>" + tray
-					+ "</td>  </tr>  <tr>    <td>Quantity:</td>    <td>" + quantity
-					+ "</td>  </tr> </table></body>";
-//			String messConfirm = "WO: " + wo + "<br/>OP: " + op + "<br/>CTID: " + ctid + "<br/>Tray: " + tray
-//					+ "<br/>Quantity: " + quantity;
+					+ "</td>  </tr>  <tr>    <td>Quantity:</td>    <td>" + quantity + "</td>  </tr> </table></body>";
+			// String messConfirm = "WO: " + wo + "<br/>OP: " + op + "<br/>CTID:
+			// " + ctid + "<br/>Tray: " + tray
+			// + "<br/>Quantity: " + quantity;
 			JLabel label2 = new JLabel("<html>" + messConfirm + "</html>", SwingConstants.CENTER);
 			label2.setVerticalAlignment(SwingConstants.CENTER);
 			label2.setHorizontalAlignment(SwingConstants.CENTER);
@@ -640,7 +641,7 @@ public class EmployeePage extends JFrame implements ActionListener, HidServicesL
 						} else {
 							logger.error("Tray " + trayTextField.getText() + " is not defined in config file");
 							JOptionPane.showMessageDialog(container,
-									"Tray " + trayTextField.getText() + "is not defined in config file",
+									"Tray " + trayTextField.getText() + " is not defined in config file",
 									"Notify result", JOptionPane.ERROR_MESSAGE);
 						}
 						logger.info("resultValue: " + resultValue);
@@ -654,6 +655,21 @@ public class EmployeePage extends JFrame implements ActionListener, HidServicesL
 							empCtlObj.updateToolTray(machineCode, toolComboBox.getSelectedItem().toString(),
 									trayTextField.getText(), "-1");
 							logger.info("Completed");
+							String email = ctlObj.getEmailUser(companyCode, userName);
+							Thread one = new Thread() {
+								public void run() {
+									EmailUtils emailUtils = new EmailUtils(Enum.GETTOOL, userName, companyCode,
+											machineCode);
+									List<String> listCCEmail = new ArrayList<>();
+									listCCEmail.add("quann169@gmail.com");
+									emailUtils.sendEmail(email, listCCEmail,
+											companyCode + " - " + machineCode + " notification",
+											"Hi " + userName + ",\nWO: " + wo + "\nOP: " + op + "\nTool: " + ctid
+													+ "\nTray: " + tray + "\nQuantity: 1");
+
+								}
+							};
+							one.start();
 
 							JOptionPane.showMessageDialog(container, "Completed!", "Notify result",
 									JOptionPane.INFORMATION_MESSAGE);

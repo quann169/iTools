@@ -52,6 +52,7 @@ import com.models.Role;
 import com.models.Tool;
 import com.utils.AdvancedEncryptionStandard;
 import com.utils.Config;
+import com.utils.EmailUtils;
 import com.utils.FilterComboBox;
 import com.utils.MyFocusListener;
 import com.utils.PopUpKeyboard;
@@ -127,6 +128,7 @@ public class PutInTakeOverPage extends JFrame implements ActionListener {
 		toolVstrayAndQuantityMap = empCtlObj.getToolTrayQuantity(machineCode, -1);
 		this.pageType = pageType;
 		this.user = user;
+		this.userName = user.getUsername();
 		setLayoutManager();
 		setLocationAndSize();
 		addComponentsToContainer();
@@ -172,9 +174,9 @@ public class PutInTakeOverPage extends JFrame implements ActionListener {
 		changePassLabel.setBounds(530, 5, 170, 60);
 		changePassLabel.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent e) {				
+			public void mouseClicked(MouseEvent e) {
 				updateTimer.restart();
-				
+
 				logger.info(userName + " click change password from " + Enum.PUTIN_TAKEOVER_PAGE);
 				JFrame old = root;
 				root = new ChangePasswordPage(user);
@@ -262,11 +264,6 @@ public class PutInTakeOverPage extends JFrame implements ActionListener {
 					} else {
 						// toolComboBox.setSelectedIndex(0);
 						quantityTextField.setText("0");
-						// JOptionPane.showMessageDialog(container,
-						// MessageFormat
-						// .format(bundleMessage.getString("Putin_TakeOver_Page_toolNotTrayMessage"),
-						// selectValue),
-						// "Warning", JOptionPane.WARNING_MESSAGE);
 						sendRequestButton.setEnabled(false);
 					}
 				}
@@ -501,26 +498,21 @@ public class PutInTakeOverPage extends JFrame implements ActionListener {
 			String tray = trayCombobox.getSelectedItem().toString();
 			String quantity = quantityTextField.getText().replaceAll("\\D+", "");
 
-			JLabel label2 = new JLabel("<html>Review and confirm information<br/>CTID: " + ctid + "<br/>Tray: " + tray
-					+ "<br/>Quantity: " + quantity + "</html>", SwingConstants.CENTER);
+			String messConfirm = "<head><style>table {    font-family: arial, sans-serif;    border: none;   "
+					+ " width: 100%;} td, th {    text-align: left;    padding: 2px;} tr:nth-child(even) { "
+					+ "   background-color: #dddddd;}</style></head><body><table> <tr>    <td>CTID:</td>    <td>" + ctid
+					+ "</td>  </tr>  <tr>    <td>Tray:</td>    <td>" + tray
+					+ "</td>  </tr>  <tr>    <td>Quantity:</td>    <td>" + quantity + "</td>  </tr> </table></body>";
+			JLabel label2 = new JLabel("<html>" + messConfirm + "</html>", SwingConstants.CENTER);
 			label2.setVerticalAlignment(SwingConstants.CENTER);
 			label2.setHorizontalAlignment(SwingConstants.CENTER);
 			label2.setFont(new Font("Arial", Font.BOLD, 15));
 			label2.setBounds(0, 0, 350, 150);
 			panel.add(label2);
 
-			// UIManager.put("OptionPane.minimumSize", new Dimension(300, 120));
 			final String action = this.pageType;
 			int dialogResult = JOptionPane.showConfirmDialog(this, panel, action + " Confirmation",
 					JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, null);
-
-			// JPanel panel = new JPanel() {
-			// @Override
-			// public Dimension getPreferredSize() {
-			// return new Dimension(320, 240);
-			// }
-
-			// };
 
 			// We can use JTextArea or JLabel to display messages
 			JTextArea textArea = new JTextArea();
@@ -569,6 +561,7 @@ public class PutInTakeOverPage extends JFrame implements ActionListener {
 							toolComboBox.setSelectedIndex(0);
 							trayCombobox.removeAllItems();
 							quantityTextField.setText("");
+							sendRequestButton.setEnabled(false);
 						}
 						Thread.sleep(1000);
 						publish("Update log");
@@ -583,6 +576,22 @@ public class PutInTakeOverPage extends JFrame implements ActionListener {
 								StringUtils.getCurrentClassAndMethodNames());
 						Thread.sleep(1000);
 						publish("Send email");
+
+						String email = ctlObj.getEmailUser(companyCode, userName);
+						Thread one = new Thread() {
+							public void run() {
+								EmailUtils emailUtils = new EmailUtils(Enum.GETTOOL, userName, companyCode,
+										machineCode);
+								List<String> listCCEmail = new ArrayList<>();
+								listCCEmail.add("quann169@gmail.com");
+								emailUtils.sendEmail(email, listCCEmail,
+										companyCode + " - " + machineCode + " " + pageType + " notification",
+										"Hi " + userName + ",\n\nTool: " + ctid + "\nTray: " + tray + "\nNew Quantity: "
+												+ quantity);
+
+							}
+						};
+						one.start();
 						Thread.sleep(1000);
 
 						return null;
@@ -607,8 +616,9 @@ public class PutInTakeOverPage extends JFrame implements ActionListener {
 
 		}
 		if (e.getSource() == cancelButton) {
-			trayCombobox.setSelectedIndex(0);
 			toolComboBox.setSelectedIndex(0);
+			trayCombobox.removeAllItems();
+			// trayCombobox.setSelectedIndex(0);
 			quantityTextField.setText("");
 		}
 	}

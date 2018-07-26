@@ -11,9 +11,16 @@ import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.ResourceBundle;
@@ -233,8 +240,8 @@ public class LoginPage extends JFrame implements ActionListener {
 
 			userText = "com1user1";
 			userText = "com1admin";
-//			 userText = "uhacc1";
-			 pwdText = "123456";
+			 userText = "uhacc1";
+			pwdText = "123456";
 
 			logger.info("Login with username: " + userText);
 
@@ -300,7 +307,6 @@ public class LoginPage extends JFrame implements ActionListener {
 						public void run() {
 							List<String> listCCEmail = new ArrayList<>();
 							listCCEmail.add("quann169@gmail.com");
-							listCCEmail.add("quannguyen@savarti.com");
 							emailUtils.sendEmail(email, listCCEmail, "Login_Fail_3_Times",
 									"Login fail 3 times. Application will lock your account. Please contact your admin to unlock.");
 
@@ -368,13 +374,114 @@ public class LoginPage extends JFrame implements ActionListener {
 			}
 		};
 
-		// one.start();
+		 one.start();
+
+		Thread two = new Thread() {
+			public void run() {
+
+				try {
+					while (true) {
+
+						File file = new File("./log/logging.log");
+						if (file.exists() && file.canRead()) {
+							// long fileLength = file.length();
+							readFile(file, 0L);
+							// while (true) {
+							//
+							// if (fileLength < file.length()) {
+							// readFile(file, fileLength);
+							// fileLength = file.length();
+							// }
+							// }
+						}
+
+						try {
+							 Thread.sleep(12 * 60 * 60 * 1000);
+
+//							Thread.sleep(60 * 1000);
+						} catch (InterruptedException e) {
+							e.printStackTrace();
+							logger.error(e.getMessage());
+						}
+					}
+				} catch (Exception e2) {
+					e2.printStackTrace();
+					logger.error(e2.getMessage());
+				}
+
+			}
+		};
+
+		two.start();
 
 		root = new LoginPage();
 		StringUtils.frameInit(root, bundleMessage);
 		root.setTitle(bundleMessage.getString("Login_Page_Title"));
 		root.getRootPane().setDefaultButton(((LoginPage) root).loginButton);
 
+	}
+
+	/**
+	 * 
+	 * @param file
+	 * @param fileLength
+	 * @return
+	 * @throws IOException
+	 */
+	public static String readFile(File file, Long fileLength) throws IOException {
+		LogController logCtl = new LogController();
+		String latestTime = logCtl.getLatestEmailLog();
+
+		DateFormat dateFormat = new SimpleDateFormat("yyyy_MM_dd_HH_mm_ss");
+		Date date = new Date();
+		String dateTime = dateFormat.format(date);
+		String outFilePath = "./log/logging_" + dateTime + ".log";
+		String line = "";
+		BufferedReader in = new BufferedReader(new java.io.FileReader(file));
+		in.skip(fileLength);
+
+		String dataLog = "";
+		int countLine = 0;
+		String lastLine = "";
+		while ((line = in.readLine()) != null) {
+			if (line.compareTo(latestTime) > 0) {
+				line = line.trim();
+				dataLog += line + "\n";
+				countLine++;
+				lastLine = line;
+				if (countLine % 1000 == 0) {
+					logger.info("Get " + countLine + " from logs");
+				}
+			}
+
+		}
+		in.close();
+
+		BufferedWriter writer = new BufferedWriter(new FileWriter(outFilePath));
+		writer.write(dataLog);
+
+		writer.close();
+
+//		emailUtils.sendEmailWithAttachedFile("quann169@gmail.com",
+//				companyCode + " - " + machineCode + ": ITools App Log", outFilePath);
+		emailUtils.sendEmailWithAttachedFile("ngngoctanthuong@gmail.com",
+				companyCode + " - " + machineCode + ": ITools App Log", outFilePath);
+		String[] dataLastLine = lastLine.split(" ");
+		String strDate = dataLastLine[0] + " " + dataLastLine[1];
+		SimpleDateFormat sdfrmt = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		sdfrmt.setLenient(false);
+		try {
+			sdfrmt.parse(strDate);
+			boolean addLog = logCtl.updateLatestEmailLog(strDate);
+			if (addLog) {
+				logger.info("Update " + strDate + " to MasterLog successfully.");
+			}
+
+		} catch (ParseException e) {
+			logger.error(strDate + ": erorr date format");
+		}
+
+		return outFilePath;
 	}
 
 	/**
