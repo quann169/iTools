@@ -5905,3 +5905,11 @@ updateWorkingTransaction: 0
 2018-07-26 17:56:43 INFO  LoginPage:364 - ========================================
 2018-07-26 17:56:43 INFO  LoginPage:365 - End syncing thread - rzqHQuUO
 2018-07-26 17:56:43 INFO  LoginPage:366 - ========================================
+2018-07-26 18:01:43 INFO  LoginPage:359 - ========================================
+2018-07-26 18:01:43 INFO  LoginPage:360 - Start syncing thread - vUJZ4K8X
+2018-07-26 18:01:43 INFO  LoginPage:361 - ========================================
+2018-07-26 18:01:43 INFO  SyncController:68 - Start SyncHostToLocal
+2018-07-26 18:01:43 ERROR SyncController:104 - Unable to connect to foreign data source: User tqteamne_admin already has more than 'max_user_connections'
+2018-07-26 18:01:43 INFO  LoginPage:364 - ========================================
+2018-07-26 18:01:43 INFO  LoginPage:365 - End syncing thread - vUJZ4K8X
+2018-07-26 18:01:43 INFO  LoginPage:366 - ========================================

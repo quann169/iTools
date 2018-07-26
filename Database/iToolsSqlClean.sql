@@ -41,11 +41,11 @@ CREATE TABLE IF NOT EXISTS Assessor (
   FailTimes INT(10) NOT NULL DEFAULT 0,
   UpdatedDate timestamp not null default current_timestamp on update current_timestamp,
   PRIMARY KEY (AssessorID),
-  INDEX UserName (UserName),
-  FOREIGN KEY (CompanyCode) REFERENCES Company(CompanyCode)
+  INDEX UserName (UserName) -- ,
+  -- FOREIGN KEY (CompanyCode) REFERENCES Company(CompanyCode)
 );
 
-
+/*
 INSERT INTO Assessor(AssessorID, UserName, Password, FirstName, LastName, EmailAddress, CompanyCode, IsActive) VALUES 
 	(1, "admin", "e10adc3949ba59abbe56e057f20f883e", "ADMIN", "ADMIN", "quann169@gmail.com", "UHCom", 1),
 	(2, "uhadmin1", "e10adc3949ba59abbe56e057f20f883e", "ADMIN", "UH", "quann169@gmail.com", "UHCom", 1),
@@ -58,15 +58,15 @@ INSERT INTO Assessor(AssessorID, UserName, Password, FirstName, LastName, EmailA
 	(9, "com2admin", "e10adc3949ba59abbe56e057f20f883e", "ADMIN", "Com2", "quann169@gmail.com", "Com2", 1),
 	(10, "com2user1", "e10adc3949ba59abbe56e057f20f883e", "User1", "Com2", "quann169@gmail.com", "Com2", 1),
     (11, "RO7LQKKG", "e10adc3949ba59abbe56e057f20f883e", "User1", "Com2", "quann169@gmail.com", "Com2", 1);
+  */  
     
-    /*
 INSERT INTO Assessor(AssessorID, UserName, Password, FirstName, LastName, EmailAddress, CompanyCode, IsActive) VALUES 
 	(1, "admin", "e10adc3949ba59abbe56e057f20f883e", "ADMIN", "ADMIN", "quann169@gmail.com", "UHCom", 1) -- ,
 	-- ,(5, "com1admin", "e10adc3949ba59abbe56e057f20f883e", "ADMIN", "Com1", "quann169@gmail.com", "Com1", 1)
 	;
 
 update Assessor set IsFirstTimeLogin = 0 where UserName = 'com1admin';
-**/
+
 DROP TABLE IF EXISTS Roles;
 CREATE TABLE IF NOT EXISTS Roles (
   RoleID INT(10) NOT NULL AUTO_INCREMENT,
@@ -104,14 +104,14 @@ CREATE TABLE IF NOT EXISTS RoleAssessor (
   FOREIGN KEY (AssessorID) REFERENCES Assessor(AssessorID) 
 );
 
-/*
+
 insert into RoleAssessor (RoleID, AssessorID, CreatedDate, IsActive) values (1,1,now(), 1);
 insert into RoleAssessor (RoleID, AssessorID, CreatedDate, IsActive) values (2,1,now(), 1);
 insert into RoleAssessor (RoleID, AssessorID, CreatedDate, IsActive) values (3,1,now(), 1);
 insert into RoleAssessor (RoleID, AssessorID, CreatedDate, IsActive) values (4,1,now(), 1);
-*/
--- Admin UH has Admin, SubAdmin, Accounting, PutIns, TakeOver, UpdateReport
 
+-- Admin UH has Admin, SubAdmin, Accounting, PutIns, TakeOver, UpdateReport
+/*
 INSERT INTO RoleAssessor(RoleAssessorID, RoleID, AssessorID, CreatedDate, IsActive) VALUES 
 	(1, 1, 2, now(), 1),
 	(2, 2, 2, now(), 1),
@@ -139,7 +139,7 @@ INSERT INTO RoleAssessor(RoleAssessorID, RoleID, AssessorID, CreatedDate, IsActi
 	(19, 4, 9, now(), 1),
 -- Com2 emp
 	(20, 4, 10, now(), 1);
-
+*/
 
 DROP TABLE IF EXISTS Machine;
 CREATE TABLE IF NOT EXISTS Machine (
@@ -452,8 +452,8 @@ CREATE TABLE IF NOT EXISTS federated_Assessor (
   FailTimes INT(10) NOT NULL DEFAULT 0,
   UpdatedDate timestamp not null default current_timestamp on update current_timestamp,
   PRIMARY KEY (AssessorID),
-  INDEX UserName (UserName),
-  FOREIGN KEY (CompanyCode) REFERENCES Company(CompanyCode)
+  INDEX UserName (UserName) -- ,
+  -- FOREIGN KEY (CompanyCode) REFERENCES Company(CompanyCode)
 )ENGINE=FEDERATED
 DEFAULT CHARSET=UTF8
 CONNECTION='mysql://tqteamne_admin:Admin123@112.213.89.49:3306/tqteamne_iTools/Assessor';
