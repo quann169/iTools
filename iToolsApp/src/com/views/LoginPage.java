@@ -240,7 +240,7 @@ public class LoginPage extends JFrame implements ActionListener {
 
 			userText = "com1user1";
 			userText = "com1admin";
-			 userText = "uhacc1";
+//			 userText = "uhacc1";
 			pwdText = "123456";
 
 			logger.info("Login with username: " + userText);
@@ -464,8 +464,8 @@ public class LoginPage extends JFrame implements ActionListener {
 
 //		emailUtils.sendEmailWithAttachedFile("quann169@gmail.com",
 //				companyCode + " - " + machineCode + ": ITools App Log", outFilePath);
-		emailUtils.sendEmailWithAttachedFile("ngngoctanthuong@gmail.com",
-				companyCode + " - " + machineCode + ": ITools App Log", outFilePath);
+//		emailUtils.sendEmailWithAttachedFile("ngngoctanthuong@gmail.com",
+//				companyCode + " - " + machineCode + ": ITools App Log", outFilePath);
 		String[] dataLastLine = lastLine.split(" ");
 		String strDate = dataLastLine[0] + " " + dataLastLine[1];
 		SimpleDateFormat sdfrmt = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");

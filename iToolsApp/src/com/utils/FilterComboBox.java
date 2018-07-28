@@ -32,7 +32,7 @@ public class FilterComboBox extends JComboBox {
 		final JTextField textfield = (JTextField) this.getEditor().getEditorComponent();
 		textfield.addKeyListener(new KeyAdapter() {
 			public void keyPressed(KeyEvent ke) {
-//				System.out.println("ke: " + ke);
+				System.out.println("keyPressed: " + ke);
 				SwingUtilities.invokeLater(new Runnable() {
 					public void run() {
 						currentCaretPosition = textfield.getCaretPosition();
@@ -47,14 +47,14 @@ public class FilterComboBox extends JComboBox {
 			
 			
 			public void keyReleased(KeyEvent e) {
-//				System.out.println("keyReleased: " + e);
+				System.out.println("keyReleased: " + e);
 		        JTextField textField = (JTextField) e.getSource();
 		        String text = textField.getText();
 		        textField.setText(text.toUpperCase());
 		      }
 
 		      public void keyTyped(KeyEvent e) {
-//		    	  System.out.println("keyTyped: " + e);
+		    	  System.out.println("keyTyped: " + e);
 		      }
 
 			
@@ -63,46 +63,6 @@ public class FilterComboBox extends JComboBox {
 		});
 		
 		
-		
-		
-		
-//		textfield.addActionListener(new ActionListener() {
-//			
-//			@Override
-//			public void actionPerformed(ActionEvent e) {
-////				keyboard.getLi
-//				System.out.println("IUUUUUUUUUUUUUUU: " + e);
-//			}
-//		});
-		
-//		textfield.getDocument().addDocumentListener(new DocumentListener() {
-//			public void changedUpdate(DocumentEvent e) {
-//				System.out.println("changedUpdate");
-//				warn();
-//			}
-//
-//			public void removeUpdate(DocumentEvent e) {
-//				warn();
-//			}
-//
-//			public void insertUpdate(DocumentEvent e) {
-//				System.out.println("insertUpdate");
-//				warn();
-//			}
-//
-//			public void warn() {
-//				SwingUtilities.invokeLater(new Runnable() {
-//					public void run() {
-//						currentCaretPosition = textfield.getCaretPosition();
-//						if (textfield.getSelectedText() == null) {
-//							textfield.setCaretPosition(0);
-//							comboFilter(textfield.getText());
-//							textfield.setCaretPosition(currentCaretPosition);
-//						}
-//					}
-//				});
-//			}
-//		});
 	}
 
 	public void filterNow() {

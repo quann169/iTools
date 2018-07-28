@@ -285,10 +285,10 @@ INSERT INTO ToolsMachineTray(ToolsMachineTrayID, ToolsMachineID, TrayIndex, Quan
 		TRAY4: T2 - 5
 		TRAY5: T1 - 3
 	*/
-	(7, 8, "Tray_1", 5, now(), 1),
-	(8, 10, "Tray_2", 2, now(), 1),
-	(9, 9, "Tray_4", 5, now(), 1),
-	(10, 8, "Tray_5", 3, now(), 1),
+	(7, 8, "Tray_01", 5, now(), 1),
+	(8, 10, "Tray_02", 2, now(), 1),
+	(9, 9, "Tray_04", 5, now(), 1),
+	(10, 8, "Tray_05", 3, now(), 1),
 	/*+ MA2
 		TRAY1: 
 		TRAY2: T2 - 2
@@ -296,10 +296,10 @@ INSERT INTO ToolsMachineTray(ToolsMachineTrayID, ToolsMachineID, TrayIndex, Quan
 		TRAY4: T2 - 5
 		TRAY5: T4 - 3
 	*/
-	(11, 14, "Tray_2", 2, now(), 1),
-	(12, 15, "Tray_3", 5, now(), 1),
-	(13, 14, "Tray_4", 5, now(), 1),
-	(14, 16, "Tray_5", 3, now(), 1)
+	(11, 14, "Tray_02", 2, now(), 1),
+	(12, 15, "Tray_03", 5, now(), 1),
+	(13, 14, "Tray_04", 5, now(), 1),
+	(14, 16, "Tray_05", 3, now(), 1)
 	/*+ MA3
 		TRAY1: 
 		TRAY2: 
