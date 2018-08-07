@@ -314,47 +314,47 @@ public class EmployeePage extends JFrame implements ActionListener, HidServicesL
 		toolLabel.setBounds(180, 180, 150, 60);
 		toolLabel.setFont(new Font(labelFont.getName(), Font.BOLD, 25));
 
-		toolComboboxListener = new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if (toolComboBox.getItemCount() == 0) {
-					return;
-				}
-				String selectValue = toolComboBox.getSelectedItem().toString();
-				// System.out.println(toolVstrayAndQuantityMap);
-				// System.out.println("selectValue: " + selectValue);
-				if (toolVstrayAndQuantityMap.containsKey(selectValue)) {
-
-					List<List<Object>> existedValue = toolVstrayAndQuantityMap.get(selectValue);
-					if (existedValue.size() > 0) {
-						List<String> listTrays = new ArrayList<>();
-						for (List<Object> trayQuantity : existedValue) {
-							String tray = (String) trayQuantity.get(0);
-							int quantity = (int) trayQuantity.get(1);
-							quantityTextField.setText("" + quantity);
-							trayTextField.setText("" + tray);
-							listTrays.add(trayQuantity.toString());
-						}
-						trayTextField.setToolTipText(listTrays.toString());
-					}
-
-				} else {
-					trayTextField.setText("");
-					quantityTextField.setText("0");
-
-					if (!selectValue.equals("") && allToolNames.contains(selectValue)) {
-						List<Machine> availableMachine = empCtlObj.findAvailableMachine(machineCode, selectValue);
-						String availableMachineNotify = MessageFormat.format(
-								bundleMessage.getString("Employee_AvailableMachine"), selectValue, machineCode,
-								availableMachine.toString());
-
-						JOptionPane.showMessageDialog(trayTextField.getParent(), availableMachineNotify);
-						logger.info("Suggest machine for tool " + selectValue + " - company " + COMPANY_CODE + ": "
-								+ availableMachine);
-
-					}
-				}
-			}
-		};
+//		toolComboboxListener = new ActionListener() {
+//			public void actionPerformed(ActionEvent e) {
+//				if (toolComboBox.getItemCount() == 0) {
+//					return;
+//				}
+//				String selectValue = toolComboBox.getSelectedItem().toString();
+//				// System.out.println(toolVstrayAndQuantityMap);
+//				// System.out.println("selectValue: " + selectValue);
+//				if (toolVstrayAndQuantityMap.containsKey(selectValue)) {
+//
+//					List<List<Object>> existedValue = toolVstrayAndQuantityMap.get(selectValue);
+//					if (existedValue.size() > 0) {
+//						List<String> listTrays = new ArrayList<>();
+//						for (List<Object> trayQuantity : existedValue) {
+//							String tray = (String) trayQuantity.get(0);
+//							int quantity = (int) trayQuantity.get(1);
+//							quantityTextField.setText("" + quantity);
+//							trayTextField.setText("" + tray);
+//							listTrays.add(trayQuantity.toString());
+//						}
+//						trayTextField.setToolTipText(listTrays.toString());
+//					}
+//
+//				} else {
+//					trayTextField.setText("");
+//					quantityTextField.setText("0");
+//
+//					if (!selectValue.equals("") && allToolNames.contains(selectValue)) {
+//						List<Machine> availableMachine = empCtlObj.findAvailableMachine(machineCode, selectValue);
+//						String availableMachineNotify = MessageFormat.format(
+//								bundleMessage.getString("Employee_AvailableMachine"), selectValue, machineCode,
+//								availableMachine.toString());
+//
+//						JOptionPane.showMessageDialog(trayTextField.getParent(), availableMachineNotify);
+//						logger.info("Suggest machine for tool " + selectValue + " - company " + COMPANY_CODE + ": "
+//								+ availableMachine);
+//
+//					}
+//				}
+//			}
+//		};
 
 		updateToolCombobox();
 
@@ -453,7 +453,7 @@ public class EmployeePage extends JFrame implements ActionListener, HidServicesL
 	}
 
 	private void updateToolCombobox() {
-//		 toolComboBox.removeActionListener(toolComboboxListener);
+		 toolComboBox.removeActionListener(toolComboBox.getAction());
 		toolComboBox = new JComboBox<>();
 		int size = toolComboBox.getItemCount();
 //		 List<String> listInt = new ArrayList<>();
@@ -470,7 +470,7 @@ public class EmployeePage extends JFrame implements ActionListener, HidServicesL
 //		 toolComboBox.removeItem(pos);
 //		 }
 
-		 System.out.println("AAAAAAAAAAA: " + toolComboBox.getItemCount());
+//		 System.out.println("AAAAAAAAAAA: " + toolComboBox.getItemCount());
 //		 toolComboBox.removeAllItems();
 
 		List<Tool> listTools = empCtlObj.getToolsOfMachine(machineCode);
@@ -483,17 +483,20 @@ public class EmployeePage extends JFrame implements ActionListener, HidServicesL
 		});
 
 		List<String> listToolNames = new ArrayList<>();
-		if (toolComboBox.getItemCount() == 0) {
+//		if (toolComboBox.getItemCount() == 0) {
 			listToolNames.add("");
-		}
+			toolComboBox.addItem("");
+			toolComboBox.setSelectedIndex(0);
+//		}
 
 		for (Tool tool : listTools) {
 			listToolNames.add(tool.getToolName());
+			toolComboBox.addItem(tool.getToolName());
 		}
 
 		logger.info("listToolNames: " + listToolNames);
 
-		toolComboBox = new FilterComboBox(listToolNames, keyboard);
+//		toolComboBox = new FilterComboBox(listToolNames, keyboard);
 		
 		
 
@@ -515,11 +518,11 @@ public class EmployeePage extends JFrame implements ActionListener, HidServicesL
 		toolComboBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (toolComboBox.getItemCount() == 0) {
-					System.out.println("XXXXXXXXXXXXXxx");
+//					System.out.println("XXXXXXXXXXXXXxx");
 					return;
 				}
-//				String selectValue = toolComboBox.getSelectedItem().toString();
-				String selectValue = ((JTextField) toolComboBox.getEditor().getEditorComponent()).getText();
+				String selectValue = toolComboBox.getSelectedItem().toString();
+//				String selectValue = ((JTextField) toolComboBox.getEditor().getEditorComponent()).getText();
 				// System.out.println(toolVstrayAndQuantityMap);
 				System.out.println("selectValue: " + selectValue);
 				if (toolVstrayAndQuantityMap.containsKey(selectValue)) {
@@ -556,7 +559,7 @@ public class EmployeePage extends JFrame implements ActionListener, HidServicesL
 			}
 		});
 		
-		toolComboBox.repaint();
+//		toolComboBox.repaint();
 	}
 
 	private boolean validateAllFields() {
@@ -691,10 +694,11 @@ public class EmployeePage extends JFrame implements ActionListener, HidServicesL
 				progress.setText("Please Wait...");
 				p1.add(progress, new GridBagConstraints());
 				d.getContentPane().add(p1);
-				d.setBounds(100, 100, 500, 200);
+				d.setBounds(150, 200, 500, 200);
 				// d.setLocationRelativeTo(f);
 				d.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
 				d.setModal(true);
+				d.setTitle("Please wait while processing...");
 
 				SwingWorker<?, ?> worker = new SwingWorker<Void, String>() {
 					protected Void doInBackground() throws InterruptedException {
@@ -703,8 +707,8 @@ public class EmployeePage extends JFrame implements ActionListener, HidServicesL
 						publish("Insert into transaction");
 						Thread.sleep(1000);
 
-						transactionID = transCtl.insertTransaction(userName, companyCode, machineCode, "", "",
-								toolComboBox.getSelectedItem().toString(), tray, quantityTextField.getText(),
+						transactionID = transCtl.insertTransaction(userName, companyCode, machineCode, wo, op,
+								ctid, tray, "1",
 								Enum.GETTOOL.text(), "Send request to board");
 
 						logger.info("Create transaction");
@@ -774,11 +778,11 @@ public class EmployeePage extends JFrame implements ActionListener, HidServicesL
 						if (resultValue == 1) {
 							woTextField.setText("");
 							opTextField.setText("");
-//							toolComboBox.setSelectedIndex(0);
+							toolComboBox.setSelectedIndex(0);
 							quantityTextField.setText("");
 							trayTextField.setText("");
 							toolVstrayAndQuantityMap = empCtlObj.getToolTrayQuantity(machineCode, 0);
-							updateToolCombobox();
+//							updateToolCombobox();
 
 							// toolComboBox.setSelectedItem("");
 							// ((JTextField)toolComboBox.getEditor().getEditorComponent()).setText("");
