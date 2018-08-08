@@ -17,7 +17,7 @@ CREATE TABLE IF NOT EXISTS Company (
   INDEX Company_CompanyCode (CompanyCode),
   PRIMARY KEY (CompanyID),
   UNIQUE KEY (CompanyCode)
-);
+)DEFAULT CHARSET=UTF8;
 
 
 
@@ -43,7 +43,7 @@ CREATE TABLE IF NOT EXISTS Assessor (
   PRIMARY KEY (AssessorID),
   INDEX UserName (UserName) -- ,
   -- FOREIGN KEY (CompanyCode) REFERENCES Company(CompanyCode)
-);
+)DEFAULT CHARSET=UTF8;
 
 /*
 INSERT INTO Assessor(AssessorID, UserName, Password, FirstName, LastName, EmailAddress, CompanyCode, IsActive) VALUES 
@@ -75,7 +75,7 @@ CREATE TABLE IF NOT EXISTS Roles (
   IsRole INT(10) NULL,
   UpdatedDate timestamp not null default current_timestamp on update current_timestamp,
   PRIMARY KEY (RoleID)
-);
+)DEFAULT CHARSET=UTF8;
 INSERT INTO Roles(RoleID, RoleName, IsRole) VALUES 
 	(1, "Admin", 1),
 	(2, "SubAdmin", 1),
@@ -102,7 +102,7 @@ CREATE TABLE IF NOT EXISTS RoleAssessor (
   INDEX AssessorID (AssessorID),
   FOREIGN KEY (RoleID) REFERENCES Roles(RoleID) ,
   FOREIGN KEY (AssessorID) REFERENCES Assessor(AssessorID) 
-);
+)DEFAULT CHARSET=UTF8;
 
 
 insert into RoleAssessor (RoleID, AssessorID, CreatedDate, IsActive) values (1,1,now(), 1);
@@ -155,7 +155,7 @@ CREATE TABLE IF NOT EXISTS Machine (
   PRIMARY KEY (MachineID),
   INDEX Machine_MachineCode (MachineCode),
   UNIQUE KEY (MachineCode)
-);
+)DEFAULT CHARSET=UTF8;
 
 
 	
@@ -170,7 +170,7 @@ CREATE TABLE IF NOT EXISTS CompanyMachine (
   PRIMARY KEY (CompanyMachineID),
   FOREIGN KEY (MachineCode) REFERENCES Machine(MachineCode),
   FOREIGN KEY (CompanyCode) REFERENCES Company(CompanyCode)
-);
+)DEFAULT CHARSET=UTF8;
 
 /*
 INSERT INTO CompanyMachine(CompanyMachineID, MachineCode, CompanyCode, CreatedDate, IsActive) VALUES 
@@ -199,7 +199,7 @@ CREATE TABLE IF NOT EXISTS Tools (
   IsActive BOOLEAN NOT NULL,
   PRIMARY KEY (ToolID),
   UNIQUE KEY (ToolCode)
-);
+)DEFAULT CHARSET=UTF8;
 
 /*
 INSERT INTO Tools(ToolID, ToolCode, CreatedDate, IsActive) VALUES 
@@ -211,6 +211,7 @@ INSERT INTO Tools(ToolID, ToolCode, CreatedDate, IsActive) VALUES
 	(6, "CTID6",  now(), 1),
 	(7, "CTID7",  now(), 1); 
 */
+	
 DROP TABLE IF EXISTS ToolsMachine;
 CREATE TABLE IF NOT EXISTS ToolsMachine (
   ToolsMachineID INT(10) NOT NULL AUTO_INCREMENT,
@@ -219,48 +220,22 @@ CREATE TABLE IF NOT EXISTS ToolsMachine (
   CreatedDate timestamp null,
   UpdatedDate timestamp not null default current_timestamp on update current_timestamp,
   IsActive BOOLEAN NOT NULL,
-  PRIMARY KEY (ToolsMachineID),
-  FOREIGN KEY (ToolCode) REFERENCES Tools(ToolCode),
-  FOREIGN KEY (MachineCode) REFERENCES Machine(MachineCode)
+  PRIMARY KEY (ToolsMachineID)
 );
-/*
-INSERT INTO ToolsMachine(ToolsMachineID, ToolCode, MachineCode,CreatedDate, IsActive) VALUES 
-	-- ToolID at UHCom, do not add to Machine yet
-	(1, "CTID1", "UHMAC", now(), 1),
-	(2, "CTID2", "UHMAC", now(), 1),
-	(3, "CTID3", "UHMAC", now(), 1),
-	(4, "CTID4", "UHMAC", now(), 1),
-	(5, "CTID5", "UHMAC", now(), 1),
-	(6, "CTID6", "UHMAC", now(), 1),
-	(7, "CTID7", "UHMAC", now(), 1),
-	-- Tool for MAC1
-	(8, "CTID1", "MAC1", now(), 1),
-	(9, "CTID2", "MAC1", now(), 1),
-	(10, "CTID6", "MAC1", now(), 1),
-	(11, "CTID4", "MAC1", now(), 1), -- out of stock
-	(12, "CTID5", "MAC1", now(), 1), -- out of stock
-	-- Tool for MAC2
-	(13, "CTID1", "MAC2", now(), 1), -- out of stock
-	(14, "CTID2", "MAC2", now(), 1),
-	(15, "CTID3", "MAC2", now(), 1),
-	(16, "CTID4", "MAC2", now(), 1);
-*/
-	
-	
 
 DROP TABLE IF EXISTS ToolsMachineTray;
 CREATE TABLE IF NOT EXISTS ToolsMachineTray (
   ToolsMachineTrayID INT(10) NOT NULL AUTO_INCREMENT,
-  ToolsMachineID INT(10) NOT NULL,
-  TrayIndex VARCHAR(100) NULL,
+  MachineCode VARCHAR(100) NOT NULL,
+  ToolCode VARCHAR(100) NOT NULL,
+  TrayIndex VARCHAR(100) NOT NULL,
   Quantity INT(10) NULL,
   CreatedDate timestamp null,
   UpdatedDate timestamp not null default current_timestamp on update current_timestamp,
   IsActive BOOLEAN NOT NULL,
-  PRIMARY KEY (ToolsMachineTrayID),
-  FOREIGN KEY (ToolsMachineID) REFERENCES ToolsMachine(ToolsMachineID)
-);
-
+  PRIMARY KEY (ToolsMachineTrayID)
+)DEFAULT CHARSET=UTF8;
+ 
 /*
 INSERT INTO ToolsMachineTray(ToolsMachineTrayID, ToolsMachineID, TrayIndex, Quantity, CreatedDate, IsActive) VALUES 
 	-- ToolID at UHCom, do not add to Machine yet
@@ -340,7 +315,7 @@ CREATE TABLE IF NOT EXISTS WorkingTransaction (
   FOREIGN KEY (MachineCode) REFERENCES Machine(MachineCode),
   FOREIGN KEY (CompanyCode) REFERENCES Company(CompanyCode),
   FOREIGN KEY (ToolCode) REFERENCES Tools(ToolCode)
-);
+)DEFAULT CHARSET=UTF8;
 	
 DROP TABLE IF EXISTS MasterLog;
 CREATE TABLE IF NOT EXISTS MasterLog (
@@ -361,7 +336,7 @@ CREATE TABLE IF NOT EXISTS MasterLog (
   INDEX RecordID (RecordID),
   INDEX AssessorName (AssessorName),
   INDEX LogDate (LogDate)
-); 
+)DEFAULT CHARSET=UTF8; 
 
 
 DROP TABLE IF EXISTS PendingAction;
@@ -373,13 +348,13 @@ CREATE TABLE IF NOT EXISTS PendingAction (
   Status VARCHAR(100) NULL,
   UpdatedDate timestamp not null default current_timestamp on update current_timestamp,
   PRIMARY KEY (PendingActionID)
-);
+)DEFAULT CHARSET=UTF8;
 
 DROP TABLE IF EXISTS DatabaseVersion;
 CREATE TABLE IF NOT EXISTS DatabaseVersion (
   iToolAppDatabase VARCHAR(255) NULL,
   UpdatedDate timestamp not null default current_timestamp
-);
+)DEFAULT CHARSET=UTF8;
 
 INSERT INTO DatabaseVersion(iToolAppDatabase, UpdatedDate) VALUES ("v1p0", now());
 
@@ -392,7 +367,7 @@ CREATE TABLE IF NOT EXISTS SyncHistory (
   Status VARCHAR(255) NULL,
   SynType VARCHAR(255) NULL,
   PRIMARY KEY (SyncHistoryID)
-);
+)DEFAULT CHARSET=UTF8;
 
 
 INSERT INTO Company(CompanyID, CompanyName, CompanyCode, Address, Location) VALUES 
@@ -431,7 +406,7 @@ CREATE TABLE IF NOT EXISTS federated_Company (
 )
 ENGINE=FEDERATED
 DEFAULT CHARSET=UTF8
-CONNECTION='mysql://tqteamne_admin:Admin123@112.213.89.49:3306/tqteamne_iTools/Company';
+CONNECTION='mysql://tqteamne_admin:Admin123@112.213.89.47:3306/tqteamne_iTools/Company';
 
 DROP TABLE IF EXISTS federated_Assessor;
 CREATE TABLE IF NOT EXISTS federated_Assessor (
@@ -456,7 +431,7 @@ CREATE TABLE IF NOT EXISTS federated_Assessor (
   -- FOREIGN KEY (CompanyCode) REFERENCES Company(CompanyCode)
 )ENGINE=FEDERATED
 DEFAULT CHARSET=UTF8
-CONNECTION='mysql://tqteamne_admin:Admin123@112.213.89.49:3306/tqteamne_iTools/Assessor';
+CONNECTION='mysql://tqteamne_admin:Admin123@112.213.89.47:3306/tqteamne_iTools/Assessor';
 
 DROP TABLE IF EXISTS federated_Roles;
 CREATE TABLE IF NOT EXISTS federated_Roles (
@@ -468,7 +443,7 @@ CREATE TABLE IF NOT EXISTS federated_Roles (
   PRIMARY KEY (RoleID)
 )ENGINE=FEDERATED
 DEFAULT CHARSET=UTF8
-CONNECTION='mysql://tqteamne_admin:Admin123@112.213.89.49:3306/tqteamne_iTools/Roles';
+CONNECTION='mysql://tqteamne_admin:Admin123@112.213.89.47:3306/tqteamne_iTools/Roles';
 
 DROP TABLE IF EXISTS federated_RoleAssessor;
 CREATE TABLE IF NOT EXISTS federated_RoleAssessor (
@@ -486,7 +461,7 @@ CREATE TABLE IF NOT EXISTS federated_RoleAssessor (
   FOREIGN KEY (AssessorID) REFERENCES Assessor(AssessorID)
 )ENGINE=FEDERATED
 DEFAULT CHARSET=UTF8
-CONNECTION='mysql://tqteamne_admin:Admin123@112.213.89.49:3306/tqteamne_iTools/RoleAssessor';
+CONNECTION='mysql://tqteamne_admin:Admin123@112.213.89.47:3306/tqteamne_iTools/RoleAssessor';
 
 DROP TABLE IF EXISTS federated_Machine;
 CREATE TABLE IF NOT EXISTS federated_Machine (
@@ -504,7 +479,7 @@ CREATE TABLE IF NOT EXISTS federated_Machine (
   UNIQUE KEY (MachineCode)
 )ENGINE=FEDERATED
 DEFAULT CHARSET=UTF8
-CONNECTION='mysql://tqteamne_admin:Admin123@112.213.89.49:3306/tqteamne_iTools/Machine';
+CONNECTION='mysql://tqteamne_admin:Admin123@112.213.89.47:3306/tqteamne_iTools/Machine';
 
 DROP TABLE IF EXISTS federated_CompanyMachine;
 CREATE TABLE IF NOT EXISTS federated_CompanyMachine (
@@ -519,7 +494,7 @@ CREATE TABLE IF NOT EXISTS federated_CompanyMachine (
   FOREIGN KEY (CompanyCode) REFERENCES Company(CompanyCode)
 )ENGINE=FEDERATED
 DEFAULT CHARSET=UTF8
-CONNECTION='mysql://tqteamne_admin:Admin123@112.213.89.49:3306/tqteamne_iTools/CompanyMachine';
+CONNECTION='mysql://tqteamne_admin:Admin123@112.213.89.47:3306/tqteamne_iTools/CompanyMachine';
 
 DROP TABLE IF EXISTS federated_Tools;
 CREATE TABLE IF NOT EXISTS federated_Tools (
@@ -535,7 +510,7 @@ CREATE TABLE IF NOT EXISTS federated_Tools (
   UNIQUE KEY (ToolCode)
 )ENGINE=FEDERATED
 DEFAULT CHARSET=UTF8
-CONNECTION='mysql://tqteamne_admin:Admin123@112.213.89.49:3306/tqteamne_iTools/Tools';
+CONNECTION='mysql://tqteamne_admin:Admin123@112.213.89.47:3306/tqteamne_iTools/Tools';
 
 DROP TABLE IF EXISTS federated_ToolsMachine;
 CREATE TABLE IF NOT EXISTS federated_ToolsMachine (
@@ -545,27 +520,26 @@ CREATE TABLE IF NOT EXISTS federated_ToolsMachine (
   CreatedDate timestamp not null default current_timestamp,
   UpdatedDate timestamp not null default current_timestamp on update current_timestamp,
   IsActive BOOLEAN NOT NULL,
-  PRIMARY KEY (ToolsMachineID),
-  FOREIGN KEY (ToolCode) REFERENCES Tools(ToolCode),
-  FOREIGN KEY (MachineCode) REFERENCES Machine(MachineCode)
+  PRIMARY KEY (ToolsMachineID)
 )ENGINE=FEDERATED
 DEFAULT CHARSET=UTF8
-CONNECTION='mysql://tqteamne_admin:Admin123@112.213.89.49:3306/tqteamne_iTools/ToolsMachine';
+CONNECTION='mysql://tqteamne_admin:Admin123@112.213.89.47:3306/tqteamne_iTools/ToolsMachine';
+
 
 DROP TABLE IF EXISTS federated_ToolsMachineTray;
 CREATE TABLE IF NOT EXISTS federated_ToolsMachineTray (
   ToolsMachineTrayID INT(10) NOT NULL AUTO_INCREMENT,
-  ToolsMachineID INT(10) NOT NULL,
-  TrayIndex VARCHAR(100) NULL,
+  MachineCode VARCHAR(100) NOT NULL,
+  ToolCode VARCHAR(100) NOT NULL,
+  TrayIndex VARCHAR(100) NOT NULL,
   Quantity INT(10) NULL,
   CreatedDate timestamp null,
   UpdatedDate timestamp not null default current_timestamp on update current_timestamp,
   IsActive BOOLEAN NOT NULL,
-  PRIMARY KEY (ToolsMachineTrayID),
-  FOREIGN KEY (ToolsMachineID) REFERENCES ToolsMachine(ToolsMachineID)
+  PRIMARY KEY (ToolsMachineTrayID)
 )ENGINE=FEDERATED
 DEFAULT CHARSET=UTF8
-CONNECTION='mysql://tqteamne_admin:Admin123@112.213.89.49:3306/tqteamne_iTools/ToolsMachineTray';
+CONNECTION='mysql://tqteamne_admin:Admin123@112.213.89.47:3306/tqteamne_iTools/ToolsMachineTray';
 
 DROP TABLE IF EXISTS federated_WorkingTransaction;
 CREATE TABLE IF NOT EXISTS federated_WorkingTransaction (
@@ -592,7 +566,7 @@ CREATE TABLE IF NOT EXISTS federated_WorkingTransaction (
   FOREIGN KEY (ToolCode) REFERENCES Tools(ToolCode)
 )ENGINE=FEDERATED
 DEFAULT CHARSET=UTF8
-CONNECTION='mysql://tqteamne_admin:Admin123@112.213.89.49:3306/tqteamne_iTools/WorkingTransaction';
+CONNECTION='mysql://tqteamne_admin:Admin123@112.213.89.47:3306/tqteamne_iTools/WorkingTransaction';
 
 DROP TABLE IF EXISTS federated_MasterLog;
 CREATE TABLE IF NOT EXISTS federated_MasterLog (
@@ -615,7 +589,7 @@ CREATE TABLE IF NOT EXISTS federated_MasterLog (
   INDEX LogDate (LogDate)
 )ENGINE=FEDERATED
 DEFAULT CHARSET=UTF8
-CONNECTION='mysql://tqteamne_admin:Admin123@112.213.89.49:3306/tqteamne_iTools/MasterLog';
+CONNECTION='mysql://tqteamne_admin:Admin123@112.213.89.47:3306/tqteamne_iTools/MasterLog';
 
 DROP TABLE IF EXISTS federated_PendingAction;
 CREATE TABLE IF NOT EXISTS federated_PendingAction (
@@ -628,7 +602,7 @@ CREATE TABLE IF NOT EXISTS federated_PendingAction (
   PRIMARY KEY (PendingActionID)
 )ENGINE=FEDERATED
 DEFAULT CHARSET=UTF8
-CONNECTION='mysql://tqteamne_admin:Admin123@112.213.89.49:3306/tqteamne_iTools/PendingAction';
+CONNECTION='mysql://tqteamne_admin:Admin123@112.213.89.47:3306/tqteamne_iTools/PendingAction';
 
 DROP TABLE IF EXISTS federated_DatabaseVersion;
 CREATE TABLE IF NOT EXISTS federated_DatabaseVersion (
@@ -636,7 +610,7 @@ CREATE TABLE IF NOT EXISTS federated_DatabaseVersion (
   UpdatedDate timestamp not null default current_timestamp on update current_timestamp
 )ENGINE=FEDERATED
 DEFAULT CHARSET=UTF8
-CONNECTION='mysql://tqteamne_admin:Admin123@112.213.89.49:3306/tqteamne_iTools/DatabaseVersion';
+CONNECTION='mysql://tqteamne_admin:Admin123@112.213.89.47:3306/tqteamne_iTools/DatabaseVersion';
 
 DROP TABLE IF EXISTS federated_SyncHistory;
 CREATE TABLE IF NOT EXISTS federated_SyncHistory (
@@ -648,7 +622,7 @@ CREATE TABLE IF NOT EXISTS federated_SyncHistory (
   PRIMARY KEY (SyncHistoryID)
 )ENGINE=FEDERATED
 DEFAULT CHARSET=UTF8
-CONNECTION='mysql://tqteamne_admin:Admin123@112.213.89.49:3306/tqteamne_iTools/SyncHistory';
+CONNECTION='mysql://tqteamne_admin:Admin123@112.213.89.47:3306/tqteamne_iTools/SyncHistory';
 
 DELIMITER $$
 
@@ -710,7 +684,8 @@ BEGIN
     #update all record from Local to Host
 	update federated_ToolsMachineTray
 	left join ToolsMachineTray on ToolsMachineTray.ToolsMachineTrayID = federated_ToolsMachineTray.ToolsMachineTrayID
-		set federated_ToolsMachineTray.ToolsMachineID = ToolsMachineTray.ToolsMachineID,
+		set federated_ToolsMachineTray.MachineCode = ToolsMachineTray.MachineCode,
+			federated_ToolsMachineTray.ToolCode = ToolsMachineTray.ToolCode,
 			federated_ToolsMachineTray.TrayIndex = ToolsMachineTray.TrayIndex,
 			federated_ToolsMachineTray.Quantity = ToolsMachineTray.Quantity,
             federated_ToolsMachineTray.CreatedDate = ToolsMachineTray.CreatedDate,
@@ -1001,36 +976,7 @@ BEGIN
     
 	set @updateTools = (SELECT ROW_COUNT());
     set @finalResult = concat(@finalResult, ",", "\n", "updateTools: ", @updateTools );
-    
-    #insert missing record from Host to local
-    INSERT INTO ToolsMachine
-	SELECT a.* FROM federated_ToolsMachine a
-	LEFT OUTER JOIN ToolsMachine b ON b.ToolsMachineID = a.ToolsMachineID
-	WHERE b.ToolsMachineID IS NULL;
-	
-	set @insertToolsMachine = (SELECT ROW_COUNT());
-    set @finalResult = concat(@finalResult, ",", "\n", "insertToolsMachine: ", @insertToolsMachine);
-	
-    #update all record from Host to local
-	update ToolsMachine lTM
-	left join federated_ToolsMachine fTM on lTM.ToolsMachineID = fTM.ToolsMachineID
-		set lTM.ToolCode = fTM.ToolCode,
-            lTM.MachineCode = fTM.MachineCode,
-			lTM.CreatedDate = fTM.CreatedDate,
-            lTM.UpdatedDate = sysdate(),
-            lTM.IsActive = fTM.IsActive
-		where lTM.ToolsMachineID in (select ToolsMachineID from federated_ToolsMachine)
-        and fTM.UpdatedDate > 
-		(select (Case when fs.SyncDate is null then '1900-01-01 00:00:00' else fs.SyncDate END) 
-			from synchistory fs
-			where fs.Status = 'SUCCESS' and fs.SynType = 'HostToLocal'
-			order by fs.SyncDate desc LIMIT 1)
-	and fTM.UpdatedDate > (Case when lTM.UpdatedDate is null then '1900-01-01 00:00:00' else lTM.UpdatedDate END);  
-	
-	set @updateToolsMachine = (SELECT ROW_COUNT());
-    set @finalResult = concat(@finalResult, ",", "\n", "updateToolsMachine: ", @updateToolsMachine );
-	
-	
+    /*
 	
 	
 	#insert missing record from Host to local
@@ -1062,7 +1008,7 @@ BEGIN
 	
 	set @updateToolsMachineTray = (SELECT ROW_COUNT());
     set @finalResult = concat(@finalResult, ",", "\n", "updateToolsMachineTray: ", @updateToolsMachineTray );
-	
+	*/
 	
 	
 	insert into synchistory(SyncDate, Statistic, Status, SynType)
