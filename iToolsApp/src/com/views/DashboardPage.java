@@ -90,9 +90,8 @@ public class DashboardPage extends JFrame implements ActionListener {
 		setLocationAndSize();
 		addComponentsToContainer();
 		addActionEvent();
-		logger.info("Init " + Enum.DASHBOARD_PAGE);
-		
-		
+		logger.info("Init " + Enum.DASHBOARD_PAGE + " with list roles: " + listRoleName);
+
 	}
 
 	public void setLayoutManager() {
@@ -117,7 +116,7 @@ public class DashboardPage extends JFrame implements ActionListener {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				updateTimer.restart();
-				
+
 				logger.info(userName + " click change password from " + Enum.DASHBOARD_PAGE);
 				JFrame old = root;
 				root = new ChangePasswordPage(user);
@@ -225,15 +224,14 @@ public class DashboardPage extends JFrame implements ActionListener {
 		getToolButton.addActionListener(this);
 		resetPasswordButton.addActionListener(this);
 		lockAccountButton.addActionListener(this);
-		
+
 		this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent we) {
 				String ObjButtons[] = { "Yes", "No" };
-				int PromptResult = JOptionPane.showOptionDialog(root, "Are you sure you want to exit?",
-						"Confirm Close", JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null,
-						ObjButtons, ObjButtons[1]);
+				int PromptResult = JOptionPane.showOptionDialog(root, "Are you sure you want to exit?", "Confirm Close",
+						JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, ObjButtons, ObjButtons[1]);
 				if (PromptResult == JOptionPane.YES_OPTION) {
 					System.exit(0);
 				}
@@ -272,20 +270,23 @@ public class DashboardPage extends JFrame implements ActionListener {
 					String selection = chunks.get(chunks.size() - 1);
 					progress.setText("<html><html><font size=\"5\" face=\"arial\" color=\"#0181BE\"><b>Please Wait... "
 							+ selection + "s</b></font></html></html>");
-					
-					
+
 				}
 
 				protected void done() {
 					logger.info("Complete");
 					d.dispose();
-//					if (listRoleName.contains(Enum.PUTIN.text().toLowerCase())) {
-						putInsButton.setEnabled(true);
-//					}
-//
-//					if (listRoleName.contains(Enum.TKOVER.text().toLowerCase())) {
-						takeOverButton.setEnabled(true);
-//					}
+					// if
+					// (listRoleName.contains(Enum.PUTIN.text().toLowerCase()))
+					// {
+					putInsButton.setEnabled(true);
+					// }
+					//
+					// if
+					// (listRoleName.contains(Enum.TKOVER.text().toLowerCase()))
+					// {
+					takeOverButton.setEnabled(true);
+					// }
 				}
 			};
 			worker.execute();
@@ -297,7 +298,8 @@ public class DashboardPage extends JFrame implements ActionListener {
 			JFrame old = root;
 			root = new PutInTakeOverPage(user, Enum.TKOVER.text());
 			StringUtils.frameInit(root, bundleMessage);
-			root.setTitle(user.getUsername() + " - " + user.getFirstName() + " " + user.getLastName());
+			root.setTitle(user.getFirstName() + " " + user.getLastName() + " - "
+					+ Enum.TKOVER.text() + " Page");
 			root.show();
 			old.dispose();
 		}
@@ -307,7 +309,8 @@ public class DashboardPage extends JFrame implements ActionListener {
 			JFrame old = root;
 			root = new PutInTakeOverPage(user, Enum.PUTIN.text());
 			StringUtils.frameInit(root, bundleMessage);
-			root.setTitle(user.getUsername() + " - " + user.getFirstName() + " " + user.getLastName());
+			root.setTitle(user.getFirstName() + " " + user.getLastName() + " - "
+					+ Enum.PUTIN.text() + " Page");
 			root.show();
 			old.dispose();
 		}
@@ -319,7 +322,7 @@ public class DashboardPage extends JFrame implements ActionListener {
 			root = new ResetPasswordPage(user, true, false);
 			StringUtils.frameInit(root, bundleMessage);
 			// empPage.setJMenuBar(StringUtils.addMenu());
-			root.setTitle(user.getUsername() + " - " + user.getFirstName() + " " + user.getLastName());
+			root.setTitle(user.getFirstName() + " " + user.getLastName());
 			root.show();
 			old.dispose();
 		}
@@ -330,7 +333,7 @@ public class DashboardPage extends JFrame implements ActionListener {
 			root = new LockUnlockAccountPage(user, true);
 			StringUtils.frameInit(root, bundleMessage);
 			// empPage.setJMenuBar(StringUtils.addMenu());
-			root.setTitle(user.getUsername() + " - " + user.getFirstName() + " " + user.getLastName());
+			root.setTitle(user.getFirstName() + " " + user.getLastName());
 			root.show();
 			old.dispose();
 		}
@@ -342,7 +345,7 @@ public class DashboardPage extends JFrame implements ActionListener {
 			root = new EmployeePage(user, true);
 			StringUtils.frameInit(root, bundleMessage);
 			// empPage.setJMenuBar(StringUtils.addMenu());
-			root.setTitle(user.getUsername() + " - " + user.getFirstName() + " " + user.getLastName());
+			root.setTitle(user.getFirstName() + " " + user.getLastName());
 			root.show();
 			old.dispose();
 		}

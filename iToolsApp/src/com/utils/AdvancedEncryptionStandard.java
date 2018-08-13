@@ -58,10 +58,10 @@ public class AdvancedEncryptionStandard {
 
 	public static void main(String[] a) throws Exception {
 
-//		String plainText = "itool_app@tqteam.net";
-//		String cipherText = AdvancedEncryptionStandard.encrypt(plainText);
-//		AdvancedEncryptionStandard.decrypt(cipherText);
-//		System.out.println();
+		String plainText = "112.213.89.47";
+		String cipherText = AdvancedEncryptionStandard.encrypt(plainText);
+		AdvancedEncryptionStandard.decrypt(cipherText);
+		System.out.println();
 //
 //		plainText = "1qazxsw2!A";
 //		cipherText = AdvancedEncryptionStandard.encrypt(plainText);

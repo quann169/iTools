@@ -85,6 +85,7 @@ public class ResetPasswordPage extends JFrame implements ActionListener {
 	private static final String MACHINE_CODE = "MACHINE_CODE";
 	static String companyCode = AdvancedEncryptionStandard.decrypt(cfg.getProperty(COMPANY_CODE));
 	static String machineCode = AdvancedEncryptionStandard.decrypt(cfg.getProperty(MACHINE_CODE));
+	private static final String companyCodeUH = AdvancedEncryptionStandard.decrypt(cfg.getProperty("COMPANY_CODE_UH"));
 	static String userName = "";
 	final static Logger logger = Logger.getLogger(ResetPasswordPage.class);
 	UserController empCtlObj = new UserController();
@@ -138,7 +139,7 @@ public class ResetPasswordPage extends JFrame implements ActionListener {
 				logger.info(userName + " back to dashboard from " + Enum.RESET_PASS_PAGE);
 				JFrame old = root;
 
-				List<Role> listRoles = ctlObj.getUserRoles(userName, companyCode);
+				List<Role> listRoles = ctlObj.getUserRoles(userName, companyCode, companyCodeUH);
 				root = new DashboardPage(listRoles, user);
 				StringUtils.frameInit(root, bundleMessage);
 

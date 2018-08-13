@@ -44,9 +44,8 @@ public class EmployeeController {
 	 */
 	public List<Tool> getToolsOfMachine(String machineCode) {
 		String sql = "select tools.ToolId, tools.ToolCode "
-				+ " from tools inner join toolsmachine on tools.ToolCode = toolsmachine.ToolCode "
-				+ " inner join machine on toolsmachine.MachineCode = machine.MachineCode "
-				+ " where machine.MachineCode = '" + machineCode + "';";
+				+ " from tools inner join toolsmachineTray on tools.ToolCode = toolsmachineTray.ToolCode "
+				+ " where toolsmachineTray.MachineCode = '" + machineCode + "';";
 		// System.out.println(sql);
 		logger.info(sql);
 		List<Tool> result = new ArrayList<>();
@@ -93,12 +92,40 @@ public class EmployeeController {
 		} finally {
 			mysqlConnect.disconnect();
 		}
-		if ("-1".equals(quantity)) {
-			sql = " update toolsmachinetray set quantity = quantity - 1 where ToolsMachineID = '" + toolsMachineID
-					+ "' and trayIndex = '" + tray + "';";
+
+		sql = " select count(*) from toolsmachinetray where toolsmachinetray.ToolCode = '" + tool
+				+ "' and toolsmachinetray.TrayIndex = '" + tray + "' and toolsmachinetray.MachineCode = '" + machineCode + "';";
+		logger.info(sql);
+		int countExisted = 0;
+		try {
+
+			PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
+			ResultSet rs = statement.executeQuery(sql);
+			while (rs.next()) {
+				countExisted = Integer.valueOf(rs.getString(1));
+			}
+		} catch (SQLException e) {
+			logger.info(e.getMessage());
+			return false;
+		} finally {
+			mysqlConnect.disconnect();
+		}
+
+		if (countExisted == 0) {
+			sql = " insert into toolsmachinetray (MachineCode, ToolCode, TrayIndex, Quantity, IsActive) values ('"
+					+ machineCode + "', '" + tool + "', '" + tray + "', '" + quantity + "', 1);";
 		} else {
-			sql = " update toolsmachinetray set quantity = '" + quantity + "' where ToolsMachineID = '" + toolsMachineID
-					+ "' and trayIndex = '" + tray + "';";
+
+			if ("-1".equals(quantity)) {
+				sql = " update toolsmachinetray set quantity = quantity - 1 where ToolCode = '" + tool
+						+ "' and trayIndex = '" + tray + "' and machineCode = '" + machineCode + "';";
+			} else {
+				// sql = " update toolsmachinetray set quantity = '" + quantity
+				// + "' where ToolsMachineID = '" + toolsMachineID
+				// + "' and trayIndex = '" + tray + "';";
+				sql = " update toolsmachinetray set quantity = '" + quantity + "' where ToolCode = '" + tool
+						+ "' and trayIndex = '" + tray + "' and machineCode = '" + machineCode + "';";
+			}
 		}
 		logger.info(sql);
 
@@ -126,6 +153,58 @@ public class EmployeeController {
 	 * @return
 	 */
 	public HashMap<String, List<List<Object>>> getToolTrayQuantity(String machineCode, int minVal) {
+		String sql = " select tools.ToolId, tools.ToolCode ,  toolsmachineTray.Quantity, toolsmachineTray.TrayIndex, toolsmachineTray.Machinecode "
+				+ " from tools inner join toolsmachineTray on tools.ToolCode = toolsmachineTray.ToolCode "
+				+ " where toolsmachineTray.MachineCode = '" + machineCode + "';";
+		// System.out.println(sql);
+		logger.info(sql);
+		HashMap<String, List<List<Object>>> result = new HashMap<>();
+		List<String> availableTools = new ArrayList<>();
+		Set<String> toolTrays = new HashSet<>();
+		try {
+
+			PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
+			ResultSet rs = statement.executeQuery(sql);
+			while (rs.next()) {
+				String toolName = rs.getString(2);
+				String trayIndex = rs.getString(4);
+				String toolTray = toolName + "_" + trayIndex;
+				int quantity = Integer.parseInt(rs.getString(3));
+				if (toolTrays.contains(toolTray)) {
+					logger.warn("Machine " + machineCode + ": " + toolName + " - " + trayIndex + " existed.");
+				}
+				if (quantity > minVal) {
+					availableTools.add(toolName);
+
+					if (result.containsKey(toolName)) {
+						List<List<Object>> existedData = result.get(toolName);
+						List<Object> tmpList = new ArrayList<>();
+						tmpList.add(trayIndex);
+						tmpList.add(quantity);
+						existedData.add(tmpList);
+						result.put(toolName, existedData);
+					} else {
+						List<Object> tmpList = new ArrayList<>();
+						tmpList.add(trayIndex);
+						tmpList.add(quantity);
+						List<List<Object>> existedData = new ArrayList<>();
+						existedData.add(tmpList);
+						result.put(toolName, existedData);
+					}
+				}
+			}
+
+		} catch (SQLException e) {
+			logger.info(e.getMessage());
+			return null;
+		} finally {
+			mysqlConnect.disconnect();
+		}
+		logger.info(result);
+		return result;
+	}
+
+	public HashMap<String, List<List<Object>>> getToolTrayQuantity_Bk(String machineCode, int minVal) {
 		String sql = " select tools.ToolCode, tools.ToolCode, machine.MachineCode, toolsmachinetray.TrayIndex, toolsmachinetray.Quantity "
 				+ " from tools inner join toolsmachine on tools.ToolCode = toolsmachine.ToolCode "
 				+ " inner join machine on toolsmachine.MachineCode = machine.MachineCode "
@@ -185,19 +264,21 @@ public class EmployeeController {
 	 * @param password
 	 * @return
 	 */
-	public List<String> getAllTools() {
+	public List<Tool> getAllTools() {
 		String sql = " select tools.ToolCode from tools;";
 		// System.out.println(sql);
 		logger.info(sql);
 		HashMap<String, List<List<Object>>> result = new HashMap<>();
-		List<String> availableTools = new ArrayList<>();
+		List<Tool> availableTools = new ArrayList<>();
 		try {
 
 			PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
 			ResultSet rs = statement.executeQuery(sql);
 			while (rs.next()) {
 				String toolName = rs.getString(1);
-				availableTools.add(toolName);
+				Tool tool = new Tool();
+				tool.setToolName(toolName);
+				availableTools.add(tool);
 			}
 
 		} catch (SQLException e) {

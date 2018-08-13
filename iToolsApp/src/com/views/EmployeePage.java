@@ -112,6 +112,7 @@ public class EmployeePage extends JFrame implements ActionListener, HidServicesL
 	private static final String MACHINE_CODE = "MACHINE_CODE";
 	String companyCode = AdvancedEncryptionStandard.decrypt(cfg.getProperty(COMPANY_CODE));
 	String machineCode = AdvancedEncryptionStandard.decrypt(cfg.getProperty(MACHINE_CODE));
+	private static final String companyCodeUH = AdvancedEncryptionStandard.decrypt(cfg.getProperty("COMPANY_CODE_UH"));
 
 	int transactionID = -1;
 	LogController masterLogObj = new LogController();
@@ -142,7 +143,7 @@ public class EmployeePage extends JFrame implements ActionListener, HidServicesL
 	int resultValue;
 	boolean isDashboard;
 	public PopUpKeyboard keyboard;
-	List<String> allToolNames = new ArrayList<>();
+	List<Tool> allToolNames = new ArrayList<>();
 	Assessor user;
 	// JFrame parent;
 
@@ -190,7 +191,7 @@ public class EmployeePage extends JFrame implements ActionListener, HidServicesL
 				logger.info(userName + " back to dashboard from " + Enum.GETTOOL);
 				JFrame old = root;
 
-				List<Role> listRoles = ctlObj.getUserRoles(userName, companyCode);
+				List<Role> listRoles = ctlObj.getUserRoles(userName, companyCode, companyCodeUH);
 				root = new DashboardPage(listRoles, user);
 				StringUtils.frameInit(root, bundleMessage);
 

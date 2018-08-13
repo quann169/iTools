@@ -238,10 +238,10 @@ public class LoginPage extends JFrame implements ActionListener {
 		userName = userTextField.getText();
 		if (e.getSource() == loginButton) {
 
-//			userText = "com1user1";
-//			userText = "com1admin";
-//			 userText = "uhacc1";
-//			pwdText = "123456";
+			userText = "com1user1";
+			userText = "com1admin";
+//			 userText = "uhacc";
+			pwdText = "123456";
 
 			logger.info("Login with username: " + userText);
 
@@ -257,17 +257,17 @@ public class LoginPage extends JFrame implements ActionListener {
 					root = new ResetPasswordPage(result, false, result.isFirstTimeLogin());
 					StringUtils.frameInit(root, bundleMessage);
 					// empPage.setJMenuBar(StringUtils.addMenu());
-					root.setTitle(result.getUsername() + " - " + result.getFirstName() + " " + result.getLastName());
+					root.setTitle(result.getFirstName() + " " + result.getLastName());
 					root.show();
 					old.dispose();
 				} else {
-					List<Role> listRoles = ctlObj.getUserRoles(userText, companyCode);
+					List<Role> listRoles = ctlObj.getUserRoles(userText, companyCode, companyCodeUH);
 					logger.info("listRoles: " + listRoles);
 
-					if (listRoles.size() == 0) {
-						listRoles = ctlObj.getUserRoles(userText, companyCodeUH);
-						logger.info("listRolesUH: " + listRoles);
-					}
+//					if (listRoles.size() == 0) {
+//						listRoles = ctlObj.getUserRoles(userText, companyCodeUH);
+//						logger.info("listRolesUH: " + listRoles);
+//					}
 
 					if (listRoles.size() == 0) {
 						JOptionPane.showMessageDialog(this, bundleMessage.getString("Login_Page_Have_Not_Role"));
@@ -278,7 +278,7 @@ public class LoginPage extends JFrame implements ActionListener {
 						root = new EmployeePage(result, false);
 						StringUtils.frameInit(root, bundleMessage);
 						// empPage.setJMenuBar(StringUtils.addMenu());
-						root.setTitle(userText + " - " + result.getFirstName() + " " + result.getLastName());
+						root.setTitle(result.getFirstName() + " " + result.getLastName() + " - GetTool Page");
 						root.show();
 						old.dispose();
 					} else {
@@ -287,7 +287,7 @@ public class LoginPage extends JFrame implements ActionListener {
 						root = new DashboardPage(listRoles, result);
 						old.dispose();
 						StringUtils.frameInit(root, bundleMessage);
-						root.setTitle(userText + " - " + result.getFirstName() + " " + result.getLastName());
+						root.setTitle(result.getFirstName() + " " + result.getLastName() + " - Dashboard Page");
 						// dashboardPage.setJMenuBar(StringUtils.addMenu());
 						root.show();
 
@@ -462,8 +462,8 @@ public class LoginPage extends JFrame implements ActionListener {
 
 		writer.close();
 
-//		emailUtils.sendEmailWithAttachedFile("quann169@gmail.com",
-//				companyCode + " - " + machineCode + ": ITools App Log", outFilePath);
+		emailUtils.sendEmailWithAttachedFile("quann169@gmail.com",
+				companyCode + " - " + machineCode + ": ITools App Log", outFilePath);
 //		emailUtils.sendEmailWithAttachedFile("ngngoctanthuong@gmail.com",
 //				companyCode + " - " + machineCode + ": ITools App Log", outFilePath);
 		String[] dataLastLine = lastLine.split(" ");

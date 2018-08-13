@@ -164,7 +164,7 @@ public class LoginController {
 	/**
 	 * 
 	 */
-	public List<Role> getUserRoles(String userName, String companyCode) {
+	public List<Role> getUserRoles(String userName, String companyCode, String companyCodeUH) {
 		String sql = "select distinct RoleName "
 				+ " from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID"
 				+ " inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = '" + companyCode
@@ -179,9 +179,27 @@ public class LoginController {
 			while (rs.next()) {
 				String roleName = rs.getString(1);
 				Role role = new Role(0, roleName);
-
 				listAllRoles.add(role);
 			}
+			
+			if (listAllRoles.size() == 0) {
+				sql = "select distinct RoleName "
+						+ " from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID"
+						+ " inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = '" + companyCodeUH
+						+ "' and assessor.UserName= '" + userName + "'";
+				logger.info("Check Role in UH Com.....");
+				logger.info(sql);
+				
+				statement = mysqlConnect.connect().prepareStatement(sql);
+				rs = statement.executeQuery(sql);
+
+				while (rs.next()) {
+					String roleName = rs.getString(1);
+					Role role = new Role(0, roleName);
+					listAllRoles.add(role);
+				}
+			}
+			
 			return listAllRoles;
 		} catch (SQLException e) {
 			logger.info(e.getMessage());
