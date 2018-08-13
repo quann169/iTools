@@ -32,16 +32,20 @@ public class MachineFormValidator implements Validator {
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "machineName", "NotEmpty.machineForm.machineName");
         
         if (!errors.hasFieldErrors("machineCode")) {
+        	if (machineForm.getMachineID() == null) {
 	        	Machine machine = machineDAO.findMachine(machineForm.getMachineCode());
 	            if (machine != null) {
 	                errors.rejectValue("machineCode", "Duplicate.machineForm.machineCode");
+	            }
         	}
         } 
         if (!errors.hasFieldErrors("machineName")) {
+        	if (machineForm.getMachineID() == null) {
         		Machine machine = machineDAO.findMachineByName(machineForm.getMachineName());
 	            if (machine != null) {
 	                errors.rejectValue("machineName", "Duplicate.machineForm.machineName");
 	            }
+        	}
         }
         
     }

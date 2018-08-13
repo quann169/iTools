@@ -1,5 +1,8 @@
 package com.iToolsV2.validator;
  
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
+
 import org.apache.commons.validator.routines.EmailValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -37,25 +40,28 @@ public class AssessorFormValidator implements Validator {
         //ValidationUtils.rejectIfEmptyOrWhitespace(errors, "phone", "NotEmpty.assessorForm.phone");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "active", "NotEmpty.assessorForm.active");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "locked", "NotEmpty.assessorForm.locked");
-        //ValidationUtils.rejectIfEmptyOrWhitespace(errors, "companyCode", "NotEmpty.assessorForm.companyCode");
- 
-        if (!this.emailValidator.isValid(assessorForm.getEmailAddress())) {
+        //ValidationUtils.rejectIfEmptyOrWhitespace(errors, "companyCode", "NotEmpty.assessorForm.companyCode");     
+        
+        if (!this.emailValidator.isValid(assessorForm.getEmailAddress()) || !verifyEmailValidator(assessorForm.getEmailAddress())) {
             errors.rejectValue("emailAddress", "Pattern.assessorForm.email");
         } else {
         	//if (assessorForm.getAssessorId() == 0) {
         	Assessor assessor = assessorDAO.findAccountByEmail(assessorForm.getEmailAddress());
             if (assessor != null) {
-                errors.rejectValue("emailAddress", "Duplicate.assessorForm.email");
+            	if (assessorForm.getAssessorId() != 0) {
+            		if (assessor.getAssessorID() != assessorForm.getAssessorId())
+            			errors.rejectValue("emailAddress", "Duplicate.assessorForm.email");
+            	}                
             }
         }
  
         if (!errors.hasFieldErrors("name")) {
-        	//if (assessorForm.getAssessorId() == 0) {
+        	if (assessorForm.getAssessorId() == 0) {
 	        	Assessor assessor = assessorDAO.findAccount(assessorForm.getName());
 	            if (assessor != null) {
 	                errors.rejectValue("name", "Duplicate.assessorForm.userName");
 	            }
-        	//}
+        	}
         }
         
         if (assessorForm.getAssessorId() == 0) {
@@ -69,5 +75,17 @@ public class AssessorFormValidator implements Validator {
         }
         
     }
+    
+    private boolean verifyEmailValidator(String email) {
+		boolean isValid = false;
+		try {
+			InternetAddress internetAddress = new InternetAddress(email);
+			internetAddress.validate();
+			isValid = true;
+		} catch (AddressException e) {
+			System.out.println("You are in catch block -- Exception Occurred for: " + email);
+		}
+		return isValid;
+	}
  
 }

@@ -9,6 +9,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,7 +21,7 @@ import com.iToolsV2.pagination.PaginationResult;
 import lombok.extern.slf4j.Slf4j;
  
 @Transactional
-@Repository
+@Component("assessorDao")
 @Slf4j
 public class AssessorDAO {
 	
@@ -127,7 +128,7 @@ public class AssessorDAO {
     public void save(AssessorForm assessorForm) {
  
         Session session = this.sessionFactory.getCurrentSession();
-        String name = assessorForm.getName();
+        String name = assessorForm.getName().toLowerCase();
  
         Assessor assessor = null;
  
@@ -157,7 +158,7 @@ public class AssessorDAO {
         int maxID = this.getMaxAccountID() + 1;
         assessor = new Assessor();
         assessor.setAssessorID(maxID);
-        assessor.setUserName(form.getName());
+        assessor.setUserName(form.getName().toLowerCase());
         assessor.setFirstName(form.getFirstName());
         assessor.setLastName(form.getLastName());
         assessor.setEmailAddress(form.getEmailAddress());
@@ -166,6 +167,7 @@ public class AssessorDAO {
         	assessor.setAddress(null);
         else
         	assessor.setAddress(form.getAddress());
+
         assessor.setActive(form.isActive());
         assessor.setLocked(form.isLocked());
         assessor.setPhone(form.getPhone());
@@ -187,15 +189,19 @@ public class AssessorDAO {
         assessor = this.findAccountByID(form.getAssessorId());
         if(assessor != null) {
 	        assessor.setAssessorID(form.getAssessorId());
-	        assessor.setUserName(form.getName());
+	        assessor.setUserName(form.getName().toLowerCase());
 	        assessor.setFirstName(form.getFirstName());
 	        assessor.setLastName(form.getLastName());
 	        assessor.setEmailAddress(form.getEmailAddress());
 	        //assessor.setEncrytedPassword(encrytedPassword);
+
 	        if(form.getAddress().equals("")) 
 	        	assessor.setAddress(null);
 	        else
 	        	assessor.setAddress(form.getAddress());
+	        	//assessor.setAddress("nguyễn vẳn bễ");
+	        System.out.println(form.getAddress());	 
+	        System.out.println(System.getProperty("file.encoding"));
 	        assessor.setActive(form.isActive());
 	        assessor.setLocked(form.isLocked());
 	        assessor.setPhone(form.getPhone());
@@ -208,6 +214,17 @@ public class AssessorDAO {
         }
         return assessor;
     }
+    
+    /*private String encodeUTF8(String input) {    	
+    	String value = "";
+    	try {
+    		ByteBuffer byteBuff = StandardCharsets.UTF_8.encode(input);
+    		value = new String(byteBuff, StandardCharsets.UTF_8);
+    	} catch(Exception ex) {
+    		ex.printStackTrace();
+    	}
+    	return value;
+    }*/
  
     public PaginationResult<AssessorInfo> queryAssessor(int page, int maxResult, int maxNavigationPage,
             String likeName) {
@@ -228,8 +245,38 @@ public class AssessorDAO {
         }
         return new PaginationResult<AssessorInfo>(query, page, maxResult, maxNavigationPage);
     }
+    
+    public PaginationResult<AssessorInfo> queryAssessor(int page, int maxResult, int maxNavigationPage,
+            String likeName, String companyCode) {
+        String sql = "Select new " + AssessorInfo.class.getName() //
+                + "(a.assessorID, a.userName, a.encrytedPassword, a.active, a.firstName, a.lastName,"
+                + " a.emailAddress, a.address, a.phone, a.companyCode, a.locked) " + " from "//
+                + Assessor.class.getName() + " a ";
+        if (likeName != null && likeName.length() > 0) {
+            sql += " Where lower(a.userName) like :likeName ";
+            if (companyCode != null && companyCode.length() > 0) {
+        		sql += " and a.companyCode = :companyCode ";
+        	}
+        } else {
+        	if (companyCode != null && companyCode.length() > 0) {
+        		sql += " Where a.companyCode = :companyCode ";
+        	}
+        }
+        //sql += " order by m.createdDate desc ";
+        // 
+        Session session = this.sessionFactory.getCurrentSession();
+        Query<AssessorInfo> query = session.createQuery(sql, AssessorInfo.class);
  
-    public PaginationResult<AssessorInfo> queryMachine(int page, int maxResult, int maxNavigationPage) {
+        if (likeName != null && likeName.length() > 0) {
+            query.setParameter("likeName", "%" + likeName.toLowerCase() + "%");
+        }
+        if (companyCode != null && companyCode.length() > 0) {
+        	query.setParameter("companyCode", companyCode);
+    	}
+        return new PaginationResult<AssessorInfo>(query, page, maxResult, maxNavigationPage);
+    }
+ 
+    public PaginationResult<AssessorInfo> queryAssessor(int page, int maxResult, int maxNavigationPage) {
         return queryAssessor(page, maxResult, maxNavigationPage, null);
     }
  

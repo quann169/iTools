@@ -68,7 +68,7 @@ public class ToolDAO {
     	if (tool != null) {
     		toolForm.setToolID(toolID);
     		toolForm.setToolCode(tool.getToolCode());
-    		toolForm.setBarcode(tool.getBarcode());
+    		//toolForm.setBarcode(tool.getBarcode());
     		toolForm.setModel(tool.getModel());
     		toolForm.setDescription(tool.getDescription());
     		toolForm.setCreatedDate(tool.getCreatedDate());
@@ -115,10 +115,10 @@ public class ToolDAO {
         	tool.setModel(null);
         else
         	tool.setModel(form.getModel());
-        if(form.getBarcode().equals("")) 
+        /*if(form.getBarcode().equals("")) 
         	tool.setBarcode(null);
         else
-        	tool.setBarcode(form.getBarcode());
+        	tool.setBarcode(form.getBarcode());*/
         if(form.getDescription().equals("")) 
         	tool.setDescription(null);
         else
@@ -142,10 +142,8 @@ public class ToolDAO {
             	tool.setModel(null);
             else
             	tool.setModel(form.getModel());
-            if(form.getBarcode().equals("")) 
-            	tool.setBarcode(null);
-            else
-            	tool.setBarcode(form.getBarcode());
+            if(!form.getToolCode().equals("")) 
+            	tool.setToolCode(form.getToolCode());
             if(form.getDescription().equals("")) 
             	tool.setDescription(null);
             else

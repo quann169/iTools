@@ -1,12 +1,74 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
    <head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
       <title th:utext="${title}"></title>
-      <link type="text/css" th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
-      <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}" />     
-      <script th:src="@{/jquery/jquery.min.js}"></script>  
-      <script th:src="@{/popper/popper.min.js}"></script>  
-      <script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>  
+      <th:block>
+	        <link rel="stylesheet" href="../../static/vendor/datatables/css/jquery.dataTables.css"
+	              th:href="@{/vendor/datatables/css/jquery.dataTables.css}"/>
+	    </th:block>
+	    <th:block>
+	        <link rel="stylesheet" href="../../static/vendor/jquery-ui/jquery-ui.css"
+	              th:href="@{/vendor/jquery-ui/jquery-ui.css}"/>
+	        <link rel="stylesheet" href="../../static/vendor/font-awesome/css/font-awesome.css"
+	              th:href="@{/vendor/font-awesome/css/font-awesome.css}"/>
+	        <link rel="stylesheet" href="../../static/css/style.min.css"
+	              th:href="@{/css/style.min.css}"/>
+	        <link rel="stylesheet" href="../../static/css/styles.css"
+	              th:href="@{/css/styles.css}"/>
+	    </th:block>
+	    <th:block>
+	        <script src="../../static/vendor/js/main.min.js"
+	                th:src="@{/vendor/js/main.min.js}"></script>
+	        <script src="../../static/vendor/jquery-ui/jquery-ui.js"
+	                th:src="@{/vendor/jquery-ui/jquery-ui.js}"></script>
+	        <script src="../../static/vendor/js/jquery.mask.js"
+	                th:src="@{/vendor/js/jquery.mask.js}"></script>
+	    </th:block>
+	    <th:block>
+	        <script src="../../static/vendor/datatables/js/jquery.dataTables.js"
+	                th:src="@{/vendor/datatables/js/jquery.dataTables.js}"></script>
+	        <script type="text/javascript" src="../../static/vendor/dataTables.buttons.min.js"
+	                th:src="@{/vendor/dataTables.buttons.min.js}">
+	        </script>
+	        <script type="text/javascript" src="../../static/vendor/buttons.flash.min.js"
+	                th:src="@{/vendor/buttons.flash.min.js}">
+	        </script>
+	        <script type="text/javascript" src="../../static/vendor/jszip.min.js"
+	                th:src="@{/vendor/jszip.min.js}">
+	        </script>
+	        <script type="text/javascript" src="../../static/vendor/pdfmake.min.js"
+	                th:src="@{/vendor/pdfmake.min.js}">
+	        </script>
+	        <script type="text/javascript" src="../../static/vendor/vfs_fonts.js"
+	                th:src="@{/vendor/vfs_fonts.js}">
+	        </script>
+	        <script type="text/javascript" src="../../static/vendor/buttons.html5.min.js"
+	                th:src="@{/vendor/buttons.html5.min.js}">
+	        </script>
+	        <script type="text/javascript" src="../../static/vendor/buttons.print.min.js"
+	                th:src="@{/vendor/buttons.print.min.js}">
+	        </script>
+	        <script type="text/javascript">
+		        function remove_unicode() 
+		        {  
+		           var str = document.getElementById("emailAddress").value;
+		           str= str.toLowerCase();  
+		           str= str.replace(/à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ/g,"a");  
+		           str= str.replace(/è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ/g,"e");  
+		           str= str.replace(/ì|í|ị|ỉ|ĩ/g,"i");  
+		           str= str.replace(/ò|ó|ọ|ỏ|õ|ô|ồ|ố|ộ|ổ|ỗ|ơ|ờ|ớ|ợ|ở|ỡ/g,"o");  
+		           str= str.replace(/ù|ú|ụ|ủ|ũ|ư|ừ|ứ|ự|ử|ữ/g,"u");  
+		           str= str.replace(/ỳ|ý|ỵ|ỷ|ỹ/g,"y");  
+		           str= str.replace(/đ/g,"d");  
+		           str= str.replace(/!|%|\^|\*|\(|\)|\+|\=|\<|\>|\?|\/|,|\:|\;|\'| |\"|\&|\#|\[|\]|~|$|_/g,"-"); 
+		         
+		           str= str.replace(/-+-/g,"-"); //thay thế 2- thành 1- 
+		           str= str.replace(/^\-+|\-+$/g,"");  
+		           document.getElementById("emailAddress").value = str; 
+		        } 
+	        </script>
+	    </th:block> 
       <style>
          th, td {
          padding: 5px;
@@ -26,10 +88,10 @@
       <!-- Include _menu.html -->
       <th:block th:include="/_header"></th:block>
       	<th:block th:include="/_menu"></th:block>
-      	<th:block th:include="/_subMenuUser"></th:block>
 
       <div class="page-title">User Details</div> 
-      
+<!--   <div class="container home" style="width: 100%">
+    <div class="container" style="width: 100%">    -->   
       <div th:if="${errorMessage != null}"
            th:utext="${errorMessage}" class="error">...</div>
        
@@ -62,7 +124,7 @@
             </tr>
             <tr>
                <td align="left">Email</td>
-               <td align="left"><input type="text" th:field="*{emailAddress}" size="40" /> </td>
+               <td align="left"><input type="text" th:field="*{emailAddress}" size="40" id="emailAddress" onblur="remove_unicode()"/> </td>
                <td>
                   <span th:if="${#fields.hasErrors('emailAddress')}" th:errors="*{emailAddress}">..</span>
                </td>
@@ -119,13 +181,14 @@
             
             <tr>
                <td colspan="3" align="left">
-                  <input type="submit" value="Save" />
-                  <input type="reset" value="Reset" />
-                  <input type="button" onclick="location.href='/userList'" value="Back To List" >
+                  <button class="btn btn-primary">SAVE</button>
+                  <a class="btn btn-default" th:href="@{/userList}">BACK</a>
                </td>
             </tr>
          </table>
       </form>
+<!--      </div>
+    </div> -->
       <th:block th:include="/_footer"></th:block> 
    </body>
 </html>

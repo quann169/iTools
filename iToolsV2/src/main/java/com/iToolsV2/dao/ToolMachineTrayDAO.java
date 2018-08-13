@@ -3,6 +3,8 @@ package com.iToolsV2.dao;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.NoResultException;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
@@ -14,8 +16,11 @@ import com.iToolsV2.entity.ToolMachineTray;
 import com.iToolsV2.entity.ToolsMachine;
 import com.iToolsV2.form.TrayForm;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Transactional
 @Repository
+@Slf4j
 public class ToolMachineTrayDAO {
 
 	@Autowired
@@ -29,8 +34,8 @@ public class ToolMachineTrayDAO {
         try {
         	Session session = this.sessionFactory.getCurrentSession();
         	 String sql = "select tmt from " + ToolMachineTray.class.getName() + " tmt " //
-        			 + " left join " + ToolsMachine.class.getName() + " tm on tm.toolMachineID = tmt.toolsMachineID "
-                     + " Where tm.machineCode = :machineCode and tmt.trayIndex = :trayIndex";
+        			 /*+ " left join " + ToolsMachine.class.getName() + " tm on tm.toolMachineID = tmt.toolsMachineID "*/
+                     + " Where tmt.machineCode = :machineCode and tmt.trayIndex = :trayIndex";
              Query<ToolMachineTray> query = session.createQuery(sql, ToolMachineTray.class);
              query.setParameter("machineCode", machineCode);
              query.setParameter("trayIndex", trayIndex);
@@ -41,6 +46,22 @@ public class ToolMachineTrayDAO {
            e.printStackTrace();
         } 
         return tmt;
+    }
+	
+	public int findMaxTMTID() {
+    	try {
+	    	Session session = this.sessionFactory.getCurrentSession();
+	        String sql = "from " + ToolMachineTray.class.getName() + " ra " //	
+	        		+ " order by 1 desc ";
+	        Query<ToolMachineTray> query = session.createQuery(sql, ToolMachineTray.class);
+	        List<ToolMachineTray> lstRoleAssessor = query.getResultList();
+	        if (lstRoleAssessor != null && lstRoleAssessor.size() > 0)
+	        	return lstRoleAssessor.get(0).getToolsMachineTrayID();
+	        else
+	        	return 0;
+    	} catch (NoResultException e) {
+    		return 0;
+    	}
     }
 
 	@Transactional(rollbackFor = Exception.class)
@@ -55,19 +76,40 @@ public class ToolMachineTrayDAO {
 	    		if(tmt == null) {
 	    			tmt = new ToolMachineTray();
 	    			if(tm != null) {
-		    			tmt.setToolsMachineID(tm.getToolMachineID());
+		    			//tmt.setToolsMachineID(tm.getToolMachineID());
 		    			tmt.setActive(true);
 		    			tmt.setTrayIndex("TRAY_01");
 	    				tmt.setCreatedDate(new Date());
-	    		        session.persist(tmt);
-	    		        session.flush();
+	    				int maxID = this.findMaxTMTID();
+		    			if(maxID != 0)
+		    				tmt.setToolsMachineTrayID(maxID + 1);
+		    			try {
+		    		        session.persist(tmt);
+		    		        session.flush();
+		    			} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
 	    			}
 	    		} else {
 	    			if(tm != null) {
-	    				tmt.setToolsMachineID(tm.getToolMachineID());
+	    				//tmt.setToolsMachineID(tm.getToolMachineID());
 	    				tmt.setUpdatedDate(new Date());
-	    		        session.persist(tmt);
-	    		        session.flush();
+	    				try {
+		    		        session.persist(tmt);
+		    		        session.flush();
+	    				} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
+	    			} else {
+	    				try {
+		    				session.remove(tmt);
+		    				session.flush();
+		    			} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
 	    			}
 	    		}
 	    	}
@@ -80,19 +122,40 @@ public class ToolMachineTrayDAO {
 	    		if(tmt == null) {
 	    			tmt = new ToolMachineTray();
 	    			if(tm != null) {
-		    			tmt.setToolsMachineID(tm.getToolMachineID());
+		    			//tmt.setToolsMachineID(tm.getToolMachineID());
 		    			tmt.setActive(true);
 		    			tmt.setTrayIndex("TRAY_02");
 	    				tmt.setCreatedDate(new Date());
+	    				int maxID = this.findMaxTMTID();
+		    			if(maxID != 0)
+		    				tmt.setToolsMachineTrayID(maxID + 1);
+		    			try {
 	    		        session.persist(tmt);
 	    		        session.flush();
+		    			} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
 	    			}
 	    		} else {
 	    			if(tm != null) {
-	    				tmt.setToolsMachineID(tm.getToolMachineID());
+	    				//tmt.setToolsMachineID(tm.getToolMachineID());
 	    				tmt.setUpdatedDate(new Date());
-	    		        session.persist(tmt);
-	    		        session.flush();
+	    				try {
+		    		        session.persist(tmt);
+		    		        session.flush();
+	    				} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
+	    			} else {
+	    				try {
+		    				session.remove(tmt);
+		    				session.flush();
+		    			} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
 	    			}
 	    		}
 	    	}
@@ -105,19 +168,40 @@ public class ToolMachineTrayDAO {
 	    		if(tmt == null) {
 	    			tmt = new ToolMachineTray();
 	    			if(tm != null) {
-		    			tmt.setToolsMachineID(tm.getToolMachineID());
+		    			//tmt.setToolsMachineID(tm.getToolMachineID());
 		    			tmt.setActive(true);
 		    			tmt.setTrayIndex("TRAY_03");
 	    				tmt.setCreatedDate(new Date());
+	    				int maxID = this.findMaxTMTID();
+		    			if(maxID != 0)
+		    				tmt.setToolsMachineTrayID(maxID + 1);
+		    			try {
 	    		        session.persist(tmt);
 	    		        session.flush();
+		    			} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
 	    			}
 	    		} else {
 	    			if(tm != null) {
-	    				tmt.setToolsMachineID(tm.getToolMachineID());
+	    				//tmt.setToolsMachineID(tm.getToolMachineID());
 	    				tmt.setUpdatedDate(new Date());
-	    		        session.persist(tmt);
-	    		        session.flush();
+	    				try {
+		    		        session.persist(tmt);
+		    		        session.flush();
+	    				} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
+	    			} else {
+	    				try {
+		    				session.remove(tmt);
+		    				session.flush();
+		    			} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
 	    			}
 	    		}
 	    	}
@@ -130,19 +214,40 @@ public class ToolMachineTrayDAO {
 	    		if(tmt == null) {
 	    			tmt = new ToolMachineTray();
 	    			if(tm != null) {
-		    			tmt.setToolsMachineID(tm.getToolMachineID());
+		    			//tmt.setToolsMachineID(tm.getToolMachineID());
 		    			tmt.setActive(true);
 		    			tmt.setTrayIndex("TRAY_04");
 	    				tmt.setCreatedDate(new Date());
+	    				int maxID = this.findMaxTMTID();
+		    			if(maxID != 0)
+		    				tmt.setToolsMachineTrayID(maxID + 1);
+		    			try {
 	    		        session.persist(tmt);
 	    		        session.flush();
+		    			} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
 	    			}
 	    		} else {
 	    			if(tm != null) {
-	    				tmt.setToolsMachineID(tm.getToolMachineID());
+	    				//tmt.setToolsMachineID(tm.getToolMachineID());
 	    				tmt.setUpdatedDate(new Date());
-	    		        session.persist(tmt);
-	    		        session.flush();
+	    				try {
+		    		        session.persist(tmt);
+		    		        session.flush();
+	    				} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
+	    			} else {
+	    				try {
+		    				session.remove(tmt);
+		    				session.flush();
+		    			} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
 	    			}
 	    		}
 	    	}
@@ -155,19 +260,40 @@ public class ToolMachineTrayDAO {
 	    		if(tmt == null) {
 	    			tmt = new ToolMachineTray();
 	    			if(tm != null) {
-		    			tmt.setToolsMachineID(tm.getToolMachineID());
+		    			//tmt.setToolsMachineID(tm.getToolMachineID());
 		    			tmt.setActive(true);
 		    			tmt.setTrayIndex("TRAY_05");
 	    				tmt.setCreatedDate(new Date());
+	    				int maxID = this.findMaxTMTID();
+		    			if(maxID != 0)
+		    				tmt.setToolsMachineTrayID(maxID + 1);
+		    			try {
 	    		        session.persist(tmt);
 	    		        session.flush();
+		    			} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
 	    			}
 	    		} else {
 	    			if(tm != null) {
-	    				tmt.setToolsMachineID(tm.getToolMachineID());
+	    				//tmt.setToolsMachineID(tm.getToolMachineID());
 	    				tmt.setUpdatedDate(new Date());
-	    		        session.persist(tmt);
-	    		        session.flush();
+	    				try {
+		    		        session.persist(tmt);
+		    		        session.flush();
+	    				} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
+	    			} else {
+	    				try {
+		    				session.remove(tmt);
+		    				session.flush();
+		    			} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
 	    			}
 	    		}
 	    	}
@@ -180,19 +306,40 @@ public class ToolMachineTrayDAO {
 	    		if(tmt == null) {
 	    			tmt = new ToolMachineTray();
 	    			if(tm != null) {
-		    			tmt.setToolsMachineID(tm.getToolMachineID());
+		    			//tmt.setToolsMachineID(tm.getToolMachineID());
 		    			tmt.setActive(true);
 		    			tmt.setTrayIndex("TRAY_06");
 	    				tmt.setCreatedDate(new Date());
+	    				int maxID = this.findMaxTMTID();
+		    			if(maxID != 0)
+		    				tmt.setToolsMachineTrayID(maxID + 1);
+		    			try {
 	    		        session.persist(tmt);
 	    		        session.flush();
+		    			} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
 	    			}
 	    		} else {
 	    			if(tm != null) {
-	    				tmt.setToolsMachineID(tm.getToolMachineID());
+	    				//tmt.setToolsMachineID(tm.getToolMachineID());
 	    				tmt.setUpdatedDate(new Date());
-	    		        session.persist(tmt);
-	    		        session.flush();
+	    				try {
+		    		        session.persist(tmt);
+		    		        session.flush();
+	    				} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
+	    			} else {
+	    				try {
+		    				session.remove(tmt);
+		    				session.flush();
+		    			} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
 	    			}
 	    		}
 	    	}
@@ -205,19 +352,40 @@ public class ToolMachineTrayDAO {
 	    		if(tmt == null) {
 	    			tmt = new ToolMachineTray();
 	    			if(tm != null) {
-		    			tmt.setToolsMachineID(tm.getToolMachineID());
+		    			//tmt.setToolsMachineID(tm.getToolMachineID());
 		    			tmt.setActive(true);
 		    			tmt.setTrayIndex("TRAY_07");
 	    				tmt.setCreatedDate(new Date());
+	    				int maxID = this.findMaxTMTID();
+		    			if(maxID != 0)
+		    				tmt.setToolsMachineTrayID(maxID + 1);
+		    			try {
 	    		        session.persist(tmt);
 	    		        session.flush();
+		    			} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
 	    			}
 	    		} else {
 	    			if(tm != null) {
-	    				tmt.setToolsMachineID(tm.getToolMachineID());
+	    				//tmt.setToolsMachineID(tm.getToolMachineID());
 	    				tmt.setUpdatedDate(new Date());
-	    		        session.persist(tmt);
-	    		        session.flush();
+	    				try {
+		    		        session.persist(tmt);
+		    		        session.flush();
+	    				} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
+	    			} else {
+	    				try {
+		    				session.remove(tmt);
+		    				session.flush();
+		    			} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
 	    			}
 	    		}
 	    	}
@@ -230,19 +398,40 @@ public class ToolMachineTrayDAO {
 	    		if(tmt == null) {
 	    			tmt = new ToolMachineTray();
 	    			if(tm != null) {
-		    			tmt.setToolsMachineID(tm.getToolMachineID());
+		    			//tmt.setToolsMachineID(tm.getToolMachineID());
 		    			tmt.setActive(true);
 		    			tmt.setTrayIndex("TRAY_08");
 	    				tmt.setCreatedDate(new Date());
-	    		        session.persist(tmt);
-	    		        session.flush();
+	    				int maxID = this.findMaxTMTID();
+		    			if(maxID != 0)
+		    				tmt.setToolsMachineTrayID(maxID + 1);
+		    			try {
+		    		        session.persist(tmt);
+		    		        session.flush();
+		    			} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
 	    			}
 	    		} else {
 	    			if(tm != null) {
-	    				tmt.setToolsMachineID(tm.getToolMachineID());
+	    				//tmt.setToolsMachineID(tm.getToolMachineID());
 	    				tmt.setUpdatedDate(new Date());
-	    		        session.persist(tmt);
-	    		        session.flush();
+	    				try {
+		    		        session.persist(tmt);
+		    		        session.flush();
+	    				} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
+	    			} else {
+	    				try {
+		    				session.remove(tmt);
+		    				session.flush();
+		    			} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
 	    			}
 	    		}
 	    	}
@@ -255,19 +444,40 @@ public class ToolMachineTrayDAO {
 	    		if(tmt == null) {
 	    			tmt = new ToolMachineTray();
 	    			if(tm != null) {
-		    			tmt.setToolsMachineID(tm.getToolMachineID());
+		    			//tmt.setToolsMachineID(tm.getToolMachineID());
 		    			tmt.setActive(true);
 		    			tmt.setTrayIndex("TRAY_09");
 	    				tmt.setCreatedDate(new Date());
-	    		        session.persist(tmt);
-	    		        session.flush();
+	    				int maxID = this.findMaxTMTID();
+		    			if(maxID != 0)
+		    				tmt.setToolsMachineTrayID(maxID + 1);
+		    			try {
+		    		        session.persist(tmt);
+		    		        session.flush();
+		    			} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
 	    			}
 	    		} else {
 	    			if(tm != null) {
-	    				tmt.setToolsMachineID(tm.getToolMachineID());
+	    				//tmt.setToolsMachineID(tm.getToolMachineID());
 	    				tmt.setUpdatedDate(new Date());
-	    		        session.persist(tmt);
-	    		        session.flush();
+	    				try {
+		    		        session.persist(tmt);
+		    		        session.flush();
+	    				} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
+	    			} else {
+	    				try {
+		    				session.remove(tmt);
+		    				session.flush();
+		    			} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
 	    			}
 	    		}
 	    	}
@@ -280,19 +490,40 @@ public class ToolMachineTrayDAO {
 	    		if(tmt == null) {
 	    			tmt = new ToolMachineTray();
 	    			if(tm != null) {
-		    			tmt.setToolsMachineID(tm.getToolMachineID());
+		    			//tmt.setToolsMachineID(tm.getToolMachineID());
 		    			tmt.setActive(true);
 		    			tmt.setTrayIndex("TRAY_10");
 	    				tmt.setCreatedDate(new Date());
-	    		        session.persist(tmt);
-	    		        session.flush();
+	    				int maxID = this.findMaxTMTID();
+		    			if(maxID != 0)
+		    				tmt.setToolsMachineTrayID(maxID + 1);
+		    			try {
+		    		        session.persist(tmt);
+		    		        session.flush();
+		    			} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
 	    			}
 	    		} else {
 	    			if(tm != null) {
-	    				tmt.setToolsMachineID(tm.getToolMachineID());
+	    				//tmt.setToolsMachineID(tm.getToolMachineID());
 	    				tmt.setUpdatedDate(new Date());
-	    		        session.persist(tmt);
-	    		        session.flush();
+	    				try {
+		    		        session.persist(tmt);
+		    		        session.flush();
+	    				} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
+	    			} else {
+	    				try {
+		    				session.remove(tmt);
+		    				session.flush();
+		    			} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
 	    			}
 	    		}
 	    	}
@@ -305,19 +536,40 @@ public class ToolMachineTrayDAO {
 	    		if(tmt == null) {
 	    			tmt = new ToolMachineTray();
 	    			if(tm != null) {
-		    			tmt.setToolsMachineID(tm.getToolMachineID());
+		    			//tmt.setToolsMachineID(tm.getToolMachineID());
 		    			tmt.setActive(true);
 		    			tmt.setTrayIndex("TRAY_11");
 	    				tmt.setCreatedDate(new Date());
-	    		        session.persist(tmt);
-	    		        session.flush();
+	    				int maxID = this.findMaxTMTID();
+		    			if(maxID != 0)
+		    				tmt.setToolsMachineTrayID(maxID + 1);
+		    			try {
+		    		        session.persist(tmt);
+		    		        session.flush();
+		    			} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
 	    			}
 	    		} else {
 	    			if(tm != null) {
-	    				tmt.setToolsMachineID(tm.getToolMachineID());
+	    				//tmt.setToolsMachineID(tm.getToolMachineID());
 	    				tmt.setUpdatedDate(new Date());
-	    		        session.persist(tmt);
-	    		        session.flush();
+	    				try {
+		    		        session.persist(tmt);
+		    		        session.flush();
+	    				} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
+	    			} else {
+	    				try {
+		    				session.remove(tmt);
+		    				session.flush();
+		    			} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
 	    			}
 	    		}
 	    	}
@@ -330,19 +582,40 @@ public class ToolMachineTrayDAO {
 	    		if(tmt == null) {
 	    			tmt = new ToolMachineTray();
 	    			if(tm != null) {
-		    			tmt.setToolsMachineID(tm.getToolMachineID());
+		    			//tmt.setToolsMachineID(tm.getToolMachineID());
 		    			tmt.setActive(true);
 		    			tmt.setTrayIndex("TRAY_12");
 	    				tmt.setCreatedDate(new Date());
-	    		        session.persist(tmt);
-	    		        session.flush();
+	    				int maxID = this.findMaxTMTID();
+		    			if(maxID != 0)
+		    				tmt.setToolsMachineTrayID(maxID + 1);
+		    			try {
+		    		        session.persist(tmt);
+		    		        session.flush();
+		    			} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
 	    			}
 	    		} else {
 	    			if(tm != null) {
-	    				tmt.setToolsMachineID(tm.getToolMachineID());
+	    				//tmt.setToolsMachineID(tm.getToolMachineID());
 	    				tmt.setUpdatedDate(new Date());
-	    		        session.persist(tmt);
-	    		        session.flush();
+	    				try {
+		    		        session.persist(tmt);
+		    		        session.flush();
+	    				} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
+	    			} else {
+	    				try {
+		    				session.remove(tmt);
+		    				session.flush();
+		    			} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
 	    			}
 	    		}
 	    	}
@@ -355,19 +628,40 @@ public class ToolMachineTrayDAO {
 	    		if(tmt == null) {
 	    			tmt = new ToolMachineTray();
 	    			if(tm != null) {
-		    			tmt.setToolsMachineID(tm.getToolMachineID());
+		    			//tmt.setToolsMachineID(tm.getToolMachineID());
 		    			tmt.setActive(true);
 		    			tmt.setTrayIndex("TRAY_13");
 	    				tmt.setCreatedDate(new Date());
-	    		        session.persist(tmt);
-	    		        session.flush();
+	    				int maxID = this.findMaxTMTID();
+		    			if(maxID != 0)
+		    				tmt.setToolsMachineTrayID(maxID + 1);
+		    			try {
+		    		        session.persist(tmt);
+		    		        session.flush();
+		    			} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
 	    			}
 	    		} else {
 	    			if(tm != null) {
-	    				tmt.setToolsMachineID(tm.getToolMachineID());
+	    				//tmt.setToolsMachineID(tm.getToolMachineID());
 	    				tmt.setUpdatedDate(new Date());
-	    		        session.persist(tmt);
-	    		        session.flush();
+	    				try {
+		    		        session.persist(tmt);
+		    		        session.flush();
+	    				} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
+	    			} else {
+	    				try {
+		    				session.remove(tmt);
+		    				session.flush();
+		    			} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
 	    			}
 	    		}
 	    	}
@@ -380,19 +674,40 @@ public class ToolMachineTrayDAO {
 	    		if(tmt == null) {
 	    			tmt = new ToolMachineTray();
 	    			if(tm != null) {
-		    			tmt.setToolsMachineID(tm.getToolMachineID());
+		    			//tmt.setToolsMachineID(tm.getToolMachineID());
 		    			tmt.setActive(true);
 		    			tmt.setTrayIndex("TRAY_14");
 	    				tmt.setCreatedDate(new Date());
-	    		        session.persist(tmt);
-	    		        session.flush();
+	    				int maxID = this.findMaxTMTID();
+		    			if(maxID != 0)
+		    				tmt.setToolsMachineTrayID(maxID + 1);
+		    			try {
+		    		        session.persist(tmt);
+		    		        session.flush();
+		    			} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
 	    			}
 	    		} else {
 	    			if(tm != null) {
-	    				tmt.setToolsMachineID(tm.getToolMachineID());
+	    				//tmt.setToolsMachineID(tm.getToolMachineID());
 	    				tmt.setUpdatedDate(new Date());
-	    		        session.persist(tmt);
-	    		        session.flush();
+	    				try {
+		    		        session.persist(tmt);
+		    		        session.flush();
+	    				} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
+	    			} else {
+	    				try {
+		    				session.remove(tmt);
+		    				session.flush();
+		    			} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
 	    			}
 	    		}
 	    	}
@@ -405,19 +720,40 @@ public class ToolMachineTrayDAO {
 	    		if(tmt == null) {
 	    			tmt = new ToolMachineTray();
 	    			if(tm != null) {
-		    			tmt.setToolsMachineID(tm.getToolMachineID());
+		    			//tmt.setToolsMachineID(tm.getToolMachineID());
 		    			tmt.setActive(true);
 		    			tmt.setTrayIndex("TRAY_15");
 	    				tmt.setCreatedDate(new Date());
-	    		        session.persist(tmt);
-	    		        session.flush();
+	    				int maxID = this.findMaxTMTID();
+		    			if(maxID != 0)
+		    				tmt.setToolsMachineTrayID(maxID + 1);
+		    			try {
+		    		        session.persist(tmt);
+		    		        session.flush();
+		    			} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
 	    			}
 	    		} else {
 	    			if(tm != null) {
-	    				tmt.setToolsMachineID(tm.getToolMachineID());
+	    				//tmt.setToolsMachineID(tm.getToolMachineID());
 	    				tmt.setUpdatedDate(new Date());
-	    		        session.persist(tmt);
-	    		        session.flush();
+	    				try {
+		    		        session.persist(tmt);
+		    		        session.flush();
+	    				} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
+	    			} else {
+	    				try {
+		    				session.remove(tmt);
+		    				session.flush();
+		    			} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
 	    			}
 	    		}
 	    	}
@@ -430,19 +766,40 @@ public class ToolMachineTrayDAO {
 	    		if(tmt == null) {
 	    			tmt = new ToolMachineTray();
 	    			if(tm != null) {
-		    			tmt.setToolsMachineID(tm.getToolMachineID());
+		    			//tmt.setToolsMachineID(tm.getToolMachineID());
 		    			tmt.setActive(true);
 		    			tmt.setTrayIndex("TRAY_16");
 	    				tmt.setCreatedDate(new Date());
-	    		        session.persist(tmt);
-	    		        session.flush();
+	    				int maxID = this.findMaxTMTID();
+		    			if(maxID != 0)
+		    				tmt.setToolsMachineTrayID(maxID + 1);
+		    			try {
+		    		        session.persist(tmt);
+		    		        session.flush();
+		    			} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
 	    			}
 	    		} else {
 	    			if(tm != null) {
-	    				tmt.setToolsMachineID(tm.getToolMachineID());
+	    				//tmt.setToolsMachineID(tm.getToolMachineID());
 	    				tmt.setUpdatedDate(new Date());
-	    		        session.persist(tmt);
-	    		        session.flush();
+	    				try {
+		    		        session.persist(tmt);
+		    		        session.flush();
+	    				} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
+	    			} else {
+	    				try {
+		    				session.remove(tmt);
+		    				session.flush();
+		    			} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
 	    			}
 	    		}
 	    	}
@@ -455,19 +812,40 @@ public class ToolMachineTrayDAO {
 	    		if(tmt == null) {
 	    			tmt = new ToolMachineTray();
 	    			if(tm != null) {
-		    			tmt.setToolsMachineID(tm.getToolMachineID());
+		    			//tmt.setToolsMachineID(tm.getToolMachineID());
 		    			tmt.setActive(true);
 		    			tmt.setTrayIndex("TRAY_17");
 	    				tmt.setCreatedDate(new Date());
-	    		        session.persist(tmt);
-	    		        session.flush();
+	    				int maxID = this.findMaxTMTID();
+		    			if(maxID != 0)
+		    				tmt.setToolsMachineTrayID(maxID + 1);
+		    			try {
+		    		        session.persist(tmt);
+		    		        session.flush();
+		    			} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
 	    			}
 	    		} else {
 	    			if(tm != null) {
-	    				tmt.setToolsMachineID(tm.getToolMachineID());
+	    				//tmt.setToolsMachineID(tm.getToolMachineID());
 	    				tmt.setUpdatedDate(new Date());
-	    		        session.persist(tmt);
-	    		        session.flush();
+	    				try {
+		    		        session.persist(tmt);
+		    		        session.flush();
+	    				} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
+	    			} else {
+	    				try {
+		    				session.remove(tmt);
+		    				session.flush();
+		    			} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
 	    			}
 	    		}
 	    	}
@@ -480,19 +858,40 @@ public class ToolMachineTrayDAO {
 	    		if(tmt == null) {
 	    			tmt = new ToolMachineTray();
 	    			if(tm != null) {
-		    			tmt.setToolsMachineID(tm.getToolMachineID());
+		    			//tmt.setToolsMachineID(tm.getToolMachineID());
 		    			tmt.setActive(true);
 		    			tmt.setTrayIndex("TRAY_18");
 	    				tmt.setCreatedDate(new Date());
-	    		        session.persist(tmt);
-	    		        session.flush();
+	    				int maxID = this.findMaxTMTID();
+		    			if(maxID != 0)
+		    				tmt.setToolsMachineTrayID(maxID + 1);
+		    			try {
+		    		        session.persist(tmt);
+		    		        session.flush();
+		    			} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
 	    			}
 	    		} else {
 	    			if(tm != null) {
-	    				tmt.setToolsMachineID(tm.getToolMachineID());
+	    				//tmt.setToolsMachineID(tm.getToolMachineID());
 	    				tmt.setUpdatedDate(new Date());
-	    		        session.persist(tmt);
-	    		        session.flush();
+	    				try {
+		    		        session.persist(tmt);
+		    		        session.flush();
+	    				} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
+	    			} else {
+	    				try {
+		    				session.remove(tmt);
+		    				session.flush();
+		    			} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
 	    			}
 	    		}
 	    	}
@@ -505,19 +904,40 @@ public class ToolMachineTrayDAO {
 	    		if(tmt == null) {
 	    			tmt = new ToolMachineTray();
 	    			if(tm != null) {
-		    			tmt.setToolsMachineID(tm.getToolMachineID());
+		    			//tmt.setToolsMachineID(tm.getToolMachineID());
 		    			tmt.setActive(true);
 		    			tmt.setTrayIndex("TRAY_19");
 	    				tmt.setCreatedDate(new Date());
-	    		        session.persist(tmt);
-	    		        session.flush();
+	    				int maxID = this.findMaxTMTID();
+		    			if(maxID != 0)
+		    				tmt.setToolsMachineTrayID(maxID + 1);
+		    			try {
+		    		        session.persist(tmt);
+		    		        session.flush();
+		    			} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
 	    			}
 	    		} else {
 	    			if(tm != null) {
-	    				tmt.setToolsMachineID(tm.getToolMachineID());
+	    				//tmt.setToolsMachineID(tm.getToolMachineID());
 	    				tmt.setUpdatedDate(new Date());
-	    		        session.persist(tmt);
-	    		        session.flush();
+	    				try {
+		    		        session.persist(tmt);
+		    		        session.flush();
+	    				} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
+	    			} else {
+	    				try {
+		    				session.remove(tmt);
+		    				session.flush();
+		    			} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
 	    			}
 	    		}
 	    	}
@@ -530,19 +950,40 @@ public class ToolMachineTrayDAO {
 	    		if(tmt == null) {
 	    			tmt = new ToolMachineTray();
 	    			if(tm != null) {
-		    			tmt.setToolsMachineID(tm.getToolMachineID());
+		    			//tmt.setToolsMachineID(tm.getToolMachineID());
 		    			tmt.setActive(true);
 		    			tmt.setTrayIndex("TRAY_20");
 	    				tmt.setCreatedDate(new Date());
-	    		        session.persist(tmt);
-	    		        session.flush();
+	    				int maxID = this.findMaxTMTID();
+		    			if(maxID != 0)
+		    				tmt.setToolsMachineTrayID(maxID + 1);
+		    			try {
+		    		        session.persist(tmt);
+		    		        session.flush();
+		    			} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
 	    			}
 	    		} else {
 	    			if(tm != null) {
-	    				tmt.setToolsMachineID(tm.getToolMachineID());
+	    				//tmt.setToolsMachineID(tm.getToolMachineID());
 	    				tmt.setUpdatedDate(new Date());
-	    		        session.persist(tmt);
-	    		        session.flush();
+	    				try {
+		    		        session.persist(tmt);
+		    		        session.flush();
+	    				} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
+	    			} else {
+	    				try {
+		    				session.remove(tmt);
+		    				session.flush();
+		    			} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
 	    			}
 	    		}
 	    	}
@@ -555,19 +996,40 @@ public class ToolMachineTrayDAO {
 	    		if(tmt == null) {
 	    			tmt = new ToolMachineTray();
 	    			if(tm != null) {
-		    			tmt.setToolsMachineID(tm.getToolMachineID());
+		    			//tmt.setToolsMachineID(tm.getToolMachineID());
 		    			tmt.setActive(true);
 		    			tmt.setTrayIndex("TRAY_21");
 	    				tmt.setCreatedDate(new Date());
-	    		        session.persist(tmt);
-	    		        session.flush();
+	    				int maxID = this.findMaxTMTID();
+		    			if(maxID != 0)
+		    				tmt.setToolsMachineTrayID(maxID + 1);
+		    			try {
+		    		        session.persist(tmt);
+		    		        session.flush();
+		    			} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
 	    			}
 	    		} else {
 	    			if(tm != null) {
-	    				tmt.setToolsMachineID(tm.getToolMachineID());
+	    				//tmt.setToolsMachineID(tm.getToolMachineID());
 	    				tmt.setUpdatedDate(new Date());
-	    		        session.persist(tmt);
-	    		        session.flush();
+	    				try {
+		    		        session.persist(tmt);
+		    		        session.flush();
+	    				} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
+	    			} else {
+	    				try {
+		    				session.remove(tmt);
+		    				session.flush();
+		    			} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
 	    			}
 	    		}
 	    	}
@@ -580,19 +1042,40 @@ public class ToolMachineTrayDAO {
 	    		if(tmt == null) {
 	    			tmt = new ToolMachineTray();
 	    			if(tm != null) {
-		    			tmt.setToolsMachineID(tm.getToolMachineID());
+		    			//tmt.setToolsMachineID(tm.getToolMachineID());
 		    			tmt.setActive(true);
 		    			tmt.setTrayIndex("TRAY_22");
 	    				tmt.setCreatedDate(new Date());
-	    		        session.persist(tmt);
-	    		        session.flush();
+	    				int maxID = this.findMaxTMTID();
+		    			if(maxID != 0)
+		    				tmt.setToolsMachineTrayID(maxID + 1);
+		    			try {
+		    		        session.persist(tmt);
+		    		        session.flush();
+		    			} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
 	    			}
 	    		} else {
 	    			if(tm != null) {
-	    				tmt.setToolsMachineID(tm.getToolMachineID());
+	    				//tmt.setToolsMachineID(tm.getToolMachineID());
 	    				tmt.setUpdatedDate(new Date());
-	    		        session.persist(tmt);
-	    		        session.flush();
+	    				try {
+		    		        session.persist(tmt);
+		    		        session.flush();
+	    				} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
+	    			} else {
+	    				try {
+		    				session.remove(tmt);
+		    				session.flush();
+		    			} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
 	    			}
 	    		}
 	    	}
@@ -605,19 +1088,40 @@ public class ToolMachineTrayDAO {
 	    		if(tmt == null) {
 	    			tmt = new ToolMachineTray();
 	    			if(tm != null) {
-		    			tmt.setToolsMachineID(tm.getToolMachineID());
+		    			//tmt.setToolsMachineID(tm.getToolMachineID());
 		    			tmt.setActive(true);
 		    			tmt.setTrayIndex("TRAY_23");
 	    				tmt.setCreatedDate(new Date());
-	    		        session.persist(tmt);
-	    		        session.flush();
+	    				int maxID = this.findMaxTMTID();
+		    			if(maxID != 0)
+		    				tmt.setToolsMachineTrayID(maxID + 1);
+		    			try {
+		    		        session.persist(tmt);
+		    		        session.flush();
+		    			} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
 	    			}
 	    		} else {
 	    			if(tm != null) {
-	    				tmt.setToolsMachineID(tm.getToolMachineID());
+	    				//tmt.setToolsMachineID(tm.getToolMachineID());
 	    				tmt.setUpdatedDate(new Date());
-	    		        session.persist(tmt);
-	    		        session.flush();
+	    				try {
+		    		        session.persist(tmt);
+		    		        session.flush();
+	    				} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
+	    			} else {
+	    				try {
+		    				session.remove(tmt);
+		    				session.flush();
+		    			} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
 	    			}
 	    		}
 	    	}
@@ -630,19 +1134,40 @@ public class ToolMachineTrayDAO {
 	    		if(tmt == null) {
 	    			tmt = new ToolMachineTray();
 	    			if(tm != null) {
-		    			tmt.setToolsMachineID(tm.getToolMachineID());
+		    			//tmt.setToolsMachineID(tm.getToolMachineID());
 		    			tmt.setActive(true);
 		    			tmt.setTrayIndex("TRAY_24");
 	    				tmt.setCreatedDate(new Date());
-	    		        session.persist(tmt);
-	    		        session.flush();
+	    				int maxID = this.findMaxTMTID();
+		    			if(maxID != 0)
+		    				tmt.setToolsMachineTrayID(maxID + 1);
+		    			try {
+		    		        session.persist(tmt);
+		    		        session.flush();
+		    			} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
 	    			}
 	    		} else {
 	    			if(tm != null) {
-	    				tmt.setToolsMachineID(tm.getToolMachineID());
+	    				//tmt.setToolsMachineID(tm.getToolMachineID());
 	    				tmt.setUpdatedDate(new Date());
-	    		        session.persist(tmt);
-	    		        session.flush();
+	    				try {
+		    		        session.persist(tmt);
+		    		        session.flush();
+	    				} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
+	    			} else {
+	    				try {
+		    				session.remove(tmt);
+		    				session.flush();
+		    			} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
 	    			}
 	    		}
 	    	}
@@ -655,19 +1180,40 @@ public class ToolMachineTrayDAO {
 	    		if(tmt == null) {
 	    			tmt = new ToolMachineTray();
 	    			if(tm != null) {
-		    			tmt.setToolsMachineID(tm.getToolMachineID());
+		    			//tmt.setToolsMachineID(tm.getToolMachineID());
 		    			tmt.setActive(true);
 		    			tmt.setTrayIndex("TRAY_25");
 	    				tmt.setCreatedDate(new Date());
-	    		        session.persist(tmt);
-	    		        session.flush();
+	    				int maxID = this.findMaxTMTID();
+		    			if(maxID != 0)
+		    				tmt.setToolsMachineTrayID(maxID + 1);
+		    			try {
+		    		        session.persist(tmt);
+		    		        session.flush();
+		    			} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
 	    			}
 	    		} else {
 	    			if(tm != null) {
-	    				tmt.setToolsMachineID(tm.getToolMachineID());
+	    				//tmt.setToolsMachineID(tm.getToolMachineID());
 	    				tmt.setUpdatedDate(new Date());
-	    		        session.persist(tmt);
-	    		        session.flush();
+	    				try {
+		    		        session.persist(tmt);
+		    		        session.flush();
+	    				} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
+	    			} else {
+	    				try {
+		    				session.remove(tmt);
+		    				session.flush();
+		    			} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
 	    			}
 	    		}
 	    	}
@@ -680,19 +1226,40 @@ public class ToolMachineTrayDAO {
 	    		if(tmt == null) {
 	    			tmt = new ToolMachineTray();
 	    			if(tm != null) {
-		    			tmt.setToolsMachineID(tm.getToolMachineID());
+		    			//tmt.setToolsMachineID(tm.getToolMachineID());
 		    			tmt.setActive(true);
 		    			tmt.setTrayIndex("TRAY_26");
 	    				tmt.setCreatedDate(new Date());
-	    		        session.persist(tmt);
-	    		        session.flush();
+	    				int maxID = this.findMaxTMTID();
+		    			if(maxID != 0)
+		    				tmt.setToolsMachineTrayID(maxID + 1);
+		    			try {
+		    		        session.persist(tmt);
+		    		        session.flush();
+		    			} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
 	    			}
 	    		} else {
 	    			if(tm != null) {
-	    				tmt.setToolsMachineID(tm.getToolMachineID());
+	    				//tmt.setToolsMachineID(tm.getToolMachineID());
 	    				tmt.setUpdatedDate(new Date());
-	    		        session.persist(tmt);
-	    		        session.flush();
+	    				try {
+		    		        session.persist(tmt);
+		    		        session.flush();
+	    				} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
+	    			} else {
+	    				try {
+		    				session.remove(tmt);
+		    				session.flush();
+		    			} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
 	    			}
 	    		}
 	    	}
@@ -705,19 +1272,40 @@ public class ToolMachineTrayDAO {
 	    		if(tmt == null) {
 	    			tmt = new ToolMachineTray();
 	    			if(tm != null) {
-		    			tmt.setToolsMachineID(tm.getToolMachineID());
+		    			//tmt.setToolsMachineID(tm.getToolMachineID());
 		    			tmt.setActive(true);
 		    			tmt.setTrayIndex("TRAY_27");
 	    				tmt.setCreatedDate(new Date());
-	    		        session.persist(tmt);
-	    		        session.flush();
+	    				int maxID = this.findMaxTMTID();
+		    			if(maxID != 0)
+		    				tmt.setToolsMachineTrayID(maxID + 1);
+		    			try {
+		    		        session.persist(tmt);
+		    		        session.flush();
+		    			} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
 	    			}
 	    		} else {
 	    			if(tm != null) {
-	    				tmt.setToolsMachineID(tm.getToolMachineID());
+	    				//tmt.setToolsMachineID(tm.getToolMachineID());
 	    				tmt.setUpdatedDate(new Date());
-	    		        session.persist(tmt);
-	    		        session.flush();
+	    				try {
+		    		        session.persist(tmt);
+		    		        session.flush();
+	    				} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
+	    			} else {
+	    				try {
+		    				session.remove(tmt);
+		    				session.flush();
+		    			} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
 	    			}
 	    		}
 	    	}
@@ -730,19 +1318,40 @@ public class ToolMachineTrayDAO {
 	    		if(tmt == null) {
 	    			tmt = new ToolMachineTray();
 	    			if(tm != null) {
-		    			tmt.setToolsMachineID(tm.getToolMachineID());
+		    			//tmt.setToolsMachineID(tm.getToolMachineID());
 		    			tmt.setActive(true);
 		    			tmt.setTrayIndex("TRAY_28");
 	    				tmt.setCreatedDate(new Date());
-	    		        session.persist(tmt);
-	    		        session.flush();
+	    				int maxID = this.findMaxTMTID();
+		    			if(maxID != 0)
+		    				tmt.setToolsMachineTrayID(maxID + 1);
+		    			try {
+		    		        session.persist(tmt);
+		    		        session.flush();
+		    			} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
 	    			}
 	    		} else {
 	    			if(tm != null) {
-	    				tmt.setToolsMachineID(tm.getToolMachineID());
+	    				//tmt.setToolsMachineID(tm.getToolMachineID());
 	    				tmt.setUpdatedDate(new Date());
-	    		        session.persist(tmt);
-	    		        session.flush();
+	    				try {
+		    		        session.persist(tmt);
+		    		        session.flush();
+	    				} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
+	    			} else {
+	    				try {
+		    				session.remove(tmt);
+		    				session.flush();
+		    			} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
 	    			}
 	    		}
 	    	}
@@ -755,19 +1364,40 @@ public class ToolMachineTrayDAO {
 	    		if(tmt == null) {
 	    			tmt = new ToolMachineTray();
 	    			if(tm != null) {
-		    			tmt.setToolsMachineID(tm.getToolMachineID());
+		    			//tmt.setToolsMachineID(tm.getToolMachineID());
 		    			tmt.setActive(true);
 		    			tmt.setTrayIndex("TRAY_29");
 	    				tmt.setCreatedDate(new Date());
-	    		        session.persist(tmt);
-	    		        session.flush();
+	    				int maxID = this.findMaxTMTID();
+		    			if(maxID != 0)
+		    				tmt.setToolsMachineTrayID(maxID + 1);
+		    			try {
+		    		        session.persist(tmt);
+		    		        session.flush();
+		    			} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
 	    			}
 	    		} else {
 	    			if(tm != null) {
-	    				tmt.setToolsMachineID(tm.getToolMachineID());
+	    				//tmt.setToolsMachineID(tm.getToolMachineID());
 	    				tmt.setUpdatedDate(new Date());
-	    		        session.persist(tmt);
-	    		        session.flush();
+	    				try {
+		    		        session.persist(tmt);
+		    		        session.flush();
+	    				} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
+	    			} else {
+	    				try {
+		    				session.remove(tmt);
+		    				session.flush();
+		    			} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
 	    			}
 	    		}
 	    	}
@@ -780,19 +1410,40 @@ public class ToolMachineTrayDAO {
 	    		if(tmt == null) {
 	    			tmt = new ToolMachineTray();
 	    			if(tm != null) {
-		    			tmt.setToolsMachineID(tm.getToolMachineID());
+		    			//tmt.setToolsMachineID(tm.getToolMachineID());
 		    			tmt.setActive(true);
 		    			tmt.setTrayIndex("TRAY_30");
 	    				tmt.setCreatedDate(new Date());
-	    		        session.persist(tmt);
-	    		        session.flush();
+	    				int maxID = this.findMaxTMTID();
+		    			if(maxID != 0)
+		    				tmt.setToolsMachineTrayID(maxID + 1);
+		    			try {
+		    		        session.persist(tmt);
+		    		        session.flush();
+		    			} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
 	    			}
 	    		} else {
 	    			if(tm != null) {
-	    				tmt.setToolsMachineID(tm.getToolMachineID());
+	    				//tmt.setToolsMachineID(tm.getToolMachineID());
 	    				tmt.setUpdatedDate(new Date());
-	    		        session.persist(tmt);
-	    		        session.flush();
+	    				try {
+		    		        session.persist(tmt);
+		    		        session.flush();
+	    				} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
+	    			} else {
+	    				try {
+		    				session.remove(tmt);
+		    				session.flush();
+		    			} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
 	    			}
 	    		}
 	    	}
@@ -805,19 +1456,40 @@ public class ToolMachineTrayDAO {
 	    		if(tmt == null) {
 	    			tmt = new ToolMachineTray();
 	    			if(tm != null) {
-		    			tmt.setToolsMachineID(tm.getToolMachineID());
+		    			//tmt.setToolsMachineID(tm.getToolMachineID());
 		    			tmt.setActive(true);
 		    			tmt.setTrayIndex("TRAY_31");
 	    				tmt.setCreatedDate(new Date());
-	    		        session.persist(tmt);
-	    		        session.flush();
+	    				int maxID = this.findMaxTMTID();
+		    			if(maxID != 0)
+		    				tmt.setToolsMachineTrayID(maxID + 1);
+		    			try {
+		    		        session.persist(tmt);
+		    		        session.flush();
+		    			} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
 	    			}
 	    		} else {
 	    			if(tm != null) {
-	    				tmt.setToolsMachineID(tm.getToolMachineID());
+	    				//tmt.setToolsMachineID(tm.getToolMachineID());
 	    				tmt.setUpdatedDate(new Date());
-	    		        session.persist(tmt);
-	    		        session.flush();
+	    				try {
+		    		        session.persist(tmt);
+		    		        session.flush();
+	    				} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
+	    			} else {
+	    				try {
+		    				session.remove(tmt);
+		    				session.flush();
+		    			} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
 	    			}
 	    		}
 	    	}
@@ -830,19 +1502,40 @@ public class ToolMachineTrayDAO {
 	    		if(tmt == null) {
 	    			tmt = new ToolMachineTray();
 	    			if(tm != null) {
-		    			tmt.setToolsMachineID(tm.getToolMachineID());
+		    			//tmt.setToolsMachineID(tm.getToolMachineID());
 		    			tmt.setActive(true);
 		    			tmt.setTrayIndex("TRAY_32");
 	    				tmt.setCreatedDate(new Date());
-	    		        session.persist(tmt);
-	    		        session.flush();
+	    				int maxID = this.findMaxTMTID();
+		    			if(maxID != 0)
+		    				tmt.setToolsMachineTrayID(maxID + 1);
+		    			try {
+		    		        session.persist(tmt);
+		    		        session.flush();
+		    			} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
 	    			}
 	    		} else {
 	    			if(tm != null) {
-	    				tmt.setToolsMachineID(tm.getToolMachineID());
+	    				//tmt.setToolsMachineID(tm.getToolMachineID());
 	    				tmt.setUpdatedDate(new Date());
-	    		        session.persist(tmt);
-	    		        session.flush();
+	    				try {
+		    		        session.persist(tmt);
+		    		        session.flush();
+	    				} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
+	    			} else {
+	    				try {
+		    				session.remove(tmt);
+		    				session.flush();
+		    			} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
 	    			}
 	    		}
 	    	}
@@ -855,19 +1548,40 @@ public class ToolMachineTrayDAO {
 	    		if(tmt == null) {
 	    			tmt = new ToolMachineTray();
 	    			if(tm != null) {
-		    			tmt.setToolsMachineID(tm.getToolMachineID());
+		    			//tmt.setToolsMachineID(tm.getToolMachineID());
 		    			tmt.setActive(true);
 		    			tmt.setTrayIndex("TRAY_33");
 	    				tmt.setCreatedDate(new Date());
-	    		        session.persist(tmt);
-	    		        session.flush();
+	    				int maxID = this.findMaxTMTID();
+		    			if(maxID != 0)
+		    				tmt.setToolsMachineTrayID(maxID + 1);
+		    			try {
+		    		        session.persist(tmt);
+		    		        session.flush();
+		    			} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
 	    			}
 	    		} else {
 	    			if(tm != null) {
-	    				tmt.setToolsMachineID(tm.getToolMachineID());
+	    				//tmt.setToolsMachineID(tm.getToolMachineID());
 	    				tmt.setUpdatedDate(new Date());
-	    		        session.persist(tmt);
-	    		        session.flush();
+	    				try {
+		    		        session.persist(tmt);
+		    		        session.flush();
+	    				} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
+	    			} else {
+	    				try {
+		    				session.remove(tmt);
+		    				session.flush();
+		    			} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
 	    			}
 	    		}
 	    	}
@@ -880,19 +1594,40 @@ public class ToolMachineTrayDAO {
 	    		if(tmt == null) {
 	    			tmt = new ToolMachineTray();
 	    			if(tm != null) {
-		    			tmt.setToolsMachineID(tm.getToolMachineID());
+		    			//tmt.setToolsMachineID(tm.getToolMachineID());
 		    			tmt.setActive(true);
 		    			tmt.setTrayIndex("TRAY_34");
 	    				tmt.setCreatedDate(new Date());
-	    		        session.persist(tmt);
-	    		        session.flush();
+	    				int maxID = this.findMaxTMTID();
+		    			if(maxID != 0)
+		    				tmt.setToolsMachineTrayID(maxID + 1);
+		    			try {
+		    		        session.persist(tmt);
+		    		        session.flush();
+		    			} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
 	    			}
 	    		} else {
 	    			if(tm != null) {
-	    				tmt.setToolsMachineID(tm.getToolMachineID());
+	    				//tmt.setToolsMachineID(tm.getToolMachineID());
 	    				tmt.setUpdatedDate(new Date());
-	    		        session.persist(tmt);
-	    		        session.flush();
+	    				try {
+		    		        session.persist(tmt);
+		    		        session.flush();
+	    				} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
+	    			} else {
+	    				try {
+		    				session.remove(tmt);
+		    				session.flush();
+		    			} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
 	    			}
 	    		}
 	    	}
@@ -905,19 +1640,40 @@ public class ToolMachineTrayDAO {
 	    		if(tmt == null) {
 	    			tmt = new ToolMachineTray();
 	    			if(tm != null) {
-		    			tmt.setToolsMachineID(tm.getToolMachineID());
+		    			//tmt.setToolsMachineID(tm.getToolMachineID());
 		    			tmt.setActive(true);
 		    			tmt.setTrayIndex("TRAY_35");
 	    				tmt.setCreatedDate(new Date());
-	    		        session.persist(tmt);
-	    		        session.flush();
+	    				int maxID = this.findMaxTMTID();
+		    			if(maxID != 0)
+		    				tmt.setToolsMachineTrayID(maxID + 1);
+		    			try {
+		    		        session.persist(tmt);
+		    		        session.flush();
+		    			} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
 	    			}
 	    		} else {
 	    			if(tm != null) {
-	    				tmt.setToolsMachineID(tm.getToolMachineID());
+	    				//tmt.setToolsMachineID(tm.getToolMachineID());
 	    				tmt.setUpdatedDate(new Date());
-	    		        session.persist(tmt);
-	    		        session.flush();
+	    				try {
+		    		        session.persist(tmt);
+		    		        session.flush();
+	    				} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
+	    			} else {
+	    				try {
+		    				session.remove(tmt);
+		    				session.flush();
+		    			} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
 	    			}
 	    		}
 	    	}
@@ -930,19 +1686,40 @@ public class ToolMachineTrayDAO {
 	    		if(tmt == null) {
 	    			tmt = new ToolMachineTray();
 	    			if(tm != null) {
-		    			tmt.setToolsMachineID(tm.getToolMachineID());
+		    			//tmt.setToolsMachineID(tm.getToolMachineID());
 		    			tmt.setActive(true);
 		    			tmt.setTrayIndex("TRAY_36");
 	    				tmt.setCreatedDate(new Date());
-	    		        session.persist(tmt);
-	    		        session.flush();
+	    				int maxID = this.findMaxTMTID();
+		    			if(maxID != 0)
+		    				tmt.setToolsMachineTrayID(maxID + 1);
+		    			try {
+		    		        session.persist(tmt);
+		    		        session.flush();
+		    			} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
 	    			}
 	    		} else {
 	    			if(tm != null) {
-	    				tmt.setToolsMachineID(tm.getToolMachineID());
+	    				//tmt.setToolsMachineID(tm.getToolMachineID());
 	    				tmt.setUpdatedDate(new Date());
-	    		        session.persist(tmt);
-	    		        session.flush();
+	    				try {
+		    		        session.persist(tmt);
+		    		        session.flush();
+	    				} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
+	    			} else {
+	    				try {
+		    				session.remove(tmt);
+		    				session.flush();
+		    			} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
 	    			}
 	    		}
 	    	}
@@ -955,19 +1732,40 @@ public class ToolMachineTrayDAO {
 	    		if(tmt == null) {
 	    			tmt = new ToolMachineTray();
 	    			if(tm != null) {
-		    			tmt.setToolsMachineID(tm.getToolMachineID());
+		    			//tmt.setToolsMachineID(tm.getToolMachineID());
 		    			tmt.setActive(true);
 		    			tmt.setTrayIndex("TRAY_37");
 	    				tmt.setCreatedDate(new Date());
-	    		        session.persist(tmt);
-	    		        session.flush();
+	    				int maxID = this.findMaxTMTID();
+		    			if(maxID != 0)
+		    				tmt.setToolsMachineTrayID(maxID + 1);
+		    			try {
+		    		        session.persist(tmt);
+		    		        session.flush();
+		    			} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
 	    			}
 	    		} else {
 	    			if(tm != null) {
-	    				tmt.setToolsMachineID(tm.getToolMachineID());
+	    				//tmt.setToolsMachineID(tm.getToolMachineID());
 	    				tmt.setUpdatedDate(new Date());
-	    		        session.persist(tmt);
-	    		        session.flush();
+	    				try {
+		    		        session.persist(tmt);
+		    		        session.flush();
+	    				} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
+	    			} else {
+	    				try {
+		    				session.remove(tmt);
+		    				session.flush();
+		    			} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
 	    			}
 	    		}
 	    	}
@@ -980,19 +1778,40 @@ public class ToolMachineTrayDAO {
 	    		if(tmt == null) {
 	    			tmt = new ToolMachineTray();
 	    			if(tm != null) {
-		    			tmt.setToolsMachineID(tm.getToolMachineID());
+		    			//tmt.setToolsMachineID(tm.getToolMachineID());
 		    			tmt.setActive(true);
 		    			tmt.setTrayIndex("TRAY_38");
 	    				tmt.setCreatedDate(new Date());
-	    		        session.persist(tmt);
-	    		        session.flush();
+	    				int maxID = this.findMaxTMTID();
+		    			if(maxID != 0)
+		    				tmt.setToolsMachineTrayID(maxID + 1);
+		    			try {
+		    		        session.persist(tmt);
+		    		        session.flush();
+		    			} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
 	    			}
 	    		} else {
 	    			if(tm != null) {
-	    				tmt.setToolsMachineID(tm.getToolMachineID());
+	    				//tmt.setToolsMachineID(tm.getToolMachineID());
 	    				tmt.setUpdatedDate(new Date());
-	    		        session.persist(tmt);
-	    		        session.flush();
+	    				try {
+		    		        session.persist(tmt);
+		    		        session.flush();
+	    				} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
+	    			} else {
+	    				try {
+		    				session.remove(tmt);
+		    				session.flush();
+		    			} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
 	    			}
 	    		}
 	    	}
@@ -1005,19 +1824,40 @@ public class ToolMachineTrayDAO {
 	    		if(tmt == null) {
 	    			tmt = new ToolMachineTray();
 	    			if(tm != null) {
-		    			tmt.setToolsMachineID(tm.getToolMachineID());
+		    			//tmt.setToolsMachineID(tm.getToolMachineID());
 		    			tmt.setActive(true);
 		    			tmt.setTrayIndex("TRAY_39");
 	    				tmt.setCreatedDate(new Date());
-	    		        session.persist(tmt);
-	    		        session.flush();
+	    				int maxID = this.findMaxTMTID();
+		    			if(maxID != 0)
+		    				tmt.setToolsMachineTrayID(maxID + 1);
+		    			try {
+		    		        session.persist(tmt);
+		    		        session.flush();
+		    			} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
 	    			}
 	    		} else {
 	    			if(tm != null) {
-	    				tmt.setToolsMachineID(tm.getToolMachineID());
+	    				//tmt.setToolsMachineID(tm.getToolMachineID());
 	    				tmt.setUpdatedDate(new Date());
-	    		        session.persist(tmt);
-	    		        session.flush();
+	    				try {
+		    		        session.persist(tmt);
+		    		        session.flush();
+	    				} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
+	    			} else {
+	    				try {
+		    				session.remove(tmt);
+		    				session.flush();
+		    			} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
 	    			}
 	    		}
 	    	}
@@ -1030,19 +1870,40 @@ public class ToolMachineTrayDAO {
 	    		if(tmt == null) {
 	    			tmt = new ToolMachineTray();
 	    			if(tm != null) {
-		    			tmt.setToolsMachineID(tm.getToolMachineID());
+		    			//tmt.setToolsMachineID(tm.getToolMachineID());
 		    			tmt.setActive(true);
 		    			tmt.setTrayIndex("TRAY_40");
 	    				tmt.setCreatedDate(new Date());
-	    		        session.persist(tmt);
-	    		        session.flush();
+	    				int maxID = this.findMaxTMTID();
+		    			if(maxID != 0)
+		    				tmt.setToolsMachineTrayID(maxID + 1);
+		    			try {
+		    		        session.persist(tmt);
+		    		        session.flush();
+		    			} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
 	    			}
 	    		} else {
 	    			if(tm != null) {
-	    				tmt.setToolsMachineID(tm.getToolMachineID());
+	    				//tmt.setToolsMachineID(tm.getToolMachineID());
 	    				tmt.setUpdatedDate(new Date());
-	    		        session.persist(tmt);
-	    		        session.flush();
+	    				try {
+		    		        session.persist(tmt);
+		    		        session.flush();
+	    				} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
+	    			} else {
+	    				try {
+		    				session.remove(tmt);
+		    				session.flush();
+		    			} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
 	    			}
 	    		}
 	    	}
@@ -1055,19 +1916,40 @@ public class ToolMachineTrayDAO {
 	    		if(tmt == null) {
 	    			tmt = new ToolMachineTray();
 	    			if(tm != null) {
-		    			tmt.setToolsMachineID(tm.getToolMachineID());
+		    			//tmt.setToolsMachineID(tm.getToolMachineID());
 		    			tmt.setActive(true);
 		    			tmt.setTrayIndex("TRAY_41");
 	    				tmt.setCreatedDate(new Date());
-	    		        session.persist(tmt);
-	    		        session.flush();
+	    				int maxID = this.findMaxTMTID();
+		    			if(maxID != 0)
+		    				tmt.setToolsMachineTrayID(maxID + 1);
+		    			try {
+		    		        session.persist(tmt);
+		    		        session.flush();
+		    			} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
 	    			}
 	    		} else {
 	    			if(tm != null) {
-	    				tmt.setToolsMachineID(tm.getToolMachineID());
+	    				//tmt.setToolsMachineID(tm.getToolMachineID());
 	    				tmt.setUpdatedDate(new Date());
-	    		        session.persist(tmt);
-	    		        session.flush();
+	    				try {
+		    		        session.persist(tmt);
+		    		        session.flush();
+	    				} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
+	    			} else {
+	    				try {
+		    				session.remove(tmt);
+		    				session.flush();
+		    			} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
 	    			}
 	    		}
 	    	}
@@ -1080,19 +1962,40 @@ public class ToolMachineTrayDAO {
 	    		if(tmt == null) {
 	    			tmt = new ToolMachineTray();
 	    			if(tm != null) {
-		    			tmt.setToolsMachineID(tm.getToolMachineID());
+		    			//tmt.setToolsMachineID(tm.getToolMachineID());
 		    			tmt.setActive(true);
 		    			tmt.setTrayIndex("TRAY_42");
 	    				tmt.setCreatedDate(new Date());
-	    		        session.persist(tmt);
-	    		        session.flush();
+	    				int maxID = this.findMaxTMTID();
+		    			if(maxID != 0)
+		    				tmt.setToolsMachineTrayID(maxID + 1);
+		    			try {
+		    		        session.persist(tmt);
+		    		        session.flush();
+		    			} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
 	    			}
 	    		} else {
 	    			if(tm != null) {
-	    				tmt.setToolsMachineID(tm.getToolMachineID());
+	    				//tmt.setToolsMachineID(tm.getToolMachineID());
 	    				tmt.setUpdatedDate(new Date());
-	    		        session.persist(tmt);
-	    		        session.flush();
+	    				try {
+		    		        session.persist(tmt);
+		    		        session.flush();
+	    				} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
+	    			} else {
+	    				try {
+		    				session.remove(tmt);
+		    				session.flush();
+		    			} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
 	    			}
 	    		}
 	    	}
@@ -1105,19 +2008,40 @@ public class ToolMachineTrayDAO {
 	    		if(tmt == null) {
 	    			tmt = new ToolMachineTray();
 	    			if(tm != null) {
-		    			tmt.setToolsMachineID(tm.getToolMachineID());
+		    			//tmt.setToolsMachineID(tm.getToolMachineID());
 		    			tmt.setActive(true);
 		    			tmt.setTrayIndex("TRAY_43");
 	    				tmt.setCreatedDate(new Date());
-	    		        session.persist(tmt);
-	    		        session.flush();
+	    				int maxID = this.findMaxTMTID();
+		    			if(maxID != 0)
+		    				tmt.setToolsMachineTrayID(maxID + 1);
+		    			try {
+		    		        session.persist(tmt);
+		    		        session.flush();
+		    			} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
 	    			}
 	    		} else {
 	    			if(tm != null) {
-	    				tmt.setToolsMachineID(tm.getToolMachineID());
+	    				//tmt.setToolsMachineID(tm.getToolMachineID());
 	    				tmt.setUpdatedDate(new Date());
-	    		        session.persist(tmt);
-	    		        session.flush();
+	    				try {
+		    		        session.persist(tmt);
+		    		        session.flush();
+	    				} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
+	    			} else {
+	    				try {
+		    				session.remove(tmt);
+		    				session.flush();
+		    			} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
 	    			}
 	    		}
 	    	}
@@ -1130,19 +2054,40 @@ public class ToolMachineTrayDAO {
 	    		if(tmt == null) {
 	    			tmt = new ToolMachineTray();
 	    			if(tm != null) {
-		    			tmt.setToolsMachineID(tm.getToolMachineID());
+		    			//tmt.setToolsMachineID(tm.getToolMachineID());
 		    			tmt.setActive(true);
 		    			tmt.setTrayIndex("TRAY_44");
 	    				tmt.setCreatedDate(new Date());
-	    		        session.persist(tmt);
-	    		        session.flush();
+	    				int maxID = this.findMaxTMTID();
+		    			if(maxID != 0)
+		    				tmt.setToolsMachineTrayID(maxID + 1);
+		    			try {
+		    		        session.persist(tmt);
+		    		        session.flush();
+		    			} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
 	    			}
 	    		} else {
 	    			if(tm != null) {
-	    				tmt.setToolsMachineID(tm.getToolMachineID());
+	    				//tmt.setToolsMachineID(tm.getToolMachineID());
 	    				tmt.setUpdatedDate(new Date());
-	    		        session.persist(tmt);
-	    		        session.flush();
+	    				try {
+		    		        session.persist(tmt);
+		    		        session.flush();
+	    				} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
+	    			} else {
+	    				try {
+		    				session.remove(tmt);
+		    				session.flush();
+		    			} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
 	    			}
 	    		}
 	    	}
@@ -1155,19 +2100,40 @@ public class ToolMachineTrayDAO {
 	    		if(tmt == null) {
 	    			tmt = new ToolMachineTray();
 	    			if(tm != null) {
-		    			tmt.setToolsMachineID(tm.getToolMachineID());
+		    			//tmt.setToolsMachineID(tm.getToolMachineID());
 		    			tmt.setActive(true);
 		    			tmt.setTrayIndex("TRAY_45");
 	    				tmt.setCreatedDate(new Date());
-	    		        session.persist(tmt);
-	    		        session.flush();
+	    				int maxID = this.findMaxTMTID();
+		    			if(maxID != 0)
+		    				tmt.setToolsMachineTrayID(maxID + 1);
+		    			try {
+		    		        session.persist(tmt);
+		    		        session.flush();
+		    			} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
 	    			}
 	    		} else {
 	    			if(tm != null) {
-	    				tmt.setToolsMachineID(tm.getToolMachineID());
+	    				//tmt.setToolsMachineID(tm.getToolMachineID());
 	    				tmt.setUpdatedDate(new Date());
-	    		        session.persist(tmt);
-	    		        session.flush();
+	    				try {
+		    		        session.persist(tmt);
+		    		        session.flush();
+	    				} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
+	    			} else {
+	    				try {
+		    				session.remove(tmt);
+		    				session.flush();
+		    			} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
 	    			}
 	    		}
 	    	}
@@ -1180,19 +2146,40 @@ public class ToolMachineTrayDAO {
 	    		if(tmt == null) {
 	    			tmt = new ToolMachineTray();
 	    			if(tm != null) {
-		    			tmt.setToolsMachineID(tm.getToolMachineID());
+		    			//tmt.setToolsMachineID(tm.getToolMachineID());
 		    			tmt.setActive(true);
 		    			tmt.setTrayIndex("TRAY_46");
 	    				tmt.setCreatedDate(new Date());
-	    		        session.persist(tmt);
-	    		        session.flush();
+	    				int maxID = this.findMaxTMTID();
+		    			if(maxID != 0)
+		    				tmt.setToolsMachineTrayID(maxID + 1);
+		    			try {
+		    		        session.persist(tmt);
+		    		        session.flush();
+		    			} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
 	    			}
 	    		} else {
 	    			if(tm != null) {
-	    				tmt.setToolsMachineID(tm.getToolMachineID());
+	    				//tmt.setToolsMachineID(tm.getToolMachineID());
 	    				tmt.setUpdatedDate(new Date());
-	    		        session.persist(tmt);
-	    		        session.flush();
+	    				try {
+		    		        session.persist(tmt);
+		    		        session.flush();
+	    				} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
+	    			} else {
+	    				try {
+		    				session.remove(tmt);
+		    				session.flush();
+		    			} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
 	    			}
 	    		}
 	    	}
@@ -1205,19 +2192,40 @@ public class ToolMachineTrayDAO {
 	    		if(tmt == null) {
 	    			tmt = new ToolMachineTray();
 	    			if(tm != null) {
-		    			tmt.setToolsMachineID(tm.getToolMachineID());
+		    			//tmt.setToolsMachineID(tm.getToolMachineID());
 		    			tmt.setActive(true);
 		    			tmt.setTrayIndex("TRAY_47");
 	    				tmt.setCreatedDate(new Date());
-	    		        session.persist(tmt);
-	    		        session.flush();
+	    				int maxID = this.findMaxTMTID();
+		    			if(maxID != 0)
+		    				tmt.setToolsMachineTrayID(maxID + 1);
+		    			try {
+		    		        session.persist(tmt);
+		    		        session.flush();
+		    			} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
 	    			}
 	    		} else {
 	    			if(tm != null) {
-	    				tmt.setToolsMachineID(tm.getToolMachineID());
+	    				//tmt.setToolsMachineID(tm.getToolMachineID());
 	    				tmt.setUpdatedDate(new Date());
-	    		        session.persist(tmt);
-	    		        session.flush();
+	    				try {
+		    		        session.persist(tmt);
+		    		        session.flush();
+	    				} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
+	    			} else {
+	    				try {
+		    				session.remove(tmt);
+		    				session.flush();
+		    			} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
 	    			}
 	    		}
 	    	}
@@ -1230,19 +2238,40 @@ public class ToolMachineTrayDAO {
 	    		if(tmt == null) {
 	    			tmt = new ToolMachineTray();
 	    			if(tm != null) {
-		    			tmt.setToolsMachineID(tm.getToolMachineID());
+		    			//tmt.setToolsMachineID(tm.getToolMachineID());
 		    			tmt.setActive(true);
 		    			tmt.setTrayIndex("TRAY_48");
 	    				tmt.setCreatedDate(new Date());
-	    		        session.persist(tmt);
-	    		        session.flush();
+	    				int maxID = this.findMaxTMTID();
+		    			if(maxID != 0)
+		    				tmt.setToolsMachineTrayID(maxID + 1);
+		    			try {
+		    		        session.persist(tmt);
+		    		        session.flush();
+		    			} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
 	    			}
 	    		} else {
 	    			if(tm != null) {
-	    				tmt.setToolsMachineID(tm.getToolMachineID());
+	    				//tmt.setToolsMachineID(tm.getToolMachineID());
 	    				tmt.setUpdatedDate(new Date());
-	    		        session.persist(tmt);
-	    		        session.flush();
+	    				try {
+		    		        session.persist(tmt);
+		    		        session.flush();
+	    				} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
+	    			} else {
+	    				try {
+		    				session.remove(tmt);
+		    				session.flush();
+		    			} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
 	    			}
 	    		}
 	    	}
@@ -1255,19 +2284,40 @@ public class ToolMachineTrayDAO {
 	    		if(tmt == null) {
 	    			tmt = new ToolMachineTray();
 	    			if(tm != null) {
-		    			tmt.setToolsMachineID(tm.getToolMachineID());
+		    			//tmt.setToolsMachineID(tm.getToolMachineID());
 		    			tmt.setActive(true);
 		    			tmt.setTrayIndex("TRAY_49");
 	    				tmt.setCreatedDate(new Date());
-	    		        session.persist(tmt);
-	    		        session.flush();
+	    				int maxID = this.findMaxTMTID();
+		    			if(maxID != 0)
+		    				tmt.setToolsMachineTrayID(maxID + 1);
+		    			try {
+		    		        session.persist(tmt);
+		    		        session.flush();
+		    			} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
 	    			}
 	    		} else {
 	    			if(tm != null) {
-	    				tmt.setToolsMachineID(tm.getToolMachineID());
+	    				//tmt.setToolsMachineID(tm.getToolMachineID());
 	    				tmt.setUpdatedDate(new Date());
-	    		        session.persist(tmt);
-	    		        session.flush();
+	    				try {
+		    		        session.persist(tmt);
+		    		        session.flush();
+	    				} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
+	    			} else {
+	    				try {
+		    				session.remove(tmt);
+		    				session.flush();
+		    			} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
 	    			}
 	    		}
 	    	}
@@ -1280,19 +2330,40 @@ public class ToolMachineTrayDAO {
 	    		if(tmt == null) {
 	    			tmt = new ToolMachineTray();
 	    			if(tm != null) {
-		    			tmt.setToolsMachineID(tm.getToolMachineID());
+		    			//tmt.setToolsMachineID(tm.getToolMachineID());
 		    			tmt.setActive(true);
 		    			tmt.setTrayIndex("TRAY_50");
 	    				tmt.setCreatedDate(new Date());
-	    		        session.persist(tmt);
-	    		        session.flush();
+	    				int maxID = this.findMaxTMTID();
+		    			if(maxID != 0)
+		    				tmt.setToolsMachineTrayID(maxID + 1);
+		    			try {
+		    		        session.persist(tmt);
+		    		        session.flush();
+		    			} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
 	    			}
 	    		} else {
 	    			if(tm != null) {
-	    				tmt.setToolsMachineID(tm.getToolMachineID());
+	    				//tmt.setToolsMachineID(tm.getToolMachineID());
 	    				tmt.setUpdatedDate(new Date());
-	    		        session.persist(tmt);
-	    		        session.flush();
+	    				try {
+		    		        session.persist(tmt);
+		    		        session.flush();
+	    				} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
+	    			} else {
+	    				try {
+		    				session.remove(tmt);
+		    				session.flush();
+		    			} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
 	    			}
 	    		}
 	    	}
@@ -1305,19 +2376,40 @@ public class ToolMachineTrayDAO {
 	    		if(tmt == null) {
 	    			tmt = new ToolMachineTray();
 	    			if(tm != null) {
-		    			tmt.setToolsMachineID(tm.getToolMachineID());
+		    			//tmt.setToolsMachineID(tm.getToolMachineID());
 		    			tmt.setActive(true);
 		    			tmt.setTrayIndex("TRAY_51");
 	    				tmt.setCreatedDate(new Date());
-	    		        session.persist(tmt);
-	    		        session.flush();
+	    				int maxID = this.findMaxTMTID();
+		    			if(maxID != 0)
+		    				tmt.setToolsMachineTrayID(maxID + 1);
+		    			try {
+		    		        session.persist(tmt);
+		    		        session.flush();
+		    			} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
 	    			}
 	    		} else {
 	    			if(tm != null) {
-	    				tmt.setToolsMachineID(tm.getToolMachineID());
+	    				//tmt.setToolsMachineID(tm.getToolMachineID());
 	    				tmt.setUpdatedDate(new Date());
-	    		        session.persist(tmt);
-	    		        session.flush();
+	    				try {
+		    		        session.persist(tmt);
+		    		        session.flush();
+	    				} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
+	    			} else {
+	    				try {
+		    				session.remove(tmt);
+		    				session.flush();
+		    			} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
 	    			}
 	    		}
 	    	}
@@ -1330,19 +2422,40 @@ public class ToolMachineTrayDAO {
 	    		if(tmt == null) {
 	    			tmt = new ToolMachineTray();
 	    			if(tm != null) {
-		    			tmt.setToolsMachineID(tm.getToolMachineID());
+		    			//tmt.setToolsMachineID(tm.getToolMachineID());
 		    			tmt.setActive(true);
 		    			tmt.setTrayIndex("TRAY_52");
 	    				tmt.setCreatedDate(new Date());
-	    		        session.persist(tmt);
-	    		        session.flush();
+	    				int maxID = this.findMaxTMTID();
+		    			if(maxID != 0)
+		    				tmt.setToolsMachineTrayID(maxID + 1);
+		    			try {
+		    		        session.persist(tmt);
+		    		        session.flush();
+		    			} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
 	    			}
 	    		} else {
 	    			if(tm != null) {
-	    				tmt.setToolsMachineID(tm.getToolMachineID());
+	    				//tmt.setToolsMachineID(tm.getToolMachineID());
 	    				tmt.setUpdatedDate(new Date());
-	    		        session.persist(tmt);
-	    		        session.flush();
+	    				try {
+		    		        session.persist(tmt);
+		    		        session.flush();
+	    				} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
+	    			} else {
+	    				try {
+		    				session.remove(tmt);
+		    				session.flush();
+		    			} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
 	    			}
 	    		}
 	    	}
@@ -1355,19 +2468,40 @@ public class ToolMachineTrayDAO {
 	    		if(tmt == null) {
 	    			tmt = new ToolMachineTray();
 	    			if(tm != null) {
-		    			tmt.setToolsMachineID(tm.getToolMachineID());
+		    			//tmt.setToolsMachineID(tm.getToolMachineID());
 		    			tmt.setActive(true);
 		    			tmt.setTrayIndex("TRAY_53");
 	    				tmt.setCreatedDate(new Date());
-	    		        session.persist(tmt);
-	    		        session.flush();
+	    				int maxID = this.findMaxTMTID();
+		    			if(maxID != 0)
+		    				tmt.setToolsMachineTrayID(maxID + 1);
+		    			try {
+		    		        session.persist(tmt);
+		    		        session.flush();
+		    			} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
 	    			}
 	    		} else {
 	    			if(tm != null) {
-	    				tmt.setToolsMachineID(tm.getToolMachineID());
+	    				//tmt.setToolsMachineID(tm.getToolMachineID());
 	    				tmt.setUpdatedDate(new Date());
-	    		        session.persist(tmt);
-	    		        session.flush();
+	    				try {
+		    		        session.persist(tmt);
+		    		        session.flush();
+	    				} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
+	    			} else {
+	    				try {
+		    				session.remove(tmt);
+		    				session.flush();
+		    			} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
 	    			}
 	    		}
 	    	}
@@ -1380,19 +2514,40 @@ public class ToolMachineTrayDAO {
 	    		if(tmt == null) {
 	    			tmt = new ToolMachineTray();
 	    			if(tm != null) {
-		    			tmt.setToolsMachineID(tm.getToolMachineID());
+		    			//tmt.setToolsMachineID(tm.getToolMachineID());
 		    			tmt.setActive(true);
 		    			tmt.setTrayIndex("TRAY_54");
 	    				tmt.setCreatedDate(new Date());
-	    		        session.persist(tmt);
-	    		        session.flush();
+	    				int maxID = this.findMaxTMTID();
+		    			if(maxID != 0)
+		    				tmt.setToolsMachineTrayID(maxID + 1);
+		    			try {
+		    		        session.persist(tmt);
+		    		        session.flush();
+		    			} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
 	    			}
 	    		} else {
 	    			if(tm != null) {
-	    				tmt.setToolsMachineID(tm.getToolMachineID());
+	    				//tmt.setToolsMachineID(tm.getToolMachineID());
 	    				tmt.setUpdatedDate(new Date());
-	    		        session.persist(tmt);
-	    		        session.flush();
+	    				try {
+		    		        session.persist(tmt);
+		    		        session.flush();
+	    				} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
+	    			} else {
+	    				try {
+		    				session.remove(tmt);
+		    				session.flush();
+		    			} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
 	    			}
 	    		}
 	    	}
@@ -1405,19 +2560,40 @@ public class ToolMachineTrayDAO {
 	    		if(tmt == null) {
 	    			tmt = new ToolMachineTray();
 	    			if(tm != null) {
-		    			tmt.setToolsMachineID(tm.getToolMachineID());
+		    			//tmt.setToolsMachineID(tm.getToolMachineID());
 		    			tmt.setActive(true);
 		    			tmt.setTrayIndex("TRAY_55");
 	    				tmt.setCreatedDate(new Date());
-	    		        session.persist(tmt);
-	    		        session.flush();
+	    				int maxID = this.findMaxTMTID();
+		    			if(maxID != 0)
+		    				tmt.setToolsMachineTrayID(maxID + 1);
+		    			try {
+		    		        session.persist(tmt);
+		    		        session.flush();
+		    			} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
 	    			}
 	    		} else {
 	    			if(tm != null) {
-	    				tmt.setToolsMachineID(tm.getToolMachineID());
+	    				//tmt.setToolsMachineID(tm.getToolMachineID());
 	    				tmt.setUpdatedDate(new Date());
-	    		        session.persist(tmt);
-	    		        session.flush();
+	    				try {
+		    		        session.persist(tmt);
+		    		        session.flush();
+	    				} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
+	    			} else {
+	    				try {
+		    				session.remove(tmt);
+		    				session.flush();
+		    			} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
 	    			}
 	    		}
 	    	}
@@ -1430,19 +2606,40 @@ public class ToolMachineTrayDAO {
 	    		if(tmt == null) {
 	    			tmt = new ToolMachineTray();
 	    			if(tm != null) {
-		    			tmt.setToolsMachineID(tm.getToolMachineID());
+		    			//tmt.setToolsMachineID(tm.getToolMachineID());
 		    			tmt.setActive(true);
 		    			tmt.setTrayIndex("TRAY_56");
 	    				tmt.setCreatedDate(new Date());
-	    		        session.persist(tmt);
-	    		        session.flush();
+	    				int maxID = this.findMaxTMTID();
+		    			if(maxID != 0)
+		    				tmt.setToolsMachineTrayID(maxID + 1);
+		    			try {
+		    		        session.persist(tmt);
+		    		        session.flush();
+		    			} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
 	    			}
 	    		} else {
 	    			if(tm != null) {
-	    				tmt.setToolsMachineID(tm.getToolMachineID());
+	    				//tmt.setToolsMachineID(tm.getToolMachineID());
 	    				tmt.setUpdatedDate(new Date());
-	    		        session.persist(tmt);
-	    		        session.flush();
+	    				try {
+		    		        session.persist(tmt);
+		    		        session.flush();
+	    				} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
+	    			} else {
+	    				try {
+		    				session.remove(tmt);
+		    				session.flush();
+		    			} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
 	    			}
 	    		}
 	    	}
@@ -1455,19 +2652,40 @@ public class ToolMachineTrayDAO {
 	    		if(tmt == null) {
 	    			tmt = new ToolMachineTray();
 	    			if(tm != null) {
-		    			tmt.setToolsMachineID(tm.getToolMachineID());
+		    			//tmt.setToolsMachineID(tm.getToolMachineID());
 		    			tmt.setActive(true);
 		    			tmt.setTrayIndex("TRAY_57");
 	    				tmt.setCreatedDate(new Date());
-	    		        session.persist(tmt);
-	    		        session.flush();
+	    				int maxID = this.findMaxTMTID();
+		    			if(maxID != 0)
+		    				tmt.setToolsMachineTrayID(maxID + 1);
+		    			try {
+		    		        session.persist(tmt);
+		    		        session.flush();
+		    			} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
 	    			}
 	    		} else {
 	    			if(tm != null) {
-	    				tmt.setToolsMachineID(tm.getToolMachineID());
+	    				//tmt.setToolsMachineID(tm.getToolMachineID());
 	    				tmt.setUpdatedDate(new Date());
-	    		        session.persist(tmt);
-	    		        session.flush();
+	    				try {
+		    		        session.persist(tmt);
+		    		        session.flush();
+	    				} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
+	    			} else {
+	    				try {
+		    				session.remove(tmt);
+		    				session.flush();
+		    			} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
 	    			}
 	    		}
 	    	}
@@ -1480,19 +2698,40 @@ public class ToolMachineTrayDAO {
 	    		if(tmt == null) {
 	    			tmt = new ToolMachineTray();
 	    			if(tm != null) {
-		    			tmt.setToolsMachineID(tm.getToolMachineID());
+		    			//tmt.setToolsMachineID(tm.getToolMachineID());
 		    			tmt.setActive(true);
 		    			tmt.setTrayIndex("TRAY_58");
 	    				tmt.setCreatedDate(new Date());
-	    		        session.persist(tmt);
-	    		        session.flush();
+	    				int maxID = this.findMaxTMTID();
+		    			if(maxID != 0)
+		    				tmt.setToolsMachineTrayID(maxID + 1);
+		    			try {
+		    		        session.persist(tmt);
+		    		        session.flush();
+		    			} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
 	    			}
 	    		} else {
 	    			if(tm != null) {
-	    				tmt.setToolsMachineID(tm.getToolMachineID());
+	    				//tmt.setToolsMachineID(tm.getToolMachineID());
 	    				tmt.setUpdatedDate(new Date());
-	    		        session.persist(tmt);
-	    		        session.flush();
+	    				try {
+		    		        session.persist(tmt);
+		    		        session.flush();
+	    				} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
+	    			} else {
+	    				try {
+		    				session.remove(tmt);
+		    				session.flush();
+		    			} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
 	    			}
 	    		}
 	    	}
@@ -1505,19 +2744,40 @@ public class ToolMachineTrayDAO {
 	    		if(tmt == null) {
 	    			tmt = new ToolMachineTray();
 	    			if(tm != null) {
-		    			tmt.setToolsMachineID(tm.getToolMachineID());
+		    			//tmt.setToolsMachineID(tm.getToolMachineID());
 		    			tmt.setActive(true);
 		    			tmt.setTrayIndex("TRAY_59");
 	    				tmt.setCreatedDate(new Date());
-	    		        session.persist(tmt);
-	    		        session.flush();
+	    				int maxID = this.findMaxTMTID();
+		    			if(maxID != 0)
+		    				tmt.setToolsMachineTrayID(maxID + 1);
+		    			try {
+		    		        session.persist(tmt);
+		    		        session.flush();
+		    			} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
 	    			}
 	    		} else {
 	    			if(tm != null) {
-	    				tmt.setToolsMachineID(tm.getToolMachineID());
+	    				//tmt.setToolsMachineID(tm.getToolMachineID());
 	    				tmt.setUpdatedDate(new Date());
-	    		        session.persist(tmt);
-	    		        session.flush();
+	    				try {
+		    		        session.persist(tmt);
+		    		        session.flush();
+	    				} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
+	    			} else {
+	    				try {
+		    				session.remove(tmt);
+		    				session.flush();
+		    			} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
 	    			}
 	    		}
 	    	}
@@ -1530,19 +2790,40 @@ public class ToolMachineTrayDAO {
 	    		if(tmt == null) {
 	    			tmt = new ToolMachineTray();
 	    			if(tm != null) {
-		    			tmt.setToolsMachineID(tm.getToolMachineID());
+		    			//tmt.setToolsMachineID(tm.getToolMachineID());
 		    			tmt.setActive(true);
 		    			tmt.setTrayIndex("TRAY_60");
 	    				tmt.setCreatedDate(new Date());
-	    		        session.persist(tmt);
-	    		        session.flush();
+	    				int maxID = this.findMaxTMTID();
+		    			if(maxID != 0)
+		    				tmt.setToolsMachineTrayID(maxID + 1);
+		    			try {
+		    		        session.persist(tmt);
+		    		        session.flush();
+		    			} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
 	    			}
 	    		} else {
 	    			if(tm != null) {
-	    				tmt.setToolsMachineID(tm.getToolMachineID());
+	    				//tmt.setToolsMachineID(tm.getToolMachineID());
 	    				tmt.setUpdatedDate(new Date());
-	    		        session.persist(tmt);
-	    		        session.flush();
+	    				try {
+		    		        session.persist(tmt);
+		    		        session.flush();
+	    				} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
+	    			} else {
+	    				try {
+		    				session.remove(tmt);
+		    				session.flush();
+		    			} catch (Exception e) {
+		    				log.error("Description: " + e);
+		    				e.printStackTrace();
+		    			}
 	    			}
 	    		}
 	    	}

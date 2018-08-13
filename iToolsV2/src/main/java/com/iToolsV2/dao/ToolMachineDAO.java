@@ -87,6 +87,22 @@ public class ToolMachineDAO {
     	}
 	}
 	
+	public int findMaxToolMachineID() {
+		try {
+			Session session = this.sessionFactory.getCurrentSession();
+			String sql = "from " + ToolsMachine.class.getName() + " toolMachine " //
+					+ " order by 1 desc";
+			Query<ToolsMachine> query = session.createQuery(sql, ToolsMachine.class);
+			List<ToolsMachine> lstToolsMachine = query.getResultList();
+	        if (lstToolsMachine != null && lstToolsMachine.size() > 0)
+	        	return lstToolsMachine.get(0).getToolMachineID();
+	        else
+	        	return 0;
+		} catch (NoResultException e) {
+    		return 0;
+    	}
+	}
+	
     @Transactional(rollbackFor = Exception.class)
     public List<String> saveToolMachine(ToolMachineForm form) {
     	List<String> returnList = new ArrayList<String>();
@@ -113,8 +129,15 @@ public class ToolMachineDAO {
 	    			toolMachine.setMachineCode(lstMachineCode[i]);
 	    			toolMachine.setCreatedDate(new Date());
 	    			toolMachine.setActive(true);
-	    			session.persist(toolMachine);
-	    	        session.flush();
+	    			int maxTMID = this.findMaxToolMachineID();
+	    			if(maxTMID!= 0)
+	    				toolMachine.setToolMachineID(maxTMID + 1);
+	    			try {
+		    			session.persist(toolMachine);
+		    	        session.flush();
+	    			} catch (Exception e) {
+	    				e.printStackTrace();
+	    			}
 	    	        Machine returnMachine = machineDAO.findMachine(lstMachineCode[i]);
 	    	        if(returnMachine != null)
 	    	        	returnList.add(returnMachine.getMachineName());

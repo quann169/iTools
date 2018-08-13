@@ -4,39 +4,87 @@
    <head>
       <meta charset="UTF-8">
       <title>User List</title>
-      <link type="text/css" th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
-      <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}" />  
-
+      <th:block>
+	        <link rel="stylesheet" href="../../static/vendor/datatables/css/jquery.dataTables.css"
+	              th:href="@{/vendor/datatables/css/jquery.dataTables.css}"/>
+	    </th:block>
+	    <th:block>
+	        <link rel="stylesheet" href="../../static/vendor/jquery-ui/jquery-ui.css"
+	              th:href="@{/vendor/jquery-ui/jquery-ui.css}"/>
+	        <link rel="stylesheet" href="../../static/vendor/font-awesome/css/font-awesome.css"
+	              th:href="@{/vendor/font-awesome/css/font-awesome.css}"/>
+	        <link rel="stylesheet" href="../../static/css/style.min.css"
+	              th:href="@{/css/style.min.css}"/>
+	        <link rel="stylesheet" href="../../static/css/styles.css"
+	              th:href="@{/css/styles.css}"/>
+	    </th:block>
+	    <th:block>
+	        <script src="../../static/vendor/js/main.min.js"
+	                th:src="@{/vendor/js/main.min.js}"></script>
+	        <script src="../../static/vendor/jquery-ui/jquery-ui.js"
+	                th:src="@{/vendor/jquery-ui/jquery-ui.js}"></script>
+	        <script src="../../static/vendor/js/jquery.mask.js"
+	                th:src="@{/vendor/js/jquery.mask.js}"></script>
+	    </th:block>
+	    <th:block>
+	        <script src="../../static/vendor/datatables/js/jquery.dataTables.js"
+	                th:src="@{/vendor/datatables/js/jquery.dataTables.js}"></script>
+	        <script type="text/javascript" src="../../static/vendor/dataTables.buttons.min.js"
+	                th:src="@{/vendor/dataTables.buttons.min.js}">
+	        </script>
+	        <script type="text/javascript" src="../../static/vendor/buttons.flash.min.js"
+	                th:src="@{/vendor/buttons.flash.min.js}">
+	        </script>
+	        <script type="text/javascript" src="../../static/vendor/jszip.min.js"
+	                th:src="@{/vendor/jszip.min.js}">
+	        </script>
+	        <script type="text/javascript" src="../../static/vendor/pdfmake.min.js"
+	                th:src="@{/vendor/pdfmake.min.js}">
+	        </script>
+	        <script type="text/javascript" src="../../static/vendor/vfs_fonts.js"
+	                th:src="@{/vendor/vfs_fonts.js}">
+	        </script>
+	        <script type="text/javascript" src="../../static/vendor/buttons.html5.min.js"
+	                th:src="@{/vendor/buttons.html5.min.js}">
+	        </script>
+	        <script type="text/javascript" src="../../static/vendor/buttons.print.min.js"
+	                th:src="@{/vendor/buttons.print.min.js}">
+	        </script>
+	    </th:block>
    </head>
    <body>
       <th:block th:include="/_header"></th:block>
       <th:block th:include="/_menu"></th:block>
-      <th:block th:include="/_subMenuUser"></th:block> 
       <div class="page-title">User List</div>
-      
-      <table border="1" style="width:100%">
+	  <table style="width:100%">
+	  <tr>
+           <td align="left"><a class="btn btn-primary text-uppercase" style="width:70px; font-size:12px" th:href="@{|/admin/registerUser|}">New</a></td>
+      </tr>
+	  </table>    
+      <table border="1" style="table-layout: fixed; width:100%">
             <tr>
-               <th>STT</th>
+               <th style="width:3%">STT</th>
                <th>UserName</th>
                <th>First Name</th>
                <th>Last Name</th>
-               <th>Email</th>
-               <th>Address</th>
+               <th style="width:16%">Email</th>
+               <th style="width:15%">Address</th>
                <th>Phone</th>
                <th>Company</th>
                <th>Status</th>
                <th>Locked</th>
-               <th></th>
-               <th></th>
+               <th style="width:7%">Edit</th>
+               <th style="width:10%">Action</th>
             </tr>
-            <tr th:each ="assessorInfo : ${paginationAssessor.list}">
-               <td th:utext="${assessorInfo.assessorId}">...</td>
+            <tr th:each ="assessorInfo,iter : ${paginationAssessor.list}">
+               <!-- <td style="width:3%" th:utext="${assessorInfo.assessorId}">...</td> -->
+               <td style="width:3%" th:utext="${iter.index+1}">...</td>
                <td th:utext="${assessorInfo.userName}">...</td>
                <td th:utext="${assessorInfo.firstName}">...</td>
                <td th:utext="${assessorInfo.lastName}">...</td>
-               <td style="word-wrap: break-word" th:utext="${assessorInfo.emailAddress}">...</td>
-               <td th:utext="${assessorInfo.address}">...</td>
-               <td th:utext="${assessorInfo.phone}">...</td>
+               <td style="width:16%; word-wrap: break-word" th:utext="${assessorInfo.emailAddress}">...</td>
+               <td style="width:15%; word-wrap: break-word" th:utext="${assessorInfo.address}">...</td>
+               <td style="word-wrap: break-word" th:utext="${assessorInfo.phone}">...</td>
                <td th:utext="${assessorInfo.companyCode}">...</td>
                <td>
                	<div th:switch="${assessorInfo.active}"> 
@@ -50,8 +98,8 @@
 				  <div th:case=false>Not be locked</div>
 				</div>               
                </td>
-               <td><a th:href="@{|/admin/assessorDetail?assessorID=${assessorInfo.assessorId}|}">Edit</a></td>
-               <td><a th:href="@{|/admin/setRoleAssessor?assessorID=${assessorInfo.assessorId}|}">Add Role</a></td>
+               <td style="width:7%"><a class="btn btn-primary text-uppercase" style="width:70px; font-size:12px" th:href="@{|/admin/assessorDetail?assessorID=${assessorInfo.assessorId}|}">Edit</a></td>
+               <td style="width:10%"><a class="btn btn-primary text-uppercase" style="width:105px; font-size:12px" th:href="@{|/admin/setRoleAssessor?assessorID=${assessorInfo.assessorId}|}">Add Role</a></td>
             </tr>
       </table>      
        
@@ -65,8 +113,7 @@
             <span class="nav-item" th:if="${page == -1}"> ... </span>
              
          </th:block>
-      </div>
-       
+      </div>   
       <th:block th:include="/_footer"></th:block>
        
    </body>

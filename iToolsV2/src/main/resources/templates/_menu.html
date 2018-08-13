@@ -1,21 +1,21 @@
 <div class="menu-container"
    xmlns:th="http://www.thymeleaf.org"
    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4" >
-   <th:block sec:authorize="hasRole('ROLE_Admin')">
+   <th:block sec:authorize="hasAnyRole('ROLE_Admin', 'ROLE_SubAdmin')">
    <a th:href="@{/ctidList}">
    Tool Management
    </a>
-   </th:block>
-   <th:block sec:authorize="hasAnyRole('ROLE_Admin', 'ROLE_SubAdmin')">
    |
+   </th:block>
+   <th:block sec:authorize="hasAnyRole('ROLE_Admin', 'ROLE_SubAdmin')">   
    <a th:href="@{/userList}">
    User Management
    </a>
-   </th:block>
-   <th:block sec:authorize="hasAnyRole('ROLE_Admin', 'ROLE_SubAdmin', 'ROLE_Accounting')">
    |
+   </th:block>
+   <th:block sec:authorize="hasAnyRole('ROLE_Admin', 'ROLE_SubAdmin', 'ROLE_Accounting')">   
    <a th:href="@{/machineList}">
-   Machine List
+   Machine Management
    </a>
    </th:block>
    <th:block sec:authorize="hasRole('ROLE_Admin')">
@@ -24,7 +24,7 @@
    Company Management
    </a>
    </th:block> 
-   <th:block sec:authorize="hasAnyRole('ROLE_Admin', 'ROLE_SubAdmin', 'ROLE_Accounting')">
+   <th:block sec:authorize="hasAnyRole('ROLE_Admin', 'ROLE_Accounting')">
    |
    <a th:href="@{/transaction}">
    Working Transaction

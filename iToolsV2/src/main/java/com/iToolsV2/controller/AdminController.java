@@ -1,8 +1,11 @@
 package com.iToolsV2.controller;
  
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
@@ -138,6 +141,17 @@ public class AdminController {
  
     	AssessorForm form = new AssessorForm();
     	List<Company> companies = companyDAO.findAllCompany();
+    	UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();        
+        Collection<? extends GrantedAuthority> roleList= userDetails.getAuthorities();
+        for (GrantedAuthority role : roleList) {
+        	if(role.getAuthority().equalsIgnoreCase("ROLE_SubAdmin")) {
+        		Assessor assessor = assessorDAO.findAccount(userDetails.getUsername().toLowerCase());
+                if(assessor != null) {
+                	companies = new ArrayList<Company>(); 
+                	companies.add(companyDAO.findCompanyByCode(assessor.getCompanyCode()));
+                }
+        	}
+        }
     	form.setActive(true);
         model.addAttribute("assessorForm", form);
         model.addAttribute("companies", companies);
@@ -166,6 +180,17 @@ public class AdminController {
         // Validate result
         if (result.hasErrors()) {
         	List<Company> companies = companyDAO.findAllCompany();
+        	UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();        
+            Collection<? extends GrantedAuthority> roleList= userDetails.getAuthorities();
+            for (GrantedAuthority role : roleList) {
+            	if(role.getAuthority().equalsIgnoreCase("ROLE_SubAdmin")) {
+            		Assessor assessor = assessorDAO.findAccount(userDetails.getUsername().toLowerCase());
+                    if(assessor != null) {
+                    	companies = new ArrayList<Company>(); 
+                    	companies.add(companyDAO.findCompanyByCode(assessor.getCompanyCode()));
+                    }
+            	}
+            }
         	model.addAttribute("companies", companies);
             return "registerAssessor";
         }
@@ -175,8 +200,19 @@ public class AdminController {
         }
         // Other error!!
         catch (Exception e) {
-            model.addAttribute("errorMessage", "Error: " + e.getMessage());
+            model.addAttribute("errorMessage", "Error: " + e.getMessage());            
             List<Company> companies = companyDAO.findAllCompany();
+            UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();        
+            Collection<? extends GrantedAuthority> roleList= userDetails.getAuthorities();
+            for (GrantedAuthority role : roleList) {
+            	if(role.getAuthority().equalsIgnoreCase("ROLE_SubAdmin")) {
+            		Assessor assessor = assessorDAO.findAccount(userDetails.getUsername().toLowerCase());
+                    if(assessor != null) {
+                    	companies = new ArrayList<Company>(); 
+                    	companies.add(companyDAO.findCompanyByCode(assessor.getCompanyCode()));
+                    }
+            	}
+            }
         	model.addAttribute("companies", companies);
             return "registerAssessor";
         }
@@ -211,6 +247,17 @@ public class AdminController {
         catch (Exception e) {
             model.addAttribute("errorMessage", "Error: " + e.getMessage());
             List<Company> companies = companyDAO.findAllCompany();
+            UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();        
+            Collection<? extends GrantedAuthority> roleList= userDetails.getAuthorities();
+            for (GrantedAuthority role : roleList) {
+            	if(role.getAuthority().equalsIgnoreCase("ROLE_SubAdmin")) {
+            		Assessor assessor = assessorDAO.findAccount(userDetails.getUsername().toLowerCase());
+                    if(assessor != null) {
+                    	companies = new ArrayList<Company>(); 
+                    	companies.add(companyDAO.findCompanyByCode(assessor.getCompanyCode()));
+                    }
+            	}
+            }
         	model.addAttribute("companies", companies);
             return "assessorDetail";
         }
@@ -228,7 +275,17 @@ public class AdminController {
     @RequestMapping(value = "/admin/setRoleAssessor", method = RequestMethod.GET)
     public String setRoleAssessor(Model model, @RequestParam("assessorID") int assessorID) {
     	AssessorForm form = assessorDAO.findAssessorFormByID(assessorID);
-    	List<Roles> roles = rolesDAO.findAllRoles();
+    	List<Roles> roles = rolesDAO.findAllRoles(assessorID);
+    	UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();        
+        Collection<? extends GrantedAuthority> roleList= userDetails.getAuthorities();
+        for (GrantedAuthority role : roleList) {
+        	if(role.getAuthority().equalsIgnoreCase("ROLE_SubAdmin")) {
+        		Assessor assessor = assessorDAO.findAccount(userDetails.getUsername().toLowerCase());
+                if(assessor != null) {
+                	roles = rolesDAO.findRolesNotAdmin(assessorID); 
+                }
+        	}
+        }
     	RolesAssessorForm raForm = new RolesAssessorForm();
     	raForm.setAssessorID(assessorID);
     	raForm.setUserName(form.getName());
@@ -253,8 +310,14 @@ public class AdminController {
         try {
         	System.out.println(raForm.getUserName());
         	returnResult = rolesAssessorDAO.saveRoleAssessor(raForm);
-        	for (String resultS : returnResult){
-        		System.out.println("Success assign roles " + resultS + " for user " + raForm.getUserName());
+        	if(returnResult != null) {
+        		if(returnResult.size() == 0)
+        			returnResult = null;
+        	}
+        	if(returnResult != null) {
+	        	for (String resultS : returnResult){
+	        		System.out.println("Success assign roles " + resultS + " for user " + raForm.getUserName());
+	        	}
         	}
         }
         // Other error!!
@@ -389,6 +452,15 @@ public class AdminController {
         return "registerToolSuccessfull";
     }
     
+    @RequestMapping(value = "/admin/viewTool", method = RequestMethod.GET)
+    public String viewTool(Model model, @RequestParam("toolID") int toolID) {
+    	ToolForm form = toolDAO.findToolFormByID(toolID);
+ 
+        model.addAttribute("toolForm", form);
+ 
+        return "viewTool";
+    }
+    
     @RequestMapping(value = "/admin/toolDetail", method = RequestMethod.GET)
     public String editTool(Model model, @RequestParam("toolID") int toolID) {
     	ToolForm form = toolDAO.findToolFormByID(toolID);
@@ -449,8 +521,14 @@ public class AdminController {
         try {
         	System.out.println(toolForm.getMachineCode());
         	returnResult = toolMachineDAO.saveToolMachine(toolForm);
-        	for (String resultS : returnResult){
-        		System.out.println("Success assign tool " +  toolForm.getToolCode() + " for machine " + resultS);
+        	if(returnResult != null) {
+        		if(returnResult.size() == 0)
+        			returnResult = null;
+        	}
+        	if(returnResult != null) {
+	        	for (String resultS : returnResult){
+	        		System.out.println("Success assign tool " +  toolForm.getToolCode() + " for machine " + resultS);
+	        	}
         	}
         }
         // Other error!!
@@ -473,6 +551,7 @@ public class AdminController {
     public String editMachine(Model model, @RequestParam("machineID") int machineID) {
     	MachineForm form = machineDAO.findMachineFormByID(machineID);
     	List<Company> companies = companyDAO.findAllCompany();
+    	Company thisCom = companyDAO.findCompanyByCode(form.getCompanyCode());
     	List<Tools> tools = toolDAO.findToolsByMachineCode(form.getMachineCode());
     	ToolMachineTray toolMachineTray01 = toolMachineTrayDAO.findTMTByMachineCodeAndTrayIndex(form.getMachineCode(),"TRAY_01");
     	ToolMachineTray toolMachineTray02 = toolMachineTrayDAO.findTMTByMachineCodeAndTrayIndex(form.getMachineCode(),"TRAY_02");
@@ -539,438 +618,271 @@ public class AdminController {
     	
     	if(toolMachineTray01 != null) {
     		trayForm.setQuantity01(toolMachineTray01.getQuantity());
-    		ToolsMachine tm = toolMachineDAO.findByID(toolMachineTray01.getToolsMachineID());
+    		trayForm.setTray01(toolMachineTray01.getToolCode());
+    		/*ToolsMachine tm = toolMachineDAO.findByID(toolMachineTray01.getToolsMachineID());
     		if(tm != null) {
     			trayForm.setTray01(tm.getToolCode());
-    		}
+    		}*/
     	}
     	if(toolMachineTray02 != null) {
     		trayForm.setQuantity02(toolMachineTray02.getQuantity());
-    		ToolsMachine tm = toolMachineDAO.findByID(toolMachineTray02.getToolsMachineID());
+    		trayForm.setTray02(toolMachineTray02.getToolCode());
+    		/*ToolsMachine tm = toolMachineDAO.findByID(toolMachineTray02.getToolsMachineID());
     		if(tm != null) {
     			trayForm.setTray02(tm.getToolCode());
-    		}
+    		}*/
     	}
     	if(toolMachineTray03 != null) {
     		trayForm.setQuantity03(toolMachineTray03.getQuantity());
-    		ToolsMachine tm = toolMachineDAO.findByID(toolMachineTray03.getToolsMachineID());
+    		trayForm.setTray03(toolMachineTray03.getToolCode());
+    		/*ToolsMachine tm = toolMachineDAO.findByID(toolMachineTray03.getToolsMachineID());
     		if(tm != null) {
     			trayForm.setTray03(tm.getToolCode());
-    		}
+    		}*/
     	}
     	if(toolMachineTray04 != null) {
     		trayForm.setQuantity04(toolMachineTray04.getQuantity());
-    		ToolsMachine tm = toolMachineDAO.findByID(toolMachineTray04.getToolsMachineID());
-    		if(tm != null) {
-    			trayForm.setTray04(tm.getToolCode());
-    		}
+    		trayForm.setTray04(toolMachineTray04.getToolCode());
     	}
     	if(toolMachineTray05 != null) {
     		trayForm.setQuantity05(toolMachineTray05.getQuantity());
-    		ToolsMachine tm = toolMachineDAO.findByID(toolMachineTray05.getToolsMachineID());
-    		if(tm != null) {
-    			trayForm.setTray05(tm.getToolCode());
-    		}
+    		trayForm.setTray05(toolMachineTray05.getToolCode());
     	}
     	if(toolMachineTray06 != null) {
     		trayForm.setQuantity06(toolMachineTray06.getQuantity());
-    		ToolsMachine tm = toolMachineDAO.findByID(toolMachineTray06.getToolsMachineID());
-    		if(tm != null) {
-    			trayForm.setTray06(tm.getToolCode());
-    		}
+    		trayForm.setTray06(toolMachineTray06.getToolCode());
     	}
     	if(toolMachineTray07 != null) {
     		trayForm.setQuantity07(toolMachineTray07.getQuantity());
-    		ToolsMachine tm = toolMachineDAO.findByID(toolMachineTray07.getToolsMachineID());
-    		if(tm != null) {
-    			trayForm.setTray07(tm.getToolCode());
-    		}
+    		trayForm.setTray07(toolMachineTray07.getToolCode());
     	}
     	if(toolMachineTray08 != null) {
     		trayForm.setQuantity08(toolMachineTray08.getQuantity());
-    		ToolsMachine tm = toolMachineDAO.findByID(toolMachineTray08.getToolsMachineID());
-    		if(tm != null) {
-    			trayForm.setTray08(tm.getToolCode());
-    		}
+    		trayForm.setTray08(toolMachineTray08.getToolCode());
     	}
     	if(toolMachineTray09 != null) {
     		trayForm.setQuantity09(toolMachineTray09.getQuantity());
-    		ToolsMachine tm = toolMachineDAO.findByID(toolMachineTray09.getToolsMachineID());
-    		if(tm != null) {
-    			trayForm.setTray09(tm.getToolCode());
-    		}
+    		trayForm.setTray09(toolMachineTray09.getToolCode());
     	}
     	if(toolMachineTray10 != null) {
     		trayForm.setQuantity10(toolMachineTray10.getQuantity());
-    		ToolsMachine tm = toolMachineDAO.findByID(toolMachineTray10.getToolsMachineID());
-    		if(tm != null) {
-    			trayForm.setTray10(tm.getToolCode());
-    		}
+    		trayForm.setTray10(toolMachineTray10.getToolCode());
     	}
     	
     	if(toolMachineTray11 != null) {
     		trayForm.setQuantity11(toolMachineTray11.getQuantity());
-    		ToolsMachine tm = toolMachineDAO.findByID(toolMachineTray11.getToolsMachineID());
-    		if(tm != null) {
-    			trayForm.setTray11(tm.getToolCode());
-    		}
+    		trayForm.setTray11(toolMachineTray11.getToolCode());
     	}
     	if(toolMachineTray12 != null) {
     		trayForm.setQuantity12(toolMachineTray12.getQuantity());
-    		ToolsMachine tm = toolMachineDAO.findByID(toolMachineTray12.getToolsMachineID());
-    		if(tm != null) {
-    			trayForm.setTray12(tm.getToolCode());
-    		}
+    		trayForm.setTray12(toolMachineTray12.getToolCode());
     	}
     	if(toolMachineTray13 != null) {
     		trayForm.setQuantity13(toolMachineTray13.getQuantity());
-    		ToolsMachine tm = toolMachineDAO.findByID(toolMachineTray13.getToolsMachineID());
-    		if(tm != null) {
-    			trayForm.setTray13(tm.getToolCode());
-    		}
+    		trayForm.setTray13(toolMachineTray13.getToolCode());
     	}
     	if(toolMachineTray14 != null) {
     		trayForm.setQuantity14(toolMachineTray14.getQuantity());
-    		ToolsMachine tm = toolMachineDAO.findByID(toolMachineTray14.getToolsMachineID());
-    		if(tm != null) {
-    			trayForm.setTray14(tm.getToolCode());
-    		}
+    		trayForm.setTray14(toolMachineTray14.getToolCode());
     	}
     	if(toolMachineTray15 != null) {
     		trayForm.setQuantity15(toolMachineTray15.getQuantity());
-    		ToolsMachine tm = toolMachineDAO.findByID(toolMachineTray15.getToolsMachineID());
-    		if(tm != null) {
-    			trayForm.setTray15(tm.getToolCode());
-    		}
+    		trayForm.setTray15(toolMachineTray15.getToolCode());
     	}
     	if(toolMachineTray16 != null) {
     		trayForm.setQuantity16(toolMachineTray16.getQuantity());
-    		ToolsMachine tm = toolMachineDAO.findByID(toolMachineTray16.getToolsMachineID());
-    		if(tm != null) {
-    			trayForm.setTray16(tm.getToolCode());
-    		}
+    		trayForm.setTray16(toolMachineTray16.getToolCode());
     	}
     	if(toolMachineTray17 != null) {
     		trayForm.setQuantity17(toolMachineTray17.getQuantity());
-    		ToolsMachine tm = toolMachineDAO.findByID(toolMachineTray17.getToolsMachineID());
-    		if(tm != null) {
-    			trayForm.setTray17(tm.getToolCode());
-    		}
+    		trayForm.setTray17(toolMachineTray17.getToolCode());
     	}
     	if(toolMachineTray18 != null) {
     		trayForm.setQuantity08(toolMachineTray18.getQuantity());
-    		ToolsMachine tm = toolMachineDAO.findByID(toolMachineTray18.getToolsMachineID());
-    		if(tm != null) {
-    			trayForm.setTray18(tm.getToolCode());
-    		}
+    		trayForm.setTray18(toolMachineTray18.getToolCode());
     	}
     	if(toolMachineTray19 != null) {
     		trayForm.setQuantity19(toolMachineTray19.getQuantity());
-    		ToolsMachine tm = toolMachineDAO.findByID(toolMachineTray19.getToolsMachineID());
-    		if(tm != null) {
-    			trayForm.setTray19(tm.getToolCode());
-    		}
+    		trayForm.setTray19(toolMachineTray19.getToolCode());
     	}
     	if(toolMachineTray20 != null) {
     		trayForm.setQuantity20(toolMachineTray20.getQuantity());
-    		ToolsMachine tm = toolMachineDAO.findByID(toolMachineTray20.getToolsMachineID());
-    		if(tm != null) {
-    			trayForm.setTray20(tm.getToolCode());
-    		}
+    		trayForm.setTray20(toolMachineTray20.getToolCode());
     	}
     	
     	if(toolMachineTray21 != null) {
     		trayForm.setQuantity21(toolMachineTray21.getQuantity());
-    		ToolsMachine tm = toolMachineDAO.findByID(toolMachineTray21.getToolsMachineID());
-    		if(tm != null) {
-    			trayForm.setTray21(tm.getToolCode());
-    		}
+    		trayForm.setTray21(toolMachineTray21.getToolCode());
     	}
     	if(toolMachineTray22 != null) {
     		trayForm.setQuantity22(toolMachineTray22.getQuantity());
-    		ToolsMachine tm = toolMachineDAO.findByID(toolMachineTray22.getToolsMachineID());
-    		if(tm != null) {
-    			trayForm.setTray22(tm.getToolCode());
-    		}
+    		trayForm.setTray22(toolMachineTray22.getToolCode());
     	}
     	if(toolMachineTray23 != null) {
     		trayForm.setQuantity23(toolMachineTray23.getQuantity());
-    		ToolsMachine tm = toolMachineDAO.findByID(toolMachineTray23.getToolsMachineID());
-    		if(tm != null) {
-    			trayForm.setTray23(tm.getToolCode());
-    		}
+    		trayForm.setTray23(toolMachineTray23.getToolCode());
     	}
     	if(toolMachineTray24 != null) {
     		trayForm.setQuantity04(toolMachineTray24.getQuantity());
-    		ToolsMachine tm = toolMachineDAO.findByID(toolMachineTray24.getToolsMachineID());
-    		if(tm != null) {
-    			trayForm.setTray24(tm.getToolCode());
-    		}
+    		trayForm.setTray24(toolMachineTray24.getToolCode());
     	}
     	if(toolMachineTray25 != null) {
     		trayForm.setQuantity25(toolMachineTray25.getQuantity());
-    		ToolsMachine tm = toolMachineDAO.findByID(toolMachineTray25.getToolsMachineID());
-    		if(tm != null) {
-    			trayForm.setTray25(tm.getToolCode());
-    		}
+    		trayForm.setTray25(toolMachineTray25.getToolCode());
     	}
     	if(toolMachineTray26 != null) {
     		trayForm.setQuantity26(toolMachineTray26.getQuantity());
-    		ToolsMachine tm = toolMachineDAO.findByID(toolMachineTray26.getToolsMachineID());
-    		if(tm != null) {
-    			trayForm.setTray26(tm.getToolCode());
-    		}
+    		trayForm.setTray26(toolMachineTray26.getToolCode());
     	}
     	if(toolMachineTray27 != null) {
     		trayForm.setQuantity27(toolMachineTray27.getQuantity());
-    		ToolsMachine tm = toolMachineDAO.findByID(toolMachineTray27.getToolsMachineID());
-    		if(tm != null) {
-    			trayForm.setTray27(tm.getToolCode());
-    		}
+    		trayForm.setTray27(toolMachineTray27.getToolCode());
     	}
     	if(toolMachineTray28 != null) {
     		trayForm.setQuantity28(toolMachineTray28.getQuantity());
-    		ToolsMachine tm = toolMachineDAO.findByID(toolMachineTray28.getToolsMachineID());
-    		if(tm != null) {
-    			trayForm.setTray28(tm.getToolCode());
-    		}
+    		trayForm.setTray28(toolMachineTray28.getToolCode());
     	}
     	if(toolMachineTray29 != null) {
     		trayForm.setQuantity29(toolMachineTray29.getQuantity());
-    		ToolsMachine tm = toolMachineDAO.findByID(toolMachineTray29.getToolsMachineID());
-    		if(tm != null) {
-    			trayForm.setTray29(tm.getToolCode());
-    		}
+    		trayForm.setTray29(toolMachineTray29.getToolCode());
     	}
     	if(toolMachineTray30 != null) {
     		trayForm.setQuantity30(toolMachineTray30.getQuantity());
-    		ToolsMachine tm = toolMachineDAO.findByID(toolMachineTray30.getToolsMachineID());
-    		if(tm != null) {
-    			trayForm.setTray30(tm.getToolCode());
-    		}
+    		trayForm.setTray30(toolMachineTray30.getToolCode());
     	}
     	
     	if(toolMachineTray31 != null) {
     		trayForm.setQuantity31(toolMachineTray31.getQuantity());
-    		ToolsMachine tm = toolMachineDAO.findByID(toolMachineTray31.getToolsMachineID());
-    		if(tm != null) {
-    			trayForm.setTray31(tm.getToolCode());
-    		}
+    		trayForm.setTray31(toolMachineTray31.getToolCode());
     	}
     	if(toolMachineTray32 != null) {
     		trayForm.setQuantity32(toolMachineTray32.getQuantity());
-    		ToolsMachine tm = toolMachineDAO.findByID(toolMachineTray32.getToolsMachineID());
-    		if(tm != null) {
-    			trayForm.setTray32(tm.getToolCode());
-    		}
+    		trayForm.setTray32(toolMachineTray32.getToolCode());
     	}
     	if(toolMachineTray33 != null) {
     		trayForm.setQuantity33(toolMachineTray33.getQuantity());
-    		ToolsMachine tm = toolMachineDAO.findByID(toolMachineTray33.getToolsMachineID());
-    		if(tm != null) {
-    			trayForm.setTray33(tm.getToolCode());
-    		}
+    		trayForm.setTray33(toolMachineTray33.getToolCode());
     	}
     	if(toolMachineTray34 != null) {
     		trayForm.setQuantity34(toolMachineTray34.getQuantity());
-    		ToolsMachine tm = toolMachineDAO.findByID(toolMachineTray34.getToolsMachineID());
-    		if(tm != null) {
-    			trayForm.setTray34(tm.getToolCode());
-    		}
+    		trayForm.setTray34(toolMachineTray34.getToolCode());
     	}
     	if(toolMachineTray35 != null) {
     		trayForm.setQuantity35(toolMachineTray35.getQuantity());
-    		ToolsMachine tm = toolMachineDAO.findByID(toolMachineTray35.getToolsMachineID());
-    		if(tm != null) {
-    			trayForm.setTray35(tm.getToolCode());
-    		}
+    		trayForm.setTray35(toolMachineTray35.getToolCode());
     	}
     	if(toolMachineTray36 != null) {
     		trayForm.setQuantity36(toolMachineTray36.getQuantity());
-    		ToolsMachine tm = toolMachineDAO.findByID(toolMachineTray36.getToolsMachineID());
-    		if(tm != null) {
-    			trayForm.setTray36(tm.getToolCode());
-    		}
+    		trayForm.setTray36(toolMachineTray36.getToolCode());
     	}
     	if(toolMachineTray37 != null) {
     		trayForm.setQuantity37(toolMachineTray37.getQuantity());
-    		ToolsMachine tm = toolMachineDAO.findByID(toolMachineTray37.getToolsMachineID());
-    		if(tm != null) {
-    			trayForm.setTray37(tm.getToolCode());
-    		}
+    		trayForm.setTray37(toolMachineTray37.getToolCode());
     	}
     	if(toolMachineTray38 != null) {
     		trayForm.setQuantity38(toolMachineTray38.getQuantity());
-    		ToolsMachine tm = toolMachineDAO.findByID(toolMachineTray38.getToolsMachineID());
-    		if(tm != null) {
-    			trayForm.setTray38(tm.getToolCode());
-    		}
+    		trayForm.setTray38(toolMachineTray38.getToolCode());
     	}
     	if(toolMachineTray39 != null) {
     		trayForm.setQuantity39(toolMachineTray39.getQuantity());
-    		ToolsMachine tm = toolMachineDAO.findByID(toolMachineTray39.getToolsMachineID());
-    		if(tm != null) {
-    			trayForm.setTray39(tm.getToolCode());
-    		}
+    		trayForm.setTray39(toolMachineTray39.getToolCode());
     	}
     	if(toolMachineTray40 != null) {
     		trayForm.setQuantity40(toolMachineTray40.getQuantity());
-    		ToolsMachine tm = toolMachineDAO.findByID(toolMachineTray40.getToolsMachineID());
-    		if(tm != null) {
-    			trayForm.setTray40(tm.getToolCode());
-    		}
+    		trayForm.setTray40(toolMachineTray40.getToolCode());
     	}
     	
     	if(toolMachineTray41 != null) {
     		trayForm.setQuantity41(toolMachineTray41.getQuantity());
-    		ToolsMachine tm = toolMachineDAO.findByID(toolMachineTray41.getToolsMachineID());
-    		if(tm != null) {
-    			trayForm.setTray41(tm.getToolCode());
-    		}
+    		trayForm.setTray41(toolMachineTray41.getToolCode());
     	}
     	if(toolMachineTray42 != null) {
     		trayForm.setQuantity42(toolMachineTray42.getQuantity());
-    		ToolsMachine tm = toolMachineDAO.findByID(toolMachineTray42.getToolsMachineID());
-    		if(tm != null) {
-    			trayForm.setTray42(tm.getToolCode());
-    		}
+    		trayForm.setTray42(toolMachineTray42.getToolCode());
     	}
     	if(toolMachineTray43 != null) {
     		trayForm.setQuantity43(toolMachineTray43.getQuantity());
-    		ToolsMachine tm = toolMachineDAO.findByID(toolMachineTray43.getToolsMachineID());
-    		if(tm != null) {
-    			trayForm.setTray43(tm.getToolCode());
-    		}
+    		trayForm.setTray43(toolMachineTray43.getToolCode());
     	}
     	if(toolMachineTray44 != null) {
     		trayForm.setQuantity44(toolMachineTray44.getQuantity());
-    		ToolsMachine tm = toolMachineDAO.findByID(toolMachineTray44.getToolsMachineID());
-    		if(tm != null) {
-    			trayForm.setTray44(tm.getToolCode());
-    		}
+    		trayForm.setTray44(toolMachineTray44.getToolCode());
     	}
     	if(toolMachineTray45 != null) {
     		trayForm.setQuantity45(toolMachineTray45.getQuantity());
-    		ToolsMachine tm = toolMachineDAO.findByID(toolMachineTray45.getToolsMachineID());
-    		if(tm != null) {
-    			trayForm.setTray45(tm.getToolCode());
-    		}
+    		trayForm.setTray45(toolMachineTray45.getToolCode());
     	}
     	if(toolMachineTray46 != null) {
     		trayForm.setQuantity46(toolMachineTray46.getQuantity());
-    		ToolsMachine tm = toolMachineDAO.findByID(toolMachineTray46.getToolsMachineID());
-    		if(tm != null) {
-    			trayForm.setTray46(tm.getToolCode());
-    		}
+    		trayForm.setTray46(toolMachineTray46.getToolCode());
     	}
     	if(toolMachineTray47 != null) {
     		trayForm.setQuantity47(toolMachineTray47.getQuantity());
-    		ToolsMachine tm = toolMachineDAO.findByID(toolMachineTray47.getToolsMachineID());
-    		if(tm != null) {
-    			trayForm.setTray47(tm.getToolCode());
-    		}
+    		trayForm.setTray47(toolMachineTray47.getToolCode());
     	}
     	if(toolMachineTray48 != null) {
     		trayForm.setQuantity48(toolMachineTray48.getQuantity());
-    		ToolsMachine tm = toolMachineDAO.findByID(toolMachineTray48.getToolsMachineID());
-    		if(tm != null) {
-    			trayForm.setTray48(tm.getToolCode());
-    		}
+    		trayForm.setTray48(toolMachineTray48.getToolCode());
     	}
     	if(toolMachineTray49 != null) {
     		trayForm.setQuantity49(toolMachineTray49.getQuantity());
-    		ToolsMachine tm = toolMachineDAO.findByID(toolMachineTray49.getToolsMachineID());
-    		if(tm != null) {
-    			trayForm.setTray49(tm.getToolCode());
-    		}
+    		trayForm.setTray49(toolMachineTray49.getToolCode());
     	}
     	if(toolMachineTray50 != null) {
     		trayForm.setQuantity50(toolMachineTray50.getQuantity());
-    		ToolsMachine tm = toolMachineDAO.findByID(toolMachineTray50.getToolsMachineID());
-    		if(tm != null) {
-    			trayForm.setTray50(tm.getToolCode());
-    		}
+    		trayForm.setTray50(toolMachineTray50.getToolCode());
     	}
     	
     	if(toolMachineTray51 != null) {
     		trayForm.setQuantity51(toolMachineTray51.getQuantity());
-    		ToolsMachine tm = toolMachineDAO.findByID(toolMachineTray51.getToolsMachineID());
-    		if(tm != null) {
-    			trayForm.setTray51(tm.getToolCode());
-    		}
+    		trayForm.setTray51(toolMachineTray51.getToolCode());
     	}
     	if(toolMachineTray52 != null) {
     		trayForm.setQuantity52(toolMachineTray52.getQuantity());
-    		ToolsMachine tm = toolMachineDAO.findByID(toolMachineTray52.getToolsMachineID());
-    		if(tm != null) {
-    			trayForm.setTray52(tm.getToolCode());
-    		}
+    		trayForm.setTray52(toolMachineTray52.getToolCode());
     	}
     	if(toolMachineTray53 != null) {
     		trayForm.setQuantity53(toolMachineTray53.getQuantity());
-    		ToolsMachine tm = toolMachineDAO.findByID(toolMachineTray53.getToolsMachineID());
-    		if(tm != null) {
-    			trayForm.setTray53(tm.getToolCode());
-    		}
+    		trayForm.setTray53(toolMachineTray53.getToolCode());
     	}
     	if(toolMachineTray54 != null) {
     		trayForm.setQuantity04(toolMachineTray54.getQuantity());
-    		ToolsMachine tm = toolMachineDAO.findByID(toolMachineTray54.getToolsMachineID());
-    		if(tm != null) {
-    			trayForm.setTray54(tm.getToolCode());
-    		}
+    		trayForm.setTray54(toolMachineTray54.getToolCode());
     	}
     	if(toolMachineTray55 != null) {
     		trayForm.setQuantity55(toolMachineTray55.getQuantity());
-    		ToolsMachine tm = toolMachineDAO.findByID(toolMachineTray55.getToolsMachineID());
-    		if(tm != null) {
-    			trayForm.setTray55(tm.getToolCode());
-    		}
+    		trayForm.setTray55(toolMachineTray55.getToolCode());
     	}
     	if(toolMachineTray56 != null) {
     		trayForm.setQuantity56(toolMachineTray56.getQuantity());
-    		ToolsMachine tm = toolMachineDAO.findByID(toolMachineTray56.getToolsMachineID());
-    		if(tm != null) {
-    			trayForm.setTray56(tm.getToolCode());
-    		}
+    		trayForm.setTray56(toolMachineTray56.getToolCode());
     	}
     	if(toolMachineTray57 != null) {
     		trayForm.setQuantity57(toolMachineTray57.getQuantity());
-    		ToolsMachine tm = toolMachineDAO.findByID(toolMachineTray57.getToolsMachineID());
-    		if(tm != null) {
-    			trayForm.setTray57(tm.getToolCode());
-    		}
+    		trayForm.setTray57(toolMachineTray57.getToolCode());
     	}
     	if(toolMachineTray58 != null) {
     		trayForm.setQuantity58(toolMachineTray58.getQuantity());
-    		ToolsMachine tm = toolMachineDAO.findByID(toolMachineTray58.getToolsMachineID());
-    		if(tm != null) {
-    			trayForm.setTray58(tm.getToolCode());
-    		}
+    		trayForm.setTray58(toolMachineTray58.getToolCode());
     	}
     	if(toolMachineTray59 != null) {
     		trayForm.setQuantity59(toolMachineTray59.getQuantity());
-    		ToolsMachine tm = toolMachineDAO.findByID(toolMachineTray59.getToolsMachineID());
-    		if(tm != null) {
-    			trayForm.setTray59(tm.getToolCode());
-    		}
+    		trayForm.setTray59(toolMachineTray59.getToolCode());
     	}
     	if(toolMachineTray60 != null) {
     		trayForm.setQuantity60(toolMachineTray60.getQuantity());
-    		ToolsMachine tm = toolMachineDAO.findByID(toolMachineTray60.getToolsMachineID());
-    		if(tm != null) {
-    			trayForm.setTray60(tm.getToolCode());
-    		}
+    		trayForm.setTray60(toolMachineTray60.getToolCode());
     	}
     	
         model.addAttribute("machineForm", form);
     	model.addAttribute("companies", companies);
     	model.addAttribute("tools", tools);
     	model.addAttribute("trayForm", trayForm);
+    	model.addAttribute("thisCom", thisCom);
         return "machineDetail";
     }
     
-    @RequestMapping(value = "/admin/assignToolTray", method = RequestMethod.POST)
+   /* @RequestMapping(value = "/admin/assignToolTray", method = RequestMethod.POST)
     public String assignToolTray(Model model, //
             @ModelAttribute("trayForm") @Validated TrayForm trayForm, //
             BindingResult result, //
@@ -1045,6 +957,7 @@ public class AdminController {
         	
         	if(toolMachineTray01 != null) {
         		trayForm.setQuantity01(toolMachineTray01.getQuantity());
+        		trayForm.setTray01(toolMachineTray01.getToolCode());
         		ToolsMachine tm = toolMachineDAO.findByID(toolMachineTray01.getToolsMachineID());
         		if(tm != null) {
         			trayForm.setTray01(tm.getToolCode());
@@ -1052,6 +965,7 @@ public class AdminController {
         	}
         	if(toolMachineTray02 != null) {
         		trayForm.setQuantity02(toolMachineTray02.getQuantity());
+        		trayForm.setTray02(toolMachineTray02.getToolCode());
         		ToolsMachine tm = toolMachineDAO.findByID(toolMachineTray02.getToolsMachineID());
         		if(tm != null) {
         			trayForm.setTray02(tm.getToolCode());
@@ -1059,6 +973,7 @@ public class AdminController {
         	}
         	if(toolMachineTray03 != null) {
         		trayForm.setQuantity03(toolMachineTray03.getQuantity());
+        		trayForm.setTray03(toolMachineTray03.getToolCode());
         		ToolsMachine tm = toolMachineDAO.findByID(toolMachineTray03.getToolsMachineID());
         		if(tm != null) {
         			trayForm.setTray03(tm.getToolCode());
@@ -1547,6 +1462,7 @@ public class AdminController {
         	
         	if(toolMachineTray01 != null) {
         		trayForm.setQuantity01(toolMachineTray01.getQuantity());
+        		trayForm.setTray01(toolMachineTray01.getToolCode());
         		ToolsMachine tm = toolMachineDAO.findByID(toolMachineTray01.getToolsMachineID());
         		if(tm != null) {
         			trayForm.setTray01(tm.getToolCode());
@@ -1554,6 +1470,7 @@ public class AdminController {
         	}
         	if(toolMachineTray02 != null) {
         		trayForm.setQuantity02(toolMachineTray02.getQuantity());
+        		trayForm.setTray02(toolMachineTray02.getToolCode());
         		ToolsMachine tm = toolMachineDAO.findByID(toolMachineTray02.getToolsMachineID());
         		if(tm != null) {
         			trayForm.setTray02(tm.getToolCode());
@@ -1561,6 +1478,7 @@ public class AdminController {
         	}
         	if(toolMachineTray03 != null) {
         		trayForm.setQuantity03(toolMachineTray03.getQuantity());
+        		trayForm.setTray03(toolMachineTray03.getToolCode());
         		ToolsMachine tm = toolMachineDAO.findByID(toolMachineTray03.getToolsMachineID());
         		if(tm != null) {
         			trayForm.setTray03(tm.getToolCode());
@@ -2044,6 +1962,7 @@ public class AdminController {
     	
     	if(toolMachineTray01 != null) {
     		trayForm.setQuantity01(toolMachineTray01.getQuantity());
+    		trayForm.setTray01(toolMachineTray01.getToolCode());
     		ToolsMachine tm = toolMachineDAO.findByID(toolMachineTray01.getToolsMachineID());
     		if(tm != null) {
     			trayForm.setTray01(tm.getToolCode());
@@ -2051,6 +1970,7 @@ public class AdminController {
     	}
     	if(toolMachineTray02 != null) {
     		trayForm.setQuantity02(toolMachineTray02.getQuantity());
+    		trayForm.setTray02(toolMachineTray02.getToolCode());
     		ToolsMachine tm = toolMachineDAO.findByID(toolMachineTray02.getToolsMachineID());
     		if(tm != null) {
     			trayForm.setTray02(tm.getToolCode());
@@ -2058,6 +1978,7 @@ public class AdminController {
     	}
     	if(toolMachineTray03 != null) {
     		trayForm.setQuantity03(toolMachineTray03.getQuantity());
+    		trayForm.setTray03(toolMachineTray03.getToolCode());
     		ToolsMachine tm = toolMachineDAO.findByID(toolMachineTray03.getToolsMachineID());
     		if(tm != null) {
     			trayForm.setTray03(tm.getToolCode());
@@ -2472,7 +2393,7 @@ public class AdminController {
     	model.addAttribute("tools", tools);
     	model.addAttribute("trayForm", trayForm);
         return "machineDetail";
-    }
+    }*/
     
     @RequestMapping(value = "/admin/machineDetail", method = RequestMethod.POST)
     public String saveMachine(Model model, //
