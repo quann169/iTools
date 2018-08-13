@@ -274,6 +274,36 @@ public class MachineDAO {
         }
         return new PaginationResult<MachineInfo>(query, page, maxResult, maxNavigationPage);
     }
+    
+    public PaginationResult<MachineInfo> queryMachine(int page, int maxResult, int maxNavigationPage,
+            String likeName, String companyCode) {
+        String sql = "Select new " + MachineInfo.class.getName() //
+                + "(m.machineID, m.machineCode, m.machineName, m.active) " + " from "//
+                + Machine.class.getName() + " m "
+                + " left join " + CompanyMachine.class.getName() + " cm on cm.machineCode = m.machineCode ";
+        if (likeName != null && likeName.length() > 0) {
+            sql += " Where lower(m.machineName) like :likeName ";
+            if (companyCode != null && companyCode.length() > 0) {
+        		sql += " and cm.companyCode = :companyCode ";
+        	}
+        } else {
+        	if (companyCode != null && companyCode.length() > 0) {
+        		sql += " Where cm.companyCode = :companyCode ";
+        	}
+        }
+        sql += " order by m.machineID asc ";
+        // 
+        Session session = this.sessionFactory.getCurrentSession();
+        Query<MachineInfo> query = session.createQuery(sql, MachineInfo.class);
+ 
+        if (likeName != null && likeName.length() > 0) {
+            query.setParameter("likeName", "%" + likeName.toLowerCase() + "%");
+        }
+        if (companyCode != null && companyCode.length() > 0) {
+        	query.setParameter("companyCode", companyCode);
+    	}
+        return new PaginationResult<MachineInfo>(query, page, maxResult, maxNavigationPage);
+    }
  
     public PaginationResult<MachineInfo> queryMachine(int page, int maxResult, int maxNavigationPage) {
         return queryMachine(page, maxResult, maxNavigationPage, null);

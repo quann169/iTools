@@ -17,9 +17,13 @@ import org.springframework.core.env.Environment;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
+
+import com.iToolsV2.controller.TransactionController;
+
+import lombok.extern.slf4j.Slf4j;
  
 @SpringBootApplication
- 
+@Slf4j 
 @EnableAutoConfiguration(exclude = { //  
         DataSourceAutoConfiguration.class, //
         DataSourceTransactionManagerAutoConfiguration.class, //
@@ -40,7 +44,14 @@ public class IToolsV2Application {
         dataSource.setUsername(env.getProperty("spring.datasource.username"));
         dataSource.setPassword(env.getProperty("spring.datasource.password"));
  
-        System.out.println("## getDataSource: " + dataSource);
+        System.out.println("## getDataSource: DriverClassName " + env.getProperty("spring.datasource.driver-class-name"));
+        log.info("## getDataSource: DriverClassName " + env.getProperty("spring.datasource.driver-class-name"));
+        System.out.println("## getDataSource: URL " + env.getProperty("spring.datasource.url"));
+        log.info("## getDataSource: URL " + env.getProperty("spring.datasource.url"));
+        System.out.println("## getDataSource: Username " + env.getProperty("spring.datasource.username"));
+        log.info("## getDataSource: Username " + env.getProperty("spring.datasource.username"));
+        System.out.println("## getDataSource: Password " + env.getProperty("spring.datasource.password"));
+        log.info("## getDataSource: Password " + env.getProperty("spring.datasource.password"));
  
         return dataSource;
     }
@@ -65,7 +76,7 @@ public class IToolsV2Application {
         factoryBean.afterPropertiesSet();
         //
         SessionFactory sf = factoryBean.getObject();
-        System.out.println("## getSessionFactory: " + sf);
+        //System.out.println("## getSessionFactory: " + sf.getd);
         return sf;
     }
  

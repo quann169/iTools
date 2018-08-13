@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.iToolsV2.entity.RoleAssessor;
 import com.iToolsV2.entity.Roles;
+import com.iToolsV2.model.AssessorInfo;
  
 @Transactional
 @Repository
@@ -66,6 +67,52 @@ public class RolesDAO {
 	        String sql = "from " + Roles.class.getName() + " roles " //	
 	        		+ " Where roles.isRole = 1 ";
 	        Query<Roles> query = session.createQuery(sql, Roles.class);
+	        return query.getResultList();
+    	} catch (NoResultException e) {
+    		return null;
+    	}
+    }
+	
+	public List<Roles> findAllRoles(int assessorID) {
+    	try {
+	    	Session session = this.sessionFactory.getCurrentSession();
+	    	
+	    	String sql = "from " + Roles.class.getName() + " roles " //	
+	        		+ " Where roles.isRole = 1 "
+	        		+ " and roles.roleID not in "
+	        		+ " ( select ra.roleID from " + RoleAssessor.class.getName() + " ra "
+	        		+ " Where ra.assessorID = :assessorID ) ";
+	        Query<Roles> query = session.createQuery(sql, Roles.class);
+	        query.setParameter("assessorID", assessorID);
+	        return query.getResultList();
+    	} catch (NoResultException e) {
+    		return null;
+    	}
+    }
+	
+	public List<Roles> findRolesNotAdmin() {
+    	try {
+	    	Session session = this.sessionFactory.getCurrentSession();
+	        String sql = "from " + Roles.class.getName() + " roles " //	
+	        		+ " Where roles.isRole = 1 and roles.roleName <> 'Admin'";
+	        Query<Roles> query = session.createQuery(sql, Roles.class);
+	        return query.getResultList();
+    	} catch (NoResultException e) {
+    		return null;
+    	}
+    }
+	
+	public List<Roles> findRolesNotAdmin(int assessorID) {
+    	try {
+	    	Session session = this.sessionFactory.getCurrentSession();
+	    	
+	    	String sql = "from " + Roles.class.getName() + " roles " //	
+	        		+ " Where roles.isRole = 1 and roles.roleName <> 'Admin' "
+	        		+ " and roles.roleID not in "
+	        		+ " ( select ra.roleID from " + RoleAssessor.class.getName() + " ra "
+	        		+ " Where ra.assessorID = :assessorID ) ";
+	        Query<Roles> query = session.createQuery(sql, Roles.class);
+	        query.setParameter("assessorID", assessorID);
 	        return query.getResultList();
     	} catch (NoResultException e) {
     		return null;

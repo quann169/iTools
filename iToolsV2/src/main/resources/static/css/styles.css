@@ -50,11 +50,11 @@ body {
 .menu-container {
     text-align: center;
     margin: 10px 5px;
-    font-size:110%;
+    font-size:120%;
 }
 .menu-container a {
     margin: 5px 5px 5px 10px;
-    color: #004d99;
+    color: #f68b1f	;
     font-weight: bold;
     text-decoration: none;
 }

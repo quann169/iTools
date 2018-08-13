@@ -21,10 +21,13 @@ public class ToolMachineTray implements Serializable {
     @Column(name = "ToolsMachineTrayID", nullable = false)
     private int toolsMachineTrayID;
  
-	@Column(name = "ToolsMachineID", nullable = false)
-    private int toolsMachineID;
+	@Column(name = "MachineCode", length = 100, nullable = false)
+    private String machineCode;
+	
+	@Column(name = "ToolCode", length = 100, nullable = false)
+    private String toolCode;
  
-    @Column(name = "TrayIndex", length = 100, nullable = true)
+    @Column(name = "TrayIndex", length = 100, nullable = false)
     private String trayIndex;
     
     @Column(name = "Quantity", nullable = true)
@@ -47,12 +50,20 @@ public class ToolMachineTray implements Serializable {
 		this.toolsMachineTrayID = toolsMachineTrayID;
 	}
 
-	public int getToolsMachineID() {
-		return toolsMachineID;
+	public String getMachineCode() {
+		return machineCode;
 	}
 
-	public void setToolsMachineID(int toolsMachineID) {
-		this.toolsMachineID = toolsMachineID;
+	public void setMachineCode(String machineCode) {
+		this.machineCode = machineCode;
+	}
+
+	public String getToolCode() {
+		return toolCode;
+	}
+
+	public void setToolCode(String toolCode) {
+		this.toolCode = toolCode;
 	}
 
 	public String getTrayIndex() {

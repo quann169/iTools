@@ -57,6 +57,22 @@ public class RolesAssessorDAO {
     	}
     }
 	
+	public int findMaxRoleAssessorID() {
+    	try {
+	    	Session session = this.sessionFactory.getCurrentSession();
+	        String sql = "from " + RoleAssessor.class.getName() + " ra " //	
+	        		+ " order by 1 desc ";
+	        Query<RoleAssessor> query = session.createQuery(sql, RoleAssessor.class);
+	        List<RoleAssessor> lstRoleAssessor = query.getResultList();
+	        if (lstRoleAssessor != null && lstRoleAssessor.size() > 0)
+	        	return lstRoleAssessor.get(0).getRoleAssessorID();
+	        else
+	        	return 0;
+    	} catch (NoResultException e) {
+    		return 0;
+    	}
+    }
+	
 	public RoleAssessor findRoleAssessor(int roleID, int assessorID) {
 		try {
 			Session session = this.sessionFactory.getCurrentSession();
@@ -101,8 +117,15 @@ public class RolesAssessorDAO {
 	    			roleAssessor.setRoleID(Integer.parseInt(lstRoleCode[i]));
 	    			roleAssessor.setCreatedDate(new Date());
 	    			roleAssessor.setActive(true);
-	    			session.persist(roleAssessor);
-	    	        session.flush();
+	    			int maxID = this.findMaxRoleAssessorID();
+	    			if(maxID != 0)
+	    				roleAssessor.setRoleAssessorID(maxID + 1);
+	    			try {
+		    			session.persist(roleAssessor);
+		    	        session.flush();
+	    			}catch (Exception e) {
+	    				e.printStackTrace();
+	    			}
 	    	        returnList.add(rolesDao.getRoleNamesByID(Integer.parseInt(lstRoleCode[i])));
 	    		}
 	    	}

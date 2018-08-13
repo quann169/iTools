@@ -33,7 +33,18 @@ public class ToolFormValidator implements Validator {
 	                errors.rejectValue("toolCode", "Duplicate.toolForm.toolCode");
 	            }
         	}
-        }         
+        	String toolCode = toolForm.getToolCode();
+        	if(toolCode.length() >=  100) {
+        		errors.rejectValue("toolCode", "LimitLength.toolForm.toolCode");
+        	}
+        }
+        
+        if (!errors.hasFieldErrors("description")) {
+        	String description = toolForm.getDescription();
+        	if(description.length() >=  100) {
+        		errors.rejectValue("description", "LimitLength.toolForm.description");
+        	}
+        }
     }
  
 }

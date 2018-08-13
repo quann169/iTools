@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
    <head>
       <title th:utext="${title}"></title>
-      <th:block>
+    <th:block>
 	        <link rel="stylesheet" href="../../static/vendor/datatables/css/jquery.dataTables.css"
 	              th:href="@{/vendor/datatables/css/jquery.dataTables.css}"/>
 	    </th:block>
@@ -48,7 +48,21 @@
 	        <script type="text/javascript" src="../../static/vendor/buttons.print.min.js"
 	                th:src="@{/vendor/buttons.print.min.js}">
 	        </script>
-	    </th:block> 
+	    </th:block>     
+    <link rel="stylesheet" type="text/css" th:href="@{/css/chosen.css}"/> 
+	      <link rel="stylesheet" href="../../static/vendor/jquery-ui/jquery-ui.css"
+	              th:href="@{/vendor/jquery-ui/jquery-ui.css}"/> 
+      <script type="text/javascript" src="../../static/vendor/jquery-ui/jquery.js"
+	                th:src="@{/vendor/jquery/jquery.js}"></script> 
+	  <script type="text/javascript" src="../../static/vendor/jquery-ui/jquery-ui.js"
+	                th:src="@{/vendor/jquery-ui/jquery-ui.js}"></script>
+	  <script type="text/javascript" src="../../static/js/chosen.jquery.js"
+	                th:src="@{/js/chosen.jquery.js}"></script>  
+	  <script type="text/javascript">
+		$(function() {
+		    $(".chzn-select").chosen();
+		});
+		</script>  
       <style>
          th, td {
          padding: 5px;
@@ -68,60 +82,37 @@
       <!-- Include _menu.html -->
       <th:block th:include="/_header"></th:block>
       	<th:block th:include="/_menu"></th:block>
+      	<th:block th:include="/_subMenuTool"></th:block>
 
-      <div class="page-title">Machine Details</div> 
+      <div class="page-title">Tool Details</div> 
       
       <div th:if="${errorMessage != null}"
            th:utext="${errorMessage}" class="error">...</div>
        
-      <form th:action="@{/admin/registerMachine}" th:object="${machineForm}" method="POST">
+      <form th:action="@{/admin/assignToolToMachine}" th:object="${toolForm}" method="POST">
          <table>
             <tr>
-               <td align="left">Machine Code</td>
-               <td align="left"><input type="text" th:field="*{machineCode}" /></td>
+               <td align="left">Tool Code</td>
+               <td align="left"><input type="text" th:field="*{toolCode}" /></td>
                <td>
-                  <span th:if="${#fields.hasErrors('machineCode')}" th:errors="*{machineCode}">..</span>
-               </td>
-            </tr>
-            <tr>
-               <td align="left">Machine Name</td>
-               <td align="left"><input type="text" th:field="*{machineName}" /></td>
-               <td>
-                  <span th:if="${#fields.hasErrors('machineName')}" th:errors="*{machineName}">..</span>
+                  <span th:if="${#fields.hasErrors('toolCode')}" th:errors="*{toolCode}">..</span>
                </td>
             </tr>
 			<tr>
-               <td align="left">Model</td>
-               <td align="left"><input type="text" th:field="*{model}" /> </td>
-            </tr>
-            <tr>
-               <td align="left">Location</td>
-               <td align="left"><input type="text" th:field="*{location}" /> </td>
-            </tr>
-            <tr>
-               <td align="left">Description</td>
-               <td align="left"><textarea  rows="4" cols="50" th:field="*{description}"></textarea></td>
-            </tr>
-            
-            <tr>
-               <td align="left">Active</td>
+               <td align="left">Machine</td>
                <td align="left">
-                  <select th:field="*{active}">
-                     <option value=true>Active</option>
-                     <option value=false>Disable</option>
+                  <select class="chzn-select" multiple="true" style="width:300px;" th:field="*{machineCode}">
+                     <!-- <option value=""> -- </option> -->
+                     <option th:each="machine : ${machines}"
+                        th:value="${machine.machineCode}"
+                        th:utext="${machine.machineName}"/>
                   </select>
-               </td>
-               <td>
-                  <span th:if="${#fields.hasErrors('active')}" th:errors="*{active}">..</span>
-               </td>
-            </tr>         
+            </tr>       
             
             <tr>
                <td colspan="3" align="left">
-                  <!-- <input type="submit" value="CREATE" />
-                  <input type="button" th:onclick="'window.location.href = \'' + @{/machineList} + '\''" value="BACK" > -->  
-                  <button class="btn btn-primary">CREATE</button>
-				  <a class="btn btn-default" th:href="@{/machineList}">BACK</a>                
+                  <input type="submit" value="Assign" />
+                  <input type="button" onclick="location.href='/ctidList'" value="Back To List" >
                </td>
             </tr>
          </table>

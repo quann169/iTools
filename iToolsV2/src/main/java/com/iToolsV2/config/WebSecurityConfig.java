@@ -15,6 +15,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
  
     @Autowired
     UserDetailsServiceImpl userDetailsService;
+    
+	    @Autowired
+	    private CustomHandlerLogin customHandleLogin;
  
     /*@Bean
     public BCryptPasswordEncoder passwordEncoder() {
@@ -40,24 +43,40 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
  
         http.csrf().disable();
  
-        http.authorizeRequests().antMatchers("/admin/accountInfo", "/machineList")//
-        		.access("hasAnyRole('ROLE_Admin', 'ROLE_SubAdmin', 'ROLE_Accounting', 'ROLE_PutIns', 'ROLE_TakeOver', 'ROLE_UpdateReport')");
+        http.authorizeRequests().antMatchers("/admin/accountInfo", "/change-password")//
+        		.access("hasAnyRole('ROLE_Admin', 'ROLE_SubAdmin', 'ROLE_Accounting', "
+        				+ "'ROLE_PutIns', 'ROLE_TakeOver', 'ROLE_UpdateReport')");
  
-        http.authorizeRequests().antMatchers("/ctidList", "/companyList", "/userList", "/admin/registerSuccessful", "/admin/register", "/admin/assessorDetail").access("hasRole('ROLE_Admin')");
+        http.authorizeRequests().antMatchers("/companyList", "/admin/registerCompany", "/admin/registerCompanySuccessful", "/admin/companyDetail")
+        		.access("hasRole('ROLE_Admin')");
+        
+        http.authorizeRequests().antMatchers("/admin/registerTool", "/admin/registerToolSuccessful", "/admin/toolDetail", "/admin/assignToolToMachine", "/admin/assignToolToMachineSuccessful")
+				.access("hasRole('ROLE_Admin')");
+        
+        http.authorizeRequests().antMatchers("/ctidList")
+				.access("hasAnyRole('ROLE_Admin', 'ROLE_SubAdmin')");
+        
+        http.authorizeRequests().antMatchers("/machineList", "/admin/machineDetail", "/admin/assignToolTray", "/admin/registerMachine", "/admin/registerMachineSuccessfull")
+				.access("hasAnyRole('ROLE_Admin', 'ROLE_SubAdmin', 'ROLE_Accounting')");
+        
+        http.authorizeRequests().antMatchers("/userList", "/admin/registerAssessorSuccessful", "/admin/setRoleAssessor", "/admin/registerUser", "/admin/assessorDetail", "/admin/setUserRolesSuccessfull")
+        		.access("hasAnyRole('ROLE_Admin', 'ROLE_SubAdmin')");
  
         http.authorizeRequests().and().exceptionHandling().accessDeniedPage("/403");
  
-		// begin NamLP : 2018-07-14
-        http.authorizeRequests().antMatchers("/css**", "/css/**", "/fonts**", "/fonts/**", "/img**", "/img/**", "/js**", "/js/**", "/vendor**", "/vendor/**", "/pdf.jpg", "/userguide.pdf", "/reset-password", "/reset-password/**").permitAll();
-        http.authorizeRequests().antMatchers("/transaction", "/transaction/**").access("hasAnyRole('ROLE_Admin', 'ROLE_Accounting')");
-//        http.authorizeRequests().anyRequest().authenticated().and().formLogin().loginPage("/login").permitAll();
-        // end NamLP : 2018-07-14
+
+        http.authorizeRequests().antMatchers("/css**", "/css/**", "/fonts**", "/fonts/**", "/img**", "/img/**", "/js**", 
+        		"/js/**", "/vendor**", "/vendor/**", "/pdf.jpg", "/userguide.pdf", "/reset-password", "/reset-password/**").permitAll();
+
+        http.authorizeRequests().antMatchers("/transaction", "/transaction/**", "/getTrayByMachineCode")
+        		.access("hasAnyRole('ROLE_Admin', 'ROLE_Accounting')");
+
+        //http.authorizeRequests().anyRequest().authenticated().and().formLogin().loginPage("/login").permitAll();
         http.authorizeRequests().and().formLogin()//
- 
-                // 
                 .loginProcessingUrl("/j_spring_security_check") // Submit URL
-                .loginPage("/admin/login")//
-                .defaultSuccessUrl("/machineList")//
+                .loginPage("/admin/login").permitAll().successHandler(customHandleLogin)//
+                //.loginPage("/admin/login")//
+                //.defaultSuccessUrl("/machineList")//
                 //.defaultSuccessUrl("/admin/accountInfo")//
                 .failureUrl("/admin/login?error=true")//
                 .usernameParameter("userName")//

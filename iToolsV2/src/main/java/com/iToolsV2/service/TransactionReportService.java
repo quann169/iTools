@@ -45,35 +45,54 @@ public class TransactionReportService {
 			if (!search.getCompanyCode().isEmpty()) {
 				where += " AND wk.CompanyCode = ?";
 				objectParams[indexParams++] = search.getCompanyCode();
+				log.info("wk.CompanyCode = " + search.getCompanyCode());
+				System.out.println("wk.CompanyCode = " + search.getCompanyCode());
 			}
 			if (!search.getToolCode().isEmpty()) {
 				where += " AND wk.ToolCode = ?";
 				objectParams[indexParams++] = search.getToolCode();
+				log.info("wk.ToolCode = " + search.getToolCode());
+				System.out.println("wk.ToolCode = " + search.getToolCode());
 			}
 			if (search.getUserId() > 0) {
 				where += " AND wk.AssessorID = ?";
 				objectParams[indexParams++] = search.getUserId();
+				log.info("wk.AssessorID = " + search.getUserId());
+				System.out.println("wk.AssessorID = " + search.getUserId());
 			}
 			if (!search.getTransactionType().isEmpty()) {
 				where += " AND wk.TransactionType = ?";
 				objectParams[indexParams++] = search.getTransactionType();
+				log.info("wk.TransactionType = " + search.getTransactionType());
+				System.out.println("wk.TransactionType = " + search.getTransactionType());
 			}
 			if (!search.getMachineCode().isEmpty()) {
 				where += " AND wk.MachineCode = ?";
 				objectParams[indexParams++] = search.getMachineCode();
+				log.info("wk.MachineCode = " + search.getMachineCode());
+				System.out.println("wk.MachineCode = " + search.getMachineCode());
 			}
 			if (!search.getTray().isEmpty()) {
 				where += " AND wk.TrayIndex = ?";
 				objectParams[indexParams++] = search.getTray();
+				log.info("wk.TrayIndex = " + search.getTray());
+				System.out.println("wk.TrayIndex = " + search.getTray());
 			}
 			if (search.getFromDate() != null) {
 				where += " AND wk.TransactionDate >= ?";
 				objectParams[indexParams++] = search.getFromDate();
+				log.info("wk.TransactionDate >= " + search.getFromDate());
+				System.out.println("wk.TransactionDate >= " + search.getFromDate());
 			}
 			if (search.getToDate() != null) {
 				where += " AND wk.TransactionDate <= ?";
 				objectParams[indexParams++] = search.getToDate();
+				log.info("wk.TransactionDate <= " + search.getToDate());
+				System.out.println("wk.TransactionDate <= " + search.getToDate());
 			}
+			log.info(sqlGetTransaction + where);
+			System.out.println(sqlGetTransaction + where);
+			
 			lstResult = jdbcTemplate.query(sqlGetTransaction + where, objectParams, new RowMapper<TransactionReport>() {
 				@Override
 				public TransactionReport mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -87,6 +106,9 @@ public class TransactionReportService {
 					report.setQuantity(rs.getInt("Quantity"));
 					report.setTypeTransaction(rs.getString("TransactionType"));
 					report.setTransactionDate(rs.getDate("TransactionDate"));
+					report.setTransactionStatus(rs.getString("TransactionStatus"));
+					report.setWoCode(rs.getString("WOCode"));
+					report.setOpCode(rs.getString("OPCode"));
 					return report;
 				}
 			});

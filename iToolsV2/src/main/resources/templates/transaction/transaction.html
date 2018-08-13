@@ -64,11 +64,11 @@
 	        /*]]>*/
 	    </script>
 	</head>
-	<body style="margin-top: 45px; background-color: rgb(238, 238, 238)">
+	<!-- <body style="margin-top: 45px; background-color: rgb(238, 238, 238)"> -->
+	<body>
 		<!-- <header th:replace="_fragments/layout::header"></header> -->
 		<th:block th:include="/_header"></th:block>
       	<th:block th:include="/_menu"></th:block>
-		<hr/>
     	<div class="page-title">Working Transaction</div>
 		<form action="report.html" class="form-horizontal" method="post"
 			  th:action="@{/transaction/query}"
@@ -84,7 +84,7 @@
 		                    </option>
 		                </select>
 					</div>
-					<div class="col-sm-2" style="text-align: right"><label>CTID</label></div>
+					<div class="col-sm-2" style="text-align: right"><label>Tool</label></div>
 					<div class="col-sm-4">
 						<select id="tool" class="form-control" title="CTID" th:field="*{toolCode}">
 		                    <option value="" th:value="null">--Vui lòng chọn--</option>
@@ -108,9 +108,9 @@
 					<div class="col-sm-4">
 						<select id="transactionType" class="form-control" title="Type of Transaction" th:field="*{transactionType}">
 		                    <option value="" th:value="null">--Vui lòng chọn--</option>
-		                    <option value="GetTools" >Get Tools</option>
-		                    <option value="PutIn" >Put in</option>
-		                    <option value="TakeOut" >take out</option>
+		                    <option value="GetTools" >GetTools</option>
+		                    <option value="PutIns" >PutIns</option>
+		                    <option value="TakeOver" >TakeOver</option>
 		                </select>
 					</div>
 				</div>
@@ -120,7 +120,7 @@
 						<select id="Machine" class="form-control" title="Machine" th:field="*{machineCode}">
 		                    <option value="" th:value="null">--Vui lòng chọn--</option>
 		                    <option th:each="machine : ${lstMachine}" th:value="${machine.machineCode}" th:text="${machine.machineName}">
-		                        Company
+		                        Machine
 		                    </option>
 		                </select>
 					</div>
@@ -129,7 +129,7 @@
 						<select id="Tray" class="form-control" title="Tray" th:field="*{tray}">
 		                    <option value="" th:value="null">--Vui lòng chọn--</option>
 		                    <option th:each="tray : ${lstTray}" th:value="${tray}" th:text="${tray}">
-		                        Tool
+		                        Tray
 		                    </option>
 		                </select>
 					</div>
@@ -152,15 +152,18 @@
 		<table id="search-result" class="display hover">
             <thead>
             <tr>
-                <td>Transaction ID</td>
+                <td>ID</td>
                 <td>Company</td>
                 <td>User</td>
                 <td>Machine</td>
+                <td>WO Code</td>
+                <td>OP Code</td>
                 <td>Tray</td>
-                <td>CTID</td>
+                <td>Tool</td>
                 <td>Quantity</td>
-                <td>Type of Transaction</td>
-                <td>Date of Transaction</td>
+                <td>Type</td>
+                <td>Status</td>
+                <td>Date</td>
             </tr>
             </thead>
             <tbody>
@@ -170,10 +173,13 @@
                 <td th:text="${tran.companyName}">ABC</td>
                 <td th:text="${tran.userName}">userName</td>
                 <td th:text="${tran.machineName}">machineName</td>
+                <td th:text="${tran.woCode}">woCode</td>
+                <td th:text="${tran.opCode}">opCode</td>
                 <td th:text="${tran.tray}">tray</td>
                 <td th:text="${tran.toolCode}">toolCode</td>
                 <td th:text="${tran.quantity}">1</td>
                 <td th:text="${tran.typeTransaction}">typeTransaction</td>
+                <td th:text="${tran.transactionStatus}">transactionStatus</td>
                 <td th:text="${tran.transactionDate}">20/07/2018</td>
             </tr>
            	</tbody>
@@ -211,7 +217,9 @@
 	                },
 	                {
 	                    extend: 'pdf',
+	                    orientation: 'landscape',
 	                    text: 'Export pdf'
+	                    
 	                }
 	            ]
 	        });

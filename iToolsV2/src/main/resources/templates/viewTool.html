@@ -54,9 +54,7 @@
          padding: 5px;
          }
          td span  {
-         font-size:90%;
-         font-style: italic;
-         color: red;
+         font-size:100%;
          }
          .error {
          color: red;
@@ -68,60 +66,42 @@
       <!-- Include _menu.html -->
       <th:block th:include="/_header"></th:block>
       	<th:block th:include="/_menu"></th:block>
+      	<!-- <th:block th:include="/_subMenuTool"></th:block> -->
 
-      <div class="page-title">Machine Details</div> 
+      <div class="page-title">Tool Detail</div> 
       
       <div th:if="${errorMessage != null}"
            th:utext="${errorMessage}" class="error">...</div>
        
-      <form th:action="@{/admin/registerMachine}" th:object="${machineForm}" method="POST">
+      <form th:action="@{/admin/viewTool}" th:object="${toolForm}" method="POST">
          <table>
             <tr>
-               <td align="left">Machine Code</td>
-               <td align="left"><input type="text" th:field="*{machineCode}" /></td>
-               <td>
-                  <span th:if="${#fields.hasErrors('machineCode')}" th:errors="*{machineCode}">..</span>
-               </td>
+               <td align="left">Tool Code</td>
+               <td align="left"><span th:utext="*{toolCode}">...</span></td>
             </tr>
             <tr>
-               <td align="left">Machine Name</td>
-               <td align="left"><input type="text" th:field="*{machineName}" /></td>
-               <td>
-                  <span th:if="${#fields.hasErrors('machineName')}" th:errors="*{machineName}">..</span>
-               </td>
-            </tr>
-			<tr>
                <td align="left">Model</td>
-               <td align="left"><input type="text" th:field="*{model}" /> </td>
+               <td align="left"><span th:utext="*{model}">...</span></td>
             </tr>
-            <tr>
-               <td align="left">Location</td>
-               <td align="left"><input type="text" th:field="*{location}" /> </td>
-            </tr>
+<!--             <tr> -->
+<!--                <td align="left">Barcode</td> -->
+<!--                <td align="left"><input type="text" th:field="*{barcode}" /> </td> -->
+<!--             </tr> -->
             <tr>
                <td align="left">Description</td>
-               <td align="left"><textarea  rows="4" cols="50" th:field="*{description}"></textarea></td>
-            </tr>
-            
+               <td align="left"><textarea  readonly rows="4" cols="50" th:utext="*{description}"></textarea></td>
+            </tr>           
             <tr>
-               <td align="left">Active</td>
-               <td align="left">
-                  <select th:field="*{active}">
-                     <option value=true>Active</option>
-                     <option value=false>Disable</option>
-                  </select>
-               </td>
-               <td>
-                  <span th:if="${#fields.hasErrors('active')}" th:errors="*{active}">..</span>
-               </td>
-            </tr>         
+               <td align="left">Status</td>
+               <td align="left"><span th:utext="${toolForm.active} ? 'Active' : 'Disabled'">...</span></td>
+            </tr>              
             
             <tr>
                <td colspan="3" align="left">
-                  <!-- <input type="submit" value="CREATE" />
-                  <input type="button" th:onclick="'window.location.href = \'' + @{/machineList} + '\''" value="BACK" > -->  
-                  <button class="btn btn-primary">CREATE</button>
-				  <a class="btn btn-default" th:href="@{/machineList}">BACK</a>                
+                  <!-- <input type="submit" value="Save" />
+                  <input type="button" onclick="location.href='/ctidList'" value="Back To List" > -->
+                  <!-- <button class="btn btn-primary">SAVE</button> -->
+				  <a class="btn btn-default" th:href="@{/ctidList}">BACK</a>
                </td>
             </tr>
          </table>
