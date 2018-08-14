@@ -7155,3 +7155,389 @@ updateTools: 0
 2018-08-14 00:06:03 INFO  LoginPage:477 - Update 2018-08-14 00:05:13 to MasterLog successfully.
 2018-08-14 00:06:06 INFO  EmailUtils:99 - com1user1 - FORGOT_PASS_PAGE - Send Mail To quann169@gmail.com - Subject: New password reset - Message: New password: 1tRxwFB2
 2018-08-14 00:06:06 INFO  ForgotPasswordPage:273 - com1user1 - quann169@gmail.com forgot pass ok.
+2018-08-14 15:46:40 INFO  LogController:134 - select NewValue from MasterLog where Action = 'SendLog' order by NewValue desc limit 1;
+2018-08-14 15:46:40 INFO  LoginPage:359 - ========================================
+2018-08-14 15:46:40 INFO  LoginPage:360 - Start syncing thread - eZwkG1kw
+2018-08-14 15:46:40 INFO  LoginPage:361 - ========================================
+2018-08-14 15:46:40 INFO  SyncController:68 - Start SyncHostToLocal
+2018-08-14 15:46:41 INFO  LoginPage:453 - Get 1000 from logs
+2018-08-14 15:46:41 INFO  LoginPage:453 - Get 2000 from logs
+2018-08-14 15:46:44 INFO  LoginPage:246 - Login with username: com1admin
+2018-08-14 15:46:44 INFO  LoginController:46 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin, IsLocked FROM Assessor where Assessor.IsActive = 1 and Assessor.UserName='com1admin' and (Password=md5('123456') or LastPassword=md5('123456'));
+2018-08-14 15:46:44 INFO  LoginPage:250 - Login OK
+2018-08-14 15:46:44 INFO  LoginController:173 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'Com1' and assessor.UserName= 'com1admin'
+2018-08-14 15:46:44 INFO  SyncController:77 - ========Start=======
+,
+insertCompany: 0,
+updateCompany: 0,
+insertAssessor: 0,
+updateAssessor: 0,
+insertMachine: 0,
+updateMachine: 0,
+insertCompanyMachine: 0,
+updateCompanyMachine: 0,
+insertRoleAssessor: 0,
+updateRoleAssessor: 0,
+insertRole: 0,
+updateRole: 0,
+insertTools: 0,
+updateTools: 0
+2018-08-14 15:46:44 INFO  SyncController:84 - End SyncHostToLocal: 4s
+2018-08-14 15:46:44 INFO  SyncController:86 - Start SyncLocalToHost
+2018-08-14 15:46:44 INFO  LoginPage:265 - listRoles: [Roles [roleName=SubAdmin]]
+2018-08-14 15:46:44 INFO  LoginPage:285 - Show DashboardPage
+2018-08-14 15:46:45 INFO  DashboardPage:93 - Init DASHBOARD_PAGE with list roles: [subadmin]
+2018-08-14 15:46:47 INFO  LogController:162 - insert into MasterLog(Action, NewValue) values('SendLog', '2018-08-14 15:46:41')
+2018-08-14 15:46:47 INFO  DashboardPage:120 - com1admin click change password from DASHBOARD_PAGE
+2018-08-14 15:46:47 INFO  ChangePasswordPage:100 - Init ChangePasswordPage of com1admin
+2018-08-14 15:47:38 INFO  LogController:172 - Lock wait timeout exceeded; try restarting transaction
+2018-08-14 15:49:28 INFO  SyncController:95 - insertMasterLog: 0,
+updateMasterLog: 375,
+insertToolsMachineTray: 0,
+updateToolsMachineTray: 0,
+insertWorkingTransaction: 0,
+updateWorkingTransaction: 0
+2018-08-14 15:49:28 INFO  SyncController:101 - End SyncLocalToHost: 164s
+2018-08-14 15:49:28 INFO  LoginPage:364 - ========================================
+2018-08-14 15:49:28 INFO  LoginPage:365 - End syncing thread - eZwkG1kw
+2018-08-14 15:49:28 INFO  LoginPage:366 - ========================================
+2018-08-14 15:50:01 INFO  ChangePasswordPage:121 - com1admin logout.
+2018-08-14 15:50:03 INFO  LoginPage:246 - Login with username: com1admin
+2018-08-14 15:50:03 INFO  LoginController:46 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin, IsLocked FROM Assessor where Assessor.IsActive = 1 and Assessor.UserName='com1admin' and (Password=md5('123456') or LastPassword=md5('123456'));
+2018-08-14 15:50:03 INFO  LoginPage:250 - Login OK
+2018-08-14 15:50:03 INFO  LoginController:173 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'Com1' and assessor.UserName= 'com1admin'
+2018-08-14 15:50:03 INFO  LoginPage:265 - listRoles: [Roles [roleName=SubAdmin]]
+2018-08-14 15:50:03 INFO  LoginPage:285 - Show DashboardPage
+2018-08-14 15:50:03 INFO  DashboardPage:93 - Init DASHBOARD_PAGE with list roles: [subadmin]
+2018-08-14 15:54:29 INFO  LoginPage:359 - ========================================
+2018-08-14 15:54:29 INFO  LoginPage:360 - Start syncing thread - TVFMl8ch
+2018-08-14 15:54:29 INFO  LoginPage:361 - ========================================
+2018-08-14 15:54:29 INFO  SyncController:68 - Start SyncHostToLocal
+2018-08-14 15:54:32 INFO  SyncController:77 - ========Start=======
+,
+insertCompany: 0,
+updateCompany: 0,
+insertAssessor: 0,
+updateAssessor: 0,
+insertMachine: 0,
+updateMachine: 0,
+insertCompanyMachine: 0,
+updateCompanyMachine: 0,
+insertRoleAssessor: 0,
+updateRoleAssessor: 0,
+insertRole: 0,
+updateRole: 0,
+insertTools: 0,
+updateTools: 0
+2018-08-14 15:54:32 INFO  SyncController:84 - End SyncHostToLocal: 3s
+2018-08-14 15:54:32 INFO  SyncController:86 - Start SyncLocalToHost
+2018-08-14 15:57:22 INFO  SyncController:95 - insertMasterLog: 0,
+updateMasterLog: 308,
+insertToolsMachineTray: 0,
+updateToolsMachineTray: 0,
+insertWorkingTransaction: 0,
+updateWorkingTransaction: 0
+2018-08-14 15:57:22 INFO  SyncController:101 - End SyncLocalToHost: 169s
+2018-08-14 15:57:22 INFO  LoginPage:364 - ========================================
+2018-08-14 15:57:22 INFO  LoginPage:365 - End syncing thread - TVFMl8ch
+2018-08-14 15:57:22 INFO  LoginPage:366 - ========================================
+2018-08-14 16:02:22 INFO  LoginPage:359 - ========================================
+2018-08-14 16:02:22 INFO  LoginPage:360 - Start syncing thread - gnq2xyWL
+2018-08-14 16:02:22 INFO  LoginPage:361 - ========================================
+2018-08-14 16:02:22 INFO  SyncController:68 - Start SyncHostToLocal
+2018-08-14 16:02:26 INFO  SyncController:77 - ========Start=======
+,
+insertCompany: 0,
+updateCompany: 0,
+insertAssessor: 0,
+updateAssessor: 0,
+insertMachine: 0,
+updateMachine: 0,
+insertCompanyMachine: 0,
+updateCompanyMachine: 0,
+insertRoleAssessor: 0,
+updateRoleAssessor: 0,
+insertRole: 0,
+updateRole: 0,
+insertTools: 0,
+updateTools: 0
+2018-08-14 16:02:26 INFO  SyncController:84 - End SyncHostToLocal: 4s
+2018-08-14 16:02:26 INFO  SyncController:86 - Start SyncLocalToHost
+2018-08-14 16:05:38 INFO  SyncController:95 - insertMasterLog: 0,
+updateMasterLog: 316,
+insertToolsMachineTray: 0,
+updateToolsMachineTray: 0,
+insertWorkingTransaction: 0,
+updateWorkingTransaction: 0
+2018-08-14 16:05:38 INFO  SyncController:101 - End SyncLocalToHost: 192s
+2018-08-14 16:05:39 INFO  LoginPage:364 - ========================================
+2018-08-14 16:05:39 INFO  LoginPage:365 - End syncing thread - gnq2xyWL
+2018-08-14 16:05:39 INFO  LoginPage:366 - ========================================
+2018-08-14 16:10:39 INFO  LoginPage:359 - ========================================
+2018-08-14 16:10:39 INFO  LoginPage:360 - Start syncing thread - K44mPvTv
+2018-08-14 16:10:39 INFO  LoginPage:361 - ========================================
+2018-08-14 16:10:39 INFO  SyncController:68 - Start SyncHostToLocal
+2018-08-14 16:10:42 INFO  SyncController:77 - ========Start=======
+,
+insertCompany: 0,
+updateCompany: 0,
+insertAssessor: 0,
+updateAssessor: 0,
+insertMachine: 0,
+updateMachine: 0,
+insertCompanyMachine: 0,
+updateCompanyMachine: 0,
+insertRoleAssessor: 0,
+updateRoleAssessor: 0,
+insertRole: 0,
+updateRole: 0,
+insertTools: 0,
+updateTools: 0
+2018-08-14 16:10:42 INFO  SyncController:84 - End SyncHostToLocal: 3s
+2018-08-14 16:10:42 INFO  SyncController:86 - Start SyncLocalToHost
+2018-08-14 16:13:59 INFO  SyncController:95 - insertMasterLog: 0,
+updateMasterLog: 324,
+insertToolsMachineTray: 0,
+updateToolsMachineTray: 0,
+insertWorkingTransaction: 0,
+updateWorkingTransaction: 0
+2018-08-14 16:13:59 INFO  SyncController:101 - End SyncLocalToHost: 196s
+2018-08-14 16:13:59 INFO  LoginPage:364 - ========================================
+2018-08-14 16:13:59 INFO  LoginPage:365 - End syncing thread - K44mPvTv
+2018-08-14 16:13:59 INFO  LoginPage:366 - ========================================
+2018-08-14 16:18:59 INFO  LoginPage:359 - ========================================
+2018-08-14 16:18:59 INFO  LoginPage:360 - Start syncing thread - 0VQqCms2
+2018-08-14 16:18:59 INFO  LoginPage:361 - ========================================
+2018-08-14 16:18:59 INFO  SyncController:68 - Start SyncHostToLocal
+2018-08-14 16:19:03 INFO  SyncController:77 - ========Start=======
+,
+insertCompany: 0,
+updateCompany: 0,
+insertAssessor: 0,
+updateAssessor: 0,
+insertMachine: 0,
+updateMachine: 0,
+insertCompanyMachine: 0,
+updateCompanyMachine: 0,
+insertRoleAssessor: 0,
+updateRoleAssessor: 0,
+insertRole: 0,
+updateRole: 0,
+insertTools: 0,
+updateTools: 0
+2018-08-14 16:19:03 INFO  SyncController:84 - End SyncHostToLocal: 4s
+2018-08-14 16:19:03 INFO  SyncController:86 - Start SyncLocalToHost
+2018-08-14 16:22:43 INFO  SyncController:95 - insertMasterLog: 0,
+updateMasterLog: 332,
+insertToolsMachineTray: 0,
+updateToolsMachineTray: 0,
+insertWorkingTransaction: 0,
+updateWorkingTransaction: 0
+2018-08-14 16:22:43 INFO  SyncController:101 - End SyncLocalToHost: 219s
+2018-08-14 16:22:43 INFO  LoginPage:364 - ========================================
+2018-08-14 16:22:43 INFO  LoginPage:365 - End syncing thread - 0VQqCms2
+2018-08-14 16:22:43 INFO  LoginPage:366 - ========================================
+2018-08-14 16:27:43 INFO  LoginPage:359 - ========================================
+2018-08-14 16:27:43 INFO  LoginPage:360 - Start syncing thread - RGCgELHA
+2018-08-14 16:27:43 INFO  LoginPage:361 - ========================================
+2018-08-14 16:27:43 INFO  SyncController:68 - Start SyncHostToLocal
+2018-08-14 16:27:47 INFO  SyncController:77 - ========Start=======
+,
+insertCompany: 0,
+updateCompany: 0,
+insertAssessor: 0,
+updateAssessor: 0,
+insertMachine: 0,
+updateMachine: 0,
+insertCompanyMachine: 0,
+updateCompanyMachine: 0,
+insertRoleAssessor: 0,
+updateRoleAssessor: 0,
+insertRole: 0,
+updateRole: 0,
+insertTools: 0,
+updateTools: 0
+2018-08-14 16:27:47 INFO  SyncController:84 - End SyncHostToLocal: 4s
+2018-08-14 16:27:47 INFO  SyncController:86 - Start SyncLocalToHost
+2018-08-14 16:27:59 INFO  SyncController:95 - insertMasterLog: 0,
+updateMasterLog: 86,
+insertToolsMachineTray: 0,
+updateToolsMachineTray: 0,
+insertWorkingTransaction: 0,
+updateWorkingTransaction: 0
+2018-08-14 16:27:59 INFO  SyncController:101 - End SyncLocalToHost: 11s
+2018-08-14 16:27:59 INFO  LoginPage:364 - ========================================
+2018-08-14 16:27:59 INFO  LoginPage:365 - End syncing thread - RGCgELHA
+2018-08-14 16:27:59 INFO  LoginPage:366 - ========================================
+2018-08-14 16:32:59 INFO  LoginPage:359 - ========================================
+2018-08-14 16:32:59 INFO  LoginPage:360 - Start syncing thread - BQru8StB
+2018-08-14 16:32:59 INFO  LoginPage:361 - ========================================
+2018-08-14 16:32:59 INFO  SyncController:68 - Start SyncHostToLocal
+2018-08-14 16:33:03 INFO  SyncController:77 - ========Start=======
+,
+insertCompany: 0,
+updateCompany: 0,
+insertAssessor: 0,
+updateAssessor: 0,
+insertMachine: 0,
+updateMachine: 0,
+insertCompanyMachine: 0,
+updateCompanyMachine: 0,
+insertRoleAssessor: 0,
+updateRoleAssessor: 0,
+insertRole: 0,
+updateRole: 0,
+insertTools: 0,
+updateTools: 0
+2018-08-14 16:33:03 INFO  SyncController:84 - End SyncHostToLocal: 3s
+2018-08-14 16:33:03 INFO  SyncController:86 - Start SyncLocalToHost
+2018-08-14 16:37:26 INFO  SyncController:95 - insertMasterLog: 0,
+updateMasterLog: 348,
+insertToolsMachineTray: 0,
+updateToolsMachineTray: 0,
+insertWorkingTransaction: 0,
+updateWorkingTransaction: 0
+2018-08-14 16:37:26 INFO  SyncController:101 - End SyncLocalToHost: 262s
+2018-08-14 16:37:26 INFO  LoginPage:364 - ========================================
+2018-08-14 16:37:26 INFO  LoginPage:365 - End syncing thread - BQru8StB
+2018-08-14 16:37:26 INFO  LoginPage:366 - ========================================
+2018-08-14 16:41:36 INFO  DashboardPage:343 - Get Tool clicked by com1admin
+2018-08-14 16:41:37 INFO  EmployeeController:160 -  select tools.ToolId, tools.ToolCode ,  toolsmachineTray.Quantity, toolsmachineTray.TrayIndex, toolsmachineTray.Machinecode  from tools inner join toolsmachineTray on tools.ToolCode = toolsmachineTray.ToolCode  where toolsmachineTray.MachineCode = 'MAC1';
+2018-08-14 16:41:37 INFO  EmployeeController:203 - {ACTID111=[[TRAY_01, 11]], BCTID211=[[TRAY_03, 6], [TRAY_02, 6]]}
+2018-08-14 16:41:37 INFO  EmployeeController:270 -  select tools.ToolCode from tools;
+2018-08-14 16:41:37 INFO  EmployeeController:290 - {}
+2018-08-14 16:41:37 INFO  EmployeeController:50 - select tools.ToolId, tools.ToolCode  from tools inner join toolsmachineTray on tools.ToolCode = toolsmachineTray.ToolCode  where toolsmachineTray.MachineCode = 'MAC1';
+2018-08-14 16:41:37 INFO  EmployeeController:71 - [Tool [toolId=2, toolName=ACTID111], Tool [toolId=5, toolName=BCTID211], Tool [toolId=5, toolName=BCTID211]]
+2018-08-14 16:41:37 INFO  EmployeePage:498 - listToolNames: [, ACTID111, BCTID211, BCTID211]
+2018-08-14 16:41:37 INFO  EmployeePage:510 - toolComboBox: [, ACTID111, BCTID211, BCTID211]
+2018-08-14 16:41:37 INFO  EmployeePage:163 - Init EMP_PAGE
+2018-08-14 16:41:37 INFO  EmployeePage:166 - listAllTrays: [TRAY_01, TRAY_02, TRAY_03, TRAY_04, TRAY_05, TRAY_06, TRAY_07, TRAY_08, TRAY_09, TRAY_10, TRAY_11, TRAY_12, TRAY_13, TRAY_14, TRAY_15, TRAY_16, TRAY_17, TRAY_18, TRAY_19, TRAY_20, TRAY_21, TRAY_22, TRAY_23, TRAY_24, TRAY_25, TRAY_26, TRAY_27, TRAY_28, TRAY_29, TRAY_30, TRAY_31, TRAY_32, TRAY_33, TRAY_34, TRAY_35, TRAY_36, TRAY_37, TRAY_38, TRAY_39, TRAY_40, TRAY_41, TRAY_42, TRAY_43, TRAY_44, TRAY_45, TRAY_46, TRAY_47, TRAY_48, TRAY_49, TRAY_50, TRAY_51, TRAY_52, TRAY_53, TRAY_54, TRAY_55, TRAY_56, TRAY_57, TRAY_58, TRAY_59, TRAY_60]
+2018-08-14 16:41:37 INFO  EmployeePage:172 - hashMessage: {TRAY_09=01, TRAY_07=01, TRAY_18=02, TRAY_08=02, TRAY_19=01, TRAY_20=02, TRAY_05=01, TRAY_16=02, TRAY_06=02, TRAY_17=01, TRAY_03=01, TRAY_14=02, TRAY_04=02, TRAY_15=01, TRAY_01=01, TRAY_12=02, TRAY_02=02, TRAY_13=01, TRAY_10=02, TRAY_11=01}
+2018-08-14 16:42:26 INFO  LoginPage:359 - ========================================
+2018-08-14 16:42:26 INFO  LoginPage:360 - Start syncing thread - fADL3m4F
+2018-08-14 16:42:26 INFO  LoginPage:361 - ========================================
+2018-08-14 16:42:26 INFO  SyncController:68 - Start SyncHostToLocal
+2018-08-14 16:42:29 INFO  SyncController:77 - ========Start=======
+,
+insertCompany: 0,
+updateCompany: 0,
+insertAssessor: 0,
+updateAssessor: 0,
+insertMachine: 0,
+updateMachine: 0,
+insertCompanyMachine: 0,
+updateCompanyMachine: 0,
+insertRoleAssessor: 0,
+updateRoleAssessor: 0,
+insertRole: 0,
+updateRole: 0,
+insertTools: 0,
+updateTools: 0
+2018-08-14 16:42:29 INFO  SyncController:84 - End SyncHostToLocal: 3s
+2018-08-14 16:42:29 INFO  SyncController:86 - Start SyncLocalToHost
+2018-08-14 16:46:23 INFO  SyncController:95 - insertMasterLog: 0,
+updateMasterLog: 356,
+insertToolsMachineTray: 0,
+updateToolsMachineTray: 0,
+insertWorkingTransaction: 0,
+updateWorkingTransaction: 0
+2018-08-14 16:46:23 INFO  SyncController:101 - End SyncLocalToHost: 233s
+2018-08-14 16:46:23 INFO  LoginPage:364 - ========================================
+2018-08-14 16:46:23 INFO  LoginPage:365 - End syncing thread - fADL3m4F
+2018-08-14 16:46:23 INFO  LoginPage:366 - ========================================
+2018-08-14 16:51:23 INFO  LoginPage:359 - ========================================
+2018-08-14 16:51:23 INFO  LoginPage:360 - Start syncing thread - R8vp7qHN
+2018-08-14 16:51:23 INFO  LoginPage:361 - ========================================
+2018-08-14 16:51:23 INFO  SyncController:68 - Start SyncHostToLocal
+2018-08-14 16:51:26 INFO  SyncController:77 - ========Start=======
+,
+insertCompany: 0,
+updateCompany: 0,
+insertAssessor: 0,
+updateAssessor: 0,
+insertMachine: 0,
+updateMachine: 0,
+insertCompanyMachine: 0,
+updateCompanyMachine: 0,
+insertRoleAssessor: 0,
+updateRoleAssessor: 0,
+insertRole: 0,
+updateRole: 0,
+insertTools: 0,
+updateTools: 0
+2018-08-14 16:51:26 INFO  SyncController:84 - End SyncHostToLocal: 3s
+2018-08-14 16:51:26 INFO  SyncController:86 - Start SyncLocalToHost
+2018-08-14 16:55:03 INFO  SyncController:95 - insertMasterLog: 0,
+updateMasterLog: 364,
+insertToolsMachineTray: 0,
+updateToolsMachineTray: 0,
+insertWorkingTransaction: 0,
+updateWorkingTransaction: 0
+2018-08-14 16:55:03 INFO  SyncController:101 - End SyncLocalToHost: 216s
+2018-08-14 16:55:03 INFO  LoginPage:364 - ========================================
+2018-08-14 16:55:03 INFO  LoginPage:365 - End syncing thread - R8vp7qHN
+2018-08-14 16:55:03 INFO  LoginPage:366 - ========================================
+2018-08-14 17:00:03 INFO  LoginPage:359 - ========================================
+2018-08-14 17:00:03 INFO  LoginPage:360 - Start syncing thread - QATPIDy2
+2018-08-14 17:00:03 INFO  LoginPage:361 - ========================================
+2018-08-14 17:00:03 INFO  SyncController:68 - Start SyncHostToLocal
+2018-08-14 17:00:07 INFO  SyncController:77 - ========Start=======
+,
+insertCompany: 0,
+updateCompany: 0,
+insertAssessor: 0,
+updateAssessor: 0,
+insertMachine: 0,
+updateMachine: 0,
+insertCompanyMachine: 0,
+updateCompanyMachine: 0,
+insertRoleAssessor: 0,
+updateRoleAssessor: 0,
+insertRole: 0,
+updateRole: 0,
+insertTools: 0,
+updateTools: 0
+2018-08-14 17:00:07 INFO  SyncController:84 - End SyncHostToLocal: 3s
+2018-08-14 17:00:07 INFO  SyncController:86 - Start SyncLocalToHost
+2018-08-14 17:04:34 INFO  SyncController:95 - insertMasterLog: 0,
+updateMasterLog: 372,
+insertToolsMachineTray: 0,
+updateToolsMachineTray: 0,
+insertWorkingTransaction: 0,
+updateWorkingTransaction: 0
+2018-08-14 17:04:34 INFO  SyncController:101 - End SyncLocalToHost: 267s
+2018-08-14 17:04:34 INFO  LoginPage:364 - ========================================
+2018-08-14 17:04:34 INFO  LoginPage:365 - End syncing thread - QATPIDy2
+2018-08-14 17:04:34 INFO  LoginPage:366 - ========================================
+2018-08-14 17:09:34 INFO  LoginPage:359 - ========================================
+2018-08-14 17:09:34 INFO  LoginPage:360 - Start syncing thread - 02GtQOKK
+2018-08-14 17:09:34 INFO  LoginPage:361 - ========================================
+2018-08-14 17:09:34 INFO  SyncController:68 - Start SyncHostToLocal
+2018-08-14 17:09:38 INFO  SyncController:77 - ========Start=======
+,
+insertCompany: 0,
+updateCompany: 0,
+insertAssessor: 0,
+updateAssessor: 0,
+insertMachine: 0,
+updateMachine: 0,
+insertCompanyMachine: 0,
+updateCompanyMachine: 0,
+insertRoleAssessor: 0,
+updateRoleAssessor: 0,
+insertRole: 0,
+updateRole: 0,
+insertTools: 0,
+updateTools: 0
+2018-08-14 17:09:38 INFO  SyncController:84 - End SyncHostToLocal: 3s
+2018-08-14 17:09:38 INFO  SyncController:86 - Start SyncLocalToHost
+2018-08-14 17:14:04 INFO  SyncController:95 - insertMasterLog: 0,
+updateMasterLog: 380,
+insertToolsMachineTray: 0,
+updateToolsMachineTray: 0,
+insertWorkingTransaction: 0,
+updateWorkingTransaction: 0
+2018-08-14 17:14:04 INFO  SyncController:101 - End SyncLocalToHost: 266s
+2018-08-14 17:14:04 INFO  LoginPage:364 - ========================================
+2018-08-14 17:14:04 INFO  LoginPage:365 - End syncing thread - 02GtQOKK
+2018-08-14 17:14:04 INFO  LoginPage:366 - ========================================
