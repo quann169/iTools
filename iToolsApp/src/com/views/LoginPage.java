@@ -16,6 +16,8 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -238,10 +240,10 @@ public class LoginPage extends JFrame implements ActionListener {
 		userName = userTextField.getText();
 		if (e.getSource() == loginButton) {
 
-			userText = "com1user1";
-			userText = "com1admin";
-//			 userText = "uhacc";
-			pwdText = "123456";
+			// userText = "com1user1";
+			// userText = "com1admin";
+			// userText = "uhacc";
+			// pwdText = "123456";
 
 			logger.info("Login with username: " + userText);
 
@@ -264,10 +266,10 @@ public class LoginPage extends JFrame implements ActionListener {
 					List<Role> listRoles = ctlObj.getUserRoles(userText, companyCode, companyCodeUH);
 					logger.info("listRoles: " + listRoles);
 
-//					if (listRoles.size() == 0) {
-//						listRoles = ctlObj.getUserRoles(userText, companyCodeUH);
-//						logger.info("listRolesUH: " + listRoles);
-//					}
+					// if (listRoles.size() == 0) {
+					// listRoles = ctlObj.getUserRoles(userText, companyCodeUH);
+					// logger.info("listRolesUH: " + listRoles);
+					// }
 
 					if (listRoles.size() == 0) {
 						JOptionPane.showMessageDialog(this, bundleMessage.getString("Login_Page_Have_Not_Role"));
@@ -348,7 +350,7 @@ public class LoginPage extends JFrame implements ActionListener {
 
 	public static void main(String[] a) {
 
-		// printConfigInfo();
+		printConfigInfo();
 
 		Thread one = new Thread() {
 			public void run() {
@@ -374,7 +376,7 @@ public class LoginPage extends JFrame implements ActionListener {
 			}
 		};
 
-		 one.start();
+		one.start();
 
 		Thread two = new Thread() {
 			public void run() {
@@ -396,9 +398,9 @@ public class LoginPage extends JFrame implements ActionListener {
 						}
 
 						try {
-							 Thread.sleep(12 * 60 * 60 * 1000);
+							Thread.sleep(12 * 60 * 60 * 1000);
 
-//							Thread.sleep(60 * 1000);
+							// Thread.sleep(60 * 1000);
 						} catch (InterruptedException e) {
 							e.printStackTrace();
 							logger.error(e.getMessage());
@@ -464,8 +466,8 @@ public class LoginPage extends JFrame implements ActionListener {
 
 		emailUtils.sendEmailWithAttachedFile("quann169@gmail.com",
 				companyCode + " - " + machineCode + ": ITools App Log", outFilePath);
-//		emailUtils.sendEmailWithAttachedFile("ngngoctanthuong@gmail.com",
-//				companyCode + " - " + machineCode + ": ITools App Log", outFilePath);
+		// emailUtils.sendEmailWithAttachedFile("ngngoctanthuong@gmail.com",
+		// companyCode + " - " + machineCode + ": ITools App Log", outFilePath);
 		String[] dataLastLine = lastLine.split(" ");
 		String strDate = dataLastLine[0] + " " + dataLastLine[1];
 		SimpleDateFormat sdfrmt = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -479,6 +481,13 @@ public class LoginPage extends JFrame implements ActionListener {
 
 		} catch (ParseException e) {
 			logger.error(strDate + ": erorr date format");
+		}
+
+		try {
+			Files.deleteIfExists(Paths.get(outFilePath));
+			logger.info("Delete log file successfully.");
+		} catch (Exception e) {
+			logger.error(strDate + ": Cannot delete log file");
 		}
 
 		return outFilePath;
@@ -541,8 +550,8 @@ public class LoginPage extends JFrame implements ActionListener {
 				publish("Checking email...");
 				Thread.sleep(1000);
 
-				boolean checkEmailConfig = emailUtils.checkEmailConnection();
-				logger.info("checkEmailConfig: " + checkEmailConfig);
+//				boolean checkEmailConfig = emailUtils.checkEmailConnection();
+//				logger.info("checkEmailConfig: " + checkEmailConfig);
 
 				publish("Done checking...");
 				Thread.sleep(1000);
