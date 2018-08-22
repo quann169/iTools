@@ -7643,3 +7643,664 @@ updateTools: 0
 2018-08-21 09:16:11 INFO  LogController:162 - insert into MasterLog(Action, NewValue) values('SendLog', '2018-08-21 09:16:05')
 2018-08-21 09:16:11 INFO  LoginPage:479 - Update 2018-08-21 09:16:05 to MasterLog successfully.
 2018-08-21 09:16:11 INFO  LoginPage:488 - Delete log file successfully.
+2018-08-22 17:02:34 INFO  LoginPage:515 - ************************************************************
+2018-08-22 17:02:34 INFO  LoginPage:516 - ************************************************************
+2018-08-22 17:02:34 INFO  LoginPage:517 - ************************************************************
+2018-08-22 17:02:34 INFO  LoginPage:518 - ************************************************************
+2018-08-22 17:02:34 INFO  LoginPage:519 - Starting iTool app.
+2018-08-22 17:02:34 INFO  LoginPage:520 - companyCode: Com1
+2018-08-22 17:02:34 INFO  LoginPage:521 - companyCodeUH: UHCom
+2018-08-22 17:02:34 INFO  LoginPage:522 - machineCode: MAC1
+2018-08-22 17:02:35 INFO  LoginPage:525 - mDbHost: localhost
+2018-08-22 17:02:35 INFO  LoginPage:526 - mDbUser: admin
+2018-08-22 17:02:35 INFO  LoginPage:527 - mDbPwds: 1qazxsw2
+2018-08-22 17:02:35 INFO  LoginPage:528 - mDbName: iTools_v1p0
+2018-08-22 17:02:35 INFO  LoginPage:529 - mDbPort: 3306
+2018-08-22 17:02:35 INFO  LoginPage:530 - Database version: v1p0 - 2018-08-11 12:38:14
+2018-08-22 17:02:35 INFO  LoginPage:532 - Last Sync: 2018-08-21 09:20:55
+2018-08-22 17:02:36 INFO  LoginPage:543 - App Version: 1.0
+2018-08-22 17:02:47 INFO  LoginPage:248 - Login with username: uhacc
+2018-08-22 17:02:47 INFO  LoginController:46 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin, IsLocked FROM Assessor where Assessor.IsActive = 1 and Assessor.UserName='uhacc' and (Password=md5('123456') or LastPassword=md5('123456'));
+2018-08-22 17:02:48 INFO  LoginPage:252 - Login OK
+2018-08-22 17:02:48 INFO  LoginController:173 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'Com1' and assessor.UserName= 'uhacc'
+2018-08-22 17:02:48 INFO  LoginController:190 - Check Role in UH Com.....
+2018-08-22 17:02:48 INFO  LoginController:191 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'UHCom' and assessor.UserName= 'uhacc'
+2018-08-22 17:02:48 INFO  LoginPage:267 - listRoles: [Roles [roleName=Accounting]]
+2018-08-22 17:02:48 INFO  LoginPage:287 - Show DashboardPage
+2018-08-22 17:02:48 INFO  DashboardPage:93 - Init DASHBOARD_PAGE with list roles: [accounting]
+2018-08-22 17:02:50 INFO  DashboardPage:248 - uhacc - UNLOCK_MACHINE
+2018-08-22 17:02:52 INFO  DashboardPage:277 - Complete
+2018-08-22 17:02:53 INFO  DashboardPage:308 - uhacc - PUTIN
+2018-08-22 17:02:53 INFO  EmployeeController:160 -  select tools.ToolId, tools.ToolCode ,  toolsmachineTray.Quantity, toolsmachineTray.TrayIndex, toolsmachineTray.Machinecode  from tools inner join toolsmachineTray on tools.ToolCode = toolsmachineTray.ToolCode  where toolsmachineTray.MachineCode = 'MAC1';
+2018-08-22 17:03:04 INFO  EmployeeController:203 - {ACTID111=[[TRAY_01, 11]], BCTID211=[[TRAY_03, 6], [TRAY_02, 6]]}
+2018-08-22 17:03:05 INFO  EmployeeController:270 -  select tools.ToolCode from tools;
+2018-08-22 17:03:05 INFO  EmployeeController:290 - {}
+2018-08-22 17:28:43 INFO  LoginPage:515 - ************************************************************
+2018-08-22 17:28:43 INFO  LoginPage:516 - ************************************************************
+2018-08-22 17:28:43 INFO  LoginPage:517 - ************************************************************
+2018-08-22 17:28:43 INFO  LoginPage:518 - ************************************************************
+2018-08-22 17:28:43 INFO  LoginPage:519 - Starting iTool app.
+2018-08-22 17:28:43 INFO  LoginPage:520 - companyCode: Com1
+2018-08-22 17:28:43 INFO  LoginPage:521 - companyCodeUH: UHCom
+2018-08-22 17:28:43 INFO  LoginPage:522 - machineCode: MAC1
+2018-08-22 17:28:43 INFO  LoginPage:525 - mDbHost: localhost
+2018-08-22 17:28:43 INFO  LoginPage:526 - mDbUser: admin
+2018-08-22 17:28:43 INFO  LoginPage:527 - mDbPwds: 1qazxsw2
+2018-08-22 17:28:43 INFO  LoginPage:528 - mDbName: iTools_v1p0
+2018-08-22 17:28:43 INFO  LoginPage:529 - mDbPort: 3306
+2018-08-22 17:28:43 INFO  LoginPage:530 - Database version: v1p0 - 2018-08-11 12:38:14
+2018-08-22 17:28:43 INFO  LoginPage:532 - Last Sync: 2018-08-21 09:20:55
+2018-08-22 17:28:44 INFO  LoginPage:543 - App Version: 1.0
+2018-08-22 17:29:01 INFO  LoginPage:248 - Login with username: uhacc
+2018-08-22 17:29:01 INFO  LoginController:46 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin, IsLocked FROM Assessor where Assessor.IsActive = 1 and Assessor.UserName='uhacc' and (Password=md5('123456') or LastPassword=md5('123456'));
+2018-08-22 17:29:01 INFO  LoginPage:252 - Login OK
+2018-08-22 17:29:01 INFO  LoginController:173 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'Com1' and assessor.UserName= 'uhacc'
+2018-08-22 17:29:01 INFO  LoginController:190 - Check Role in UH Com.....
+2018-08-22 17:29:01 INFO  LoginController:191 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'UHCom' and assessor.UserName= 'uhacc'
+2018-08-22 17:29:01 INFO  LoginPage:267 - listRoles: [Roles [roleName=Accounting]]
+2018-08-22 17:29:01 INFO  LoginPage:287 - Show DashboardPage
+2018-08-22 17:29:01 INFO  DashboardPage:93 - Init DASHBOARD_PAGE with list roles: [accounting]
+2018-08-22 17:29:02 INFO  DashboardPage:248 - uhacc - UNLOCK_MACHINE
+2018-08-22 17:29:04 INFO  DashboardPage:277 - Complete
+2018-08-22 17:29:05 INFO  DashboardPage:297 - uhacc - TKOVER
+2018-08-22 17:29:05 INFO  EmployeeController:160 -  select tools.ToolId, tools.ToolCode ,  toolsmachineTray.Quantity, toolsmachineTray.TrayIndex, toolsmachineTray.Machinecode  from tools inner join toolsmachineTray on tools.ToolCode = toolsmachineTray.ToolCode  where toolsmachineTray.MachineCode = 'MAC1';
+2018-08-22 17:29:05 INFO  EmployeeController:203 - {ACTID111=[[TRAY_01, 11]], BCTID211=[[TRAY_03, 6], [TRAY_02, 6]]}
+2018-08-22 17:29:05 INFO  EmployeeController:50 - select tools.ToolId, tools.ToolCode  from tools inner join toolsmachineTray on tools.ToolCode = toolsmachineTray.ToolCode  where toolsmachineTray.MachineCode = 'MAC1';
+2018-08-22 17:29:05 INFO  EmployeeController:71 - [Tool [toolId=2, toolName=ACTID111], Tool [toolId=5, toolName=BCTID211], Tool [toolId=5, toolName=BCTID211]]
+2018-08-22 17:29:59 INFO  LoginPage:515 - ************************************************************
+2018-08-22 17:29:59 INFO  LoginPage:516 - ************************************************************
+2018-08-22 17:29:59 INFO  LoginPage:517 - ************************************************************
+2018-08-22 17:29:59 INFO  LoginPage:518 - ************************************************************
+2018-08-22 17:29:59 INFO  LoginPage:519 - Starting iTool app.
+2018-08-22 17:29:59 INFO  LoginPage:520 - companyCode: Com1
+2018-08-22 17:29:59 INFO  LoginPage:521 - companyCodeUH: UHCom
+2018-08-22 17:29:59 INFO  LoginPage:522 - machineCode: MAC1
+2018-08-22 17:29:59 INFO  LoginPage:525 - mDbHost: localhost
+2018-08-22 17:29:59 INFO  LoginPage:526 - mDbUser: admin
+2018-08-22 17:29:59 INFO  LoginPage:527 - mDbPwds: 1qazxsw2
+2018-08-22 17:29:59 INFO  LoginPage:528 - mDbName: iTools_v1p0
+2018-08-22 17:29:59 INFO  LoginPage:529 - mDbPort: 3306
+2018-08-22 17:29:59 INFO  LoginPage:530 - Database version: v1p0 - 2018-08-11 12:38:14
+2018-08-22 17:29:59 INFO  LoginPage:532 - Last Sync: 2018-08-21 09:20:55
+2018-08-22 17:30:00 INFO  LoginPage:543 - App Version: 1.0
+2018-08-22 17:30:11 INFO  LoginPage:248 - Login with username: uhacc
+2018-08-22 17:30:11 INFO  LoginController:46 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin, IsLocked FROM Assessor where Assessor.IsActive = 1 and Assessor.UserName='uhacc' and (Password=md5('123456') or LastPassword=md5('123456'));
+2018-08-22 17:30:11 INFO  LoginPage:252 - Login OK
+2018-08-22 17:30:11 INFO  LoginController:173 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'Com1' and assessor.UserName= 'uhacc'
+2018-08-22 17:30:11 INFO  LoginController:190 - Check Role in UH Com.....
+2018-08-22 17:30:11 INFO  LoginController:191 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'UHCom' and assessor.UserName= 'uhacc'
+2018-08-22 17:30:11 INFO  LoginPage:267 - listRoles: [Roles [roleName=Accounting]]
+2018-08-22 17:30:11 INFO  LoginPage:287 - Show DashboardPage
+2018-08-22 17:30:11 INFO  DashboardPage:93 - Init DASHBOARD_PAGE with list roles: [accounting]
+2018-08-22 17:30:12 INFO  DashboardPage:248 - uhacc - UNLOCK_MACHINE
+2018-08-22 17:30:14 INFO  DashboardPage:277 - Complete
+2018-08-22 17:30:15 INFO  DashboardPage:297 - uhacc - TKOVER
+2018-08-22 17:30:15 INFO  EmployeeController:160 -  select tools.ToolId, tools.ToolCode ,  toolsmachineTray.Quantity, toolsmachineTray.TrayIndex, toolsmachineTray.Machinecode  from tools inner join toolsmachineTray on tools.ToolCode = toolsmachineTray.ToolCode  where toolsmachineTray.MachineCode = 'MAC1';
+2018-08-22 17:30:15 INFO  EmployeeController:203 - {ACTID111=[[TRAY_01, 11]], BCTID211=[[TRAY_03, 6], [TRAY_02, 6]]}
+2018-08-22 17:30:15 INFO  EmployeeController:50 - select tools.ToolId, tools.ToolCode  from tools inner join toolsmachineTray on tools.ToolCode = toolsmachineTray.ToolCode  where toolsmachineTray.MachineCode = 'MAC1';
+2018-08-22 17:30:15 INFO  EmployeeController:71 - [Tool [toolId=2, toolName=ACTID111], Tool [toolId=5, toolName=BCTID211], Tool [toolId=5, toolName=BCTID211]]
+2018-08-22 17:37:41 INFO  LoginPage:515 - ************************************************************
+2018-08-22 17:37:41 INFO  LoginPage:516 - ************************************************************
+2018-08-22 17:37:41 INFO  LoginPage:517 - ************************************************************
+2018-08-22 17:37:41 INFO  LoginPage:518 - ************************************************************
+2018-08-22 17:37:41 INFO  LoginPage:519 - Starting iTool app.
+2018-08-22 17:37:41 INFO  LoginPage:520 - companyCode: Com1
+2018-08-22 17:37:41 INFO  LoginPage:521 - companyCodeUH: UHCom
+2018-08-22 17:37:41 INFO  LoginPage:522 - machineCode: MAC1
+2018-08-22 17:37:42 INFO  LoginPage:525 - mDbHost: localhost
+2018-08-22 17:37:42 INFO  LoginPage:526 - mDbUser: admin
+2018-08-22 17:37:42 INFO  LoginPage:527 - mDbPwds: 1qazxsw2
+2018-08-22 17:37:42 INFO  LoginPage:528 - mDbName: iTools_v1p0
+2018-08-22 17:37:42 INFO  LoginPage:529 - mDbPort: 3306
+2018-08-22 17:37:42 INFO  LoginPage:530 - Database version: v1p0 - 2018-08-11 12:38:14
+2018-08-22 17:37:42 INFO  LoginPage:532 - Last Sync: 2018-08-21 09:20:55
+2018-08-22 17:37:43 INFO  LoginPage:543 - App Version: 1.0
+2018-08-22 17:37:51 INFO  LoginPage:248 - Login with username: uhacc
+2018-08-22 17:37:51 INFO  LoginController:46 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin, IsLocked FROM Assessor where Assessor.IsActive = 1 and Assessor.UserName='uhacc' and (Password=md5('123456') or LastPassword=md5('123456'));
+2018-08-22 17:37:52 INFO  LoginPage:252 - Login OK
+2018-08-22 17:37:52 INFO  LoginController:173 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'Com1' and assessor.UserName= 'uhacc'
+2018-08-22 17:37:52 INFO  LoginController:190 - Check Role in UH Com.....
+2018-08-22 17:37:52 INFO  LoginController:191 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'UHCom' and assessor.UserName= 'uhacc'
+2018-08-22 17:37:52 INFO  LoginPage:267 - listRoles: [Roles [roleName=Accounting]]
+2018-08-22 17:37:52 INFO  LoginPage:287 - Show DashboardPage
+2018-08-22 17:37:52 INFO  DashboardPage:93 - Init DASHBOARD_PAGE with list roles: [accounting]
+2018-08-22 17:37:53 INFO  DashboardPage:248 - uhacc - UNLOCK_MACHINE
+2018-08-22 17:37:55 INFO  DashboardPage:277 - Complete
+2018-08-22 17:37:56 INFO  DashboardPage:297 - uhacc - TKOVER
+2018-08-22 17:37:56 INFO  EmployeeController:160 -  select tools.ToolId, tools.ToolCode ,  toolsmachineTray.Quantity, toolsmachineTray.TrayIndex, toolsmachineTray.Machinecode  from tools inner join toolsmachineTray on tools.ToolCode = toolsmachineTray.ToolCode  where toolsmachineTray.MachineCode = 'MAC1';
+2018-08-22 17:37:56 INFO  EmployeeController:203 - {ACTID111=[[TRAY_01, 11]], BCTID211=[[TRAY_03, 6], [TRAY_02, 6]]}
+2018-08-22 17:37:56 INFO  EmployeeController:50 - select tools.ToolId, tools.ToolCode  from tools inner join toolsmachineTray on tools.ToolCode = toolsmachineTray.ToolCode  where toolsmachineTray.MachineCode = 'MAC1';
+2018-08-22 17:37:56 INFO  EmployeeController:71 - [Tool [toolId=2, toolName=ACTID111], Tool [toolId=5, toolName=BCTID211], Tool [toolId=5, toolName=BCTID211]]
+2018-08-22 17:38:51 INFO  LoginPage:515 - ************************************************************
+2018-08-22 17:38:51 INFO  LoginPage:516 - ************************************************************
+2018-08-22 17:38:51 INFO  LoginPage:517 - ************************************************************
+2018-08-22 17:38:51 INFO  LoginPage:518 - ************************************************************
+2018-08-22 17:38:51 INFO  LoginPage:519 - Starting iTool app.
+2018-08-22 17:38:51 INFO  LoginPage:520 - companyCode: Com1
+2018-08-22 17:38:51 INFO  LoginPage:521 - companyCodeUH: UHCom
+2018-08-22 17:38:51 INFO  LoginPage:522 - machineCode: MAC1
+2018-08-22 17:38:51 INFO  LoginPage:525 - mDbHost: localhost
+2018-08-22 17:38:51 INFO  LoginPage:526 - mDbUser: admin
+2018-08-22 17:38:51 INFO  LoginPage:527 - mDbPwds: 1qazxsw2
+2018-08-22 17:38:51 INFO  LoginPage:528 - mDbName: iTools_v1p0
+2018-08-22 17:38:51 INFO  LoginPage:529 - mDbPort: 3306
+2018-08-22 17:38:51 INFO  LoginPage:530 - Database version: v1p0 - 2018-08-11 12:38:14
+2018-08-22 17:38:51 INFO  LoginPage:532 - Last Sync: 2018-08-21 09:20:55
+2018-08-22 17:38:52 INFO  LoginPage:543 - App Version: 1.0
+2018-08-22 17:39:00 INFO  LoginPage:248 - Login with username: uhacc
+2018-08-22 17:39:00 INFO  LoginController:46 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin, IsLocked FROM Assessor where Assessor.IsActive = 1 and Assessor.UserName='uhacc' and (Password=md5('123456') or LastPassword=md5('123456'));
+2018-08-22 17:39:00 INFO  LoginPage:252 - Login OK
+2018-08-22 17:39:00 INFO  LoginController:173 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'Com1' and assessor.UserName= 'uhacc'
+2018-08-22 17:39:00 INFO  LoginController:190 - Check Role in UH Com.....
+2018-08-22 17:39:00 INFO  LoginController:191 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'UHCom' and assessor.UserName= 'uhacc'
+2018-08-22 17:39:00 INFO  LoginPage:267 - listRoles: [Roles [roleName=Accounting]]
+2018-08-22 17:39:00 INFO  LoginPage:287 - Show DashboardPage
+2018-08-22 17:39:00 INFO  DashboardPage:93 - Init DASHBOARD_PAGE with list roles: [accounting]
+2018-08-22 17:39:02 INFO  DashboardPage:248 - uhacc - UNLOCK_MACHINE
+2018-08-22 17:39:04 INFO  DashboardPage:277 - Complete
+2018-08-22 17:39:05 INFO  DashboardPage:297 - uhacc - TKOVER
+2018-08-22 17:39:05 INFO  EmployeeController:160 -  select tools.ToolId, tools.ToolCode ,  toolsmachineTray.Quantity, toolsmachineTray.TrayIndex, toolsmachineTray.Machinecode  from tools inner join toolsmachineTray on tools.ToolCode = toolsmachineTray.ToolCode  where toolsmachineTray.MachineCode = 'MAC1';
+2018-08-22 17:39:05 INFO  EmployeeController:203 - {ACTID111=[[TRAY_01, 11]], BCTID211=[[TRAY_03, 6], [TRAY_02, 6]]}
+2018-08-22 17:39:05 INFO  EmployeeController:50 - select tools.ToolId, tools.ToolCode  from tools inner join toolsmachineTray on tools.ToolCode = toolsmachineTray.ToolCode  where toolsmachineTray.MachineCode = 'MAC1';
+2018-08-22 17:39:05 INFO  EmployeeController:71 - [Tool [toolId=2, toolName=ACTID111], Tool [toolId=5, toolName=BCTID211], Tool [toolId=5, toolName=BCTID211]]
+2018-08-22 17:51:03 INFO  LoginPage:515 - ************************************************************
+2018-08-22 17:51:03 INFO  LoginPage:516 - ************************************************************
+2018-08-22 17:51:03 INFO  LoginPage:517 - ************************************************************
+2018-08-22 17:51:03 INFO  LoginPage:518 - ************************************************************
+2018-08-22 17:51:03 INFO  LoginPage:519 - Starting iTool app.
+2018-08-22 17:51:03 INFO  LoginPage:520 - companyCode: Com1
+2018-08-22 17:51:03 INFO  LoginPage:521 - companyCodeUH: UHCom
+2018-08-22 17:51:03 INFO  LoginPage:522 - machineCode: MAC1
+2018-08-22 17:51:04 INFO  LoginPage:525 - mDbHost: localhost
+2018-08-22 17:51:04 INFO  LoginPage:526 - mDbUser: admin
+2018-08-22 17:51:04 INFO  LoginPage:527 - mDbPwds: 1qazxsw2
+2018-08-22 17:51:04 INFO  LoginPage:528 - mDbName: iTools_v1p0
+2018-08-22 17:51:04 INFO  LoginPage:529 - mDbPort: 3306
+2018-08-22 17:51:04 INFO  LoginPage:530 - Database version: v1p0 - 2018-08-11 12:38:14
+2018-08-22 17:51:04 INFO  LoginPage:532 - Last Sync: 2018-08-21 09:20:55
+2018-08-22 17:51:05 INFO  LoginPage:543 - App Version: 1.0
+2018-08-22 17:51:14 INFO  LoginPage:248 - Login with username: uhacc
+2018-08-22 17:51:14 INFO  LoginController:46 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin, IsLocked FROM Assessor where Assessor.IsActive = 1 and Assessor.UserName='uhacc' and (Password=md5('123456') or LastPassword=md5('123456'));
+2018-08-22 17:51:14 INFO  LoginPage:252 - Login OK
+2018-08-22 17:51:14 INFO  LoginController:173 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'Com1' and assessor.UserName= 'uhacc'
+2018-08-22 17:51:14 INFO  LoginController:190 - Check Role in UH Com.....
+2018-08-22 17:51:14 INFO  LoginController:191 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'UHCom' and assessor.UserName= 'uhacc'
+2018-08-22 17:51:14 INFO  LoginPage:267 - listRoles: [Roles [roleName=Accounting]]
+2018-08-22 17:51:14 INFO  LoginPage:287 - Show DashboardPage
+2018-08-22 17:51:14 INFO  DashboardPage:93 - Init DASHBOARD_PAGE with list roles: [accounting]
+2018-08-22 17:51:15 INFO  DashboardPage:248 - uhacc - UNLOCK_MACHINE
+2018-08-22 17:51:17 INFO  DashboardPage:277 - Complete
+2018-08-22 17:51:18 INFO  DashboardPage:297 - uhacc - TKOVER
+2018-08-22 17:51:18 INFO  EmployeeController:160 -  select tools.ToolId, tools.ToolCode ,  toolsmachineTray.Quantity, toolsmachineTray.TrayIndex, toolsmachineTray.Machinecode  from tools inner join toolsmachineTray on tools.ToolCode = toolsmachineTray.ToolCode  where toolsmachineTray.MachineCode = 'MAC1';
+2018-08-22 17:51:18 INFO  EmployeeController:203 - {ACTID111=[[TRAY_01, 11]], BCTID211=[[TRAY_03, 6], [TRAY_02, 6]]}
+2018-08-22 17:51:18 INFO  EmployeeController:50 - select tools.ToolId, tools.ToolCode  from tools inner join toolsmachineTray on tools.ToolCode = toolsmachineTray.ToolCode  where toolsmachineTray.MachineCode = 'MAC1';
+2018-08-22 17:51:18 INFO  EmployeeController:71 - [Tool [toolId=2, toolName=ACTID111], Tool [toolId=5, toolName=BCTID211], Tool [toolId=5, toolName=BCTID211]]
+2018-08-22 17:54:02 INFO  LoginPage:515 - ************************************************************
+2018-08-22 17:54:02 INFO  LoginPage:516 - ************************************************************
+2018-08-22 17:54:02 INFO  LoginPage:517 - ************************************************************
+2018-08-22 17:54:02 INFO  LoginPage:518 - ************************************************************
+2018-08-22 17:54:02 INFO  LoginPage:519 - Starting iTool app.
+2018-08-22 17:54:02 INFO  LoginPage:520 - companyCode: Com1
+2018-08-22 17:54:02 INFO  LoginPage:521 - companyCodeUH: UHCom
+2018-08-22 17:54:02 INFO  LoginPage:522 - machineCode: MAC1
+2018-08-22 17:54:02 INFO  LoginPage:525 - mDbHost: localhost
+2018-08-22 17:54:02 INFO  LoginPage:526 - mDbUser: admin
+2018-08-22 17:54:02 INFO  LoginPage:527 - mDbPwds: 1qazxsw2
+2018-08-22 17:54:02 INFO  LoginPage:528 - mDbName: iTools_v1p0
+2018-08-22 17:54:02 INFO  LoginPage:529 - mDbPort: 3306
+2018-08-22 17:54:02 INFO  LoginPage:530 - Database version: v1p0 - 2018-08-11 12:38:14
+2018-08-22 17:54:02 INFO  LoginPage:532 - Last Sync: 2018-08-21 09:20:55
+2018-08-22 17:54:03 INFO  LoginPage:543 - App Version: 1.0
+2018-08-22 17:54:11 INFO  LoginPage:248 - Login with username: uhacc
+2018-08-22 17:54:11 INFO  LoginController:46 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin, IsLocked FROM Assessor where Assessor.IsActive = 1 and Assessor.UserName='uhacc' and (Password=md5('123456') or LastPassword=md5('123456'));
+2018-08-22 17:54:11 INFO  LoginPage:252 - Login OK
+2018-08-22 17:54:11 INFO  LoginController:173 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'Com1' and assessor.UserName= 'uhacc'
+2018-08-22 17:54:11 INFO  LoginController:190 - Check Role in UH Com.....
+2018-08-22 17:54:11 INFO  LoginController:191 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'UHCom' and assessor.UserName= 'uhacc'
+2018-08-22 17:54:11 INFO  LoginPage:267 - listRoles: [Roles [roleName=Accounting]]
+2018-08-22 17:54:11 INFO  LoginPage:287 - Show DashboardPage
+2018-08-22 17:54:11 INFO  DashboardPage:93 - Init DASHBOARD_PAGE with list roles: [accounting]
+2018-08-22 17:54:12 INFO  DashboardPage:248 - uhacc - UNLOCK_MACHINE
+2018-08-22 17:54:14 INFO  DashboardPage:277 - Complete
+2018-08-22 17:54:16 INFO  DashboardPage:297 - uhacc - TKOVER
+2018-08-22 17:54:16 INFO  EmployeeController:160 -  select tools.ToolId, tools.ToolCode ,  toolsmachineTray.Quantity, toolsmachineTray.TrayIndex, toolsmachineTray.Machinecode  from tools inner join toolsmachineTray on tools.ToolCode = toolsmachineTray.ToolCode  where toolsmachineTray.MachineCode = 'MAC1';
+2018-08-22 17:54:16 INFO  EmployeeController:203 - {ACTID111=[[TRAY_01, 11]], BCTID211=[[TRAY_03, 6], [TRAY_02, 6]]}
+2018-08-22 17:54:16 INFO  EmployeeController:50 - select tools.ToolId, tools.ToolCode  from tools inner join toolsmachineTray on tools.ToolCode = toolsmachineTray.ToolCode  where toolsmachineTray.MachineCode = 'MAC1';
+2018-08-22 17:54:16 INFO  EmployeeController:71 - [Tool [toolId=2, toolName=ACTID111], Tool [toolId=5, toolName=BCTID211], Tool [toolId=5, toolName=BCTID211]]
+2018-08-22 17:54:45 INFO  PutInTakeOverPage:170 - uhacc back to dashboard from PUTIN_TAKEOVER_PAGE
+2018-08-22 17:54:45 INFO  LoginController:173 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'Com1' and assessor.UserName= 'uhacc'
+2018-08-22 17:54:45 INFO  LoginController:190 - Check Role in UH Com.....
+2018-08-22 17:54:45 INFO  LoginController:191 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'UHCom' and assessor.UserName= 'uhacc'
+2018-08-22 17:54:45 INFO  DashboardPage:93 - Init DASHBOARD_PAGE with list roles: [accounting]
+2018-08-22 17:54:46 INFO  DashboardPage:248 - uhacc - UNLOCK_MACHINE
+2018-08-22 17:54:48 INFO  DashboardPage:277 - Complete
+2018-08-22 17:54:49 INFO  DashboardPage:297 - uhacc - TKOVER
+2018-08-22 17:54:49 INFO  EmployeeController:160 -  select tools.ToolId, tools.ToolCode ,  toolsmachineTray.Quantity, toolsmachineTray.TrayIndex, toolsmachineTray.Machinecode  from tools inner join toolsmachineTray on tools.ToolCode = toolsmachineTray.ToolCode  where toolsmachineTray.MachineCode = 'MAC1';
+2018-08-22 17:54:49 INFO  EmployeeController:203 - {ACTID111=[[TRAY_01, 11]], BCTID211=[[TRAY_03, 0], [TRAY_02, 6]]}
+2018-08-22 17:54:49 INFO  EmployeeController:50 - select tools.ToolId, tools.ToolCode  from tools inner join toolsmachineTray on tools.ToolCode = toolsmachineTray.ToolCode  where toolsmachineTray.MachineCode = 'MAC1';
+2018-08-22 17:54:49 INFO  EmployeeController:71 - [Tool [toolId=2, toolName=ACTID111], Tool [toolId=5, toolName=BCTID211], Tool [toolId=5, toolName=BCTID211]]
+2018-08-22 17:55:04 INFO  PutInTakeOverPage:170 - uhacc back to dashboard from PUTIN_TAKEOVER_PAGE
+2018-08-22 17:55:04 INFO  LoginController:173 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'Com1' and assessor.UserName= 'uhacc'
+2018-08-22 17:55:04 INFO  LoginController:190 - Check Role in UH Com.....
+2018-08-22 17:55:04 INFO  LoginController:191 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'UHCom' and assessor.UserName= 'uhacc'
+2018-08-22 17:55:04 INFO  DashboardPage:93 - Init DASHBOARD_PAGE with list roles: [accounting]
+2018-08-22 17:55:05 INFO  DashboardPage:248 - uhacc - UNLOCK_MACHINE
+2018-08-22 17:55:08 INFO  DashboardPage:277 - Complete
+2018-08-22 17:55:36 INFO  DashboardPage:308 - uhacc - PUTIN
+2018-08-22 17:55:36 INFO  EmployeeController:160 -  select tools.ToolId, tools.ToolCode ,  toolsmachineTray.Quantity, toolsmachineTray.TrayIndex, toolsmachineTray.Machinecode  from tools inner join toolsmachineTray on tools.ToolCode = toolsmachineTray.ToolCode  where toolsmachineTray.MachineCode = 'MAC1';
+2018-08-22 17:55:36 INFO  EmployeeController:203 - {ACTID111=[[TRAY_01, 11]], BCTID211=[[TRAY_03, 0], [TRAY_02, 6]]}
+2018-08-22 17:55:36 INFO  EmployeeController:270 -  select tools.ToolCode from tools;
+2018-08-22 17:55:36 INFO  EmployeeController:290 - {}
+2018-08-22 17:56:05 INFO  LoginPage:515 - ************************************************************
+2018-08-22 17:56:05 INFO  LoginPage:516 - ************************************************************
+2018-08-22 17:56:05 INFO  LoginPage:517 - ************************************************************
+2018-08-22 17:56:05 INFO  LoginPage:518 - ************************************************************
+2018-08-22 17:56:05 INFO  LoginPage:519 - Starting iTool app.
+2018-08-22 17:56:05 INFO  LoginPage:520 - companyCode: Com1
+2018-08-22 17:56:05 INFO  LoginPage:521 - companyCodeUH: UHCom
+2018-08-22 17:56:05 INFO  LoginPage:522 - machineCode: MAC1
+2018-08-22 17:56:05 INFO  LoginPage:525 - mDbHost: localhost
+2018-08-22 17:56:05 INFO  LoginPage:526 - mDbUser: admin
+2018-08-22 17:56:05 INFO  LoginPage:527 - mDbPwds: 1qazxsw2
+2018-08-22 17:56:05 INFO  LoginPage:528 - mDbName: iTools_v1p0
+2018-08-22 17:56:05 INFO  LoginPage:529 - mDbPort: 3306
+2018-08-22 17:56:05 INFO  LoginPage:530 - Database version: v1p0 - 2018-08-11 12:38:14
+2018-08-22 17:56:05 INFO  LoginPage:532 - Last Sync: 2018-08-21 09:20:55
+2018-08-22 17:56:06 INFO  LoginPage:543 - App Version: 1.0
+2018-08-22 17:56:13 INFO  LoginPage:248 - Login with username: uhacc
+2018-08-22 17:56:13 INFO  LoginController:46 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin, IsLocked FROM Assessor where Assessor.IsActive = 1 and Assessor.UserName='uhacc' and (Password=md5('123456') or LastPassword=md5('123456'));
+2018-08-22 17:56:13 INFO  LoginPage:252 - Login OK
+2018-08-22 17:56:13 INFO  LoginController:173 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'Com1' and assessor.UserName= 'uhacc'
+2018-08-22 17:56:13 INFO  LoginController:190 - Check Role in UH Com.....
+2018-08-22 17:56:13 INFO  LoginController:191 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'UHCom' and assessor.UserName= 'uhacc'
+2018-08-22 17:56:13 INFO  LoginPage:267 - listRoles: [Roles [roleName=Accounting]]
+2018-08-22 17:56:13 INFO  LoginPage:287 - Show DashboardPage
+2018-08-22 17:56:13 INFO  DashboardPage:93 - Init DASHBOARD_PAGE with list roles: [accounting]
+2018-08-22 17:56:14 INFO  DashboardPage:248 - uhacc - UNLOCK_MACHINE
+2018-08-22 17:56:17 INFO  DashboardPage:277 - Complete
+2018-08-22 17:56:17 INFO  DashboardPage:308 - uhacc - PUTIN
+2018-08-22 17:56:17 INFO  EmployeeController:160 -  select tools.ToolId, tools.ToolCode ,  toolsmachineTray.Quantity, toolsmachineTray.TrayIndex, toolsmachineTray.Machinecode  from tools inner join toolsmachineTray on tools.ToolCode = toolsmachineTray.ToolCode  where toolsmachineTray.MachineCode = 'MAC1';
+2018-08-22 17:56:17 INFO  EmployeeController:203 - {ACTID111=[[TRAY_01, 11]], BCTID211=[[TRAY_03, 0], [TRAY_02, 6]]}
+2018-08-22 17:56:17 INFO  EmployeeController:270 -  select tools.ToolCode from tools;
+2018-08-22 17:56:17 INFO  EmployeeController:290 - {}
+2018-08-22 17:56:39 INFO  PutInTakeOverPage:603 - Yes option
+2018-08-22 17:56:40 INFO  TransactionController:43 - insert into WorkingTransaction( TransactionDate, MachineCode, CompanyCode, AssessorID, WOCode, OPCode, ToolCode, TrayIndex, Quantity, UpdatedDate, TransactionStatus, TransactionType) values (now(), 'MAC1', 'Com1', 'uhacc', '', '', 'ACTID111', 'TRAY_03', '10', now(), 'Complete', 'PutIns');
+2018-08-22 17:56:40 INFO  PutInTakeOverPage:623 - Create transaction
+2018-08-22 17:56:41 INFO  EmployeeController:80 -  select toolsmachine.ToolsMachineID from tools inner join toolsmachine on tools.ToolCode = toolsmachine.ToolCode where tools.ToolCode = 'ACTID111' and toolsmachine.MachineCode = 'MAC1';
+2018-08-22 17:56:41 INFO  EmployeeController:98 -  select count(*) from toolsmachinetray where toolsmachinetray.ToolCode = 'ACTID111' and toolsmachinetray.TrayIndex = 'TRAY_03' and toolsmachinetray.MachineCode = 'MAC1';
+2018-08-22 17:56:41 INFO  EmployeeController:130 -  insert into toolsmachinetray (MachineCode, ToolCode, TrayIndex, Quantity, IsActive) values ('MAC1', 'ACTID111', 'TRAY_03', '10', 1);
+2018-08-22 17:56:42 INFO  LoginController:267 - SELECT EmailAddress FROM Assessor where Assessor.UserName = 'uhacc' and Assessor.CompanyCode = 'Com1';
+2018-08-22 17:56:43 ERROR EmailUtils:169 - AuthenticationFailedException: Cannot connect to email435 Unable to authenticate at present
+
+2018-08-22 17:56:44 INFO  EmployeeController:160 -  select tools.ToolId, tools.ToolCode ,  toolsmachineTray.Quantity, toolsmachineTray.TrayIndex, toolsmachineTray.Machinecode  from tools inner join toolsmachineTray on tools.ToolCode = toolsmachineTray.ToolCode  where toolsmachineTray.MachineCode = 'MAC1';
+2018-08-22 17:56:44 INFO  EmployeeController:203 - {ACTID111=[[TRAY_01, 11], [TRAY_03, 10]], BCTID211=[[TRAY_03, 0], [TRAY_02, 6]]}
+2018-08-22 17:56:44 INFO  PutInTakeOverPage:681 - Complete
+2018-08-22 17:57:40 INFO  PutInTakeOverPage:170 - uhacc back to dashboard from PUTIN_TAKEOVER_PAGE
+2018-08-22 17:57:40 INFO  LoginController:173 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'Com1' and assessor.UserName= 'uhacc'
+2018-08-22 17:57:40 INFO  LoginController:190 - Check Role in UH Com.....
+2018-08-22 17:57:40 INFO  LoginController:191 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'UHCom' and assessor.UserName= 'uhacc'
+2018-08-22 17:57:40 INFO  DashboardPage:93 - Init DASHBOARD_PAGE with list roles: [accounting]
+2018-08-22 17:57:42 INFO  DashboardPage:248 - uhacc - UNLOCK_MACHINE
+2018-08-22 17:57:44 INFO  DashboardPage:277 - Complete
+2018-08-22 17:58:31 INFO  LoginPage:515 - ************************************************************
+2018-08-22 17:58:31 INFO  LoginPage:516 - ************************************************************
+2018-08-22 17:58:31 INFO  LoginPage:517 - ************************************************************
+2018-08-22 17:58:31 INFO  LoginPage:518 - ************************************************************
+2018-08-22 17:58:31 INFO  LoginPage:519 - Starting iTool app.
+2018-08-22 17:58:31 INFO  LoginPage:520 - companyCode: Com1
+2018-08-22 17:58:31 INFO  LoginPage:521 - companyCodeUH: UHCom
+2018-08-22 17:58:31 INFO  LoginPage:522 - machineCode: MAC1
+2018-08-22 17:58:31 INFO  LoginPage:525 - mDbHost: localhost
+2018-08-22 17:58:31 INFO  LoginPage:526 - mDbUser: admin
+2018-08-22 17:58:31 INFO  LoginPage:527 - mDbPwds: 1qazxsw2
+2018-08-22 17:58:31 INFO  LoginPage:528 - mDbName: iTools_v1p0
+2018-08-22 17:58:31 INFO  LoginPage:529 - mDbPort: 3306
+2018-08-22 17:58:31 INFO  LoginPage:530 - Database version: v1p0 - 2018-08-11 12:38:14
+2018-08-22 17:58:31 INFO  LoginPage:532 - Last Sync: 2018-08-21 09:20:55
+2018-08-22 17:58:32 INFO  LoginPage:543 - App Version: 1.0
+2018-08-22 17:58:39 INFO  LoginPage:248 - Login with username: uhacc
+2018-08-22 17:58:39 INFO  LoginController:46 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin, IsLocked FROM Assessor where Assessor.IsActive = 1 and Assessor.UserName='uhacc' and (Password=md5('123456') or LastPassword=md5('123456'));
+2018-08-22 17:58:39 INFO  LoginPage:252 - Login OK
+2018-08-22 17:58:39 INFO  LoginController:173 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'Com1' and assessor.UserName= 'uhacc'
+2018-08-22 17:58:39 INFO  LoginController:190 - Check Role in UH Com.....
+2018-08-22 17:58:39 INFO  LoginController:191 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'UHCom' and assessor.UserName= 'uhacc'
+2018-08-22 17:58:39 INFO  LoginPage:267 - listRoles: [Roles [roleName=Accounting]]
+2018-08-22 17:58:39 INFO  LoginPage:287 - Show DashboardPage
+2018-08-22 17:58:39 INFO  DashboardPage:93 - Init DASHBOARD_PAGE with list roles: [accounting]
+2018-08-22 17:58:41 INFO  DashboardPage:248 - uhacc - UNLOCK_MACHINE
+2018-08-22 17:58:44 INFO  DashboardPage:277 - Complete
+2018-08-22 17:58:46 INFO  DashboardPage:297 - uhacc - TKOVER
+2018-08-22 17:58:46 INFO  EmployeeController:160 -  select tools.ToolId, tools.ToolCode ,  toolsmachineTray.Quantity, toolsmachineTray.TrayIndex, toolsmachineTray.Machinecode  from tools inner join toolsmachineTray on tools.ToolCode = toolsmachineTray.ToolCode  where toolsmachineTray.MachineCode = 'MAC1';
+2018-08-22 17:58:46 INFO  EmployeeController:203 - {ACTID111=[[TRAY_01, 11], [TRAY_03, 10]], BCTID211=[[TRAY_03, 0], [TRAY_02, 6]]}
+2018-08-22 17:58:46 INFO  EmployeeController:50 - select tools.ToolId, tools.ToolCode  from tools inner join toolsmachineTray on tools.ToolCode = toolsmachineTray.ToolCode  where toolsmachineTray.MachineCode = 'MAC1';
+2018-08-22 17:58:46 INFO  EmployeeController:71 - [Tool [toolId=2, toolName=ACTID111], Tool [toolId=5, toolName=BCTID211], Tool [toolId=5, toolName=BCTID211], Tool [toolId=2, toolName=ACTID111]]
+2018-08-22 17:58:49 INFO  PutInTakeOverPage:170 - uhacc back to dashboard from PUTIN_TAKEOVER_PAGE
+2018-08-22 17:58:49 INFO  LoginController:173 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'Com1' and assessor.UserName= 'uhacc'
+2018-08-22 17:58:49 INFO  LoginController:190 - Check Role in UH Com.....
+2018-08-22 17:58:49 INFO  LoginController:191 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'UHCom' and assessor.UserName= 'uhacc'
+2018-08-22 17:58:49 INFO  DashboardPage:93 - Init DASHBOARD_PAGE with list roles: [accounting]
+2018-08-22 17:58:52 INFO  DashboardPage:248 - uhacc - UNLOCK_MACHINE
+2018-08-22 17:58:55 INFO  DashboardPage:277 - Complete
+2018-08-22 17:58:56 INFO  DashboardPage:297 - uhacc - TKOVER
+2018-08-22 17:58:56 INFO  EmployeeController:160 -  select tools.ToolId, tools.ToolCode ,  toolsmachineTray.Quantity, toolsmachineTray.TrayIndex, toolsmachineTray.Machinecode  from tools inner join toolsmachineTray on tools.ToolCode = toolsmachineTray.ToolCode  where toolsmachineTray.MachineCode = 'MAC1';
+2018-08-22 17:58:56 INFO  EmployeeController:203 - {ACTID111=[[TRAY_01, 11], [TRAY_03, 10]], BCTID211=[[TRAY_03, 0], [TRAY_02, 6]]}
+2018-08-22 17:58:56 INFO  EmployeeController:50 - select tools.ToolId, tools.ToolCode  from tools inner join toolsmachineTray on tools.ToolCode = toolsmachineTray.ToolCode  where toolsmachineTray.MachineCode = 'MAC1';
+2018-08-22 17:58:56 INFO  EmployeeController:71 - [Tool [toolId=2, toolName=ACTID111], Tool [toolId=5, toolName=BCTID211], Tool [toolId=5, toolName=BCTID211], Tool [toolId=2, toolName=ACTID111]]
+2018-08-22 17:59:20 INFO  LoginPage:515 - ************************************************************
+2018-08-22 17:59:20 INFO  LoginPage:516 - ************************************************************
+2018-08-22 17:59:20 INFO  LoginPage:517 - ************************************************************
+2018-08-22 17:59:20 INFO  LoginPage:518 - ************************************************************
+2018-08-22 17:59:20 INFO  LoginPage:519 - Starting iTool app.
+2018-08-22 17:59:20 INFO  LoginPage:520 - companyCode: Com1
+2018-08-22 17:59:20 INFO  LoginPage:521 - companyCodeUH: UHCom
+2018-08-22 17:59:20 INFO  LoginPage:522 - machineCode: MAC1
+2018-08-22 17:59:20 INFO  LoginPage:525 - mDbHost: localhost
+2018-08-22 17:59:20 INFO  LoginPage:526 - mDbUser: admin
+2018-08-22 17:59:20 INFO  LoginPage:527 - mDbPwds: 1qazxsw2
+2018-08-22 17:59:20 INFO  LoginPage:528 - mDbName: iTools_v1p0
+2018-08-22 17:59:20 INFO  LoginPage:529 - mDbPort: 3306
+2018-08-22 17:59:20 INFO  LoginPage:530 - Database version: v1p0 - 2018-08-11 12:38:14
+2018-08-22 17:59:20 INFO  LoginPage:532 - Last Sync: 2018-08-21 09:20:55
+2018-08-22 17:59:21 INFO  LoginPage:543 - App Version: 1.0
+2018-08-22 17:59:31 INFO  LoginPage:248 - Login with username: uhacc
+2018-08-22 17:59:31 INFO  LoginController:46 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin, IsLocked FROM Assessor where Assessor.IsActive = 1 and Assessor.UserName='uhacc' and (Password=md5('123456') or LastPassword=md5('123456'));
+2018-08-22 17:59:31 INFO  LoginPage:252 - Login OK
+2018-08-22 17:59:31 INFO  LoginController:173 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'Com1' and assessor.UserName= 'uhacc'
+2018-08-22 17:59:31 INFO  LoginController:190 - Check Role in UH Com.....
+2018-08-22 17:59:31 INFO  LoginController:191 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'UHCom' and assessor.UserName= 'uhacc'
+2018-08-22 17:59:31 INFO  LoginPage:267 - listRoles: [Roles [roleName=Accounting]]
+2018-08-22 17:59:31 INFO  LoginPage:287 - Show DashboardPage
+2018-08-22 17:59:31 INFO  DashboardPage:93 - Init DASHBOARD_PAGE with list roles: [accounting]
+2018-08-22 17:59:32 INFO  DashboardPage:248 - uhacc - UNLOCK_MACHINE
+2018-08-22 17:59:35 INFO  DashboardPage:277 - Complete
+2018-08-22 17:59:35 INFO  DashboardPage:297 - uhacc - TKOVER
+2018-08-22 17:59:35 INFO  EmployeeController:160 -  select tools.ToolId, tools.ToolCode ,  toolsmachineTray.Quantity, toolsmachineTray.TrayIndex, toolsmachineTray.Machinecode  from tools inner join toolsmachineTray on tools.ToolCode = toolsmachineTray.ToolCode  where toolsmachineTray.MachineCode = 'MAC1';
+2018-08-22 17:59:35 INFO  EmployeeController:203 - {ACTID111=[[TRAY_01, 11], [TRAY_03, 10]], BCTID211=[[TRAY_03, 0], [TRAY_02, 6]]}
+2018-08-22 17:59:35 INFO  EmployeeController:50 - select tools.ToolId, tools.ToolCode  from tools inner join toolsmachineTray on tools.ToolCode = toolsmachineTray.ToolCode  where toolsmachineTray.MachineCode = 'MAC1';
+2018-08-22 17:59:35 INFO  EmployeeController:71 - [Tool [toolId=2, toolName=ACTID111], Tool [toolId=5, toolName=BCTID211], Tool [toolId=5, toolName=BCTID211], Tool [toolId=2, toolName=ACTID111]]
+2018-08-22 18:14:56 INFO  LoginPage:519 - ************************************************************
+2018-08-22 18:14:56 INFO  LoginPage:520 - ************************************************************
+2018-08-22 18:14:56 INFO  LoginPage:521 - ************************************************************
+2018-08-22 18:14:56 INFO  LoginPage:522 - ************************************************************
+2018-08-22 18:14:56 INFO  LoginPage:523 - Starting iTool app.
+2018-08-22 18:14:56 INFO  LoginPage:524 - companyCode: Com1
+2018-08-22 18:14:56 INFO  LoginPage:525 - companyCodeUH: UHCom
+2018-08-22 18:14:56 INFO  LoginPage:526 - machineCode: MAC1
+2018-08-22 18:14:57 INFO  LoginPage:529 - mDbHost: localhost
+2018-08-22 18:14:57 INFO  LoginPage:530 - mDbUser: admin
+2018-08-22 18:14:57 INFO  LoginPage:531 - mDbPwds: 1qazxsw2
+2018-08-22 18:14:57 INFO  LoginPage:532 - mDbName: iTools_v1p0
+2018-08-22 18:14:57 INFO  LoginPage:533 - mDbPort: 3306
+2018-08-22 18:14:57 INFO  LoginPage:534 - Database version: v1p0 - 2018-08-11 12:38:14
+2018-08-22 18:14:57 INFO  LoginPage:536 - Last Sync: 2018-08-21 09:20:55
+2018-08-22 18:14:58 INFO  LoginPage:547 - App Version: 1.0
+2018-08-22 18:15:05 INFO  LoginPage:248 - Login with username: uddad
+2018-08-22 18:15:05 INFO  LoginController:46 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin, IsLocked FROM Assessor where Assessor.IsActive = 1 and Assessor.UserName='uddad' and (Password=md5('ádfad') or LastPassword=md5('ádfad'));
+2018-08-22 18:15:05 INFO  LoginPage:301 - Login Fail
+2018-08-22 18:15:05 INFO  LoginPage:303 - Update Fail Time
+2018-08-22 18:15:05 INFO  LoginController:85 - update Assessor set FailTimes = FailTimes + 1 where Assessor.UserName = 'uddad' and Assessor.CompanyCode = 'Com1' ;
+2018-08-22 18:15:05 INFO  LoginController:114 - update Assessor set Assessor.IsLocked = 1 where Assessor.UserName = 'uddad' and Assessor.CompanyCode = 'Com1' and Assessor.FailTimes > 2;
+2018-08-22 18:15:18 INFO  LoginPage:248 - Login with username: uhacc
+2018-08-22 18:15:18 INFO  LoginController:46 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin, IsLocked FROM Assessor where Assessor.IsActive = 1 and Assessor.UserName='uhacc' and (Password=md5('123456') or LastPassword=md5('123456'));
+2018-08-22 18:15:18 INFO  LoginPage:252 - Login OK
+2018-08-22 18:15:18 INFO  LoginController:173 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'Com1' and assessor.UserName= 'uhacc'
+2018-08-22 18:15:18 INFO  LoginController:190 - Check Role in UH Com.....
+2018-08-22 18:15:18 INFO  LoginController:191 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'UHCom' and assessor.UserName= 'uhacc'
+2018-08-22 18:15:18 INFO  LoginPage:268 - listRoles: [Roles [roleName=Accounting]]
+2018-08-22 18:15:18 INFO  LoginPage:289 - Show DashboardPage
+2018-08-22 18:15:18 INFO  DashboardPage:93 - Init DASHBOARD_PAGE with list roles: [accounting]
+2018-08-22 18:15:19 INFO  DashboardPage:248 - uhacc - UNLOCK_MACHINE
+2018-08-22 18:15:21 INFO  DashboardPage:277 - Complete
+2018-08-22 18:15:22 INFO  DashboardPage:297 - uhacc - TKOVER
+2018-08-22 18:15:22 INFO  EmployeeController:160 -  select tools.ToolId, tools.ToolCode ,  toolsmachineTray.Quantity, toolsmachineTray.TrayIndex, toolsmachineTray.Machinecode  from tools inner join toolsmachineTray on tools.ToolCode = toolsmachineTray.ToolCode  where toolsmachineTray.MachineCode = 'MAC1';
+2018-08-22 18:15:22 INFO  EmployeeController:203 - {ACTID111=[[TRAY_01, 11], [TRAY_03, 10]], BCTID211=[[TRAY_03, 0], [TRAY_02, 6]]}
+2018-08-22 18:15:22 INFO  EmployeeController:50 - select tools.ToolId, tools.ToolCode  from tools inner join toolsmachineTray on tools.ToolCode = toolsmachineTray.ToolCode  where toolsmachineTray.MachineCode = 'MAC1';
+2018-08-22 18:15:22 INFO  EmployeeController:71 - [Tool [toolId=2, toolName=ACTID111], Tool [toolId=5, toolName=BCTID211], Tool [toolId=5, toolName=BCTID211], Tool [toolId=2, toolName=ACTID111]]
+2018-08-22 18:15:34 INFO  PutInTakeOverPage:689 - No Option
+2018-08-22 18:16:45 INFO  LoginPage:519 - ************************************************************
+2018-08-22 18:16:45 INFO  LoginPage:520 - ************************************************************
+2018-08-22 18:16:45 INFO  LoginPage:521 - ************************************************************
+2018-08-22 18:16:45 INFO  LoginPage:522 - ************************************************************
+2018-08-22 18:16:45 INFO  LoginPage:523 - Starting iTool app.
+2018-08-22 18:16:45 INFO  LoginPage:524 - companyCode: Com1
+2018-08-22 18:16:45 INFO  LoginPage:525 - companyCodeUH: UHCom
+2018-08-22 18:16:45 INFO  LoginPage:526 - machineCode: MAC1
+2018-08-22 18:16:45 INFO  LoginPage:529 - mDbHost: localhost
+2018-08-22 18:16:45 INFO  LoginPage:530 - mDbUser: admin
+2018-08-22 18:16:45 INFO  LoginPage:531 - mDbPwds: 1qazxsw2
+2018-08-22 18:16:45 INFO  LoginPage:532 - mDbName: iTools_v1p0
+2018-08-22 18:16:45 INFO  LoginPage:533 - mDbPort: 3306
+2018-08-22 18:16:45 INFO  LoginPage:534 - Database version: v1p0 - 2018-08-11 12:38:14
+2018-08-22 18:16:45 INFO  LoginPage:536 - Last Sync: 2018-08-21 09:20:55
+2018-08-22 18:16:46 INFO  LoginPage:547 - App Version: 1.0
+2018-08-22 18:16:54 INFO  LoginPage:248 - Login with username: uhacc
+2018-08-22 18:16:54 INFO  LoginController:46 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin, IsLocked FROM Assessor where Assessor.IsActive = 1 and Assessor.UserName='uhacc' and (Password=md5('123456') or LastPassword=md5('123456'));
+2018-08-22 18:16:54 INFO  LoginPage:252 - Login OK
+2018-08-22 18:16:54 INFO  LoginController:173 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'Com1' and assessor.UserName= 'uhacc'
+2018-08-22 18:16:54 INFO  LoginController:190 - Check Role in UH Com.....
+2018-08-22 18:16:54 INFO  LoginController:191 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'UHCom' and assessor.UserName= 'uhacc'
+2018-08-22 18:16:54 INFO  LoginPage:268 - listRoles: [Roles [roleName=Accounting]]
+2018-08-22 18:16:54 INFO  LoginPage:289 - Show DashboardPage
+2018-08-22 18:16:54 INFO  DashboardPage:93 - Init DASHBOARD_PAGE with list roles: [accounting]
+2018-08-22 18:16:55 INFO  DashboardPage:248 - uhacc - UNLOCK_MACHINE
+2018-08-22 18:16:58 INFO  DashboardPage:277 - Complete
+2018-08-22 18:16:58 INFO  DashboardPage:297 - uhacc - TKOVER
+2018-08-22 18:16:58 INFO  EmployeeController:160 -  select tools.ToolId, tools.ToolCode ,  toolsmachineTray.Quantity, toolsmachineTray.TrayIndex, toolsmachineTray.Machinecode  from tools inner join toolsmachineTray on tools.ToolCode = toolsmachineTray.ToolCode  where toolsmachineTray.MachineCode = 'MAC1';
+2018-08-22 18:16:58 INFO  EmployeeController:203 - {ACTID111=[[TRAY_01, 11], [TRAY_03, 10]], BCTID211=[[TRAY_03, 0], [TRAY_02, 6]]}
+2018-08-22 18:16:58 INFO  EmployeeController:50 - select tools.ToolId, tools.ToolCode  from tools inner join toolsmachineTray on tools.ToolCode = toolsmachineTray.ToolCode  where toolsmachineTray.MachineCode = 'MAC1';
+2018-08-22 18:16:58 INFO  EmployeeController:71 - [Tool [toolId=2, toolName=ACTID111], Tool [toolId=5, toolName=BCTID211], Tool [toolId=5, toolName=BCTID211], Tool [toolId=2, toolName=ACTID111]]
+2018-08-22 18:17:06 INFO  PutInTakeOverPage:689 - No Option
+2018-08-22 18:17:16 INFO  LoginPage:519 - ************************************************************
+2018-08-22 18:17:16 INFO  LoginPage:520 - ************************************************************
+2018-08-22 18:17:16 INFO  LoginPage:521 - ************************************************************
+2018-08-22 18:17:16 INFO  LoginPage:522 - ************************************************************
+2018-08-22 18:17:16 INFO  LoginPage:523 - Starting iTool app.
+2018-08-22 18:17:16 INFO  LoginPage:524 - companyCode: Com1
+2018-08-22 18:17:16 INFO  LoginPage:525 - companyCodeUH: UHCom
+2018-08-22 18:17:16 INFO  LoginPage:526 - machineCode: MAC1
+2018-08-22 18:17:16 INFO  LoginPage:529 - mDbHost: localhost
+2018-08-22 18:17:16 INFO  LoginPage:530 - mDbUser: admin
+2018-08-22 18:17:16 INFO  LoginPage:531 - mDbPwds: 1qazxsw2
+2018-08-22 18:17:16 INFO  LoginPage:532 - mDbName: iTools_v1p0
+2018-08-22 18:17:16 INFO  LoginPage:533 - mDbPort: 3306
+2018-08-22 18:17:16 INFO  LoginPage:534 - Database version: v1p0 - 2018-08-11 12:38:14
+2018-08-22 18:17:16 INFO  LoginPage:536 - Last Sync: 2018-08-21 09:20:55
+2018-08-22 18:17:17 INFO  LoginPage:547 - App Version: 1.0
+2018-08-22 18:17:24 INFO  LoginPage:248 - Login with username: uhacc
+2018-08-22 18:17:24 INFO  LoginController:46 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin, IsLocked FROM Assessor where Assessor.IsActive = 1 and Assessor.UserName='uhacc' and (Password=md5('123456') or LastPassword=md5('123456'));
+2018-08-22 18:17:24 INFO  LoginPage:252 - Login OK
+2018-08-22 18:17:24 INFO  LoginController:173 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'Com1' and assessor.UserName= 'uhacc'
+2018-08-22 18:17:24 INFO  LoginController:190 - Check Role in UH Com.....
+2018-08-22 18:17:24 INFO  LoginController:191 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'UHCom' and assessor.UserName= 'uhacc'
+2018-08-22 18:17:24 INFO  LoginPage:268 - listRoles: [Roles [roleName=Accounting]]
+2018-08-22 18:17:24 INFO  LoginPage:289 - Show DashboardPage
+2018-08-22 18:17:24 INFO  DashboardPage:93 - Init DASHBOARD_PAGE with list roles: [accounting]
+2018-08-22 18:17:25 INFO  DashboardPage:248 - uhacc - UNLOCK_MACHINE
+2018-08-22 18:17:28 INFO  DashboardPage:277 - Complete
+2018-08-22 18:17:28 INFO  DashboardPage:297 - uhacc - TKOVER
+2018-08-22 18:17:28 INFO  EmployeeController:160 -  select tools.ToolId, tools.ToolCode ,  toolsmachineTray.Quantity, toolsmachineTray.TrayIndex, toolsmachineTray.Machinecode  from tools inner join toolsmachineTray on tools.ToolCode = toolsmachineTray.ToolCode  where toolsmachineTray.MachineCode = 'MAC1';
+2018-08-22 18:17:28 INFO  EmployeeController:203 - {ACTID111=[[TRAY_01, 11], [TRAY_03, 10]], BCTID211=[[TRAY_03, 0], [TRAY_02, 6]]}
+2018-08-22 18:17:28 INFO  EmployeeController:50 - select tools.ToolId, tools.ToolCode  from tools inner join toolsmachineTray on tools.ToolCode = toolsmachineTray.ToolCode  where toolsmachineTray.MachineCode = 'MAC1';
+2018-08-22 18:17:28 INFO  EmployeeController:71 - [Tool [toolId=2, toolName=ACTID111], Tool [toolId=5, toolName=BCTID211], Tool [toolId=5, toolName=BCTID211], Tool [toolId=2, toolName=ACTID111]]
+2018-08-22 18:17:42 INFO  PutInTakeOverPage:689 - No Option
+2018-08-22 21:47:25 INFO  LoginPage:519 - ************************************************************
+2018-08-22 21:47:25 INFO  LoginPage:520 - ************************************************************
+2018-08-22 21:47:25 INFO  LoginPage:521 - ************************************************************
+2018-08-22 21:47:25 INFO  LoginPage:522 - ************************************************************
+2018-08-22 21:47:25 INFO  LoginPage:523 - Starting iTool app.
+2018-08-22 21:47:25 INFO  LoginPage:524 - companyCode: Com1
+2018-08-22 21:47:25 INFO  LoginPage:525 - companyCodeUH: UHCom
+2018-08-22 21:47:25 INFO  LoginPage:526 - machineCode: MAC1
+2018-08-22 21:47:28 INFO  LoginPage:529 - mDbHost: localhost
+2018-08-22 21:47:28 INFO  LoginPage:530 - mDbUser: admin
+2018-08-22 21:47:28 INFO  LoginPage:531 - mDbPwds: 1qazxsw2
+2018-08-22 21:47:28 INFO  LoginPage:532 - mDbName: iTools_v1p0
+2018-08-22 21:47:28 INFO  LoginPage:533 - mDbPort: 3306
+2018-08-22 21:47:28 INFO  LoginPage:534 - Database version: v1p0 - 2018-08-11 12:38:14
+2018-08-22 21:47:28 INFO  LoginPage:536 - Last Sync: 2018-08-21 09:20:55
+2018-08-22 21:47:29 INFO  LoginPage:547 - App Version: 1.0
+2018-08-22 21:47:31 INFO  LogController:134 - select NewValue from MasterLog where Action = 'SendLog' order by NewValue desc limit 1;
+2018-08-22 21:47:31 INFO  LoginPage:365 - ========================================
+2018-08-22 21:47:31 INFO  LoginPage:366 - Start syncing thread - 0Sb9YFZk
+2018-08-22 21:47:31 INFO  LoginPage:367 - ========================================
+2018-08-22 21:47:31 INFO  SyncController:68 - Start SyncHostToLocal
+2018-08-22 21:47:32 INFO  LoginPage:459 - Get 1000 from logs
+2018-08-22 21:47:32 INFO  LoginPage:459 - Get 2000 from logs
+2018-08-22 21:47:32 INFO  LoginPage:459 - Get 3000 from logs
+2018-08-22 21:47:35 ERROR EmailUtils:219 - AuthenticationFailedException: Cannot connect to email435 Unable to authenticate at present
+
+2018-08-22 21:47:35 INFO  LogController:162 - insert into MasterLog(Action, NewValue) values('SendLog', '2018-08-22 21:47:32')
+2018-08-22 21:47:35 INFO  LoginPage:483 - Update 2018-08-22 21:47:32 to MasterLog successfully.
+2018-08-22 21:47:35 INFO  LoginPage:492 - Delete log file successfully.
+2018-08-22 21:47:38 INFO  SyncController:77 - ========Start=======
+,
+insertCompany: 0,
+updateCompany: 0,
+insertAssessor: 0,
+updateAssessor: 0,
+insertMachine: 0,
+updateMachine: 0,
+insertCompanyMachine: 0,
+updateCompanyMachine: 0,
+insertRoleAssessor: 0,
+updateRoleAssessor: 0,
+insertRole: 0,
+updateRole: 0,
+insertTools: 0,
+updateTools: 0
+2018-08-22 21:47:38 INFO  SyncController:84 - End SyncHostToLocal: 7s
+2018-08-22 21:47:38 INFO  SyncController:86 - Start SyncLocalToHost
+2018-08-22 21:55:09 INFO  LoginPage:522 - ************************************************************
+2018-08-22 21:55:09 INFO  LoginPage:523 - ************************************************************
+2018-08-22 21:55:09 INFO  LoginPage:524 - ************************************************************
+2018-08-22 21:55:09 INFO  LoginPage:525 - ************************************************************
+2018-08-22 21:55:09 INFO  LoginPage:526 - Starting iTool app.
+2018-08-22 21:55:09 INFO  LoginPage:527 - companyCode: Com1
+2018-08-22 21:55:09 INFO  LoginPage:528 - companyCodeUH: UHCom
+2018-08-22 21:55:09 INFO  LoginPage:529 - machineCode: MAC1
+2018-08-22 21:55:10 INFO  LoginPage:532 - mDbHost: localhost
+2018-08-22 21:55:10 INFO  LoginPage:533 - mDbUser: admin
+2018-08-22 21:55:10 INFO  LoginPage:534 - mDbPwds: 1qazxsw2
+2018-08-22 21:55:10 INFO  LoginPage:535 - mDbName: iTools_v1p0
+2018-08-22 21:55:10 INFO  LoginPage:536 - mDbPort: 3306
+2018-08-22 21:55:10 INFO  LoginPage:537 - Database version: v1p0 - 2018-08-11 12:38:14
+2018-08-22 21:55:10 INFO  LoginPage:539 - Last Sync: 2018-08-22 21:53:40
+2018-08-22 21:55:11 INFO  LoginPage:550 - App Version: 1.0
+2018-08-22 21:55:25 INFO  LoginPage:252 - Login with username: com1user1
+2018-08-22 21:55:25 INFO  LoginController:46 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin, IsLocked FROM Assessor where Assessor.IsActive = 1 and Assessor.UserName='com1user1' and (Password=md5('123456') or LastPassword=md5('123456'));
+2018-08-22 21:55:25 INFO  LoginPage:256 - Login OK
+2018-08-22 21:55:25 INFO  LoginPage:262 - isFirstTimeLogin: true
+2018-08-22 21:55:25 INFO  UserController:44 - SELECT AssessorID, UserName, Password, CompanyCode, IsActive, IsLocked, FirstName, LastName FROM Assessor where Assessor.IsActive=1 and Assessor.CompanyCode = 'Com1';
+2018-08-22 21:55:25 INFO  ResetPasswordPage:117 - Init RESET_PASS_PAGE
+2018-08-22 21:56:23 INFO  ResetPasswordPage:188 - com1user1 logout.
+2018-08-22 21:57:41 INFO  LoginPage:252 - Login with username: com1user1
+2018-08-22 21:57:41 INFO  LoginController:46 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin, IsLocked FROM Assessor where Assessor.IsActive = 1 and Assessor.UserName='com1user1' and (Password=md5('123456') or LastPassword=md5('123456'));
+2018-08-22 21:57:41 INFO  LoginPage:256 - Login OK
+2018-08-22 21:57:41 INFO  LoginPage:262 - isFirstTimeLogin: true
+2018-08-22 21:57:41 INFO  UserController:44 - SELECT AssessorID, UserName, Password, CompanyCode, IsActive, IsLocked, FirstName, LastName FROM Assessor where Assessor.IsActive=1 and Assessor.CompanyCode = 'Com1';
+2018-08-22 21:57:41 INFO  ResetPasswordPage:117 - Init RESET_PASS_PAGE
+2018-08-22 21:57:43 INFO  ResetPasswordPage:188 - com1user1 logout.
+2018-08-22 22:04:43 INFO  LoginPage:524 - ************************************************************
+2018-08-22 22:04:43 INFO  LoginPage:525 - ************************************************************
+2018-08-22 22:04:43 INFO  LoginPage:526 - ************************************************************
+2018-08-22 22:04:43 INFO  LoginPage:527 - ************************************************************
+2018-08-22 22:04:43 INFO  LoginPage:528 - Starting iTool app.
+2018-08-22 22:04:43 INFO  LoginPage:529 - companyCode: Com1
+2018-08-22 22:04:43 INFO  LoginPage:530 - companyCodeUH: UHCom
+2018-08-22 22:04:43 INFO  LoginPage:531 - machineCode: MAC1
+2018-08-22 22:04:44 INFO  LoginPage:534 - mDbHost: localhost
+2018-08-22 22:04:44 INFO  LoginPage:535 - mDbUser: admin
+2018-08-22 22:04:44 INFO  LoginPage:536 - mDbPwds: 1qazxsw2
+2018-08-22 22:04:44 INFO  LoginPage:537 - mDbName: iTools_v1p0
+2018-08-22 22:04:44 INFO  LoginPage:538 - mDbPort: 3306
+2018-08-22 22:04:44 INFO  LoginPage:539 - Database version: v1p0 - 2018-08-11 12:38:14
+2018-08-22 22:04:44 INFO  LoginPage:541 - Last Sync: 2018-08-22 21:53:40
+2018-08-22 22:04:45 INFO  LoginPage:552 - App Version: 1.0
+2018-08-22 22:05:20 INFO  LoginPage:524 - ************************************************************
+2018-08-22 22:05:20 INFO  LoginPage:525 - ************************************************************
+2018-08-22 22:05:20 INFO  LoginPage:526 - ************************************************************
+2018-08-22 22:05:20 INFO  LoginPage:527 - ************************************************************
+2018-08-22 22:05:20 INFO  LoginPage:528 - Starting iTool app.
+2018-08-22 22:05:20 INFO  LoginPage:529 - companyCode: Com1
+2018-08-22 22:05:20 INFO  LoginPage:530 - companyCodeUH: UHCom
+2018-08-22 22:05:20 INFO  LoginPage:531 - machineCode: MAC1
+2018-08-22 22:05:21 INFO  LoginPage:534 - mDbHost: localhost
+2018-08-22 22:05:21 INFO  LoginPage:535 - mDbUser: admin
+2018-08-22 22:05:21 INFO  LoginPage:536 - mDbPwds: 1qazxsw2
+2018-08-22 22:05:21 INFO  LoginPage:537 - mDbName: iTools_v1p0
+2018-08-22 22:05:21 INFO  LoginPage:538 - mDbPort: 3306
+2018-08-22 22:05:21 INFO  LoginPage:539 - Database version: v1p0 - 2018-08-11 12:38:14
+2018-08-22 22:05:21 INFO  LoginPage:541 - Last Sync: 2018-08-22 21:53:40
+2018-08-22 22:05:22 INFO  LoginPage:552 - App Version: 1.0
+2018-08-22 22:06:19 INFO  LoginPage:254 - Login with username: com1user1
+2018-08-22 22:06:19 INFO  LoginController:46 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin, IsLocked FROM Assessor where Assessor.IsActive = 1 and Assessor.UserName='com1user1' and (Password=md5('123456') or LastPassword=md5('123456'));
+2018-08-22 22:06:19 INFO  LoginPage:258 - Login OK
+2018-08-22 22:06:19 INFO  LoginPage:264 - isFirstTimeLogin: true
+2018-08-22 22:06:19 INFO  UserController:44 - SELECT AssessorID, UserName, Password, CompanyCode, IsActive, IsLocked, FirstName, LastName FROM Assessor where Assessor.IsActive=1 and Assessor.CompanyCode = 'Com1';
+2018-08-22 22:06:19 INFO  ResetPasswordPage:117 - Init RESET_PASS_PAGE
+2018-08-22 22:07:55 INFO  LoginPage:524 - ************************************************************
+2018-08-22 22:07:55 INFO  LoginPage:525 - ************************************************************
+2018-08-22 22:07:55 INFO  LoginPage:526 - ************************************************************
+2018-08-22 22:07:55 INFO  LoginPage:527 - ************************************************************
+2018-08-22 22:07:55 INFO  LoginPage:528 - Starting iTool app.
+2018-08-22 22:07:55 INFO  LoginPage:529 - companyCode: Com1
+2018-08-22 22:07:55 INFO  LoginPage:530 - companyCodeUH: UHCom
+2018-08-22 22:07:55 INFO  LoginPage:531 - machineCode: MAC1
+2018-08-22 22:07:56 INFO  LoginPage:534 - mDbHost: localhost
+2018-08-22 22:07:56 INFO  LoginPage:535 - mDbUser: admin
+2018-08-22 22:07:56 INFO  LoginPage:536 - mDbPwds: 1qazxsw2
+2018-08-22 22:07:56 INFO  LoginPage:537 - mDbName: iTools_v1p0
+2018-08-22 22:07:56 INFO  LoginPage:538 - mDbPort: 3306
+2018-08-22 22:07:56 INFO  LoginPage:539 - Database version: v1p0 - 2018-08-11 12:38:14
+2018-08-22 22:07:56 INFO  LoginPage:541 - Last Sync: 2018-08-22 21:53:40
+2018-08-22 22:07:57 INFO  LoginPage:552 - App Version: 1.0
+2018-08-22 22:08:01 INFO  LoginPage:254 - Login with username: com1user1
+2018-08-22 22:08:01 INFO  LoginController:46 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin, IsLocked FROM Assessor where Assessor.IsActive = 1 and Assessor.UserName='com1user1' and (Password=md5('123456') or LastPassword=md5('123456'));
+2018-08-22 22:08:01 INFO  LoginPage:258 - Login OK
+2018-08-22 22:08:01 INFO  LoginController:173 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'Com1' and assessor.UserName= 'com1user1'
+2018-08-22 22:08:01 INFO  LoginPage:274 - listRoles: [Roles [roleName=Emp]]
+2018-08-22 22:08:01 INFO  LoginPage:286 - Show EmployeePage
+2018-08-22 22:08:01 INFO  EmployeeController:160 -  select tools.ToolId, tools.ToolCode ,  toolsmachineTray.Quantity, toolsmachineTray.TrayIndex, toolsmachineTray.Machinecode  from tools inner join toolsmachineTray on tools.ToolCode = toolsmachineTray.ToolCode  where toolsmachineTray.MachineCode = 'MAC1';
+2018-08-22 22:08:01 INFO  EmployeeController:203 - {ACTID111=[[TRAY_01, 11], [TRAY_03, 10]], BCTID211=[[TRAY_02, 6]]}
+2018-08-22 22:08:01 INFO  EmployeeController:270 -  select tools.ToolCode from tools;
+2018-08-22 22:08:01 INFO  EmployeeController:290 - {}
+2018-08-22 22:08:01 INFO  EmployeeController:50 - select tools.ToolId, tools.ToolCode  from tools inner join toolsmachineTray on tools.ToolCode = toolsmachineTray.ToolCode  where toolsmachineTray.MachineCode = 'MAC1';
+2018-08-22 22:08:01 INFO  EmployeeController:71 - [Tool [toolId=2, toolName=ACTID111], Tool [toolId=5, toolName=BCTID211], Tool [toolId=5, toolName=BCTID211], Tool [toolId=2, toolName=ACTID111]]
+2018-08-22 22:08:01 INFO  EmployeePage:505 - listToolNames: [, ACTID111, ACTID111, BCTID211, BCTID211]
+2018-08-22 22:08:01 INFO  EmployeePage:515 - toolComboBox: [, ACTID111, ACTID111, BCTID211, BCTID211]
+2018-08-22 22:08:01 INFO  EmployeePage:163 - Init EMP_PAGE
+2018-08-22 22:08:01 INFO  EmployeePage:166 - listAllTrays: [TRAY_01, TRAY_02, TRAY_03, TRAY_04, TRAY_05, TRAY_06, TRAY_07, TRAY_08, TRAY_09, TRAY_10, TRAY_11, TRAY_12, TRAY_13, TRAY_14, TRAY_15, TRAY_16, TRAY_17, TRAY_18, TRAY_19, TRAY_20, TRAY_21, TRAY_22, TRAY_23, TRAY_24, TRAY_25, TRAY_26, TRAY_27, TRAY_28, TRAY_29, TRAY_30, TRAY_31, TRAY_32, TRAY_33, TRAY_34, TRAY_35, TRAY_36, TRAY_37, TRAY_38, TRAY_39, TRAY_40, TRAY_41, TRAY_42, TRAY_43, TRAY_44, TRAY_45, TRAY_46, TRAY_47, TRAY_48, TRAY_49, TRAY_50, TRAY_51, TRAY_52, TRAY_53, TRAY_54, TRAY_55, TRAY_56, TRAY_57, TRAY_58, TRAY_59, TRAY_60]
+2018-08-22 22:08:01 INFO  EmployeePage:172 - hashMessage: {TRAY_09=09, TRAY_07=07, TRAY_08=08, TRAY_41=41, TRAY_42=42, TRAY_40=40, TRAY_05=05, TRAY_49=49, TRAY_06=06, TRAY_03=03, TRAY_47=47, TRAY_04=04, TRAY_48=48, TRAY_01=01, TRAY_45=45, TRAY_02=02, TRAY_46=46, TRAY_43=43, TRAY_44=44, TRAY_30=30, TRAY_31=31, TRAY_38=38, TRAY_39=39, TRAY_36=36, TRAY_37=37, TRAY_34=34, TRAY_35=35, TRAY_32=32, TRAY_33=33, TRAY_29=29, TRAY_20=20, TRAY_60=60, TRAY_27=27, TRAY_28=28, TRAY_25=25, TRAY_26=26, TRAY_23=23, TRAY_24=24, TRAY_21=21, TRAY_22=22, TRAY_18=18, TRAY_19=19, TRAY_52=52, TRAY_53=53, TRAY_50=50, TRAY_51=51, TRAY_16=16, TRAY_17=17, TRAY_14=14, TRAY_58=58, TRAY_15=15, TRAY_59=59, TRAY_12=12, TRAY_56=56, TRAY_13=13, TRAY_57=57, TRAY_10=10, TRAY_54=54, TRAY_11=11, TRAY_55=55}
+2018-08-22 22:15:05 INFO  LoginPage:524 - ************************************************************
+2018-08-22 22:15:05 INFO  LoginPage:525 - ************************************************************
+2018-08-22 22:15:05 INFO  LoginPage:526 - ************************************************************
+2018-08-22 22:15:05 INFO  LoginPage:527 - ************************************************************
+2018-08-22 22:15:05 INFO  LoginPage:528 - Starting iTool app.
+2018-08-22 22:15:05 INFO  LoginPage:529 - companyCode: Com1
+2018-08-22 22:15:05 INFO  LoginPage:530 - companyCodeUH: UHCom
+2018-08-22 22:15:05 INFO  LoginPage:531 - machineCode: MAC1
+2018-08-22 22:15:06 INFO  LoginPage:534 - mDbHost: localhost
+2018-08-22 22:15:06 INFO  LoginPage:535 - mDbUser: admin
+2018-08-22 22:15:06 INFO  LoginPage:536 - mDbPwds: 1qazxsw2
+2018-08-22 22:15:06 INFO  LoginPage:537 - mDbName: iTools_v1p0
+2018-08-22 22:15:06 INFO  LoginPage:538 - mDbPort: 3306
+2018-08-22 22:15:06 INFO  LoginPage:539 - Database version: v1p0 - 2018-08-11 12:38:14
+2018-08-22 22:15:06 INFO  LoginPage:541 - Last Sync: 2018-08-22 21:53:40
+2018-08-22 22:15:07 INFO  LoginPage:552 - App Version: 1.0
+2018-08-22 22:15:11 INFO  LoginPage:254 - Login with username: com1user1
+2018-08-22 22:15:11 INFO  LoginController:46 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin, IsLocked FROM Assessor where Assessor.IsActive = 1 and Assessor.UserName='com1user1' and (Password=md5('123456') or LastPassword=md5('123456'));
+2018-08-22 22:15:11 INFO  LoginPage:258 - Login OK
+2018-08-22 22:15:11 INFO  LoginController:173 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'Com1' and assessor.UserName= 'com1user1'
+2018-08-22 22:15:11 INFO  LoginPage:274 - listRoles: [Roles [roleName=Emp]]
+2018-08-22 22:15:11 INFO  LoginPage:286 - Show EmployeePage
+2018-08-22 22:15:11 INFO  EmployeeController:160 -  select tools.ToolId, tools.ToolCode ,  toolsmachineTray.Quantity, toolsmachineTray.TrayIndex, toolsmachineTray.Machinecode  from tools inner join toolsmachineTray on tools.ToolCode = toolsmachineTray.ToolCode  where toolsmachineTray.MachineCode = 'MAC1';
+2018-08-22 22:15:11 INFO  EmployeeController:203 - {ACTID111=[[TRAY_01, 11], [TRAY_03, 10]], BCTID211=[[TRAY_02, 6]]}
+2018-08-22 22:15:11 INFO  EmployeeController:270 -  select tools.ToolCode from tools;
+2018-08-22 22:15:11 INFO  EmployeeController:290 - {}
+2018-08-22 22:15:12 INFO  EmployeeController:50 - select tools.ToolId, tools.ToolCode  from tools inner join toolsmachineTray on tools.ToolCode = toolsmachineTray.ToolCode  where toolsmachineTray.MachineCode = 'MAC1';
+2018-08-22 22:15:12 INFO  EmployeeController:71 - [Tool [toolId=2, toolName=ACTID111], Tool [toolId=5, toolName=BCTID211], Tool [toolId=5, toolName=BCTID211], Tool [toolId=2, toolName=ACTID111]]
+2018-08-22 22:15:12 INFO  EmployeePage:513 - listToolNames: [, ACTID111, BCTID211]
+2018-08-22 22:15:12 INFO  EmployeePage:523 - toolComboBox: [, ACTID111, BCTID211]
+2018-08-22 22:15:12 INFO  EmployeePage:165 - Init EMP_PAGE
+2018-08-22 22:15:12 INFO  EmployeePage:168 - listAllTrays: [TRAY_01, TRAY_02, TRAY_03, TRAY_04, TRAY_05, TRAY_06, TRAY_07, TRAY_08, TRAY_09, TRAY_10, TRAY_11, TRAY_12, TRAY_13, TRAY_14, TRAY_15, TRAY_16, TRAY_17, TRAY_18, TRAY_19, TRAY_20, TRAY_21, TRAY_22, TRAY_23, TRAY_24, TRAY_25, TRAY_26, TRAY_27, TRAY_28, TRAY_29, TRAY_30, TRAY_31, TRAY_32, TRAY_33, TRAY_34, TRAY_35, TRAY_36, TRAY_37, TRAY_38, TRAY_39, TRAY_40, TRAY_41, TRAY_42, TRAY_43, TRAY_44, TRAY_45, TRAY_46, TRAY_47, TRAY_48, TRAY_49, TRAY_50, TRAY_51, TRAY_52, TRAY_53, TRAY_54, TRAY_55, TRAY_56, TRAY_57, TRAY_58, TRAY_59, TRAY_60]
+2018-08-22 22:15:12 INFO  EmployeePage:174 - hashMessage: {TRAY_09=09, TRAY_07=07, TRAY_08=08, TRAY_41=41, TRAY_42=42, TRAY_40=40, TRAY_05=05, TRAY_49=49, TRAY_06=06, TRAY_03=03, TRAY_47=47, TRAY_04=04, TRAY_48=48, TRAY_01=01, TRAY_45=45, TRAY_02=02, TRAY_46=46, TRAY_43=43, TRAY_44=44, TRAY_30=30, TRAY_31=31, TRAY_38=38, TRAY_39=39, TRAY_36=36, TRAY_37=37, TRAY_34=34, TRAY_35=35, TRAY_32=32, TRAY_33=33, TRAY_29=29, TRAY_20=20, TRAY_60=60, TRAY_27=27, TRAY_28=28, TRAY_25=25, TRAY_26=26, TRAY_23=23, TRAY_24=24, TRAY_21=21, TRAY_22=22, TRAY_18=18, TRAY_19=19, TRAY_52=52, TRAY_53=53, TRAY_50=50, TRAY_51=51, TRAY_16=16, TRAY_17=17, TRAY_14=14, TRAY_58=58, TRAY_15=15, TRAY_59=59, TRAY_12=12, TRAY_56=56, TRAY_13=13, TRAY_57=57, TRAY_10=10, TRAY_54=54, TRAY_11=11, TRAY_55=55}

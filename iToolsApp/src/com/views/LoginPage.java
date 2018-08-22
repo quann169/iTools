@@ -83,6 +83,8 @@ public class LoginPage extends JFrame implements ActionListener {
 	private static final String companyCodeUH = AdvancedEncryptionStandard.decrypt(cfg.getProperty("COMPANY_CODE_UH"));
 	private static final String machineCode = AdvancedEncryptionStandard.decrypt(cfg.getProperty("MACHINE_CODE"));
 
+	static String productMode = cfg.getProperty("PRODUCT_MODE");
+
 	static long timeInterval = Long.valueOf(cfg.getProperty("INTERVAL_SYNC"));
 	static String userName = "";
 	static SyncController syncCtl = new SyncController();
@@ -222,8 +224,10 @@ public class LoginPage extends JFrame implements ActionListener {
 			@Override
 			public void windowClosing(WindowEvent we) {
 				String ObjButtons[] = { "Yes", "No" };
-				int PromptResult = JOptionPane.showOptionDialog(root, "Are you sure you want to exit?", "Confirm Close",
-						JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, ObjButtons, ObjButtons[1]);
+				int PromptResult = JOptionPane.showOptionDialog(root,
+						"<html><font size=\"5\" face=\"arial\">Are you sure you want to exit?</font></html>",
+						"Confirm Close", JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, ObjButtons,
+						ObjButtons[1]);
 				if (PromptResult == JOptionPane.YES_OPTION) {
 					System.exit(0);
 				}
@@ -240,10 +244,12 @@ public class LoginPage extends JFrame implements ActionListener {
 		userName = userTextField.getText();
 		if (e.getSource() == loginButton) {
 
-			// userText = "com1user1";
-			// userText = "com1admin";
-			// userText = "uhacc";
-			// pwdText = "123456";
+			if (productMode.equals("Dev")) {
+				userText = "com1user1";
+				// userText = "com1admin";
+				// userText = "uhacc";
+				pwdText = "123456";
+			}
 
 			logger.info("Login with username: " + userText);
 
@@ -252,7 +258,8 @@ public class LoginPage extends JFrame implements ActionListener {
 				logger.info("Login OK");
 				if (result.isLocked()) {
 					logger.info("User blocked");
-					JOptionPane.showMessageDialog(this, bundleMessage.getString("Login_Page_Login_Acc_Locked"));
+					JOptionPane.showMessageDialog(this, "<html><font size=\"5\" face=\"arial\">"
+							+ bundleMessage.getString("Login_Page_Login_Acc_Locked") + "</font></html>");
 				} else if (result.isFirstTimeLogin()) {
 					logger.info("isFirstTimeLogin: " + result.isFirstTimeLogin());
 					JFrame old = root;
@@ -272,7 +279,8 @@ public class LoginPage extends JFrame implements ActionListener {
 					// }
 
 					if (listRoles.size() == 0) {
-						JOptionPane.showMessageDialog(this, bundleMessage.getString("Login_Page_Have_Not_Role"));
+						JOptionPane.showMessageDialog(this, "<html><font size=\"5\" face=\"arial\">"
+								+ bundleMessage.getString("Login_Page_Have_Not_Role") + "</font></html>");
 						logger.info("User does not have role");
 					} else if (listRoles.size() == 1 && Enum.EMP.text().equals(listRoles.get(0).getRoleName())) {
 						logger.info("Show EmployeePage");
@@ -308,7 +316,7 @@ public class LoginPage extends JFrame implements ActionListener {
 					Thread one = new Thread() {
 						public void run() {
 							List<String> listCCEmail = new ArrayList<>();
-							listCCEmail.add("quann169@gmail.com");
+							listCCEmail.add(ctlObj.getEmailAdmin());
 							emailUtils.sendEmail(email, listCCEmail, "Login_Fail_3_Times",
 									"Login fail 3 times. Application will lock your account. Please contact your admin to unlock.");
 
@@ -316,10 +324,12 @@ public class LoginPage extends JFrame implements ActionListener {
 					};
 
 					one.start();
-					JOptionPane.showMessageDialog(this, bundleMessage.getString("Login_Page_Login_Fail_3_Times"));
+					JOptionPane.showMessageDialog(this, "<html><font size=\"5\" face=\"arial\">"
+							+ bundleMessage.getString("Login_Page_Login_Fail_3_Times") + "</font></html>");
 
 				} else {
-					JOptionPane.showMessageDialog(this, bundleMessage.getString("Login_Page_Login_Fail"));
+					JOptionPane.showMessageDialog(this, "<html><font size=\"5\" face=\"arial\">"
+							+ bundleMessage.getString("Login_Page_Login_Fail") + "</font></html>");
 				}
 
 			}
@@ -376,8 +386,6 @@ public class LoginPage extends JFrame implements ActionListener {
 			}
 		};
 
-		one.start();
-
 		Thread two = new Thread() {
 			public void run() {
 
@@ -413,9 +421,10 @@ public class LoginPage extends JFrame implements ActionListener {
 
 			}
 		};
-
-		two.start();
-
+		if (!productMode.equals("Dev")) {
+			one.start();
+			two.start();
+		}
 		root = new LoginPage();
 		StringUtils.frameInit(root, bundleMessage);
 		root.setTitle(bundleMessage.getString("Login_Page_Title"));
@@ -550,8 +559,8 @@ public class LoginPage extends JFrame implements ActionListener {
 				publish("Checking email...");
 				Thread.sleep(1000);
 
-//				boolean checkEmailConfig = emailUtils.checkEmailConnection();
-//				logger.info("checkEmailConfig: " + checkEmailConfig);
+				// boolean checkEmailConfig = emailUtils.checkEmailConnection();
+				// logger.info("checkEmailConfig: " + checkEmailConfig);
 
 				publish("Done checking...");
 				Thread.sleep(1000);

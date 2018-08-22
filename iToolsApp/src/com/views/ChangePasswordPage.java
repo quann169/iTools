@@ -240,7 +240,7 @@ public class ChangePasswordPage extends JFrame implements ActionListener {
 			public void actionPerformed(ActionEvent e) {
 				String timeoutMess = MessageFormat.format(bundleMessage.getString("App_TimeOut"),
 						cfg.getProperty("Expired_Time"));
-				JOptionPane.showMessageDialog(container, timeoutMess, "Time Out Reset Pass",
+				JOptionPane.showMessageDialog(container, "<html><font size=\"5\" face=\"arial\">" + timeoutMess + "</font></html>" , "Time Out Reset Pass",
 						JOptionPane.WARNING_MESSAGE);
 
 				logger.info(userName + ": " + Enum.RESET_PASS_PAGE + " time out.");
@@ -303,7 +303,7 @@ public class ChangePasswordPage extends JFrame implements ActionListener {
 			@Override
 			public void windowClosing(WindowEvent we) {
 				String ObjButtons[] = { "Yes", "No" };
-				int PromptResult = JOptionPane.showOptionDialog(root, "Are you sure you want to exit?", "Confirm Close",
+				int PromptResult = JOptionPane.showOptionDialog(root, "<html><font size=\"5\" face=\"arial\">Are you sure you want to exit?</font></html>", "Confirm Close",
 						JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, ObjButtons, ObjButtons[1]);
 				if (PromptResult == JOptionPane.YES_OPTION) {
 					System.exit(0);
@@ -333,7 +333,7 @@ public class ChangePasswordPage extends JFrame implements ActionListener {
 				Assessor validateOldPass = ctlObj.validateUser(userName, oldPassword);
 
 				if (validateOldPass == null) {
-					JOptionPane.showMessageDialog(container, "Old password does not match.", "Check old password",
+					JOptionPane.showMessageDialog(container, "<html><font size=\"5\" face=\"arial\">" + "Old password does not match." + "</font></html>" , "Check old password",
 							JOptionPane.WARNING_MESSAGE);
 				} else {
 
@@ -346,7 +346,7 @@ public class ChangePasswordPage extends JFrame implements ActionListener {
 					Thread one = new Thread() {
 						public void run() {
 							List<String> listCCEmail = new ArrayList<>();
-							listCCEmail.add("quann169@gmail.com");
+							listCCEmail.add(ctlObj.getEmailAdmin());
 							emailUtils.sendEmail(email, listCCEmail, "Change Pass Successfully",
 									"Hi " + userName + ",\nYour pass has been change to " + password);
 
@@ -357,7 +357,7 @@ public class ChangePasswordPage extends JFrame implements ActionListener {
 					confirm = "<html><font size=\"4\" face=\"arial\"><i>Completed change password" + " " + userName
 							+ "</i></font></html>";
 					
-					JOptionPane.showMessageDialog(container, confirm, "Notify result", JOptionPane.INFORMATION_MESSAGE);
+					JOptionPane.showMessageDialog(container, "<html><font size=\"5\" face=\"arial\">" + confirm + "</font></html>", "Notify result", JOptionPane.INFORMATION_MESSAGE);
 					
 					
 					logger.info(userName + " logout.");

@@ -130,7 +130,7 @@ public class ResetPasswordPage extends JFrame implements ActionListener {
 		backToDashboardLabel.setText("<html><html><font size=\"5\" face=\"arial\" color=\"#0181BE\"><b><i><u>"
 				+ bundleMessage.getString("Employee_Back_To_Dashboard") + "</u></i></b></font></html></html>");
 		backToDashboardLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		backToDashboardLabel.setBounds(15, 5, 270, 60);
+		backToDashboardLabel.setBounds(15, 5, 300, 70);
 		backToDashboardLabel.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -334,7 +334,7 @@ public class ResetPasswordPage extends JFrame implements ActionListener {
 			public void actionPerformed(ActionEvent e) {
 				String timeoutMess = MessageFormat.format(bundleMessage.getString("App_TimeOut"),
 						cfg.getProperty("Expired_Time"));
-				JOptionPane.showMessageDialog(container, timeoutMess, "Time Out Reset Pass",
+				JOptionPane.showMessageDialog(container, "<html><font size=\"5\" face=\"arial\">" + timeoutMess + "</font></html>" , "Time Out Reset Pass",
 						JOptionPane.WARNING_MESSAGE);
 
 				logger.info(userName + ": " + Enum.RESET_PASS_PAGE + " time out.");
@@ -411,7 +411,7 @@ public class ResetPasswordPage extends JFrame implements ActionListener {
 			@Override
 			public void windowClosing(WindowEvent we) {
 				String ObjButtons[] = { "Yes", "No" };
-				int PromptResult = JOptionPane.showOptionDialog(root, "Are you sure you want to exit?", "Confirm Close",
+				int PromptResult = JOptionPane.showOptionDialog(root, "<html><font size=\"5\" face=\"arial\">Are you sure you want to exit?</font></html>", "Confirm Close",
 						JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, ObjButtons, ObjButtons[1]);
 				if (PromptResult == JOptionPane.YES_OPTION) {
 					System.exit(0);
@@ -451,7 +451,7 @@ public class ResetPasswordPage extends JFrame implements ActionListener {
 					Thread one = new Thread() {
 						public void run() {
 							List<String> listCCEmail = new ArrayList<>();
-							listCCEmail.add("quann169@gmail.com");
+							listCCEmail.add(ctlObj.getEmailAdmin());
 							emailUtils.sendEmail(email, listCCEmail, "First Time Login Change Pass",
 									"Hi " + usernameResetPass + ",\nYour pass has been change to " + newPass);
 
@@ -461,7 +461,7 @@ public class ResetPasswordPage extends JFrame implements ActionListener {
 					one.start();
 					logger.info("Change Pass of " + usernameResetPass);
 
-					String confirm = "<html><font size=\"4\" face=\"arial\"><i>Completed Change Password</i></font></html>";
+					String confirm = "<html><font size=\"5\" face=\"arial\"><i>Completed Change Password</i></font></html>";
 					JOptionPane.showMessageDialog(container, confirm, "Notify result", JOptionPane.INFORMATION_MESSAGE);
 					logger.info("log out");
 					logger.info(userName + " logout.");
@@ -475,7 +475,7 @@ public class ResetPasswordPage extends JFrame implements ActionListener {
 				} else {
 					empCtlObj.updatePassword(usernameResetPass, companyCode, password, true);
 					logger.info("Reset Pass of " + usernameResetPass);
-					String confirm = "<html><font size=\"4\" face=\"arial\"><i>Completed Reset Password" + " "
+					String confirm = "<html><font size=\"5\" face=\"arial\"><i>Completed Reset Password" + " "
 							+ usernameResetPass + "</i></font></html>";
 					JOptionPane.showMessageDialog(container, confirm, "Notify result", JOptionPane.INFORMATION_MESSAGE);
 				}

@@ -281,5 +281,26 @@ public class LoginController {
 		}
 		return emailUser;
 	}
+	
+	public String getEmailAdmin() {
+		String emailUser = "";
+		String sql = "SELECT EmailAddress FROM Assessor where Assessor.UserName = 'admin';";
+		logger.info(sql);
+		try {
+			PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
+			ResultSet rs = statement.executeQuery(sql);
+
+			while (rs.next()) {
+				emailUser = rs.getString(1);
+				break;
+			}
+		} catch (SQLException e) {
+			logger.info(e.getMessage());
+			return "";
+		} finally {
+			mysqlConnect.disconnect();
+		}
+		return emailUser;
+	}
 
 }

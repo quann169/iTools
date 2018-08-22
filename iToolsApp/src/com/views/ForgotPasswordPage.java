@@ -114,12 +114,12 @@ public class ForgotPasswordPage extends JFrame implements ActionListener {
 				validateAllFields();
 			}
 		});
-		
+
 		usernameTextField.addKeyListener(new KeyAdapter() {
-		    public void keyTyped(KeyEvent e) { 
-		        if (usernameTextField.getText().length() >= 20 )
-		            e.consume(); 
-		    }  
+			public void keyTyped(KeyEvent e) {
+				if (usernameTextField.getText().length() >= 20)
+					e.consume();
+			}
 		});
 
 		emailLabel.setBounds(120, 190, 250, 40);
@@ -159,8 +159,9 @@ public class ForgotPasswordPage extends JFrame implements ActionListener {
 			public void actionPerformed(ActionEvent e) {
 				String timeoutMess = MessageFormat.format(bundleMessage.getString("App_TimeOut"),
 						cfg.getProperty("Expired_Time"));
-				JOptionPane.showMessageDialog(container, timeoutMess, "Time Out Reset Pass",
-						JOptionPane.WARNING_MESSAGE);
+				JOptionPane.showMessageDialog(container,
+						"<html><font size=\"5\" face=\"arial\">" + timeoutMess + "</font></html>",
+						"Time Out Reset Pass", JOptionPane.WARNING_MESSAGE);
 
 				logger.info("" + ": " + Enum.FORGOT_PASS_PAGE + " time out.");
 				JFrame old = root;
@@ -208,15 +209,14 @@ public class ForgotPasswordPage extends JFrame implements ActionListener {
 	public void addActionEvent() {
 		forgotPassButton.addActionListener(this);
 		cancelButton.addActionListener(this);
-		
+
 		this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent we) {
 				String ObjButtons[] = { "Yes", "No" };
-				int PromptResult = JOptionPane.showOptionDialog(root, "Are you sure you want to exit?",
-						"Confirm Close", JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null,
-						ObjButtons, ObjButtons[1]);
+				int PromptResult = JOptionPane.showOptionDialog(root, "<html><font size=\"5\" face=\"arial\">Are you sure you want to exit?</font></html>", "Confirm Close",
+						JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, ObjButtons, ObjButtons[1]);
 				if (PromptResult == JOptionPane.YES_OPTION) {
 					System.exit(0);
 				}
@@ -234,8 +234,9 @@ public class ForgotPasswordPage extends JFrame implements ActionListener {
 				InternetAddress emailAddr = new InternetAddress(email);
 				emailAddr.validate();
 			} catch (AddressException ex) {
-				JOptionPane.showMessageDialog(container, "Wrong email format", "Wrong Validation",
-						JOptionPane.WARNING_MESSAGE);
+				JOptionPane.showMessageDialog(container,
+						"<html><font size=\"5\" face=\"arial\">" + "Wrong email format" + "</font></html>",
+						"Wrong Validation", JOptionPane.WARNING_MESSAGE);
 				return;
 			}
 
@@ -273,8 +274,9 @@ public class ForgotPasswordPage extends JFrame implements ActionListener {
 						logger.info(userName + " - " + email + " forgot pass ok.");
 
 						JOptionPane.showMessageDialog(container,
-								MessageFormat.format(
-										bundleMessage.getString("Forgot_Password_Page_Username_Email_Match"), email),
+								"<html><font size=\"5\" face=\"arial\">" + MessageFormat.format(
+										bundleMessage.getString("Forgot_Password_Page_Username_Email_Match"), email)
+										+ "</font></html>",
 								"Notify Result", JOptionPane.INFORMATION_MESSAGE);
 
 						JFrame old = root;
@@ -290,18 +292,18 @@ public class ForgotPasswordPage extends JFrame implements ActionListener {
 				d.setVisible(true);
 
 			} else {
-				JOptionPane.showMessageDialog(container,
-						bundleMessage.getString("Forgot_Password_Page_Username_Email_Not_Match"), "Wrong Validation",
-						JOptionPane.WARNING_MESSAGE);
+				JOptionPane.showMessageDialog(container, "<html><font size=\"5\" face=\"arial\">"
+						+ bundleMessage.getString("Forgot_Password_Page_Username_Email_Not_Match") + "</font></html>",
+						"Wrong Validation", JOptionPane.WARNING_MESSAGE);
 				logger.info(userName + " - " + email + " fail validate");
 				return;
 			}
 
 		}
-		
+
 		if (e.getSource() == cancelButton) {
 			updateTimer.restart();
-			
+
 			JFrame old = root;
 			root = new LoginPage();
 			StringUtils.frameInit(root, bundleMessage);
