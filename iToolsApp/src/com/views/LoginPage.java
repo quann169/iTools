@@ -559,8 +559,8 @@ public class LoginPage extends JFrame implements ActionListener {
 				publish("Checking email...");
 				Thread.sleep(1000);
 
-				// boolean checkEmailConfig = emailUtils.checkEmailConnection();
-				// logger.info("checkEmailConfig: " + checkEmailConfig);
+				 boolean checkEmailConfig = emailUtils.checkEmailConnection();
+				 logger.info("checkEmailConfig: " + checkEmailConfig);
 
 				publish("Done checking...");
 				Thread.sleep(1000);

@@ -56,13 +56,14 @@ public class EmailUtils {
 			props.put("mail.smtp.port", port);
 			Session session = Session.getInstance(props, null);
 			SMTPTransport transport = (SMTPTransport) session.getTransport("smtp");
+			logger.info(host + port+ email+ password);
 			transport.connect(host, port, email, password);
 			transport.close();
 			return true;
 		} catch (AuthenticationFailedException e) {
-			logger.warn("AuthenticationFailedException: Cannot connect to email" + e.getMessage());
+			logger.warn("AuthenticationFailedException: Cannot connect to email - ERR " + e.getMessage());
 		} catch (MessagingException e) {
-			logger.warn("MessagingException: Cannot connect to email" + e.getMessage());
+			logger.warn("MessagingException: Cannot connect to email - ERR " + e.getMessage());
 		}
 		return false;
 	}
