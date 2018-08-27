@@ -181,15 +181,15 @@ public class LoginController {
 				Role role = new Role(0, roleName);
 				listAllRoles.add(role);
 			}
-			
+
 			if (listAllRoles.size() == 0) {
 				sql = "select distinct RoleName "
 						+ " from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID"
-						+ " inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = '" + companyCodeUH
-						+ "' and assessor.UserName= '" + userName + "'";
+						+ " inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = '"
+						+ companyCodeUH + "' and assessor.UserName= '" + userName + "'";
 				logger.info("Check Role in UH Com.....");
 				logger.info(sql);
-				
+
 				statement = mysqlConnect.connect().prepareStatement(sql);
 				rs = statement.executeQuery(sql);
 
@@ -199,7 +199,7 @@ public class LoginController {
 					listAllRoles.add(role);
 				}
 			}
-			
+
 			return listAllRoles;
 		} catch (SQLException e) {
 			logger.info(e.getMessage());
@@ -281,7 +281,28 @@ public class LoginController {
 		}
 		return emailUser;
 	}
-	
+
+	public String getEmailUser(String username) {
+		String emailUser = "";
+		String sql = "SELECT EmailAddress FROM Assessor where Assessor.UserName = '" + username + "';";
+		logger.info(sql);
+		try {
+			PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
+			ResultSet rs = statement.executeQuery(sql);
+
+			while (rs.next()) {
+				emailUser = rs.getString(1);
+				break;
+			}
+		} catch (SQLException e) {
+			logger.info(e.getMessage());
+			return "";
+		} finally {
+			mysqlConnect.disconnect();
+		}
+		return emailUser;
+	}
+
 	public String getEmailAdmin() {
 		String emailUser = "";
 		String sql = "SELECT EmailAddress FROM Assessor where Assessor.UserName = 'admin';";

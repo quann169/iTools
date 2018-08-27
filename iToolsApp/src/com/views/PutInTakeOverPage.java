@@ -116,7 +116,7 @@ public class PutInTakeOverPage extends JFrame implements ActionListener {
 	int newQuantity = -1;
 	Assessor user;
 	LogController masterLogObj = new LogController();
-	String userName = "";
+	String userName;
 	public PopUpKeyboard keyboard;
 	// AutoCompletion combox1;
 
@@ -643,7 +643,11 @@ public class PutInTakeOverPage extends JFrame implements ActionListener {
 						// Thread.sleep(1000);
 						publish("Send email");
 
-						String email = ctlObj.getEmailUser(companyCode, userName);
+						String email = ctlObj.getEmailUser(userName);
+						
+//						System.out.println("email: " + email);
+//						System.out.println("userName: " + userName);
+						
 						Thread one = new Thread() {
 							public void run() {
 								EmailUtils emailUtils = new EmailUtils(Enum.GETTOOL, userName, companyCode,

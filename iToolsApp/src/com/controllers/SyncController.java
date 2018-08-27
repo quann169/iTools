@@ -43,7 +43,7 @@ public class SyncController {
 			ps = mysqlConnect.connect().prepareStatement("call SyncHostToLocal(?, ?,?)");
 			ps.setString(1, companyCode);
 			ps.setString(2, machineCode);
-			
+
 			ps.executeUpdate();
 		} catch (SQLException e) {
 			logger.error(e.getMessage());
@@ -61,7 +61,7 @@ public class SyncController {
 	 * @param password
 	 * @return
 	 */
-	public List<String> syncDataAutomatically(String companyCode, String machineCode) {
+	public List<String> syncDataAutomatically(String companyCode, String machineCode, String productMode) {
 
 		CallableStatement cs = null;
 		try {
@@ -83,23 +83,25 @@ public class SyncController {
 			startTime = System.currentTimeMillis();
 			logger.info("End SyncHostToLocal: " + duration / 1000 + "s");
 
-			logger.info("Start SyncLocalToHost");
-			startTime = System.currentTimeMillis();
-			cs = mysqlConnect.connect().prepareCall("{call SyncLocalToHost(?,?,?)}");
-			cs.registerOutParameter(3, Types.LONGVARCHAR);
-			cs.setString(1, companyCode);
-			cs.setString(2, machineCode);
-			cs.execute();
-			str = cs.getString(3);
-			if (str != null) {
-				logger.info(str);
-			} else {
-				logger.error(str);
+			if (!productMode.equals("Dev")) {
+
+				logger.info("Start SyncLocalToHost");
+				startTime = System.currentTimeMillis();
+				cs = mysqlConnect.connect().prepareCall("{call SyncLocalToHost(?,?,?)}");
+				cs.registerOutParameter(3, Types.LONGVARCHAR);
+				cs.setString(1, companyCode);
+				cs.setString(2, machineCode);
+				cs.execute();
+				str = cs.getString(3);
+				if (str != null) {
+					logger.info(str);
+				} else {
+					logger.error(str);
+				}
+
+				duration = System.currentTimeMillis() - startTime;
+				logger.info("End SyncLocalToHost: " + duration / 1000 + "s");
 			}
-
-			duration = System.currentTimeMillis() - startTime;
-			logger.info("End SyncLocalToHost: " + duration / 1000 + "s");
-
 		} catch (SQLException e) {
 			logger.error(e.getMessage());
 			return null;

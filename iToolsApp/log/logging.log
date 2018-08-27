@@ -8377,3 +8377,775 @@ updateTools: 0
 2018-08-22 23:20:55 WARN  EmailUtils:65 - AuthenticationFailedException: Cannot connect to email435 Unable to authenticate at present
 
 2018-08-22 23:20:55 INFO  LoginPage:563 - checkEmailConfig: false
+2018-08-27 17:31:12 INFO  LoginPage:524 - ************************************************************
+2018-08-27 17:31:12 INFO  LoginPage:525 - ************************************************************
+2018-08-27 17:31:12 INFO  LoginPage:526 - ************************************************************
+2018-08-27 17:31:12 INFO  LoginPage:527 - ************************************************************
+2018-08-27 17:31:12 INFO  LoginPage:528 - Starting iTool app.
+2018-08-27 17:31:12 INFO  LoginPage:529 - companyCode: Com1
+2018-08-27 17:31:12 INFO  LoginPage:530 - companyCodeUH: UHCom
+2018-08-27 17:31:12 INFO  LoginPage:531 - machineCode: MAC1
+2018-08-27 17:31:18 INFO  LoginPage:534 - mDbHost: localhost
+2018-08-27 17:31:18 INFO  LoginPage:535 - mDbUser: admin
+2018-08-27 17:31:18 INFO  LoginPage:536 - mDbPwds: 1qazxsw2
+2018-08-27 17:31:18 INFO  LoginPage:537 - mDbName: iTools_v1p0
+2018-08-27 17:31:18 INFO  LoginPage:538 - mDbPort: 3306
+2018-08-27 17:31:18 INFO  LoginPage:539 - Database version: v1p0 - 2018-08-11 12:38:14
+2018-08-27 17:31:18 INFO  LoginPage:541 - Last Sync: 2018-08-22 21:53:40
+2018-08-27 17:31:19 INFO  LoginPage:552 - App Version: 1.0
+2018-08-27 17:31:20 INFO  EmailUtils:59 - mail.tqteam.net25itool_app@tqteam.net1qazxsw2!A
+2018-08-27 17:31:26 INFO  LoginPage:563 - checkEmailConfig: true
+2018-08-27 17:32:20 INFO  LoginPage:254 - Login with username: com1user1
+2018-08-27 17:32:20 INFO  LoginController:46 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin, IsLocked FROM Assessor where Assessor.IsActive = 1 and Assessor.UserName='com1user1' and (Password=md5('123456') or LastPassword=md5('123456'));
+2018-08-27 17:32:21 INFO  LoginPage:258 - Login OK
+2018-08-27 17:32:21 INFO  LoginController:173 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'Com1' and assessor.UserName= 'com1user1'
+2018-08-27 17:32:21 INFO  LoginPage:274 - listRoles: [Roles [roleName=Emp]]
+2018-08-27 17:32:21 INFO  LoginPage:286 - Show EmployeePage
+2018-08-27 17:32:22 INFO  EmployeeController:160 -  select tools.ToolId, tools.ToolCode ,  toolsmachineTray.Quantity, toolsmachineTray.TrayIndex, toolsmachineTray.Machinecode  from tools inner join toolsmachineTray on tools.ToolCode = toolsmachineTray.ToolCode  where toolsmachineTray.MachineCode = 'MAC1';
+2018-08-27 17:32:33 INFO  EmployeeController:203 - {ACTID111=[[TRAY_01, 11], [TRAY_03, 10]], BCTID211=[[TRAY_02, 6]]}
+2018-08-27 17:32:33 INFO  EmployeeController:270 -  select tools.ToolCode from tools;
+2018-08-27 17:32:33 INFO  EmployeeController:290 - {}
+2018-08-27 17:32:36 INFO  EmployeeController:50 - select tools.ToolId, tools.ToolCode  from tools inner join toolsmachineTray on tools.ToolCode = toolsmachineTray.ToolCode  where toolsmachineTray.MachineCode = 'MAC1';
+2018-08-27 17:32:36 INFO  EmployeeController:71 - [Tool [toolId=2, toolName=ACTID111], Tool [toolId=5, toolName=BCTID211], Tool [toolId=5, toolName=BCTID211], Tool [toolId=2, toolName=ACTID111]]
+2018-08-27 17:32:36 INFO  EmployeePage:513 - listToolNames: [, ACTID111, BCTID211]
+2018-08-27 17:32:37 INFO  EmployeePage:523 - toolComboBox: [, ACTID111, BCTID211]
+2018-08-27 17:32:40 INFO  EmployeePage:165 - Init EMP_PAGE
+2018-08-27 17:32:40 INFO  EmployeePage:168 - listAllTrays: [TRAY_01, TRAY_02, TRAY_03, TRAY_04, TRAY_05, TRAY_06, TRAY_07, TRAY_08, TRAY_09, TRAY_10, TRAY_11, TRAY_12, TRAY_13, TRAY_14, TRAY_15, TRAY_16, TRAY_17, TRAY_18, TRAY_19, TRAY_20, TRAY_21, TRAY_22, TRAY_23, TRAY_24, TRAY_25, TRAY_26, TRAY_27, TRAY_28, TRAY_29, TRAY_30, TRAY_31, TRAY_32, TRAY_33, TRAY_34, TRAY_35, TRAY_36, TRAY_37, TRAY_38, TRAY_39, TRAY_40, TRAY_41, TRAY_42, TRAY_43, TRAY_44, TRAY_45, TRAY_46, TRAY_47, TRAY_48, TRAY_49, TRAY_50, TRAY_51, TRAY_52, TRAY_53, TRAY_54, TRAY_55, TRAY_56, TRAY_57, TRAY_58, TRAY_59, TRAY_60]
+2018-08-27 17:32:40 INFO  EmployeePage:174 - hashMessage: {TRAY_09=09, TRAY_07=07, TRAY_08=08, TRAY_41=41, TRAY_42=42, TRAY_40=40, TRAY_05=05, TRAY_49=49, TRAY_06=06, TRAY_03=03, TRAY_47=47, TRAY_04=04, TRAY_48=48, TRAY_01=01, TRAY_45=45, TRAY_02=02, TRAY_46=46, TRAY_43=43, TRAY_44=44, TRAY_30=30, TRAY_31=31, TRAY_38=38, TRAY_39=39, TRAY_36=36, TRAY_37=37, TRAY_34=34, TRAY_35=35, TRAY_32=32, TRAY_33=33, TRAY_29=29, TRAY_20=20, TRAY_60=60, TRAY_27=27, TRAY_28=28, TRAY_25=25, TRAY_26=26, TRAY_23=23, TRAY_24=24, TRAY_21=21, TRAY_22=22, TRAY_18=18, TRAY_19=19, TRAY_52=52, TRAY_53=53, TRAY_50=50, TRAY_51=51, TRAY_16=16, TRAY_17=17, TRAY_14=14, TRAY_58=58, TRAY_15=15, TRAY_59=59, TRAY_12=12, TRAY_56=56, TRAY_13=13, TRAY_57=57, TRAY_10=10, TRAY_54=54, TRAY_11=11, TRAY_55=55}
+2018-08-27 17:32:47 INFO  EmployeePage:243 - com1user1 logout.
+2018-08-27 17:33:34 INFO  LoginPage:524 - ************************************************************
+2018-08-27 17:33:34 INFO  LoginPage:525 - ************************************************************
+2018-08-27 17:33:34 INFO  LoginPage:526 - ************************************************************
+2018-08-27 17:33:34 INFO  LoginPage:527 - ************************************************************
+2018-08-27 17:33:34 INFO  LoginPage:528 - Starting iTool app.
+2018-08-27 17:33:34 INFO  LoginPage:529 - companyCode: Com1
+2018-08-27 17:33:34 INFO  LoginPage:530 - companyCodeUH: UHCom
+2018-08-27 17:33:34 INFO  LoginPage:531 - machineCode: MAC1
+2018-08-27 17:33:34 INFO  LoginPage:534 - mDbHost: localhost
+2018-08-27 17:33:34 INFO  LoginPage:535 - mDbUser: admin
+2018-08-27 17:33:34 INFO  LoginPage:536 - mDbPwds: 1qazxsw2
+2018-08-27 17:33:34 INFO  LoginPage:537 - mDbName: iTools_v1p0
+2018-08-27 17:33:34 INFO  LoginPage:538 - mDbPort: 3306
+2018-08-27 17:33:34 INFO  LoginPage:539 - Database version: v1p0 - 2018-08-27 17:33:22
+2018-08-27 17:33:34 INFO  LoginPage:541 - Last Sync: 2018-08-27 17:33:23
+2018-08-27 17:33:35 INFO  LoginPage:552 - App Version: 1.0
+2018-08-27 17:33:36 INFO  EmailUtils:59 - mail.tqteam.net25itool_app@tqteam.net1qazxsw2!A
+2018-08-27 17:33:41 INFO  LoginPage:563 - checkEmailConfig: true
+2018-08-27 17:34:31 INFO  LoginPage:524 - ************************************************************
+2018-08-27 17:34:31 INFO  LoginPage:525 - ************************************************************
+2018-08-27 17:34:31 INFO  LoginPage:526 - ************************************************************
+2018-08-27 17:34:31 INFO  LoginPage:527 - ************************************************************
+2018-08-27 17:34:31 INFO  LoginPage:528 - Starting iTool app.
+2018-08-27 17:34:31 INFO  LoginPage:529 - companyCode: Com1
+2018-08-27 17:34:31 INFO  LoginPage:530 - companyCodeUH: UHCom
+2018-08-27 17:34:31 INFO  LoginPage:531 - machineCode: MAC1
+2018-08-27 17:34:31 INFO  LoginPage:534 - mDbHost: localhost
+2018-08-27 17:34:31 INFO  LoginPage:535 - mDbUser: admin
+2018-08-27 17:34:31 INFO  LoginPage:536 - mDbPwds: 1qazxsw2
+2018-08-27 17:34:31 INFO  LoginPage:537 - mDbName: iTools_v1p0
+2018-08-27 17:34:31 INFO  LoginPage:538 - mDbPort: 3306
+2018-08-27 17:34:31 INFO  LoginPage:539 - Database version: v1p0 - 2018-08-27 17:33:22
+2018-08-27 17:34:31 INFO  LoginPage:541 - Last Sync: 2018-08-27 17:33:23
+2018-08-27 17:34:32 INFO  LoginPage:552 - App Version: 1.0
+2018-08-27 17:34:33 INFO  EmailUtils:59 - mail.tqteam.net25itool_app@tqteam.net1qazxsw2!A
+2018-08-27 17:34:38 INFO  LoginPage:563 - checkEmailConfig: true
+2018-08-27 17:34:39 INFO  LogController:134 - select NewValue from MasterLog where Action = 'SendLog' order by NewValue desc limit 1;
+2018-08-27 17:34:39 INFO  LoginPage:371 - ========================================
+2018-08-27 17:34:39 INFO  LoginPage:372 - Start syncing thread - cIq2Z6BC
+2018-08-27 17:34:39 INFO  LoginPage:373 - ========================================
+2018-08-27 17:34:39 INFO  SyncController:68 - Start SyncHostToLocal
+2018-08-27 17:34:39 INFO  LoginPage:464 - Get 1000 from logs
+2018-08-27 17:34:40 INFO  LoginPage:464 - Get 2000 from logs
+2018-08-27 17:34:41 INFO  LoginPage:464 - Get 3000 from logs
+2018-08-27 17:34:42 INFO  LoginPage:464 - Get 4000 from logs
+2018-08-27 17:34:44 INFO  LoginPage:464 - Get 5000 from logs
+2018-08-27 17:34:46 INFO  LoginPage:464 - Get 6000 from logs
+2018-08-27 17:34:47 INFO  SyncController:77 - ========Start=======
+,
+insertCompany: 1,
+updateCompany: 0,
+insertAssessor: 5,
+updateAssessor: 0,
+insertMachine: 1,
+updateMachine: 0,
+insertCompanyMachine: 2,
+updateCompanyMachine: 0,
+insertRoleAssessor: 4,
+updateRoleAssessor: 0,
+insertRole: 0,
+updateRole: 0,
+insertTools: 6,
+updateTools: 0
+2018-08-27 17:34:47 INFO  SyncController:84 - End SyncHostToLocal: 8s
+2018-08-27 17:34:47 INFO  SyncController:86 - Start SyncLocalToHost
+2018-08-27 17:34:48 INFO  SyncController:95 - insertMasterLog: 0,
+updateMasterLog: 1,
+insertToolsMachineTray: 0,
+updateToolsMachineTray: 0,
+insertWorkingTransaction: 0,
+updateWorkingTransaction: 0
+2018-08-27 17:34:48 INFO  SyncController:101 - End SyncLocalToHost: 1s
+2018-08-27 17:34:48 INFO  LoginPage:376 - ========================================
+2018-08-27 17:34:48 INFO  LoginPage:377 - End syncing thread - cIq2Z6BC
+2018-08-27 17:34:48 INFO  LoginPage:378 - ========================================
+2018-08-27 17:34:49 INFO  LoginPage:464 - Get 7000 from logs
+2018-08-27 17:34:53 INFO  LoginPage:464 - Get 8000 from logs
+2018-08-27 17:35:01 INFO  LogController:162 - insert into MasterLog(Action, NewValue) values('SendLog', '2018-08-27 17:34:53')
+2018-08-27 17:35:01 INFO  LoginPage:488 - Update 2018-08-27 17:34:53 to MasterLog successfully.
+2018-08-27 17:35:01 INFO  LoginPage:497 - Delete log file successfully.
+2018-08-27 17:35:58 INFO  LoginPage:254 - Login with username: uhacc
+2018-08-27 17:35:58 INFO  LoginController:46 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin, IsLocked FROM Assessor where Assessor.IsActive = 1 and Assessor.UserName='uhacc' and (Password=md5('123456') or LastPassword=md5('123456'));
+2018-08-27 17:35:58 INFO  LoginPage:258 - Login OK
+2018-08-27 17:35:58 INFO  LoginController:173 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'Com1' and assessor.UserName= 'uhacc'
+2018-08-27 17:35:58 INFO  LoginController:190 - Check Role in UH Com.....
+2018-08-27 17:35:58 INFO  LoginController:191 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'UHCom' and assessor.UserName= 'uhacc'
+2018-08-27 17:35:58 INFO  LoginPage:274 - listRoles: [Roles [roleName=Accounting]]
+2018-08-27 17:35:58 INFO  LoginPage:295 - Show DashboardPage
+2018-08-27 17:35:59 INFO  DashboardPage:93 - Init DASHBOARD_PAGE with list roles: [accounting]
+2018-08-27 17:36:00 INFO  DashboardPage:248 - uhacc - UNLOCK_MACHINE
+2018-08-27 17:36:02 INFO  DashboardPage:277 - Complete
+2018-08-27 17:36:23 INFO  LoginPage:524 - ************************************************************
+2018-08-27 17:36:23 INFO  LoginPage:525 - ************************************************************
+2018-08-27 17:36:23 INFO  LoginPage:526 - ************************************************************
+2018-08-27 17:36:23 INFO  LoginPage:527 - ************************************************************
+2018-08-27 17:36:23 INFO  LoginPage:528 - Starting iTool app.
+2018-08-27 17:36:23 INFO  LoginPage:529 - companyCode: Com1
+2018-08-27 17:36:23 INFO  LoginPage:530 - companyCodeUH: UHCom
+2018-08-27 17:36:23 INFO  LoginPage:531 - machineCode: MAC1
+2018-08-27 17:36:23 INFO  LoginPage:534 - mDbHost: localhost
+2018-08-27 17:36:23 INFO  LoginPage:535 - mDbUser: admin
+2018-08-27 17:36:23 INFO  LoginPage:536 - mDbPwds: 1qazxsw2
+2018-08-27 17:36:23 INFO  LoginPage:537 - mDbName: iTools_v1p0
+2018-08-27 17:36:23 INFO  LoginPage:538 - mDbPort: 3306
+2018-08-27 17:36:23 INFO  LoginPage:539 - Database version: v1p0 - 2018-08-27 17:33:22
+2018-08-27 17:36:23 INFO  LoginPage:541 - Last Sync: 2018-08-27 17:34:48
+2018-08-27 17:36:24 INFO  LoginPage:552 - App Version: 1.0
+2018-08-27 17:36:25 INFO  EmailUtils:59 - mail.tqteam.net25itool_app@tqteam.net1qazxsw2!A
+2018-08-27 17:36:30 INFO  LoginPage:563 - checkEmailConfig: true
+2018-08-27 17:36:31 INFO  LoginPage:371 - ========================================
+2018-08-27 17:36:31 INFO  LoginPage:372 - Start syncing thread - PvseBM6P
+2018-08-27 17:36:31 INFO  LoginPage:373 - ========================================
+2018-08-27 17:36:31 INFO  SyncController:68 - Start SyncHostToLocal
+2018-08-27 17:36:31 INFO  LogController:134 - select NewValue from MasterLog where Action = 'SendLog' order by NewValue desc limit 1;
+2018-08-27 17:36:31 INFO  LoginPage:464 - Get 1000 from logs
+2018-08-27 17:36:32 INFO  LoginPage:464 - Get 2000 from logs
+2018-08-27 17:36:36 INFO  SyncController:77 - ========Start=======
+,
+insertCompany: 0,
+updateCompany: 0,
+insertAssessor: 0,
+updateAssessor: 0,
+insertMachine: 0,
+updateMachine: 0,
+insertCompanyMachine: 0,
+updateCompanyMachine: 0,
+insertRoleAssessor: 0,
+updateRoleAssessor: 0,
+insertRole: 0,
+updateRole: 0,
+insertTools: 0,
+updateTools: 0
+2018-08-27 17:36:36 INFO  SyncController:84 - End SyncHostToLocal: 5s
+2018-08-27 17:36:36 INFO  SyncController:86 - Start SyncLocalToHost
+2018-08-27 17:36:37 INFO  LogController:162 - insert into MasterLog(Action, NewValue) values('SendLog', '2018-08-27 17:36:32')
+2018-08-27 17:36:39 INFO  SyncController:95 - insertMasterLog: 0,
+updateMasterLog: 15,
+insertToolsMachineTray: 0,
+updateToolsMachineTray: 0,
+insertWorkingTransaction: 0,
+updateWorkingTransaction: 0
+2018-08-27 17:36:39 INFO  SyncController:101 - End SyncLocalToHost: 2s
+2018-08-27 17:36:39 INFO  LoginPage:376 - ========================================
+2018-08-27 17:36:39 INFO  LoginPage:377 - End syncing thread - PvseBM6P
+2018-08-27 17:36:39 INFO  LoginPage:378 - ========================================
+2018-08-27 17:36:39 INFO  LoginPage:488 - Update 2018-08-27 17:36:32 to MasterLog successfully.
+2018-08-27 17:36:39 INFO  LoginPage:497 - Delete log file successfully.
+2018-08-27 17:39:14 INFO  LoginPage:525 - ************************************************************
+2018-08-27 17:39:14 INFO  LoginPage:526 - ************************************************************
+2018-08-27 17:39:14 INFO  LoginPage:527 - ************************************************************
+2018-08-27 17:39:14 INFO  LoginPage:528 - ************************************************************
+2018-08-27 17:39:14 INFO  LoginPage:529 - Starting iTool app.
+2018-08-27 17:39:14 INFO  LoginPage:530 - companyCode: Com1
+2018-08-27 17:39:14 INFO  LoginPage:531 - companyCodeUH: UHCom
+2018-08-27 17:39:14 INFO  LoginPage:532 - machineCode: MAC1
+2018-08-27 17:39:14 INFO  LoginPage:535 - mDbHost: localhost
+2018-08-27 17:39:14 INFO  LoginPage:536 - mDbUser: admin
+2018-08-27 17:39:14 INFO  LoginPage:537 - mDbPwds: 1qazxsw2
+2018-08-27 17:39:14 INFO  LoginPage:538 - mDbName: iTools_v1p0
+2018-08-27 17:39:14 INFO  LoginPage:539 - mDbPort: 3306
+2018-08-27 17:39:14 INFO  LoginPage:540 - Database version: v1p0 - 2018-08-27 17:33:22
+2018-08-27 17:39:14 INFO  LoginPage:542 - Last Sync: 2018-08-27 17:36:39
+2018-08-27 17:39:15 INFO  LoginPage:553 - App Version: 1.0
+2018-08-27 17:39:16 INFO  EmailUtils:59 - mail.tqteam.net25itool_app@tqteam.net1qazxsw2!A
+2018-08-27 17:39:21 INFO  LoginPage:564 - checkEmailConfig: true
+2018-08-27 17:39:22 INFO  LoginPage:371 - ========================================
+2018-08-27 17:39:22 INFO  LoginPage:372 - Start syncing thread - YcWG01tW
+2018-08-27 17:39:22 INFO  LoginPage:373 - ========================================
+2018-08-27 17:39:22 INFO  SyncController:68 - Start SyncHostToLocal
+2018-08-27 17:39:22 INFO  LogController:134 - select NewValue from MasterLog where Action = 'SendLog' order by NewValue desc limit 1;
+2018-08-27 17:39:22 INFO  LoginPage:465 - Get 1000 from logs
+2018-08-27 17:39:23 INFO  LoginPage:465 - Get 2000 from logs
+2018-08-27 17:39:26 INFO  SyncController:77 - ========Start=======
+,
+insertCompany: 0,
+updateCompany: 0,
+insertAssessor: 0,
+updateAssessor: 0,
+insertMachine: 0,
+updateMachine: 0,
+insertCompanyMachine: 0,
+updateCompanyMachine: 0,
+insertRoleAssessor: 0,
+updateRoleAssessor: 0,
+insertRole: 0,
+updateRole: 0,
+insertTools: 0,
+updateTools: 0
+2018-08-27 17:39:26 INFO  SyncController:84 - End SyncHostToLocal: 3s
+2018-08-27 17:39:26 INFO  SyncController:88 - Start SyncLocalToHost
+2018-08-27 17:39:28 INFO  LogController:162 - insert into MasterLog(Action, NewValue) values('SendLog', '2018-08-27 17:39:23')
+2018-08-27 17:39:29 INFO  SyncController:97 - insertMasterLog: 0,
+updateMasterLog: 29,
+insertToolsMachineTray: 0,
+updateToolsMachineTray: 0,
+insertWorkingTransaction: 0,
+updateWorkingTransaction: 0
+2018-08-27 17:39:29 INFO  SyncController:103 - End SyncLocalToHost: 3s
+2018-08-27 17:39:29 INFO  LoginPage:376 - ========================================
+2018-08-27 17:39:29 INFO  LoginPage:377 - End syncing thread - YcWG01tW
+2018-08-27 17:39:29 INFO  LoginPage:378 - ========================================
+2018-08-27 17:39:29 INFO  LoginPage:489 - Update 2018-08-27 17:39:23 to MasterLog successfully.
+2018-08-27 17:39:29 INFO  LoginPage:498 - Delete log file successfully.
+2018-08-27 17:39:57 INFO  LoginPage:525 - ************************************************************
+2018-08-27 17:39:57 INFO  LoginPage:526 - ************************************************************
+2018-08-27 17:39:57 INFO  LoginPage:527 - ************************************************************
+2018-08-27 17:39:57 INFO  LoginPage:528 - ************************************************************
+2018-08-27 17:39:57 INFO  LoginPage:529 - Starting iTool app.
+2018-08-27 17:39:57 INFO  LoginPage:530 - companyCode: Com1
+2018-08-27 17:39:57 INFO  LoginPage:531 - companyCodeUH: UHCom
+2018-08-27 17:39:57 INFO  LoginPage:532 - machineCode: MAC1
+2018-08-27 17:39:57 INFO  LoginPage:535 - mDbHost: localhost
+2018-08-27 17:39:57 INFO  LoginPage:536 - mDbUser: admin
+2018-08-27 17:39:57 INFO  LoginPage:537 - mDbPwds: 1qazxsw2
+2018-08-27 17:39:57 INFO  LoginPage:538 - mDbName: iTools_v1p0
+2018-08-27 17:39:57 INFO  LoginPage:539 - mDbPort: 3306
+2018-08-27 17:39:57 INFO  LoginPage:540 - Database version: v1p0 - 2018-08-27 17:33:22
+2018-08-27 17:39:57 INFO  LoginPage:542 - Last Sync: 2018-08-27 17:39:29
+2018-08-27 17:39:58 INFO  LoginPage:553 - App Version: 1.0
+2018-08-27 17:39:59 INFO  EmailUtils:59 - mail.tqteam.net25itool_app@tqteam.net1qazxsw2!A
+2018-08-27 17:40:04 INFO  LoginPage:564 - checkEmailConfig: true
+2018-08-27 17:40:05 INFO  LoginPage:371 - ========================================
+2018-08-27 17:40:05 INFO  LoginPage:372 - Start syncing thread - S0QFOenE
+2018-08-27 17:40:05 INFO  LoginPage:373 - ========================================
+2018-08-27 17:40:05 INFO  SyncController:68 - Start SyncHostToLocal
+2018-08-27 17:40:08 INFO  SyncController:77 - ========Start=======
+,
+insertCompany: 0,
+updateCompany: 0,
+insertAssessor: 0,
+updateAssessor: 0,
+insertMachine: 0,
+updateMachine: 0,
+insertCompanyMachine: 0,
+updateCompanyMachine: 0,
+insertRoleAssessor: 0,
+updateRoleAssessor: 0,
+insertRole: 0,
+updateRole: 0,
+insertTools: 0,
+updateTools: 0
+2018-08-27 17:40:08 INFO  SyncController:84 - End SyncHostToLocal: 3s
+2018-08-27 17:40:08 INFO  LoginPage:376 - ========================================
+2018-08-27 17:40:08 INFO  LoginPage:377 - End syncing thread - S0QFOenE
+2018-08-27 17:40:08 INFO  LoginPage:378 - ========================================
+2018-08-27 17:45:08 INFO  LoginPage:371 - ========================================
+2018-08-27 17:45:08 INFO  LoginPage:372 - Start syncing thread - EbcgXSeT
+2018-08-27 17:45:08 INFO  LoginPage:373 - ========================================
+2018-08-27 17:45:08 INFO  SyncController:68 - Start SyncHostToLocal
+2018-08-27 17:45:12 INFO  SyncController:77 - ========Start=======
+,
+insertCompany: 0,
+updateCompany: 0,
+insertAssessor: 0,
+updateAssessor: 0,
+insertMachine: 0,
+updateMachine: 0,
+insertCompanyMachine: 0,
+updateCompanyMachine: 0,
+insertRoleAssessor: 0,
+updateRoleAssessor: 0,
+insertRole: 0,
+updateRole: 0,
+insertTools: 0,
+updateTools: 0
+2018-08-27 17:45:12 INFO  SyncController:84 - End SyncHostToLocal: 3s
+2018-08-27 17:45:12 INFO  LoginPage:376 - ========================================
+2018-08-27 17:45:12 INFO  LoginPage:377 - End syncing thread - EbcgXSeT
+2018-08-27 17:45:12 INFO  LoginPage:378 - ========================================
+2018-08-27 17:50:12 INFO  LoginPage:371 - ========================================
+2018-08-27 17:50:12 INFO  LoginPage:372 - Start syncing thread - g6OzExOw
+2018-08-27 17:50:12 INFO  LoginPage:373 - ========================================
+2018-08-27 17:50:12 INFO  SyncController:68 - Start SyncHostToLocal
+2018-08-27 17:50:15 INFO  SyncController:77 - ========Start=======
+,
+insertCompany: 0,
+updateCompany: 0,
+insertAssessor: 0,
+updateAssessor: 0,
+insertMachine: 0,
+updateMachine: 0,
+insertCompanyMachine: 0,
+updateCompanyMachine: 0,
+insertRoleAssessor: 0,
+updateRoleAssessor: 0,
+insertRole: 0,
+updateRole: 0,
+insertTools: 0,
+updateTools: 0
+2018-08-27 17:50:15 INFO  SyncController:84 - End SyncHostToLocal: 3s
+2018-08-27 17:50:15 INFO  LoginPage:376 - ========================================
+2018-08-27 17:50:15 INFO  LoginPage:377 - End syncing thread - g6OzExOw
+2018-08-27 17:50:15 INFO  LoginPage:378 - ========================================
+2018-08-27 17:55:15 INFO  LoginPage:371 - ========================================
+2018-08-27 17:55:15 INFO  LoginPage:372 - Start syncing thread - syrqd31J
+2018-08-27 17:55:15 INFO  LoginPage:373 - ========================================
+2018-08-27 17:55:15 INFO  SyncController:68 - Start SyncHostToLocal
+2018-08-27 17:55:19 INFO  SyncController:77 - ========Start=======
+,
+insertCompany: 0,
+updateCompany: 0,
+insertAssessor: 0,
+updateAssessor: 0,
+insertMachine: 0,
+updateMachine: 0,
+insertCompanyMachine: 0,
+updateCompanyMachine: 0,
+insertRoleAssessor: 0,
+updateRoleAssessor: 0,
+insertRole: 0,
+updateRole: 0,
+insertTools: 0,
+updateTools: 0
+2018-08-27 17:55:19 INFO  SyncController:84 - End SyncHostToLocal: 3s
+2018-08-27 17:55:19 INFO  LoginPage:376 - ========================================
+2018-08-27 17:55:19 INFO  LoginPage:377 - End syncing thread - syrqd31J
+2018-08-27 17:55:19 INFO  LoginPage:378 - ========================================
+2018-08-27 18:00:19 INFO  LoginPage:371 - ========================================
+2018-08-27 18:00:19 INFO  LoginPage:372 - Start syncing thread - M5RqfNS8
+2018-08-27 18:00:19 INFO  LoginPage:373 - ========================================
+2018-08-27 18:00:19 INFO  SyncController:68 - Start SyncHostToLocal
+2018-08-27 18:00:22 INFO  SyncController:77 - ========Start=======
+,
+insertCompany: 0,
+updateCompany: 0,
+insertAssessor: 0,
+updateAssessor: 0,
+insertMachine: 0,
+updateMachine: 0,
+insertCompanyMachine: 0,
+updateCompanyMachine: 0,
+insertRoleAssessor: 0,
+updateRoleAssessor: 0,
+insertRole: 0,
+updateRole: 0,
+insertTools: 0,
+updateTools: 0
+2018-08-27 18:00:22 INFO  SyncController:84 - End SyncHostToLocal: 3s
+2018-08-27 18:00:22 INFO  LoginPage:376 - ========================================
+2018-08-27 18:00:22 INFO  LoginPage:377 - End syncing thread - M5RqfNS8
+2018-08-27 18:00:22 INFO  LoginPage:378 - ========================================
+2018-08-27 18:03:58 INFO  LoginPage:525 - ************************************************************
+2018-08-27 18:03:58 INFO  LoginPage:526 - ************************************************************
+2018-08-27 18:03:58 INFO  LoginPage:527 - ************************************************************
+2018-08-27 18:03:58 INFO  LoginPage:528 - ************************************************************
+2018-08-27 18:03:58 INFO  LoginPage:529 - Starting iTool app.
+2018-08-27 18:03:58 INFO  LoginPage:530 - companyCode: Com1
+2018-08-27 18:03:58 INFO  LoginPage:531 - companyCodeUH: UHCom
+2018-08-27 18:03:58 INFO  LoginPage:532 - machineCode: MAC1
+2018-08-27 18:03:58 INFO  LoginPage:535 - mDbHost: localhost
+2018-08-27 18:03:58 INFO  LoginPage:536 - mDbUser: admin
+2018-08-27 18:03:58 INFO  LoginPage:537 - mDbPwds: 1qazxsw2
+2018-08-27 18:03:58 INFO  LoginPage:538 - mDbName: iTools_v1p0
+2018-08-27 18:03:58 INFO  LoginPage:539 - mDbPort: 3306
+2018-08-27 18:03:58 INFO  LoginPage:540 - Database version: v1p0 - 2018-08-27 17:33:22
+2018-08-27 18:03:58 INFO  LoginPage:542 - Last Sync: 2018-08-27 18:00:22
+2018-08-27 18:03:59 INFO  LoginPage:553 - App Version: 1.0
+2018-08-27 18:04:00 INFO  EmailUtils:59 - mail.tqteam.net25itool_app@tqteam.net1qazxsw2!A
+2018-08-27 18:04:05 INFO  LoginPage:564 - checkEmailConfig: true
+2018-08-27 18:04:06 INFO  LoginPage:371 - ========================================
+2018-08-27 18:04:06 INFO  LoginPage:372 - Start syncing thread - xrnnZsxL
+2018-08-27 18:04:06 INFO  LoginPage:373 - ========================================
+2018-08-27 18:04:06 INFO  SyncController:68 - Start SyncHostToLocal
+2018-08-27 18:04:10 INFO  SyncController:77 - ========Start=======
+,
+insertCompany: 0,
+updateCompany: 0,
+insertAssessor: 0,
+updateAssessor: 0,
+insertMachine: 0,
+updateMachine: 0,
+insertCompanyMachine: 0,
+updateCompanyMachine: 0,
+insertRoleAssessor: 0,
+updateRoleAssessor: 0,
+insertRole: 0,
+updateRole: 0,
+insertTools: 0,
+updateTools: 0
+2018-08-27 18:04:10 INFO  SyncController:84 - End SyncHostToLocal: 3s
+2018-08-27 18:04:10 INFO  LoginPage:376 - ========================================
+2018-08-27 18:04:10 INFO  LoginPage:377 - End syncing thread - xrnnZsxL
+2018-08-27 18:04:10 INFO  LoginPage:378 - ========================================
+2018-08-27 18:05:28 INFO  LoginPage:254 - Login with username: com1user1
+2018-08-27 18:05:28 INFO  LoginController:46 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin, IsLocked FROM Assessor where Assessor.IsActive = 1 and Assessor.UserName='com1user1' and (Password=md5('123456') or LastPassword=md5('123456'));
+2018-08-27 18:05:28 INFO  LoginPage:258 - Login OK
+2018-08-27 18:05:28 INFO  LoginController:173 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'Com1' and assessor.UserName= 'com1user1'
+2018-08-27 18:05:29 INFO  LoginPage:274 - listRoles: [Roles [roleName=Emp]]
+2018-08-27 18:05:29 INFO  LoginPage:286 - Show EmployeePage
+2018-08-27 18:05:29 INFO  EmployeeController:160 -  select tools.ToolId, tools.ToolCode ,  toolsmachineTray.Quantity, toolsmachineTray.TrayIndex, toolsmachineTray.Machinecode  from tools inner join toolsmachineTray on tools.ToolCode = toolsmachineTray.ToolCode  where toolsmachineTray.MachineCode = 'MAC1';
+2018-08-27 18:05:47 INFO  EmployeeController:203 - {}
+2018-08-27 18:05:47 INFO  EmployeeController:270 -  select tools.ToolCode from tools;
+2018-08-27 18:05:47 INFO  EmployeeController:290 - {}
+2018-08-27 18:05:49 INFO  EmployeeController:50 - select tools.ToolId, tools.ToolCode  from tools inner join toolsmachineTray on tools.ToolCode = toolsmachineTray.ToolCode  where toolsmachineTray.MachineCode = 'MAC1';
+2018-08-27 18:05:49 INFO  EmployeeController:71 - []
+2018-08-27 18:05:49 INFO  EmployeePage:513 - listToolNames: []
+2018-08-27 18:05:50 INFO  EmployeePage:523 - toolComboBox: []
+2018-08-27 18:05:52 INFO  EmployeePage:165 - Init EMP_PAGE
+2018-08-27 18:05:52 INFO  EmployeePage:168 - listAllTrays: [TRAY_01, TRAY_02, TRAY_03, TRAY_04, TRAY_05, TRAY_06, TRAY_07, TRAY_08, TRAY_09, TRAY_10, TRAY_11, TRAY_12, TRAY_13, TRAY_14, TRAY_15, TRAY_16, TRAY_17, TRAY_18, TRAY_19, TRAY_20, TRAY_21, TRAY_22, TRAY_23, TRAY_24, TRAY_25, TRAY_26, TRAY_27, TRAY_28, TRAY_29, TRAY_30, TRAY_31, TRAY_32, TRAY_33, TRAY_34, TRAY_35, TRAY_36, TRAY_37, TRAY_38, TRAY_39, TRAY_40, TRAY_41, TRAY_42, TRAY_43, TRAY_44, TRAY_45, TRAY_46, TRAY_47, TRAY_48, TRAY_49, TRAY_50, TRAY_51, TRAY_52, TRAY_53, TRAY_54, TRAY_55, TRAY_56, TRAY_57, TRAY_58, TRAY_59, TRAY_60]
+2018-08-27 18:05:52 INFO  EmployeePage:174 - hashMessage: {TRAY_09=09, TRAY_07=07, TRAY_08=08, TRAY_41=41, TRAY_42=42, TRAY_40=40, TRAY_05=05, TRAY_49=49, TRAY_06=06, TRAY_03=03, TRAY_47=47, TRAY_04=04, TRAY_48=48, TRAY_01=01, TRAY_45=45, TRAY_02=02, TRAY_46=46, TRAY_43=43, TRAY_44=44, TRAY_30=30, TRAY_31=31, TRAY_38=38, TRAY_39=39, TRAY_36=36, TRAY_37=37, TRAY_34=34, TRAY_35=35, TRAY_32=32, TRAY_33=33, TRAY_29=29, TRAY_20=20, TRAY_60=60, TRAY_27=27, TRAY_28=28, TRAY_25=25, TRAY_26=26, TRAY_23=23, TRAY_24=24, TRAY_21=21, TRAY_22=22, TRAY_18=18, TRAY_19=19, TRAY_52=52, TRAY_53=53, TRAY_50=50, TRAY_51=51, TRAY_16=16, TRAY_17=17, TRAY_14=14, TRAY_58=58, TRAY_15=15, TRAY_59=59, TRAY_12=12, TRAY_56=56, TRAY_13=13, TRAY_57=57, TRAY_10=10, TRAY_54=54, TRAY_11=11, TRAY_55=55}
+2018-08-27 18:06:19 INFO  LoginPage:525 - ************************************************************
+2018-08-27 18:06:19 INFO  LoginPage:526 - ************************************************************
+2018-08-27 18:06:19 INFO  LoginPage:527 - ************************************************************
+2018-08-27 18:06:19 INFO  LoginPage:528 - ************************************************************
+2018-08-27 18:06:19 INFO  LoginPage:529 - Starting iTool app.
+2018-08-27 18:06:19 INFO  LoginPage:530 - companyCode: Com1
+2018-08-27 18:06:19 INFO  LoginPage:531 - companyCodeUH: UHCom
+2018-08-27 18:06:19 INFO  LoginPage:532 - machineCode: MAC1
+2018-08-27 18:06:20 INFO  LoginPage:535 - mDbHost: localhost
+2018-08-27 18:06:20 INFO  LoginPage:536 - mDbUser: admin
+2018-08-27 18:06:20 INFO  LoginPage:537 - mDbPwds: 1qazxsw2
+2018-08-27 18:06:20 INFO  LoginPage:538 - mDbName: iTools_v1p0
+2018-08-27 18:06:20 INFO  LoginPage:539 - mDbPort: 3306
+2018-08-27 18:06:20 INFO  LoginPage:540 - Database version: v1p0 - 2018-08-27 17:33:22
+2018-08-27 18:06:20 INFO  LoginPage:542 - Last Sync: 2018-08-27 18:04:10
+2018-08-27 18:06:21 INFO  LoginPage:553 - App Version: 1.0
+2018-08-27 18:06:22 INFO  EmailUtils:59 - mail.tqteam.net25itool_app@tqteam.net1qazxsw2!A
+2018-08-27 18:06:27 INFO  LoginPage:564 - checkEmailConfig: true
+2018-08-27 18:06:28 INFO  LoginPage:371 - ========================================
+2018-08-27 18:06:28 INFO  LoginPage:372 - Start syncing thread - 2XtZ5RJj
+2018-08-27 18:06:28 INFO  LoginPage:373 - ========================================
+2018-08-27 18:06:28 INFO  SyncController:68 - Start SyncHostToLocal
+2018-08-27 18:06:30 INFO  LoginPage:254 - Login with username: uhacc
+2018-08-27 18:06:30 INFO  LoginController:46 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin, IsLocked FROM Assessor where Assessor.IsActive = 1 and Assessor.UserName='uhacc' and (Password=md5('123456') or LastPassword=md5('123456'));
+2018-08-27 18:06:30 INFO  LoginPage:258 - Login OK
+2018-08-27 18:06:30 INFO  LoginController:173 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'Com1' and assessor.UserName= 'uhacc'
+2018-08-27 18:06:30 INFO  LoginController:190 - Check Role in UH Com.....
+2018-08-27 18:06:30 INFO  LoginController:191 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'UHCom' and assessor.UserName= 'uhacc'
+2018-08-27 18:06:30 INFO  LoginPage:274 - listRoles: [Roles [roleName=Accounting]]
+2018-08-27 18:06:30 INFO  LoginPage:295 - Show DashboardPage
+2018-08-27 18:06:30 INFO  DashboardPage:93 - Init DASHBOARD_PAGE with list roles: [accounting]
+2018-08-27 18:06:31 INFO  SyncController:77 - ========Start=======
+,
+insertCompany: 0,
+updateCompany: 0,
+insertAssessor: 0,
+updateAssessor: 0,
+insertMachine: 0,
+updateMachine: 0,
+insertCompanyMachine: 0,
+updateCompanyMachine: 0,
+insertRoleAssessor: 0,
+updateRoleAssessor: 0,
+insertRole: 0,
+updateRole: 0,
+insertTools: 0,
+updateTools: 0
+2018-08-27 18:06:31 INFO  SyncController:84 - End SyncHostToLocal: 3s
+2018-08-27 18:06:31 INFO  LoginPage:376 - ========================================
+2018-08-27 18:06:31 INFO  LoginPage:377 - End syncing thread - 2XtZ5RJj
+2018-08-27 18:06:31 INFO  LoginPage:378 - ========================================
+2018-08-27 18:06:31 INFO  DashboardPage:248 - uhacc - UNLOCK_MACHINE
+2018-08-27 18:06:34 INFO  DashboardPage:277 - Complete
+2018-08-27 18:06:36 INFO  DashboardPage:308 - uhacc - PUTIN
+2018-08-27 18:06:36 INFO  EmployeeController:160 -  select tools.ToolId, tools.ToolCode ,  toolsmachineTray.Quantity, toolsmachineTray.TrayIndex, toolsmachineTray.Machinecode  from tools inner join toolsmachineTray on tools.ToolCode = toolsmachineTray.ToolCode  where toolsmachineTray.MachineCode = 'MAC1';
+2018-08-27 18:06:44 INFO  EmployeeController:203 - {}
+2018-08-27 18:06:44 INFO  EmployeeController:270 -  select tools.ToolCode from tools;
+2018-08-27 18:06:44 INFO  EmployeeController:290 - {}
+2018-08-27 18:07:02 INFO  PutInTakeOverPage:603 - Yes option
+2018-08-27 18:07:03 INFO  TransactionController:43 - insert into WorkingTransaction( TransactionDate, MachineCode, CompanyCode, AssessorID, WOCode, OPCode, ToolCode, TrayIndex, Quantity, UpdatedDate, TransactionStatus, TransactionType) values (now(), 'MAC1', 'Com1', 'uhacc', '', '', 'ACTID111', 'TRAY_01', '1', now(), 'Complete', 'PutIns');
+2018-08-27 18:07:04 INFO  PutInTakeOverPage:623 - Create transaction
+2018-08-27 18:07:05 INFO  EmployeeController:80 -  select toolsmachine.ToolsMachineID from tools inner join toolsmachine on tools.ToolCode = toolsmachine.ToolCode where tools.ToolCode = 'ACTID111' and toolsmachine.MachineCode = 'MAC1';
+2018-08-27 18:07:11 INFO  EmployeeController:98 -  select count(*) from toolsmachinetray where toolsmachinetray.ToolCode = 'ACTID111' and toolsmachinetray.TrayIndex = 'TRAY_01' and toolsmachinetray.MachineCode = 'MAC1';
+2018-08-27 18:07:13 INFO  EmployeeController:130 -  insert into toolsmachinetray (MachineCode, ToolCode, TrayIndex, Quantity, IsActive) values ('MAC1', 'ACTID111', 'TRAY_01', '1', 1);
+2018-08-27 18:07:18 INFO  LoginController:267 - SELECT EmailAddress FROM Assessor where Assessor.UserName = 'uhacc' and Assessor.CompanyCode = 'Com1';
+2018-08-27 18:09:16 INFO  LoginPage:525 - ************************************************************
+2018-08-27 18:09:16 INFO  LoginPage:526 - ************************************************************
+2018-08-27 18:09:16 INFO  LoginPage:527 - ************************************************************
+2018-08-27 18:09:16 INFO  LoginPage:528 - ************************************************************
+2018-08-27 18:09:16 INFO  LoginPage:529 - Starting iTool app.
+2018-08-27 18:09:16 INFO  LoginPage:530 - companyCode: Com1
+2018-08-27 18:09:16 INFO  LoginPage:531 - companyCodeUH: UHCom
+2018-08-27 18:09:16 INFO  LoginPage:532 - machineCode: MAC1
+2018-08-27 18:09:16 INFO  LoginPage:535 - mDbHost: localhost
+2018-08-27 18:09:16 INFO  LoginPage:536 - mDbUser: admin
+2018-08-27 18:09:16 INFO  LoginPage:537 - mDbPwds: 1qazxsw2
+2018-08-27 18:09:16 INFO  LoginPage:538 - mDbName: iTools_v1p0
+2018-08-27 18:09:16 INFO  LoginPage:539 - mDbPort: 3306
+2018-08-27 18:09:16 INFO  LoginPage:540 - Database version: v1p0 - 2018-08-27 17:33:22
+2018-08-27 18:09:16 INFO  LoginPage:542 - Last Sync: 2018-08-27 18:06:31
+2018-08-27 18:09:17 INFO  LoginPage:553 - App Version: 1.0
+2018-08-27 18:09:18 INFO  EmailUtils:59 - mail.tqteam.net25itool_app@tqteam.net1qazxsw2!A
+2018-08-27 18:09:23 INFO  LoginPage:564 - checkEmailConfig: true
+2018-08-27 18:09:24 INFO  LoginPage:371 - ========================================
+2018-08-27 18:09:24 INFO  LoginPage:372 - Start syncing thread - ZRy4VVKB
+2018-08-27 18:09:24 INFO  LoginPage:373 - ========================================
+2018-08-27 18:09:24 INFO  SyncController:68 - Start SyncHostToLocal
+2018-08-27 18:09:27 INFO  SyncController:77 - ========Start=======
+,
+insertCompany: 0,
+updateCompany: 0,
+insertAssessor: 0,
+updateAssessor: 0,
+insertMachine: 0,
+updateMachine: 0,
+insertCompanyMachine: 0,
+updateCompanyMachine: 0,
+insertRoleAssessor: 0,
+updateRoleAssessor: 0,
+insertRole: 0,
+updateRole: 0,
+insertTools: 0,
+updateTools: 0
+2018-08-27 18:09:27 INFO  SyncController:84 - End SyncHostToLocal: 3s
+2018-08-27 18:09:27 INFO  LoginPage:376 - ========================================
+2018-08-27 18:09:27 INFO  LoginPage:377 - End syncing thread - ZRy4VVKB
+2018-08-27 18:09:27 INFO  LoginPage:378 - ========================================
+2018-08-27 18:10:15 INFO  LoginPage:254 - Login with username: uhacc
+2018-08-27 18:10:15 INFO  LoginController:46 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin, IsLocked FROM Assessor where Assessor.IsActive = 1 and Assessor.UserName='uhacc' and (Password=md5('123456') or LastPassword=md5('123456'));
+2018-08-27 18:10:16 INFO  LoginPage:258 - Login OK
+2018-08-27 18:10:16 INFO  LoginController:173 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'Com1' and assessor.UserName= 'uhacc'
+2018-08-27 18:10:16 INFO  LoginController:190 - Check Role in UH Com.....
+2018-08-27 18:10:16 INFO  LoginController:191 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'UHCom' and assessor.UserName= 'uhacc'
+2018-08-27 18:10:16 INFO  LoginPage:274 - listRoles: [Roles [roleName=Accounting]]
+2018-08-27 18:10:16 INFO  LoginPage:295 - Show DashboardPage
+2018-08-27 18:10:16 INFO  DashboardPage:93 - Init DASHBOARD_PAGE with list roles: [accounting]
+2018-08-27 18:10:18 INFO  DashboardPage:248 - uhacc - UNLOCK_MACHINE
+2018-08-27 18:10:20 INFO  DashboardPage:277 - Complete
+2018-08-27 18:10:21 INFO  DashboardPage:308 - uhacc - PUTIN
+2018-08-27 18:11:12 INFO  EmployeeController:160 -  select tools.ToolId, tools.ToolCode ,  toolsmachineTray.Quantity, toolsmachineTray.TrayIndex, toolsmachineTray.Machinecode  from tools inner join toolsmachineTray on tools.ToolCode = toolsmachineTray.ToolCode  where toolsmachineTray.MachineCode = 'MAC1';
+2018-08-27 18:11:15 INFO  EmployeeController:203 - {ACTID111=[[TRAY_01, 1]]}
+2018-08-27 18:11:36 INFO  EmployeeController:270 -  select tools.ToolCode from tools;
+2018-08-27 18:11:36 INFO  EmployeeController:290 - {}
+2018-08-27 18:13:30 INFO  PutInTakeOverPage:603 - Yes option
+2018-08-27 18:13:31 INFO  TransactionController:43 - insert into WorkingTransaction( TransactionDate, MachineCode, CompanyCode, AssessorID, WOCode, OPCode, ToolCode, TrayIndex, Quantity, UpdatedDate, TransactionStatus, TransactionType) values (now(), 'MAC1', 'Com1', 'uhacc', '', '', 'ACTID111', 'TRAY_01', '2', now(), 'Complete', 'PutIns');
+2018-08-27 18:13:31 INFO  PutInTakeOverPage:623 - Create transaction
+2018-08-27 18:13:32 INFO  EmployeeController:80 -  select toolsmachine.ToolsMachineID from tools inner join toolsmachine on tools.ToolCode = toolsmachine.ToolCode where tools.ToolCode = 'ACTID111' and toolsmachine.MachineCode = 'MAC1';
+2018-08-27 18:13:40 INFO  EmployeeController:98 -  select count(*) from toolsmachinetray where toolsmachinetray.ToolCode = 'ACTID111' and toolsmachinetray.TrayIndex = 'TRAY_01' and toolsmachinetray.MachineCode = 'MAC1';
+2018-08-27 18:13:40 INFO  EmployeeController:130 -  update toolsmachinetray set quantity = '2' where ToolCode = 'ACTID111' and trayIndex = 'TRAY_01' and machineCode = 'MAC1';
+2018-08-27 18:13:48 INFO  LoginController:267 - SELECT EmailAddress FROM Assessor where Assessor.UserName = 'uhacc' and Assessor.CompanyCode = 'Com1';
+2018-08-27 18:14:54 INFO  LoginPage:525 - ************************************************************
+2018-08-27 18:14:54 INFO  LoginPage:526 - ************************************************************
+2018-08-27 18:14:54 INFO  LoginPage:527 - ************************************************************
+2018-08-27 18:14:54 INFO  LoginPage:528 - ************************************************************
+2018-08-27 18:14:54 INFO  LoginPage:529 - Starting iTool app.
+2018-08-27 18:14:54 INFO  LoginPage:530 - companyCode: Com1
+2018-08-27 18:14:54 INFO  LoginPage:531 - companyCodeUH: UHCom
+2018-08-27 18:14:54 INFO  LoginPage:532 - machineCode: MAC1
+2018-08-27 18:14:55 INFO  LoginPage:535 - mDbHost: localhost
+2018-08-27 18:14:55 INFO  LoginPage:536 - mDbUser: admin
+2018-08-27 18:14:55 INFO  LoginPage:537 - mDbPwds: 1qazxsw2
+2018-08-27 18:14:55 INFO  LoginPage:538 - mDbName: iTools_v1p0
+2018-08-27 18:14:55 INFO  LoginPage:539 - mDbPort: 3306
+2018-08-27 18:14:55 INFO  LoginPage:540 - Database version: v1p0 - 2018-08-27 17:33:22
+2018-08-27 18:14:55 INFO  LoginPage:542 - Last Sync: 2018-08-27 18:09:27
+2018-08-27 18:14:56 INFO  LoginPage:553 - App Version: 1.0
+2018-08-27 18:14:57 INFO  EmailUtils:59 - mail.tqteam.net25itool_app@tqteam.net1qazxsw2!A
+2018-08-27 18:15:01 INFO  LoginPage:564 - checkEmailConfig: true
+2018-08-27 18:15:03 INFO  LoginPage:371 - ========================================
+2018-08-27 18:15:03 INFO  LoginPage:372 - Start syncing thread - cOjk8UDD
+2018-08-27 18:15:03 INFO  LoginPage:373 - ========================================
+2018-08-27 18:15:03 INFO  SyncController:68 - Start SyncHostToLocal
+2018-08-27 18:15:04 INFO  LoginPage:254 - Login with username: uhacc
+2018-08-27 18:15:04 INFO  LoginController:46 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin, IsLocked FROM Assessor where Assessor.IsActive = 1 and Assessor.UserName='uhacc' and (Password=md5('123456') or LastPassword=md5('123456'));
+2018-08-27 18:15:04 INFO  LoginPage:258 - Login OK
+2018-08-27 18:15:04 INFO  LoginController:173 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'Com1' and assessor.UserName= 'uhacc'
+2018-08-27 18:15:04 INFO  LoginController:190 - Check Role in UH Com.....
+2018-08-27 18:15:04 INFO  LoginController:191 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'UHCom' and assessor.UserName= 'uhacc'
+2018-08-27 18:15:04 INFO  LoginPage:274 - listRoles: [Roles [roleName=Accounting]]
+2018-08-27 18:15:04 INFO  LoginPage:295 - Show DashboardPage
+2018-08-27 18:15:04 INFO  DashboardPage:93 - Init DASHBOARD_PAGE with list roles: [accounting]
+2018-08-27 18:15:05 INFO  DashboardPage:248 - uhacc - UNLOCK_MACHINE
+2018-08-27 18:15:06 INFO  SyncController:77 - ========Start=======
+,
+insertCompany: 0,
+updateCompany: 0,
+insertAssessor: 0,
+updateAssessor: 0,
+insertMachine: 0,
+updateMachine: 0,
+insertCompanyMachine: 0,
+updateCompanyMachine: 0,
+insertRoleAssessor: 0,
+updateRoleAssessor: 0,
+insertRole: 0,
+updateRole: 0,
+insertTools: 0,
+updateTools: 0
+2018-08-27 18:15:06 INFO  SyncController:84 - End SyncHostToLocal: 3s
+2018-08-27 18:15:06 INFO  LoginPage:376 - ========================================
+2018-08-27 18:15:06 INFO  LoginPage:377 - End syncing thread - cOjk8UDD
+2018-08-27 18:15:06 INFO  LoginPage:378 - ========================================
+2018-08-27 18:15:08 INFO  DashboardPage:277 - Complete
+2018-08-27 18:15:08 INFO  DashboardPage:297 - uhacc - TKOVER
+2018-08-27 18:15:08 INFO  EmployeeController:160 -  select tools.ToolId, tools.ToolCode ,  toolsmachineTray.Quantity, toolsmachineTray.TrayIndex, toolsmachineTray.Machinecode  from tools inner join toolsmachineTray on tools.ToolCode = toolsmachineTray.ToolCode  where toolsmachineTray.MachineCode = 'MAC1';
+2018-08-27 18:15:08 INFO  EmployeeController:203 - {ACTID111=[[TRAY_01, 2]]}
+2018-08-27 18:15:08 INFO  EmployeeController:50 - select tools.ToolId, tools.ToolCode  from tools inner join toolsmachineTray on tools.ToolCode = toolsmachineTray.ToolCode  where toolsmachineTray.MachineCode = 'MAC1';
+2018-08-27 18:15:08 INFO  EmployeeController:71 - [Tool [toolId=2, toolName=ACTID111]]
+2018-08-27 18:16:37 INFO  LoginPage:525 - ************************************************************
+2018-08-27 18:16:37 INFO  LoginPage:526 - ************************************************************
+2018-08-27 18:16:37 INFO  LoginPage:527 - ************************************************************
+2018-08-27 18:16:37 INFO  LoginPage:528 - ************************************************************
+2018-08-27 18:16:37 INFO  LoginPage:529 - Starting iTool app.
+2018-08-27 18:16:37 INFO  LoginPage:530 - companyCode: Com1
+2018-08-27 18:16:37 INFO  LoginPage:531 - companyCodeUH: UHCom
+2018-08-27 18:16:37 INFO  LoginPage:532 - machineCode: MAC1
+2018-08-27 18:16:37 INFO  LoginPage:535 - mDbHost: localhost
+2018-08-27 18:16:37 INFO  LoginPage:536 - mDbUser: admin
+2018-08-27 18:16:37 INFO  LoginPage:537 - mDbPwds: 1qazxsw2
+2018-08-27 18:16:37 INFO  LoginPage:538 - mDbName: iTools_v1p0
+2018-08-27 18:16:37 INFO  LoginPage:539 - mDbPort: 3306
+2018-08-27 18:16:37 INFO  LoginPage:540 - Database version: v1p0 - 2018-08-27 17:33:22
+2018-08-27 18:16:37 INFO  LoginPage:542 - Last Sync: 2018-08-27 18:15:06
+2018-08-27 18:16:38 INFO  LoginPage:553 - App Version: 1.0
+2018-08-27 18:16:39 INFO  EmailUtils:59 - mail.tqteam.net25itool_app@tqteam.net1qazxsw2!A
+2018-08-27 18:16:44 INFO  LoginPage:564 - checkEmailConfig: true
+2018-08-27 18:16:45 INFO  LoginPage:371 - ========================================
+2018-08-27 18:16:45 INFO  LoginPage:372 - Start syncing thread - eBh0zrj1
+2018-08-27 18:16:45 INFO  LoginPage:373 - ========================================
+2018-08-27 18:16:45 INFO  SyncController:68 - Start SyncHostToLocal
+2018-08-27 18:16:48 INFO  SyncController:77 - ========Start=======
+,
+insertCompany: 0,
+updateCompany: 0,
+insertAssessor: 0,
+updateAssessor: 0,
+insertMachine: 0,
+updateMachine: 0,
+insertCompanyMachine: 0,
+updateCompanyMachine: 0,
+insertRoleAssessor: 0,
+updateRoleAssessor: 0,
+insertRole: 0,
+updateRole: 0,
+insertTools: 0,
+updateTools: 0
+2018-08-27 18:16:48 INFO  SyncController:84 - End SyncHostToLocal: 3s
+2018-08-27 18:16:48 INFO  LoginPage:376 - ========================================
+2018-08-27 18:16:48 INFO  LoginPage:377 - End syncing thread - eBh0zrj1
+2018-08-27 18:16:48 INFO  LoginPage:378 - ========================================
+2018-08-27 18:16:51 INFO  LoginPage:254 - Login with username: uhacc
+2018-08-27 18:16:51 INFO  LoginController:46 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin, IsLocked FROM Assessor where Assessor.IsActive = 1 and Assessor.UserName='uhacc' and (Password=md5('123456') or LastPassword=md5('123456'));
+2018-08-27 18:16:51 INFO  LoginPage:258 - Login OK
+2018-08-27 18:16:51 INFO  LoginController:173 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'Com1' and assessor.UserName= 'uhacc'
+2018-08-27 18:16:51 INFO  LoginController:190 - Check Role in UH Com.....
+2018-08-27 18:16:51 INFO  LoginController:191 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'UHCom' and assessor.UserName= 'uhacc'
+2018-08-27 18:16:51 INFO  LoginPage:274 - listRoles: [Roles [roleName=Accounting]]
+2018-08-27 18:16:51 INFO  LoginPage:295 - Show DashboardPage
+2018-08-27 18:16:51 INFO  DashboardPage:93 - Init DASHBOARD_PAGE with list roles: [accounting]
+2018-08-27 18:16:53 INFO  DashboardPage:248 - uhacc - UNLOCK_MACHINE
+2018-08-27 18:16:55 INFO  DashboardPage:277 - Complete
+2018-08-27 18:17:07 INFO  DashboardPage:308 - uhacc - PUTIN
+2018-08-27 18:17:07 INFO  EmployeeController:160 -  select tools.ToolId, tools.ToolCode ,  toolsmachineTray.Quantity, toolsmachineTray.TrayIndex, toolsmachineTray.Machinecode  from tools inner join toolsmachineTray on tools.ToolCode = toolsmachineTray.ToolCode  where toolsmachineTray.MachineCode = 'MAC1';
+2018-08-27 18:17:07 INFO  EmployeeController:203 - {ACTID111=[[TRAY_01, 2]]}
+2018-08-27 18:17:07 INFO  EmployeeController:270 -  select tools.ToolCode from tools;
+2018-08-27 18:17:07 INFO  EmployeeController:290 - {}
+2018-08-27 18:17:14 INFO  PutInTakeOverPage:603 - Yes option
+2018-08-27 18:17:15 INFO  TransactionController:43 - insert into WorkingTransaction( TransactionDate, MachineCode, CompanyCode, AssessorID, WOCode, OPCode, ToolCode, TrayIndex, Quantity, UpdatedDate, TransactionStatus, TransactionType) values (now(), 'MAC1', 'Com1', 'uhacc', '', '', 'ACTID111', 'TRAY_02', '1', now(), 'Complete', 'PutIns');
+2018-08-27 18:17:15 INFO  PutInTakeOverPage:623 - Create transaction
+2018-08-27 18:17:16 INFO  EmployeeController:80 -  select toolsmachine.ToolsMachineID from tools inner join toolsmachine on tools.ToolCode = toolsmachine.ToolCode where tools.ToolCode = 'ACTID111' and toolsmachine.MachineCode = 'MAC1';
+2018-08-27 18:17:16 INFO  EmployeeController:98 -  select count(*) from toolsmachinetray where toolsmachinetray.ToolCode = 'ACTID111' and toolsmachinetray.TrayIndex = 'TRAY_02' and toolsmachinetray.MachineCode = 'MAC1';
+2018-08-27 18:17:16 INFO  EmployeeController:130 -  insert into toolsmachinetray (MachineCode, ToolCode, TrayIndex, Quantity, IsActive) values ('MAC1', 'ACTID111', 'TRAY_02', '1', 1);
+2018-08-27 18:17:18 INFO  LoginController:267 - SELECT EmailAddress FROM Assessor where Assessor.UserName = 'uhacc' and Assessor.CompanyCode = 'Com1';
+2018-08-27 18:17:18 INFO  LoginController:288 - SELECT EmailAddress FROM Assessor where Assessor.UserName = 'admin';
+2018-08-27 18:17:22 INFO  EmailUtils:160 - uhacc - GETTOOL - Send Mail To  - CC: [quann169@gmail.com] - Subject: Com1 - MAC1 PutIns notification - Message: Hi uhacc,
+
+Tool: ACTID111
+Tray: TRAY_02
+New Quantity: 1
+2018-08-27 18:17:25 INFO  EmployeeController:160 -  select tools.ToolId, tools.ToolCode ,  toolsmachineTray.Quantity, toolsmachineTray.TrayIndex, toolsmachineTray.Machinecode  from tools inner join toolsmachineTray on tools.ToolCode = toolsmachineTray.ToolCode  where toolsmachineTray.MachineCode = 'MAC1';
+2018-08-27 18:17:25 INFO  EmployeeController:203 - {ACTID111=[[TRAY_01, 2], [TRAY_02, 1]]}
+2018-08-27 18:17:25 INFO  PutInTakeOverPage:685 - Complete
+2018-08-27 18:18:26 INFO  LoginPage:525 - ************************************************************
+2018-08-27 18:18:26 INFO  LoginPage:526 - ************************************************************
+2018-08-27 18:18:26 INFO  LoginPage:527 - ************************************************************
+2018-08-27 18:18:26 INFO  LoginPage:528 - ************************************************************
+2018-08-27 18:18:26 INFO  LoginPage:529 - Starting iTool app.
+2018-08-27 18:18:26 INFO  LoginPage:530 - companyCode: Com1
+2018-08-27 18:18:26 INFO  LoginPage:531 - companyCodeUH: UHCom
+2018-08-27 18:18:26 INFO  LoginPage:532 - machineCode: MAC1
+2018-08-27 18:18:26 INFO  LoginPage:535 - mDbHost: localhost
+2018-08-27 18:18:26 INFO  LoginPage:536 - mDbUser: admin
+2018-08-27 18:18:26 INFO  LoginPage:537 - mDbPwds: 1qazxsw2
+2018-08-27 18:18:26 INFO  LoginPage:538 - mDbName: iTools_v1p0
+2018-08-27 18:18:26 INFO  LoginPage:539 - mDbPort: 3306
+2018-08-27 18:18:26 INFO  LoginPage:540 - Database version: v1p0 - 2018-08-27 17:33:22
+2018-08-27 18:18:26 INFO  LoginPage:542 - Last Sync: 2018-08-27 18:16:48
+2018-08-27 18:18:27 INFO  LoginPage:553 - App Version: 1.0
+2018-08-27 18:18:28 INFO  EmailUtils:59 - mail.tqteam.net25itool_app@tqteam.net1qazxsw2!A
+2018-08-27 18:18:33 INFO  LoginPage:564 - checkEmailConfig: true
+2018-08-27 18:18:34 INFO  LoginPage:371 - ========================================
+2018-08-27 18:18:34 INFO  LoginPage:372 - Start syncing thread - oBc1q0Xt
+2018-08-27 18:18:34 INFO  LoginPage:373 - ========================================
+2018-08-27 18:18:34 INFO  SyncController:68 - Start SyncHostToLocal
+2018-08-27 18:18:36 INFO  LoginPage:254 - Login with username: uhacc
+2018-08-27 18:18:36 INFO  LoginController:46 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin, IsLocked FROM Assessor where Assessor.IsActive = 1 and Assessor.UserName='uhacc' and (Password=md5('123456') or LastPassword=md5('123456'));
+2018-08-27 18:18:36 INFO  LoginPage:258 - Login OK
+2018-08-27 18:18:36 INFO  LoginController:173 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'Com1' and assessor.UserName= 'uhacc'
+2018-08-27 18:18:36 INFO  LoginController:190 - Check Role in UH Com.....
+2018-08-27 18:18:36 INFO  LoginController:191 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'UHCom' and assessor.UserName= 'uhacc'
+2018-08-27 18:18:36 INFO  LoginPage:274 - listRoles: [Roles [roleName=Accounting]]
+2018-08-27 18:18:36 INFO  LoginPage:295 - Show DashboardPage
+2018-08-27 18:18:36 INFO  DashboardPage:93 - Init DASHBOARD_PAGE with list roles: [accounting]
+2018-08-27 18:18:37 INFO  DashboardPage:248 - uhacc - UNLOCK_MACHINE
+2018-08-27 18:18:38 INFO  SyncController:77 - ========Start=======
+,
+insertCompany: 0,
+updateCompany: 0,
+insertAssessor: 0,
+updateAssessor: 0,
+insertMachine: 0,
+updateMachine: 0,
+insertCompanyMachine: 0,
+updateCompanyMachine: 0,
+insertRoleAssessor: 0,
+updateRoleAssessor: 0,
+insertRole: 0,
+updateRole: 0,
+insertTools: 0,
+updateTools: 0
+2018-08-27 18:18:38 INFO  SyncController:84 - End SyncHostToLocal: 3s
+2018-08-27 18:18:38 INFO  LoginPage:376 - ========================================
+2018-08-27 18:18:38 INFO  LoginPage:377 - End syncing thread - oBc1q0Xt
+2018-08-27 18:18:38 INFO  LoginPage:378 - ========================================
+2018-08-27 18:18:40 INFO  DashboardPage:277 - Complete
+2018-08-27 18:18:41 INFO  DashboardPage:308 - uhacc - PUTIN
+2018-08-27 18:18:41 INFO  EmployeeController:160 -  select tools.ToolId, tools.ToolCode ,  toolsmachineTray.Quantity, toolsmachineTray.TrayIndex, toolsmachineTray.Machinecode  from tools inner join toolsmachineTray on tools.ToolCode = toolsmachineTray.ToolCode  where toolsmachineTray.MachineCode = 'MAC1';
+2018-08-27 18:18:41 INFO  EmployeeController:203 - {ACTID111=[[TRAY_01, 2], [TRAY_02, 1]]}
+2018-08-27 18:18:41 INFO  EmployeeController:270 -  select tools.ToolCode from tools;
+2018-08-27 18:18:41 INFO  EmployeeController:290 - {}
+2018-08-27 18:18:47 INFO  PutInTakeOverPage:603 - Yes option
+2018-08-27 18:18:48 INFO  TransactionController:43 - insert into WorkingTransaction( TransactionDate, MachineCode, CompanyCode, AssessorID, WOCode, OPCode, ToolCode, TrayIndex, Quantity, UpdatedDate, TransactionStatus, TransactionType) values (now(), 'MAC1', 'Com1', 'uhacc', '', '', 'ACTID111', 'TRAY_01', '4', now(), 'Complete', 'PutIns');
+2018-08-27 18:18:48 INFO  PutInTakeOverPage:623 - Create transaction
+2018-08-27 18:18:49 INFO  EmployeeController:80 -  select toolsmachine.ToolsMachineID from tools inner join toolsmachine on tools.ToolCode = toolsmachine.ToolCode where tools.ToolCode = 'ACTID111' and toolsmachine.MachineCode = 'MAC1';
+2018-08-27 18:18:49 INFO  EmployeeController:98 -  select count(*) from toolsmachinetray where toolsmachinetray.ToolCode = 'ACTID111' and toolsmachinetray.TrayIndex = 'TRAY_01' and toolsmachinetray.MachineCode = 'MAC1';
+2018-08-27 18:18:49 INFO  EmployeeController:130 -  update toolsmachinetray set quantity = '4' where ToolCode = 'ACTID111' and trayIndex = 'TRAY_01' and machineCode = 'MAC1';
+2018-08-27 18:18:50 INFO  LoginController:288 - SELECT EmailAddress FROM Assessor where Assessor.UserName = 'uhacc';
+2018-08-27 18:18:50 INFO  LoginController:309 - SELECT EmailAddress FROM Assessor where Assessor.UserName = 'admin';
+2018-08-27 18:18:53 INFO  EmployeeController:160 -  select tools.ToolId, tools.ToolCode ,  toolsmachineTray.Quantity, toolsmachineTray.TrayIndex, toolsmachineTray.Machinecode  from tools inner join toolsmachineTray on tools.ToolCode = toolsmachineTray.ToolCode  where toolsmachineTray.MachineCode = 'MAC1';
+2018-08-27 18:18:53 INFO  EmployeeController:203 - {ACTID111=[[TRAY_01, 4], [TRAY_02, 1]]}
+2018-08-27 18:18:53 INFO  PutInTakeOverPage:685 - Complete
+2018-08-27 18:18:55 INFO  EmailUtils:160 - uhacc - GETTOOL - Send Mail To trinh.wft@gmail.com - CC: [quann169@gmail.com] - Subject: Com1 - MAC1 PutIns notification - Message: Hi uhacc,
+
+Tool: ACTID111
+Tray: TRAY_01
+New Quantity: 4

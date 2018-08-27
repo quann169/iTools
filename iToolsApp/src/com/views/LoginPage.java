@@ -247,7 +247,7 @@ public class LoginPage extends JFrame implements ActionListener {
 			if (productMode.equals("Dev")) {
 				userText = "com1user1";
 				// userText = "com1admin";
-				// userText = "uhacc";
+				 userText = "uhacc";
 				pwdText = "123456";
 			}
 
@@ -371,7 +371,7 @@ public class LoginPage extends JFrame implements ActionListener {
 					logger.info("========================================");
 					logger.info("Start syncing thread - " + passwordTmp);
 					logger.info("========================================");
-					syncCtl.syncDataAutomatically(companyCode, machineCode);
+					syncCtl.syncDataAutomatically(companyCode, machineCode, productMode);
 
 					logger.info("========================================");
 					logger.info("End syncing thread - " + passwordTmp);
@@ -421,8 +421,9 @@ public class LoginPage extends JFrame implements ActionListener {
 
 			}
 		};
+		one.start();
 		if (!productMode.equals("Dev")) {
-			one.start();
+			
 			two.start();
 		}
 		root = new LoginPage();
