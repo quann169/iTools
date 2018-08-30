@@ -65,7 +65,7 @@ public class LogController {
 			if (result > 0) {
 				return true;
 			}
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			logger.info(e.getMessage());
 			return false;
 		} finally {
@@ -108,7 +108,7 @@ public class LogController {
 				// done");
 				return true;
 			}
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			logger.info(e.getMessage());
 			// logger.info("======================MasterLog insertLog fail");
 			return false;
@@ -141,7 +141,7 @@ public class LogController {
 				String newValue = rs.getString(1);
 				return newValue;
 			}
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			logger.error(e.getMessage());
 			return dateTime;
 		} finally {
@@ -168,7 +168,7 @@ public class LogController {
 			if (countResult > 0) {
 				return true;
 			}
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			logger.info(e.getMessage());
 			return false;
 		} finally {

@@ -62,8 +62,8 @@ public class EmailUtils {
 			return true;
 		} catch (AuthenticationFailedException e) {
 			logger.warn("AuthenticationFailedException: Cannot connect to email - ERR " + e.getMessage());
-		} catch (MessagingException e) {
-			logger.warn("MessagingException: Cannot connect to email - ERR " + e.getMessage());
+		} catch (Exception e) {
+			logger.warn("Exception: Cannot connect to email - ERR " + e.getMessage());
 		}
 		return false;
 	}
@@ -109,8 +109,8 @@ public class EmailUtils {
 			
 		} catch (AuthenticationFailedException e) {
 			logger.error("AuthenticationFailedException: Cannot connect to email" + e.getMessage());
-		} catch (MessagingException e) {
-			logger.error("MessagingException: Cannot connect to email" + e.getMessage());
+		} catch (Exception e) {
+			logger.error("Exception: Cannot connect to email" + e.getMessage());
 		}
 		return false;
 
@@ -168,8 +168,8 @@ public class EmailUtils {
 			}
 		} catch (AuthenticationFailedException e) {
 			logger.error("AuthenticationFailedException: Cannot connect to email" + e.getMessage());
-		} catch (MessagingException e) {
-			logger.error("MessagingException: Cannot connect to email" + e.getMessage());
+		} catch (Exception e) {
+			logger.error("Exception: Cannot connect to email" + e.getMessage());
 		}
 		return false;
 
@@ -218,8 +218,8 @@ public class EmailUtils {
 			}
 		} catch (AuthenticationFailedException e) {
 			logger.error("AuthenticationFailedException: Cannot connect to email" + e.getMessage());
-		} catch (MessagingException e) {
-			logger.error("MessagingException: Cannot connect to email" + e.getMessage());
+		} catch (Exception e) {
+			logger.error("Exception: Cannot connect to email" + e.getMessage());
 		}
 		return false;
 

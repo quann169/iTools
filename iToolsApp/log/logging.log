@@ -9149,3 +9149,136 @@ updateTools: 0
 Tool: ACTID111
 Tray: TRAY_01
 New Quantity: 4
+2018-08-30 16:07:25 INFO  LoginPage:525 - ************************************************************
+2018-08-30 16:07:25 INFO  LoginPage:526 - ************************************************************
+2018-08-30 16:07:25 INFO  LoginPage:527 - ************************************************************
+2018-08-30 16:07:25 INFO  LoginPage:528 - ************************************************************
+2018-08-30 16:07:25 INFO  LoginPage:529 - Starting iTool app.
+2018-08-30 16:07:25 INFO  LoginPage:530 - companyCode: Com1
+2018-08-30 16:07:25 INFO  LoginPage:531 - companyCodeUH: UHCom
+2018-08-30 16:07:25 INFO  LoginPage:532 - machineCode: MAC1
+2018-08-30 16:07:25 INFO  LoginPage:371 - ========================================
+2018-08-30 16:07:25 INFO  LoginPage:372 - Start syncing thread - QRXFnOi7
+2018-08-30 16:07:25 INFO  LoginPage:373 - ========================================
+2018-08-30 16:07:25 INFO  SyncController:68 - Start SyncHostToLocal
+2018-08-30 16:07:26 INFO  LogController:134 - select NewValue from MasterLog where Action = 'SendLog' order by NewValue desc limit 1;
+2018-08-30 16:07:26 ERROR LoginPage:419 - 
+2018-08-30 16:09:19 INFO  LoginPage:525 - ************************************************************
+2018-08-30 16:09:19 INFO  LoginPage:526 - ************************************************************
+2018-08-30 16:09:19 INFO  LoginPage:527 - ************************************************************
+2018-08-30 16:09:19 INFO  LoginPage:528 - ************************************************************
+2018-08-30 16:09:19 INFO  LoginPage:529 - Starting iTool app.
+2018-08-30 16:09:19 INFO  LoginPage:530 - companyCode: Com1
+2018-08-30 16:09:19 INFO  LoginPage:531 - companyCodeUH: UHCom
+2018-08-30 16:09:19 INFO  LoginPage:532 - machineCode: MAC1
+2018-08-30 16:09:19 ERROR AdvancedEncryptionStandard:59 - Input length must be multiple of 16 when decrypting with padded cipher
+2018-08-30 16:09:19 ERROR AdvancedEncryptionStandard:59 - Input length must be multiple of 16 when decrypting with padded cipher
+2018-08-30 16:09:20 INFO  LoginPage:371 - ========================================
+2018-08-30 16:09:20 INFO  LoginPage:372 - Start syncing thread - BWTWIkQq
+2018-08-30 16:09:20 INFO  LogController:134 - select NewValue from MasterLog where Action = 'SendLog' order by NewValue desc limit 1;
+2018-08-30 16:09:20 INFO  LoginPage:373 - ========================================
+2018-08-30 16:09:20 INFO  SyncController:68 - Start SyncHostToLocal
+2018-08-30 16:09:20 ERROR AdvancedEncryptionStandard:59 - Input length must be multiple of 16 when decrypting with padded cipher
+2018-08-30 16:09:20 ERROR AdvancedEncryptionStandard:59 - Input length must be multiple of 16 when decrypting with padded cipher
+2018-08-30 16:09:20 ERROR LoginPage:419 - 
+2018-08-30 16:10:10 INFO  LoginPage:525 - ************************************************************
+2018-08-30 16:10:10 INFO  LoginPage:526 - ************************************************************
+2018-08-30 16:10:10 INFO  LoginPage:527 - ************************************************************
+2018-08-30 16:10:10 INFO  LoginPage:528 - ************************************************************
+2018-08-30 16:10:10 INFO  LoginPage:529 - Starting iTool app.
+2018-08-30 16:10:10 INFO  LoginPage:530 - companyCode: Com1
+2018-08-30 16:10:10 INFO  LoginPage:531 - companyCodeUH: UHCom
+2018-08-30 16:10:10 INFO  LoginPage:532 - machineCode: MAC1
+2018-08-30 16:10:10 ERROR AdvancedEncryptionStandard:59 - Input length must be multiple of 16 when decrypting with padded cipher
+2018-08-30 16:10:10 ERROR AdvancedEncryptionStandard:59 - Input length must be multiple of 16 when decrypting with padded cipher
+2018-08-30 16:10:10 INFO  LoginPage:371 - ========================================
+2018-08-30 16:10:10 INFO  LoginPage:372 - Start syncing thread - DTk8d3fb
+2018-08-30 16:10:10 INFO  LogController:134 - select NewValue from MasterLog where Action = 'SendLog' order by NewValue desc limit 1;
+2018-08-30 16:10:10 INFO  LoginPage:373 - ========================================
+2018-08-30 16:10:10 INFO  SyncController:68 - Start SyncHostToLocal
+2018-08-30 16:10:10 ERROR AdvancedEncryptionStandard:59 - Input length must be multiple of 16 when decrypting with padded cipher
+2018-08-30 16:10:10 ERROR AdvancedEncryptionStandard:59 - Input length must be multiple of 16 when decrypting with padded cipher
+2018-08-30 16:10:10 ERROR LogController:145 - 
+2018-08-30 16:10:10 INFO  LoginPage:465 - Get 1000 from logs
+2018-08-30 16:10:11 INFO  LoginPage:465 - Get 2000 from logs
+2018-08-30 16:10:11 INFO  LoginPage:465 - Get 3000 from logs
+2018-08-30 16:10:12 INFO  LoginPage:465 - Get 4000 from logs
+2018-08-30 16:10:13 INFO  LoginPage:465 - Get 5000 from logs
+2018-08-30 16:10:15 INFO  LoginPage:465 - Get 6000 from logs
+2018-08-30 16:10:17 INFO  LoginPage:465 - Get 7000 from logs
+2018-08-30 16:10:20 INFO  LoginPage:465 - Get 8000 from logs
+2018-08-30 16:10:24 INFO  LoginPage:465 - Get 9000 from logs
+2018-08-30 16:10:30 INFO  LogController:162 - insert into MasterLog(Action, NewValue) values('SendLog', '2018-08-30 16:10:24')
+2018-08-30 16:10:30 INFO  MysqlConnect:61 - Access denied for user ''@'localhost' (using password: NO)
+2018-08-30 16:10:30 ERROR LoginPage:419 - 
+2018-08-30 16:14:35 INFO  LoginPage:525 - ************************************************************
+2018-08-30 16:14:35 INFO  LoginPage:526 - ************************************************************
+2018-08-30 16:14:35 INFO  LoginPage:527 - ************************************************************
+2018-08-30 16:14:35 INFO  LoginPage:528 - ************************************************************
+2018-08-30 16:14:35 INFO  LoginPage:529 - Starting iTool app.
+2018-08-30 16:14:35 INFO  LoginPage:530 - companyCode: Com1
+2018-08-30 16:14:35 INFO  LoginPage:531 - companyCodeUH: UHCom
+2018-08-30 16:14:35 INFO  LoginPage:532 - machineCode: MAC1
+2018-08-30 16:14:35 ERROR AdvancedEncryptionStandard:59 - Input length must be multiple of 16 when decrypting with padded cipher
+2018-08-30 16:14:35 ERROR AdvancedEncryptionStandard:59 - Input length must be multiple of 16 when decrypting with padded cipher
+2018-08-30 16:14:35 INFO  LoginController:235 - 
+2018-08-30 16:14:35 INFO  MysqlConnect:61 - Access denied for user ''@'localhost' (using password: NO)
+2018-08-30 16:14:35 INFO  LoginController:253 - 
+2018-08-30 16:14:35 INFO  LoginPage:535 - mDbHost: localhost
+2018-08-30 16:14:35 INFO  LoginPage:536 - mDbUser: null
+2018-08-30 16:14:35 INFO  LoginPage:537 - mDbPwds: 1qazxsw2
+2018-08-30 16:14:35 INFO  LoginPage:538 - mDbName: iTools_v1p0
+2018-08-30 16:14:35 INFO  LoginPage:539 - mDbPort: 3306
+2018-08-30 16:14:35 INFO  LoginPage:540 - Database version:  - 
+2018-08-30 16:14:35 INFO  LoginPage:542 - Last Sync: 
+2018-08-30 16:14:36 INFO  LoginPage:553 - App Version: 1.0
+2018-08-30 16:14:37 INFO  EmailUtils:59 - mail.tqteam.net25itool_app@tqteam.net1qazxsw2!A
+2018-08-30 16:14:42 INFO  LoginPage:564 - checkEmailConfig: true
+2018-08-30 16:15:16 INFO  LoginPage:525 - ************************************************************
+2018-08-30 16:15:16 INFO  LoginPage:526 - ************************************************************
+2018-08-30 16:15:16 INFO  LoginPage:527 - ************************************************************
+2018-08-30 16:15:16 INFO  LoginPage:528 - ************************************************************
+2018-08-30 16:15:16 INFO  LoginPage:529 - Starting iTool app.
+2018-08-30 16:15:16 INFO  LoginPage:530 - companyCode: Com1
+2018-08-30 16:15:16 INFO  LoginPage:531 - companyCodeUH: UHCom
+2018-08-30 16:15:16 INFO  LoginPage:532 - machineCode: MAC1
+2018-08-30 16:15:16 ERROR AdvancedEncryptionStandard:59 - Input length must be multiple of 16 when decrypting with padded cipher
+2018-08-30 16:15:16 ERROR AdvancedEncryptionStandard:59 - Input length must be multiple of 16 when decrypting with padded cipher
+2018-08-30 16:15:16 INFO  LoginController:235 - 
+2018-08-30 16:15:16 INFO  MysqlConnect:61 - Access denied for user ''@'localhost' (using password: NO)
+2018-08-30 16:15:16 INFO  LoginController:253 - 
+2018-08-30 16:15:16 INFO  LoginPage:535 - mDbHost: localhost
+2018-08-30 16:15:16 INFO  LoginPage:536 - mDbUser: null
+2018-08-30 16:15:16 INFO  LoginPage:537 - mDbPwds: 1qazxsw2
+2018-08-30 16:15:16 INFO  LoginPage:538 - mDbName: iTools_v1p0
+2018-08-30 16:15:16 INFO  LoginPage:539 - mDbPort: 3306
+2018-08-30 16:15:16 INFO  LoginPage:540 - Database version:  - 
+2018-08-30 16:15:16 INFO  LoginPage:542 - Last Sync: 
+2018-08-30 16:15:17 INFO  LoginPage:553 - App Version: 1.0
+2018-08-30 16:15:18 INFO  EmailUtils:59 - mail.tqteam.net25itool_app@tqteam.net1qazxsw2!A
+2018-08-30 16:15:23 INFO  LoginPage:564 - checkEmailConfig: true
+2018-08-30 16:17:35 INFO  LoginPage:525 - ************************************************************
+2018-08-30 16:17:35 INFO  LoginPage:526 - ************************************************************
+2018-08-30 16:17:35 INFO  LoginPage:527 - ************************************************************
+2018-08-30 16:17:35 INFO  LoginPage:528 - ************************************************************
+2018-08-30 16:17:35 INFO  LoginPage:529 - Starting iTool app.
+2018-08-30 16:17:35 INFO  LoginPage:530 - companyCode: Com1
+2018-08-30 16:17:35 INFO  LoginPage:531 - companyCodeUH: UHCom
+2018-08-30 16:17:35 INFO  LoginPage:532 - machineCode: MAC1
+2018-08-30 16:17:35 ERROR AdvancedEncryptionStandard:60 - NvglO4oQMvZ1s
+2018-08-30 16:17:35 ERROR AdvancedEncryptionStandard:61 - Input length must be multiple of 16 when decrypting with padded cipher
+2018-08-30 16:17:35 ERROR AdvancedEncryptionStandard:60 - NvglO4oQMvZ1s
+2018-08-30 16:17:35 ERROR AdvancedEncryptionStandard:61 - Input length must be multiple of 16 when decrypting with padded cipher
+2018-08-30 16:17:35 INFO  LoginController:235 - 
+2018-08-30 16:17:36 INFO  MysqlConnect:61 - Access denied for user ''@'localhost' (using password: NO)
+2018-08-30 16:17:36 INFO  LoginController:253 - 
+2018-08-30 16:17:36 INFO  LoginPage:535 - mDbHost: localhost
+2018-08-30 16:17:36 INFO  LoginPage:536 - mDbUser: null
+2018-08-30 16:17:36 INFO  LoginPage:537 - mDbPwds: 1qazxsw2
+2018-08-30 16:17:36 INFO  LoginPage:538 - mDbName: iTools_v1p0
+2018-08-30 16:17:36 INFO  LoginPage:539 - mDbPort: 3306
+2018-08-30 16:17:36 INFO  LoginPage:540 - Database version:  - 
+2018-08-30 16:17:36 INFO  LoginPage:542 - Last Sync: 
+2018-08-30 16:17:37 INFO  LoginPage:553 - App Version: 1.0
+2018-08-30 16:17:38 INFO  EmailUtils:59 - mail.tqteam.net25itool_app@tqteam.net1qazxsw2!A
+2018-08-30 16:17:43 INFO  LoginPage:564 - checkEmailConfig: true

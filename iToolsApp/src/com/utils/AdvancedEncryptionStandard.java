@@ -7,12 +7,16 @@ import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 
 import org.apache.commons.codec.binary.Base64;
+import org.apache.log4j.Logger;
+
+import com.views.DashboardPage;
 
 public class AdvancedEncryptionStandard {
 	private static byte[] key = "MZygpewJsCdr4a1y".getBytes(StandardCharsets.UTF_8);
 	private static byte[] initVector = "MZygpewJsCpRrfOr".getBytes(StandardCharsets.UTF_8);
 
 	private static final String ALGORITHM = "AES";
+	final static Logger logger = Logger.getLogger(AdvancedEncryptionStandard.class);
 
 	// public AdvancedEncryptionStandard(byte[] key) {
 	// this.key = key;
@@ -31,7 +35,9 @@ public class AdvancedEncryptionStandard {
 
 			return Base64.encodeBase64String(encrypted);
 		} catch (Exception ex) {
-			ex.printStackTrace();
+			logger.error(value);
+			logger.error(ex.getMessage());
+//			ex.printStackTrace();
 		}
 
 		return null;
@@ -50,7 +56,9 @@ public class AdvancedEncryptionStandard {
 			// String(original));
 			return new String(original);
 		} catch (Exception ex) {
-			ex.printStackTrace();
+//			ex.printStackTrace();
+			logger.error(encrypted);
+			logger.error(ex.getMessage());
 		}
 
 		return null;

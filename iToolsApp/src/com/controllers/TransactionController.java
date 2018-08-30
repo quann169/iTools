@@ -54,7 +54,7 @@ public class TransactionController {
 					throw new SQLException("Creating transaction failed, no ID obtained.");
 				}
 			}
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			logger.info(e.getMessage());
 			return -1;
 		} finally {
@@ -77,7 +77,7 @@ public class TransactionController {
 			PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 			int rs = statement.executeUpdate();
 			return rs;
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			logger.info(e.getMessage());
 			return -1;
 		} finally {

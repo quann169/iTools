@@ -72,7 +72,7 @@ public class MysqlConnect {
 			try {
 				connection.close();
 				connection = null;
-			} catch (SQLException e) {
+			} catch (Exception e) {
 				logger.info(e.getMessage());
 			}
 		}

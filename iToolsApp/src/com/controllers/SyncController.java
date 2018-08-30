@@ -45,7 +45,7 @@ public class SyncController {
 			ps.setString(2, machineCode);
 
 			ps.executeUpdate();
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			logger.error(e.getMessage());
 			return null;
 		} finally {
@@ -102,7 +102,7 @@ public class SyncController {
 				duration = System.currentTimeMillis() - startTime;
 				logger.info("End SyncLocalToHost: " + duration / 1000 + "s");
 			}
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			logger.error(e.getMessage());
 			return null;
 		} finally {

@@ -62,7 +62,7 @@ public class EmployeeController {
 				tool.setToolId(toolId);
 				result.add(tool);
 			}
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			logger.info(e.getMessage());
 			return null;
 		} finally {
@@ -86,7 +86,7 @@ public class EmployeeController {
 			while (rs.next()) {
 				toolsMachineID = rs.getString(1);
 			}
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			logger.info(e.getMessage());
 			return false;
 		} finally {
@@ -104,7 +104,7 @@ public class EmployeeController {
 			while (rs.next()) {
 				countExisted = Integer.valueOf(rs.getString(1));
 			}
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			logger.info(e.getMessage());
 			return false;
 		} finally {
@@ -136,7 +136,7 @@ public class EmployeeController {
 			if (countResult > 0) {
 				return true;
 			}
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			logger.info(e.getMessage());
 			return false;
 		} finally {
@@ -194,7 +194,7 @@ public class EmployeeController {
 				}
 			}
 
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			logger.info(e.getMessage());
 			return null;
 		} finally {
@@ -248,7 +248,7 @@ public class EmployeeController {
 				}
 			}
 
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			logger.info(e.getMessage());
 			return null;
 		} finally {
@@ -281,7 +281,7 @@ public class EmployeeController {
 				availableTools.add(tool);
 			}
 
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			logger.info(e.getMessage());
 			return null;
 		} finally {
@@ -314,7 +314,7 @@ public class EmployeeController {
 				listAllUsers.add(user);
 			}
 			return listAllUsers;
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			logger.info(e.getMessage());
 			return listAllUsers;
 		} finally {
@@ -344,7 +344,7 @@ public class EmployeeController {
 			}
 			logger.info(listAllRoles);
 			return listAllRoles;
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			logger.info(e.getMessage());
 			return listAllRoles;
 		} finally {
@@ -377,7 +377,7 @@ public class EmployeeController {
 			}
 			logger.info(listAllMachines);
 			return listAllMachines;
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			logger.info(e.getMessage());
 			return listAllMachines;
 		} finally {

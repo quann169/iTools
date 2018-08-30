@@ -64,7 +64,7 @@ public class UserController {
 				listAllUsers.add(user);
 			}
 			return listAllUsers;
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			logger.info(e.getMessage());
 			return listAllUsers;
 		} finally {
@@ -85,7 +85,7 @@ public class UserController {
 			int rows = statement.executeUpdate();
 			logger.info(rows + " row(s) updated!");
 			return true;
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			logger.info(e.getMessage());
 			return false;
 		} finally {
@@ -106,7 +106,7 @@ public class UserController {
 			int rows = statement.executeUpdate();
 			logger.info(rows + " row(s) updated!");
 			return true;
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			logger.info(e.getMessage());
 			return false;
 		} finally {
@@ -132,7 +132,7 @@ public class UserController {
 			int rows = statement.executeUpdate();
 			logger.info(rows + " row(s) updated!");
 			return password;
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			logger.info(e.getMessage());
 			return "Err";
 		} finally {
@@ -159,7 +159,7 @@ public class UserController {
 			while (rs.next()) {
 				return true;
 			}
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			logger.info(e.getMessage());
 		} finally {
 			mysqlConnect.disconnect();
@@ -196,7 +196,7 @@ public class UserController {
 				logger.warn(rows + " row(s) updated!");
 				return false;
 			}
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			logger.info(e.getMessage());
 			return false;
 		} finally {

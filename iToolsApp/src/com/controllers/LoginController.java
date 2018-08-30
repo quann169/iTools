@@ -63,7 +63,7 @@ public class LoginController {
 			} else {
 				return null;
 			}
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			logger.error(e.getMessage());
 			return null;
 		} finally {
@@ -91,7 +91,7 @@ public class LoginController {
 			if (countResult > 0) {
 				return true;
 			}
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			logger.info(e.getMessage());
 			return false;
 		} finally {
@@ -120,7 +120,7 @@ public class LoginController {
 			if (countResult > 0) {
 				return true;
 			}
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			logger.info(e.getMessage());
 			return false;
 		} finally {
@@ -153,7 +153,7 @@ public class LoginController {
 				listAllUsers.add(user);
 			}
 			return listAllUsers;
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			logger.info(e.getMessage());
 			return listAllUsers;
 		} finally {
@@ -201,7 +201,7 @@ public class LoginController {
 			}
 
 			return listAllRoles;
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			logger.info(e.getMessage());
 			return listAllRoles;
 		} finally {
@@ -231,7 +231,7 @@ public class LoginController {
 			while (rs.next()) {
 				lastSync = rs.getString(1);
 			}
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			logger.info(e.getMessage());
 		} finally {
 			mysqlConnect.disconnect();
@@ -249,7 +249,7 @@ public class LoginController {
 				version = rs.getString(1);
 				updatedDate = rs.getString(2);
 			}
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			logger.info(e.getMessage());
 		} finally {
 			mysqlConnect.disconnect();
@@ -273,7 +273,7 @@ public class LoginController {
 				emailUser = rs.getString(1);
 				break;
 			}
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			logger.info(e.getMessage());
 			return "";
 		} finally {
@@ -294,7 +294,7 @@ public class LoginController {
 				emailUser = rs.getString(1);
 				break;
 			}
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			logger.info(e.getMessage());
 			return "";
 		} finally {
@@ -315,7 +315,7 @@ public class LoginController {
 				emailUser = rs.getString(1);
 				break;
 			}
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			logger.info(e.getMessage());
 			return "";
 		} finally {

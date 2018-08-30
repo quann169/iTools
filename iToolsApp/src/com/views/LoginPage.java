@@ -247,7 +247,7 @@ public class LoginPage extends JFrame implements ActionListener {
 			if (productMode.equals("Dev")) {
 				userText = "com1user1";
 				// userText = "com1admin";
-				 userText = "uhacc";
+				userText = "uhacc";
 				pwdText = "123456";
 			}
 
@@ -423,7 +423,7 @@ public class LoginPage extends JFrame implements ActionListener {
 		};
 		one.start();
 		if (!productMode.equals("Dev")) {
-			
+
 			two.start();
 		}
 		root = new LoginPage();
@@ -560,9 +560,25 @@ public class LoginPage extends JFrame implements ActionListener {
 				publish("Checking email...");
 				Thread.sleep(1000);
 
-				 boolean checkEmailConfig = emailUtils.checkEmailConnection();
-				 logger.info("checkEmailConfig: " + checkEmailConfig);
-
+				boolean checkEmailConfig = emailUtils.checkEmailConnection();
+				logger.info("checkEmailConfig: " + checkEmailConfig);
+				
+				
+				if (companyCode == null || companyCodeUH == null || machineCode == null) {
+					publish("Error configuration checking. Please review log file...");
+					Thread.sleep(5000);
+					System.exit(ERROR);
+				}
+				
+				
+				for (String info : databaseInfo) {
+					if (info == null) {
+						publish("Error database configuration. Please review log file...");
+						Thread.sleep(5000);
+						System.exit(ERROR);
+					}
+				}
+				
 				publish("Done checking...");
 				Thread.sleep(1000);
 
