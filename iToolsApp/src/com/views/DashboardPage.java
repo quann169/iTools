@@ -78,7 +78,6 @@ public class DashboardPage extends JFrame implements ActionListener {
 	private static final String companyCode = AdvancedEncryptionStandard.decrypt(cfg.getProperty("COMPANY_CODE"));
 	private static final String machineCode = AdvancedEncryptionStandard.decrypt(cfg.getProperty("MACHINE_CODE"));
 	LoginController ctlObj = new LoginController();
-	String email = "";
 	String userName = "";
 	
 	EmailUtils emailUtils = new EmailUtils(Enum.DASHBOARD_PAGE, userName, companyCode, machineCode);
@@ -96,8 +95,6 @@ public class DashboardPage extends JFrame implements ActionListener {
 			listRoleName.add(role.getRoleName().toLowerCase());
 		}
 
-		
-		email = ctlObj.getEmailUser(companyCode, userName);
 		this.user = user;
 		setLayoutManager();
 		setLocationAndSize();
@@ -307,6 +304,9 @@ public class DashboardPage extends JFrame implements ActionListener {
 						
 						List<String> ccEmail = new ArrayList<>();
 						ccEmail.add("quann169@gmail.com");
+						
+						String email =  ctlObj.getEmailUser(userName);
+						
 						
 						emailUtils.sendEmailCCWithAttachedFile(email, ccEmail,
 								companyCode + " - " + machineCode + ": Report before takeover or putin", outFilePath);
