@@ -331,7 +331,7 @@ public class DashboardPage extends JFrame implements ActionListener {
 
 				protected void process(List<String> chunks) {
 					String selection = chunks.get(chunks.size() - 1);
-					progress.setText("<html><html><font size=\"4\" face=\"arial\" color=\"#0181BE\"><b>"
+					progress.setText("<html><html><font size=\"5\" face=\"arial\" color=\"#0181BE\"><b>"
 							+ selection + "</b></font></html></html>");
 
 				}
