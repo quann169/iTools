@@ -271,63 +271,68 @@ public class DashboardPage extends JFrame implements ActionListener {
 
 			SwingWorker<?, ?> worker = new SwingWorker<Void, String>() {
 				protected Void doInBackground() throws InterruptedException {
-					int x = 0;
-					for (; x <= 100; x += 10) {
-						//publish("" + x);
-						//Thread.sleep(200);
-					}
-					publish("Start getting report...");
-					TransactionController controller = new TransactionController();
-					
-					List<List<String>> quantityTrayInfo = controller.getQuantityTrayInfo(companyCode);
-					List<String> header =  new ArrayList<String>() {/**
-						 * 
-						 */
-						private static final long serialVersionUID = 1L; 
-
-					{
-					    add("MachineCode");
-					    add("ToolCode");
-					    add("TrayIndex");
-					    add("Quantity");
-					    add("UpdatedDate");
-					}};
-					publish("Completed getting report...");
-					
-					DateFormat dateFormat = new SimpleDateFormat("yyyy_MM_dd_HH_mm_ss");
-					Date date = new Date();
-					String dateTime = dateFormat.format(date);
-					String outFilePath = "./log/report_" + dateTime + ".csv";
-					
-					StringUtils.writeFileTab(outFilePath, header, quantityTrayInfo);
-					
-					publish("Completed writing report to file...");
-					
-					
-					List<String> ccEmail = new ArrayList<>();
-					ccEmail.add("quann169@gmail.com");
-					
-					emailUtils.sendEmailCCWithAttachedFile(email, ccEmail,
-							companyCode + " - " + machineCode + ": Report before takeover or putin", outFilePath);
-					
-					
 					try {
-						Files.deleteIfExists(Paths.get(outFilePath));
-						logger.info("Delete report file successfully.");
-					} catch (Exception e) {
-						logger.error("Cannot delete report file");
+						int x = 0;
+						for (; x <= 100; x += 10) {
+							//publish("" + x);
+							//Thread.sleep(200);
+						}
+						publish("Start getting report...");
+						TransactionController controller = new TransactionController();
+						
+						List<List<String>> quantityTrayInfo = controller.getQuantityTrayInfo(machineCode);
+						List<String> header =  new ArrayList<String>() {/**
+							 * 
+							 */
+							private static final long serialVersionUID = 1L; 
+
+						{
+						    add("MachineCode");
+						    add("ToolCode");
+						    add("TrayIndex");
+						    add("Quantity");
+						    add("UpdatedDate");
+						}};
+						publish("Completed getting report...");
+						
+						DateFormat dateFormat = new SimpleDateFormat("yyyy_MM_dd_HH_mm_ss");
+						Date date = new Date();
+						String dateTime = dateFormat.format(date);
+						String outFilePath = "./log/report_" + dateTime + ".csv";
+						
+						StringUtils.writeFileTab(outFilePath, header, quantityTrayInfo);
+						
+						publish("Completed writing report to file...");
+						
+						
+						List<String> ccEmail = new ArrayList<>();
+						ccEmail.add("quann169@gmail.com");
+						
+						emailUtils.sendEmailCCWithAttachedFile(email, ccEmail,
+								companyCode + " - " + machineCode + ": Report before takeover or putin", outFilePath);
+						
+						
+						try {
+							Files.deleteIfExists(Paths.get(outFilePath));
+							logger.info("Delete report file successfully.");
+						} catch (Exception e) {
+							logger.error("Cannot delete report file");
+						}
+						
+						publish("Sent email...");
+						Thread.sleep(2000);
+					} catch (Exception e2) {
+						logger.error(e2.getMessage());
 					}
 					
-					publish("Sent email...");
-					Thread.sleep(2000);
 					
 					return null;
 				}
 
 				protected void process(List<String> chunks) {
 					String selection = chunks.get(chunks.size() - 1);
-					progress.setText("<html><html><font size=\"5\" face=\"arial\" color=\"#0181BE\"><b>"
-							+ selection + "s</b></font></html></html>");
+					progress.setText("<html><html><font size=\"4\" face=\"arial\" color=\"#0181BE\"><b>"
+							+ selection + "</b></font></html></html>");
 
 				}
 
