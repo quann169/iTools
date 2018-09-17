@@ -367,7 +367,7 @@ public class LoginPage extends JFrame implements ActionListener {
 
 				while (true) {
 					RandomString generate = new RandomString(8, ThreadLocalRandom.current());
-					String passwordTmp = generate.nextString();
+					String passwordTmp = generate.nextString().toUpperCase();
 					logger.info("========================================");
 					logger.info("Start syncing thread - " + passwordTmp);
 					logger.info("========================================");

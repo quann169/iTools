@@ -177,7 +177,7 @@ public class UserController {
 	public boolean resetPassword(String userName, String email, String companyCode, String machineCode) {
 
 		RandomString generate = new RandomString(8, ThreadLocalRandom.current());
-		String passwordTmp = generate.nextString();
+		String passwordTmp = generate.nextString().toUpperCase();
 
 		String sql = "Update  Assessor set Assessor.LastPassword = md5('" + passwordTmp + "') "
 				+ ", Assessor.IsFirstTimeLogin = 1 " + " where Assessor.Username = '" + userName

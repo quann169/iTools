@@ -7,6 +7,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.log4j.Logger;
 
@@ -83,6 +85,36 @@ public class TransactionController {
 		} finally {
 			mysqlConnect.disconnect();
 		}
+	}
+
+	public List<List<String>> getQuantityTrayInfo(String machineCode) {
+		String sql = " select MachineCode, ToolCode, TrayIndex, Quantity, UpdatedDate "
+				+ "from toolsmachinetray "
+				+ "where toolsmachinetray.IsActive = '1' and toolsmachinetray.MachineCode = '" + machineCode + "';";
+		logger.info(sql);
+		List<List<String>> result = new ArrayList<>();
+		try {
+
+			PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
+			ResultSet rs = statement.executeQuery(sql);
+			List<String> list1Row = new ArrayList<>();
+			while (rs.next()) {
+				list1Row.add(rs.getString(1));
+				list1Row.add(rs.getString(2));
+				list1Row.add(rs.getString(3));
+				list1Row.add(rs.getString(4));
+				list1Row.add(rs.getString(5));
+				result.add(list1Row);
+				list1Row = new ArrayList<>();
+			}
+			
+		} catch (Exception e) {
+			logger.info(e.getMessage());
+			return null;
+		} finally {
+			mysqlConnect.disconnect();
+		}
+		return result;
 	}
 
 }

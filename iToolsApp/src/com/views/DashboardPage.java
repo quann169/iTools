@@ -11,8 +11,13 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.text.DateFormat;
 import java.text.MessageFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.ResourceBundle;
@@ -29,12 +34,15 @@ import javax.swing.Timer;
 import org.apache.log4j.Logger;
 
 import com.controllers.LogController;
+import com.controllers.LoginController;
 import com.controllers.SyncController;
+import com.controllers.TransactionController;
 import com.message.Enum;
 import com.models.Assessor;
 import com.models.Role;
 import com.utils.AdvancedEncryptionStandard;
 import com.utils.Config;
+import com.utils.EmailUtils;
 import com.utils.StringUtils;
 
 public class DashboardPage extends JFrame implements ActionListener {
@@ -69,8 +77,11 @@ public class DashboardPage extends JFrame implements ActionListener {
 	private static final Config cfg = new Config();
 	private static final String companyCode = AdvancedEncryptionStandard.decrypt(cfg.getProperty("COMPANY_CODE"));
 	private static final String machineCode = AdvancedEncryptionStandard.decrypt(cfg.getProperty("MACHINE_CODE"));
-
+	LoginController ctlObj = new LoginController();
+	String email = "";
 	String userName = "";
+	
+	EmailUtils emailUtils = new EmailUtils(Enum.DASHBOARD_PAGE, userName, companyCode, machineCode);
 
 	JFrame root = this;
 	Timer updateTimer;
@@ -85,6 +96,8 @@ public class DashboardPage extends JFrame implements ActionListener {
 			listRoleName.add(role.getRoleName().toLowerCase());
 		}
 
+		
+		email = ctlObj.getEmailUser(companyCode, userName);
 		this.user = user;
 		setLayoutManager();
 		setLocationAndSize();
@@ -248,7 +261,7 @@ public class DashboardPage extends JFrame implements ActionListener {
 			logger.info(userName + " - " + Enum.UNLOCK_MACHINE);
 			final JDialog d = new JDialog();
 			JPanel p1 = new JPanel(new GridBagLayout());
-			JLabel progress = new JLabel("Please Wait...");
+			JLabel progress = new JLabel("");
 			p1.add(progress, new GridBagConstraints());
 			d.getContentPane().add(p1);
 			d.setBounds(150, 200, 500, 200);
@@ -260,15 +273,60 @@ public class DashboardPage extends JFrame implements ActionListener {
 				protected Void doInBackground() throws InterruptedException {
 					int x = 0;
 					for (; x <= 100; x += 10) {
-						publish("" + x);
-						Thread.sleep(200);
+						//publish("" + x);
+						//Thread.sleep(200);
 					}
+					publish("Start getting report...");
+					TransactionController controller = new TransactionController();
+					
+					List<List<String>> quantityTrayInfo = controller.getQuantityTrayInfo(companyCode);
+					List<String> header =  new ArrayList<String>() {/**
+						 * 
+						 */
+						private static final long serialVersionUID = 1L; 
+
+					{
+					    add("MachineCode");
+					    add("ToolCode");
+					    add("TrayIndex");
+					    add("Quantity");
+					    add("UpdatedDate");
+					}};
+					publish("Completed getting report...");
+					
+					DateFormat dateFormat = new SimpleDateFormat("yyyy_MM_dd_HH_mm_ss");
+					Date date = new Date();
+					String dateTime = dateFormat.format(date);
+					String outFilePath = "./log/report_" + dateTime + ".csv";
+					
+					StringUtils.writeFileTab(outFilePath, header, quantityTrayInfo);
+					
+					publish("Completed writing report to file...");
+					
+					
+					List<String> ccEmail = new ArrayList<>();
+					ccEmail.add("quann169@gmail.com");
+					
+					emailUtils.sendEmailCCWithAttachedFile(email, ccEmail,
+							companyCode + " - " + machineCode + ": Report before takeover or putin", outFilePath);
+					
+					
+					try {
+						Files.deleteIfExists(Paths.get(outFilePath));
+						logger.info("Delete report file successfully.");
+					} catch (Exception e) {
+						logger.error("Cannot delete report file");
+					}
+					
+					publish("Sent email...");
+					Thread.sleep(2000);
+					
 					return null;
 				}
 
 				protected void process(List<String> chunks) {
 					String selection = chunks.get(chunks.size() - 1);
-					progress.setText("<html><html><font size=\"5\" face=\"arial\" color=\"#0181BE\"><b>Please Wait... "
+					progress.setText("<html><html><font size=\"5\" face=\"arial\" color=\"#0181BE\"><b>"
 							+ selection + "s</b></font></html></html>");
 
 				}
@@ -276,17 +334,8 @@ public class DashboardPage extends JFrame implements ActionListener {
 				protected void done() {
 					logger.info("Complete");
 					d.dispose();
-					// if
-					// (listRoleName.contains(Enum.PUTIN.text().toLowerCase()))
-					// {
 					putInsButton.setEnabled(true);
-					// }
-					//
-					// if
-					// (listRoleName.contains(Enum.TKOVER.text().toLowerCase()))
-					// {
 					takeOverButton.setEnabled(true);
-					// }
 				}
 			};
 			worker.execute();
@@ -352,7 +401,7 @@ public class DashboardPage extends JFrame implements ActionListener {
 
 		if (e.getSource() == manualSyncButton) {
 			SyncController syncCtl = new SyncController();
-			List<String> syncResult = syncCtl.syncDataManually(companyCode, machineCode);
+			syncCtl.syncDataManually(companyCode, machineCode);
 			logger.info(manualSyncButton.getText() + " clicked by " + userName);
 
 		}

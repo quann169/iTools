@@ -5,7 +5,6 @@ package com.controllers;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -45,7 +44,7 @@ public class EmployeeController {
 	public List<Tool> getToolsOfMachine(String machineCode) {
 		String sql = "select tools.ToolId, tools.ToolCode "
 				+ " from tools inner join toolsmachineTray on tools.ToolCode = toolsmachineTray.ToolCode "
-				+ " where toolsmachineTray.MachineCode = '" + machineCode + "';";
+				+ " where tools.IsActive = '1' and toolsmachineTray.MachineCode = '" + machineCode + "';";
 		// System.out.println(sql);
 		logger.info(sql);
 		List<Tool> result = new ArrayList<>();
@@ -155,7 +154,7 @@ public class EmployeeController {
 	public HashMap<String, List<List<Object>>> getToolTrayQuantity(String machineCode, int minVal) {
 		String sql = " select tools.ToolId, tools.ToolCode ,  toolsmachineTray.Quantity, toolsmachineTray.TrayIndex, toolsmachineTray.Machinecode "
 				+ " from tools inner join toolsmachineTray on tools.ToolCode = toolsmachineTray.ToolCode "
-				+ " where toolsmachineTray.MachineCode = '" + machineCode + "';";
+				+ " where tools.IsActive = '1' and toolsmachineTray.MachineCode = '" + machineCode + "';";
 		// System.out.println(sql);
 		logger.info(sql);
 		HashMap<String, List<List<Object>>> result = new HashMap<>();
@@ -204,60 +203,6 @@ public class EmployeeController {
 		return result;
 	}
 
-	public HashMap<String, List<List<Object>>> getToolTrayQuantity_Bk(String machineCode, int minVal) {
-		String sql = " select tools.ToolCode, tools.ToolCode, machine.MachineCode, toolsmachinetray.TrayIndex, toolsmachinetray.Quantity "
-				+ " from tools inner join toolsmachine on tools.ToolCode = toolsmachine.ToolCode "
-				+ " inner join machine on toolsmachine.MachineCode = machine.MachineCode "
-				+ " inner join toolsmachinetray on toolsmachinetray.toolsmachineID = toolsmachine.toolsmachineID "
-				+ " where machine.MachineCode = '" + machineCode + "';";
-		// System.out.println(sql);
-		logger.info(sql);
-		HashMap<String, List<List<Object>>> result = new HashMap<>();
-		List<String> availableTools = new ArrayList<>();
-		Set<String> toolTrays = new HashSet<>();
-		try {
-
-			PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
-			ResultSet rs = statement.executeQuery(sql);
-			while (rs.next()) {
-				String toolName = rs.getString(2);
-				String trayIndex = rs.getString(4);
-				String toolTray = toolName + "_" + trayIndex;
-				int quantity = Integer.parseInt(rs.getString(5));
-				if (toolTrays.contains(toolTray)) {
-					logger.warn("Machine " + machineCode + ": " + toolName + " - " + trayIndex + " existed.");
-				}
-				if (quantity > minVal) {
-					availableTools.add(toolName);
-
-					if (result.containsKey(toolName)) {
-						List<List<Object>> existedData = result.get(toolName);
-						List<Object> tmpList = new ArrayList<>();
-						tmpList.add(trayIndex);
-						tmpList.add(quantity);
-						existedData.add(tmpList);
-						result.put(toolName, existedData);
-					} else {
-						List<Object> tmpList = new ArrayList<>();
-						tmpList.add(trayIndex);
-						tmpList.add(quantity);
-						List<List<Object>> existedData = new ArrayList<>();
-						existedData.add(tmpList);
-						result.put(toolName, existedData);
-					}
-				}
-			}
-
-		} catch (Exception e) {
-			logger.info(e.getMessage());
-			return null;
-		} finally {
-			mysqlConnect.disconnect();
-		}
-		logger.info(result);
-		return result;
-	}
-
 	/**
 	 * 
 	 * @param username
@@ -265,7 +210,7 @@ public class EmployeeController {
 	 * @return
 	 */
 	public List<Tool> getAllTools() {
-		String sql = " select tools.ToolCode from tools;";
+		String sql = " select tools.ToolCode from tools where tools.IsActive='1';";
 		// System.out.println(sql);
 		logger.info(sql);
 		HashMap<String, List<List<Object>>> result = new HashMap<>();
@@ -328,7 +273,7 @@ public class EmployeeController {
 	public List<Role> getUserRoles(String userName, String companyCode) {
 		String sql = "select distinct RoleName "
 				+ " from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID"
-				+ " inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = '" + companyCode
+				+ " inner join roles on roles.RoleID = roleassessor.RoleID where assessor.IsIsActive = '1' and assessor.CompanyCode = '" + companyCode
 				+ "' and assessor.UserName= '" + userName + "'";
 		logger.info(sql);
 		List<Role> listAllRoles = new ArrayList<>();
@@ -360,7 +305,7 @@ public class EmployeeController {
 				+ "				on toolsMachine.MachineCode = machine.MachineCode " + "	inner join Tools  "
 				+ "				on Tools.ToolCode = toolsMachine.ToolCode " + "	left join toolsMachineTray "
 				+ "				on toolsMachineTray.toolsMachineID = toolsMachine.toolsMachineID "
-				+ "where company.CompanyCode = '" + companyCode + "' and tools.ToolCode = '" + selectValue + "';";
+				+ "where Tools.Isactive = '1' and company.CompanyCode = '" + companyCode + "' and tools.ToolCode = '" + selectValue + "';";
 		// System.out.println(sql);
 		logger.info(sql);
 		List<Machine> listAllMachines = new ArrayList<>();

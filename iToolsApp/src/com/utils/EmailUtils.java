@@ -9,7 +9,6 @@ import javax.activation.DataSource;
 import javax.activation.FileDataSource;
 import javax.mail.AuthenticationFailedException;
 import javax.mail.Message;
-import javax.mail.MessagingException;
 import javax.mail.Multipart;
 import javax.mail.Session;
 import javax.mail.internet.InternetAddress;
@@ -203,6 +202,74 @@ public class EmailUtils {
 			messageBodyPart.setFileName("LogFile.txt");
 			multipart.addBodyPart(messageBodyPart);
 			msg.setContent(multipart);
+
+			SMTPTransport t = (SMTPTransport) session.getTransport("smtp");
+			t.connect(host, port, email, password);
+			t.sendMessage(msg, msg.getAllRecipients());
+			String response = t.getLastServerResponse();
+			t.close();
+			if (response.contains("OK")) {
+				// String logInfo = username + " - " + page + " - Send Mail" + "
+				// To " + mainEmail + " - Subject: " + subject + " - Message: "
+				// + message;
+				// logger.info(logInfo);
+				return true;
+			}
+		} catch (AuthenticationFailedException e) {
+			logger.error("AuthenticationFailedException: Cannot connect to email" + e.getMessage());
+		} catch (Exception e) {
+			logger.error("Exception: Cannot connect to email" + e.getMessage());
+		}
+		return false;
+
+	}
+	
+	
+	public boolean sendEmailCCWithAttachedFile(String mainEmail, List<String> listCCEmail, String subject, String pathFile) {
+		try {
+			Properties props = new Properties();
+			props.put("mail.smtp.auth", "true");
+			// props.put("mail.smtp.ssl.enable", "true");
+			props.put("mail.smtp.host", host);
+			props.put("mail.smtp.port", port);
+
+			Session session = Session.getInstance(props, null);
+			Message msg = new MimeMessage(session);
+			msg.setFrom(new InternetAddress(email));
+			msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(mainEmail, false));
+
+			msg.setSubject(subject);
+			msg.setText(new Date().toString());
+			msg.setHeader("iTool_App", "Email from system");
+			msg.setSentDate(new Date());
+
+			MimeBodyPart messageBodyPart = new MimeBodyPart();
+
+			Multipart multipart = new MimeMultipart();
+
+			messageBodyPart = new MimeBodyPart();
+			DataSource source = new FileDataSource(pathFile);
+			messageBodyPart.setDataHandler(new DataHandler(source));
+			messageBodyPart.setFileName("LogFile.txt");
+			multipart.addBodyPart(messageBodyPart);
+			msg.setContent(multipart);
+			
+			
+			String cc = "";
+			
+			for (String ccEmail : listCCEmail) {
+				cc += "," + ccEmail;
+			}
+
+			if (cc.startsWith(",")) {
+				cc = cc.replaceFirst(",", "");
+			}
+
+			if (cc.indexOf(',') > 0) {
+				msg.setRecipients(Message.RecipientType.CC, InternetAddress.parse(cc));
+			} else {
+				msg.setRecipient(Message.RecipientType.CC, new InternetAddress(cc));
+			}
 
 			SMTPTransport t = (SMTPTransport) session.getTransport("smtp");
 			t.connect(host, port, email, password);
