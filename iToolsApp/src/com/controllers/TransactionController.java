@@ -90,7 +90,7 @@ public class TransactionController {
 	public List<List<String>> getQuantityTrayInfo(String machineCode) {
 		String sql = " select MachineCode, ToolCode, TrayIndex, Quantity, UpdatedDate "
 				+ "from toolsmachinetray "
-				+ "where toolsmachinetray.IsActive = '1' and toolsmachinetray.MachineCode = '" + machineCode + "';";
+				+ "where toolsmachinetray.quantity > 0 and toolsmachinetray.IsActive = '1' and toolsmachinetray.MachineCode = '" + machineCode + "';";
 		logger.info(sql);
 		List<List<String>> result = new ArrayList<>();
 		try {

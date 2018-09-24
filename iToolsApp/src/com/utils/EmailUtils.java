@@ -33,7 +33,6 @@ public class EmailUtils {
 	static int isSendingEmail = Integer.valueOf(cfg.getProperty("IS_SEND_MAIL"));
 
 	final static Logger logger = Logger.getLogger(EmailUtils.class);
-	LogController masterLogObj = new LogController();
 	String username, companyCode, machineCode;
 	Enum page;
 

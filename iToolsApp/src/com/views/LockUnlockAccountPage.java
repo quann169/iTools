@@ -71,7 +71,6 @@ public class LockUnlockAccountPage extends JFrame implements ActionListener {
 	private static final Config cfg = new Config();
 	final static Logger logger = Logger.getLogger(LockUnlockAccountPage.class);
 
-	LogController masterLogObj = new LogController();
 	static LoginController ctlObj = new LoginController();
 	JFrame parent;
 

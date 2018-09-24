@@ -220,7 +220,8 @@ public class LoginController {
 		result.add(MysqlConnect.getPassword());
 		result.add(MysqlConnect.getDatabaseName());
 		result.add(MysqlConnect.getPort());
-
+		
+		String localMessage = "";
 		String lastSync = "";
 		String sql = "select SyncDate from SyncHistory order by SyncHistory.SyncDate desc limit 1;";
 		// logger.info(sql);
@@ -233,6 +234,7 @@ public class LoginController {
 			}
 		} catch (Exception e) {
 			logger.info(e.getMessage());
+			localMessage= e.getMessage();
 		} finally {
 			mysqlConnect.disconnect();
 		}
@@ -257,6 +259,28 @@ public class LoginController {
 
 		result.add(version + " - " + updatedDate);
 		result.add(lastSync);
+		
+		String hostMessage = "";
+		sql = "select count(*) from federated_assessor";
+		// logger.info(sql);
+		try {
+			PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
+			ResultSet rs = statement.executeQuery(sql);
+
+			while (rs.next()) {
+				hostMessage = "OK";
+			}
+		} catch (Exception e) {
+			logger.info(e.getMessage());
+			hostMessage = e.getMessage();
+		} finally {
+			mysqlConnect.disconnect();
+		}
+
+		result.add(hostMessage);
+		result.add(localMessage);
+		
+		
 		return result;
 	}
 

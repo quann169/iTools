@@ -115,7 +115,6 @@ public class PutInTakeOverPage extends JFrame implements ActionListener {
 	int defaultQuantity = -1;
 	int newQuantity = -1;
 	Assessor user;
-	LogController masterLogObj = new LogController();
 	String userName;
 	public PopUpKeyboard keyboard;
 	// AutoCompletion combox1;
@@ -635,11 +634,6 @@ public class PutInTakeOverPage extends JFrame implements ActionListener {
 						// actionType = Enum.TKOVER;
 						// }
 
-						// masterLogObj.insertLog(userName,
-						// Enum.TOOLSMACHINETRAY, "quantity", actionType,
-						// "" + defaultQuantity, "" + newQuantity, companyCode,
-						// machineCode,
-						// StringUtils.getCurrentClassAndMethodNames());
 						// Thread.sleep(1000);
 						publish("Send email");
 

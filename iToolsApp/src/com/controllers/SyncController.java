@@ -36,15 +36,11 @@ public class SyncController {
 	 * @param password
 	 * @return
 	 */
-	public List<String> syncDataManually(String companyCode, String machineCode) {
-		PreparedStatement ps = null;
+	public List<String> syncDataManually(String companyCode, String machineCode, String productMode) {
+		
 
 		try {
-			ps = mysqlConnect.connect().prepareStatement("call SyncHostToLocal(?, ?,?)");
-			ps.setString(1, companyCode);
-			ps.setString(2, machineCode);
-
-			ps.executeUpdate();
+			syncDataAutomatically(companyCode, machineCode, productMode);
 		} catch (Exception e) {
 			logger.error(e.getMessage());
 			return null;
@@ -54,7 +50,7 @@ public class SyncController {
 		List<String> result = new ArrayList<>();
 		return result;
 	}
-
+	
 	/**
 	 * 
 	 * @param username
@@ -67,12 +63,72 @@ public class SyncController {
 		try {
 			logger.info("Start SyncHostToLocal");
 			long startTime = System.currentTimeMillis();
-			cs = mysqlConnect.connect().prepareCall("{call SyncHostToLocal(?,?,?)}");
+			cs = mysqlConnect.connect().prepareCall("{call SyncHostToLocal_Assessor(?,?,?)}");
 			cs.registerOutParameter(3, Types.LONGVARCHAR);
 			cs.setString(1, companyCode);
 			cs.setString(2, machineCode);
 			cs.execute();
 			String str = cs.getString(3);
+			if (str != null) {
+				logger.info(str);
+			} else {
+				logger.error(str);
+			}
+			
+			cs = mysqlConnect.connect().prepareCall("{call SyncHostToLocal_RoleAssessor(?,?,?)}");
+			cs.registerOutParameter(3, Types.LONGVARCHAR);
+			cs.setString(1, companyCode);
+			cs.setString(2, machineCode);
+			cs.execute();
+			str = cs.getString(3);
+			if (str != null) {
+				logger.info(str);
+			} else {
+				logger.error(str);
+			}
+			
+			cs = mysqlConnect.connect().prepareCall("{call SyncHostToLocal_Machine(?,?,?)}");
+			cs.registerOutParameter(3, Types.LONGVARCHAR);
+			cs.setString(1, companyCode);
+			cs.setString(2, machineCode);
+			cs.execute();
+			str = cs.getString(3);
+			if (str != null) {
+				logger.info(str);
+			} else {
+				logger.error(str);
+			}
+			
+			cs = mysqlConnect.connect().prepareCall("{call SyncHostToLocal_Company(?,?,?)}");
+			cs.registerOutParameter(3, Types.LONGVARCHAR);
+			cs.setString(1, companyCode);
+			cs.setString(2, machineCode);
+			cs.execute();
+			str = cs.getString(3);
+			if (str != null) {
+				logger.info(str);
+			} else {
+				logger.error(str);
+			}
+			
+			cs = mysqlConnect.connect().prepareCall("{call SyncHostToLocal_CompanyMachine(?,?,?)}");
+			cs.registerOutParameter(3, Types.LONGVARCHAR);
+			cs.setString(1, companyCode);
+			cs.setString(2, machineCode);
+			cs.execute();
+			str = cs.getString(3);
+			if (str != null) {
+				logger.info(str);
+			} else {
+				logger.error(str);
+			}
+			
+			cs = mysqlConnect.connect().prepareCall("{call SyncHostToLocal_Tools(?,?,?)}");
+			cs.registerOutParameter(3, Types.LONGVARCHAR);
+			cs.setString(1, companyCode);
+			cs.setString(2, machineCode);
+			cs.execute();
+			str = cs.getString(3);
 			if (str != null) {
 				logger.info(str);
 			} else {
@@ -87,7 +143,21 @@ public class SyncController {
 
 				logger.info("Start SyncLocalToHost");
 				startTime = System.currentTimeMillis();
-				cs = mysqlConnect.connect().prepareCall("{call SyncLocalToHost(?,?,?)}");
+
+
+				cs = mysqlConnect.connect().prepareCall("{call SyncLocalToHost_ToolsMachineTray(?,?,?)}");
+				cs.registerOutParameter(3, Types.LONGVARCHAR);
+				cs.setString(1, companyCode);
+				cs.setString(2, machineCode);
+				cs.execute();
+				str = cs.getString(3);
+				if (str != null) {
+					logger.info(str);
+				} else {
+					logger.error(str);
+				}
+				
+				cs = mysqlConnect.connect().prepareCall("{call SyncLocalToHost_WorkingTransaction(?,?,?)}");
 				cs.registerOutParameter(3, Types.LONGVARCHAR);
 				cs.setString(1, companyCode);
 				cs.setString(2, machineCode);

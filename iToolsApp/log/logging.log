@@ -9873,3 +9873,406 @@ updateTools: 0
 2018-09-17 22:45:00 INFO  LoginController:288 - SELECT EmailAddress FROM Assessor where Assessor.UserName = 'uhacc';
 2018-09-17 22:45:05 INFO  DashboardPage:320 - Delete report file successfully.
 2018-09-17 22:45:07 INFO  DashboardPage:343 - Complete
+2018-09-23 12:11:52 INFO  LoginPage:525 - ************************************************************
+2018-09-23 12:11:52 INFO  LoginPage:526 - ************************************************************
+2018-09-23 12:11:52 INFO  LoginPage:527 - ************************************************************
+2018-09-23 12:11:52 INFO  LoginPage:528 - ************************************************************
+2018-09-23 12:11:52 INFO  LoginPage:529 - Starting iTool app.
+2018-09-23 12:11:52 INFO  LoginPage:530 - companyCode: Com1
+2018-09-23 12:11:52 INFO  LoginPage:531 - companyCodeUH: UHCom
+2018-09-23 12:11:52 INFO  LoginPage:532 - machineCode: MAC1
+2018-09-23 12:11:52 INFO  LoginPage:535 - mDbHost: localhost
+2018-09-23 12:11:52 INFO  LoginPage:536 - mDbUser: admin
+2018-09-23 12:11:52 INFO  LoginPage:537 - mDbPwds: 1qazxsw2
+2018-09-23 12:11:52 INFO  LoginPage:538 - mDbName: iTools_v1p0
+2018-09-23 12:11:52 INFO  LoginPage:539 - mDbPort: 3306
+2018-09-23 12:11:52 INFO  LoginPage:540 - Database version: v1p0 - 2018-09-08 22:35:05
+2018-09-23 12:11:52 INFO  LoginPage:542 - Last Sync: 
+2018-09-23 12:11:53 INFO  LoginPage:553 - App Version: 1.0
+2018-09-23 12:11:55 INFO  EmailUtils:58 - mail.tqteam.net25itool_app@tqteam.net1qazxsw2!A
+2018-09-23 12:11:55 INFO  LoginPage:564 - checkEmailConfig: true
+2018-09-23 12:11:56 INFO  LoginPage:371 - ========================================
+2018-09-23 12:11:56 INFO  LoginPage:372 - Start syncing thread - THUBRKFD
+2018-09-23 12:11:56 INFO  LoginPage:373 - ========================================
+2018-09-23 12:11:56 INFO  SyncController:68 - Start SyncHostToLocal
+2018-09-23 12:11:56 ERROR SyncController:106 - Unable to connect to foreign data source: Host '27.78.88.74' is not allowed to connect to this MySQL serve
+2018-09-23 12:11:56 INFO  LoginPage:376 - ========================================
+2018-09-23 12:11:56 INFO  LoginPage:377 - End syncing thread - THUBRKFD
+2018-09-23 12:11:56 INFO  LoginPage:378 - ========================================
+2018-09-23 12:12:24 INFO  LoginPage:525 - ************************************************************
+2018-09-23 12:12:24 INFO  LoginPage:526 - ************************************************************
+2018-09-23 12:12:24 INFO  LoginPage:527 - ************************************************************
+2018-09-23 12:12:24 INFO  LoginPage:528 - ************************************************************
+2018-09-23 12:12:24 INFO  LoginPage:529 - Starting iTool app.
+2018-09-23 12:12:24 INFO  LoginPage:530 - companyCode: Com1
+2018-09-23 12:12:24 INFO  LoginPage:531 - companyCodeUH: UHCom
+2018-09-23 12:12:24 INFO  LoginPage:532 - machineCode: MAC1
+2018-09-23 12:12:24 INFO  LoginPage:535 - mDbHost: localhost
+2018-09-23 12:12:24 INFO  LoginPage:536 - mDbUser: admin
+2018-09-23 12:12:24 INFO  LoginPage:537 - mDbPwds: 1qazxsw2
+2018-09-23 12:12:24 INFO  LoginPage:538 - mDbName: iTools_v1p0
+2018-09-23 12:12:24 INFO  LoginPage:539 - mDbPort: 3306
+2018-09-23 12:12:24 INFO  LoginPage:540 - Database version: v1p0 - 2018-09-08 22:35:05
+2018-09-23 12:12:24 INFO  LoginPage:542 - Last Sync: 
+2018-09-23 12:12:25 INFO  LoginPage:553 - App Version: 1.0
+2018-09-23 12:12:26 INFO  EmailUtils:58 - mail.tqteam.net25itool_app@tqteam.net1qazxsw2!A
+2018-09-23 12:12:26 INFO  LoginPage:564 - checkEmailConfig: true
+2018-09-23 12:12:27 INFO  LoginPage:371 - ========================================
+2018-09-23 12:12:27 INFO  LoginPage:372 - Start syncing thread - SWDF8BNU
+2018-09-23 12:12:27 INFO  LoginPage:373 - ========================================
+2018-09-23 12:12:27 INFO  SyncController:68 - Start SyncHostToLocal
+2018-09-23 12:12:29 INFO  SyncController:77 - ========Start=======
+,
+insertCompany: 2,
+updateCompany: 0,
+insertAssessor: 11,
+updateAssessor: 0,
+insertMachine: 0,
+updateMachine: 0,
+insertCompanyMachine: 2,
+updateCompanyMachine: 0,
+insertRoleAssessor: 6,
+updateRoleAssessor: 0,
+insertRole: 0,
+updateRole: 0,
+insertTools: 47,
+updateTools: 0
+2018-09-23 12:12:29 INFO  SyncController:84 - End SyncHostToLocal: 1s
+2018-09-23 12:12:29 INFO  LoginPage:376 - ========================================
+2018-09-23 12:12:29 INFO  LoginPage:377 - End syncing thread - SWDF8BNU
+2018-09-23 12:12:29 INFO  LoginPage:378 - ========================================
+2018-09-23 12:17:29 INFO  LoginPage:371 - ========================================
+2018-09-23 12:17:29 INFO  LoginPage:372 - Start syncing thread - HLV928GF
+2018-09-23 12:17:29 INFO  LoginPage:373 - ========================================
+2018-09-23 12:17:29 INFO  SyncController:68 - Start SyncHostToLocal
+2018-09-23 12:17:48 ERROR SyncController:106 - Got timeout reading communication packets
+2018-09-23 12:17:48 INFO  LoginPage:376 - ========================================
+2018-09-23 12:17:48 INFO  LoginPage:377 - End syncing thread - HLV928GF
+2018-09-23 12:17:48 INFO  LoginPage:378 - ========================================
+2018-09-23 12:22:48 INFO  LoginPage:371 - ========================================
+2018-09-23 12:22:48 INFO  LoginPage:372 - Start syncing thread - ZCTLWA1P
+2018-09-23 12:22:48 INFO  LoginPage:373 - ========================================
+2018-09-23 12:22:48 INFO  SyncController:68 - Start SyncHostToLocal
+2018-09-23 12:22:48 ERROR SyncController:106 - : 2003 : Can't connect to MySQL server on '112.213.89.47' (10065)
+2018-09-23 12:22:48 INFO  LoginPage:376 - ========================================
+2018-09-23 12:22:48 INFO  LoginPage:377 - End syncing thread - ZCTLWA1P
+2018-09-23 12:22:48 INFO  LoginPage:378 - ========================================
+2018-09-23 12:27:48 INFO  LoginPage:371 - ========================================
+2018-09-23 12:27:48 INFO  LoginPage:372 - Start syncing thread - BI08IVGM
+2018-09-23 12:27:48 INFO  LoginPage:373 - ========================================
+2018-09-23 12:27:48 INFO  SyncController:68 - Start SyncHostToLocal
+2018-09-23 12:27:48 ERROR SyncController:106 - : 2003 : Can't connect to MySQL server on '112.213.89.47' (10065)
+2018-09-23 12:27:48 INFO  LoginPage:376 - ========================================
+2018-09-23 12:27:48 INFO  LoginPage:377 - End syncing thread - BI08IVGM
+2018-09-23 12:27:48 INFO  LoginPage:378 - ========================================
+2018-09-23 12:32:48 INFO  LoginPage:371 - ========================================
+2018-09-23 12:32:48 INFO  LoginPage:372 - Start syncing thread - PBU4AAAY
+2018-09-23 12:32:48 INFO  LoginPage:373 - ========================================
+2018-09-23 12:32:48 INFO  SyncController:68 - Start SyncHostToLocal
+2018-09-23 12:32:48 ERROR SyncController:106 - : 2003 : Can't connect to MySQL server on '112.213.89.47' (10065)
+2018-09-23 12:32:48 INFO  LoginPage:376 - ========================================
+2018-09-23 12:32:48 INFO  LoginPage:377 - End syncing thread - PBU4AAAY
+2018-09-23 12:32:48 INFO  LoginPage:378 - ========================================
+2018-09-23 12:37:48 INFO  LoginPage:371 - ========================================
+2018-09-23 12:37:48 INFO  LoginPage:372 - Start syncing thread - XRDX04PT
+2018-09-23 12:37:48 INFO  LoginPage:373 - ========================================
+2018-09-23 12:37:48 INFO  SyncController:68 - Start SyncHostToLocal
+2018-09-23 12:37:48 ERROR SyncController:106 - : 1130 : Host '27.68.122.216' is not allowed to connect to this MySQL server
+2018-09-23 12:37:48 INFO  LoginPage:376 - ========================================
+2018-09-23 12:37:48 INFO  LoginPage:377 - End syncing thread - XRDX04PT
+2018-09-23 12:37:48 INFO  LoginPage:378 - ========================================
+2018-09-23 12:42:48 INFO  LoginPage:371 - ========================================
+2018-09-23 12:42:48 INFO  LoginPage:372 - Start syncing thread - UJIYDXT4
+2018-09-23 12:42:48 INFO  LoginPage:373 - ========================================
+2018-09-23 12:42:48 INFO  SyncController:68 - Start SyncHostToLocal
+2018-09-23 12:42:58 INFO  MysqlConnect:61 - Could not create connection to database server. Attempted reconnect 3 times. Giving up.
+2018-09-23 12:42:58 ERROR SyncController:106 - 
+2018-09-23 12:42:58 INFO  LoginPage:376 - ========================================
+2018-09-23 12:42:58 INFO  LoginPage:377 - End syncing thread - UJIYDXT4
+2018-09-23 12:42:58 INFO  LoginPage:378 - ========================================
+2018-09-23 12:47:58 INFO  LoginPage:371 - ========================================
+2018-09-23 12:47:58 INFO  LoginPage:372 - Start syncing thread - QCSTRIHT
+2018-09-23 12:47:58 INFO  LoginPage:373 - ========================================
+2018-09-23 12:47:58 INFO  SyncController:68 - Start SyncHostToLocal
+2018-09-23 12:48:08 INFO  MysqlConnect:61 - Could not create connection to database server. Attempted reconnect 3 times. Giving up.
+2018-09-23 12:48:08 ERROR SyncController:106 - 
+2018-09-23 12:48:08 INFO  LoginPage:376 - ========================================
+2018-09-23 12:48:08 INFO  LoginPage:377 - End syncing thread - QCSTRIHT
+2018-09-23 12:48:08 INFO  LoginPage:378 - ========================================
+2018-09-24 22:06:14 INFO  LoginPage:530 - ************************************************************
+2018-09-24 22:06:14 INFO  LoginPage:531 - ************************************************************
+2018-09-24 22:06:14 INFO  LoginPage:532 - ************************************************************
+2018-09-24 22:06:14 INFO  LoginPage:533 - ************************************************************
+2018-09-24 22:06:14 INFO  LoginPage:534 - Starting iTool app.
+2018-09-24 22:06:14 INFO  LoginPage:535 - companyCode: Com1
+2018-09-24 22:06:14 INFO  LoginPage:536 - companyCodeUH: UHCom
+2018-09-24 22:06:14 INFO  LoginPage:537 - machineCode: MAC1
+2018-09-24 22:06:24 INFO  MysqlConnect:61 - Could not create connection to database server. Attempted reconnect 3 times. Giving up.
+2018-09-24 22:06:24 INFO  LoginController:235 - 
+2018-09-24 22:06:34 INFO  MysqlConnect:61 - Could not create connection to database server. Attempted reconnect 3 times. Giving up.
+2018-09-24 22:06:34 INFO  LoginController:253 - 
+2018-09-24 22:06:44 INFO  MysqlConnect:61 - Could not create connection to database server. Attempted reconnect 3 times. Giving up.
+2018-09-24 22:06:44 INFO  LoginController:272 - 
+2018-09-24 22:06:44 INFO  LoginPage:540 - mDbHost: localhost
+2018-09-24 22:06:44 INFO  LoginPage:541 - mDbUser: admin
+2018-09-24 22:06:44 INFO  LoginPage:542 - mDbPwds: 1qazxsw2
+2018-09-24 22:06:44 INFO  LoginPage:543 - mDbName: iTools_v1p0
+2018-09-24 22:06:44 INFO  LoginPage:544 - mDbPort: 3306
+2018-09-24 22:06:44 INFO  LoginPage:545 - Database version:  - 
+2018-09-24 22:06:44 INFO  LoginPage:547 - Last Sync: 
+2018-09-24 22:06:44 INFO  LoginPage:550 - connectToHost: null
+2018-09-24 22:06:45 INFO  LoginPage:564 - App Version: 1.0
+2018-09-24 22:06:47 INFO  EmailUtils:57 - mail.tqteam.net25itool_app@tqteam.net1qazxsw2!A
+2018-09-24 22:06:48 INFO  LoginPage:575 - checkEmailConfig: true
+2018-09-24 22:06:48 INFO  LoginPage:371 - ========================================
+2018-09-24 22:06:48 INFO  LoginPage:372 - Start syncing thread - F7GNWP2S
+2018-09-24 22:06:48 INFO  LoginPage:373 - ========================================
+2018-09-24 22:06:48 INFO  SyncController:64 - Start SyncHostToLocal
+2018-09-24 22:08:03 INFO  LoginPage:530 - ************************************************************
+2018-09-24 22:08:03 INFO  LoginPage:531 - ************************************************************
+2018-09-24 22:08:03 INFO  LoginPage:532 - ************************************************************
+2018-09-24 22:08:03 INFO  LoginPage:533 - ************************************************************
+2018-09-24 22:08:03 INFO  LoginPage:534 - Starting iTool app.
+2018-09-24 22:08:03 INFO  LoginPage:535 - companyCode: Com1
+2018-09-24 22:08:03 INFO  LoginPage:536 - companyCodeUH: UHCom
+2018-09-24 22:08:03 INFO  LoginPage:537 - machineCode: MAC1
+2018-09-24 22:08:13 INFO  MysqlConnect:61 - Could not create connection to database server. Attempted reconnect 3 times. Giving up.
+2018-09-24 22:08:13 INFO  LoginController:235 - 
+2018-09-24 22:08:24 INFO  MysqlConnect:61 - Could not create connection to database server. Attempted reconnect 3 times. Giving up.
+2018-09-24 22:08:24 INFO  LoginController:253 - 
+2018-09-24 22:08:34 INFO  MysqlConnect:61 - Could not create connection to database server. Attempted reconnect 3 times. Giving up.
+2018-09-24 22:08:34 INFO  LoginController:272 - 
+2018-09-24 22:08:34 INFO  LoginPage:540 - mDbHost: localhost
+2018-09-24 22:08:34 INFO  LoginPage:541 - mDbUser: admin
+2018-09-24 22:08:34 INFO  LoginPage:542 - mDbPwds: 1qazxsw2
+2018-09-24 22:08:34 INFO  LoginPage:543 - mDbName: iTools_v1p0
+2018-09-24 22:08:34 INFO  LoginPage:544 - mDbPort: 3306
+2018-09-24 22:08:34 INFO  LoginPage:545 - Database version:  - 
+2018-09-24 22:08:34 INFO  LoginPage:547 - Last Sync: 
+2018-09-24 22:08:34 INFO  LoginPage:550 - connectToHost: null
+2018-09-24 22:08:35 INFO  LoginPage:564 - App Version: 1.0
+2018-09-24 22:08:36 INFO  EmailUtils:57 - mail.tqteam.net25itool_app@tqteam.net1qazxsw2!A
+2018-09-24 22:08:37 INFO  LoginPage:575 - checkEmailConfig: true
+2018-09-24 22:08:37 INFO  LoginPage:371 - ========================================
+2018-09-24 22:08:37 INFO  LoginPage:372 - Start syncing thread - LDYKNYKY
+2018-09-24 22:08:37 INFO  LoginPage:373 - ========================================
+2018-09-24 22:08:37 INFO  SyncController:64 - Start SyncHostToLocal
+2018-09-24 22:09:38 INFO  LoginPage:530 - ************************************************************
+2018-09-24 22:09:38 INFO  LoginPage:531 - ************************************************************
+2018-09-24 22:09:38 INFO  LoginPage:532 - ************************************************************
+2018-09-24 22:09:38 INFO  LoginPage:533 - ************************************************************
+2018-09-24 22:09:38 INFO  LoginPage:534 - Starting iTool app.
+2018-09-24 22:09:38 INFO  LoginPage:535 - companyCode: Com1
+2018-09-24 22:09:38 INFO  LoginPage:536 - companyCodeUH: UHCom
+2018-09-24 22:09:38 INFO  LoginPage:537 - machineCode: MAC1
+2018-09-24 22:09:48 INFO  MysqlConnect:61 - Could not create connection to database server. Attempted reconnect 3 times. Giving up.
+2018-09-24 22:09:48 INFO  LoginController:235 - 
+2018-09-24 22:09:58 INFO  MysqlConnect:61 - Could not create connection to database server. Attempted reconnect 3 times. Giving up.
+2018-09-24 22:09:58 INFO  LoginController:253 - 
+2018-09-24 22:10:09 INFO  MysqlConnect:61 - Could not create connection to database server. Attempted reconnect 3 times. Giving up.
+2018-09-24 22:10:09 INFO  LoginController:272 - 
+2018-09-24 22:10:09 INFO  LoginPage:540 - mDbHost: localhost
+2018-09-24 22:10:09 INFO  LoginPage:541 - mDbUser: admin
+2018-09-24 22:10:09 INFO  LoginPage:542 - mDbPwds: 1qazxsw2
+2018-09-24 22:10:09 INFO  LoginPage:543 - mDbName: iTools_v1p0
+2018-09-24 22:10:09 INFO  LoginPage:544 - mDbPort: 3306
+2018-09-24 22:10:09 INFO  LoginPage:545 - Database version:  - 
+2018-09-24 22:10:09 INFO  LoginPage:547 - Last Sync: 
+2018-09-24 22:10:09 INFO  LoginPage:550 - connectToHost: null
+2018-09-24 22:10:10 INFO  LoginPage:564 - App Version: 1.0
+2018-09-24 22:10:11 INFO  EmailUtils:57 - mail.tqteam.net25itool_app@tqteam.net1qazxsw2!A
+2018-09-24 22:10:14 INFO  LoginPage:575 - checkEmailConfig: true
+2018-09-24 22:12:32 INFO  LoginPage:530 - ************************************************************
+2018-09-24 22:12:32 INFO  LoginPage:531 - ************************************************************
+2018-09-24 22:12:32 INFO  LoginPage:532 - ************************************************************
+2018-09-24 22:12:32 INFO  LoginPage:533 - ************************************************************
+2018-09-24 22:12:32 INFO  LoginPage:534 - Starting iTool app.
+2018-09-24 22:12:32 INFO  LoginPage:535 - companyCode: Com1
+2018-09-24 22:12:32 INFO  LoginPage:536 - companyCodeUH: UHCom
+2018-09-24 22:12:32 INFO  LoginPage:537 - machineCode: MAC1
+2018-09-24 22:12:43 INFO  MysqlConnect:61 - Could not create connection to database server. Attempted reconnect 3 times. Giving up.
+2018-09-24 22:12:43 INFO  LoginController:235 - 
+2018-09-24 22:12:53 INFO  MysqlConnect:61 - Could not create connection to database server. Attempted reconnect 3 times. Giving up.
+2018-09-24 22:12:53 INFO  LoginController:253 - 
+2018-09-24 22:13:03 INFO  MysqlConnect:61 - Could not create connection to database server. Attempted reconnect 3 times. Giving up.
+2018-09-24 22:13:03 INFO  LoginController:272 - 
+2018-09-24 22:13:03 INFO  LoginPage:540 - mDbHost: localhost
+2018-09-24 22:13:03 INFO  LoginPage:541 - mDbUser: admin
+2018-09-24 22:13:03 INFO  LoginPage:542 - mDbPwds: 1qazxsw2
+2018-09-24 22:13:03 INFO  LoginPage:543 - mDbName: iTools_v1p0
+2018-09-24 22:13:03 INFO  LoginPage:544 - mDbPort: 3306
+2018-09-24 22:13:03 INFO  LoginPage:545 - Database version:  - 
+2018-09-24 22:13:03 INFO  LoginPage:547 - Last Sync: 
+2018-09-24 22:13:03 INFO  LoginPage:371 - ========================================
+2018-09-24 22:13:03 INFO  LoginPage:372 - Start syncing thread - J742X6BI
+2018-09-24 22:13:03 INFO  LoginPage:373 - ========================================
+2018-09-24 22:13:03 INFO  SyncController:64 - Start SyncHostToLocal
+2018-09-24 22:14:47 INFO  LoginPage:530 - ************************************************************
+2018-09-24 22:14:47 INFO  LoginPage:531 - ************************************************************
+2018-09-24 22:14:47 INFO  LoginPage:532 - ************************************************************
+2018-09-24 22:14:47 INFO  LoginPage:533 - ************************************************************
+2018-09-24 22:14:47 INFO  LoginPage:534 - Starting iTool app.
+2018-09-24 22:14:47 INFO  LoginPage:535 - companyCode: Com1
+2018-09-24 22:14:47 INFO  LoginPage:536 - companyCodeUH: UHCom
+2018-09-24 22:14:47 INFO  LoginPage:537 - machineCode: MAC1
+2018-09-24 22:14:57 INFO  MysqlConnect:61 - Could not create connection to database server. Attempted reconnect 3 times. Giving up.
+2018-09-24 22:14:57 INFO  LoginController:235 - 
+2018-09-24 22:15:07 INFO  MysqlConnect:61 - Could not create connection to database server. Attempted reconnect 3 times. Giving up.
+2018-09-24 22:15:07 INFO  LoginController:253 - 
+2018-09-24 22:15:17 INFO  MysqlConnect:61 - Could not create connection to database server. Attempted reconnect 3 times. Giving up.
+2018-09-24 22:15:17 INFO  LoginController:272 - 
+2018-09-24 22:15:17 INFO  LoginPage:540 - mDbHost: localhost
+2018-09-24 22:15:17 INFO  LoginPage:541 - mDbUser: admin
+2018-09-24 22:15:17 INFO  LoginPage:542 - mDbPwds: 1qazxsw2
+2018-09-24 22:15:17 INFO  LoginPage:543 - mDbName: iTools_v1p0
+2018-09-24 22:15:17 INFO  LoginPage:544 - mDbPort: 3306
+2018-09-24 22:15:17 INFO  LoginPage:545 - Database version:  - 
+2018-09-24 22:15:17 INFO  LoginPage:547 - Last Sync: 
+2018-09-24 22:15:17 INFO  LoginPage:371 - ========================================
+2018-09-24 22:15:17 INFO  LoginPage:372 - Start syncing thread - RQMVTERC
+2018-09-24 22:15:17 INFO  LoginPage:373 - ========================================
+2018-09-24 22:15:17 INFO  SyncController:64 - Start SyncHostToLocal
+2018-09-24 22:16:53 INFO  LoginPage:530 - ************************************************************
+2018-09-24 22:16:53 INFO  LoginPage:531 - ************************************************************
+2018-09-24 22:16:53 INFO  LoginPage:532 - ************************************************************
+2018-09-24 22:16:53 INFO  LoginPage:533 - ************************************************************
+2018-09-24 22:16:53 INFO  LoginPage:534 - Starting iTool app.
+2018-09-24 22:16:53 INFO  LoginPage:535 - companyCode: Com1
+2018-09-24 22:16:53 INFO  LoginPage:536 - companyCodeUH: UHCom
+2018-09-24 22:16:53 INFO  LoginPage:537 - machineCode: MAC1
+2018-09-24 22:17:22 INFO  MysqlConnect:61 - Could not create connection to database server. Attempted reconnect 3 times. Giving up.
+2018-09-24 22:18:28 INFO  LoginPage:530 - ************************************************************
+2018-09-24 22:18:28 INFO  LoginPage:531 - ************************************************************
+2018-09-24 22:18:28 INFO  LoginPage:532 - ************************************************************
+2018-09-24 22:18:28 INFO  LoginPage:533 - ************************************************************
+2018-09-24 22:18:28 INFO  LoginPage:534 - Starting iTool app.
+2018-09-24 22:18:28 INFO  LoginPage:535 - companyCode: Com1
+2018-09-24 22:18:28 INFO  LoginPage:536 - companyCodeUH: UHCom
+2018-09-24 22:18:28 INFO  LoginPage:537 - machineCode: MAC1
+2018-09-24 22:18:38 INFO  MysqlConnect:61 - Could not create connection to database server. Attempted reconnect 3 times. Giving up.
+2018-09-24 22:18:38 INFO  LoginController:236 - 
+2018-09-24 22:18:48 INFO  MysqlConnect:61 - Could not create connection to database server. Attempted reconnect 3 times. Giving up.
+2018-09-24 22:18:48 INFO  LoginController:255 - 
+2018-09-24 22:18:59 INFO  MysqlConnect:61 - Could not create connection to database server. Attempted reconnect 3 times. Giving up.
+2018-09-24 22:18:59 INFO  LoginController:274 - 
+2018-09-24 22:18:59 INFO  LoginPage:540 - mDbHost: localhost
+2018-09-24 22:18:59 INFO  LoginPage:541 - mDbUser: admin
+2018-09-24 22:18:59 INFO  LoginPage:542 - mDbPwds: 1qazxsw2
+2018-09-24 22:18:59 INFO  LoginPage:543 - mDbName: iTools_v1p0
+2018-09-24 22:18:59 INFO  LoginPage:544 - mDbPort: 3306
+2018-09-24 22:18:59 INFO  LoginPage:545 - Database version:  - 
+2018-09-24 22:18:59 INFO  LoginPage:547 - Last Sync: 
+2018-09-24 22:18:59 INFO  LoginPage:551 - connectToHost: null
+2018-09-24 22:19:00 INFO  LoginPage:565 - App Version: 1.0
+2018-09-24 22:19:01 INFO  EmailUtils:57 - mail.tqteam.net25itool_app@tqteam.net1qazxsw2!A
+2018-09-24 22:19:02 INFO  LoginPage:576 - checkEmailConfig: true
+2018-09-24 22:20:48 INFO  LoginPage:530 - ************************************************************
+2018-09-24 22:20:48 INFO  LoginPage:531 - ************************************************************
+2018-09-24 22:20:48 INFO  LoginPage:532 - ************************************************************
+2018-09-24 22:20:48 INFO  LoginPage:533 - ************************************************************
+2018-09-24 22:20:48 INFO  LoginPage:534 - Starting iTool app.
+2018-09-24 22:20:48 INFO  LoginPage:535 - companyCode: Com1
+2018-09-24 22:20:48 INFO  LoginPage:536 - companyCodeUH: UHCom
+2018-09-24 22:20:48 INFO  LoginPage:537 - machineCode: MAC1
+2018-09-24 22:20:58 INFO  MysqlConnect:61 - Could not create connection to database server. Attempted reconnect 3 times. Giving up.
+2018-09-24 22:20:58 INFO  LoginController:236 - 
+2018-09-24 22:21:08 INFO  MysqlConnect:61 - Could not create connection to database server. Attempted reconnect 3 times. Giving up.
+2018-09-24 22:21:08 INFO  LoginController:255 - 
+2018-09-24 22:21:18 INFO  MysqlConnect:61 - Could not create connection to database server. Attempted reconnect 3 times. Giving up.
+2018-09-24 22:21:18 INFO  LoginController:274 - 
+2018-09-24 22:21:18 INFO  LoginPage:540 - mDbHost: localhost
+2018-09-24 22:21:18 INFO  LoginPage:541 - mDbUser: admin
+2018-09-24 22:21:18 INFO  LoginPage:542 - mDbPwds: 1qazxsw2
+2018-09-24 22:21:18 INFO  LoginPage:543 - mDbName: iTools_v1p0
+2018-09-24 22:21:18 INFO  LoginPage:544 - mDbPort: 3306
+2018-09-24 22:21:18 INFO  LoginPage:545 - Database version:  - 
+2018-09-24 22:21:18 INFO  LoginPage:547 - Last Sync: 
+2018-09-24 22:21:18 INFO  LoginPage:551 - connectToHost: null
+2018-09-24 22:21:19 INFO  LoginPage:566 - App Version: 1.0
+2018-09-24 22:21:20 INFO  EmailUtils:57 - mail.tqteam.net25itool_app@tqteam.net1qazxsw2!A
+2018-09-24 22:21:23 INFO  LoginPage:577 - checkEmailConfig: true
+2018-09-24 22:22:10 INFO  LoginPage:530 - ************************************************************
+2018-09-24 22:22:10 INFO  LoginPage:531 - ************************************************************
+2018-09-24 22:22:10 INFO  LoginPage:532 - ************************************************************
+2018-09-24 22:22:10 INFO  LoginPage:533 - ************************************************************
+2018-09-24 22:22:10 INFO  LoginPage:534 - Starting iTool app.
+2018-09-24 22:22:10 INFO  LoginPage:535 - companyCode: Com1
+2018-09-24 22:22:10 INFO  LoginPage:536 - companyCodeUH: UHCom
+2018-09-24 22:22:10 INFO  LoginPage:537 - machineCode: MAC1
+2018-09-24 22:22:21 INFO  MysqlConnect:61 - Could not create connection to database server. Attempted reconnect 3 times. Giving up.
+2018-09-24 22:22:21 INFO  LoginController:236 - 
+2018-09-24 22:22:31 INFO  MysqlConnect:61 - Could not create connection to database server. Attempted reconnect 3 times. Giving up.
+2018-09-24 22:22:31 INFO  LoginController:255 - 
+2018-09-24 22:22:41 INFO  MysqlConnect:61 - Could not create connection to database server. Attempted reconnect 3 times. Giving up.
+2018-09-24 22:22:41 INFO  LoginController:274 - 
+2018-09-24 22:22:41 INFO  LoginPage:540 - mDbHost: localhost
+2018-09-24 22:22:41 INFO  LoginPage:541 - mDbUser: admin
+2018-09-24 22:22:41 INFO  LoginPage:542 - mDbPwds: 1qazxsw2
+2018-09-24 22:22:41 INFO  LoginPage:543 - mDbName: iTools_v1p0
+2018-09-24 22:22:41 INFO  LoginPage:544 - mDbPort: 3306
+2018-09-24 22:22:41 INFO  LoginPage:545 - Database version:  - 
+2018-09-24 22:22:41 INFO  LoginPage:547 - Last Sync: 
+2018-09-24 22:22:41 INFO  LoginPage:551 - connectToHost: null
+2018-09-24 22:22:42 INFO  LoginPage:566 - App Version: 1.0
+2018-09-24 22:22:43 INFO  EmailUtils:57 - mail.tqteam.net25itool_app@tqteam.net1qazxsw2!A
+2018-09-24 22:22:44 INFO  LoginPage:577 - checkEmailConfig: true
+2018-09-24 22:23:36 INFO  LoginPage:530 - ************************************************************
+2018-09-24 22:23:36 INFO  LoginPage:531 - ************************************************************
+2018-09-24 22:23:36 INFO  LoginPage:532 - ************************************************************
+2018-09-24 22:23:36 INFO  LoginPage:533 - ************************************************************
+2018-09-24 22:23:36 INFO  LoginPage:534 - Starting iTool app.
+2018-09-24 22:23:36 INFO  LoginPage:535 - companyCode: Com1
+2018-09-24 22:23:36 INFO  LoginPage:536 - companyCodeUH: UHCom
+2018-09-24 22:23:36 INFO  LoginPage:537 - machineCode: MAC1
+2018-09-24 22:23:38 INFO  LoginController:274 - Unable to connect to foreign data source: Host '171.227.109.188' is not allowed to connect to this MySQL s
+2018-09-24 22:23:38 INFO  LoginPage:540 - mDbHost: localhost
+2018-09-24 22:23:38 INFO  LoginPage:541 - mDbUser: admin
+2018-09-24 22:23:38 INFO  LoginPage:542 - mDbPwds: 1qazxsw2
+2018-09-24 22:23:38 INFO  LoginPage:543 - mDbName: iTools_v1p0
+2018-09-24 22:23:38 INFO  LoginPage:544 - mDbPort: 3306
+2018-09-24 22:23:38 INFO  LoginPage:545 - Database version: v1p0 - 2018-09-08 22:35:05
+2018-09-24 22:23:38 INFO  LoginPage:547 - Last Sync: 2018-09-23 13:02:01
+2018-09-24 22:23:38 INFO  LoginPage:551 - connectToHost: Unable to connect to foreign data source: Host '171.227.109.188' is not allowed to connect to this MySQL s
+2018-09-24 22:23:39 INFO  LoginPage:566 - App Version: 1.0
+2018-09-24 22:23:40 INFO  EmailUtils:57 - mail.tqteam.net25itool_app@tqteam.net1qazxsw2!A
+2018-09-24 22:23:41 INFO  LoginPage:577 - checkEmailConfig: true
+2018-09-24 22:25:44 INFO  LoginPage:530 - ************************************************************
+2018-09-24 22:25:44 INFO  LoginPage:531 - ************************************************************
+2018-09-24 22:25:44 INFO  LoginPage:532 - ************************************************************
+2018-09-24 22:25:44 INFO  LoginPage:533 - ************************************************************
+2018-09-24 22:25:44 INFO  LoginPage:534 - Starting iTool app.
+2018-09-24 22:25:44 INFO  LoginPage:535 - companyCode: Com1
+2018-09-24 22:25:44 INFO  LoginPage:536 - companyCodeUH: UHCom
+2018-09-24 22:25:44 INFO  LoginPage:537 - machineCode: MAC1
+2018-09-24 22:25:45 INFO  LoginController:274 - Unable to connect to foreign data source: Host '171.227.109.188' is not allowed to connect to this MySQL s
+2018-09-24 22:25:45 INFO  LoginPage:540 - mDbHost: localhost
+2018-09-24 22:25:45 INFO  LoginPage:541 - mDbUser: admin
+2018-09-24 22:25:45 INFO  LoginPage:542 - mDbPwds: 1qazxsw2
+2018-09-24 22:25:45 INFO  LoginPage:543 - mDbName: iTools_v1p0
+2018-09-24 22:25:45 INFO  LoginPage:544 - mDbPort: 3306
+2018-09-24 22:25:45 INFO  LoginPage:545 - Database version: v1p0 - 2018-09-08 22:35:05
+2018-09-24 22:25:45 INFO  LoginPage:547 - Last Sync: 2018-09-23 13:02:01
+2018-09-24 22:25:45 INFO  LoginPage:551 - connectToHost: Unable to connect to foreign data source: Host '171.227.109.188' is not allowed to connect to this MySQL s
+2018-09-24 22:25:46 INFO  LoginPage:566 - App Version: 1.0
+2018-09-24 22:25:47 INFO  EmailUtils:57 - mail.tqteam.net25itool_app@tqteam.net1qazxsw2!A
+2018-09-24 22:25:49 INFO  LoginPage:577 - checkEmailConfig: true
+2018-09-24 22:26:26 INFO  LoginPage:530 - ************************************************************
+2018-09-24 22:26:26 INFO  LoginPage:531 - ************************************************************
+2018-09-24 22:26:26 INFO  LoginPage:532 - ************************************************************
+2018-09-24 22:26:26 INFO  LoginPage:533 - ************************************************************
+2018-09-24 22:26:26 INFO  LoginPage:534 - Starting iTool app.
+2018-09-24 22:26:26 INFO  LoginPage:535 - companyCode: Com1
+2018-09-24 22:26:26 INFO  LoginPage:536 - companyCodeUH: UHCom
+2018-09-24 22:26:26 INFO  LoginPage:537 - machineCode: MAC1
+2018-09-24 22:26:27 INFO  LoginController:274 - Unable to connect to foreign data source: Host '171.227.109.188' is not allowed to connect to this MySQL s
+2018-09-24 22:26:27 INFO  LoginPage:540 - mDbHost: localhost
+2018-09-24 22:26:27 INFO  LoginPage:541 - mDbUser: admin
+2018-09-24 22:26:27 INFO  LoginPage:542 - mDbPwds: 1qazxsw2
+2018-09-24 22:26:27 INFO  LoginPage:543 - mDbName: iTools_v1p0
+2018-09-24 22:26:27 INFO  LoginPage:544 - mDbPort: 3306
+2018-09-24 22:26:27 INFO  LoginPage:545 - Database version: v1p0 - 2018-09-08 22:35:05
+2018-09-24 22:26:27 INFO  LoginPage:547 - Last Sync: 2018-09-23 13:02:01
+2018-09-24 22:26:27 INFO  LoginPage:551 - connectToHost: Unable to connect to foreign data source: Host '171.227.109.188' is not allowed to connect to this MySQL s
+2018-09-24 22:26:28 INFO  LoginPage:566 - App Version: 1.0
+2018-09-24 22:26:29 INFO  EmailUtils:57 - mail.tqteam.net25itool_app@tqteam.net1qazxsw2!A
+2018-09-24 22:26:31 INFO  LoginPage:577 - checkEmailConfig: true

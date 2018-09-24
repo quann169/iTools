@@ -75,7 +75,7 @@ public class LoginPage extends JFrame implements ActionListener {
 	JButton forgotPwdButton = new JButton(bundleMessage.getString("Login_Page_Forget_Password"));
 	JCheckBox showPassword = new JCheckBox(bundleMessage.getString("Login_Page_Show_Password"));
 
-	LogController masterLogObj = new LogController();
+
 	static LoginController ctlObj = new LoginController();
 
 	private static final Config cfg = new Config();
@@ -395,7 +395,12 @@ public class LoginPage extends JFrame implements ActionListener {
 						File file = new File("./log/logging.log");
 						if (file.exists() && file.canRead()) {
 							// long fileLength = file.length();
-							readFile(file, 0L);
+							try {
+								readFile(file, 0L);
+							} catch (Exception e) {
+								logger.error(e.getMessage());
+							}
+							
 							// while (true) {
 							//
 							// if (fileLength < file.length()) {
@@ -540,6 +545,14 @@ public class LoginPage extends JFrame implements ActionListener {
 				logger.info("Database version: " + databaseInfo.get(5));
 
 				logger.info("Last Sync: " + databaseInfo.get(6));
+				
+				String connectToHost = databaseInfo.get(7);
+				String localDatabase = databaseInfo.get(8);
+				logger.info("connectToHost: " + databaseInfo.get(7));
+				
+				
+				System.out.println("databaseInfo: " + databaseInfo);
+				
 				Thread.sleep(1000);
 				File versionFile = new File("");
 				try {
@@ -570,10 +583,24 @@ public class LoginPage extends JFrame implements ActionListener {
 					System.exit(ERROR);
 				}
 				
+				if (localDatabase == null || !localDatabase.equals("")) {
+					publish("[ERR] Local database - " + localDatabase);
+					Thread.sleep(30000);
+					System.exit(ERROR);
+				}
+				
+				if (connectToHost == null || !connectToHost.equals("OK")) {
+					publish("[ERR] " + connectToHost);
+					Thread.sleep(30000);
+					System.exit(ERROR);
+				}
+				
+				
+				
 				
 				for (String info : databaseInfo) {
 					if (info == null) {
-						publish("Error database configuration. Please review log file...");
+						publish("[ERR] Error database configuration. Please review log file...");
 						Thread.sleep(5000);
 						System.exit(ERROR);
 					}

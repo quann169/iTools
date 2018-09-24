@@ -117,7 +117,6 @@ public class EmployeePage extends JFrame implements ActionListener, HidServicesL
 	private static final String companyCodeUH = AdvancedEncryptionStandard.decrypt(cfg.getProperty("COMPANY_CODE_UH"));
 
 	int transactionID = -1;
-	LogController masterLogObj = new LogController();
 	String userName = "";
 
 	JFrame root = this;
@@ -132,6 +131,10 @@ public class EmployeePage extends JFrame implements ActionListener, HidServicesL
 	String vendorId = cfg.getProperty("VENDOR_ID");
 	String productId = cfg.getProperty("PRODUCT_ID");
 	int readWaitTime = Integer.valueOf(cfg.getProperty("READ_WAIT_TIME"));
+	
+	int readWaitTimeFinal = Integer.valueOf(cfg.getProperty("READ_WAIT_TIME_FINAl"));
+	
+	
 	HashMap<String, String> hashMessage = new HashMap<>();
 	TransactionController transCtl = new TransactionController();
 
@@ -943,7 +946,12 @@ public class EmployeePage extends JFrame implements ActionListener, HidServicesL
 			boolean moreData = true;
 			while (moreData) {
 				byte data[] = new byte[2];
-				val = hidDevice.read(data, readWaitTime * 1000);
+				if (i == 3) {
+					val = hidDevice.read(data, readWaitTimeFinal * 1000);
+				} else {
+					val = hidDevice.read(data, readWaitTime * 1000);
+				}
+				
 				logger.info("Switch case --- " + val + " ----");
 				switch (val) {
 				case -1:

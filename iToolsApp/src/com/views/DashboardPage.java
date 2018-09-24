@@ -33,7 +33,6 @@ import javax.swing.Timer;
 
 import org.apache.log4j.Logger;
 
-import com.controllers.LogController;
 import com.controllers.LoginController;
 import com.controllers.SyncController;
 import com.controllers.TransactionController;
@@ -72,11 +71,11 @@ public class DashboardPage extends JFrame implements ActionListener {
 
 	final static Logger logger = Logger.getLogger(DashboardPage.class);
 
-	LogController masterLogObj = new LogController();
 
 	private static final Config cfg = new Config();
 	private static final String companyCode = AdvancedEncryptionStandard.decrypt(cfg.getProperty("COMPANY_CODE"));
 	private static final String machineCode = AdvancedEncryptionStandard.decrypt(cfg.getProperty("MACHINE_CODE"));
+	static String productMode = cfg.getProperty("PRODUCT_MODE");
 	LoginController ctlObj = new LoginController();
 	String userName = "";
 	
@@ -406,7 +405,7 @@ public class DashboardPage extends JFrame implements ActionListener {
 
 		if (e.getSource() == manualSyncButton) {
 			SyncController syncCtl = new SyncController();
-			syncCtl.syncDataManually(companyCode, machineCode);
+			syncCtl.syncDataManually(companyCode, machineCode, productMode);
 			logger.info(manualSyncButton.getText() + " clicked by " + userName);
 
 		}

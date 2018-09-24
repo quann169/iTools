@@ -68,7 +68,6 @@ public class ForgotPasswordPage extends JFrame implements ActionListener {
 	final static Logger logger = Logger.getLogger(ForgotPasswordPage.class);
 	UserController empCtlObj = new UserController();
 
-	LogController masterLogObj = new LogController();
 	public PopUpKeyboard keyboard;
 
 	JFrame root = this;

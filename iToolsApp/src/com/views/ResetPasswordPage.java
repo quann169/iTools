@@ -91,7 +91,6 @@ public class ResetPasswordPage extends JFrame implements ActionListener {
 	UserController empCtlObj = new UserController();
 	static EmailUtils emailUtils = new EmailUtils(Enum.LOGIN, userName, companyCode, machineCode);
 	static LoginController ctlObj = new LoginController();
-	LogController masterLogObj = new LogController();
 
 	Assessor user;
 	Map<String, Assessor> mapDisplayName = new HashMap<>();
