@@ -921,6 +921,7 @@ public class EmployeePage extends JFrame implements ActionListener, HidServicesL
 			logger.error("[ERR] Cannot send data. " + e.getMessage() + " " + Enum.SEND_SIGNAL_TO_BOARD_FAIL);
 
 			transCtl.updateTransaction(transactionID, "TransactionStatus", Enum.SEND_SIGNAL_TO_BOARD_FAIL.text());
+			transCtl.updateTransaction(transactionID, "Quantity", "0");
 			hidDevice.close();
 			return -1;
 		}
@@ -932,6 +933,7 @@ public class EmployeePage extends JFrame implements ActionListener, HidServicesL
 		} else {
 			logger.error(hidDevice.getLastErrorMessage());
 			transCtl.updateTransaction(transactionID, "TransactionStatus", Enum.SEND_SIGNAL_TO_BOARD_FAIL.text());
+			transCtl.updateTransaction(transactionID, "Quantity", "0");
 		}
 		progress.setText("Begin wait to read data");
 		logger.info("-------------Begin wait to read data in " + readWaitTime + "s------------");
@@ -1003,6 +1005,7 @@ public class EmployeePage extends JFrame implements ActionListener, HidServicesL
 			} else if (dataReceived == PRODUCT_FAIL) {
 				result = 0;
 				transCtl.updateTransaction(transactionID, "TransactionStatus", Enum.PRODUCT_FAIL.text());
+				transCtl.updateTransaction(transactionID, "Quantity", "0");
 				// logger.info(Enum.PRODUCT_FAIL);
 			}
 		}
