@@ -132,7 +132,7 @@ public class EmployeePage extends JFrame implements ActionListener, HidServicesL
 	String productId = cfg.getProperty("PRODUCT_ID");
 	int readWaitTime = Integer.valueOf(cfg.getProperty("READ_WAIT_TIME"));
 	
-	int readWaitTimeFinal = Integer.valueOf(cfg.getProperty("READ_WAIT_TIME_FINAl"));
+	int readWaitTimeFinal = Integer.valueOf(cfg.getProperty("READ_WAIT_TIME_FINAL"));
 	
 	
 	HashMap<String, String> hashMessage = new HashMap<>();
