@@ -30,13 +30,13 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
+import javax.swing.JTextField;
 import javax.swing.Timer;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
 import org.apache.log4j.Logger;
 
-import com.controllers.LogController;
 import com.controllers.LoginController;
 import com.controllers.UserController;
 import com.message.Enum;
@@ -77,6 +77,7 @@ public class ResetPasswordPage extends JFrame implements ActionListener {
 	JPasswordField rePasswordTextField = new JPasswordField();
 
 	JButton resetPassButton = new JButton();
+	JTextField usernameTextBox = new JTextField();
 
 	JCheckBox isFirstChange = new JCheckBox(bundleMessage.getString("ResetPassword_Page_FirstChange"));
 
@@ -102,13 +103,17 @@ public class ResetPasswordPage extends JFrame implements ActionListener {
 	JFrame root = this;
 	Timer updateTimer;
 	int expiredTime = Integer.valueOf(cfg.getProperty("Expired_Time")) * 1000;
-
+	
+	String firstName, lastName = "";
+	
 	@SuppressWarnings("static-access")
 	ResetPasswordPage(Assessor user, boolean isDashboard, boolean isFirstTimeLogin) {
 		this.isFirstTimeLogin = isFirstTimeLogin;
 		this.isDashboard = isDashboard;
 		this.user = user;
 		this.userName = user.getUsername();
+		this.firstName = user.getFirstName();
+		this.lastName = user.getLastName();
 		setLayoutManager();
 		setLocationAndSize();
 		addComponentsToContainer();
@@ -197,6 +202,10 @@ public class ResetPasswordPage extends JFrame implements ActionListener {
 
 		usernameLabel.setBounds(70, 75, 250, 40);
 		usernameLabel.setFont(new Font(labelFont.getName(), Font.BOLD, 20));
+		
+		
+		usernameTextBox.setBounds(260, 80, 450, 30);
+		usernameTextBox.setFont(new Font(labelFont.getName(), Font.BOLD, 20));
 
 		List<Assessor> listUsers = empCtlObj.getUsersOfCompany(companyCode);
 		Collections.sort(listUsers, new Comparator<Assessor>() {
@@ -210,11 +219,10 @@ public class ResetPasswordPage extends JFrame implements ActionListener {
 		List<String> listUserNames = new ArrayList<>();
 
 		if (isFirstTimeLogin) {
-
-			String displayName = user.getFirstName() + " " + user.getLastName() + " - " + user.getUsername();
-			mapDisplayName.put(displayName, user);
-			usernameComboBox.addItem(displayName);
-			usernameComboBox.setEnabled(false);
+			String displayName = firstName + " " + lastName + " - " + user.getUsername();
+			usernameTextBox.setText(displayName);
+			usernameTextBox.setEditable(false);
+			
 		} else {
 			// usernameComboBox.addItem("");
 			listUserNames.add("");
@@ -226,16 +234,18 @@ public class ResetPasswordPage extends JFrame implements ActionListener {
 				}
 
 			}
+			
+			usernameComboBox = new FilterComboBox(listUserNames, keyboard);
+			usernameComboBox.setBounds(260, 80, 450, 30);
+			usernameComboBox.setFont(new Font(labelFont.getName(), Font.BOLD, 18));
+			usernameComboBox.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					validateAllFields();
+				}
+			});
 		}
 
-		usernameComboBox = new FilterComboBox(listUserNames, keyboard);
-		usernameComboBox.setBounds(260, 80, 450, 30);
-		usernameComboBox.setFont(new Font(labelFont.getName(), Font.BOLD, 18));
-		usernameComboBox.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				validateAllFields();
-			}
-		});
+		
 
 		//
 		//
@@ -359,8 +369,12 @@ public class ResetPasswordPage extends JFrame implements ActionListener {
 
 		String password = passwordTextField.getText();
 		String repassword = rePasswordTextField.getText();
-		boolean userExisted = mapDisplayName.containsKey(usernameComboBox.getSelectedItem().toString());
-
+		boolean userExisted = true;
+		if (isFirstTimeLogin) {
+			userExisted = true;
+		} else {
+			userExisted = mapDisplayName.containsKey(usernameComboBox.getSelectedItem().toString());
+		}
 		if (password.length() > 0 && repassword.length() > 0 && !password.equals(repassword)) {
 			matchPasswordLabel.setText("<html><font size=\"3\" face=\"arial\" color=\"red\"><i>"
 					+ bundleMessage.getString("ResetPassword_Page_Password_Not_Match") + "</i></font></html>");
@@ -382,7 +396,7 @@ public class ResetPasswordPage extends JFrame implements ActionListener {
 		container.add(logOutLabel);
 
 		container.add(usernameLabel);
-		container.add(usernameComboBox);
+		
 
 		container.add(passwordLabel);
 		container.add(passwordTextField);
@@ -395,8 +409,10 @@ public class ResetPasswordPage extends JFrame implements ActionListener {
 			container.add(backToDashboardLabel);
 			container.add(changePassLabel);
 			container.add(isFirstChange);
+			container.add(usernameComboBox);
 		} else {
 			container.add(firstTimeLoginLabel);
+			container.add(usernameTextBox);
 
 		}
 		container.add(resetPassButton);
@@ -429,7 +445,13 @@ public class ResetPasswordPage extends JFrame implements ActionListener {
 			panel.setLayout(null);
 
 			String password = rePasswordTextField.getText();
-			String usernameResetPass = mapDisplayName.get(usernameComboBox.getSelectedItem().toString()).getUsername();
+			
+			final String usernameResetPass;
+			if (isFirstTimeLogin) {
+				usernameResetPass = userName;
+			} else {
+				usernameResetPass = mapDisplayName.get(usernameComboBox.getSelectedItem().toString()).getUsername();
+			}
 			int dialogResult;
 			if (isFirstTimeLogin) {
 				dialogResult = 0;
@@ -444,7 +466,7 @@ public class ResetPasswordPage extends JFrame implements ActionListener {
 			if (dialogResult == 0) {
 				logger.info("Yes option");
 				if (isFirstTimeLogin) {
-					String newPass = empCtlObj.updatePassword(usernameResetPass, companyCode, password, false);
+					String newPass = empCtlObj.updatePassword(usernameResetPass, companyCode, password, 0);
 					String email = ctlObj.getEmailUser(companyCode, usernameResetPass);
 					logger.info("Lock User");
 					Thread one = new Thread() {
@@ -472,7 +494,7 @@ public class ResetPasswordPage extends JFrame implements ActionListener {
 					root.getRootPane().setDefaultButton(((LoginPage) root).loginButton);
 					old.dispose();
 				} else {
-					empCtlObj.updatePassword(usernameResetPass, companyCode, password, true);
+					empCtlObj.updatePassword(usernameResetPass, companyCode, password, 1);
 					logger.info("Reset Pass of " + usernameResetPass);
 					String confirm = "<html><font size=\"5\" face=\"arial\"><i>Completed Reset Password" + " "
 							+ usernameResetPass + "</i></font></html>";
@@ -482,7 +504,10 @@ public class ResetPasswordPage extends JFrame implements ActionListener {
 				passwordTextField.setText("");
 				rePasswordTextField.setText("");
 				isFirstChange.setSelected(false);
-				usernameComboBox.setSelectedIndex(0);
+				if (!isFirstTimeLogin) {
+					usernameComboBox.setSelectedIndex(0);
+				}
+				
 
 			} else {
 				logger.info("No Option");
@@ -496,6 +521,7 @@ public class ResetPasswordPage extends JFrame implements ActionListener {
 		usernameComboBox.getEditor().getEditorComponent().addFocusListener(focus1);
 		passwordTextField.addFocusListener(focus1);
 		rePasswordTextField.addFocusListener(focus1);
+		usernameTextBox.addFocusListener(focus1);
 	}
 
 }

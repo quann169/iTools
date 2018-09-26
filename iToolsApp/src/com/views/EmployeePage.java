@@ -47,7 +47,6 @@ import javax.swing.event.DocumentListener;
 import org.apache.log4j.Logger;
 
 import com.controllers.EmployeeController;
-import com.controllers.LogController;
 import com.controllers.LoginController;
 import com.controllers.TransactionController;
 import com.lib.hid4java.HidDevice;
@@ -67,7 +66,6 @@ import com.utils.AdvancedEncryptionStandard;
 import com.utils.AutoCompletion;
 import com.utils.Config;
 import com.utils.EmailUtils;
-import com.utils.FilterComboBox;
 import com.utils.MyFocusListener;
 import com.utils.PopUpKeyboard;
 import com.utils.StringUtils;

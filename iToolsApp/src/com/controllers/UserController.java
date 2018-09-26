@@ -5,7 +5,6 @@ package com.controllers;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
@@ -98,7 +97,7 @@ public class UserController {
 	 * @return
 	 */
 	public boolean updateIsLocked(String username, String companyCode, int status) {
-		String sql = "Update  Assessor set Assessor.IsLocked = " + status + " where Assessor.Username = '" + username
+		String sql = "Update  Assessor set Assessor.FailTimes = 0, IsFirstTimeLogin = 0, Assessor.IsLocked = " + status + " where Assessor.Username = '" + username
 				+ "' and Assessor.CompanyCode = '" + companyCode + "';";
 		logger.info(sql);
 		try {
@@ -118,13 +117,10 @@ public class UserController {
 	 * 
 	 * @return
 	 */
-	public String updatePassword(String username, String companyCode, String password, boolean isFirstChange) {
-		int isFirstChangeInt = 0;
-		if (isFirstChange) {
-			isFirstChangeInt = 1;
-		}
-		String sql = "Update  Assessor set Assessor.Password = md5('" + password + "'), Assessor.IsFirstTimeLogin = "
-				+ isFirstChangeInt + " where Assessor.Username = '" + username + "' and Assessor.CompanyCode = '"
+	public String updatePassword(String username, String companyCode, String password, int isFirstChange) {
+
+		String sql = "Update  Assessor set Assessor.FailTimes = 0, Assessor.Password = md5('" + password + "'), Assessor.IsFirstTimeLogin = "
+				+ isFirstChange + " where Assessor.Username = '" + username + "' and Assessor.CompanyCode = '"
 				+ companyCode + "';";
 		logger.info(sql);
 		try {

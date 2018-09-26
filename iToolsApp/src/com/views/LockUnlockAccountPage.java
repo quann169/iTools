@@ -28,7 +28,6 @@ import javax.swing.Timer;
 
 import org.apache.log4j.Logger;
 
-import com.controllers.LogController;
 import com.controllers.LoginController;
 import com.controllers.UserController;
 import com.message.Enum;

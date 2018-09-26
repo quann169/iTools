@@ -244,12 +244,12 @@ public class LoginPage extends JFrame implements ActionListener {
 		userName = userTextField.getText();
 		if (e.getSource() == loginButton) {
 
-			if (productMode.equals("Dev")) {
-				userText = "com1user1";
-				// userText = "com1admin";
-				userText = "uhacc";
-				pwdText = "123456";
-			}
+//			if (productMode.equals("Dev")) {
+//				userText = "com1user1";
+//				 userText = "com1admin";
+////				userText = "uhacc";
+//				pwdText = "123456";
+//			}
 
 			logger.info("Login with username: " + userText);
 
