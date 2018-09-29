@@ -66,10 +66,14 @@ public class AdvancedEncryptionStandard {
 
 	public static void main(String[] a) throws Exception {
 
-		String plainText = "112.213.89.47";
-		String cipherText = AdvancedEncryptionStandard.encrypt(plainText);
-		AdvancedEncryptionStandard.decrypt(cipherText);
-		System.out.println();
+//		String plainText = "112.213.89.47";
+//		String cipherText = AdvancedEncryptionStandard.encrypt(plainText);
+//		AdvancedEncryptionStandard.decrypt(cipherText);
+		System.out.println(AdvancedEncryptionStandard.decrypt("fCBLDZEmSL3EzORzYJpyUoHa0cm+cnlWiQh9k8hyg9c="));
+		System.out.println(AdvancedEncryptionStandard.decrypt("KG68kUlf8UKiI+qZYZFt5A=="));
+		System.out.println(AdvancedEncryptionStandard.decrypt("iNsabt5tGQ4+JPjalpYuvQ=="));
+		System.out.println(AdvancedEncryptionStandard.decrypt("evNaJwjjy9S1qudJ3/VSUA=="));
+		
 //
 //		plainText = "1qazxsw2!A";
 //		cipherText = AdvancedEncryptionStandard.encrypt(plainText);
