@@ -73,6 +73,7 @@
                <th>Company</th>
                <th>Status</th>
                <th>Locked</th>
+               <th>Role</th>
                <th style="width:7%">Edit</th>
                <th style="width:10%">Action</th>
             </tr>
@@ -98,6 +99,7 @@
 				  <div th:case=false>Not be locked</div>
 				</div>               
                </td>
+               <td th:utext="${assessorInfo.rolesList}">...</td>
                <td style="width:7%"><a class="btn btn-primary text-uppercase" style="width:70px; font-size:12px" th:href="@{|/admin/assessorDetail?assessorID=${assessorInfo.assessorId}|}">Edit</a></td>
                <td style="width:10%"><a class="btn btn-primary text-uppercase" style="width:105px; font-size:12px" th:href="@{|/admin/setRoleAssessor?assessorID=${assessorInfo.assessorId}|}">Add Role</a></td>
             </tr>

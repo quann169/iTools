@@ -136,11 +136,11 @@ public class MainController {
             @RequestParam(value = "name", defaultValue = "") String likeName,
             @RequestParam(value = "page", defaultValue = "1") int page) {
         final int maxResult = 10;
-        final int maxNavigationPage = 10;
+        final int maxNavigationPage = 100;
  
         PaginationResult<ToolInfo> result = toolDAO.queryTool(page, //
                 maxResult, maxNavigationPage, likeName);
- 
+        model.addAttribute("name", "");
         model.addAttribute("paginationTool", result);
         return "toolList";
     }

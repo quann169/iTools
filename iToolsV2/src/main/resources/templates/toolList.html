@@ -57,10 +57,15 @@
       <th:block th:include="/_menu"></th:block>
 	<!--       <th:block th:include="/_subMenuTool"></th:block>   -->
       <div class="page-title">Tool List</div>  
+      <form th:action="@{/admin/searchTool}" th:object="${name}" method="POST">
       <th:block sec:authorize="hasRole('ROLE_Admin')">
 	  <table style="width:100%">
 	  <tr>
            <td align="left"><a class="btn btn-primary text-uppercase" style="width:70px; font-size:12px" th:href="@{|/admin/registerTool|}">New</a></td>
+           <td align="right">
+           		<label for="search_input">Search:</label> 
+           		<input type="text" name="name" id="name" />
+           		<button class="btn btn-primary text-uppercase" style="font-size:12px" type="submit" id="SEARCH" value="SEARCH">SEARCH</button>
       </tr>
 	  </table>   
 	  </th:block>
@@ -92,12 +97,12 @@
                <!-- <td style="width:17%;"><a class="btn btn-primary text-uppercase" style="width:180px; font-size:12px" th:href="@{|/admin/assignToolToMachine?toolID=${toolInfo.toolID}|}">Assign to Machine</a></td> -->
             </tr>
       </table>      
-       
+      </form> 
       <br/>
       <div class="page-navigator" th:if="${paginationTool.totalPages > 1}">
          <th:block th:each="page : ${paginationTool.navigationPages}">
          
-            <a th:href="@{|/toolList?page=${page}|}" th:if="${page != -1}"
+            <a th:href="@{|/ctidList?page=${page}|}" th:if="${page != -1}"
                class="nav-item" th:utext="${page}"></a>
                
             <span class="nav-item" th:if="${page == -1}"> ... </span>

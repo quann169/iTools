@@ -3,6 +3,8 @@ package com.iToolsV2.service;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import javax.sql.DataSource;
@@ -55,10 +57,10 @@ public class TransactionReportService {
 				System.out.println("wk.ToolCode = " + search.getToolCode());
 			}
 			if (search.getUserId() > 0) {
-				where += " AND wk.AssessorID = ?";
+				where += " AND a.AssessorID = ?";
 				objectParams[indexParams++] = search.getUserId();
-				log.info("wk.AssessorID = " + search.getUserId());
-				System.out.println("wk.AssessorID = " + search.getUserId());
+				log.info("a.AssessorID = " + search.getUserId());
+				System.out.println("a.AssessorID = " + search.getUserId());
 			}
 			if (!search.getTransactionType().isEmpty()) {
 				where += " AND wk.TransactionType = ?";
@@ -86,9 +88,9 @@ public class TransactionReportService {
 			}
 			if (search.getToDate() != null) {
 				where += " AND wk.TransactionDate <= ?";
-				objectParams[indexParams++] = search.getToDate();
-				log.info("wk.TransactionDate <= " + search.getToDate());
-				System.out.println("wk.TransactionDate <= " + search.getToDate());
+				objectParams[indexParams++] = addDate(search.getToDate());
+				log.info("wk.TransactionDate <= " + addDate(search.getToDate()));
+				System.out.println("wk.TransactionDate <= " + addDate(search.getToDate()));
 			}
 			log.info(sqlGetTransaction + where);
 			System.out.println(sqlGetTransaction + where);
@@ -105,7 +107,8 @@ public class TransactionReportService {
 					report.setToolCode(rs.getString("ToolCode"));
 					report.setQuantity(rs.getInt("Quantity"));
 					report.setTypeTransaction(rs.getString("TransactionType"));
-					report.setTransactionDate(rs.getDate("TransactionDate"));
+					//report.setTransactionDate(rs.getDate("TransactionDate"));
+					report.setTransactionDate(rs.getString("TransactionDate"));
 					report.setTransactionStatus(rs.getString("TransactionStatus"));
 					report.setWoCode(rs.getString("WOCode"));
 					report.setOpCode(rs.getString("OPCode"));
@@ -117,5 +120,12 @@ public class TransactionReportService {
 			log.error(e.getMessage());
 			throw e;
 		}
+	}
+	
+	public Date addDate(Date inputDate) {
+		Calendar c = Calendar.getInstance(); 
+		c.setTime(inputDate); 
+		c.add(Calendar.DATE, 1);
+		return c.getTime();
 	}
 }

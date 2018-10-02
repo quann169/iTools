@@ -56,7 +56,7 @@
 	        <script type="text/javascript" language="javascript"
 	                src="../../static/vendor/buttons.print.min.js"
 	                th:src="@{/vendor/buttons.print.min.js}">
-	        </script>
+	        </script>        
 	    </th:block>
 	    <script type="text/javascript" th:inline="javascript">
 	        /*<![CDATA[*/
@@ -221,9 +221,9 @@
 	                    text: 'Export pdf'
 	                    
 	                }
-	            ]
-	        });
-
+	            ]	            
+	        });	        
+	        
 	        $('#Machine').change(function () {
 	            $.ajax({
 	                dataType: 'json',

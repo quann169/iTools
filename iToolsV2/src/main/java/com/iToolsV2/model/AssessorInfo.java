@@ -49,6 +49,26 @@ public class AssessorInfo {
     
     public AssessorInfo(int assessorId, String userName, String encrytedPassword, boolean active, 
     		String firstName, String lastName, String emailAddress, String address, String phone, 
+    		String companyCode,     		
+    		boolean locked,
+    		String rolesList) {
+    	
+        this.assessorId = assessorId;
+        this.userName = userName;
+        this.encrytedPassword = encrytedPassword;
+        this.active = active;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.emailAddress = emailAddress;
+        this.address = address;
+        this.phone = phone;
+        this.companyCode = companyCode;
+        this.locked = locked;
+        this.rolesList = rolesList;
+    }
+    
+    public AssessorInfo(int assessorId, String userName, String encrytedPassword, boolean active, 
+    		String firstName, String lastName, String emailAddress, String address, String phone, 
     		String companyCode, 
     		boolean locked, 
     		String password, String confirmPassword) {

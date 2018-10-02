@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.NoResultException;
 
+import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
@@ -15,6 +16,8 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.iToolsV2.entity.Assessor;
+import com.iToolsV2.entity.RoleAssessor;
+import com.iToolsV2.entity.Roles;
 import com.iToolsV2.form.AssessorForm;
 import com.iToolsV2.model.AssessorInfo;
 import com.iToolsV2.pagination.PaginationResult;
@@ -230,16 +233,20 @@ public class AssessorDAO {
             String likeName) {
         String sql = "Select new " + AssessorInfo.class.getName() //
                 + "(a.assessorID, a.userName, a.encrytedPassword, a.active, a.firstName, a.lastName,"
-                + " a.emailAddress, a.address, a.phone, a.companyCode, a.locked) " + " from "//
-                + Assessor.class.getName() + " a ";
+                + " a.emailAddress, a.address, a.phone, a.companyCode, a.locked, r.roleName) " + " from "//
+                + Assessor.class.getName() + " a "
+        		+ " left join " + RoleAssessor.class.getName() + " ra on ra.assessorID = a.assessorID "
+        		+ " left join " + Roles.class.getName() + " r on r.roleID = ra.roleID ";
         if (likeName != null && likeName.length() > 0) {
             sql += " Where lower(a.userName) like :likeName ";
         }
         //sql += " order by m.createdDate desc ";
-        // 
+        //        
+        sql += " group by a.assessorID ";
+        
         Session session = this.sessionFactory.getCurrentSession();
         Query<AssessorInfo> query = session.createQuery(sql, AssessorInfo.class);
- 
+        
         if (likeName != null && likeName.length() > 0) {
             query.setParameter("likeName", "%" + likeName.toLowerCase() + "%");
         }
@@ -250,8 +257,10 @@ public class AssessorDAO {
             String likeName, String companyCode) {
         String sql = "Select new " + AssessorInfo.class.getName() //
                 + "(a.assessorID, a.userName, a.encrytedPassword, a.active, a.firstName, a.lastName,"
-                + " a.emailAddress, a.address, a.phone, a.companyCode, a.locked) " + " from "//
-                + Assessor.class.getName() + " a ";
+                + " a.emailAddress, a.address, a.phone, a.companyCode, a.locked, r.roleName) " + " from "//
+                + Assessor.class.getName() + " a "
+		        + " left join " + RoleAssessor.class.getName() + " ra on ra.assessorID = a.assessorID "
+				+ " left join " + Roles.class.getName() + " r on r.roleID = ra.roleID ";
         if (likeName != null && likeName.length() > 0) {
             sql += " Where lower(a.userName) like :likeName ";
             if (companyCode != null && companyCode.length() > 0) {
@@ -264,6 +273,8 @@ public class AssessorDAO {
         }
         //sql += " order by m.createdDate desc ";
         // 
+        sql += " group by a.assessorID ";
+        
         Session session = this.sessionFactory.getCurrentSession();
         Query<AssessorInfo> query = session.createQuery(sql, AssessorInfo.class);
  

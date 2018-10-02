@@ -43,6 +43,8 @@ import com.iToolsV2.form.RolesAssessorForm;
 import com.iToolsV2.form.ToolForm;
 import com.iToolsV2.form.ToolMachineForm;
 import com.iToolsV2.form.TrayForm;
+import com.iToolsV2.model.ToolInfo;
+import com.iToolsV2.pagination.PaginationResult;
 import com.iToolsV2.validator.AssessorFormValidator;
 import com.iToolsV2.validator.CompanyFormValidator;
 import com.iToolsV2.validator.MachineFormValidator;
@@ -164,7 +166,17 @@ public class AdminController {
     	AssessorForm form = assessorDAO.findAssessorFormByID(assessorID);
  
     	List<Company> companies = companyDAO.findAllCompany();
- 
+    	UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();        
+        Collection<? extends GrantedAuthority> roleList= userDetails.getAuthorities();
+        for (GrantedAuthority role : roleList) {
+        	if(role.getAuthority().equalsIgnoreCase("ROLE_SubAdmin")) {
+        		Assessor assessor = assessorDAO.findAccount(userDetails.getUsername().toLowerCase());
+                if(assessor != null) {
+                	companies = new ArrayList<Company>(); 
+                	companies.add(companyDAO.findCompanyByCode(assessor.getCompanyCode()));
+                }
+        	}
+        }
         model.addAttribute("assessorForm", form);
         model.addAttribute("companies", companies);
  
@@ -452,6 +464,18 @@ public class AdminController {
         return "registerToolSuccessfull";
     }
     
+    @RequestMapping(value = "/admin/searchTool", method = RequestMethod.POST)
+    public String searchTool(@RequestParam(value = "name", required = false) String toolID, Model model) {       
+        final int maxResult = 100;
+        final int maxNavigationPage = 100;
+        System.out.println(toolID);
+        PaginationResult<ToolInfo> result = toolDAO.queryTool(1, //
+                maxResult, maxNavigationPage, toolID);
+        model.addAttribute("name", toolID);
+        model.addAttribute("paginationTool", result);
+        return "toolList";
+    }
+    
     @RequestMapping(value = "/admin/viewTool", method = RequestMethod.GET)
     public String viewTool(Model model, @RequestParam("toolID") int toolID) {
     	ToolForm form = toolDAO.findToolFormByID(toolID);
@@ -698,7 +722,7 @@ public class AdminController {
     		trayForm.setTray17(toolMachineTray17.getToolCode());
     	}
     	if(toolMachineTray18 != null) {
-    		trayForm.setQuantity08(toolMachineTray18.getQuantity());
+    		trayForm.setQuantity18(toolMachineTray18.getQuantity());
     		trayForm.setTray18(toolMachineTray18.getToolCode());
     	}
     	if(toolMachineTray19 != null) {
@@ -723,7 +747,7 @@ public class AdminController {
     		trayForm.setTray23(toolMachineTray23.getToolCode());
     	}
     	if(toolMachineTray24 != null) {
-    		trayForm.setQuantity04(toolMachineTray24.getQuantity());
+    		trayForm.setQuantity24(toolMachineTray24.getQuantity());
     		trayForm.setTray24(toolMachineTray24.getToolCode());
     	}
     	if(toolMachineTray25 != null) {
@@ -846,7 +870,7 @@ public class AdminController {
     		trayForm.setTray53(toolMachineTray53.getToolCode());
     	}
     	if(toolMachineTray54 != null) {
-    		trayForm.setQuantity04(toolMachineTray54.getQuantity());
+    		trayForm.setQuantity54(toolMachineTray54.getQuantity());
     		trayForm.setTray54(toolMachineTray54.getToolCode());
     	}
     	if(toolMachineTray55 != null) {

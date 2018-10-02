@@ -35,7 +35,8 @@ public class ToolMachineTrayDAO {
         	Session session = this.sessionFactory.getCurrentSession();
         	 String sql = "select tmt from " + ToolMachineTray.class.getName() + " tmt " //
         			 /*+ " left join " + ToolsMachine.class.getName() + " tm on tm.toolMachineID = tmt.toolsMachineID "*/
-                     + " Where tmt.machineCode = :machineCode and tmt.trayIndex = :trayIndex";
+                     + " Where tmt.machineCode = :machineCode and tmt.trayIndex = :trayIndex "
+                     + " order by tmt.updatedDate desc ";
              Query<ToolMachineTray> query = session.createQuery(sql, ToolMachineTray.class);
              query.setParameter("machineCode", machineCode);
              query.setParameter("trayIndex", trayIndex);
