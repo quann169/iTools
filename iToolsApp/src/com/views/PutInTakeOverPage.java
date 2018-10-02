@@ -19,11 +19,14 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.ResourceBundle;
+import java.util.Set;
 
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
@@ -100,6 +103,7 @@ public class PutInTakeOverPage extends JFrame implements ActionListener {
 
 	String companyCode = AdvancedEncryptionStandard.decrypt(cfg.getProperty(COMPANY_CODE));
 	String machineCode = AdvancedEncryptionStandard.decrypt(cfg.getProperty(MACHINE_CODE));
+	private static final String companyCodeUH = AdvancedEncryptionStandard.decrypt(cfg.getProperty("COMPANY_CODE_UH"));
 
 	int maxItemsPerTray = Integer.valueOf(cfg.getProperty("MAX_ITEM_PER_TRAY"));
 
@@ -111,8 +115,7 @@ public class PutInTakeOverPage extends JFrame implements ActionListener {
 	int defaultQuantity = -1;
 	int newQuantity = -1;
 	Assessor user;
-	LogController masterLogObj = new LogController();
-	String userName = "";
+	String userName;
 	public PopUpKeyboard keyboard;
 	// AutoCompletion combox1;
 
@@ -121,6 +124,8 @@ public class PutInTakeOverPage extends JFrame implements ActionListener {
 	int expiredTime = Integer.valueOf(cfg.getProperty("Expired_Time")) * 1000;
 	String previousCombo = "";
 	static LoginController ctlObj = new LoginController();
+
+	ArrayList<String> listAllTrays = new ArrayList<String>();
 
 	// AutoCompletion comboBoxComplete;
 
@@ -133,7 +138,14 @@ public class PutInTakeOverPage extends JFrame implements ActionListener {
 		setLocationAndSize();
 		addComponentsToContainer();
 		addActionEvent();
+		for (int i = 1; i < 61; i++) {
+			if (i < 10) {
+				listAllTrays.add("TRAY_0" + i);
+			} else {
+				listAllTrays.add("TRAY_" + i);
+			}
 
+		}
 	}
 
 	public void setLayoutManager() {
@@ -149,7 +161,7 @@ public class PutInTakeOverPage extends JFrame implements ActionListener {
 		backToDashboardLabel.setText("<html><html><font size=\"5\" face=\"arial\" color=\"#0181BE\"><b><i><u>"
 				+ bundleMessage.getString("Employee_Back_To_Dashboard") + "</u></i></b></font></html></html>");
 		backToDashboardLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		backToDashboardLabel.setBounds(15, 5, 270, 60);
+		backToDashboardLabel.setBounds(15, 5, 300, 70);
 		backToDashboardLabel.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -157,7 +169,7 @@ public class PutInTakeOverPage extends JFrame implements ActionListener {
 				logger.info(userName + " back to dashboard from " + Enum.PUTIN_TAKEOVER_PAGE);
 				JFrame old = root;
 
-				List<Role> listRoles = ctlObj.getUserRoles(userName, companyCode);
+				List<Role> listRoles = ctlObj.getUserRoles(userName, companyCode, companyCodeUH);
 				root = new DashboardPage(listRoles, user);
 				StringUtils.frameInit(root, bundleMessage);
 
@@ -214,7 +226,13 @@ public class PutInTakeOverPage extends JFrame implements ActionListener {
 		toolLabel.setBounds(100, 85, 250, 40);
 		toolLabel.setFont(new Font(labelFont.getName(), Font.BOLD, 25));
 
-		List<Tool> listTools = empCtlObj.getToolsOfMachine(machineCode);
+		// List<Tool> listTools = empCtlObj.getToolsOfMachine(machineCode);
+		List<Tool> listTools = new ArrayList<>();
+		if (pageType.equals(Enum.TKOVER.text())) {
+			listTools = empCtlObj.getToolsOfMachine(machineCode);
+		} else {
+			listTools = empCtlObj.getAllTools();
+		}
 		Collections.sort(listTools, new Comparator<Tool>() {
 			public int compare(Tool o1, Tool o2) {
 				if (o1.getToolName() == o2.getToolName())
@@ -225,8 +243,13 @@ public class PutInTakeOverPage extends JFrame implements ActionListener {
 
 		List<String> listToolNames = new ArrayList<>();
 		listToolNames.add("");
+		Set<String> setExtTmp = new HashSet<>();
 		for (Tool tool : listTools) {
-			listToolNames.add(tool.getToolName());
+			if (!setExtTmp.contains(tool.getToolName())) {
+				listToolNames.add(tool.getToolName());
+				setExtTmp.add(tool.getToolName());
+			}
+
 		}
 		toolComboBox = new FilterComboBox(listToolNames, keyboard);
 
@@ -253,7 +276,7 @@ public class PutInTakeOverPage extends JFrame implements ActionListener {
 								String tray = (String) trayQuantity.get(0);
 								int quantity = (int) trayQuantity.get(1);
 								mapTrayQuantity.put(tray, quantity);
-								trayCombobox.addItem(tray);
+								// trayCombobox.addItem(tray);
 
 							}
 							// trayCombobox.setSelectedIndex(0);
@@ -261,11 +284,53 @@ public class PutInTakeOverPage extends JFrame implements ActionListener {
 							logger.info("AAAAAAAAAAAAAAa");
 						}
 
-					} else {
-						// toolComboBox.setSelectedIndex(0);
-						quantityTextField.setText("0");
-						sendRequestButton.setEnabled(false);
 					}
+
+					trayCombobox.removeAllItems();
+
+					if (pageType.equals(Enum.TKOVER.text())) {
+						Set<String> setExistedTmp = new HashSet<>();
+						if (toolVstrayAndQuantityMap.containsKey(selectValue)) {
+							List<List<Object>> toolTrays = toolVstrayAndQuantityMap.get(selectValue);
+							trayCombobox.addItem("");
+							for (List<Object> toolTray : toolTrays) {
+								System.out.println("toolTray: " + toolTray);
+								String trayTmp = (String) toolTray.get(0);
+								int valueTmp = (int) toolTray.get(1);
+								if (valueTmp > 0 && !setExistedTmp.contains(trayTmp)) {
+									trayCombobox.addItem(trayTmp);
+									setExistedTmp.add(trayTmp);
+								}
+							}
+						}
+
+					} else {
+						Set<String> listSubtractTrays = new HashSet<>();
+						for (String toolCode : toolVstrayAndQuantityMap.keySet()) {
+							if (toolCode.equals(selectValue)) {
+								continue;
+							}
+
+							List<List<Object>> toolTrays = toolVstrayAndQuantityMap.get(toolCode);
+							for (List<Object> toolTray : toolTrays) {
+								String trayTmp = (String) toolTray.get(0);
+								int valueTmp = (int) toolTray.get(1);
+								if (valueTmp > 0) {
+									listSubtractTrays.add(trayTmp);
+								}
+							}
+						}
+						trayCombobox.addItem("");
+						for (String trayName : listAllTrays) {
+							if (!listSubtractTrays.contains(trayName)) {
+								trayCombobox.addItem(trayName);
+							}
+						}
+					}
+
+					// toolComboBox.setSelectedIndex(0);
+					quantityTextField.setText("");
+					sendRequestButton.setEnabled(false);
 				}
 
 			}
@@ -294,8 +359,8 @@ public class PutInTakeOverPage extends JFrame implements ActionListener {
 					quantityTextField.setText("" + mapTrayQuantity.get(selectValue));
 
 				} else {
-					trayCombobox.removeAllItems();
-					trayCombobox.addItem("");
+					// trayCombobox.removeAllItems();
+					// trayCombobox.addItem("");
 					quantityTextField.setText("");
 				}
 			}
@@ -354,7 +419,7 @@ public class PutInTakeOverPage extends JFrame implements ActionListener {
 			public void actionPerformed(ActionEvent e) {
 				String timeoutMess = MessageFormat.format(bundleMessage.getString("App_TimeOut"),
 						cfg.getProperty("Expired_Time"));
-				JOptionPane.showMessageDialog(container, timeoutMess, "Time Out Putin", JOptionPane.WARNING_MESSAGE);
+				JOptionPane.showMessageDialog(container, "<html><font size=\"5\" face=\"arial\">" + timeoutMess + "</font></html>", "Time Out Putin", JOptionPane.WARNING_MESSAGE);
 
 				logger.info(userName + ": " + Enum.PUTIN_TAKEOVER_PAGE + " time out.");
 				JFrame old = root;
@@ -390,7 +455,11 @@ public class PutInTakeOverPage extends JFrame implements ActionListener {
 		int quantityLength = strTmp.length();
 
 		if (toolLength > 0 && trayLength > 0 && quantityLength > 0) {
-			defaultQuantity = mapTrayQuantity.get(trayCombobox.getSelectedItem());
+
+			defaultQuantity = 0;
+			if (mapTrayQuantity.containsKey(trayCombobox.getSelectedItem())) {
+				defaultQuantity = mapTrayQuantity.get(trayCombobox.getSelectedItem());
+			}
 
 			newQuantity = Integer.parseInt(strTmp);
 			if (defaultQuantity != newQuantity) {
@@ -460,7 +529,7 @@ public class PutInTakeOverPage extends JFrame implements ActionListener {
 			@Override
 			public void windowClosing(WindowEvent we) {
 				String ObjButtons[] = { "Yes", "No" };
-				int PromptResult = JOptionPane.showOptionDialog(root, "Are you sure you want to exit?", "Confirm Close",
+				int PromptResult = JOptionPane.showOptionDialog(root, "<html><font size=\"5\" face=\"arial\">Are you sure you want to exit?</font></html>", "Confirm Close",
 						JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, ObjButtons, ObjButtons[1]);
 				if (PromptResult == JOptionPane.YES_OPTION) {
 					System.exit(0);
@@ -506,7 +575,7 @@ public class PutInTakeOverPage extends JFrame implements ActionListener {
 			JLabel label2 = new JLabel("<html>" + messConfirm + "</html>", SwingConstants.CENTER);
 			label2.setVerticalAlignment(SwingConstants.CENTER);
 			label2.setHorizontalAlignment(SwingConstants.CENTER);
-			label2.setFont(new Font("Arial", Font.BOLD, 15));
+			label2.setFont(new Font("Arial", Font.BOLD, 22));
 			label2.setBounds(0, 0, 350, 150);
 			panel.add(label2);
 
@@ -556,34 +625,29 @@ public class PutInTakeOverPage extends JFrame implements ActionListener {
 						Thread.sleep(1000);
 						resultValue = empCtlObj.updateToolTray(machineCode, toolComboBox.getSelectedItem().toString(),
 								trayCombobox.getSelectedItem().toString(), quantityTextField.getText());
-						if (resultValue) {
-							toolVstrayAndQuantityMap = empCtlObj.getToolTrayQuantity(machineCode, -1);
-							toolComboBox.setSelectedIndex(0);
-							trayCombobox.removeAllItems();
-							quantityTextField.setText("");
-							sendRequestButton.setEnabled(false);
-						}
+
 						Thread.sleep(1000);
 						publish("Update log");
 
-						Enum actionType = Enum.PUTIN;
-						if (pageType.equals(Enum.TKOVER.text())) {
-							actionType = Enum.TKOVER;
-						}
+						// Enum actionType = Enum.PUTIN;
+						// if (pageType.equals(Enum.TKOVER.text())) {
+						// actionType = Enum.TKOVER;
+						// }
 
-						masterLogObj.insertLog(userName, Enum.TOOLSMACHINETRAY, "quantity", actionType,
-								"" + defaultQuantity, "" + newQuantity, companyCode, machineCode,
-								StringUtils.getCurrentClassAndMethodNames());
-						Thread.sleep(1000);
+						// Thread.sleep(1000);
 						publish("Send email");
 
-						String email = ctlObj.getEmailUser(companyCode, userName);
+						String email = ctlObj.getEmailUser(userName);
+						
+//						System.out.println("email: " + email);
+//						System.out.println("userName: " + userName);
+						
 						Thread one = new Thread() {
 							public void run() {
 								EmailUtils emailUtils = new EmailUtils(Enum.GETTOOL, userName, companyCode,
 										machineCode);
 								List<String> listCCEmail = new ArrayList<>();
-								listCCEmail.add("quann169@gmail.com");
+								listCCEmail.add(ctlObj.getEmailAdmin());
 								emailUtils.sendEmail(email, listCCEmail,
 										companyCode + " - " + machineCode + " " + pageType + " notification",
 										"Hi " + userName + ",\n\nTool: " + ctid + "\nTray: " + tray + "\nNew Quantity: "
@@ -593,7 +657,16 @@ public class PutInTakeOverPage extends JFrame implements ActionListener {
 						};
 						one.start();
 						Thread.sleep(1000);
+						JOptionPane.showMessageDialog(container, "<html><font size=\"5\" face=\"arial\">" + "Completed!" + "</font></html>", "Notify result",
+								JOptionPane.INFORMATION_MESSAGE);
 
+						if (resultValue) {
+							toolVstrayAndQuantityMap = empCtlObj.getToolTrayQuantity(machineCode, -1);
+							toolComboBox.setSelectedIndex(0);
+							trayCombobox.removeAllItems();
+							quantityTextField.setText("");
+							sendRequestButton.setEnabled(false);
+						}
 						return null;
 					}
 

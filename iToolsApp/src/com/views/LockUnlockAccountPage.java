@@ -28,7 +28,6 @@ import javax.swing.Timer;
 
 import org.apache.log4j.Logger;
 
-import com.controllers.LogController;
 import com.controllers.LoginController;
 import com.controllers.UserController;
 import com.message.Enum;
@@ -71,12 +70,12 @@ public class LockUnlockAccountPage extends JFrame implements ActionListener {
 	private static final Config cfg = new Config();
 	final static Logger logger = Logger.getLogger(LockUnlockAccountPage.class);
 
-	LogController masterLogObj = new LogController();
 	static LoginController ctlObj = new LoginController();
 	JFrame parent;
 
 	private static final String companyCode = AdvancedEncryptionStandard.decrypt(cfg.getProperty("COMPANY_CODE"));
 	private static final String machineCode = AdvancedEncryptionStandard.decrypt(cfg.getProperty("MACHINE_CODE"));
+	private static final String companyCodeUH = AdvancedEncryptionStandard.decrypt(cfg.getProperty("COMPANY_CODE_UH"));
 	JFrame root = this;
 	Timer updateTimer;
 	int expiredTime = Integer.valueOf(cfg.getProperty("Expired_Time")) * 1000;
@@ -106,7 +105,7 @@ public class LockUnlockAccountPage extends JFrame implements ActionListener {
 		backToDashboardLabel.setText("<html><html><font size=\"5\" face=\"arial\" color=\"#0181BE\"><b><i><u>"
 				+ bundleMessage.getString("Employee_Back_To_Dashboard") + "</u></i></b></font></html></html>");
 		backToDashboardLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		backToDashboardLabel.setBounds(15, 5, 270, 60);
+		backToDashboardLabel.setBounds(15, 5, 300, 70);
 		backToDashboardLabel.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -115,7 +114,7 @@ public class LockUnlockAccountPage extends JFrame implements ActionListener {
 				logger.info(userName + " back to dashboard from " + Enum.LOCK_UNLOCK_PAGE);
 				JFrame old = root;
 				
-				List<Role> listRoles = ctlObj.getUserRoles(userName, companyCode);
+				List<Role> listRoles = ctlObj.getUserRoles(userName, companyCode, companyCodeUH);
 				root = new DashboardPage(listRoles, user);
 				StringUtils.frameInit(root, bundleMessage);
 
@@ -225,7 +224,7 @@ public class LockUnlockAccountPage extends JFrame implements ActionListener {
 			public void actionPerformed(ActionEvent e) {
 				String timeoutMess = MessageFormat.format(bundleMessage.getString("App_TimeOut"),
 						cfg.getProperty("Expired_Time"));
-				JOptionPane.showMessageDialog(container, timeoutMess, "Time Out Lock Unlock",
+				JOptionPane.showMessageDialog(container, "<html><font size=\"5\" face=\"arial\">" + timeoutMess + "</font></html>", "Time Out Lock Unlock",
 						JOptionPane.WARNING_MESSAGE);
 
 				logger.info(userName + ": " + Enum.LOCK_UNLOCK_PAGE + " time out.");
@@ -312,7 +311,7 @@ public class LockUnlockAccountPage extends JFrame implements ActionListener {
 			@Override
 			public void windowClosing(WindowEvent we) {
 				String ObjButtons[] = { "Yes", "No" };
-				int PromptResult = JOptionPane.showOptionDialog(root, "Are you sure you want to exit?",
+				int PromptResult = JOptionPane.showOptionDialog(root, "<html><font size=\"5\" face=\"arial\">Are you sure you want to exit?</font></html>",
 						"Confirm Close", JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null,
 						ObjButtons, ObjButtons[1]);
 				if (PromptResult == JOptionPane.YES_OPTION) {
@@ -331,7 +330,7 @@ public class LockUnlockAccountPage extends JFrame implements ActionListener {
 		if (e.getSource() == lockAccountButtom) {
 			empCtlObj.updateIsLocked(userNameLock, companyCode, 1);
 			logger.info(userNameLock + " - locked");
-			JOptionPane.showMessageDialog(container, "Completed Lock Account!", "Notify result",
+			JOptionPane.showMessageDialog(container, "<html><font size=\"5\" face=\"arial\">" + "Completed Lock Account!" + "</font></html>", "Notify result",
 					JOptionPane.INFORMATION_MESSAGE);
 			updateDisplayName();
 		}
@@ -339,7 +338,7 @@ public class LockUnlockAccountPage extends JFrame implements ActionListener {
 		if (e.getSource() == unLockAccountButton) {
 			empCtlObj.updateIsLocked(userNameLock, companyCode,0);
 			logger.info(userNameLock + " - unlocked");
-			JOptionPane.showMessageDialog(container, "Completed UnLock Account!", "Notify result",
+			JOptionPane.showMessageDialog(container, "<html><font size=\"5\" face=\"arial\">" + "Completed UnLock Account!" + "</font></html>", "Notify result",
 					JOptionPane.INFORMATION_MESSAGE);
 			updateDisplayName();
 		}

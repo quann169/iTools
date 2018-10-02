@@ -5,7 +5,6 @@ package com.controllers;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -63,7 +62,7 @@ public class LoginController {
 			} else {
 				return null;
 			}
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			logger.error(e.getMessage());
 			return null;
 		} finally {
@@ -91,7 +90,7 @@ public class LoginController {
 			if (countResult > 0) {
 				return true;
 			}
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			logger.info(e.getMessage());
 			return false;
 		} finally {
@@ -120,7 +119,7 @@ public class LoginController {
 			if (countResult > 0) {
 				return true;
 			}
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			logger.info(e.getMessage());
 			return false;
 		} finally {
@@ -153,7 +152,7 @@ public class LoginController {
 				listAllUsers.add(user);
 			}
 			return listAllUsers;
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			logger.info(e.getMessage());
 			return listAllUsers;
 		} finally {
@@ -164,7 +163,7 @@ public class LoginController {
 	/**
 	 * 
 	 */
-	public List<Role> getUserRoles(String userName, String companyCode) {
+	public List<Role> getUserRoles(String userName, String companyCode, String companyCodeUH) {
 		String sql = "select distinct RoleName "
 				+ " from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID"
 				+ " inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = '" + companyCode
@@ -179,11 +178,29 @@ public class LoginController {
 			while (rs.next()) {
 				String roleName = rs.getString(1);
 				Role role = new Role(0, roleName);
-
 				listAllRoles.add(role);
 			}
+
+			if (listAllRoles.size() == 0) {
+				sql = "select distinct RoleName "
+						+ " from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID"
+						+ " inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = '"
+						+ companyCodeUH + "' and assessor.UserName= '" + userName + "'";
+				logger.info("Check Role in UH Com.....");
+				logger.info(sql);
+
+				statement = mysqlConnect.connect().prepareStatement(sql);
+				rs = statement.executeQuery(sql);
+
+				while (rs.next()) {
+					String roleName = rs.getString(1);
+					Role role = new Role(0, roleName);
+					listAllRoles.add(role);
+				}
+			}
+
 			return listAllRoles;
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			logger.info(e.getMessage());
 			return listAllRoles;
 		} finally {
@@ -202,7 +219,8 @@ public class LoginController {
 		result.add(MysqlConnect.getPassword());
 		result.add(MysqlConnect.getDatabaseName());
 		result.add(MysqlConnect.getPort());
-
+		
+		String localMessage = "";
 		String lastSync = "";
 		String sql = "select SyncDate from SyncHistory order by SyncHistory.SyncDate desc limit 1;";
 		// logger.info(sql);
@@ -213,8 +231,9 @@ public class LoginController {
 			while (rs.next()) {
 				lastSync = rs.getString(1);
 			}
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			logger.info(e.getMessage());
+			localMessage= e.getMessage();
 		} finally {
 			mysqlConnect.disconnect();
 		}
@@ -231,7 +250,7 @@ public class LoginController {
 				version = rs.getString(1);
 				updatedDate = rs.getString(2);
 			}
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			logger.info(e.getMessage());
 		} finally {
 			mysqlConnect.disconnect();
@@ -239,6 +258,28 @@ public class LoginController {
 
 		result.add(version + " - " + updatedDate);
 		result.add(lastSync);
+		
+		String hostMessage = "";
+		sql = "select count(*) from federated_assessor";
+		// logger.info(sql);
+		try {
+			PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
+			ResultSet rs = statement.executeQuery(sql);
+
+			while (rs.next()) {
+				hostMessage = "OK";
+			}
+		} catch (Exception e) {
+			logger.info(e.getMessage());
+			hostMessage = e.getMessage();
+		} finally {
+			mysqlConnect.disconnect();
+		}
+
+		result.add(hostMessage);
+		result.add(localMessage);
+		
+		
 		return result;
 	}
 
@@ -255,7 +296,49 @@ public class LoginController {
 				emailUser = rs.getString(1);
 				break;
 			}
-		} catch (SQLException e) {
+		} catch (Exception e) {
+			logger.info(e.getMessage());
+			return "";
+		} finally {
+			mysqlConnect.disconnect();
+		}
+		return emailUser;
+	}
+
+	public String getEmailUser(String username) {
+		String emailUser = "";
+		String sql = "SELECT EmailAddress FROM Assessor where Assessor.UserName = '" + username + "';";
+		logger.info(sql);
+		try {
+			PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
+			ResultSet rs = statement.executeQuery(sql);
+
+			while (rs.next()) {
+				emailUser = rs.getString(1);
+				break;
+			}
+		} catch (Exception e) {
+			logger.info(e.getMessage());
+			return "";
+		} finally {
+			mysqlConnect.disconnect();
+		}
+		return emailUser;
+	}
+
+	public String getEmailAdmin() {
+		String emailUser = "";
+		String sql = "SELECT EmailAddress FROM Assessor where Assessor.UserName = 'admin';";
+		logger.info(sql);
+		try {
+			PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
+			ResultSet rs = statement.executeQuery(sql);
+
+			while (rs.next()) {
+				emailUser = rs.getString(1);
+				break;
+			}
+		} catch (Exception e) {
 			logger.info(e.getMessage());
 			return "";
 		} finally {

@@ -9,7 +9,6 @@ import javax.activation.DataSource;
 import javax.activation.FileDataSource;
 import javax.mail.AuthenticationFailedException;
 import javax.mail.Message;
-import javax.mail.MessagingException;
 import javax.mail.Multipart;
 import javax.mail.Session;
 import javax.mail.internet.InternetAddress;
@@ -30,9 +29,10 @@ public class EmailUtils {
 	final static String password = AdvancedEncryptionStandard.decrypt(cfg.getProperty("EMAIL_PASSWORD"));
 	final static int port = Integer.valueOf(AdvancedEncryptionStandard.decrypt(cfg.getProperty("EMAIL_PORT")));
 	static String host = AdvancedEncryptionStandard.decrypt(cfg.getProperty("EMAIL_HOST"));
+	
+	static int isSendingEmail = Integer.valueOf(cfg.getProperty("IS_SEND_MAIL"));
 
 	final static Logger logger = Logger.getLogger(EmailUtils.class);
-	LogController masterLogObj = new LogController();
 	String username, companyCode, machineCode;
 	Enum page;
 
@@ -54,13 +54,14 @@ public class EmailUtils {
 			props.put("mail.smtp.port", port);
 			Session session = Session.getInstance(props, null);
 			SMTPTransport transport = (SMTPTransport) session.getTransport("smtp");
+			logger.info(host + port+ email+ password);
 			transport.connect(host, port, email, password);
 			transport.close();
 			return true;
 		} catch (AuthenticationFailedException e) {
-			logger.warn("AuthenticationFailedException: Cannot connect to email" + e.getMessage());
-		} catch (MessagingException e) {
-			logger.warn("MessagingException: Cannot connect to email" + e.getMessage());
+			logger.warn("AuthenticationFailedException: Cannot connect to email - ERR " + e.getMessage());
+		} catch (Exception e) {
+			logger.warn("Exception: Cannot connect to email - ERR " + e.getMessage());
 		}
 		return false;
 	}
@@ -77,30 +78,37 @@ public class EmailUtils {
 			// props.put("mail.smtp.ssl.enable", "true");
 			props.put("mail.smtp.host", host);
 			props.put("mail.smtp.port", port);
-
-			Session session = Session.getInstance(props, null);
-			Message msg = new MimeMessage(session);
-			msg.setFrom(new InternetAddress(email));
-			msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(toAddr, false));
-			msg.setSubject(subject);
-			msg.setText(message);
-			msg.setHeader("iTool_App", "Email from system");
-			msg.setSentDate(new Date());
-			SMTPTransport t = (SMTPTransport) session.getTransport("smtp");
-			t.connect(host, port, email, password);
-			t.sendMessage(msg, msg.getAllRecipients());
-			String response = t.getLastServerResponse();
-			t.close();
-			if (response.contains("OK")) {
+			if (isSendingEmail > 0) {
+				Session session = Session.getInstance(props, null);
+				Message msg = new MimeMessage(session);
+				msg.setFrom(new InternetAddress(email));
+				msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(toAddr, false));
+				msg.setSubject(subject);
+				msg.setText(message);
+				msg.setHeader("iTool_App", "Email from system");
+				msg.setSentDate(new Date());
+				SMTPTransport t = (SMTPTransport) session.getTransport("smtp");
+				t.connect(host, port, email, password);
+				t.sendMessage(msg, msg.getAllRecipients());
+				String response = t.getLastServerResponse();
+				t.close();
+				if (response.contains("OK")) {
+					String logInfo = username + " - " + page + " - Send Mail" + " To " + toAddr + " - Subject: " + subject
+							+ " - Message: " + message;
+					logger.info(logInfo);
+					return true;
+				}
+			} else {
 				String logInfo = username + " - " + page + " - Send Mail" + " To " + toAddr + " - Subject: " + subject
 						+ " - Message: " + message;
 				logger.info(logInfo);
 				return true;
 			}
+			
 		} catch (AuthenticationFailedException e) {
 			logger.error("AuthenticationFailedException: Cannot connect to email" + e.getMessage());
-		} catch (MessagingException e) {
-			logger.error("MessagingException: Cannot connect to email" + e.getMessage());
+		} catch (Exception e) {
+			logger.error("Exception: Cannot connect to email" + e.getMessage());
 		}
 		return false;
 
@@ -113,38 +121,44 @@ public class EmailUtils {
 			// props.put("mail.smtp.ssl.enable", "true");
 			props.put("mail.smtp.host", host);
 			props.put("mail.smtp.port", port);
-
-			Session session = Session.getInstance(props, null);
-			Message msg = new MimeMessage(session);
-			msg.setFrom(new InternetAddress(email));
-			msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(mainEmail, false));
-
-			String cc = "";
-
-			for (String ccEmail : listCCEmail) {
-				cc += "," + ccEmail;
-			}
-
-			if (cc.startsWith(",")) {
-				cc = cc.replaceFirst(",", "");
-			}
-
-			if (cc.indexOf(',') > 0) {
-				msg.setRecipients(Message.RecipientType.CC, InternetAddress.parse(cc));
+			if (isSendingEmail > 0) {
+				Session session = Session.getInstance(props, null);
+				Message msg = new MimeMessage(session);
+				msg.setFrom(new InternetAddress(email));
+				msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(mainEmail, false));
+	
+				String cc = "";
+	
+				for (String ccEmail : listCCEmail) {
+					cc += "," + ccEmail;
+				}
+	
+				if (cc.startsWith(",")) {
+					cc = cc.replaceFirst(",", "");
+				}
+	
+				if (cc.indexOf(',') > 0) {
+					msg.setRecipients(Message.RecipientType.CC, InternetAddress.parse(cc));
+				} else {
+					msg.setRecipient(Message.RecipientType.CC, new InternetAddress(cc));
+				}
+	
+				msg.setSubject(subject);
+				msg.setText(message);
+				msg.setHeader("iTool_App", "Email from system");
+				msg.setSentDate(new Date());
+				SMTPTransport t = (SMTPTransport) session.getTransport("smtp");
+				t.connect(host, port, email, password);
+				t.sendMessage(msg, msg.getAllRecipients());
+				String response = t.getLastServerResponse();
+				t.close();
+				if (response.contains("OK")) {
+					String logInfo = username + " - " + page + " - Send Mail" + " To " + mainEmail + " - CC: " + listCCEmail
+							+ " - Subject: " + subject + " - Message: " + message;
+					logger.info(logInfo);
+					return true;
+				}
 			} else {
-				msg.setRecipient(Message.RecipientType.CC, new InternetAddress(cc));
-			}
-
-			msg.setSubject(subject);
-			msg.setText(message);
-			msg.setHeader("iTool_App", "Email from system");
-			msg.setSentDate(new Date());
-			SMTPTransport t = (SMTPTransport) session.getTransport("smtp");
-			t.connect(host, port, email, password);
-			t.sendMessage(msg, msg.getAllRecipients());
-			String response = t.getLastServerResponse();
-			t.close();
-			if (response.contains("OK")) {
 				String logInfo = username + " - " + page + " - Send Mail" + " To " + mainEmail + " - CC: " + listCCEmail
 						+ " - Subject: " + subject + " - Message: " + message;
 				logger.info(logInfo);
@@ -152,8 +166,8 @@ public class EmailUtils {
 			}
 		} catch (AuthenticationFailedException e) {
 			logger.error("AuthenticationFailedException: Cannot connect to email" + e.getMessage());
-		} catch (MessagingException e) {
-			logger.error("MessagingException: Cannot connect to email" + e.getMessage());
+		} catch (Exception e) {
+			logger.error("Exception: Cannot connect to email" + e.getMessage());
 		}
 		return false;
 
@@ -202,8 +216,76 @@ public class EmailUtils {
 			}
 		} catch (AuthenticationFailedException e) {
 			logger.error("AuthenticationFailedException: Cannot connect to email" + e.getMessage());
-		} catch (MessagingException e) {
-			logger.error("MessagingException: Cannot connect to email" + e.getMessage());
+		} catch (Exception e) {
+			logger.error("Exception: Cannot connect to email" + e.getMessage());
+		}
+		return false;
+
+	}
+	
+	
+	public boolean sendEmailCCWithAttachedFile(String mainEmail, List<String> listCCEmail, String subject, String pathFile) {
+		try {
+			Properties props = new Properties();
+			props.put("mail.smtp.auth", "true");
+			// props.put("mail.smtp.ssl.enable", "true");
+			props.put("mail.smtp.host", host);
+			props.put("mail.smtp.port", port);
+
+			Session session = Session.getInstance(props, null);
+			Message msg = new MimeMessage(session);
+			msg.setFrom(new InternetAddress(email));
+			msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(mainEmail, false));
+
+			msg.setSubject(subject);
+			msg.setText(new Date().toString());
+			msg.setHeader("iTool_App", "Email from system");
+			msg.setSentDate(new Date());
+
+			MimeBodyPart messageBodyPart = new MimeBodyPart();
+
+			Multipart multipart = new MimeMultipart();
+
+			messageBodyPart = new MimeBodyPart();
+			DataSource source = new FileDataSource(pathFile);
+			messageBodyPart.setDataHandler(new DataHandler(source));
+			messageBodyPart.setFileName("LogFile.txt");
+			multipart.addBodyPart(messageBodyPart);
+			msg.setContent(multipart);
+			
+			
+			String cc = "";
+			
+			for (String ccEmail : listCCEmail) {
+				cc += "," + ccEmail;
+			}
+
+			if (cc.startsWith(",")) {
+				cc = cc.replaceFirst(",", "");
+			}
+
+			if (cc.indexOf(',') > 0) {
+				msg.setRecipients(Message.RecipientType.CC, InternetAddress.parse(cc));
+			} else {
+				msg.setRecipient(Message.RecipientType.CC, new InternetAddress(cc));
+			}
+
+			SMTPTransport t = (SMTPTransport) session.getTransport("smtp");
+			t.connect(host, port, email, password);
+			t.sendMessage(msg, msg.getAllRecipients());
+			String response = t.getLastServerResponse();
+			t.close();
+			if (response.contains("OK")) {
+				// String logInfo = username + " - " + page + " - Send Mail" + "
+				// To " + mainEmail + " - Subject: " + subject + " - Message: "
+				// + message;
+				// logger.info(logInfo);
+				return true;
+			}
+		} catch (AuthenticationFailedException e) {
+			logger.error("AuthenticationFailedException: Cannot connect to email" + e.getMessage());
+		} catch (Exception e) {
+			logger.error("Exception: Cannot connect to email" + e.getMessage());
 		}
 		return false;
 

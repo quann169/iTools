@@ -342,7 +342,7 @@ CREATE TABLE IF NOT EXISTS MasterLog (
 DROP TABLE IF EXISTS PendingAction;
 CREATE TABLE IF NOT EXISTS PendingAction (
   PendingActionID INT(20) NOT NULL AUTO_INCREMENT,
-  PendingActionDate timestamp not null default current_timestamp,
+  PendingActionDate timestamp null,
   PendingActionName VARCHAR(255) NULL,
   ActionContent TEXT NULL,
   Status VARCHAR(100) NULL,
@@ -486,7 +486,7 @@ CREATE TABLE IF NOT EXISTS federated_CompanyMachine (
   CompanyMachineID INT(10) NOT NULL AUTO_INCREMENT,
   MachineCode VARCHAR(100) NULL,
   CompanyCode VARCHAR(100) NULL,
-  CreatedDate timestamp not null default current_timestamp,
+  CreatedDate timestamp null,
   IsActive BOOLEAN NOT NULL,
   UpdatedDate timestamp not null default current_timestamp on update current_timestamp,
   PRIMARY KEY (CompanyMachineID),
@@ -517,7 +517,7 @@ CREATE TABLE IF NOT EXISTS federated_ToolsMachine (
   ToolsMachineID INT(10) NOT NULL AUTO_INCREMENT,
   ToolCode VARCHAR(100) NOT NULL,
   MachineCode VARCHAR(100) NULL,
-  CreatedDate timestamp not null default current_timestamp,
+  CreatedDate timestamp null,
   UpdatedDate timestamp not null default current_timestamp on update current_timestamp,
   IsActive BOOLEAN NOT NULL,
   PRIMARY KEY (ToolsMachineID)
@@ -544,7 +544,7 @@ CONNECTION='mysql://tqteamne_admin:Admin123@112.213.89.47:3306/tqteamne_iTools/T
 DROP TABLE IF EXISTS federated_WorkingTransaction;
 CREATE TABLE IF NOT EXISTS federated_WorkingTransaction (
   WorkingTransactionID INT(20) NOT NULL AUTO_INCREMENT,
-  TransactionDate timestamp not null default current_timestamp,
+  TransactionDate timestamp null,
   MachineCode VARCHAR(100) NOT NULL,
   CompanyCode VARCHAR(100) NOT NULL,
   AssessorID VARCHAR(100) NOT NULL,
@@ -571,7 +571,7 @@ CONNECTION='mysql://tqteamne_admin:Admin123@112.213.89.47:3306/tqteamne_iTools/W
 DROP TABLE IF EXISTS federated_MasterLog;
 CREATE TABLE IF NOT EXISTS federated_MasterLog (
   LogID INT(20) NOT NULL AUTO_INCREMENT,
-  LogDate timestamp not null default current_timestamp,
+  LogDate timestamp null,
   AssessorName VARCHAR(255) NULL,
   TblName VARCHAR(100) NULL,
   RecordID INT(10) NULL,
@@ -594,7 +594,7 @@ CONNECTION='mysql://tqteamne_admin:Admin123@112.213.89.47:3306/tqteamne_iTools/M
 DROP TABLE IF EXISTS federated_PendingAction;
 CREATE TABLE IF NOT EXISTS federated_PendingAction (
   PendingActionID INT(20) NOT NULL AUTO_INCREMENT,
-  PendingActionDate timestamp not null default current_timestamp,
+  PendingActionDate timestamp null,
   PendingActionName VARCHAR(255) NULL,
   ActionContent TEXT NULL,
   Status VARCHAR(100) NULL,

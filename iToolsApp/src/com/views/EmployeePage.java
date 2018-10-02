@@ -21,10 +21,12 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.ResourceBundle;
+import java.util.Set;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -45,7 +47,6 @@ import javax.swing.event.DocumentListener;
 import org.apache.log4j.Logger;
 
 import com.controllers.EmployeeController;
-import com.controllers.LogController;
 import com.controllers.LoginController;
 import com.controllers.TransactionController;
 import com.lib.hid4java.HidDevice;
@@ -65,7 +66,6 @@ import com.utils.AdvancedEncryptionStandard;
 import com.utils.AutoCompletion;
 import com.utils.Config;
 import com.utils.EmailUtils;
-import com.utils.FilterComboBox;
 import com.utils.MyFocusListener;
 import com.utils.PopUpKeyboard;
 import com.utils.StringUtils;
@@ -112,9 +112,9 @@ public class EmployeePage extends JFrame implements ActionListener, HidServicesL
 	private static final String MACHINE_CODE = "MACHINE_CODE";
 	String companyCode = AdvancedEncryptionStandard.decrypt(cfg.getProperty(COMPANY_CODE));
 	String machineCode = AdvancedEncryptionStandard.decrypt(cfg.getProperty(MACHINE_CODE));
+	private static final String companyCodeUH = AdvancedEncryptionStandard.decrypt(cfg.getProperty("COMPANY_CODE_UH"));
 
 	int transactionID = -1;
-	LogController masterLogObj = new LogController();
 	String userName = "";
 
 	JFrame root = this;
@@ -129,6 +129,10 @@ public class EmployeePage extends JFrame implements ActionListener, HidServicesL
 	String vendorId = cfg.getProperty("VENDOR_ID");
 	String productId = cfg.getProperty("PRODUCT_ID");
 	int readWaitTime = Integer.valueOf(cfg.getProperty("READ_WAIT_TIME"));
+	
+	int readWaitTimeFinal = Integer.valueOf(cfg.getProperty("READ_WAIT_TIME_FINAL"));
+	
+	
 	HashMap<String, String> hashMessage = new HashMap<>();
 	TransactionController transCtl = new TransactionController();
 
@@ -142,7 +146,7 @@ public class EmployeePage extends JFrame implements ActionListener, HidServicesL
 	int resultValue;
 	boolean isDashboard;
 	public PopUpKeyboard keyboard;
-	List<String> allToolNames = new ArrayList<>();
+	List<Tool> allToolNames = new ArrayList<>();
 	Assessor user;
 	// JFrame parent;
 
@@ -181,7 +185,7 @@ public class EmployeePage extends JFrame implements ActionListener, HidServicesL
 		backToDashboardLabel.setText("<html><html><font size=\"5\" face=\"arial\" color=\"#0181BE\"><b><i><u>"
 				+ bundleMessage.getString("Employee_Back_To_Dashboard") + "</u></i></b></font></html></html>");
 		backToDashboardLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		backToDashboardLabel.setBounds(15, 5, 270, 60);
+		backToDashboardLabel.setBounds(15, 5, 300, 70);
 		backToDashboardLabel.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -190,7 +194,7 @@ public class EmployeePage extends JFrame implements ActionListener, HidServicesL
 				logger.info(userName + " back to dashboard from " + Enum.GETTOOL);
 				JFrame old = root;
 
-				List<Role> listRoles = ctlObj.getUserRoles(userName, companyCode);
+				List<Role> listRoles = ctlObj.getUserRoles(userName, companyCode, companyCodeUH);
 				root = new DashboardPage(listRoles, user);
 				StringUtils.frameInit(root, bundleMessage);
 
@@ -314,47 +318,52 @@ public class EmployeePage extends JFrame implements ActionListener, HidServicesL
 		toolLabel.setBounds(180, 180, 150, 60);
 		toolLabel.setFont(new Font(labelFont.getName(), Font.BOLD, 25));
 
-//		toolComboboxListener = new ActionListener() {
-//			public void actionPerformed(ActionEvent e) {
-//				if (toolComboBox.getItemCount() == 0) {
-//					return;
-//				}
-//				String selectValue = toolComboBox.getSelectedItem().toString();
-//				// System.out.println(toolVstrayAndQuantityMap);
-//				// System.out.println("selectValue: " + selectValue);
-//				if (toolVstrayAndQuantityMap.containsKey(selectValue)) {
-//
-//					List<List<Object>> existedValue = toolVstrayAndQuantityMap.get(selectValue);
-//					if (existedValue.size() > 0) {
-//						List<String> listTrays = new ArrayList<>();
-//						for (List<Object> trayQuantity : existedValue) {
-//							String tray = (String) trayQuantity.get(0);
-//							int quantity = (int) trayQuantity.get(1);
-//							quantityTextField.setText("" + quantity);
-//							trayTextField.setText("" + tray);
-//							listTrays.add(trayQuantity.toString());
-//						}
-//						trayTextField.setToolTipText(listTrays.toString());
-//					}
-//
-//				} else {
-//					trayTextField.setText("");
-//					quantityTextField.setText("0");
-//
-//					if (!selectValue.equals("") && allToolNames.contains(selectValue)) {
-//						List<Machine> availableMachine = empCtlObj.findAvailableMachine(machineCode, selectValue);
-//						String availableMachineNotify = MessageFormat.format(
-//								bundleMessage.getString("Employee_AvailableMachine"), selectValue, machineCode,
-//								availableMachine.toString());
-//
-//						JOptionPane.showMessageDialog(trayTextField.getParent(), availableMachineNotify);
-//						logger.info("Suggest machine for tool " + selectValue + " - company " + COMPANY_CODE + ": "
-//								+ availableMachine);
-//
-//					}
-//				}
-//			}
-//		};
+		// toolComboboxListener = new ActionListener() {
+		// public void actionPerformed(ActionEvent e) {
+		// if (toolComboBox.getItemCount() == 0) {
+		// return;
+		// }
+		// String selectValue = toolComboBox.getSelectedItem().toString();
+		// // System.out.println(toolVstrayAndQuantityMap);
+		// // System.out.println("selectValue: " + selectValue);
+		// if (toolVstrayAndQuantityMap.containsKey(selectValue)) {
+		//
+		// List<List<Object>> existedValue =
+		// toolVstrayAndQuantityMap.get(selectValue);
+		// if (existedValue.size() > 0) {
+		// List<String> listTrays = new ArrayList<>();
+		// for (List<Object> trayQuantity : existedValue) {
+		// String tray = (String) trayQuantity.get(0);
+		// int quantity = (int) trayQuantity.get(1);
+		// quantityTextField.setText("" + quantity);
+		// trayTextField.setText("" + tray);
+		// listTrays.add(trayQuantity.toString());
+		// }
+		// trayTextField.setToolTipText(listTrays.toString());
+		// }
+		//
+		// } else {
+		// trayTextField.setText("");
+		// quantityTextField.setText("0");
+		//
+		// if (!selectValue.equals("") && allToolNames.contains(selectValue)) {
+		// List<Machine> availableMachine =
+		// empCtlObj.findAvailableMachine(machineCode, selectValue);
+		// String availableMachineNotify = MessageFormat.format(
+		// bundleMessage.getString("Employee_AvailableMachine"), selectValue,
+		// machineCode,
+		// availableMachine.toString());
+		//
+		// JOptionPane.showMessageDialog(trayTextField.getParent(),
+		// availableMachineNotify);
+		// logger.info("Suggest machine for tool " + selectValue + " - company "
+		// + COMPANY_CODE + ": "
+		// + availableMachine);
+		//
+		// }
+		// }
+		// }
+		// };
 
 		updateToolCombobox();
 
@@ -435,7 +444,9 @@ public class EmployeePage extends JFrame implements ActionListener, HidServicesL
 			public void actionPerformed(ActionEvent e) {
 				String timeoutMess = MessageFormat.format(bundleMessage.getString("App_TimeOut"),
 						cfg.getProperty("Expired_Time"));
-				JOptionPane.showMessageDialog(container, timeoutMess, "Time Out Emp", JOptionPane.WARNING_MESSAGE);
+				JOptionPane.showMessageDialog(container,
+						"<html><font size=\"5\" face=\"arial\">" + timeoutMess + "</font></html>", "Time Out Emp",
+						JOptionPane.WARNING_MESSAGE);
 
 				logger.info(userName + ": " + Enum.EMP_PAGE + " time out.");
 				JFrame old = root;
@@ -453,25 +464,25 @@ public class EmployeePage extends JFrame implements ActionListener, HidServicesL
 	}
 
 	private void updateToolCombobox() {
-		 toolComboBox.removeActionListener(toolComboBox.getAction());
+		toolComboBox.removeActionListener(toolComboBox.getAction());
 		toolComboBox = new JComboBox<>();
 		int size = toolComboBox.getItemCount();
-//		 List<String> listInt = new ArrayList<>();
-//		 for (int i = size - 1; i >= 0; i--) {
-//		 String value = toolComboBox.getItemAt(i);
-//		 if (!"".equals(value)) {
-//		// System.out.println("listInt: " + listInt + " - " + i);
-//		// listInt.add(value);
-//		 toolComboBox.removeItem(value);
-//		
-//		 }
-//		 }
-//		 for (String pos : listInt) {
-//		 toolComboBox.removeItem(pos);
-//		 }
+		// List<String> listInt = new ArrayList<>();
+		// for (int i = size - 1; i >= 0; i--) {
+		// String value = toolComboBox.getItemAt(i);
+		// if (!"".equals(value)) {
+		// // System.out.println("listInt: " + listInt + " - " + i);
+		// // listInt.add(value);
+		// toolComboBox.removeItem(value);
+		//
+		// }
+		// }
+		// for (String pos : listInt) {
+		// toolComboBox.removeItem(pos);
+		// }
 
-//		 System.out.println("AAAAAAAAAAA: " + toolComboBox.getItemCount());
-//		 toolComboBox.removeAllItems();
+		// System.out.println("AAAAAAAAAAA: " + toolComboBox.getItemCount());
+		// toolComboBox.removeAllItems();
 
 		List<Tool> listTools = empCtlObj.getToolsOfMachine(machineCode);
 		Collections.sort(listTools, new Comparator<Tool>() {
@@ -483,22 +494,26 @@ public class EmployeePage extends JFrame implements ActionListener, HidServicesL
 		});
 
 		List<String> listToolNames = new ArrayList<>();
-//		if (toolComboBox.getItemCount() == 0) {
-			listToolNames.add("");
-			toolComboBox.addItem("");
-			toolComboBox.setSelectedIndex(0);
-//		}
+		// if (toolComboBox.getItemCount() == 0) {
+		listToolNames.add("");
+		toolComboBox.addItem("");
+		toolComboBox.setSelectedIndex(0);
+		// }
 
+		Set<String> existedTools = new HashSet<>();
 		for (Tool tool : listTools) {
-			listToolNames.add(tool.getToolName());
-			toolComboBox.addItem(tool.getToolName());
+			String toolNameTmp = tool.getToolName();
+			if (!existedTools.contains(toolNameTmp)) {
+				listToolNames.add(toolNameTmp);
+				toolComboBox.addItem(toolNameTmp);
+				existedTools.add(toolNameTmp);
+			}
+
 		}
 
 		logger.info("listToolNames: " + listToolNames);
 
-//		toolComboBox = new FilterComboBox(listToolNames, keyboard);
-		
-		
+		// toolComboBox = new FilterComboBox(listToolNames, keyboard);
 
 		List<String> allItems = new ArrayList<>();
 		size = toolComboBox.getItemCount();
@@ -518,11 +533,12 @@ public class EmployeePage extends JFrame implements ActionListener, HidServicesL
 		toolComboBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (toolComboBox.getItemCount() == 0) {
-//					System.out.println("XXXXXXXXXXXXXxx");
+					// System.out.println("XXXXXXXXXXXXXxx");
 					return;
 				}
 				String selectValue = toolComboBox.getSelectedItem().toString();
-//				String selectValue = ((JTextField) toolComboBox.getEditor().getEditorComponent()).getText();
+				// String selectValue = ((JTextField)
+				// toolComboBox.getEditor().getEditorComponent()).getText();
 				// System.out.println(toolVstrayAndQuantityMap);
 				System.out.println("selectValue: " + selectValue);
 				if (toolVstrayAndQuantityMap.containsKey(selectValue)) {
@@ -558,8 +574,8 @@ public class EmployeePage extends JFrame implements ActionListener, HidServicesL
 				}
 			}
 		});
-		
-//		toolComboBox.repaint();
+
+		// toolComboBox.repaint();
 	}
 
 	private boolean validateAllFields() {
@@ -621,8 +637,10 @@ public class EmployeePage extends JFrame implements ActionListener, HidServicesL
 			@Override
 			public void windowClosing(WindowEvent we) {
 				String ObjButtons[] = { "Yes", "No" };
-				int PromptResult = JOptionPane.showOptionDialog(root, "Are you sure you want to exit?", "Confirm Close",
-						JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, ObjButtons, ObjButtons[1]);
+				int PromptResult = JOptionPane.showOptionDialog(root,
+						"<html><font size=\"5\" face=\"arial\">Are you sure you want to exit?</font></html>",
+						"Confirm Close", JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, ObjButtons,
+						ObjButtons[1]);
 				if (PromptResult == JOptionPane.YES_OPTION) {
 					System.exit(0);
 				}
@@ -707,9 +725,8 @@ public class EmployeePage extends JFrame implements ActionListener, HidServicesL
 						publish("Insert into transaction");
 						Thread.sleep(1000);
 
-						transactionID = transCtl.insertTransaction(userName, companyCode, machineCode, wo, op,
-								ctid, tray, "1",
-								Enum.GETTOOL.text(), "Send request to board");
+						transactionID = transCtl.insertTransaction(userName, companyCode, machineCode, wo, op, ctid,
+								tray, "1", Enum.GETTOOL.text(), "Send request to board");
 
 						logger.info("Create transaction");
 						logger.info("hashMessage: " + hashMessage);
@@ -729,16 +746,19 @@ public class EmployeePage extends JFrame implements ActionListener, HidServicesL
 						} else {
 							logger.error("Tray " + trayTextField.getText() + " is not defined in config file");
 							JOptionPane.showMessageDialog(container,
-									"Tray " + trayTextField.getText() + " is not defined in config file",
+									"<html><font size=\"5\" face=\"arial\">" + "Tray " + trayTextField.getText()
+											+ " is not defined in config file" + "</font></html>",
 									"Notify result", JOptionPane.ERROR_MESSAGE);
 						}
 						logger.info("resultValue: " + resultValue);
 						if (resultValue == -1) {
-							JOptionPane.showMessageDialog(container, "Failed!", "Notify result",
-									JOptionPane.ERROR_MESSAGE);
+							JOptionPane.showMessageDialog(container,
+									"<html><font size=\"5\" face=\"arial\">" + "Failed!" + "</font></html>",
+									"Notify result", JOptionPane.ERROR_MESSAGE);
 						} else if (resultValue == 0) {
-							JOptionPane.showMessageDialog(container, "No result!", "Notify result",
-									JOptionPane.WARNING_MESSAGE);
+							JOptionPane.showMessageDialog(container,
+									"<html><font size=\"5\" face=\"arial\">" + "No result!" + "</font></html>",
+									"Notify result", JOptionPane.WARNING_MESSAGE);
 						} else if (resultValue == 1) {
 							empCtlObj.updateToolTray(machineCode, toolComboBox.getSelectedItem().toString(),
 									trayTextField.getText(), "-1");
@@ -749,7 +769,7 @@ public class EmployeePage extends JFrame implements ActionListener, HidServicesL
 									EmailUtils emailUtils = new EmailUtils(Enum.GETTOOL, userName, companyCode,
 											machineCode);
 									List<String> listCCEmail = new ArrayList<>();
-									listCCEmail.add("quann169@gmail.com");
+									listCCEmail.add(ctlObj.getEmailAdmin());
 									emailUtils.sendEmail(email, listCCEmail,
 											companyCode + " - " + machineCode + " notification",
 											"Hi " + userName + ",\nWO: " + wo + "\nOP: " + op + "\nTool: " + ctid
@@ -759,8 +779,9 @@ public class EmployeePage extends JFrame implements ActionListener, HidServicesL
 							};
 							one.start();
 
-							JOptionPane.showMessageDialog(container, "Completed!", "Notify result",
-									JOptionPane.INFORMATION_MESSAGE);
+							JOptionPane.showMessageDialog(container,
+									"<html><font size=\"5\" face=\"arial\">" + "Completed!" + "</font></html>",
+									"Notify result", JOptionPane.INFORMATION_MESSAGE);
 						}
 
 						updateTimer.restart();
@@ -782,7 +803,7 @@ public class EmployeePage extends JFrame implements ActionListener, HidServicesL
 							quantityTextField.setText("");
 							trayTextField.setText("");
 							toolVstrayAndQuantityMap = empCtlObj.getToolTrayQuantity(machineCode, 0);
-//							updateToolCombobox();
+							// updateToolCombobox();
 
 							// toolComboBox.setSelectedItem("");
 							// ((JTextField)toolComboBox.getEditor().getEditorComponent()).setText("");
@@ -901,6 +922,7 @@ public class EmployeePage extends JFrame implements ActionListener, HidServicesL
 			logger.error("[ERR] Cannot send data. " + e.getMessage() + " " + Enum.SEND_SIGNAL_TO_BOARD_FAIL);
 
 			transCtl.updateTransaction(transactionID, "TransactionStatus", Enum.SEND_SIGNAL_TO_BOARD_FAIL.text());
+			transCtl.updateTransaction(transactionID, "Quantity", "0");
 			hidDevice.close();
 			return -1;
 		}
@@ -912,6 +934,7 @@ public class EmployeePage extends JFrame implements ActionListener, HidServicesL
 		} else {
 			logger.error(hidDevice.getLastErrorMessage());
 			transCtl.updateTransaction(transactionID, "TransactionStatus", Enum.SEND_SIGNAL_TO_BOARD_FAIL.text());
+			transCtl.updateTransaction(transactionID, "Quantity", "0");
 		}
 		progress.setText("Begin wait to read data");
 		logger.info("-------------Begin wait to read data in " + readWaitTime + "s------------");
@@ -921,7 +944,12 @@ public class EmployeePage extends JFrame implements ActionListener, HidServicesL
 			boolean moreData = true;
 			while (moreData) {
 				byte data[] = new byte[2];
-				val = hidDevice.read(data, readWaitTime * 1000);
+				if (i == 3) {
+					val = hidDevice.read(data, readWaitTimeFinal * 1000);
+				} else {
+					val = hidDevice.read(data, readWaitTime * 1000);
+				}
+				
 				logger.info("Switch case --- " + val + " ----");
 				switch (val) {
 				case -1:
@@ -983,6 +1011,7 @@ public class EmployeePage extends JFrame implements ActionListener, HidServicesL
 			} else if (dataReceived == PRODUCT_FAIL) {
 				result = 0;
 				transCtl.updateTransaction(transactionID, "TransactionStatus", Enum.PRODUCT_FAIL.text());
+				transCtl.updateTransaction(transactionID, "Quantity", "0");
 				// logger.info(Enum.PRODUCT_FAIL);
 			}
 		}

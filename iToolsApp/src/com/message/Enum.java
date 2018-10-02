@@ -11,80 +11,75 @@ public enum Enum {
 			"TakeOver"), EDTTRANS("EditTransaction"), GETTOOL("GetTools"),
 
 	// Table name
-	EMAIL("Email"),
-	MASTERLOG("MasterLog"), WORKINGTRANSACTION("WorkingTransaction"), TOOLSMACHINETRAY(
-			"ToolsMachineTray"), TOOLSMACHINE("ToolsMachine"), TOOLS("Tools"), COMPANYMACHINE(
-					"CompanyMachine"), MACHINE("Machine"), ROLEASSESSOR(
+	EMAIL("Email"), MASTERLOG("MasterLog"), WORKINGTRANSACTION("WorkingTransaction"), TOOLSMACHINETRAY(
+			"ToolsMachineTray"), TOOLSMACHINE(
+					"ToolsMachine"), TOOLS("Tools"), COMPANYMACHINE("CompanyMachine"), MACHINE("Machine"), ROLEASSESSOR(
 							"RoleAssessor"), ROLES("Roles"), ASSESSOR("Assessor"), COMPANY("Company"),
 
 	// Action
 	LOGIN_PAGE("LoginPage"), DASHBOARD_PAGE("DashboardPage"), LOCK_UNLOCK_PAGE("LockUnlockAccountPage"), EMP_PAGE(
-			"EmployeePage"), RESET_PASS_PAGE("ResetPasswordPage"), FORGOT_PASS_PAGE("ForgotPasswordPage"), PUTIN_TAKEOVER_PAGE(
-					"PutInTakeOverPage"), UPDATE_PASS_FIRST_TIME_LOGIN("FirstTimeChangePass"),
+			"EmployeePage"), RESET_PASS_PAGE("ResetPasswordPage"), FORGOT_PASS_PAGE(
+					"ForgotPasswordPage"), PUTIN_TAKEOVER_PAGE(
+							"PutInTakeOverPage"), UPDATE_PASS_FIRST_TIME_LOGIN("FirstTimeChangePass"),
 
-	REQUEST_TOOL("SendRequest"), TIME_OUT("TimeOut"),
-	INVALID_SIGNAL_RECEIVE("InvalidSignalReceived"),
-	SEND_SIGNAL_TO_BOARD("SendRequestToBoard"),
-	MOTOR_START("MotorStart"),
-	MOTOR_STOP("MotorStop"),
-	PRODUCT_OK("ProductOK"),
-	PRODUCT_FAIL("ProductFail"),
-	
-	
-	SEND_SIGNAL_TO_BOARD_FAIL("FailSendRequestToBoard"),
-	RECEIVE_SIGNAL_FROM_BOARD_1_FAIL("FailSendRequestToBoard1"),
-	RECEIVE_SIGNAL_FROM_BOARD_2_FAIL("FailSendRequestToBoard2"),
-	RECEIVE_SIGNAL_FROM_BOARD_3_FAIL("FailSendRequestToBoard3"),
-	RECEIVE_SIGNAL_FROM_BOARD_4_FAIL("FailSendRequestToBoard4"),
-	
-	FORGOT_PASS_USERNAME_EMAIL_NOT_MATCH("ForgotPassUsernameNotMatchEmail"),
-	FORGOT_PASS_RESET_OK("ForgotPassResetOk"),
+	REQUEST_TOOL("SendRequest"), TIME_OUT("TimeOut"), INVALID_SIGNAL_RECEIVE(
+			"InvalidSignalReceived"), SEND_SIGNAL_TO_BOARD("SendRequestToBoard"), MOTOR_START(
+					"MotorStart"), MOTOR_STOP("MotorStop"), PRODUCT_OK("ProductOK"), PRODUCT_FAIL("ProductFail"),
 
-	SHOW_DASHBOARD("ShowDashboard"), LOGIN("Login"), LOCKED_ACC("LockedAcc"), LOGIN_FAIL("LoginFail"), FORGOT_PASS("ForgotPass"), CREATE(
-			"Create"), UPDATE("Update"), CREATE_FAIL("CreateFail"), UPDATE_FAIL("UpdateFail"), DELETE(
-					"Delete"), CHANGE_PASS("ChangePass"), RESET_PASS("ResetPass"), CHANGE_PASS_FAIL(
-							"ChangePassFail"), RESET_PASS_FAIL("ResetPassFail"), LOGOUT("Logout"), UNLOCK_MACHINE(
-									"UnlockMachine"), LOCK_MACHINE("LockMachine"), UNLOCK_MACHINE_FAIL(
-											"UnlockMachineFail"), LOCK_MACHINE_FAIL("LockMachineFail"), UNLOCK_USER(
-													"UnlockUser"), LOCK_USER("LockUser"), UNLOCK_USER_FAIL(
-															"UnlockUserFail"), LOCK_USER_FAIL(
-																	"LockUserFail"), SYNC_MANUALLY(
-																			"SyncManually"), SYNC_MANUALLY_FAIL(
-																					"SyncManuallyFail"),
+	SEND_SIGNAL_TO_BOARD_FAIL("FailSendRequestToBoard"), RECEIVE_SIGNAL_FROM_BOARD_1_FAIL(
+			"FailSendRequestToBoard1"), RECEIVE_SIGNAL_FROM_BOARD_2_FAIL(
+					"FailSendRequestToBoard2"), RECEIVE_SIGNAL_FROM_BOARD_3_FAIL(
+							"FailSendRequestToBoard3"), RECEIVE_SIGNAL_FROM_BOARD_4_FAIL("FailSendRequestToBoard4"),
 
-	TRAY_1("TRAY_01"), TRAY_2("TRAY_02"), TRAY_3("TRAY_03"), TRAY_4("TRAY_04"), TRAY_5("TRAY_05"), TRAY_6("TRAY_06"), TRAY_7(
-			"TRAY_07"), TRAY_8("TRAY_08"), TRAY_9("TRAY_09"), TRAY_10("TRAY_10"), TRAY_11("TRAY_11"), TRAY_12(
-					"TRAY_12"), TRAY_13("TRAY_13"), TRAY_14("TRAY_14"), TRAY_15("TRAY_15"), TRAY_16("TRAY_16"), TRAY_17(
-							"TRAY_17"), TRAY_18("TRAY_18"), TRAY_19("TRAY_19"), TRAY_20("TRAY_20"), TRAY_21(
-									"TRAY_21"), TRAY_22("TRAY_22"), TRAY_23("TRAY_23"), TRAY_24("TRAY_24"), TRAY_25(
-											"TRAY_25"), TRAY_26("TRAY_26"), TRAY_27("TRAY_27"), TRAY_28(
-													"TRAY_28"), TRAY_29("TRAY_29"), TRAY_30("TRAY_30"), TRAY_31(
-															"TRAY_31"), TRAY_32("TRAY_32"), TRAY_33("TRAY_33"), TRAY_34(
-																	"TRAY_34"), TRAY_35("TRAY_35"), TRAY_36(
-																			"TRAY_36"), TRAY_37("TRAY_37"), TRAY_38(
-																					"TRAY_38"), TRAY_39(
-																							"TRAY_39"), TRAY_40(
-																									"TRAY_40"), TRAY_41(
-																											"TRAY_41"), TRAY_42(
-																													"TRAY_42"), TRAY_43(
-																															"TRAY_43"), TRAY_44(
-																																	"TRAY_44"), TRAY_45(
-																																			"TRAY_45"), TRAY_46(
-																																					"TRAY_46"), TRAY_47(
-																																							"TRAY_47"), TRAY_48(
-																																									"TRAY_48"), TRAY_49(
-																																											"TRAY_49"), TRAY_50(
-																																													"TRAY_50"), TRAY_51(
-																																															"TRAY_51"), TRAY_52(
-																																																	"TRAY_52"), TRAY_53(
-																																																			"TRAY_53"), TRAY_54(
-																																																					"TRAY_54"), TRAY_55(
-																																																							"TRAY_55"), TRAY_56(
-																																																									"TRAY_56"), TRAY_57(
-																																																											"TRAY_57"), TRAY_58(
-																																																													"TRAY_58"), TRAY_59(
-																																																															"TRAY_59"), TRAY_60(
-																																																																	"TRAY_60"),
+	FORGOT_PASS_USERNAME_EMAIL_NOT_MATCH("ForgotPassUsernameNotMatchEmail"), FORGOT_PASS_RESET_OK("ForgotPassResetOk"),
+
+	SHOW_DASHBOARD("ShowDashboard"), LOGIN("Login"), LOCKED_ACC("LockedAcc"), LOGIN_FAIL("LoginFail"), FORGOT_PASS(
+			"ForgotPass"), CREATE("Create"), UPDATE("Update"), CREATE_FAIL(
+					"CreateFail"), UPDATE_FAIL("UpdateFail"), DELETE("Delete"), CHANGE_PASS(
+							"ChangePass"), RESET_PASS("ResetPass"), CHANGE_PASS_FAIL("ChangePassFail"), RESET_PASS_FAIL(
+									"ResetPassFail"), LOGOUT("Logout"), UNLOCK_MACHINE("UnlockMachine"), LOCK_MACHINE(
+											"LockMachine"), UNLOCK_MACHINE_FAIL("UnlockMachineFail"), LOCK_MACHINE_FAIL(
+													"LockMachineFail"), UNLOCK_USER("UnlockUser"), LOCK_USER(
+															"LockUser"), UNLOCK_USER_FAIL(
+																	"UnlockUserFail"), LOCK_USER_FAIL(
+																			"LockUserFail"), SYNC_MANUALLY(
+																					"SyncManually"), SYNC_MANUALLY_FAIL(
+																							"SyncManuallyFail"),
+
+	TRAY_1("TRAY_01"), TRAY_2("TRAY_02"), TRAY_3("TRAY_03"), TRAY_4("TRAY_04"), TRAY_5("TRAY_05"), TRAY_6(
+			"TRAY_06"), TRAY_7("TRAY_07"), TRAY_8("TRAY_08"), TRAY_9("TRAY_09"), TRAY_10("TRAY_10"), TRAY_11(
+					"TRAY_11"), TRAY_12("TRAY_12"), TRAY_13("TRAY_13"), TRAY_14("TRAY_14"), TRAY_15("TRAY_15"), TRAY_16(
+							"TRAY_16"), TRAY_17("TRAY_17"), TRAY_18("TRAY_18"), TRAY_19("TRAY_19"), TRAY_20(
+									"TRAY_20"), TRAY_21("TRAY_21"), TRAY_22("TRAY_22"), TRAY_23("TRAY_23"), TRAY_24(
+											"TRAY_24"), TRAY_25("TRAY_25"), TRAY_26("TRAY_26"), TRAY_27(
+													"TRAY_27"), TRAY_28("TRAY_28"), TRAY_29("TRAY_29"), TRAY_30(
+															"TRAY_30"), TRAY_31("TRAY_31"), TRAY_32("TRAY_32"), TRAY_33(
+																	"TRAY_33"), TRAY_34("TRAY_34"), TRAY_35(
+																			"TRAY_35"), TRAY_36("TRAY_36"), TRAY_37(
+																					"TRAY_37"), TRAY_38(
+																							"TRAY_38"), TRAY_39(
+																									"TRAY_39"), TRAY_40(
+																											"TRAY_40"), TRAY_41(
+																													"TRAY_41"), TRAY_42(
+																															"TRAY_42"), TRAY_43(
+																																	"TRAY_43"), TRAY_44(
+																																			"TRAY_44"), TRAY_45(
+																																					"TRAY_45"), TRAY_46(
+																																							"TRAY_46"), TRAY_47(
+																																									"TRAY_47"), TRAY_48(
+																																											"TRAY_48"), TRAY_49(
+																																													"TRAY_49"), TRAY_50(
+																																															"TRAY_50"), TRAY_51(
+																																																	"TRAY_51"), TRAY_52(
+																																																			"TRAY_52"), TRAY_53(
+																																																					"TRAY_53"), TRAY_54(
+																																																							"TRAY_54"), TRAY_55(
+																																																									"TRAY_55"), TRAY_56(
+																																																											"TRAY_56"), TRAY_57(
+																																																													"TRAY_57"), TRAY_58(
+																																																															"TRAY_58"), TRAY_59(
+																																																																	"TRAY_59"), TRAY_60(
+																																																																			"TRAY_60"),
 
 	;
 

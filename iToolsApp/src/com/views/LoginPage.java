@@ -16,6 +16,8 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -73,13 +75,15 @@ public class LoginPage extends JFrame implements ActionListener {
 	JButton forgotPwdButton = new JButton(bundleMessage.getString("Login_Page_Forget_Password"));
 	JCheckBox showPassword = new JCheckBox(bundleMessage.getString("Login_Page_Show_Password"));
 
-	LogController masterLogObj = new LogController();
+
 	static LoginController ctlObj = new LoginController();
 
 	private static final Config cfg = new Config();
 	private static final String companyCode = AdvancedEncryptionStandard.decrypt(cfg.getProperty("COMPANY_CODE"));
 	private static final String companyCodeUH = AdvancedEncryptionStandard.decrypt(cfg.getProperty("COMPANY_CODE_UH"));
 	private static final String machineCode = AdvancedEncryptionStandard.decrypt(cfg.getProperty("MACHINE_CODE"));
+
+	static String productMode = cfg.getProperty("PRODUCT_MODE");
 
 	static long timeInterval = Long.valueOf(cfg.getProperty("INTERVAL_SYNC"));
 	static String userName = "";
@@ -220,8 +224,10 @@ public class LoginPage extends JFrame implements ActionListener {
 			@Override
 			public void windowClosing(WindowEvent we) {
 				String ObjButtons[] = { "Yes", "No" };
-				int PromptResult = JOptionPane.showOptionDialog(root, "Are you sure you want to exit?", "Confirm Close",
-						JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, ObjButtons, ObjButtons[1]);
+				int PromptResult = JOptionPane.showOptionDialog(root,
+						"<html><font size=\"5\" face=\"arial\">Are you sure you want to exit?</font></html>",
+						"Confirm Close", JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, ObjButtons,
+						ObjButtons[1]);
 				if (PromptResult == JOptionPane.YES_OPTION) {
 					System.exit(0);
 				}
@@ -238,10 +244,12 @@ public class LoginPage extends JFrame implements ActionListener {
 		userName = userTextField.getText();
 		if (e.getSource() == loginButton) {
 
-//			userText = "com1user1";
-//			userText = "com1admin";
-//			 userText = "uhacc1";
-//			pwdText = "123456";
+//			if (productMode.equals("Dev")) {
+//				userText = "com1user1";
+//				 userText = "com1admin";
+////				userText = "uhacc";
+//				pwdText = "123456";
+//			}
 
 			logger.info("Login with username: " + userText);
 
@@ -250,27 +258,29 @@ public class LoginPage extends JFrame implements ActionListener {
 				logger.info("Login OK");
 				if (result.isLocked()) {
 					logger.info("User blocked");
-					JOptionPane.showMessageDialog(this, bundleMessage.getString("Login_Page_Login_Acc_Locked"));
+					JOptionPane.showMessageDialog(this, "<html><font size=\"5\" face=\"arial\">"
+							+ bundleMessage.getString("Login_Page_Login_Acc_Locked") + "</font></html>");
 				} else if (result.isFirstTimeLogin()) {
 					logger.info("isFirstTimeLogin: " + result.isFirstTimeLogin());
 					JFrame old = root;
 					root = new ResetPasswordPage(result, false, result.isFirstTimeLogin());
 					StringUtils.frameInit(root, bundleMessage);
 					// empPage.setJMenuBar(StringUtils.addMenu());
-					root.setTitle(result.getUsername() + " - " + result.getFirstName() + " " + result.getLastName());
+					root.setTitle(result.getFirstName() + " " + result.getLastName());
 					root.show();
 					old.dispose();
 				} else {
-					List<Role> listRoles = ctlObj.getUserRoles(userText, companyCode);
+					List<Role> listRoles = ctlObj.getUserRoles(userText, companyCode, companyCodeUH);
 					logger.info("listRoles: " + listRoles);
 
-					if (listRoles.size() == 0) {
-						listRoles = ctlObj.getUserRoles(userText, companyCodeUH);
-						logger.info("listRolesUH: " + listRoles);
-					}
+					// if (listRoles.size() == 0) {
+					// listRoles = ctlObj.getUserRoles(userText, companyCodeUH);
+					// logger.info("listRolesUH: " + listRoles);
+					// }
 
 					if (listRoles.size() == 0) {
-						JOptionPane.showMessageDialog(this, bundleMessage.getString("Login_Page_Have_Not_Role"));
+						JOptionPane.showMessageDialog(this, "<html><font size=\"5\" face=\"arial\">"
+								+ bundleMessage.getString("Login_Page_Have_Not_Role") + "</font></html>");
 						logger.info("User does not have role");
 					} else if (listRoles.size() == 1 && Enum.EMP.text().equals(listRoles.get(0).getRoleName())) {
 						logger.info("Show EmployeePage");
@@ -278,7 +288,7 @@ public class LoginPage extends JFrame implements ActionListener {
 						root = new EmployeePage(result, false);
 						StringUtils.frameInit(root, bundleMessage);
 						// empPage.setJMenuBar(StringUtils.addMenu());
-						root.setTitle(userText + " - " + result.getFirstName() + " " + result.getLastName());
+						root.setTitle(result.getFirstName() + " " + result.getLastName() + " - GetTool Page");
 						root.show();
 						old.dispose();
 					} else {
@@ -287,7 +297,7 @@ public class LoginPage extends JFrame implements ActionListener {
 						root = new DashboardPage(listRoles, result);
 						old.dispose();
 						StringUtils.frameInit(root, bundleMessage);
-						root.setTitle(userText + " - " + result.getFirstName() + " " + result.getLastName());
+						root.setTitle(result.getFirstName() + " " + result.getLastName() + " - Dashboard Page");
 						// dashboardPage.setJMenuBar(StringUtils.addMenu());
 						root.show();
 
@@ -306,7 +316,7 @@ public class LoginPage extends JFrame implements ActionListener {
 					Thread one = new Thread() {
 						public void run() {
 							List<String> listCCEmail = new ArrayList<>();
-							listCCEmail.add("quann169@gmail.com");
+							listCCEmail.add(ctlObj.getEmailAdmin());
 							emailUtils.sendEmail(email, listCCEmail, "Login_Fail_3_Times",
 									"Login fail 3 times. Application will lock your account. Please contact your admin to unlock.");
 
@@ -314,10 +324,12 @@ public class LoginPage extends JFrame implements ActionListener {
 					};
 
 					one.start();
-					JOptionPane.showMessageDialog(this, bundleMessage.getString("Login_Page_Login_Fail_3_Times"));
+					JOptionPane.showMessageDialog(this, "<html><font size=\"5\" face=\"arial\">"
+							+ bundleMessage.getString("Login_Page_Login_Fail_3_Times") + "</font></html>");
 
 				} else {
-					JOptionPane.showMessageDialog(this, bundleMessage.getString("Login_Page_Login_Fail"));
+					JOptionPane.showMessageDialog(this, "<html><font size=\"5\" face=\"arial\">"
+							+ bundleMessage.getString("Login_Page_Login_Fail") + "</font></html>");
 				}
 
 			}
@@ -348,18 +360,18 @@ public class LoginPage extends JFrame implements ActionListener {
 
 	public static void main(String[] a) {
 
-		// printConfigInfo();
+		printConfigInfo();
 
 		Thread one = new Thread() {
 			public void run() {
 
 				while (true) {
 					RandomString generate = new RandomString(8, ThreadLocalRandom.current());
-					String passwordTmp = generate.nextString();
+					String passwordTmp = generate.nextString().toUpperCase();
 					logger.info("========================================");
 					logger.info("Start syncing thread - " + passwordTmp);
 					logger.info("========================================");
-					syncCtl.syncDataAutomatically(companyCode, machineCode);
+					syncCtl.syncDataAutomatically(companyCode, machineCode, productMode);
 
 					logger.info("========================================");
 					logger.info("End syncing thread - " + passwordTmp);
@@ -374,8 +386,6 @@ public class LoginPage extends JFrame implements ActionListener {
 			}
 		};
 
-		 one.start();
-
 		Thread two = new Thread() {
 			public void run() {
 
@@ -385,7 +395,12 @@ public class LoginPage extends JFrame implements ActionListener {
 						File file = new File("./log/logging.log");
 						if (file.exists() && file.canRead()) {
 							// long fileLength = file.length();
-							readFile(file, 0L);
+							try {
+								readFile(file, 0L);
+							} catch (Exception e) {
+								logger.error(e.getMessage());
+							}
+							
 							// while (true) {
 							//
 							// if (fileLength < file.length()) {
@@ -396,9 +411,9 @@ public class LoginPage extends JFrame implements ActionListener {
 						}
 
 						try {
-							 Thread.sleep(12 * 60 * 60 * 1000);
+							Thread.sleep(12 * 60 * 60 * 1000);
 
-//							Thread.sleep(60 * 1000);
+							// Thread.sleep(60 * 1000);
 						} catch (InterruptedException e) {
 							e.printStackTrace();
 							logger.error(e.getMessage());
@@ -411,9 +426,11 @@ public class LoginPage extends JFrame implements ActionListener {
 
 			}
 		};
+		one.start();
+		if (!productMode.equals("Dev")) {
 
-		two.start();
-
+			two.start();
+		}
 		root = new LoginPage();
 		StringUtils.frameInit(root, bundleMessage);
 		root.setTitle(bundleMessage.getString("Login_Page_Title"));
@@ -462,10 +479,10 @@ public class LoginPage extends JFrame implements ActionListener {
 
 		writer.close();
 
-//		emailUtils.sendEmailWithAttachedFile("quann169@gmail.com",
-//				companyCode + " - " + machineCode + ": ITools App Log", outFilePath);
-//		emailUtils.sendEmailWithAttachedFile("ngngoctanthuong@gmail.com",
-//				companyCode + " - " + machineCode + ": ITools App Log", outFilePath);
+		emailUtils.sendEmailWithAttachedFile("quann169@gmail.com",
+				companyCode + " - " + machineCode + ": ITools App Log", outFilePath);
+		// emailUtils.sendEmailWithAttachedFile("ngngoctanthuong@gmail.com",
+		// companyCode + " - " + machineCode + ": ITools App Log", outFilePath);
 		String[] dataLastLine = lastLine.split(" ");
 		String strDate = dataLastLine[0] + " " + dataLastLine[1];
 		SimpleDateFormat sdfrmt = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -479,6 +496,13 @@ public class LoginPage extends JFrame implements ActionListener {
 
 		} catch (ParseException e) {
 			logger.error(strDate + ": erorr date format");
+		}
+
+		try {
+			Files.deleteIfExists(Paths.get(outFilePath));
+			logger.info("Delete log file successfully.");
+		} catch (Exception e) {
+			logger.error(strDate + ": Cannot delete log file");
 		}
 
 		return outFilePath;
@@ -521,6 +545,14 @@ public class LoginPage extends JFrame implements ActionListener {
 				logger.info("Database version: " + databaseInfo.get(5));
 
 				logger.info("Last Sync: " + databaseInfo.get(6));
+				
+				String connectToHost = databaseInfo.get(7);
+				String localDatabase = databaseInfo.get(8);
+				logger.info("connectToHost: " + databaseInfo.get(7));
+				
+				
+				System.out.println("databaseInfo: " + databaseInfo);
+				
 				Thread.sleep(1000);
 				File versionFile = new File("");
 				try {
@@ -543,7 +575,37 @@ public class LoginPage extends JFrame implements ActionListener {
 
 				boolean checkEmailConfig = emailUtils.checkEmailConnection();
 				logger.info("checkEmailConfig: " + checkEmailConfig);
-
+				
+				
+				if (companyCode == null || companyCodeUH == null || machineCode == null) {
+					publish("Error configuration checking. Please review log file...");
+					Thread.sleep(5000);
+					System.exit(ERROR);
+				}
+				
+				if (localDatabase == null || !localDatabase.equals("")) {
+					publish("[ERR] Local database - " + localDatabase);
+					Thread.sleep(30000);
+					System.exit(ERROR);
+				}
+				
+				if (connectToHost == null || !connectToHost.equals("OK")) {
+					publish("[ERR] " + connectToHost);
+					Thread.sleep(30000);
+					System.exit(ERROR);
+				}
+				
+				
+				
+				
+				for (String info : databaseInfo) {
+					if (info == null) {
+						publish("[ERR] Error database configuration. Please review log file...");
+						Thread.sleep(5000);
+						System.exit(ERROR);
+					}
+				}
+				
 				publish("Done checking...");
 				Thread.sleep(1000);
 
