@@ -36,6 +36,22 @@ public class Assessor {
 		this.isActive = isActive;
 	}
 
+	public String getIsActive() {
+		return isActive;
+	}
+
+	public void setIsActive(String isActive) {
+		this.isActive = isActive;
+	}
+
+	public String getIsLocked() {
+		return isLocked;
+	}
+
+	public void setIsLocked(String isLocked) {
+		this.isLocked = isLocked;
+	}
+
 	/**
 	 * @return the assessorId
 	 */
@@ -205,17 +221,12 @@ public class Assessor {
 		this.isFirstTimeLogin = isFirstTimeLogin;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#toString()
-	 */
 	@Override
 	public String toString() {
-		return "Assessor [assessorId=" + assessorId + ", " + (username != null ? "username=" + username + ", " : "")
-				+ (companyCode != null ? "companyCode=" + companyCode + ", " : "")
-				+ (listRoles != null ? "listRoles=" + listRoles + ", " : "")
-				+ (email != null ? "email=" + email + ", " : "") + "isActive=" + isActive + "]";
+		return "Assessor [assessorId=" + assessorId + ", username=" + username + ", password=" + password
+				+ ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + ", isActive=" + isActive
+				+ ", isLocked=" + isLocked + ", listRoles=" + listRoles + ", companyCode=" + companyCode
+				+ ", isFirstTimeLogin=" + isFirstTimeLogin + "]";
 	}
 
 }

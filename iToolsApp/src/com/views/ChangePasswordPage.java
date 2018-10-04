@@ -33,7 +33,6 @@ import javax.swing.event.DocumentListener;
 
 import org.apache.log4j.Logger;
 
-import com.controllers.LogController;
 import com.controllers.LoginController;
 import com.controllers.UserController;
 import com.message.Enum;
@@ -339,7 +338,7 @@ public class ChangePasswordPage extends JFrame implements ActionListener {
 					String email = ctlObj.getEmailUser(companyCode, userName);
 					logger.info("Lock User");
 
-					empCtlObj.updatePassword(userName, companyCode, password, false);
+					empCtlObj.updatePassword(userName, companyCode, password, 0);
 					logger.info("Change password ok - " + userName + " - " + password);
 					
 					Thread one = new Thread() {
