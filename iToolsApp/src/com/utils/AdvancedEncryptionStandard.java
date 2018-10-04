@@ -66,8 +66,10 @@ public class AdvancedEncryptionStandard {
 
 	public static void main(String[] a) throws Exception {
 
-		String plainText = "112.213.89.47";
+		String plainText = "Optiwell";
 		String cipherText = AdvancedEncryptionStandard.encrypt(plainText);
+		
+		System.out.println(cipherText);
 		AdvancedEncryptionStandard.decrypt(cipherText);
 		System.out.println();
 //

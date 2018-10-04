@@ -10276,3 +10276,100 @@ updateTools: 0
 2018-09-24 22:26:28 INFO  LoginPage:566 - App Version: 1.0
 2018-09-24 22:26:29 INFO  EmailUtils:57 - mail.tqteam.net25itool_app@tqteam.net1qazxsw2!A
 2018-09-24 22:26:31 INFO  LoginPage:577 - checkEmailConfig: true
+2018-09-26 12:07:05 INFO  LoginPage:530 - ************************************************************
+2018-09-26 12:07:05 INFO  LoginPage:531 - ************************************************************
+2018-09-26 12:07:05 INFO  LoginPage:532 - ************************************************************
+2018-09-26 12:07:05 INFO  LoginPage:533 - ************************************************************
+2018-09-26 12:07:05 INFO  LoginPage:534 - Starting iTool app.
+2018-09-26 12:07:05 INFO  LoginPage:535 - companyCode: Com1
+2018-09-26 12:07:05 INFO  LoginPage:536 - companyCodeUH: UHCom
+2018-09-26 12:07:05 INFO  LoginPage:537 - machineCode: MAC1
+2018-09-26 12:07:13 INFO  LoginPage:540 - mDbHost: localhost
+2018-09-26 12:07:13 INFO  LoginPage:541 - mDbUser: admin
+2018-09-26 12:07:13 INFO  LoginPage:542 - mDbPwds: 1qazxsw2
+2018-09-26 12:07:13 INFO  LoginPage:543 - mDbName: iTools_v1p0
+2018-09-26 12:07:13 INFO  LoginPage:544 - mDbPort: 3306
+2018-09-26 12:07:13 INFO  LoginPage:545 - Database version: v1p0 - 2018-08-27 17:33:22
+2018-09-26 12:07:13 INFO  LoginPage:547 - Last Sync: 2018-09-17 22:44:58
+2018-09-26 12:07:13 INFO  LoginPage:551 - connectToHost: OK
+2018-09-26 12:07:14 INFO  LoginPage:566 - App Version: 1.0
+2018-09-26 12:07:16 INFO  EmailUtils:57 - mail.tqteam.net25itool_app@tqteam.net1qazxsw2!A
+2018-09-26 12:07:21 INFO  LoginPage:577 - checkEmailConfig: true
+2018-09-26 12:07:22 INFO  LoginPage:371 - ========================================
+2018-09-26 12:07:22 INFO  LoginPage:372 - Start syncing thread - 32EB5VCC
+2018-09-26 12:07:22 INFO  LoginPage:373 - ========================================
+2018-09-26 12:07:22 INFO  SyncController:64 - Start SyncHostToLocal
+2018-09-26 12:07:22 INFO  LogController:134 - select NewValue from MasterLog where Action = 'SendLog' order by NewValue desc limit 1;
+2018-09-26 12:07:23 INFO  LoginPage:470 - Get 1000 from logs
+2018-09-26 12:07:23 INFO  LoginPage:470 - Get 2000 from logs
+2018-09-26 12:07:23 ERROR SyncController:144 - Parameter number 3 is not an OUT parameter
+2018-09-26 12:07:23 INFO  LoginPage:376 - ========================================
+2018-09-26 12:07:23 INFO  LoginPage:377 - End syncing thread - 32EB5VCC
+2018-09-26 12:07:23 INFO  LoginPage:378 - ========================================
+2018-09-26 12:07:23 INFO  LoginPage:470 - Get 3000 from logs
+2018-09-26 12:07:29 INFO  LogController:162 - insert into MasterLog(Action, NewValue) values('SendLog', '2018-09-26 12:07:23')
+2018-09-26 12:07:29 INFO  LoginPage:494 - Update 2018-09-26 12:07:23 to MasterLog successfully.
+2018-09-26 12:07:29 INFO  LoginPage:503 - Delete log file successfully.
+2018-09-26 12:07:36 INFO  LoginPage:254 - Login with username: com1user1
+2018-09-26 12:07:36 INFO  LoginController:46 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin, IsLocked FROM Assessor where Assessor.IsActive = 1 and Assessor.UserName='com1user1' and (Password=md5('123456') or LastPassword=md5('123456'));
+2018-09-26 12:07:36 INFO  LoginPage:258 - Login OK
+2018-09-26 12:07:36 INFO  LoginController:173 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'Com1' and assessor.UserName= 'com1user1'
+2018-09-26 12:07:36 INFO  LoginPage:274 - listRoles: [Roles [roleName=Emp]]
+2018-09-26 12:07:36 INFO  LoginPage:286 - Show EmployeePage
+2018-09-26 12:07:38 INFO  LoginPage:254 - Login with username: com1user1
+2018-09-26 12:07:38 INFO  LoginController:46 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin, IsLocked FROM Assessor where Assessor.IsActive = 1 and Assessor.UserName='com1user1' and (Password=md5('123456') or LastPassword=md5('123456'));
+2018-09-26 12:07:38 INFO  LoginPage:258 - Login OK
+2018-09-26 12:07:38 INFO  LoginController:173 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'Com1' and assessor.UserName= 'com1user1'
+2018-09-26 12:07:38 INFO  LoginPage:274 - listRoles: [Roles [roleName=Emp]]
+2018-09-26 12:07:38 INFO  LoginPage:286 - Show EmployeePage
+2018-09-26 12:09:17 INFO  LoginPage:530 - ************************************************************
+2018-09-26 12:09:17 INFO  LoginPage:531 - ************************************************************
+2018-09-26 12:09:17 INFO  LoginPage:532 - ************************************************************
+2018-09-26 12:09:17 INFO  LoginPage:533 - ************************************************************
+2018-09-26 12:09:17 INFO  LoginPage:534 - Starting iTool app.
+2018-09-26 12:09:17 INFO  LoginPage:535 - companyCode: Com1
+2018-09-26 12:09:17 INFO  LoginPage:536 - companyCodeUH: UHCom
+2018-09-26 12:09:17 INFO  LoginPage:537 - machineCode: MAC1
+2018-09-26 12:09:17 INFO  LoginPage:540 - mDbHost: localhost
+2018-09-26 12:09:17 INFO  LoginPage:541 - mDbUser: admin
+2018-09-26 12:09:17 INFO  LoginPage:542 - mDbPwds: 1qazxsw2
+2018-09-26 12:09:17 INFO  LoginPage:543 - mDbName: iTools_v1p0
+2018-09-26 12:09:17 INFO  LoginPage:544 - mDbPort: 3306
+2018-09-26 12:09:17 INFO  LoginPage:545 - Database version: v1p0 - 2018-08-27 17:33:22
+2018-09-26 12:09:17 INFO  LoginPage:547 - Last Sync: 2018-09-17 22:44:58
+2018-09-26 12:09:17 INFO  LoginPage:551 - connectToHost: OK
+2018-09-26 12:09:18 INFO  LoginPage:566 - App Version: 1.0
+2018-09-26 12:09:19 INFO  EmailUtils:57 - mail.tqteam.net25itool_app@tqteam.net1qazxsw2!A
+2018-09-26 12:09:24 INFO  LoginPage:577 - checkEmailConfig: true
+2018-09-26 12:09:27 INFO  LoginPage:371 - ========================================
+2018-09-26 12:09:27 INFO  LoginPage:372 - Start syncing thread - G4CNTNB2
+2018-09-26 12:09:27 INFO  LoginPage:373 - ========================================
+2018-09-26 12:09:27 INFO  SyncController:64 - Start SyncHostToLocal
+2018-09-26 12:09:27 ERROR SyncController:144 - Parameter number 3 is not an OUT parameter
+2018-09-26 12:09:27 INFO  LoginPage:376 - ========================================
+2018-09-26 12:09:27 INFO  LoginPage:377 - End syncing thread - G4CNTNB2
+2018-09-26 12:09:27 INFO  LoginPage:378 - ========================================
+2018-09-26 12:09:28 INFO  LogController:134 - select NewValue from MasterLog where Action = 'SendLog' order by NewValue desc limit 1;
+2018-09-26 12:09:29 INFO  LoginPage:470 - Get 1000 from logs
+2018-09-26 12:09:29 INFO  LoginPage:470 - Get 2000 from logs
+2018-09-26 12:09:30 INFO  LoginPage:470 - Get 3000 from logs
+2018-09-26 12:09:35 INFO  LogController:162 - insert into MasterLog(Action, NewValue) values('SendLog', '2018-09-26 12:09:30')
+2018-09-26 12:09:35 INFO  LoginPage:494 - Update 2018-09-26 12:09:30 to MasterLog successfully.
+2018-09-26 12:09:35 INFO  LoginPage:503 - Delete log file successfully.
+2018-09-26 12:10:14 INFO  LoginPage:254 - Login with username: com1user1
+2018-09-26 12:10:14 INFO  LoginController:46 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin, IsLocked FROM Assessor where Assessor.IsActive = 1 and Assessor.UserName='com1user1' and (Password=md5('123456') or LastPassword=md5('123456'));
+2018-09-26 12:10:14 INFO  LoginPage:258 - Login OK
+2018-09-26 12:10:14 INFO  LoginController:173 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'Com1' and assessor.UserName= 'com1user1'
+2018-09-26 12:10:14 INFO  LoginPage:274 - listRoles: [Roles [roleName=Emp]]
+2018-09-26 12:10:14 INFO  LoginPage:286 - Show EmployeePage
+2018-09-26 12:10:14 INFO  EmployeeController:159 -  select tools.ToolId, tools.ToolCode ,  toolsmachineTray.Quantity, toolsmachineTray.TrayIndex, toolsmachineTray.Machinecode  from tools inner join toolsmachineTray on tools.ToolCode = toolsmachineTray.ToolCode  where tools.IsActive = '1' and toolsmachineTray.MachineCode = 'MAC1';
+2018-09-26 12:10:14 INFO  EmployeeController:202 - {}
+2018-09-26 12:10:14 INFO  EmployeeController:215 -  select tools.ToolCode from tools where tools.IsActive='1';
+2018-09-26 12:10:14 INFO  EmployeeController:235 - {}
+2018-09-26 12:10:14 INFO  EmployeeController:49 - select tools.ToolId, tools.ToolCode  from tools inner join toolsmachineTray on tools.ToolCode = toolsmachineTray.ToolCode  where tools.IsActive = '1' and toolsmachineTray.MachineCode = 'MAC1';
+2018-09-26 12:10:14 INFO  EmployeeController:70 - []
+2018-09-26 12:10:14 INFO  EmployeePage:516 - listToolNames: []
+2018-09-26 12:10:14 INFO  EmployeePage:526 - toolComboBox: []
+2018-09-26 12:10:14 INFO  EmployeePage:168 - Init EMP_PAGE
+2018-09-26 12:10:14 INFO  EmployeePage:171 - listAllTrays: [TRAY_01, TRAY_02, TRAY_03, TRAY_04, TRAY_05, TRAY_06, TRAY_07, TRAY_08, TRAY_09, TRAY_10, TRAY_11, TRAY_12, TRAY_13, TRAY_14, TRAY_15, TRAY_16, TRAY_17, TRAY_18, TRAY_19, TRAY_20, TRAY_21, TRAY_22, TRAY_23, TRAY_24, TRAY_25, TRAY_26, TRAY_27, TRAY_28, TRAY_29, TRAY_30, TRAY_31, TRAY_32, TRAY_33, TRAY_34, TRAY_35, TRAY_36, TRAY_37, TRAY_38, TRAY_39, TRAY_40, TRAY_41, TRAY_42, TRAY_43, TRAY_44, TRAY_45, TRAY_46, TRAY_47, TRAY_48, TRAY_49, TRAY_50, TRAY_51, TRAY_52, TRAY_53, TRAY_54, TRAY_55, TRAY_56, TRAY_57, TRAY_58, TRAY_59, TRAY_60]
+2018-09-26 12:10:14 INFO  EmployeePage:177 - hashMessage: {TRAY_09=09, TRAY_07=07, TRAY_08=08, TRAY_41=41, TRAY_42=42, TRAY_40=40, TRAY_05=05, TRAY_49=49, TRAY_06=06, TRAY_03=03, TRAY_47=47, TRAY_04=04, TRAY_48=48, TRAY_01=01, TRAY_45=45, TRAY_02=02, TRAY_46=46, TRAY_43=43, TRAY_44=44, TRAY_30=30, TRAY_31=31, TRAY_38=38, TRAY_39=39, TRAY_36=36, TRAY_37=37, TRAY_34=34, TRAY_35=35, TRAY_32=32, TRAY_33=33, TRAY_29=29, TRAY_20=20, TRAY_60=60, TRAY_27=27, TRAY_28=28, TRAY_25=25, TRAY_26=26, TRAY_23=23, TRAY_24=24, TRAY_21=21, TRAY_22=22, TRAY_18=18, TRAY_19=19, TRAY_52=52, TRAY_53=53, TRAY_50=50, TRAY_51=51, TRAY_16=16, TRAY_17=17, TRAY_14=14, TRAY_58=58, TRAY_15=15, TRAY_59=59, TRAY_12=12, TRAY_56=56, TRAY_13=13, TRAY_57=57, TRAY_10=10, TRAY_54=54, TRAY_11=11, TRAY_55=55}
