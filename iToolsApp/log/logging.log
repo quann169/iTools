@@ -11453,3 +11453,116 @@ Your pass has been change to 123456
 2018-09-29 09:24:10 INFO  EncryptionTools:70 - Key Value Encrypted: []
 2018-09-29 09:24:10 INFO  EncryptionTools:77 - Delete old file successfully.
 2018-09-29 09:24:10 INFO  EncryptionTools:103 - Write File Done: ./config_encrypted.txt
+2018-12-25 15:38:31 INFO  LoginPage:530 - ************************************************************
+2018-12-25 15:38:31 INFO  LoginPage:531 - ************************************************************
+2018-12-25 15:38:31 INFO  LoginPage:532 - ************************************************************
+2018-12-25 15:38:31 INFO  LoginPage:533 - ************************************************************
+2018-12-25 15:38:31 INFO  LoginPage:534 - Starting iTool app.
+2018-12-25 15:38:31 INFO  LoginPage:535 - companyCode: Optiwell
+2018-12-25 15:38:31 INFO  LoginPage:536 - companyCodeUH: Optiwell
+2018-12-25 15:38:31 INFO  LoginPage:537 - machineCode: MAC1
+2018-12-25 15:38:34 INFO  LoginPage:540 - mDbHost: localhost
+2018-12-25 15:38:34 INFO  LoginPage:541 - mDbUser: admin
+2018-12-25 15:38:34 INFO  LoginPage:542 - mDbPwds: 1qazxsw2
+2018-12-25 15:38:34 INFO  LoginPage:543 - mDbName: iTools_v1p0
+2018-12-25 15:38:34 INFO  LoginPage:544 - mDbPort: 3306
+2018-12-25 15:38:34 INFO  LoginPage:545 - Database version: v1p0 - 2018-08-11 13:02:35
+2018-12-25 15:38:34 INFO  LoginPage:547 - Last Sync: 2018-08-11 13:02:36
+2018-12-25 15:38:34 INFO  LoginPage:551 - connectToHost: OK
+2018-12-25 15:38:35 INFO  LoginPage:566 - App Version: 1.0
+2018-12-25 15:38:36 INFO  EmailUtils:57 - mail.tqteam.net25itool_app@tqteam.net1qazxsw2!A
+2018-12-25 15:38:37 INFO  LoginPage:577 - checkEmailConfig: true
+2018-12-25 15:38:38 INFO  LoginPage:371 - ========================================
+2018-12-25 15:38:38 INFO  LoginPage:372 - Start syncing thread - C9023SPT
+2018-12-25 15:38:38 INFO  LoginPage:373 - ========================================
+2018-12-25 15:38:38 INFO  SyncController:64 - Start SyncHostToLocal
+2018-12-25 15:38:38 INFO  LogController:134 - select NewValue from MasterLog where Action = 'SendLog' order by NewValue desc limit 1;
+2018-12-25 15:38:38 INFO  LoginPage:470 - Get 1000 from logs
+2018-12-25 15:38:39 INFO  SyncController:72 - SyncHostToLocal_AssessorinsertAssessor: 23,
+updateAssessor: 0
+2018-12-25 15:38:39 INFO  SyncController:80 - SyncHostToLocal_RoleAssessorinsertRoleAssessor: 23,
+updateRoleAssessor: 0
+2018-12-25 15:38:39 INFO  LoginPage:470 - Get 2000 from logs
+2018-12-25 15:38:39 INFO  SyncController:88 - SyncHostToLocal_Machine: insertMachine: 2,
+updateMachine: 0
+2018-12-25 15:38:39 INFO  SyncController:96 - SyncHostToLocal_Company: insertCompany: 3,
+updateCompany: 0
+2018-12-25 15:38:39 INFO  LoginPage:470 - Get 3000 from logs
+2018-12-25 15:38:39 INFO  SyncController:104 - SyncHostToLocal_CompanyMachine: insertCompanyMachine: 2,
+updateCompanyMachine: 0
+2018-12-25 15:38:40 INFO  SyncController:112 - SyncHostToLocal_Tools: insertCompanyMachine: 2,
+updateCompanyMachine: 0,
+insertTools: 60,
+updateTools: 0
+2018-12-25 15:38:40 INFO  SyncController:116 - End SyncHostToLocal: 1s
+2018-12-25 15:38:40 INFO  SyncController:120 - Start SyncLocalToHost
+2018-12-25 15:38:40 INFO  LoginPage:470 - Get 4000 from logs
+2018-12-25 15:38:40 INFO  SyncController:130 - SyncLocalToHost_ToolsMachineTray: insertToolsMachineTray: 0,
+updateToolsMachineTray: 0
+2018-12-25 15:38:40 INFO  SyncController:138 - SyncLocalToHost_WorkingTransaction: insertWorkingTransaction: 0,
+updateWorkingTransaction: 0
+2018-12-25 15:38:40 INFO  SyncController:141 - End SyncLocalToHost: 0s
+2018-12-25 15:38:40 INFO  LoginPage:376 - ========================================
+2018-12-25 15:38:40 INFO  LoginPage:377 - End syncing thread - C9023SPT
+2018-12-25 15:38:40 INFO  LoginPage:378 - ========================================
+2018-12-25 15:38:40 INFO  LoginPage:470 - Get 5000 from logs
+2018-12-25 15:38:41 INFO  LoginPage:470 - Get 6000 from logs
+2018-12-25 15:38:41 INFO  LoginPage:470 - Get 7000 from logs
+2018-12-25 15:38:42 INFO  LoginPage:470 - Get 8000 from logs
+2018-12-25 15:38:43 INFO  LoginPage:470 - Get 9000 from logs
+2018-12-25 15:38:44 INFO  LoginPage:470 - Get 10000 from logs
+2018-12-25 16:15:55 INFO  LoginPage:530 - ************************************************************
+2018-12-25 16:15:55 INFO  LoginPage:531 - ************************************************************
+2018-12-25 16:15:55 INFO  LoginPage:532 - ************************************************************
+2018-12-25 16:15:55 INFO  LoginPage:533 - ************************************************************
+2018-12-25 16:15:55 INFO  LoginPage:534 - Starting iTool app.
+2018-12-25 16:15:55 INFO  LoginPage:535 - companyCode: Optiwell
+2018-12-25 16:15:55 INFO  LoginPage:536 - companyCodeUH: Optiwell
+2018-12-25 16:15:55 INFO  LoginPage:537 - machineCode: MAC1
+2018-12-25 16:15:56 INFO  LoginPage:540 - mDbHost: localhost
+2018-12-25 16:15:56 INFO  LoginPage:541 - mDbUser: admin
+2018-12-25 16:15:56 INFO  LoginPage:542 - mDbPwds: 1qazxsw2
+2018-12-25 16:15:56 INFO  LoginPage:543 - mDbName: iTools_v1p0
+2018-12-25 16:15:56 INFO  LoginPage:544 - mDbPort: 3306
+2018-12-25 16:15:56 INFO  LoginPage:545 - Database version: v1p0 - 2018-08-11 13:02:35
+2018-12-25 16:15:56 INFO  LoginPage:547 - Last Sync: 2018-12-25 15:38:40
+2018-12-25 16:15:56 INFO  LoginPage:551 - connectToHost: OK
+2018-12-25 16:15:57 INFO  LoginPage:566 - App Version: 1.0
+2018-12-25 16:15:58 INFO  EmailUtils:57 - mail.tqteam.net25itool_app@tqteam.net1qazxsw2!A
+2018-12-25 16:15:59 INFO  LoginPage:577 - checkEmailConfig: true
+2018-12-25 16:16:00 INFO  LoginPage:371 - ========================================
+2018-12-25 16:16:00 INFO  LoginPage:372 - Start syncing thread - VOBPPKSZ
+2018-12-25 16:16:00 INFO  LoginPage:373 - ========================================
+2018-12-25 16:16:00 INFO  SyncController:64 - Start SyncHostToLocal
+2018-12-25 16:16:00 INFO  SyncController:72 - SyncHostToLocal_AssessorinsertAssessor: 0,
+updateAssessor: 0
+2018-12-25 16:16:00 INFO  SyncController:80 - SyncHostToLocal_RoleAssessorinsertRoleAssessor: 0,
+updateRoleAssessor: 0
+2018-12-25 16:16:00 INFO  SyncController:88 - SyncHostToLocal_Machine: insertMachine: 0,
+updateMachine: 0
+2018-12-25 16:16:01 INFO  SyncController:96 - SyncHostToLocal_Company: insertCompany: 0,
+updateCompany: 0
+2018-12-25 16:16:01 INFO  SyncController:104 - SyncHostToLocal_CompanyMachine: insertCompanyMachine: 0,
+updateCompanyMachine: 0
+2018-12-25 16:16:01 INFO  SyncController:112 - SyncHostToLocal_Tools: insertCompanyMachine: 0,
+updateCompanyMachine: 0,
+insertTools: 0,
+updateTools: 0
+2018-12-25 16:16:01 INFO  SyncController:116 - End SyncHostToLocal: 1s
+2018-12-25 16:16:01 INFO  LoginPage:376 - ========================================
+2018-12-25 16:16:01 INFO  LoginPage:377 - End syncing thread - VOBPPKSZ
+2018-12-25 16:16:01 INFO  LoginPage:378 - ========================================
+2018-12-25 16:16:11 ERROR AdvancedEncryptionStandard:60 - Optiwell
+2018-12-25 16:16:11 ERROR AdvancedEncryptionStandard:61 - Input length must be multiple of 16 when decrypting with padded cipher
+2018-12-25 16:16:11 ERROR AdvancedEncryptionStandard:60 - VINAMOILTOOLS
+2018-12-25 16:16:11 ERROR AdvancedEncryptionStandard:61 - Input length must be multiple of 16 when decrypting with padded cipher
+2018-12-25 16:16:11 ERROR AdvancedEncryptionStandard:60 - MFC
+2018-12-25 16:16:11 ERROR AdvancedEncryptionStandard:61 - Input length must be multiple of 16 when decrypting with padded cipher
+2018-12-25 16:16:11 ERROR AdvancedEncryptionStandard:60 - VM-1
+2018-12-25 16:16:11 ERROR AdvancedEncryptionStandard:61 - Input length must be multiple of 16 when decrypting with padded cipher
+2018-12-25 16:16:11 ERROR AdvancedEncryptionStandard:60 - VM-2
+2018-12-25 16:16:11 ERROR AdvancedEncryptionStandard:61 - Input length must be multiple of 16 when decrypting with padded cipher
+2018-12-25 16:16:11 ERROR AdvancedEncryptionStandard:60 - VM-3
+2018-12-25 16:16:11 ERROR AdvancedEncryptionStandard:61 - Input length must be multiple of 16 when decrypting with padded cipher
+2018-12-25 16:16:11 ERROR AdvancedEncryptionStandard:60 - VM-4
+2018-12-25 16:16:11 ERROR AdvancedEncryptionStandard:61 - Input length must be multiple of 16 when decrypting with padded cipher

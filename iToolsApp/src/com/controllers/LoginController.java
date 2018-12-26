@@ -219,7 +219,7 @@ public class LoginController {
 		result.add(MysqlConnect.getPassword());
 		result.add(MysqlConnect.getDatabaseName());
 		result.add(MysqlConnect.getPort());
-		
+
 		String localMessage = "";
 		String lastSync = "";
 		String sql = "select SyncDate from SyncHistory order by SyncHistory.SyncDate desc limit 1;";
@@ -233,7 +233,7 @@ public class LoginController {
 			}
 		} catch (Exception e) {
 			logger.info(e.getMessage());
-			localMessage= e.getMessage();
+			localMessage = e.getMessage();
 		} finally {
 			mysqlConnect.disconnect();
 		}
@@ -258,7 +258,7 @@ public class LoginController {
 
 		result.add(version + " - " + updatedDate);
 		result.add(lastSync);
-		
+
 		String hostMessage = "";
 		sql = "select count(*) from federated_assessor";
 		// logger.info(sql);
@@ -278,8 +278,7 @@ public class LoginController {
 
 		result.add(hostMessage);
 		result.add(localMessage);
-		
-		
+
 		return result;
 	}
 
@@ -329,6 +328,29 @@ public class LoginController {
 	public String getEmailAdmin() {
 		String emailUser = "";
 		String sql = "SELECT EmailAddress FROM Assessor where Assessor.UserName = 'admin';";
+		logger.info(sql);
+		try {
+			PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
+			ResultSet rs = statement.executeQuery(sql);
+
+			while (rs.next()) {
+				emailUser = rs.getString(1);
+				break;
+			}
+		} catch (Exception e) {
+			logger.info(e.getMessage());
+			return "";
+		} finally {
+			mysqlConnect.disconnect();
+		}
+		return emailUser;
+	}
+
+	public String getEmailSubAdmin(String companyCode) {
+		String emailUser = "";
+		String sql = "select assessor.EmailAddress from roleassessor inner join assessor on roleassessor.AssessorID = assessor.AssessorID "
+				+ " inner join roles on roleassessor.RoleID = roles.RoleID "
+				+ "where roles.RoleName = 'SubAdmin' and assessor.CompanyCode = '" + companyCode + "';";
 		logger.info(sql);
 		try {
 			PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);

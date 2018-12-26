@@ -770,6 +770,7 @@ public class EmployeePage extends JFrame implements ActionListener, HidServicesL
 											machineCode);
 									List<String> listCCEmail = new ArrayList<>();
 									listCCEmail.add(ctlObj.getEmailAdmin());
+									listCCEmail.add(ctlObj.getEmailSubAdmin(companyCode));
 									emailUtils.sendEmail(email, listCCEmail,
 											companyCode + " - " + machineCode + " notification",
 											"Hi " + userName + ",\nWO: " + wo + "\nOP: " + op + "\nTool: " + ctid
