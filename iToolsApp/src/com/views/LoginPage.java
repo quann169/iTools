@@ -187,7 +187,7 @@ public class LoginPage extends JFrame implements ActionListener {
 
 		passwordField.addKeyListener(new KeyAdapter() {
 			public void keyTyped(KeyEvent e) {
-				if (passwordField.getPassword().length >= 8)
+				if (passwordField.getPassword().length >= 16)
 					e.consume();
 			}
 		});
@@ -391,7 +391,15 @@ public class LoginPage extends JFrame implements ActionListener {
 
 				try {
 					while (true) {
+						try {
+							// Wait 3 minutes to read the log and get the first sync
+							Thread.sleep(3 * 60 * 1000);
 
+							// Thread.sleep(60 * 1000);
+						} catch (InterruptedException e) {
+							e.printStackTrace();
+							logger.error(e.getMessage());
+						}
 						File file = new File("./log/logging.log");
 						if (file.exists() && file.canRead()) {
 							// long fileLength = file.length();
@@ -539,7 +547,7 @@ public class LoginPage extends JFrame implements ActionListener {
 				List<String> databaseInfo = ctlObj.getDatabaseVersion();
 				logger.info("mDbHost: " + databaseInfo.get(0));
 				logger.info("mDbUser: " + databaseInfo.get(1));
-				logger.info("mDbPwds: " + databaseInfo.get(2));
+				logger.info("mDbPwds: " + databaseInfo.get(2).substring(0, 3));
 				logger.info("mDbName: " + databaseInfo.get(3));
 				logger.info("mDbPort: " + databaseInfo.get(4));
 				logger.info("Database version: " + databaseInfo.get(5));
@@ -551,7 +559,7 @@ public class LoginPage extends JFrame implements ActionListener {
 				logger.info("connectToHost: " + databaseInfo.get(7));
 				
 				
-				System.out.println("databaseInfo: " + databaseInfo);
+//				System.out.println("databaseInfo: " + databaseInfo);
 				
 				Thread.sleep(1000);
 				File versionFile = new File("");

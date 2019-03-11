@@ -100,9 +100,7 @@ CREATE TABLE `companymachine` (
   PRIMARY KEY (`CompanyMachineID`),
   KEY `MachineCode` (`MachineCode`),
   KEY `CompanyCode` (`CompanyCode`),
-  CONSTRAINT `companymachine_ibfk_1` FOREIGN KEY (`MachineCode`) REFERENCES `machine` (`MachineCode`),
-  CONSTRAINT `companymachine_ibfk_2` FOREIGN KEY (`CompanyCode`) REFERENCES `company` (`CompanyCode`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -548,9 +546,7 @@ CREATE TABLE `roleassessor` (
   KEY `CreatedDate` (`CreatedDate`),
   KEY `RoleID` (`RoleID`),
   KEY `AssessorID` (`AssessorID`),
-  CONSTRAINT `roleassessor_ibfk_1` FOREIGN KEY (`RoleID`) REFERENCES `roles` (`RoleID`),
-  CONSTRAINT `roleassessor_ibfk_2` FOREIGN KEY (`AssessorID`) REFERENCES `assessor` (`AssessorID`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
+  ) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -730,10 +726,7 @@ CREATE TABLE `workingtransaction` (
   KEY `ToolCode` (`ToolCode`),
   KEY `MachineCode` (`MachineCode`),
   KEY `CompanyCode` (`CompanyCode`),
-  CONSTRAINT `workingtransaction_ibfk_1` FOREIGN KEY (`MachineCode`) REFERENCES `machine` (`MachineCode`),
-  CONSTRAINT `workingtransaction_ibfk_2` FOREIGN KEY (`CompanyCode`) REFERENCES `company` (`CompanyCode`),
-  CONSTRAINT `workingtransaction_ibfk_3` FOREIGN KEY (`ToolCode`) REFERENCES `tools` (`ToolCode`)
-) ENGINE=InnoDB AUTO_INCREMENT=1433 DEFAULT CHARSET=utf8;
+  ) ENGINE=InnoDB AUTO_INCREMENT=1433 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1388,147 +1381,6 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `SyncLocalToHost` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8 */ ;
-/*!50003 SET character_set_results = utf8 */ ;
-/*!50003 SET collation_connection  = utf8_general_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`admin`@`%` PROCEDURE `SyncLocalToHost`(IN CompanyCode VARCHAR(255), IN MachineCode VARCHAR(255), OUT returnResult TEXT)
-BEGIN
-	-- DECLARE EXIT HANDLER FOR SQLEXCEPTION ROLLBACK;
-	-- DECLARE EXIT HANDLER FOR SQLWARNING ROLLBACK;
-	START TRANSACTION;
-	
-    SET SQL_SAFE_UPDATES = 0;
-
-#insert missing record from Local to Host
-    INSERT INTO federated_MasterLog
-	SELECT a.* FROM MasterLog a
-	LEFT OUTER JOIN federated_MasterLog b ON b.LogID = a.LogID
-	WHERE b.LogID IS NULL;
-	
-	set @insertMasterLog = (SELECT ROW_COUNT());
-    set @finalResult = concat("insertMasterLog: ", @insertMasterLog );
-	
-    #update all record from Local to Host
-	update federated_MasterLog
-	left join MasterLog on MasterLog.LogID = MasterLog.LogID
-		set federated_MasterLog.LogDate = MasterLog.LogDate,
-			federated_MasterLog.AssessorName = MasterLog.AssessorName,
-			federated_MasterLog.TblName = MasterLog.TblName,
-            federated_MasterLog.RecordID = MasterLog.RecordID,
-            federated_MasterLog.ColumnName = MasterLog.ColumnName,
-            federated_MasterLog.Action = MasterLog.Action,
-            federated_MasterLog.OldValue = MasterLog.OldValue,
-            federated_MasterLog.NewValue = MasterLog.NewValue,
-            federated_MasterLog.CompanyCode = MasterLog.CompanyCode,
-            federated_MasterLog.MachineCode = MasterLog.MachineCode,
-            federated_MasterLog.Notes = MasterLog.Notes,
-            federated_MasterLog.UpdatedDate = sysdate()
-		where federated_MasterLog.LogID in (select LogID from MasterLog)
-        and MasterLog.UpdatedDate > 
-		(select (Case when fs.SyncDate is null then '1900-01-01 00:00:00' else fs.SyncDate END) 
-			from synchistory fs
-			where fs.Status = 'SUCCESS' and fs.SynType = 'LocalToHost'
-			order by fs.SyncDate desc LIMIT 1)
-	and MasterLog.UpdatedDate > (Case when federated_MasterLog.UpdatedDate is null then '1900-01-01 00:00:00' else federated_MasterLog.UpdatedDate END);  
-    
-	set @updateMasterLog = (SELECT ROW_COUNT());
-    set @finalResult = concat(@finalResult, ",", "\n", "updateMasterLog: ", @updateMasterLog );
-    
-#insert missing record from Local to Host
-    INSERT INTO federated_ToolsMachineTray
-	SELECT a.* FROM ToolsMachineTray a
-	LEFT OUTER JOIN federated_ToolsMachineTray b ON b.ToolsMachineTrayID = a.ToolsMachineTrayID
-	WHERE b.ToolsMachineTrayID IS NULL;
-	
-	set @insertToolsMachineTray = (SELECT ROW_COUNT());
-    set @finalResult = concat(@finalResult, ",", "\n", "insertToolsMachineTray: ", @insertToolsMachineTray );
-	
-    #update all record from Local to Host
-	update federated_ToolsMachineTray
-	left join ToolsMachineTray on ToolsMachineTray.ToolsMachineTrayID = federated_ToolsMachineTray.ToolsMachineTrayID
-		set federated_ToolsMachineTray.MachineCode = ToolsMachineTray.MachineCode,
-			federated_ToolsMachineTray.ToolCode = ToolsMachineTray.ToolCode,
-			federated_ToolsMachineTray.TrayIndex = ToolsMachineTray.TrayIndex,
-			federated_ToolsMachineTray.Quantity = ToolsMachineTray.Quantity,
-            federated_ToolsMachineTray.CreatedDate = ToolsMachineTray.CreatedDate,
-            federated_ToolsMachineTray.UpdatedDate = ToolsMachineTray.UpdatedDate,
-            federated_ToolsMachineTray.IsActive = ToolsMachineTray.IsActive
-		where federated_ToolsMachineTray.ToolsMachineTrayID in (select ToolsMachineTrayID from ToolsMachineTray)
-        and ToolsMachineTray.UpdatedDate > 
-		(select (Case when fs.SyncDate is null then '1900-01-01 00:00:00' else fs.SyncDate END) 
-			from synchistory fs
-			where fs.Status = 'SUCCESS' and fs.SynType = 'LocalToHost'
-			order by fs.SyncDate desc LIMIT 1)
-	and ToolsMachineTray.UpdatedDate > (Case when federated_ToolsMachineTray.UpdatedDate is null then '1900-01-01 00:00:00' else federated_ToolsMachineTray.UpdatedDate END);  
-   
-   set @updateToolsMachineTray = (SELECT ROW_COUNT());
-    set @finalResult = concat(@finalResult, ",", "\n", "updateToolsMachineTray: ", @updateToolsMachineTray );
-        
-    #insert missing record from Local to Host
-    INSERT INTO federated_WorkingTransaction
-	SELECT a.* FROM WorkingTransaction a
-	LEFT OUTER JOIN federated_WorkingTransaction b ON b.WorkingTransactionID = a.WorkingTransactionID
-	WHERE b.WorkingTransactionID IS NULL;
-	
-	set @insertWorkingTransaction = (SELECT ROW_COUNT());
-    set @finalResult = concat(@finalResult, ",", "\n", "insertWorkingTransaction: ", @insertWorkingTransaction );
-	
-    #update all record from Local to Host
-	update federated_WorkingTransaction
-	left join WorkingTransaction on WorkingTransaction.WorkingTransactionID = federated_WorkingTransaction.WorkingTransactionID
-		set federated_WorkingTransaction.TransactionDate = WorkingTransaction.TransactionDate,
-			federated_WorkingTransaction.MachineCode = WorkingTransaction.MachineCode,
-			federated_WorkingTransaction.CompanyCode = WorkingTransaction.CompanyCode,
-			federated_WorkingTransaction.AssessorID = WorkingTransaction.AssessorID,
-			federated_WorkingTransaction.WOCode = WorkingTransaction.WOCode,
-            federated_WorkingTransaction.OPCode = WorkingTransaction.OPCode,
-            federated_WorkingTransaction.ToolCode = WorkingTransaction.ToolCode,
-            federated_WorkingTransaction.TrayIndex = WorkingTransaction.TrayIndex,
-            federated_WorkingTransaction.Quantity = WorkingTransaction.Quantity,
-            federated_WorkingTransaction.TransactionStatus = WorkingTransaction.TransactionStatus,
-            federated_WorkingTransaction.UpdatedDate = WorkingTransaction.UpdatedDate,
-            federated_WorkingTransaction.RespondMessage = WorkingTransaction.RespondMessage,
-            federated_WorkingTransaction.TransactionType = WorkingTransaction.TransactionType
-		where federated_WorkingTransaction.WorkingTransactionID in (select WorkingTransactionID from WorkingTransaction)
-        and WorkingTransaction.UpdatedDate > 
-		(select (Case when fs.SyncDate is null then '1900-01-01 00:00:00' else fs.SyncDate END) 
-			from synchistory fs
-			where fs.Status = 'SUCCESS' and fs.SynType = 'LocalToHost'
-			order by fs.SyncDate desc LIMIT 1)
-	and WorkingTransaction.UpdatedDate > (Case when federated_WorkingTransaction.UpdatedDate is null then '1900-01-01 00:00:00' else federated_WorkingTransaction.UpdatedDate END);  
-   
-   set @updateWorkingTransaction = (SELECT ROW_COUNT());
-    set @finalResult = concat(@finalResult, ",", "\n", "updateWorkingTransaction: ", @updateWorkingTransaction );
-   
-   insert into synchistory(SyncDate, Statistic, Status, SynType)
-		VALUES 
-	(now(), concat("run store sync changed data from host to local: ", @finalResult), "SUCCESS", "FromLocal");
-	
-	#insert missing record from Local to Host
-    INSERT INTO federated_synchistory
-	SELECT a.* FROM synchistory a
-	LEFT OUTER JOIN federated_synchistory b ON b.SyncHistoryID = a.SyncHistoryID
-	WHERE b.SyncHistoryID IS NULL;
-	
-       
-	insert into masterlog(AssessorName,Action, Notes, CompanyCode, MachineCode) values ("System", "SyncFromLocal", @finalResult, CompanyCode, MachineCode);
-            
-	commit;
-	
-	set  returnResult = @finalResult;
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `SyncLocalToHost_ToolsMachineTray` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -1546,32 +1398,15 @@ BEGIN
 	START TRANSACTION;
 	
     SET SQL_SAFE_UPDATES = 0;
-
-    INSERT INTO federated_ToolsMachineTray
-	SELECT a.* FROM ToolsMachineTray a
-	LEFT OUTER JOIN federated_ToolsMachineTray b ON b.ToolsMachineTrayID = a.ToolsMachineTrayID
-	WHERE b.ToolsMachineTrayID IS NULL;
+    delete from federated_ToolsMachineTray where federated_ToolsMachineTray.MachineCode = MachineCode;
+	
+    INSERT INTO federated_ToolsMachineTray (MachineCode, ToolCode, TrayIndex, Quantity, CreatedDate, UpdatedDate, isActive)
+	SELECT a.MachineCode,a.ToolCode, a.TrayIndex, a.Quantity, a.CreatedDate, a.UpdatedDate, a.isActive FROM ToolsMachineTray a
+	
+	WHERE a.MachineCode = MachineCode;
 	
 	set @insertToolsMachineTray = (SELECT ROW_COUNT());
     set @finalResult = concat("insertToolsMachineTray: ", @insertToolsMachineTray );
-	
-    #update all record from Local to Host
-	update federated_ToolsMachineTray
-	left join ToolsMachineTray on ToolsMachineTray.ToolsMachineTrayID = federated_ToolsMachineTray.ToolsMachineTrayID
-		set federated_ToolsMachineTray.MachineCode = ToolsMachineTray.MachineCode,
-			federated_ToolsMachineTray.ToolCode = ToolsMachineTray.ToolCode,
-			federated_ToolsMachineTray.TrayIndex = ToolsMachineTray.TrayIndex,
-			federated_ToolsMachineTray.Quantity = ToolsMachineTray.Quantity,
-            federated_ToolsMachineTray.CreatedDate = ToolsMachineTray.CreatedDate,
-            federated_ToolsMachineTray.UpdatedDate = ToolsMachineTray.UpdatedDate,
-            federated_ToolsMachineTray.IsActive = ToolsMachineTray.IsActive
-		where federated_ToolsMachineTray.ToolsMachineTrayID in (select ToolsMachineTrayID from ToolsMachineTray)
-        and ToolsMachineTray.UpdatedDate > 
-		(select (Case when fs.SyncDate is null then '1900-01-01 00:00:00' else fs.SyncDate END) 
-			from synchistory fs
-			where fs.Status = 'SUCCESS' and fs.SynType = 'SyncLocalToHost_ToolsMachineTray'
-			order by fs.SyncDate desc LIMIT 1)
-	and ToolsMachineTray.UpdatedDate > (Case when federated_ToolsMachineTray.UpdatedDate is null then '1900-01-01 00:00:00' else federated_ToolsMachineTray.UpdatedDate END);  
 	
 	
 	set @updateToolsMachineTray = (SELECT ROW_COUNT());
@@ -1608,14 +1443,15 @@ BEGIN
 	
     SET SQL_SAFE_UPDATES = 0;
 	
-	INSERT INTO federated_WorkingTransaction
-	SELECT a.* FROM WorkingTransaction a
-	LEFT OUTER JOIN federated_WorkingTransaction b ON b.WorkingTransactionID = a.WorkingTransactionID
+	INSERT INTO federated_WorkingTransaction (TransactionDate, MachineCode, CompanyCode, AssessorID, WOCode, OPCode, ToolCode, TrayIndex, Quantity, TransactionStatus, UpdatedDate, RespondMessage, TransactionType)
+	SELECT a.TransactionDate, a.MachineCode, a.CompanyCode, a.AssessorID, a.WOCode, a.OPCode, a.ToolCode, a.TrayIndex, a.Quantity, a.TransactionStatus, a.UpdatedDate, a.RespondMessage, a.TransactionType FROM WorkingTransaction a
+	LEFT OUTER JOIN federated_WorkingTransaction b ON  b.CompanyCode = a.CompanyCode and b.MachineCode = a.MachineCode
 	WHERE b.WorkingTransactionID IS NULL;
 	
 	set @insertWorkingTransaction = (SELECT ROW_COUNT());
     set @finalResult = concat("insertWorkingTransaction: ", @insertWorkingTransaction );
 	
+	/*
     #update all record from Local to Host
 	update federated_WorkingTransaction
 	left join WorkingTransaction on WorkingTransaction.WorkingTransactionID = federated_WorkingTransaction.WorkingTransactionID
@@ -1642,7 +1478,7 @@ BEGIN
    
    set @updateWorkingTransaction = (SELECT ROW_COUNT());
     set @finalResult = concat(@finalResult, ",", "\n", "updateWorkingTransaction: ", @updateWorkingTransaction );
-	
+	*/
 	insert into synchistory(SyncDate, Statistic, Status, SynType)
 		VALUES 
 	(now(), @finalResult, "SUCCESS", "SyncLocalToHost_WorkingTransaction");

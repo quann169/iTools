@@ -1,0 +1,5 @@
+VendorId=0x0461
+ProductId=0x0020
+#Message=[[dc01 10] [dc02 15] [dc03 20]]
+Message=[[dc01 10] [dc02 15] [dc03 20]]
+Read_Data_Wait_Time=10
