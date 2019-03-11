@@ -18,20 +18,14 @@ public class ToolsMachine implements Serializable {
 	private static final long serialVersionUID = -6431312635422507839L;
 
 	@Id
-    @Column(name = "ToolID", nullable = false)
-    private int ToolID;
+    @Column(name = "ToolsMachineID", nullable = false)
+    private int toolMachineID;
  
     @Column(name = "ToolCode", length = 100, nullable = true)
     private String toolCode;
     
-    @Column(name = "Model", length = 100, nullable = true)
-    private String model;
-    
-    @Column(name = "Barcode", length = 100, nullable = true)
-    private String barcode;
-    
-    @Column(name = "Description", length = 100, nullable = true)
-    private String description;
+    @Column(name = "MachineCode", length = 100, nullable = true)
+    private String machineCode;
     
     @Column(name = "CreatedDate", nullable = true)
     private Date createdDate;
@@ -41,14 +35,6 @@ public class ToolsMachine implements Serializable {
 
 	@Column(name = "IsActive", length = 1, nullable = false)
     private boolean active;
-	
-	public int getToolID() {
-		return ToolID;
-	}
-
-	public void setToolID(int toolID) {
-		ToolID = toolID;
-	}
 
 	public String getToolCode() {
 		return toolCode;
@@ -56,30 +42,6 @@ public class ToolsMachine implements Serializable {
 
 	public void setToolCode(String toolCode) {
 		this.toolCode = toolCode;
-	}
-
-	public String getModel() {
-		return model;
-	}
-
-	public void setModel(String model) {
-		this.model = model;
-	}
-
-	public String getBarcode() {
-		return barcode;
-	}
-
-	public void setBarcode(String barcode) {
-		this.barcode = barcode;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
 	}
 
 	public Date getCreatedDate() {
@@ -104,6 +66,22 @@ public class ToolsMachine implements Serializable {
 
 	public void setActive(boolean active) {
 		this.active = active;
+	}
+
+	public int getToolMachineID() {
+		return toolMachineID;
+	}
+
+	public void setToolMachineID(int toolMachineID) {
+		this.toolMachineID = toolMachineID;
+	}
+
+	public String getMachineCode() {
+		return machineCode;
+	}
+
+	public void setMachineCode(String machineCode) {
+		this.machineCode = machineCode;
 	}
  
 }

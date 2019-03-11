@@ -1,35 +1,15 @@
-﻿package com.iToolsV2.utils;
- 
-import javax.servlet.http.HttpServletRequest;
- 
-import com.iToolsV2.model.CartInfo;
- 
+package com.iToolsV2.utils;
+
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+
 public class Utils {
- 
-    public static CartInfo getCartInSession(HttpServletRequest request) {
-  
-        CartInfo cartInfo = (CartInfo) request.getSession().getAttribute("myCart");
- 
-      
-        if (cartInfo == null) {
-            cartInfo = new CartInfo(); 
-             
-            request.getSession().setAttribute("myCart", cartInfo);
+	public static UserDetails getLoginUser() {
+		UserDetails result = null;
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if (principal instanceof UserDetails) {
+            result = (UserDetails) principal;
         }
- 
-        return cartInfo;
+        return result;
     }
- 
-    public static void removeCartInSession(HttpServletRequest request) {
-        request.getSession().removeAttribute("myCart");
-    }
- 
-    public static void storeLastOrderedCartInSession(HttpServletRequest request, CartInfo cartInfo) {
-        request.getSession().setAttribute("lastOrderedCart", cartInfo);
-    }
- 
-    public static CartInfo getLastOrderedCartInSession(HttpServletRequest request) {
-        return (CartInfo) request.getSession().getAttribute("lastOrderedCart");
-    }
-      
 }

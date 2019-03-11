@@ -19,9 +19,9 @@ public class Tools implements Serializable {
 
 	@Id
     @Column(name = "ToolID", nullable = false)
-    private int ToolID;
+    private int toolID;
  
-    @Column(name = "Name", length = 100, nullable = true)
+    @Column(name = "ToolCode", length = 100, nullable = true)
     private String toolCode;
     
     @Column(name = "Model", length = 100, nullable = true)
@@ -51,11 +51,11 @@ public class Tools implements Serializable {
 	}
 
 	public int getToolID() {
-		return ToolID;
+		return toolID;
 	}
 
 	public void setToolID(int toolID) {
-		ToolID = toolID;
+		this.toolID = toolID;
 	}
 
 	public String getToolCode() {

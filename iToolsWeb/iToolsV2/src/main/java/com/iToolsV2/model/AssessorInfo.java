@@ -1,5 +1,5 @@
 package com.iToolsV2.model;
- 
+
 public class AssessorInfo {
  
     private int assessorId;
@@ -13,6 +13,10 @@ public class AssessorInfo {
     private String companyCode;
     private String lastPassword;
     private boolean active;
+    private boolean locked;
+    private String password;
+    private String confirmPassword;
+    private String rolesList;
  
     public AssessorInfo() {
  
@@ -24,7 +28,150 @@ public class AssessorInfo {
         this.encrytedPassword = encrytedPassword;
         this.active = active;
     }
- 
+    
+    public AssessorInfo(int assessorId, String userName, String encrytedPassword, boolean active, 
+    		String firstName, String lastName, String emailAddress, String address, String phone, 
+    		String companyCode,     		
+    		boolean locked) {
+    	
+        this.assessorId = assessorId;
+        this.userName = userName;
+        this.encrytedPassword = encrytedPassword;
+        this.active = active;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.emailAddress = emailAddress;
+        this.address = address;
+        this.phone = phone;
+        this.companyCode = companyCode;
+        this.locked = locked;
+    }
+    
+    public AssessorInfo(int assessorId, String userName, String encrytedPassword, boolean active, 
+    		String firstName, String lastName, String emailAddress, String address, String phone, 
+    		String companyCode,     		
+    		boolean locked,
+    		String rolesList) {
+    	
+        this.assessorId = assessorId;
+        this.userName = userName;
+        this.encrytedPassword = encrytedPassword;
+        this.active = active;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.emailAddress = emailAddress;
+        this.address = address;
+        this.phone = phone;
+        this.companyCode = companyCode;
+        this.locked = locked;
+        this.rolesList = rolesList;
+    }
+    
+    public AssessorInfo(int assessorId, String userName, String encrytedPassword, boolean active, 
+    		String firstName, String lastName, String emailAddress, String address, String phone, 
+    		String companyCode, 
+    		boolean locked, 
+    		String password, String confirmPassword) {
+    	
+        this.assessorId = assessorId;
+        this.userName = userName;
+        this.encrytedPassword = encrytedPassword;
+        this.active = active;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.emailAddress = emailAddress;
+        this.address = address;
+        this.phone = phone;
+        //this.company = this.getCompanyByCode(companyCode);
+        this.companyCode = companyCode;
+        this.locked = locked;
+        this.password = password;
+        this.confirmPassword = confirmPassword;
+    }
+    
+    public AssessorInfo(int assessorId, String userName, String encrytedPassword, boolean active, 
+    		String firstName, String lastName, String emailAddress, String address, String phone, 
+    		String companyCode, 
+    		boolean locked, 
+    		String password, String confirmPassword,
+    		String rolesList) {
+    	
+        this.assessorId = assessorId;
+        this.userName = userName;
+        this.encrytedPassword = encrytedPassword;
+        this.active = active;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.emailAddress = emailAddress;
+        this.address = address;
+        this.phone = phone;
+        //this.company = this.getCompanyByCode(companyCode);
+        this.companyCode = companyCode;
+        this.locked = locked;
+        this.password = password;
+        this.confirmPassword = confirmPassword;
+        this.rolesList = rolesList;
+    }
+
+/*    public AssessorInfo(int assessorId, String userName, String encrytedPassword, boolean active, 
+    		String firstName, String lastName, String emailAddress, String address, String phone, 
+    		String companyCode, 
+    		boolean locked,
+    		String password, String confirmPassword) {
+    	
+        this.assessorId = assessorId;
+        this.userName = userName;
+        this.encrytedPassword = encrytedPassword;
+        this.active = active;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.emailAddress = emailAddress;
+        this.address = address;
+        this.phone = phone;
+        this.companyCode = companyCode;
+        this.locked = locked;
+        this.password = password;
+        this.confirmPassword = confirmPassword;
+    }*/
+    
+/*    private Company getCompanyByCode(String companyCode) {
+    	Company currentCompany = null;
+    	currentCompany = companyDAO.findCompanyByCode(companyCode);
+    	return currentCompany;
+    }*/
+    
+	public String getCompanyCode() {
+		return companyCode;
+	}
+
+	public void setCompanyCode(String companyCode) {
+		this.companyCode = companyCode;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getConfirmPassword() {
+		return confirmPassword;
+	}
+
+	public void setConfirmPassword(String confirmPassword) {
+		this.confirmPassword = confirmPassword;
+	}
+
+	public boolean isLocked() {
+		return locked;
+	}
+
+	public void setLocked(boolean locked) {
+		this.locked = locked;
+	}
+
 	public int getAssessorId() {
 		return assessorId;
 	}
@@ -97,14 +244,6 @@ public class AssessorInfo {
 		this.phone = phone;
 	}
 
-	public String getCompanyCode() {
-		return companyCode;
-	}
-
-	public void setCompanyCode(String companyCode) {
-		this.companyCode = companyCode;
-	}
-
 	public String getLastPassword() {
 		return lastPassword;
 	}
@@ -112,5 +251,15 @@ public class AssessorInfo {
 	public void setLastPassword(String lastPassword) {
 		this.lastPassword = lastPassword;
 	}
+
+	public String getRolesList() {
+		return rolesList;
+	}
+
+	public void setRolesList(String rolesList) {
+		this.rolesList = rolesList;
+	}
+	
+	
  
 }

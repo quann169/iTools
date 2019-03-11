@@ -9,7 +9,7 @@ public class ToolForm {
     private String toolCode;
     private String model;
     private String barcode;
-    private String decription;
+    private String description;
     private Date createdDate;
     private Date updatedDate;
     private boolean active;
@@ -25,7 +25,7 @@ public class ToolForm {
         this.toolCode = tool.getToolCode();
         this.model = tool.getModel();
         this.barcode = tool.getBarcode();
-        this.decription = tool.getDescription(); 
+        this.description = tool.getDescription(); 
         this.createdDate =tool.getCreatedDate();
         this.updatedDate = tool.getUpdatedDate();
         this.active = tool.isActive();
@@ -64,12 +64,12 @@ public class ToolForm {
 		this.barcode = barcode;
 	}
 
-	public String getDecription() {
-		return decription;
+	public String getDescription() {
+		return description;
 	}
 
-	public void setDecription(String decription) {
-		this.decription = decription;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	public Date getCreatedDate() {

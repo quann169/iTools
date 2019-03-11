@@ -20,6 +20,9 @@ public class MasterLog implements Serializable {
 	@Id
     @Column(name = "LogID", nullable = false)
     private int logID;
+	
+	@Column(name = "LogDate", nullable = true)
+    private Date logDate;
  
     @Column(name = "AssessorName", length = 100, nullable = false)
     private String assessorName;
@@ -38,14 +41,41 @@ public class MasterLog implements Serializable {
     
     @Column(name = "NewValue", length = 255, nullable = false)
     private String newValue;
+
+    @Column(name = "CompanyCode", length = 100, nullable = false)
+    private String companyCode;
     
-    @Column(name = "LogStatus", nullable = true)
-    private int logStatus;
+    @Column(name = "MachineCode", length = 100, nullable = false)
+    private String machineCode;
     
-    @Column(name = "ApprovedBy", length = 255, nullable = true)
-    private String approvedBy;
+    @Column(name = "Notes", length = 255, nullable = false)
+    private String notes;
  
-    public int getLogID() {
+    public String getCompanyCode() {
+		return companyCode;
+	}
+
+	public void setCompanyCode(String companyCode) {
+		this.companyCode = companyCode;
+	}
+
+	public String getMachineCode() {
+		return machineCode;
+	}
+
+	public void setMachineCode(String machineCode) {
+		this.machineCode = machineCode;
+	}
+
+	public String getNotes() {
+		return notes;
+	}
+
+	public void setNotes(String notes) {
+		this.notes = notes;
+	}
+
+	public int getLogID() {
 		return logID;
 	}
 
@@ -101,22 +131,6 @@ public class MasterLog implements Serializable {
 		this.newValue = newValue;
 	}
 
-	public int getLogStatus() {
-		return logStatus;
-	}
-
-	public void setLogStatus(int logStatus) {
-		this.logStatus = logStatus;
-	}
-
-	public String getApprovedBy() {
-		return approvedBy;
-	}
-
-	public void setApprovedBy(String approvedBy) {
-		this.approvedBy = approvedBy;
-	}
-
 	public Date getLogDate() {
 		return logDate;
 	}
@@ -124,19 +138,5 @@ public class MasterLog implements Serializable {
 	public void setLogDate(Date logDate) {
 		this.logDate = logDate;
 	}
-
-	public Date getApprovedDate() {
-		return approvedDate;
-	}
-
-	public void setApprovedDate(Date approvedDate) {
-		this.approvedDate = approvedDate;
-	}
-
-	@Column(name = "LogDate", nullable = true)
-    private Date logDate;
-    
-    @Column(name = "ApprovedDate", nullable = true)
-    private Date approvedDate;
  
 }

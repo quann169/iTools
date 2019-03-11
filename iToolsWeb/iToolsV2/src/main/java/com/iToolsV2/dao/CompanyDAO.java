@@ -1,5 +1,9 @@
 package com.iToolsV2.dao;
  
+import java.util.List;
+
+import javax.persistence.NoResultException;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
@@ -9,6 +13,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.iToolsV2.entity.Company;
+import com.iToolsV2.entity.CompanyMachine;
 import com.iToolsV2.form.CompanyForm;
 import com.iToolsV2.model.CompanyInfo;
 import com.iToolsV2.pagination.PaginationResult;
@@ -21,12 +26,16 @@ public class CompanyDAO {
 	private SessionFactory sessionFactory;
  
     public Company findCompany(String companyName) {
-    	Session session = this.sessionFactory.getCurrentSession();
-        String sql = "from " + Company.class.getName() + " company " //
-                + " Where company.companyName = :companyName ";
-        Query<Company> query = session.createQuery(sql, Company.class);
-        query.setParameter("companyName", companyName);
-        return query.getSingleResult();
+    	try {
+	    	Session session = this.sessionFactory.getCurrentSession();
+	        String sql = "from " + Company.class.getName() + " company " //
+	                + " Where company.companyName = :companyName ";
+	        Query<Company> query = session.createQuery(sql, Company.class);
+	        query.setParameter("companyName", companyName);
+	        return query.getSingleResult();
+    	} catch (NoResultException e) {
+    		return null;
+    	}
     }
     
     public CompanyInfo findCompanyInfo(String name) {
@@ -36,6 +45,60 @@ public class CompanyDAO {
         }
         return new CompanyInfo(company.getCompanyID(), company.getCompanyName(), company.getCompanyCode(), company.getLocation(), company.getAddress());
     }
+    
+    public List<Company> findAllCompany() {
+    	try {
+	    	Session session = this.sessionFactory.getCurrentSession();
+	        String sql = "from " + Company.class.getName() + " company ";
+	        Query<Company> query = session.createQuery(sql, Company.class);
+	        return query.getResultList();
+    	} catch (NoResultException e) {
+    		return null;
+    	}
+    }
+    
+    public Company findCompanyByCode(String companyCode) {
+    	Company company = null;
+        try {
+        	Session session = this.sessionFactory.getCurrentSession();
+        	 String sql = "from " + Company.class.getName() + " company " //
+                     + " Where company.companyCode = :companyCode ";
+             Query<Company> query = session.createQuery(sql, Company.class);
+             query.setParameter("companyCode", companyCode);
+             company = query.getSingleResult();
+        } catch (Exception e) {
+           e.printStackTrace();
+        } 
+        return company;
+    }
+    
+    public Company findCompanyById(int companyId) {
+    	Company company = null;
+        try {
+        	Session session = this.sessionFactory.getCurrentSession();
+        	 String sql = "from " + Company.class.getName() + " company " //
+                     + " Where company.companyID = :companyId ";
+             Query<Company> query = session.createQuery(sql, Company.class);
+             query.setParameter("companyId", companyId);
+             company = query.getSingleResult();
+        } catch (Exception e) {
+           e.printStackTrace();
+        } 
+        return company;
+    }
+    
+    public CompanyForm findCompanyFormByID(int companyId) {
+    	Company company = this.findCompanyById(companyId);
+    	CompanyForm companyForm = new CompanyForm();
+    	if (company != null) {
+    		companyForm.setCompanyId(companyId);
+    		companyForm.setCompanyCode(company.getCompanyCode());
+    		companyForm.setCompanyName(company.getCompanyName());
+    		companyForm.setAddress(company.getAddress());
+    		companyForm.setLocation(company.getLocation());
+        }
+    	return companyForm;
+    }    
  
     @Transactional(propagation = Propagation.REQUIRES_NEW, rollbackFor = Exception.class)
     public void save(CompanyForm companyForm) {
@@ -60,6 +123,51 @@ public class CompanyDAO {
             session.persist(company);
         }
         session.flush();
+    }
+    
+    @Transactional(propagation = Propagation.REQUIRES_NEW, rollbackFor = Exception.class)
+    public Company createCompany(CompanyForm form) {
+    	
+    	Session session = this.sessionFactory.getCurrentSession();
+    	Company company = null;
+    	company = new Company();
+    	company.setCompanyCode(form.getCompanyCode());
+    	company.setCompanyName(form.getCompanyName());
+        if(form.getAddress().equals("")) 
+        	company.setAddress(null);
+        else
+        	company.setAddress(form.getAddress());
+        if(form.getLocation().equals("")) 
+        	company.setLocation(null);
+        else
+        	company.setLocation(form.getLocation());
+        session.persist(company);
+        session.flush();
+        return company;
+    }
+    
+    @Transactional(rollbackFor = Exception.class)
+    public Company saveCompany(CompanyForm form) {
+    	
+    	Session session = this.sessionFactory.getCurrentSession();
+    	Company company = null;
+    	company = this.findCompanyById(form.getCompanyId());
+        if(company != null) {
+        	company.setCompanyID(form.getCompanyId());
+	        company.setCompanyCode(form.getCompanyCode());
+	    	company.setCompanyName(form.getCompanyName());
+	        if(form.getAddress().equals("")) 
+	        	company.setAddress(null);
+	        else
+	        	company.setAddress(form.getAddress());
+	        if(form.getLocation().equals("")) 
+	        	company.setLocation(null);
+	        else
+	        	company.setLocation(form.getLocation());
+	        session.persist(company);
+	        session.flush();
+        }
+        return company;
     }
  
     public PaginationResult<CompanyInfo> queryCompany(int page, int maxResult, int maxNavigationPage,
