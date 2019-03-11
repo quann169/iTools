@@ -253,7 +253,7 @@ public class LoginPage extends JFrame implements ActionListener {
 
 			logger.info("Login with username: " + userText);
 
-			Assessor result = ctlObj.validateUser(userText, pwdText);
+			Assessor result = ctlObj.validateUser(userText, pwdText, machineCode);
 			if (result != null) {
 				logger.info("Login OK");
 				if (result.isLocked()) {

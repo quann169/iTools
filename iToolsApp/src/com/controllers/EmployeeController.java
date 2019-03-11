@@ -41,10 +41,11 @@ public class EmployeeController {
 	 * @param password
 	 * @return
 	 */
-	public List<Tool> getToolsOfMachine(String machineCode) {
+	public List<Tool> getToolsOfMachine(String machineCode, String companyCode) {
 		String sql = "select tools.ToolId, tools.ToolCode "
 				+ " from tools inner join toolsmachineTray on tools.ToolCode = toolsmachineTray.ToolCode "
-				+ " where tools.IsActive = '1' and toolsmachineTray.MachineCode = '" + machineCode + "';";
+				+ " where tools.IsActive = '1' and tools.CompanyCode = '" + companyCode
+				+ "' and toolsmachineTray.MachineCode = '" + machineCode + "';";
 		// System.out.println(sql);
 		logger.info(sql);
 		List<Tool> result = new ArrayList<>();
@@ -93,7 +94,8 @@ public class EmployeeController {
 		}
 
 		sql = " select count(*) from toolsmachinetray where toolsmachinetray.ToolCode = '" + tool
-				+ "' and toolsmachinetray.TrayIndex = '" + tray + "' and toolsmachinetray.MachineCode = '" + machineCode + "';";
+				+ "' and toolsmachinetray.TrayIndex = '" + tray + "' and toolsmachinetray.MachineCode = '" + machineCode
+				+ "';";
 		logger.info(sql);
 		int countExisted = 0;
 		try {
@@ -209,8 +211,9 @@ public class EmployeeController {
 	 * @param password
 	 * @return
 	 */
-	public List<Tool> getAllTools() {
-		String sql = " select tools.ToolCode from tools where tools.IsActive='1';";
+	public List<Tool> getAllTools(String companyCode) {
+		String sql = " select tools.ToolCode from tools where tools.IsActive='1' and tools.companyCode = '"
+				+ companyCode + "';";
 		// System.out.println(sql);
 		logger.info(sql);
 		HashMap<String, List<List<Object>>> result = new HashMap<>();
@@ -273,8 +276,8 @@ public class EmployeeController {
 	public List<Role> getUserRoles(String userName, String companyCode) {
 		String sql = "select distinct RoleName "
 				+ " from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID"
-				+ " inner join roles on roles.RoleID = roleassessor.RoleID where assessor.IsIsActive = '1' and assessor.CompanyCode = '" + companyCode
-				+ "' and assessor.UserName= '" + userName + "'";
+				+ " inner join roles on roles.RoleID = roleassessor.RoleID where assessor.IsIsActive = '1' and assessor.CompanyCode = '"
+				+ companyCode + "' and assessor.UserName= '" + userName + "'";
 		logger.info(sql);
 		List<Role> listAllRoles = new ArrayList<>();
 		try {
@@ -305,7 +308,8 @@ public class EmployeeController {
 				+ "				on toolsMachine.MachineCode = machine.MachineCode " + "	inner join Tools  "
 				+ "				on Tools.ToolCode = toolsMachine.ToolCode " + "	left join toolsMachineTray "
 				+ "				on toolsMachineTray.toolsMachineID = toolsMachine.toolsMachineID "
-				+ "where Tools.Isactive = '1' and company.CompanyCode = '" + companyCode + "' and tools.ToolCode = '" + selectValue + "';";
+				+ "where Tools.Isactive = '1' and company.CompanyCode = '" + companyCode + "' and tools.ToolCode = '"
+				+ selectValue + "';";
 		// System.out.println(sql);
 		logger.info(sql);
 		List<Machine> listAllMachines = new ArrayList<>();

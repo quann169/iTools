@@ -158,7 +158,7 @@ public class EmployeePage extends JFrame implements ActionListener, HidServicesL
 		this.isDashboard = isDashboard;
 		// this.parent = parent;
 		toolVstrayAndQuantityMap = empCtlObj.getToolTrayQuantity(machineCode, 0);
-		allToolNames = empCtlObj.getAllTools();
+		allToolNames = empCtlObj.getAllTools(companyCode);
 		setLayoutManager();
 		setLocationAndSize();
 		addComponentsToContainer();
@@ -484,7 +484,7 @@ public class EmployeePage extends JFrame implements ActionListener, HidServicesL
 		// System.out.println("AAAAAAAAAAA: " + toolComboBox.getItemCount());
 		// toolComboBox.removeAllItems();
 
-		List<Tool> listTools = empCtlObj.getToolsOfMachine(machineCode);
+		List<Tool> listTools = empCtlObj.getToolsOfMachine(machineCode, companyCode);
 		Collections.sort(listTools, new Comparator<Tool>() {
 			public int compare(Tool o1, Tool o2) {
 				if (o1.getToolName() == o2.getToolName())

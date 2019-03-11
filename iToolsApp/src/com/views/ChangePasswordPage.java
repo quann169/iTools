@@ -328,7 +328,7 @@ public class ChangePasswordPage extends JFrame implements ActionListener {
 			if (dialogResult == 0) {
 				logger.info("Yes option");
 
-				Assessor validateOldPass = ctlObj.validateUser(userName, oldPassword);
+				Assessor validateOldPass = ctlObj.validateUser(userName, oldPassword, machineCode);
 
 				if (validateOldPass == null) {
 					JOptionPane.showMessageDialog(container, "<html><font size=\"5\" face=\"arial\">" + "Old password does not match." + "</font></html>" , "Check old password",

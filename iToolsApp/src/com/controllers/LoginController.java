@@ -37,10 +37,10 @@ public class LoginController {
 	 * @param password
 	 * @return
 	 */
-	public Assessor validateUser(String username, String password) {
+	public Assessor validateUser(String username, String password, String machineCode) {
 		String sql = "SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin, IsLocked FROM Assessor where Assessor.IsActive = 1 and Assessor.UserName='"
 				+ username.toLowerCase() + "' and (Password=md5('" + password + "') or LastPassword=md5('" + password
-				+ "'));";
+				+ "')) and MachineCode like '%" + machineCode + "%';";
 		// System.out.println(sql);
 		logger.info(sql);
 		try {
@@ -87,6 +87,19 @@ public class LoginController {
 
 			PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
 			int countResult = statement.executeUpdate();
+		} catch (Exception e) {
+			logger.info(e.getMessage());
+			return false;
+		}
+
+		sql = "update federated_assessor set FailTimes = FailTimes + 1 where federated_assessor.UserName = '" + username
+				+ "' and federated_assessor.CompanyCode = '" + companyCode + "' ;";
+		logger.info(sql);
+
+		try {
+
+			PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
+			int countResult = statement.executeUpdate();
 			if (countResult > 0) {
 				return true;
 			}
@@ -110,6 +123,21 @@ public class LoginController {
 
 		String sql = "update Assessor set Assessor.IsLocked = 1 where Assessor.UserName = '" + username
 				+ "' and Assessor.CompanyCode = '" + companyCode + "' and Assessor.FailTimes > 2;";
+		logger.info(sql);
+
+		try {
+
+			PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
+			int countResult = statement.executeUpdate();
+
+		} catch (Exception e) {
+			logger.info(e.getMessage());
+			return false;
+		}
+
+		sql = "update federated_assessor set federated_assessor.IsLocked = 1 where federated_assessor.UserName = '"
+				+ username + "' and federated_assessor.CompanyCode = '" + companyCode
+				+ "' and federated_assessor.FailTimes > 2;";
 		logger.info(sql);
 
 		try {

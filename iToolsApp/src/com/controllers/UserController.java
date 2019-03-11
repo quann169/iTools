@@ -83,6 +83,17 @@ public class UserController {
 			PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
 			int rows = statement.executeUpdate();
 			logger.info(rows + " row(s) updated!");
+		} catch (Exception e) {
+			logger.info(e.getMessage());
+		}
+		
+		sql = "Update federated_assessor set federated_assessor.IsActive = " + status + " where federated_assessor.Username = '" + username
+				+ "' and federated_assessor.CompanyCode = '" + companyCode + "';";
+		logger.info(sql);
+		try {
+			PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
+			int rows = statement.executeUpdate();
+			logger.info(rows + " row(s) updated!");
 			return true;
 		} catch (Exception e) {
 			logger.info(e.getMessage());
@@ -97,8 +108,21 @@ public class UserController {
 	 * @return
 	 */
 	public boolean updateIsLocked(String username, String companyCode, int status) {
-		String sql = "Update  Assessor set Assessor.FailTimes = 0, IsFirstTimeLogin = 0, Assessor.IsLocked = " + status + " where Assessor.Username = '" + username
+		String sql = "Update Assessor set Assessor.FailTimes = 0, IsFirstTimeLogin = 0, Assessor.IsLocked = " + status + " where Assessor.Username = '" + username
 				+ "' and Assessor.CompanyCode = '" + companyCode + "';";
+		logger.info(sql);
+		try {
+			PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
+			int rows = statement.executeUpdate();
+			logger.info(rows + " row(s) updated!");
+		} catch (Exception e) {
+			logger.info(e.getMessage());
+			return false;
+		}
+		
+		
+		sql = "Update federated_assessor set federated_assessor.FailTimes = 0, IsFirstTimeLogin = 0, federated_assessor.IsLocked = " + status + " where federated_assessor.Username = '" + username
+				+ "' and federated_assessor.CompanyCode = '" + companyCode + "';";
 		logger.info(sql);
 		try {
 			PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
@@ -119,8 +143,21 @@ public class UserController {
 	 */
 	public String updatePassword(String username, String companyCode, String password, int isFirstChange) {
 
-		String sql = "Update  Assessor set Assessor.FailTimes = 0, Assessor.Password = md5('" + password + "'), Assessor.IsFirstTimeLogin = "
+		String sql = "Update Assessor set Assessor.FailTimes = 0, Assessor.Password = md5('" + password + "'), Assessor.IsFirstTimeLogin = "
 				+ isFirstChange + " where Assessor.Username = '" + username + "' and Assessor.CompanyCode = '"
+				+ companyCode + "';";
+		logger.info(sql);
+		try {
+			PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
+			int rows = statement.executeUpdate();
+			logger.info(rows + " row(s) updated!");
+		} catch (Exception e) {
+			logger.info(e.getMessage());
+			return "Err";
+		}
+		
+		sql = "Update federated_assessor set federated_assessor.FailTimes = 0, federated_assessor.Password = md5('" + password + "'), federated_assessor.IsFirstTimeLogin = "
+				+ isFirstChange + " where federated_assessor.Username = '" + username + "' and federated_assessor.CompanyCode = '"
 				+ companyCode + "';";
 		logger.info(sql);
 		try {
@@ -175,9 +212,29 @@ public class UserController {
 		RandomString generate = new RandomString(8, ThreadLocalRandom.current());
 		String passwordTmp = generate.nextString().toUpperCase();
 
-		String sql = "Update  Assessor set Assessor.LastPassword = md5('" + passwordTmp + "') "
+		String sql = "Update Assessor set Assessor.LastPassword = md5('" + passwordTmp + "') "
 				+ ", Assessor.IsFirstTimeLogin = 1 " + " where Assessor.Username = '" + userName
 				+ "' and Assessor.CompanyCode = '" + companyCode + "';";
+		logger.info(sql);
+		try {
+			PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
+			int rows = statement.executeUpdate();
+			logger.info(rows + " row(s) updated!");
+			
+			if (rows > 0) {
+				EmailUtils emailUtils = new EmailUtils(Enum.FORGOT_PASS_PAGE, userName, companyCode, machineCode);
+				emailUtils.sendEmail(email, "New password reset", "New password: " + passwordTmp);
+			} else {
+				logger.warn(rows + " row(s) updated!");
+			}
+		} catch (Exception e) {
+			logger.info(e.getMessage());
+			return false;
+		}
+		
+		sql = "Update federated_assessor set federated_assessor.LastPassword = md5('" + passwordTmp + "') "
+				+ ", federated_assessor.IsFirstTimeLogin = 1 " + " where federated_assessor.Username = '" + userName
+				+ "' and federated_assessor.CompanyCode = '" + companyCode + "';";
 		logger.info(sql);
 		try {
 			PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);

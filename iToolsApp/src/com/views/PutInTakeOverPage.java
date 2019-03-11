@@ -229,9 +229,9 @@ public class PutInTakeOverPage extends JFrame implements ActionListener {
 		// List<Tool> listTools = empCtlObj.getToolsOfMachine(machineCode);
 		List<Tool> listTools = new ArrayList<>();
 		if (pageType.equals(Enum.TKOVER.text())) {
-			listTools = empCtlObj.getToolsOfMachine(machineCode);
+			listTools = empCtlObj.getToolsOfMachine(machineCode, companyCode);
 		} else {
-			listTools = empCtlObj.getAllTools();
+			listTools = empCtlObj.getAllTools(companyCode);
 		}
 		Collections.sort(listTools, new Comparator<Tool>() {
 			public int compare(Tool o1, Tool o2) {
