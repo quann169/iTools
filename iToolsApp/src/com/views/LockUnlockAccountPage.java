@@ -249,7 +249,7 @@ public class LockUnlockAccountPage extends JFrame implements ActionListener {
 		try {
 			updateTimer.restart();
 		} catch (Exception e) {
-			logger.error("validateAllFields of lockunlockpage");
+			logger.error("validateAllFields of lockunlockpage: " + e.getMessage());
 		}
 		String selectedValue = userNameComboBox.getSelectedItem().toString();
 
