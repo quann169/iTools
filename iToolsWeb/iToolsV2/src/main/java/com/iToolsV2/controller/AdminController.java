@@ -167,14 +167,29 @@ public class AdminController {
  
     	List<Company> companies = companyDAO.findAllCompany();
     	UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();        
-        Collection<? extends GrantedAuthority> roleList= userDetails.getAuthorities();
+    	Assessor loginAssessor = null;
+    	Collection<? extends GrantedAuthority> roleList= userDetails.getAuthorities();
         for (GrantedAuthority role : roleList) {
         	if(role.getAuthority().equalsIgnoreCase("ROLE_SubAdmin")) {
-        		Assessor assessor = assessorDAO.findAccount(userDetails.getUsername().toLowerCase());
-                if(assessor != null) {
-                	companies = new ArrayList<Company>(); 
-                	companies.add(companyDAO.findCompanyByCode(assessor.getCompanyCode()));
-                }
+        		loginAssessor = assessorDAO.findAccount(userDetails.getUsername().toLowerCase());
+        		if(loginAssessor != null) {
+        			if(loginAssessor.getCompanyCode().equalsIgnoreCase(form.getCompanyCode())) {
+        				Assessor assessor = assessorDAO.findAccount(userDetails.getUsername().toLowerCase());
+    	                if(assessor != null) {
+    	                	companies = new ArrayList<Company>(); 
+    	                	companies.add(companyDAO.findCompanyByCode(assessor.getCompanyCode()));
+    	                }
+        			} else {
+		        		model.addAttribute("errorMessage", "Error: You cannot view this page!!!");
+		        		return "/error";
+		        	}
+        		} else {
+	        		Assessor assessor = assessorDAO.findAccount(userDetails.getUsername().toLowerCase());
+	                if(assessor != null) {
+	                	companies = new ArrayList<Company>(); 
+	                	companies.add(companyDAO.findCompanyByCode(assessor.getCompanyCode()));
+	                }
+        		}
         	}
         }
         model.addAttribute("assessorForm", form);
@@ -271,11 +286,11 @@ public class AdminController {
 	        		if(loginAssessor.getCompanyCode().equalsIgnoreCase(oldForm.getCompanyCode()))
 	        			newAssessor = assessorDAO.saveAssessor(assessorForm);
 	        		else {
-		        		model.addAttribute("errorMessage", "Error: Fail authenticate!!!");
+		        		model.addAttribute("errorMessage", "Error: You cannot view this page!!!");
 		        		return "/error";
 		        	}
 	        	} else {
-	        		model.addAttribute("errorMessage", "Error: Fail authenticate!!!");
+	        		model.addAttribute("errorMessage", "Error: You cannot view this page!!!");
 	        		return "/error";
 	        	}
         	} else {

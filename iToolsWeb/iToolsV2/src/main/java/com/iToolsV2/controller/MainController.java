@@ -67,8 +67,8 @@ public class MainController {
     public String listMachineHandler(Model model, //
             @RequestParam(value = "name", defaultValue = "") String likeName,
             @RequestParam(value = "page", defaultValue = "1") int page) {
-        final int maxResult = 3;
-        final int maxNavigationPage = 10;
+        final int maxResult = 10;
+        final int maxNavigationPage = 100;
  
         PaginationResult<MachineInfo> result = machineDAO.queryMachine(page, //
                 maxResult, maxNavigationPage, likeName);
@@ -95,7 +95,7 @@ public class MainController {
             @RequestParam(value = "name", defaultValue = "") String likeName,
             @RequestParam(value = "page", defaultValue = "1") int page) {
         final int maxResult = 10;
-        final int maxNavigationPage = 10;        
+        final int maxNavigationPage = 100;        
 
         PaginationResult<AssessorInfo> result = assessorDAO.queryAssessor(page, //
                 maxResult, maxNavigationPage, likeName);
@@ -122,7 +122,7 @@ public class MainController {
             @RequestParam(value = "name", defaultValue = "") String likeName,
             @RequestParam(value = "page", defaultValue = "1") int page) {
         final int maxResult = 10;
-        final int maxNavigationPage = 10;
+        final int maxNavigationPage = 100;
  
         PaginationResult<CompanyInfo> result = companyDAO.queryCompany(page, //
                 maxResult, maxNavigationPage, likeName);
@@ -136,7 +136,7 @@ public class MainController {
             @RequestParam(value = "name", defaultValue = "") String likeName,
             @RequestParam(value = "page", defaultValue = "1") int page) {
         final int maxResult = 10;
-        final int maxNavigationPage = 100;
+        final int maxNavigationPage = 300;
  
         PaginationResult<ToolInfo> result = toolDAO.queryTool(page, //
                 maxResult, maxNavigationPage, likeName);

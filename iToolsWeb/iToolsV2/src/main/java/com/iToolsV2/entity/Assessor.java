@@ -1,6 +1,7 @@
 package com.iToolsV2.entity;
  
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -68,8 +69,19 @@ public class Assessor implements Serializable {
     
 	@Column(name = "IsFirstTimeLogin", length = 1, nullable = true)
     private boolean isFirstTimeLogin;
+	
+	@Column(name = "UpdatedDate", nullable = true)
+    private Date updatedDate;
     
-    public boolean isFirstTimeLogin() {
+    public Date getUpdatedDate() {
+		return updatedDate;
+	}
+
+	public void setUpdatedDate(Date updatedDate) {
+		this.updatedDate = updatedDate;
+	}
+
+	public boolean isFirstTimeLogin() {
 		return isFirstTimeLogin;
 	}
 

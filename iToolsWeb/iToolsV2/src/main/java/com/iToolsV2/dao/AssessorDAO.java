@@ -1,5 +1,6 @@
 package com.iToolsV2.dao;
  
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.NoResultException;
@@ -178,6 +179,7 @@ public class AssessorDAO {
         	assessor.setCompanyCode(null);
         else
         	assessor.setCompanyCode(form.getCompanyCode());
+        assessor.setUpdatedDate(new Date());
         session.persist(assessor);
         session.flush();
         return assessor;
@@ -212,6 +214,7 @@ public class AssessorDAO {
 	        	assessor.setCompanyCode(null);
 	        else
 	        	assessor.setCompanyCode(form.getCompanyCode());
+	        assessor.setUpdatedDate(new Date());
 	        session.persist(assessor);
 	        session.flush();
         }
