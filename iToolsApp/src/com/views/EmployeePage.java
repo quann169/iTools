@@ -798,8 +798,8 @@ public class EmployeePage extends JFrame implements ActionListener, HidServicesL
 						logger.info("Complete with resultValue = " + resultValue);
 						d.dispose();
 						if (resultValue == 1) {
-							woTextField.setText("");
-							opTextField.setText("");
+//							woTextField.setText("");
+//							opTextField.setText("");
 							toolComboBox.setSelectedIndex(0);
 							quantityTextField.setText("");
 							trayTextField.setText("");

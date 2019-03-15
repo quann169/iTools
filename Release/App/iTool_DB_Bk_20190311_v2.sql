@@ -1113,6 +1113,9 @@ BEGIN
 	
     SET SQL_SAFE_UPDATES = 0;
 	
+	delete from federated_WorkingTransaction where federated_WorkingTransaction.MachineCode = MachineCode;
+	
+	
 	INSERT INTO federated_WorkingTransaction (TransactionDate, MachineCode, CompanyCode, AssessorID, WOCode, OPCode, ToolCode, TrayIndex, Quantity, TransactionStatus, UpdatedDate, RespondMessage, TransactionType)
 	SELECT a.TransactionDate, a.MachineCode, a.CompanyCode, a.AssessorID, a.WOCode, a.OPCode, a.ToolCode, a.TrayIndex, a.Quantity, a.TransactionStatus, a.UpdatedDate, a.RespondMessage, a.TransactionType FROM WorkingTransaction a
 	LEFT OUTER JOIN federated_WorkingTransaction b ON  b.CompanyCode = a.CompanyCode and b.MachineCode = a.MachineCode
@@ -1201,6 +1204,10 @@ CREATE TABLE `federated_assessor` (
   KEY `UserName` (`UserName`)
 ) ENGINE=FEDERATED DEFAULT CHARSET=utf8 CONNECTION='mysql://tqteamne_admin:Admin123@112.213.89.47:3306/tqteamne_iToolsV2/Assessor';
 
+
+
+
+
 ALTER TABLE Tools ADD COLUMN CompanyCode VARCHAR(100) DEFAULT NULL AFTER ToolCode;
 
 DROP TABLE IF EXISTS `federated_tools`;
@@ -1221,3 +1228,14 @@ CREATE TABLE `federated_tools` (
 ALTER TABLE Tools  ADD CONSTRAINT Tools_Unique  UNIQUE (ToolCode, CompanyCode) ;
 ALTER TABLE Tools  Drop index ToolCode ;
 
+
+
+ALTER TABLE `CompanyMachine` DROP FOREIGN KEY `CompanyMachine_ibfk_1`;
+ALTER TABLE `CompanyMachine` DROP FOREIGN KEY `CompanyMachine_ibfk_2`;
+
+ALTER TABLE `RoleAssessor` DROP FOREIGN KEY `RoleAssessor_ibfk_1`;
+ALTER TABLE `RoleAssessor` DROP FOREIGN KEY `RoleAssessor_ibfk_2`;
+
+ALTER TABLE `WorkingTransaction` DROP FOREIGN KEY `WorkingTransaction_ibfk_1`;
+ALTER TABLE `WorkingTransaction` DROP FOREIGN KEY `WorkingTransaction_ibfk_2`;
+ALTER TABLE `WorkingTransaction` DROP FOREIGN KEY `WorkingTransaction_ibfk_3`;
