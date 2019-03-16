@@ -46,13 +46,13 @@ public class AssessorFormValidator implements Validator {
             errors.rejectValue("emailAddress", "Pattern.assessorForm.email");
         } else {
         	//if (assessorForm.getAssessorId() == 0) {
-        	Assessor assessor = assessorDAO.findAccountByEmail(assessorForm.getEmailAddress());
+        	/*Assessor assessor = assessorDAO.findAccountByEmail(assessorForm.getEmailAddress());
             if (assessor != null) {
             	if (assessorForm.getAssessorId() != 0) {
             		if (assessor.getAssessorID() != assessorForm.getAssessorId())
             			errors.rejectValue("emailAddress", "Duplicate.assessorForm.email");
             	}                
-            }
+            }*/
         }
  
         if (!errors.hasFieldErrors("name")) {

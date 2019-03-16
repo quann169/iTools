@@ -50,14 +50,20 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers("/companyList", "/admin/registerCompany", "/admin/registerCompanySuccessful", "/admin/companyDetail")
         		.access("hasRole('ROLE_Admin')");
         
-        http.authorizeRequests().antMatchers("/admin/registerTool", "/admin/registerToolSuccessful", "/admin/toolDetail", "/admin/assignToolToMachine", "/admin/assignToolToMachineSuccessful")
+        http.authorizeRequests().antMatchers("/admin/toolDetail", "/admin/assignToolToMachine", "/admin/assignToolToMachineSuccessful")
 				.access("hasRole('ROLE_Admin')");
+        
+        http.authorizeRequests().antMatchers("/admin/registerTool", "/admin/registerToolSuccessful")
+		.access("hasAnyRole('ROLE_Admin', 'ROLE_SubAdmin')");
         
         http.authorizeRequests().antMatchers("/ctidList")
 				.access("hasAnyRole('ROLE_Admin', 'ROLE_SubAdmin')");
         
-        http.authorizeRequests().antMatchers("/machineList", "/admin/machineDetail", "/admin/assignToolTray", "/admin/registerMachine", "/admin/registerMachineSuccessfull")
+        http.authorizeRequests().antMatchers("/machineList", "/admin/machineDetail", "/admin/assignToolTray")
 				.access("hasAnyRole('ROLE_Admin', 'ROLE_SubAdmin', 'ROLE_Accounting')");
+        
+        http.authorizeRequests().antMatchers("/admin/registerMachine", "/admin/registerMachineSuccessfull")
+		.access("hasRole('ROLE_Admin')");
         
         http.authorizeRequests().antMatchers("/userList", "/admin/registerAssessorSuccessful", "/admin/setRoleAssessor", "/admin/registerUser", "/admin/assessorDetail", "/admin/setUserRolesSuccessfull")
         		.access("hasAnyRole('ROLE_Admin', 'ROLE_SubAdmin')");
@@ -68,8 +74,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers("/css**", "/css/**", "/fonts**", "/fonts/**", "/img**", "/img/**", "/js**", 
         		"/js/**", "/vendor**", "/vendor/**", "/pdf.jpg", "/userguide.pdf", "/reset-password", "/reset-password/**").permitAll();
 
-        http.authorizeRequests().antMatchers("/transaction", "/transaction/**", "/getTrayByMachineCode")
-        		.access("hasAnyRole('ROLE_Admin', 'ROLE_Accounting')");
+        http.authorizeRequests().antMatchers("/transaction", "/transaction/**")
+        		.access("hasAnyRole('ROLE_Admin', 'ROLE_Accounting', 'ROLE_SubAdmin')");
+        
+        http.authorizeRequests().antMatchers("/getTrayByMachineCode")
+		.access("hasAnyRole('ROLE_Admin', 'ROLE_Accounting', 'ROLE_SubAdmin')");
 
         //http.authorizeRequests().anyRequest().authenticated().and().formLogin().loginPage("/login").permitAll();
         http.authorizeRequests().and().formLogin()//

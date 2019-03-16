@@ -76,27 +76,31 @@
             <tr>
            	   <th style="width:3%">STT</th>
                <th>Code</th>
+               <th>Company</th>
                <th>Model</th>
 <!--                <th>Barcode</th> -->
                <th>Details</th>
                <th>Status</th>
 <!--                <th>Created Date</th>
                <th>Updated Date</th> -->
-               <th>View</th>
-               <th:block sec:authorize="hasRole('ROLE_Admin')"><th>Edit</th></th:block>
+               <!-- <th>View</th> -->
+               <th>Edit</th>
+               <!-- <th:block sec:authorize="hasRole('ROLE_Admin')"><th>Edit</th></th:block> -->
                <!-- <th>Action</th> -->
             </tr>
             <tr class="detail status1" th:each ="toolInfo,iter : ${paginationTool.list}">
-               <td style="width:3%" th:utext="${iter.index+1}">...</td>
+               <td style="width:3%" th:utext="${10*(paginationTool.currentPage-1) + iter.index + 1}">...</td>
                <td th:utext="${toolInfo.toolCode}">...</td>
+               <td th:utext="${toolInfo.companyCode}">...</td>
                <td th:utext="${toolInfo.model}">...</td>
 <!--                <td th:utext="${toolInfo.barcode}">...</td> -->
                <td th:utext="${toolInfo.description}">...</td>
                <td th:utext="${toolInfo.active} ? 'Active' : 'Disabled'">...</td>
 <!--                <td th:utext="${toolInfo.createdDate}">...</td>
                <td th:utext="${toolInfo.updatedDate}">...</td> -->
-               <td style="width:12%;"><a class="btn btn-primary text-uppercase" style="width:70px; font-size:12px" th:href="@{|/admin/viewTool?toolID=${toolInfo.toolID}|}">View</a></td>
-               <th:block sec:authorize="hasRole('ROLE_Admin')"><td style="width:12%;"><a class="btn btn-primary text-uppercase" style="width:70px; font-size:12px" th:href="@{|/admin/toolDetail?toolID=${toolInfo.toolID}|}">Edit</a></td></th:block>
+               <!-- <td style="width:12%;"><a class="btn btn-primary text-uppercase" style="width:70px; font-size:12px" th:href="@{|/admin/viewTool?toolID=${toolInfo.toolID}|}">View</a></td> -->
+               <!-- <th:block sec:authorize="hasRole('ROLE_Admin')"><td style="width:12%;"><a class="btn btn-primary text-uppercase" style="width:70px; font-size:12px" th:href="@{|/admin/toolDetail?toolID=${toolInfo.toolID}|}">Edit</a></td></th:block> -->
+               <td style="width:12%;"><a class="btn btn-primary text-uppercase" style="width:70px; font-size:12px" th:href="@{|/admin/toolDetail?toolID=${toolInfo.toolID}|}">Edit</a></td>
                <!-- <td style="width:17%;"><a class="btn btn-primary text-uppercase" style="width:180px; font-size:12px" th:href="@{|/admin/assignToolToMachine?toolID=${toolInfo.toolID}|}">Assign to Machine</a></td> -->
             </tr>
       </table>      

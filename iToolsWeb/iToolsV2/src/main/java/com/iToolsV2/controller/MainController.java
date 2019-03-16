@@ -140,6 +140,20 @@ public class MainController {
  
         PaginationResult<ToolInfo> result = toolDAO.queryTool(page, //
                 maxResult, maxNavigationPage, likeName);
+        
+        UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();        
+        Collection<? extends GrantedAuthority> roleList= userDetails.getAuthorities();
+        for (GrantedAuthority role : roleList) {
+        	if(role.getAuthority().equalsIgnoreCase("ROLE_SubAdmin")) {
+        		Assessor assessor = assessorDAO.findAccount(userDetails.getUsername().toLowerCase());
+                if(assessor != null) {
+                	result = toolDAO.queryTool(page, //
+                            maxResult, maxNavigationPage, likeName, assessor.getCompanyCode());
+                	break;
+                }
+        	}
+        }
+        
         model.addAttribute("name", "");
         model.addAttribute("paginationTool", result);
         return "toolList";

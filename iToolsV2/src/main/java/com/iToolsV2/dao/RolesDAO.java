@@ -65,7 +65,7 @@ public class RolesDAO {
     	try {
 	    	Session session = this.sessionFactory.getCurrentSession();
 	        String sql = "from " + Roles.class.getName() + " roles " //	
-	        		+ " Where roles.isRole = 1 ";
+	        		+ " Where roles.isRole = 1 and roles.roleName in ('Admin','SubAdmin','Accounting') ";
 	        Query<Roles> query = session.createQuery(sql, Roles.class);
 	        return query.getResultList();
     	} catch (NoResultException e) {
@@ -78,7 +78,7 @@ public class RolesDAO {
 	    	Session session = this.sessionFactory.getCurrentSession();
 	    	
 	    	String sql = "from " + Roles.class.getName() + " roles " //	
-	        		+ " Where roles.isRole = 1 "
+	        		+ " Where roles.isRole = 1 and roles.roleName in ('Admin','SubAdmin','Accounting') "
 	        		+ " and roles.roleID not in "
 	        		+ " ( select ra.roleID from " + RoleAssessor.class.getName() + " ra "
 	        		+ " Where ra.assessorID = :assessorID ) ";
@@ -94,7 +94,7 @@ public class RolesDAO {
     	try {
 	    	Session session = this.sessionFactory.getCurrentSession();
 	        String sql = "from " + Roles.class.getName() + " roles " //	
-	        		+ " Where roles.isRole = 1 and roles.roleName <> 'Admin'";
+	        		+ " Where roles.isRole = 1 and roles.roleName = 'Emp'";
 	        Query<Roles> query = session.createQuery(sql, Roles.class);
 	        return query.getResultList();
     	} catch (NoResultException e) {
@@ -107,7 +107,7 @@ public class RolesDAO {
 	    	Session session = this.sessionFactory.getCurrentSession();
 	    	
 	    	String sql = "from " + Roles.class.getName() + " roles " //	
-	        		+ " Where roles.isRole = 1 and roles.roleName <> 'Admin' "
+	        		+ " Where roles.isRole = 1 and roles.roleName = 'Emp' "
 	        		+ " and roles.roleID not in "
 	        		+ " ( select ra.roleID from " + RoleAssessor.class.getName() + " ra "
 	        		+ " Where ra.assessorID = :assessorID ) ";
@@ -116,6 +116,53 @@ public class RolesDAO {
 	        return query.getResultList();
     	} catch (NoResultException e) {
     		return null;
+    	}
+    }
+	
+	public List<Roles> findCurrentRoles(int assessorID) {
+    	try {
+	    	Session session = this.sessionFactory.getCurrentSession();
+	    	
+	    	String sql = "from " + Roles.class.getName() + " roles " //	
+	        		+ " Where roles.isRole = 1 and roles.roleName in ('Admin','SubAdmin','Accounting') "
+	        		+ " and roles.roleID in "
+	        		+ " ( select ra.roleID from " + RoleAssessor.class.getName() + " ra "
+	        		+ " Where ra.assessorID = :assessorID ) ";
+	        Query<Roles> query = session.createQuery(sql, Roles.class);
+	        query.setParameter("assessorID", assessorID);
+	        return query.getResultList();
+    	} catch (NoResultException e) {
+    		return null;
+    	}
+    }
+	
+	public boolean removeCurrentRoles(int assessorID) {
+    	try {
+	    	Session session = this.sessionFactory.getCurrentSession();
+	    	boolean returnDelete = false;
+	    	String sql = " from " + RoleAssessor.class.getName() + " ra "
+	        		+ " Where ra.assessorID = :assessorID ";
+	        Query<RoleAssessor> query = session.createQuery(sql, RoleAssessor.class);
+	        query.setParameter("assessorID", assessorID);
+	        List<RoleAssessor> rolesAssessor = null;
+	        try {
+	        	rolesAssessor = query.getResultList();
+	        } catch (NoResultException e) {
+	        	rolesAssessor = null;
+	    	}	       
+	        if(rolesAssessor != null) {
+		        for (RoleAssessor roleAssessor : rolesAssessor) {
+		        	try {
+		        		session.delete(roleAssessor);
+		        	} catch (Exception e) {
+		        		returnDelete = false;
+		        	}
+		        	returnDelete = true;
+		        }
+	        }
+	        return returnDelete;
+    	} catch (NoResultException e) {
+    		return false;
     	}
     }
  

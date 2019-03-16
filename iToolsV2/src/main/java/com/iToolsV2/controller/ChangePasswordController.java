@@ -1,5 +1,7 @@
 package com.iToolsV2.controller;
 
+import java.util.Date;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -62,6 +64,7 @@ public class ChangePasswordController extends AbstractController {
         	 // save pass
             assessor.setEncrytedPassword(encrytedPassword);
             assessor.setFirstTimeLogin(false);
+            assessor.setUpdatedDate(new Date());
             assessorDao.update(assessor);
             HttpSession session = request.getSession(false);
             if (session != null) session.invalidate();

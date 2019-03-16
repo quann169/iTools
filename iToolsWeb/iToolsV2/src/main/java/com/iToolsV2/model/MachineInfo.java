@@ -1,5 +1,7 @@
 package com.iToolsV2.model;
  
+import java.util.Objects;
+
 import com.iToolsV2.entity.Machine;
  
 public class MachineInfo {
@@ -100,5 +102,19 @@ public class MachineInfo {
 	public void setActive(boolean active) {
 		this.active = active;
 	}
- 
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (obj == null) {
+			return false;
+		}
+		if (getClass() != obj.getClass()) {
+			return false;
+		}
+		final MachineInfo other = (MachineInfo) obj;
+		if (!Objects.equals(this.machineCode, other.machineCode)) {
+			return false;
+		}
+		return true;
+	}
 }

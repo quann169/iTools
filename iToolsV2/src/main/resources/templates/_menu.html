@@ -24,10 +24,16 @@
    Company Management
    </a>
    </th:block> 
-   <th:block sec:authorize="hasAnyRole('ROLE_Admin', 'ROLE_Accounting')">
+   <th:block sec:authorize="hasAnyRole('ROLE_Admin', 'ROLE_Accounting', 'ROLE_SubAdmin')">
    |
    <a th:href="@{/transaction}">
    Working Transaction
    </a>
-   </th:block>   
+   </th:block>  
+   <th:block sec:authorize="hasAnyRole('ROLE_Admin', 'ROLE_Accounting', 'ROLE_SubAdmin')">
+   |
+   <a th:href="@{/machineReport}">
+   Machine Report
+   </a>
+   </th:block>     
 </div>

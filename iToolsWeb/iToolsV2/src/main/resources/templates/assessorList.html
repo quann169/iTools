@@ -67,10 +67,11 @@
                <th style="width:6%">UserName</th>
                <th>First Name</th>
                <th style="width:8%">Last Name</th>
-               <th style="width:16%">Email</th>
+               <th style="width:10%">Email</th>
                <th>Address</th>
                <th style="width:8%">Phone</th>
-               <th style="width:11%">Company</th>
+               <th style="width:10%">Company</th>
+               <th style="width:7%">Machine</th>
                <th>Status</th>
                <th>Locked</th>
                <th style="width:7%">Role</th>
@@ -79,15 +80,16 @@
                <th style="width:9%">Remove Role</th>
             </tr>
             <tr th:each ="assessorInfo,iter : ${paginationAssessor.list}">
-               <!-- <td style="width:3%" th:utext="${assessorInfo.assessorId}">...</td> -->
-               <td style="width:3%; word-wrap: break-word;" th:utext="${iter.index+1}">...</td>
+               <!-- <td style="width:3%; word-wrap: break-word;" th:utext="${assessorInfo.assessorId}">...</td> -->
+               <td style="width:3%; word-wrap: break-word;" th:utext="${10*(paginationAssessor.currentPage-1) + iter.index + 1}">...</td>
                <td style="width:6%; word-wrap: break-word;" th:utext="${assessorInfo.userName}">...</td>
                <td style="word-wrap: break-word;" th:utext="${assessorInfo.firstName}">...</td>
                <td style="width:8%; word-wrap: break-word;" th:utext="${assessorInfo.lastName}">...</td>
-               <td style="width:16%; word-wrap: break-word;" th:utext="${assessorInfo.emailAddress}">...</td>
+               <td style="width:10%; word-wrap: break-word;" th:utext="${assessorInfo.emailAddress}">...</td>
                <td style="word-wrap: break-word;" th:utext="${assessorInfo.address}">...</td>
                <td style="width:8%; word-wrap: break-word;" th:utext="${assessorInfo.phone}">...</td>
-               <td style="width:11%; word-wrap: break-word;" th:utext="${assessorInfo.companyCode}">...</td>
+               <td style="width:10%; word-wrap: break-word;" th:utext="${assessorInfo.companyCode}">...</td>
+               <td style="width:7%; word-wrap: break-word;" th:utext="${assessorInfo.machineCode}">...</td>
                <td>
                	<div th:switch="${assessorInfo.active}"> 
 				  <div th:case=true>Active</div>

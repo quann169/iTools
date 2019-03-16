@@ -24,6 +24,9 @@ public class Tools implements Serializable {
     @Column(name = "ToolCode", length = 100, nullable = true)
     private String toolCode;
     
+    @Column(name = "CompanyCode", length = 100, nullable = true)
+    private String companyCode;
+    
     @Column(name = "Model", length = 100, nullable = true)
     private String model;
     
@@ -104,6 +107,14 @@ public class Tools implements Serializable {
 
 	public void setUpdatedDate(Date updatedDate) {
 		this.updatedDate = updatedDate;
+	}
+
+	public String getCompanyCode() {
+		return companyCode;
+	}
+
+	public void setCompanyCode(String companyCode) {
+		this.companyCode = companyCode;
 	}
 	
  

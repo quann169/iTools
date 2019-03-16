@@ -147,7 +147,7 @@
                <td align="left">Company</td>
                <td align="left">
                   <select th:field="*{companyCode}" >
-                     <option value=""> -- </option>
+                     <!-- <option value=""> -- </option> -->
                      <option th:each="company : ${companies}"
                         th:value="${company.companyCode}"
                         th:utext="${company.companyName}"/>

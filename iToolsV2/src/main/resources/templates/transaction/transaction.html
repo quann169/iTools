@@ -56,7 +56,7 @@
 	        <script type="text/javascript" language="javascript"
 	                src="../../static/vendor/buttons.print.min.js"
 	                th:src="@{/vendor/buttons.print.min.js}">
-	        </script>
+	        </script>        
 	    </th:block>
 	    <script type="text/javascript" th:inline="javascript">
 	        /*<![CDATA[*/
@@ -73,7 +73,9 @@
 		<form action="report.html" class="form-horizontal" method="post"
 			  th:action="@{/transaction/query}"
 			  th:object="${transactionSearch}">
+			<th:block sec:authorize="hasAnyRole('ROLE_Admin', 'ROLE_SubAdmin', 'ROLE_Accounting')">   
 			<fieldset>
+				<th:block sec:authorize="hasAnyRole('ROLE_Admin')"> 
 				<div class="row" style="padding-bottom: 10px;">
 					<div class="col-sm-2" style="text-align: right"><label>Company</label></div>
 					<div class="col-sm-4">
@@ -84,16 +86,16 @@
 		                    </option>
 		                </select>
 					</div>
-					<div class="col-sm-2" style="text-align: right"><label>Tool</label></div>
+					<div class="col-sm-2" style="text-align: right"><label>Machine</label></div>
 					<div class="col-sm-4">
-						<select id="tool" class="form-control" title="CTID" th:field="*{toolCode}">
+						<select id="Machine" class="form-control" title="Machine" th:field="*{machineCode}">
 		                    <option value="" th:value="null">--Vui lòng chọn--</option>
-		                    <option th:each="tool : ${lstTool}" th:value="${tool.toolCode}" th:text="${tool.toolCode}">
-		                        Tool
+		                    <option th:each="machine : ${lstMachine}" th:value="${machine.machineCode}" th:text="${machine.machineName}">
+		                        Machine
 		                    </option>
 		                </select>
 					</div>
-				</div>
+				</div>				
 				<div class="row" style="padding-bottom: 10px;">
 					<div class="col-sm-2" style="text-align: right"><label>User</label></div>
 					<div class="col-sm-4">
@@ -101,6 +103,27 @@
 		                    <option value="" th:value="0">--Vui lòng chọn--</option>
 		                    <option th:each="user : ${lstUser}" th:value="${user.assessorID}" th:text="${user.userName}">
 		                        User
+		                    </option>
+		                </select>
+					</div>
+					<div class="col-sm-2" style="text-align: right"><label>Tray</label></div>
+					<div class="col-sm-4">
+						<select id="Tray" class="form-control" title="Tray" th:field="*{tray}">
+		                    <option value="" th:value="null">--Vui lòng chọn--</option>
+		                    <option th:each="tray : ${lstTray}" th:value="${tray}" th:text="${tray}">
+		                        Tray
+		                    </option>
+		                </select>
+					</div>					
+				</div>
+				</th:block>
+				<div class="row" style="padding-bottom: 10px;">					
+					<div class="col-sm-2" style="text-align: right"><label>Tool</label></div>
+					<div class="col-sm-4">
+						<select id="tool" class="form-control" title="CTID" th:field="*{toolCode}">
+		                    <option value="" th:value="null">--Vui lòng chọn--</option>
+		                    <option th:each="tool : ${lstTool}" th:value="${tool.toolCode}" th:text="${tool.toolCode}">
+		                        Tool
 		                    </option>
 		                </select>
 					</div>
@@ -114,26 +137,6 @@
 		                </select>
 					</div>
 				</div>
-				<div class="row" style="padding-bottom: 10px;">
-					<div class="col-sm-2" style="text-align: right"><label>Machine</label></div>
-					<div class="col-sm-4">
-						<select id="Machine" class="form-control" title="Machine" th:field="*{machineCode}">
-		                    <option value="" th:value="null">--Vui lòng chọn--</option>
-		                    <option th:each="machine : ${lstMachine}" th:value="${machine.machineCode}" th:text="${machine.machineName}">
-		                        Machine
-		                    </option>
-		                </select>
-					</div>
-					<div class="col-sm-2" style="text-align: right"><label>Tray</label></div>
-					<div class="col-sm-4">
-						<select id="Tray" class="form-control" title="Tray" th:field="*{tray}">
-		                    <option value="" th:value="null">--Vui lòng chọn--</option>
-		                    <option th:each="tray : ${lstTray}" th:value="${tray}" th:text="${tray}">
-		                        Tray
-		                    </option>
-		                </select>
-					</div>
-				</div>
 				<div class="row" style="padding-bottom: 5px;">
 					<div class="col-sm-2" style="text-align: right"><label>From Date</label></div>
 					<div class="col-sm-4">
@@ -144,8 +147,9 @@
 						<input id="ToDate" class="form-control date-placeholder" th:field="*{toDate}"/>
 					</div>
 				</div>
-			</fieldset>
+			</fieldset>			
 			<button style="margin-top: 15px;margin-bottom: 15px;" type="submit" class="btn btn-primary text-uppercase full-width">SEARCH</button>
+			</th:block>
 		</form>
 		
 		<div class="margin-top-l"></div>
@@ -213,17 +217,17 @@
 	            buttons: [
 	                {
 	                    extend: 'excel',
-	                    text: 'Export excel'
+	                    text: 'In/Out Report(.xls)'
 	                },
 	                {
 	                    extend: 'pdf',
 	                    orientation: 'landscape',
-	                    text: 'Export pdf'
+	                    text: 'In/Out Report(.pdf)'
 	                    
 	                }
-	            ]
-	        });
-
+	            ]	            
+	        });	        
+	        
 	        $('#Machine').change(function () {
 	            $.ajax({
 	                dataType: 'json',

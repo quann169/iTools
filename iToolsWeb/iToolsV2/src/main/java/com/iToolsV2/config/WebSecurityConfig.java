@@ -51,7 +51,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         		.access("hasRole('ROLE_Admin')");
         
         http.authorizeRequests().antMatchers("/admin/toolDetail", "/admin/assignToolToMachine", "/admin/assignToolToMachineSuccessful")
-				.access("hasRole('ROLE_Admin')");
+				.access("hasAnyRole('ROLE_Admin', 'ROLE_SubAdmin')");
         
         http.authorizeRequests().antMatchers("/admin/registerTool", "/admin/registerToolSuccessful")
 		.access("hasAnyRole('ROLE_Admin', 'ROLE_SubAdmin')");

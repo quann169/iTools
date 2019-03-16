@@ -50,7 +50,13 @@
 	                th:src="@{/vendor/buttons.print.min.js}">
 	        </script>
 	    </th:block>
-
+		<style>
+	         input.break {
+			    word-wrap: break-word;
+			    word-break: break-all;
+			    height: 80px;
+			}
+	    </style>
    </head>
    <body>
       <!-- Include _menu.html -->
@@ -89,7 +95,8 @@
             </tr>
             <tr>
                <td align="left">Description</td>
-               <td align="left"><input type="text" th:field="*{description}" /> </td>
+<!--                <td align="left"><input type="text" th:field="*{description}" /> </td> -->
+                <td align="left"><textarea name="text" rows="2" cols="30" wrap="soft" maxlength="40" style="overflow:scroll; overflow-x:auto; overflow-y:auto; resize:none;" th:field="*{description}"> </textarea></td>
                <td align="left">Status</td>
                <th:block sec:authorize="hasRole('ROLE_Admin')"><td align="left">
                   <select th:field="*{active}">

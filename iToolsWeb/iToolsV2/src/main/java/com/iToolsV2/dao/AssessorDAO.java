@@ -49,6 +49,21 @@ public class AssessorDAO {
     	}
     }
     
+    public Assessor findAccount(String userName, String companyCode) {
+    	try {
+	    	Session session = this.sessionFactory.getCurrentSession();
+	        String sql = "from " + Assessor.class.getName() + " assessor " //
+	                + " Where assessor.userName = :userName "
+	        		+ " and assessor.companyCode = :companyCode ";
+	        Query<Assessor> query = session.createQuery(sql, Assessor.class);
+	        query.setParameter("userName", userName);
+	        query.setParameter("companyCode", companyCode);
+	        return query.getSingleResult();
+    	} catch (NoResultException e) {
+    		return null;
+    	}
+    }
+    
     public Assessor findAccountByID(int assessorID) {
     	try {
 	    	Session session = this.sessionFactory.getCurrentSession();
@@ -116,6 +131,7 @@ public class AssessorDAO {
     		assessorForm.setActive(assessor.isActive());
     		assessorForm.setLocked(assessor.isLocked());
     		assessorForm.setCompanyCode(assessor.getCompanyCode());
+    		assessorForm.setMachinesID(assessor.getMachineCode());
         }
     	return assessorForm;
     }
@@ -179,6 +195,7 @@ public class AssessorDAO {
         	assessor.setCompanyCode(null);
         else
         	assessor.setCompanyCode(form.getCompanyCode());
+        assessor.setMachineCode(form.getMachinesID());
         assessor.setUpdatedDate(new Date());
         session.persist(assessor);
         session.flush();
@@ -214,6 +231,7 @@ public class AssessorDAO {
 	        	assessor.setCompanyCode(null);
 	        else
 	        	assessor.setCompanyCode(form.getCompanyCode());
+	        assessor.setMachineCode(form.getMachinesID());
 	        assessor.setUpdatedDate(new Date());
 	        session.persist(assessor);
 	        session.flush();
@@ -236,7 +254,7 @@ public class AssessorDAO {
             String likeName) {
         String sql = "Select new " + AssessorInfo.class.getName() //
                 + "(a.assessorID, a.userName, a.encrytedPassword, a.active, a.firstName, a.lastName,"
-                + " a.emailAddress, a.address, a.phone, a.companyCode, a.locked, r.roleName) " + " from "//
+                + " a.emailAddress, a.address, a.phone, a.companyCode, a.machineCode, a.locked, r.roleName) " + " from "//
                 + Assessor.class.getName() + " a "
         		+ " left join " + RoleAssessor.class.getName() + " ra on ra.assessorID = a.assessorID "
         		+ " left join " + Roles.class.getName() + " r on r.roleID = ra.roleID ";
@@ -260,7 +278,7 @@ public class AssessorDAO {
             String likeName, String companyCode) {
         String sql = "Select new " + AssessorInfo.class.getName() //
                 + "(a.assessorID, a.userName, a.encrytedPassword, a.active, a.firstName, a.lastName,"
-                + " a.emailAddress, a.address, a.phone, a.companyCode, a.locked, r.roleName) " + " from "//
+                + " a.emailAddress, a.address, a.phone, a.companyCode, a.machineCode, a.locked, r.roleName) " + " from "//
                 + Assessor.class.getName() + " a "
 		        + " left join " + RoleAssessor.class.getName() + " ra on ra.assessorID = a.assessorID "
 				+ " left join " + Roles.class.getName() + " r on r.roleID = ra.roleID ";
@@ -305,6 +323,22 @@ public class AssessorDAO {
 	        query.setParameter("userName", userName);
 	        query.setParameter("active", active);
 	        query.setParameter("locked", locked);
+	        return query.getSingleResult();
+    	} catch (NoResultException e) {
+    		//log.error(e.getMessage());
+    		return null;
+    	}
+    }
+	
+	public Assessor findByUserNameAndActive(String userName, boolean active) {
+    	try {
+	    	Session session = this.sessionFactory.getCurrentSession();
+	        String sql = "from " + Assessor.class.getName() + " assessor " //
+	                + " Where assessor.userName = :userName "
+	                + " and assessor.active = :active ";
+	        Query<Assessor> query = session.createQuery(sql, Assessor.class);
+	        query.setParameter("userName", userName);
+	        query.setParameter("active", active);
 	        return query.getSingleResult();
     	} catch (NoResultException e) {
     		//log.error(e.getMessage());

@@ -1,5 +1,6 @@
 package com.iToolsV2.controller;
  
+import java.beans.PropertyEditorSupport;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -43,6 +44,7 @@ import com.iToolsV2.form.RolesAssessorForm;
 import com.iToolsV2.form.ToolForm;
 import com.iToolsV2.form.ToolMachineForm;
 import com.iToolsV2.form.TrayForm;
+import com.iToolsV2.model.MachineInfo;
 import com.iToolsV2.model.ToolInfo;
 import com.iToolsV2.pagination.PaginationResult;
 import com.iToolsV2.validator.AssessorFormValidator;
@@ -112,7 +114,7 @@ public class AdminController {
         
         if (target.getClass() == MachineForm.class) {
             dataBinder.setValidator(machineFormValidator); 
-        }
+        }        
     }
  
     @RequestMapping(value = { "/admin/login" }, method = RequestMethod.GET)
@@ -143,6 +145,7 @@ public class AdminController {
  
     	AssessorForm form = new AssessorForm();
     	List<Company> companies = companyDAO.findAllCompany();
+    	List<MachineInfo> machines = machineDAO.findAllMachineInfo();
     	UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();        
         Collection<? extends GrantedAuthority> roleList= userDetails.getAuthorities();
         for (GrantedAuthority role : roleList) {
@@ -151,12 +154,14 @@ public class AdminController {
                 if(assessor != null) {
                 	companies = new ArrayList<Company>(); 
                 	companies.add(companyDAO.findCompanyByCode(assessor.getCompanyCode()));
+                	machines = machineDAO.findMachineByCompanyCode(assessor.getCompanyCode());
                 }
         	}
         }
     	form.setActive(true);
         model.addAttribute("assessorForm", form);
         model.addAttribute("companies", companies);
+        model.addAttribute("machines", machines);
  
         return "registerAssessor";
     }
@@ -164,8 +169,29 @@ public class AdminController {
     @RequestMapping(value = "/admin/assessorDetail", method = RequestMethod.GET)
     public String editAssessor(Model model, @RequestParam("assessorID") int assessorID) {
     	AssessorForm form = assessorDAO.findAssessorFormByID(assessorID);
- 
+    	String currentMachine  = "";
+    	if(form.getMachinesID() != null && !form.getMachinesID().equals("")) {
+    		if(form.getMachinesID().contains(";")) {
+    			String[] listMachineCode = form.getMachinesID().split(";");
+    			for (int i = 0; i < listMachineCode.length; i++) {
+    				Machine thisMachine = machineDAO.findMachine(listMachineCode[i]);
+    				if(thisMachine != null)
+    					currentMachine = currentMachine + thisMachine.getMachineName() + " ; ";
+    			}
+    			if(currentMachine.length() > 3)
+    				form.setCurrentMachine(currentMachine.substring(0, currentMachine.length() - 3));
+    		} else {
+    			Machine thisMachine = machineDAO.findMachine(form.getMachinesID());
+    			if(thisMachine != null)
+    				form.setCurrentMachine(thisMachine.getMachineName());
+    			else
+    				form.setCurrentMachine("");
+    		}
+    	} else {
+    		form.setCurrentMachine("NONE.");
+    	}
     	List<Company> companies = companyDAO.findAllCompany();
+    	List<MachineInfo> machines = machineDAO.findAllMachineInfo();
     	UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();        
     	Assessor loginAssessor = null;
     	Collection<? extends GrantedAuthority> roleList= userDetails.getAuthorities();
@@ -178,6 +204,7 @@ public class AdminController {
     	                if(assessor != null) {
     	                	companies = new ArrayList<Company>(); 
     	                	companies.add(companyDAO.findCompanyByCode(assessor.getCompanyCode()));
+    	                	machines = machineDAO.findMachineByCompanyCode(assessor.getCompanyCode());
     	                }
         			} else {
 		        		model.addAttribute("errorMessage", "Error: You cannot view this page!!!");
@@ -188,12 +215,14 @@ public class AdminController {
 	                if(assessor != null) {
 	                	companies = new ArrayList<Company>(); 
 	                	companies.add(companyDAO.findCompanyByCode(assessor.getCompanyCode()));
+	                	machines = machineDAO.findMachineByCompanyCode(assessor.getCompanyCode());
 	                }
         		}
         	}
         }
         model.addAttribute("assessorForm", form);
         model.addAttribute("companies", companies);
+        model.addAttribute("machines", machines);
  
         return "assessorDetail";
     }
@@ -259,9 +288,10 @@ public class AdminController {
             @ModelAttribute("assessorForm") @Validated AssessorForm assessorForm, //
             BindingResult result, //
             final RedirectAttributes redirectAttributes) {
-    	
+
     	UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     	Assessor loginAssessor = null;
+    	List<MachineInfo> machines = machineDAO.findAllMachineInfo();
         Collection<? extends GrantedAuthority> roleList= userDetails.getAuthorities();
         for (GrantedAuthority role : roleList) {
         	if(role.getAuthority().equalsIgnoreCase("ROLE_SubAdmin")) {
@@ -274,8 +304,10 @@ public class AdminController {
         	if(loginAssessor != null) {
             	companies = new ArrayList<Company>(); 
             	companies.add(companyDAO.findCompanyByCode(loginAssessor.getCompanyCode()));
+            	machines = machineDAO.findMachineByCompanyCode(assessorForm.getCompanyCode());
             }
         	model.addAttribute("companies", companies);
+        	model.addAttribute("machines", machines);
             return "assessorDetail";
         }
         Assessor newAssessor= null;
@@ -283,9 +315,17 @@ public class AdminController {
         	if(loginAssessor != null) {
 	        	AssessorForm oldForm = assessorDAO.findAssessorFormByID(assessorForm.getAssessorId());
 	        	if (oldForm != null) {
-	        		if(loginAssessor.getCompanyCode().equalsIgnoreCase(oldForm.getCompanyCode()))
+	        		if(loginAssessor.getCompanyCode().equalsIgnoreCase(oldForm.getCompanyCode())) {
+	        			String oldMachineList = oldForm.getMachinesID();
+	        			String updatedMachineList = assessorForm.getMachinesID();
+	        			if(updatedMachineList != null && !updatedMachineList.equals(""))
+	        				updatedMachineList = updatedMachineList.replaceAll(",", ";");
+	        			if(oldMachineList != null && (updatedMachineList == null || updatedMachineList.equals("")))
+	        				assessorForm.setMachinesID(oldMachineList);
+	        			else
+	        				assessorForm.setMachinesID(updatedMachineList);
 	        			newAssessor = assessorDAO.saveAssessor(assessorForm);
-	        		else {
+	        		} else {
 		        		model.addAttribute("errorMessage", "Error: You cannot view this page!!!");
 		        		return "/error";
 		        	}
@@ -294,6 +334,17 @@ public class AdminController {
 	        		return "/error";
 	        	}
         	} else {
+        		AssessorForm oldForm = assessorDAO.findAssessorFormByID(assessorForm.getAssessorId());
+        		String oldMachineList = "";
+        		oldMachineList = oldForm.getMachinesID();
+    			String updatedMachineList = "";
+    			updatedMachineList = assessorForm.getMachinesID();
+    			if(updatedMachineList != null && !updatedMachineList.equals(""))
+    				updatedMachineList = updatedMachineList.replaceAll(",", ";");
+    			if(oldMachineList != null && !oldMachineList.equals("") && (updatedMachineList == null || updatedMachineList.equals("")))
+    				assessorForm.setMachinesID(oldMachineList);
+    			else
+    				assessorForm.setMachinesID(updatedMachineList);
         		newAssessor = assessorDAO.saveAssessor(assessorForm);
         	}
         }
@@ -304,8 +355,10 @@ public class AdminController {
             if(loginAssessor != null) {
             	companies = new ArrayList<Company>(); 
             	companies.add(companyDAO.findCompanyByCode(loginAssessor.getCompanyCode()));
+            	machines = machineDAO.findMachineByCompanyCode(assessorForm.getCompanyCode());
             }
         	model.addAttribute("companies", companies);
+        	model.addAttribute("machines", machines);
             return "assessorDetail";
         }
  
@@ -478,10 +531,23 @@ public class AdminController {
     public String viewRegisterTool(Model model) {
  
     	ToolForm form = new ToolForm();
-    	List<Machine> machines = machineDAO.findAll();
+    	//List<Machine> machines = machineDAO.findAll();
+    	List<Company> companies = companyDAO.findAllCompany();
+    	UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();        
+        Collection<? extends GrantedAuthority> roleList= userDetails.getAuthorities();
+        for (GrantedAuthority role : roleList) {
+        	if(role.getAuthority().equalsIgnoreCase("ROLE_SubAdmin")) {
+        		Assessor assessor = assessorDAO.findAccount(userDetails.getUsername().toLowerCase());
+                if(assessor != null) {
+                	companies = new ArrayList<Company>(); 
+                	companies.add(companyDAO.findCompanyByCode(assessor.getCompanyCode()));
+                }
+        	}
+        }
     	form.setActive(true);
         model.addAttribute("toolForm", form);
-        model.addAttribute("machines", machines);
+        //model.addAttribute("machines", machines);
+        model.addAttribute("companies", companies);
         
         return "registerTool";
     }
@@ -521,8 +587,25 @@ public class AdminController {
         final int maxResult = 100;
         final int maxNavigationPage = 100;
         System.out.println(toolID);
-        PaginationResult<ToolInfo> result = toolDAO.queryTool(1, //
-                maxResult, maxNavigationPage, toolID);
+        String companyCode = "";
+        UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();        
+        Collection<? extends GrantedAuthority> roleList= userDetails.getAuthorities();
+        for (GrantedAuthority role : roleList) {
+        	if(role.getAuthority().equalsIgnoreCase("ROLE_SubAdmin")) {
+        		Assessor assessor = assessorDAO.findAccount(userDetails.getUsername().toLowerCase());
+                if(assessor != null) {
+                	companyCode = assessor.getCompanyCode();
+                }
+        	}
+        }
+        PaginationResult<ToolInfo> result = null;
+        if (companyCode.equals("")) {
+	        result = toolDAO.queryTool(1, //
+	                maxResult, maxNavigationPage, toolID);
+        } else {
+        	result = toolDAO.queryTool(1, //
+	                maxResult, maxNavigationPage, toolID, companyCode);
+        }
         model.addAttribute("name", toolID);
         model.addAttribute("paginationTool", result);
         return "toolList";
@@ -540,7 +623,19 @@ public class AdminController {
     @RequestMapping(value = "/admin/toolDetail", method = RequestMethod.GET)
     public String editTool(Model model, @RequestParam("toolID") int toolID) {
     	ToolForm form = toolDAO.findToolFormByID(toolID);
- 
+    	List<Company> companies = companyDAO.findAllCompany();
+    	UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();        
+        Collection<? extends GrantedAuthority> roleList= userDetails.getAuthorities();
+        for (GrantedAuthority role : roleList) {
+        	if(role.getAuthority().equalsIgnoreCase("ROLE_SubAdmin")) {
+        		Assessor assessor = assessorDAO.findAccount(userDetails.getUsername().toLowerCase());
+                if(assessor != null) {
+                	companies = new ArrayList<Company>(); 
+                	companies.add(companyDAO.findCompanyByCode(assessor.getCompanyCode()));
+                }
+        	}
+        }
+        model.addAttribute("companies", companies);
         model.addAttribute("toolForm", form);
  
         return "toolDetail";

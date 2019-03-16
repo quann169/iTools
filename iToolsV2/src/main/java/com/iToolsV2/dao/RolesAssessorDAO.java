@@ -116,6 +116,7 @@ public class RolesAssessorDAO {
 	    			roleAssessor.setAssessorID(assessor.getAssessorID());
 	    			roleAssessor.setRoleID(Integer.parseInt(lstRoleCode[i]));
 	    			roleAssessor.setCreatedDate(new Date());
+	    			roleAssessor.setUpdatedDate(new Date());
 	    			roleAssessor.setActive(true);
 	    			int maxID = this.findMaxRoleAssessorID();
 	    			if(maxID != 0)

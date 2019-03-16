@@ -100,8 +100,14 @@
 			<tr>
                <td align="left">Roles</td>
                <td align="left">
-                  <select id="listRoles" class="chzn-select" multiple="true" style="width:400px;" th:field="*{rolesID}">
-                     <!-- <option value=""> -- </option> -->
+                  <!-- <select id="listRoles" class="chzn-select" multiple="true" style="width:400px;" th:field="*{rolesID}">
+					<option value=""> -- </option>
+                     <option th:each="role : ${roles}"
+                        th:value="${role.roleID}"
+                        th:utext="${role.roleName}"/>
+                  </select> -->
+                  <select th:field="*{rolesID}" >
+<!--                      <option value=""> -- </option> -->
                      <option th:each="role : ${roles}"
                         th:value="${role.roleID}"
                         th:utext="${role.roleName}"/>
@@ -112,8 +118,12 @@
                <td colspan="3" align="left">
                   <!-- <input type="submit" value="Assign" />
                   <input type="button" onclick="location.href='/assessorList'" value="Back To List" > -->
-                  <button class="btn btn-primary">Assign</button>
+                  <span th:if="${not #lists.isEmpty(roles)}">
+                  	<button class="btn btn-primary">Assign</button>
+                  </span>
+                  <span>
 				   <a class="btn btn-default" th:href="@{/userList}">BACK</a>
+				  </span>
                </td>
             </tr>
          </table>

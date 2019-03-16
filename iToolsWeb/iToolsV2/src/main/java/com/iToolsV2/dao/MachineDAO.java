@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.iToolsV2.entity.CompanyMachine;
 import com.iToolsV2.entity.Machine;
+import com.iToolsV2.entity.RoleAssessor;
 import com.iToolsV2.form.MachineForm;
 import com.iToolsV2.model.MachineInfo;
 import com.iToolsV2.pagination.PaginationResult;
@@ -250,6 +251,53 @@ public class MachineDAO {
 	    	Session session = this.sessionFactory.getCurrentSession();
 	        String sql = "from " + Machine.class.getName() + " machine ";
 	        Query<Machine> query = session.createQuery(sql, Machine.class);
+	        return query.getResultList();
+    	} catch (NoResultException e) {
+    		return null;
+    	}
+    }
+    
+    public List<MachineInfo> findAllMachineInfo() {
+    	try {
+	    	Session session = this.sessionFactory.getCurrentSession();
+	        String sql = "Select new " + MachineInfo.class.getName() //
+	                + "(m.machineID, m.machineCode, m.machineName, m.active) " + " from "//
+	                + Machine.class.getName() + " m ";
+	        Query<MachineInfo> query = session.createQuery(sql, MachineInfo.class);
+	        return query.getResultList();
+    	} catch (NoResultException e) {
+    		return null;
+    	}
+    }
+    
+    public List<MachineInfo> findMachineInfoByMachineCodeList(String machineCodeList) {
+    	try {
+	    	Session session = this.sessionFactory.getCurrentSession();
+	    	if(machineCodeList.contains(";")) {
+	    		machineCodeList = machineCodeList.replaceAll(";", ",");
+	    	}
+	        String sql = "Select new " + MachineInfo.class.getName() //
+	                + "(m.machineID, m.machineCode, m.machineName, m.active) " + " from "//
+	                + Machine.class.getName() + " m "
+	                + " where m.machineCode in ( :machineCodeList )";
+	        Query<MachineInfo> query = session.createQuery(sql, MachineInfo.class);
+	        query.setParameter("machineCodeList", machineCodeList);
+	        return query.getResultList();
+    	} catch (NoResultException e) {
+    		return null;
+    	}
+    }
+    
+    public List<MachineInfo> findMachineByCompanyCode(String companyCode) {
+    	try {
+	    	Session session = this.sessionFactory.getCurrentSession();
+	        String sql = "Select new " + MachineInfo.class.getName() 
+	        		+ "(machine.machineID, machine.machineCode, machine.machineName, machine.active) "
+	        		+ " from " + Machine.class.getName() + " machine "
+	        		+ " left join " + CompanyMachine.class.getName() + " cm on cm.machineCode = machine.machineCode "
+	        		+ " where cm.companyCode = :companyCode";
+	        Query<MachineInfo> query = session.createQuery(sql, MachineInfo.class);
+	        query.setParameter("companyCode", companyCode);
 	        return query.getResultList();
     	} catch (NoResultException e) {
     		return null;

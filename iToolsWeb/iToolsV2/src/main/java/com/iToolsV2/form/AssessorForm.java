@@ -16,6 +16,8 @@ public class AssessorForm {
     private boolean locked;
 	private String password;
     private String confirmPassword;
+    private String machinesID;
+    private String currentMachine;
  
     public AssessorForm() {
  
@@ -31,6 +33,7 @@ public class AssessorForm {
             this.emailAddress = assessorInfo.getEmailAddress();
             this.phone = assessorInfo.getPhone();
             this.companyCode = assessorInfo.getCompanyCode();
+            this.machinesID = assessorInfo.getMachineCode();
             this.active = assessorInfo.isActive();
             this.password = assessorInfo.getPassword();
             this.confirmPassword = assessorInfo.getConfirmPassword();
@@ -53,6 +56,22 @@ public class AssessorForm {
             this.assessorId = assessor.getAssessorID();
     }*/
     
+	public String getMachinesID() {
+		return machinesID;
+	}
+
+	public void setMachinesID(String machinesID) {
+		this.machinesID = machinesID;
+	}
+	
+	public String getCurrentMachine() {
+		return currentMachine;
+	}
+
+	public void setCurrentMachine(String currentMachine) {
+		this.currentMachine = currentMachine;
+	}
+	
     public boolean isLocked() {
 		return locked;
 	}

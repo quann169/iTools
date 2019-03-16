@@ -63,13 +63,27 @@
 	      </tr>
 		  </table>  
 	  </th:block>
-      <div class="product-preview-container" th:each="machineInfo : ${paginationMachine.list}">
+      <!-- <div class="product-preview-container" th:each="machineInfo : ${paginationMachine.list}">
          <ul>
             <li><a th:href="@{|/admin/machineDetail?machineID=${machineInfo.machineID}|}"><img class="machine-image"
                th:src="@{/image/machine.jpg}" /></a></li>
             <li style="text-align:center"><a th:href="@{|/admin/machineDetail?machineID=${machineInfo.machineID}|}"><span th:utext="${machineInfo.machineName}"></span></a></li>
          </ul>
-      </div>      
+      </div>    -->
+      <table border="1" style="width:100%">
+            <tr>
+            	<th>Machine Code</th>
+            	<th>Machine Name</th>               
+            	<th>Status</th>
+            	<th>Edit</th>
+            </tr>
+            <tr th:each ="machineInfo : ${paginationMachine.list}">
+               <td th:utext="${machineInfo.machineCode}">...</td>
+               <td th:utext="${machineInfo.machineName}">...</td>               
+               <td th:utext="${machineInfo.active} ? 'Active' : 'Disabled'">...</td>
+               <td><a class="btn btn-primary text-uppercase" style="width:70px; font-size:12px" th:href="@{|/admin/machineDetail?machineID=${machineInfo.machineID}|}">Edit</a></td>
+            </tr>
+      </table>    
        
       <br/>
       <div class="page-navigator" th:if="${paginationMachine.totalPages > 1}">

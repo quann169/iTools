@@ -49,14 +49,32 @@
 	        <script type="text/javascript" src="../../static/vendor/buttons.print.min.js"
 	                th:src="@{/vendor/buttons.print.min.js}">
 	        </script>
-	    </th:block>   
+	    </th:block>
+	    <style>
+         th, td {
+         padding: 5px;
+         }
+         td span  {
+         font-size:90%;
+         font-style: italic;
+         color: red;
+         }
+         .error {
+         font-size:120%;
+         color: red;
+         }
+      </style>   
    </head>
    <body>
       <th:block th:include="/_header"></th:block>
       	<th:block th:include="/_menuLite"></th:block>
        
-      <div class="page-title">Error</div>       
-      	<h3>Something went wrong! </h3>
+      <div class="page-title">Error</div>    
+      	<div th:if="${errorMessage != null}"
+           th:utext="${errorMessage}" class="error">...</div>   
+        <br>  
+      	<h3>Please back to Homepage! </h3>
+      	<br> 
 		<a class="btn btn-primary text-uppercase" th:href="@{|/machineList|}">HOME</a>          
       <th:block th:include="/_footer"></th:block>
        

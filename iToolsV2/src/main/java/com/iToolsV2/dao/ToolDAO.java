@@ -203,4 +203,12 @@ public class ToolDAO {
     		return null;
     	}
     }
+	
+	@Transactional(propagation = Propagation.REQUIRES_NEW, rollbackFor = Exception.class)
+	public Tools saveTool(Tools tool) {
+		Session session = this.sessionFactory.getCurrentSession();
+		session.persist(tool);
+        session.flush();
+        return tool;
+	}
 }

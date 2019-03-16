@@ -7,6 +7,7 @@ import com.iToolsV2.entity.Tools;
 public class ToolForm {
     private int toolID;
     private String toolCode;
+    private String companyCode;
     private String model;
     private String barcode;
     private String description;
@@ -23,6 +24,7 @@ public class ToolForm {
     public ToolForm(Tools tool) {
         this.toolID = tool.getToolID();
         this.toolCode = tool.getToolCode();
+        this.companyCode =tool.getCompanyCode();
         this.model = tool.getModel();
         this.barcode = tool.getBarcode();
         this.description = tool.getDescription(); 
@@ -103,5 +105,13 @@ public class ToolForm {
     public void setNewTool(boolean newTool) {
         this.newTool = newTool;
     }
+
+	public String getCompanyCode() {
+		return companyCode;
+	}
+
+	public void setCompanyCode(String companyCode) {
+		this.companyCode = companyCode;
+	}
  
 }

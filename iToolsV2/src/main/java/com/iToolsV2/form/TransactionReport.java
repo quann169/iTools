@@ -14,7 +14,8 @@ public class TransactionReport {
 	private String toolCode;
 	private int quantity;
 	private String typeTransaction;
-	private Date transactionDate;
+	//private Date transactionDate;
+	private String transactionDate;
 	private String transactionStatus;
 	private String woCode;
 	private String opCode;

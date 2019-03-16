@@ -50,8 +50,11 @@ public class Assessor implements Serializable {
 	@Column(name = "Phone", length = 255, nullable = false)
     private String phone;
     
-    @Column(name = "CompanyCode", length = 255, nullable = true)
+    @Column(name = "CompanyCode", length = 100, nullable = true)
     private String companyCode;
+    
+    @Column(name = "MachineCode", length = 100, nullable = true)
+    private String machineCode;
     
     @Column(name = "LastPassword", length = 255, nullable = true)
     private String lastPassword;
@@ -71,9 +74,20 @@ public class Assessor implements Serializable {
     private boolean isFirstTimeLogin;
 	
 	@Column(name = "UpdatedDate", nullable = true)
-    private Date updatedDate;
+    private Date updatedDate;	
+	
+	@Column(name = "FailTimes", nullable = false)
+    private int failTimes;
     
-    public Date getUpdatedDate() {
+    public String getMachineCode() {
+		return machineCode;
+	}
+
+	public void setMachineCode(String machineCode) {
+		this.machineCode = machineCode;
+	}
+
+	public Date getUpdatedDate() {
 		return updatedDate;
 	}
 
@@ -210,9 +224,17 @@ public class Assessor implements Serializable {
  
     public void setActive(boolean active) {
         this.active = active;
-    }
+    }    
  
-    @Override
+    public int getFailTimes() {
+		return failTimes;
+	}
+
+	public void setFailTimes(int failTimes) {
+		this.failTimes = failTimes;
+	}
+
+	@Override
     public String toString() {
         return "[" + this.userName + "," + this.encrytedPassword + "]";
     }

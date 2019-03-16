@@ -69,6 +69,7 @@ public class ToolDAO {
     		toolForm.setToolID(toolID);
     		toolForm.setToolCode(tool.getToolCode());
     		//toolForm.setBarcode(tool.getBarcode());
+    		toolForm.setCompanyCode(tool.getCompanyCode());
     		toolForm.setModel(tool.getModel());
     		toolForm.setDescription(tool.getDescription());
     		toolForm.setCreatedDate(tool.getCreatedDate());
@@ -115,6 +116,7 @@ public class ToolDAO {
         	tool.setModel(null);
         else
         	tool.setModel(form.getModel());
+        tool.setCompanyCode(form.getCompanyCode());
         /*if(form.getBarcode().equals("")) 
         	tool.setBarcode(null);
         else
@@ -138,6 +140,7 @@ public class ToolDAO {
     	tool = this.findToolById(form.getToolID());
         if(tool != null) {
         	tool.setToolID(form.getToolID());
+        	tool.setCompanyCode(form.getCompanyCode());
         	if(form.getModel().equals("")) 
             	tool.setModel(null);
             else
@@ -158,7 +161,7 @@ public class ToolDAO {
 
 	public PaginationResult<ToolInfo> queryTool(int page, int maxResult, int maxNavigationPage, String likeName) {
 		String sql = "Select new " + ToolInfo.class.getName() //
-				+ "(t.toolID, t.toolCode, t.model, t.barcode, t.description, t.active, t.createdDate, t.updatedDate) " + " from "//
+				+ "(t.toolID, t.toolCode, t.companyCode, t.model, t.barcode, t.description, t.active, t.createdDate, t.updatedDate) " + " from "//
 				+ Tools.class.getName() + " t ";
 		if (likeName != null && likeName.length() > 0) {
 			sql += " Where lower(t.toolCode) like :likeName ";
@@ -171,6 +174,34 @@ public class ToolDAO {
 		if (likeName != null && likeName.length() > 0) {
 			query.setParameter("likeName", "%" + likeName.toLowerCase() + "%");
 		}
+		return new PaginationResult<ToolInfo>(query, page, maxResult, maxNavigationPage);
+	}
+	
+	public PaginationResult<ToolInfo> queryTool(int page, int maxResult, int maxNavigationPage, String likeName, String companyCode) {
+		String sql = "Select new " + ToolInfo.class.getName() //
+				+ "(t.toolID, t.toolCode, t.companyCode, t.model, t.barcode, t.description, t.active, t.createdDate, t.updatedDate) " + " from "//
+				+ Tools.class.getName() + " t ";
+		if (likeName != null && likeName.length() > 0) {
+			sql += " Where lower(t.toolCode) like :likeName ";
+			if (companyCode != null && companyCode.length() > 0) {
+        		sql += " and t.companyCode = :companyCode ";
+        	}
+		} else {
+        	if (companyCode != null && companyCode.length() > 0) {
+        		sql += " Where t.companyCode = :companyCode ";
+        	}
+        }
+		// sql += " order by m.createdDate desc ";
+		//
+		Session session = this.sessionFactory.getCurrentSession();
+		Query<ToolInfo> query = session.createQuery(sql, ToolInfo.class);
+
+		if (likeName != null && likeName.length() > 0) {
+			query.setParameter("likeName", "%" + likeName.toLowerCase() + "%");
+		}
+		if (companyCode != null && companyCode.length() > 0) {
+        	query.setParameter("companyCode", companyCode);
+    	}
 		return new PaginationResult<ToolInfo>(query, page, maxResult, maxNavigationPage);
 	}
 

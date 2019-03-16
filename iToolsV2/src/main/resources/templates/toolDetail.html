@@ -79,7 +79,7 @@
          <table>
             <tr>
                <td align="left">Tool Code</td>
-               <td align="left"><input type="text" th:field="*{toolCode}" /><input type="text" th:field="*{toolID}" style="display:none"/></td>
+               <td align="left"><input type="text" th:field="*{toolCode}" readonly="readonly"/><input type="text" th:field="*{toolID}" style="display:none"/></td>
                <td>
                   <span th:if="${#fields.hasErrors('toolCode')}" th:errors="*{toolCode}">..</span>
                </td>
