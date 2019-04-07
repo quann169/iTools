@@ -1,8 +1,10 @@
 package com.utils;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.FontMetrics;
+import java.awt.Toolkit;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.io.BufferedWriter;
@@ -97,11 +99,15 @@ public class StringUtils {
 			obj.keyboard = typing;
 			obj.addVirtualKeyboardListener();
 		}
-
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		int windowWidth = (int) screenSize.getWidth();
+		int windowHeight = (int) screenSize.getHeight();
+		int extWidth = (windowWidth > 900) ? 50 : 0;
+		int extHeight = (windowHeight > 700) ? 50 : 0;
 		frame.setLayout(new BorderLayout());
 
 		// frame.setBounds(0, 0, 700, 460);
-		frame.setBounds(0, 0, 800, 600);
+		frame.setBounds(0 + extWidth, 0 + extHeight, 800, 600);
 		frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		frame.addComponentListener(new ComponentAdapter() {
 			@Override
@@ -196,7 +202,7 @@ public class StringUtils {
 				dataLog += "\t" + hd;
 			}
 			dataLog = dataLog + "\n";
-			
+
 			for (List<String> list : quantityTrayInfo) {
 				String data1Line = "";
 				for (String string : list) {
@@ -204,8 +210,7 @@ public class StringUtils {
 				}
 				dataLog += data1Line + "\n";
 			}
-			
-			
+
 			writer.write(dataLog);
 			writer.close();
 		} catch (Exception e) {

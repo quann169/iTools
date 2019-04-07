@@ -2,7 +2,9 @@ package com.views;
 
 import java.awt.Container;
 import java.awt.Cursor;
+import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
@@ -55,12 +57,10 @@ public class ChangePasswordPage extends JFrame implements ActionListener {
 	Container container = getContentPane();
 	JLabel logOutLabel = new JLabel(bundleMessage.getString("App_Logout"));
 
-
 	JLabel usernameLabel = new JLabel(bundleMessage.getString("ChangePassword_Page_Username"));
 	JLabel oldPasswordLabel = new JLabel(bundleMessage.getString("ChangePassword_Page_Old_Password"));
 	JLabel passwordLabel = new JLabel(bundleMessage.getString("ChangePassword_Page_Password"));
 	JLabel rePasswordLabel = new JLabel(bundleMessage.getString("ChangePassword_Page_RePassword"));
-
 
 	JTextField usernameTextField = new JTextField();
 	JPasswordField oldPasswordTextField = new JPasswordField();
@@ -88,6 +88,12 @@ public class ChangePasswordPage extends JFrame implements ActionListener {
 	Timer updateTimer;
 	int expiredTime = Integer.valueOf(cfg.getProperty("Expired_Time")) * 1000;
 
+	static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+	static int windowWidth = (int) screenSize.getWidth();
+	static int windowHeight = (int) screenSize.getHeight();
+	static int extWidth = (windowWidth > 900) ? 0 : 0;
+	static int extHeight = (windowHeight > 700) ? 0 : 0;
+
 	ChangePasswordPage(Assessor user) {
 		this.user = user;
 		this.userName = user.getUsername();
@@ -111,7 +117,7 @@ public class ChangePasswordPage extends JFrame implements ActionListener {
 		logOutLabel.setText("<html><font size=\"5\" face=\"arial\" color=\"#0181BE\"><b><i><u>"
 				+ bundleMessage.getString("App_Logout") + "</u></i></b></font></html>");
 		logOutLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		logOutLabel.setBounds(715, 5, 150, 60);
+		logOutLabel.setBounds(715 + extWidth, 5 + extHeight, 150, 60);
 		logOutLabel.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -127,20 +133,20 @@ public class ChangePasswordPage extends JFrame implements ActionListener {
 			}
 		});
 
-		usernameLabel.setBounds(70, 80, 250, 40);
+		usernameLabel.setBounds(70 + extWidth, 80 + extHeight, 250, 40);
 		usernameLabel.setFont(new Font(labelFont.getName(), Font.BOLD, 20));
 
 		String displayName = user.getFirstName() + " " + user.getLastName() + " - " + user.getUsername();
 
 		usernameTextField.setText(displayName);
-		usernameTextField.setBounds(260, 85, 450, 30);
+		usernameTextField.setBounds(260 + extWidth, 85 + extHeight, 450, 30);
 		usernameTextField.setFont(new Font(labelFont.getName(), Font.BOLD, 18));
 		usernameTextField.setEditable(false);
 
-		oldPasswordLabel.setBounds(70, 135, 350, 40);
+		oldPasswordLabel.setBounds(70 + extWidth, 135 + extHeight, 350, 40);
 		oldPasswordLabel.setFont(new Font(labelFont.getName(), Font.BOLD, 20));
 
-		oldPasswordTextField.setBounds(260, 140, 450, 30);
+		oldPasswordTextField.setBounds(260 + extWidth, 140 + extHeight, 450, 30);
 		oldPasswordTextField.setFont(new Font(labelFont.getName(), Font.BOLD, 20));
 		oldPasswordTextField.setText("");
 
@@ -162,10 +168,10 @@ public class ChangePasswordPage extends JFrame implements ActionListener {
 			}
 		});
 
-		passwordLabel.setBounds(70, 185, 350, 40);
+		passwordLabel.setBounds(70 + extWidth, 185 + extHeight, 350, 40);
 		passwordLabel.setFont(new Font(labelFont.getName(), Font.BOLD, 20));
 
-		passwordTextField.setBounds(260, 190, 450, 30);
+		passwordTextField.setBounds(260 + extWidth, 190 + extHeight, 450, 30);
 		passwordTextField.setFont(new Font(labelFont.getName(), Font.BOLD, 20));
 		passwordTextField.setText("");
 
@@ -194,11 +200,10 @@ public class ChangePasswordPage extends JFrame implements ActionListener {
 			}
 		});
 
-
-		rePasswordLabel.setBounds(70, 235, 350, 40);
+		rePasswordLabel.setBounds(70 + extWidth, 235 + extHeight, 350, 40);
 		rePasswordLabel.setFont(new Font(labelFont.getName(), Font.BOLD, 20));
 
-		rePasswordTextField.setBounds(260, 240, 450, 30);
+		rePasswordTextField.setBounds(260 + extWidth, 240 + extHeight, 450, 30);
 		rePasswordTextField.setFont(new Font(labelFont.getName(), Font.BOLD, 20));
 		rePasswordTextField.setText("");
 
@@ -228,7 +233,7 @@ public class ChangePasswordPage extends JFrame implements ActionListener {
 		});
 
 		changePassButton.setText(bundleMessage.getString("ChangePassword_Page_ChangePassword"));
-		changePassButton.setBounds(260, 290, 300, 35);
+		changePassButton.setBounds(260 + extWidth, 290+ extHeight, 300, 35);
 		changePassButton.setFont(new Font(labelFont.getName(), Font.BOLD, 22));
 
 		changePassButton.setEnabled(false);
@@ -238,8 +243,9 @@ public class ChangePasswordPage extends JFrame implements ActionListener {
 			public void actionPerformed(ActionEvent e) {
 				String timeoutMess = MessageFormat.format(bundleMessage.getString("App_TimeOut"),
 						cfg.getProperty("Expired_Time"));
-				JOptionPane.showMessageDialog(container, "<html><font size=\"5\" face=\"arial\">" + timeoutMess + "</font></html>" , "Time Out Reset Pass",
-						JOptionPane.WARNING_MESSAGE);
+				JOptionPane.showMessageDialog(container,
+						"<html><font size=\"5\" face=\"arial\">" + timeoutMess + "</font></html>",
+						"Time Out Reset Pass", JOptionPane.WARNING_MESSAGE);
 
 				logger.info(userName + ": " + Enum.RESET_PASS_PAGE + " time out.");
 				JFrame old = root;
@@ -301,8 +307,10 @@ public class ChangePasswordPage extends JFrame implements ActionListener {
 			@Override
 			public void windowClosing(WindowEvent we) {
 				String ObjButtons[] = { "Yes", "No" };
-				int PromptResult = JOptionPane.showOptionDialog(root, "<html><font size=\"5\" face=\"arial\">Are you sure you want to exit?</font></html>", "Confirm Close",
-						JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, ObjButtons, ObjButtons[1]);
+				int PromptResult = JOptionPane.showOptionDialog(root,
+						"<html><font size=\"5\" face=\"arial\">Are you sure you want to exit?</font></html>",
+						"Confirm Close", JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, ObjButtons,
+						ObjButtons[1]);
 				if (PromptResult == JOptionPane.YES_OPTION) {
 					System.exit(0);
 				}
@@ -331,7 +339,8 @@ public class ChangePasswordPage extends JFrame implements ActionListener {
 				Assessor validateOldPass = ctlObj.validateUser(userName, oldPassword, machineCode);
 
 				if (validateOldPass == null) {
-					JOptionPane.showMessageDialog(container, "<html><font size=\"5\" face=\"arial\">" + "Old password does not match." + "</font></html>" , "Check old password",
+					JOptionPane.showMessageDialog(container, "<html><font size=\"5\" face=\"arial\">"
+							+ "Old password does not match." + "</font></html>", "Check old password",
 							JOptionPane.WARNING_MESSAGE);
 				} else {
 
@@ -340,7 +349,7 @@ public class ChangePasswordPage extends JFrame implements ActionListener {
 
 					empCtlObj.updatePassword(userName, companyCode, password, 0);
 					logger.info("Change password ok - " + userName + " - " + password);
-					
+
 					Thread one = new Thread() {
 						public void run() {
 							List<String> listCCEmail = new ArrayList<>();
@@ -351,13 +360,14 @@ public class ChangePasswordPage extends JFrame implements ActionListener {
 						}
 					};
 					one.start();
-					
+
 					confirm = "<html><font size=\"4\" face=\"arial\"><i>Completed change password" + " " + userName
 							+ "</i></font></html>";
-					
-					JOptionPane.showMessageDialog(container, "<html><font size=\"5\" face=\"arial\">" + confirm + "</font></html>", "Notify result", JOptionPane.INFORMATION_MESSAGE);
-					
-					
+
+					JOptionPane.showMessageDialog(container,
+							"<html><font size=\"5\" face=\"arial\">" + confirm + "</font></html>", "Notify result",
+							JOptionPane.INFORMATION_MESSAGE);
+
 					logger.info(userName + " logout.");
 					JFrame old = root;
 					root = new LoginPage();

@@ -697,49 +697,33 @@ BEGIN
 	
     SET SQL_SAFE_UPDATES = 0;
 	
-	delete from assessor where AssessorID > 0;
+	DECLARE count_rows INT;
 	
-	INSERT INTO assessor
-		SELECT a.* FROM federated_assessor a
-		LEFT OUTER JOIN assessor b ON b.Username = a.Username
-		WHERE b.Username IS NULL;
+	select count(*) INTO count_rows from federated_assessor;
+	
+	if (count_rows > 0) then
+	
+		delete from assessor where AssessorID > 0;
 		
-	set @insertAssessor = (SELECT ROW_COUNT());
-    set @finalResult = concat(": insertAssessor: ", @insertAssessor );
-    /*
-	update assessor lA
-	left join federated_assessor fa on lA.AssessorID = fa.AssessorID
-		set lA.UserName = fa.UserName,
-			lA.FingerID = fa.FingerID,
-			lA.Password = fa.Password,
-			lA.FirstName = fa.FirstName,
-			lA.LastName = fa.LastName,
-			lA.EmailAddress = fa.EmailAddress,
-			lA.Address = fa.Address,
-			lA.Phone = fa.Phone,
-			lA.CompanyCode = fa.CompanyCode,
-			lA.IsLocked = fa.IsLocked,
-			lA.IsActive = fa.IsActive,
-			lA.LastPassword = fa.LastPassword,
-			lA.IsFirstTimeLogin = fa.IsFirstTimeLogin,
-			lA.UpdatedDate = sysdate()
-		where lA.AssessorID in (select AssessorID from federated_assessor) 
-		and fa.UpdatedDate > 
-			(select (Case when fs.SyncDate is null then '1900-01-01 00:00:00' else fs.SyncDate END) 
-				from synchistory fs
-				where fs.Status = 'SUCCESS' and fs.SynType = 'SyncHostToLocal_Assessor'
-				order by fs.SyncDate desc LIMIT 1)
-		and fa.UpdatedDate > (Case when lA.UpdatedDate is null then '1900-01-01 00:00:00' else lA.UpdatedDate END);  
+		INSERT INTO assessor
+			SELECT a.* FROM federated_assessor a
+			LEFT OUTER JOIN assessor b ON b.Username = a.Username
+			WHERE b.Username IS NULL;
+			
+		set @insertAssessor = (SELECT ROW_COUNT());
+		set @finalResult = concat(": insertAssessor: ", @insertAssessor );
+		
+		insert into synchistory(SyncDate, Statistic, Status, SynType)
+			VALUES 
+		(now(), @finalResult, "SUCCESS", "SyncHostToLocal_Assessor");
+		
+		
+		set  returnResult = @finalResult;
+	else 
+        set returnResult = "";
+    end if;
 	
-	set @updateAssessor = (SELECT ROW_COUNT());
-    set @finalResult = concat(@finalResult, ",", "\n", "updateAssessor: ", @updateAssessor );
-	*/
-	insert into synchistory(SyncDate, Statistic, Status, SynType)
-		VALUES 
-	(now(), @finalResult, "SUCCESS", "SyncHostToLocal_Assessor");
 	commit;
-	
-	set  returnResult = @finalResult;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -764,42 +748,32 @@ BEGIN
 	
     SET SQL_SAFE_UPDATES = 0;
 	
-	delete from company where CompanyID > 0;
+	DECLARE count_rows INT;
 	
-	INSERT INTO Company
-	SELECT a.* FROM federated_Company a
-	LEFT OUTER JOIN Company b ON b.CompanyID = a.CompanyID
-	WHERE b.CompanyID IS NULL;
+	select count(*) INTO count_rows from federated_Company;
 	
-	set @insertCompany = (SELECT ROW_COUNT());
-    set @finalResult = concat("insertCompany: ", @insertCompany );
+	if (count_rows > 0) then
 	
-	/*
-	update Company lC
-	left join federated_Company fC on lC.CompanyID = fC.CompanyID
-		set lC.CompanyCode = fC.CompanyCode,
-			lC.CompanyName = fC.CompanyName,
-			lC.CompanyType = fC.CompanyType,
-            lC.Address = fC.Address,
-            lC.Location = fC.Location,
-            lC.UpdatedDate = sysdate()
-		where lC.CompanyID in (select CompanyID from federated_Company)
-        and fC.UpdatedDate > 
-		(select (Case when fs.SyncDate is null then '1900-01-01 00:00:00' else fs.SyncDate END) 
-			from synchistory fs
-			where fs.Status = 'SUCCESS' and fs.SynType = 'SyncHostToLocal_Company'
-			order by fs.SyncDate desc LIMIT 1)
-	and fC.UpdatedDate > (Case when lC.UpdatedDate is null then '1900-01-01 00:00:00' else lC.UpdatedDate END);  
+		delete from company where CompanyID > 0;
+		
+		INSERT INTO Company
+		SELECT a.* FROM federated_Company a
+		LEFT OUTER JOIN Company b ON b.CompanyID = a.CompanyID
+		WHERE b.CompanyID IS NULL;
+		
+		set @insertCompany = (SELECT ROW_COUNT());
+		set @finalResult = concat("insertCompany: ", @insertCompany );
+		
+		insert into synchistory(SyncDate, Statistic, Status, SynType)
+			VALUES 
+		(now(), @finalResult, "SUCCESS", "SyncHostToLocal_Company");
+		
+		set  returnResult = @finalResult;
+	else 
+        set returnResult = "";
+    end if;
 	
-	set @updateCompany = (SELECT ROW_COUNT());
-    set @finalResult = concat(@finalResult, ",", "\n", "updateCompany: ", @updateCompany );
-	*/
-	insert into synchistory(SyncDate, Statistic, Status, SynType)
-		VALUES 
-	(now(), @finalResult, "SUCCESS", "SyncHostToLocal_Company");
 	commit;
-	
-	set  returnResult = @finalResult;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -824,43 +798,35 @@ BEGIN
 	
     SET SQL_SAFE_UPDATES = 0;
 	
-	delete from CompanyMachine where CompanyMachineID > 0;
+	DECLARE count_rows INT;
 	
-	select * from CompanyMachine;
-		INSERT INTO CompanyMachine
-		SELECT a.* FROM federated_CompanyMachine a
-		LEFT OUTER JOIN CompanyMachine b ON b.CompanyMachineID = a.CompanyMachineID
-		WHERE b.CompanyMachineID IS NULL;
+	select count(*) INTO count_rows from federated_CompanyMachine;
+	
+	if (count_rows > 0) then
+		delete from CompanyMachine where CompanyMachineID > 0;
 		
-	set @insertCompanyMachine = (SELECT ROW_COUNT());
-    set @finalResult = concat("insertCompanyMachine: ", @insertCompanyMachine );
-	/*
-    #update all record from Host to local
-	update CompanyMachine lCM
-		left join federated_CompanyMachine fCM on lCM.CompanyMachineID = fCM.CompanyMachineID
-			set lCM.CompanyCode = fCM.CompanyCode,
-				lCM.MachineCode = fCM.MachineCode,
-				lCM.CreatedDate = fCM.CreatedDate,
-				lCM.IsActive = fCM.IsActive,
-				lCM.UpdatedDate = sysdate()
-			where lCM.CompanyMachineID in (select CompanyMachineID from federated_CompanyMachine)
-			and fCM.UpdatedDate > 
-			(select (Case when fs.SyncDate is null then '1900-01-01 00:00:00' else fs.SyncDate END) 
-				from synchistory fs
-				where fs.Status = 'SUCCESS' and fs.SynType = 'SyncHostToLocal_CompanyMachine'
-				order by fs.SyncDate desc LIMIT 1)
-		and fCM.UpdatedDate > (Case when lCM.UpdatedDate is null then '1900-01-01 00:00:00' else lCM.UpdatedDate END);  
+		select * from CompanyMachine;
+			INSERT INTO CompanyMachine
+			SELECT a.* FROM federated_CompanyMachine a
+			LEFT OUTER JOIN CompanyMachine b ON b.CompanyMachineID = a.CompanyMachineID
+			WHERE b.CompanyMachineID IS NULL;
+			
+		set @insertCompanyMachine = (SELECT ROW_COUNT());
+		set @finalResult = concat("insertCompanyMachine: ", @insertCompanyMachine );
+		
+		
+		insert into synchistory(SyncDate, Statistic, Status, SynType)
+			VALUES 
+		(now(), @finalResult, "SUCCESS", "SyncHostToLocal_CompanyMachine");
+		
+		
+		set  returnResult = @finalResult;
 	
-	set @updateCompanyMachine = (SELECT ROW_COUNT());
-    set @finalResult = concat(@finalResult, ",", "\n", "updateCompanyMachine: ", @updateCompanyMachine );
-	*/
+	else 
+        set returnResult = "";
+    end if;
 	
-	insert into synchistory(SyncDate, Statistic, Status, SynType)
-		VALUES 
-	(now(), @finalResult, "SUCCESS", "SyncHostToLocal_CompanyMachine");
 	commit;
-	
-	set  returnResult = @finalResult;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -885,45 +851,33 @@ BEGIN
 	
     SET SQL_SAFE_UPDATES = 0;
 	
-	delete from Machine where MachineID > 0;
+	DECLARE count_rows INT;
 	
-	INSERT INTO Machine
-	SELECT a.* FROM federated_Machine a
-	LEFT OUTER JOIN Machine b ON b.MachineCode = a.MachineCode
-	WHERE b.MachineID IS NULL;
+	select count(*) INTO count_rows from federated_Machine;
 	
-	set @insertMachine = (SELECT ROW_COUNT());
-    set @finalResult = concat("insertMachine: ", @insertMachine );
+	if (count_rows > 0) then
 	
-	/*
-	update Machine lM
-	left join federated_Machine fM on lM.MachineCode = fM.MachineCode
-		set lM.MachineName = fM.MachineName,
-			lM.MachineCode = fM.MachineCode,
-            lM.Model = fM.Model,
-            lM.Location = fM.Location,
-            lM.Description = fM.Description,
-			lM.CreatedDate = fM.CreatedDate,
-            lM.UpdatedDate = sysdate(),
-            lM.IsActive = fM.IsActive
-		where lM.MachineID in (select MachineID from federated_Machine)
-        and fM.UpdatedDate > 
-		(select (Case when fs.SyncDate is null then '1900-01-01 00:00:00' else fs.SyncDate END) 
-			from synchistory fs
-			where fs.Status = 'SUCCESS' and fs.SynType = 'SyncHostToLocal_Machine'
-			order by fs.SyncDate desc LIMIT 1)
-	and fM.UpdatedDate > (Case when lM.UpdatedDate is null then '1900-01-01 00:00:00' else lM.UpdatedDate END);  
+		delete from Machine where MachineID > 0;
+		
+		INSERT INTO Machine
+		SELECT a.* FROM federated_Machine a
+		LEFT OUTER JOIN Machine b ON b.MachineCode = a.MachineCode
+		WHERE b.MachineID IS NULL;
+		
+		set @insertMachine = (SELECT ROW_COUNT());
+		set @finalResult = concat("insertMachine: ", @insertMachine );
+		
+		insert into synchistory(SyncDate, Statistic, Status, SynType)
+			VALUES 
+		(now(), @finalResult, "SUCCESS", "SyncHostToLocal_Machine");
+		
+		
+		set  returnResult = @finalResult;
+	else 
+        set returnResult = "";
+    end if;
 	
-	set @updateMachine = (SELECT ROW_COUNT());
-    set @finalResult = concat(@finalResult, ",", "\n", "updateMachine: ", @updateMachine );
-	*/
-	
-	insert into synchistory(SyncDate, Statistic, Status, SynType)
-		VALUES 
-	(now(), @finalResult, "SUCCESS", "SyncHostToLocal_Machine");
 	commit;
-	
-	set  returnResult = @finalResult;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -948,41 +902,32 @@ BEGIN
 	
     SET SQL_SAFE_UPDATES = 0;
 	
-	delete from RoleAssessor where RoleAssessorID > 0;
+	DECLARE count_rows INT;
 	
-	INSERT INTO RoleAssessor
-		SELECT a.* FROM federated_RoleAssessor a
-		LEFT OUTER JOIN RoleAssessor b ON b.RoleAssessorID = a.RoleAssessorID
-		WHERE b.RoleAssessorID IS NULL;
+	select count(*) INTO count_rows from federated_Machine;
+	
+	if (count_rows > 0) then
+		delete from RoleAssessor where RoleAssessorID > 0;
 		
-	set @insertRoleAssessor = (SELECT ROW_COUNT());
-    set @finalResult = concat(": insertRoleAssessor: ", @insertRoleAssessor );
-	/*
-    #update all record from Host to local
-	update RoleAssessor lRA
-	left join federated_RoleAssessor fRA on lRA.RoleAssessorID = fRA.RoleAssessorID
-		set lRA.RoleID = fRA.RoleID,
-			lRA.AssessorID = fRA.AssessorID,
-			lRA.CreatedDate = fRA.CreatedDate,
-            lRA.IsActive = fRA.IsActive,
-            lRA.UpdatedDate = sysdate()
-		where lRA.RoleAssessorID in (select RoleAssessorID from federated_RoleAssessor)
-		and fRA.UpdatedDate > 
-		(select (Case when fs.SyncDate is null then '1900-01-01 00:00:00' else fs.SyncDate END) 
-			from synchistory fs
-			where fs.Status = 'SUCCESS' and fs.SynType = 'SyncHostToLocal_RoleAssessor'
-			order by fs.SyncDate desc LIMIT 1)
-	and fRA.UpdatedDate > (Case when lRA.UpdatedDate is null then '1900-01-01 00:00:00' else lRA.UpdatedDate END);  
-    
-	set @updateRoleAssessor = (SELECT ROW_COUNT());
-    set @finalResult = concat(@finalResult, ",", "\n", "updateRoleAssessor: ", @updateRoleAssessor );
-	*/
-	insert into synchistory(SyncDate, Statistic, Status, SynType)
-		VALUES 
-	(now(), @finalResult, "SUCCESS", "SyncHostToLocal_RoleAssessor");
-	commit;
+		INSERT INTO RoleAssessor
+			SELECT a.* FROM federated_RoleAssessor a
+			LEFT OUTER JOIN RoleAssessor b ON b.RoleAssessorID = a.RoleAssessorID
+			WHERE b.RoleAssessorID IS NULL;
+			
+		set @insertRoleAssessor = (SELECT ROW_COUNT());
+		set @finalResult = concat(": insertRoleAssessor: ", @insertRoleAssessor );
+		
+		insert into synchistory(SyncDate, Statistic, Status, SynType)
+			VALUES 
+		(now(), @finalResult, "SUCCESS", "SyncHostToLocal_RoleAssessor");
+		
+		
+		set  returnResult = @finalResult;
+	else 
+        set returnResult = "";
+    end if;
 	
-	set  returnResult = @finalResult;
+	commit;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -1007,44 +952,32 @@ BEGIN
 	
     SET SQL_SAFE_UPDATES = 0;
 	
-	delete from Tools where ToolID > 0;
+	DECLARE count_rows INT;
 	
-	INSERT INTO Tools
-	SELECT a.* FROM federated_Tools a
-	LEFT OUTER JOIN Tools b ON b.ToolID = a.ToolID
-	WHERE b.ToolID IS NULL;
+	select count(*) INTO count_rows from federated_Machine;
 	
-	set @insertTools = (SELECT ROW_COUNT());
-    set @finalResult = concat("insertTools: ", @insertTools);
+	if (count_rows > 0) then
+		delete from Tools where ToolID > 0;
+		
+		INSERT INTO Tools
+		SELECT a.* FROM federated_Tools a
+		LEFT OUTER JOIN Tools b ON b.ToolID = a.ToolID
+		WHERE b.ToolID IS NULL;
+		
+		set @insertTools = (SELECT ROW_COUNT());
+		set @finalResult = concat("insertTools: ", @insertTools);
+		
+		insert into synchistory(SyncDate, Statistic, Status, SynType)
+			VALUES 
+		(now(), @finalResult, "SUCCESS", "SyncHostToLocal_Tools");
+		
+		
+		set  returnResult = @finalResult;
+	else 
+        set returnResult = "";
+    end if;
 	
-	/*
-    #update all record from Host to local
-	update Tools lT
-	left join federated_Tools fT on lT.ToolID = fT.ToolID
-		set lT.ToolCode = fT.ToolCode,
-			lT.Model = fT.Model,
-            lT.Barcode = fT.Barcode,
-            lT.Description = fT.Description,
-			lT.CreatedDate = fT.CreatedDate,
-            lT.UpdatedDate = sysdate(),
-            lT.IsActive = fT.IsActive
-		where lT.ToolID in (select ToolID from federated_Tools)
-        and fT.UpdatedDate > 
-		(select (Case when fs.SyncDate is null then '1900-01-01 00:00:00' else fs.SyncDate END) 
-			from synchistory fs
-			where fs.Status = 'SUCCESS' and fs.SynType = 'SyncHostToLocal_Tools'
-			order by fs.SyncDate desc LIMIT 1)
-	and fT.UpdatedDate > (Case when lT.UpdatedDate is null then '1900-01-01 00:00:00' else lT.UpdatedDate END);  
-    
-	set @updateTools = (SELECT ROW_COUNT());
-    set @finalResult = concat(@finalResult, ",", "\n", "updateTools: ", @updateTools );
-	*/
-	insert into synchistory(SyncDate, Statistic, Status, SynType)
-		VALUES 
-	(now(), @finalResult, "SUCCESS", "SyncHostToLocal_Tools");
 	commit;
-	
-	set  returnResult = @finalResult;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -1068,27 +1001,37 @@ BEGIN
 	START TRANSACTION;
 		
     SET SQL_SAFE_UPDATES = 0;
-    delete from federated_ToolsMachineTray where federated_ToolsMachineTray.MachineCode = MachineCode;
+	DECLARE count_rows INT;
 	
-    INSERT INTO federated_ToolsMachineTray (MachineCode, ToolCode, TrayIndex, Quantity, CreatedDate, UpdatedDate, isActive)
-	SELECT a.MachineCode,a.ToolCode, a.TrayIndex, a.Quantity, a.CreatedDate, a.UpdatedDate, a.isActive FROM ToolsMachineTray a
+	select count(*) INTO count_rows from federated_Machine;
 	
-	WHERE a.MachineCode = MachineCode;
-	
-	set @insertToolsMachineTray = (SELECT ROW_COUNT());
-    set @finalResult = concat("insertToolsMachineTray: ", @insertToolsMachineTray );
-	
-	
-	set @updateToolsMachineTray = (SELECT ROW_COUNT());
-    set @finalResult = concat(@finalResult, ",", "\n", "updateToolsMachineTray: ", @updateToolsMachineTray );
-	
-	insert into synchistory(SyncDate, Statistic, Status, SynType)
-		VALUES 
-	(now(), @finalResult, "SUCCESS", "SyncLocalToHost_ToolsMachineTray");
+	if (count_rows > 0) then
+		delete from federated_ToolsMachineTray where federated_ToolsMachineTray.MachineCode = MachineCode;
+		
+		INSERT INTO federated_ToolsMachineTray (MachineCode, ToolCode, TrayIndex, Quantity, CreatedDate, UpdatedDate, isActive)
+		SELECT a.MachineCode,a.ToolCode, a.TrayIndex, a.Quantity, a.CreatedDate, a.UpdatedDate, a.isActive FROM ToolsMachineTray a
+		
+		WHERE a.MachineCode = MachineCode;
+		
+		set @insertToolsMachineTray = (SELECT ROW_COUNT());
+		set @finalResult = concat("insertToolsMachineTray: ", @insertToolsMachineTray );
+		
+		
+		set @updateToolsMachineTray = (SELECT ROW_COUNT());
+		set @finalResult = concat(@finalResult, ",", "\n", "updateToolsMachineTray: ", @updateToolsMachineTray );
+		
+		insert into synchistory(SyncDate, Statistic, Status, SynType)
+			VALUES 
+		(now(), @finalResult, "SUCCESS", "SyncLocalToHost_ToolsMachineTray");
+		
+		
+		set  returnResult = @finalResult;
+		
+	else 
+        set returnResult = "";
+    end if;
 	
 	commit;
-	
-	set  returnResult = @finalResult;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -1113,51 +1056,33 @@ BEGIN
 	
     SET SQL_SAFE_UPDATES = 0;
 	
-	delete from federated_WorkingTransaction where federated_WorkingTransaction.MachineCode = MachineCode;
+	DECLARE count_rows INT;
 	
+	select count(*) INTO count_rows from federated_Machine;
 	
-	INSERT INTO federated_WorkingTransaction (TransactionDate, MachineCode, CompanyCode, AssessorID, WOCode, OPCode, ToolCode, TrayIndex, Quantity, TransactionStatus, UpdatedDate, RespondMessage, TransactionType)
-	SELECT a.TransactionDate, a.MachineCode, a.CompanyCode, a.AssessorID, a.WOCode, a.OPCode, a.ToolCode, a.TrayIndex, a.Quantity, a.TransactionStatus, a.UpdatedDate, a.RespondMessage, a.TransactionType FROM WorkingTransaction a
-	LEFT OUTER JOIN federated_WorkingTransaction b ON  b.CompanyCode = a.CompanyCode and b.MachineCode = a.MachineCode
-	WHERE b.WorkingTransactionID IS NULL;
+	if (count_rows > 0) then
+		delete from federated_WorkingTransaction where federated_WorkingTransaction.MachineCode = MachineCode;
+		
+		
+		INSERT INTO federated_WorkingTransaction (TransactionDate, MachineCode, CompanyCode, AssessorID, WOCode, OPCode, ToolCode, TrayIndex, Quantity, TransactionStatus, UpdatedDate, RespondMessage, TransactionType)
+		SELECT a.TransactionDate, a.MachineCode, a.CompanyCode, a.AssessorID, a.WOCode, a.OPCode, a.ToolCode, a.TrayIndex, a.Quantity, a.TransactionStatus, a.UpdatedDate, a.RespondMessage, a.TransactionType FROM WorkingTransaction a
+		LEFT OUTER JOIN federated_WorkingTransaction b ON  b.CompanyCode = a.CompanyCode and b.MachineCode = a.MachineCode
+		WHERE b.WorkingTransactionID IS NULL;
+		
+		set @insertWorkingTransaction = (SELECT ROW_COUNT());
+		set @finalResult = concat("insertWorkingTransaction: ", @insertWorkingTransaction );
+		
+		insert into synchistory(SyncDate, Statistic, Status, SynType)
+			VALUES 
+		(now(), @finalResult, "SUCCESS", "SyncLocalToHost_WorkingTransaction");
+		
+		
+		set  returnResult = @finalResult;
+	else 
+        set returnResult = "";
+    end if;
 	
-	set @insertWorkingTransaction = (SELECT ROW_COUNT());
-    set @finalResult = concat("insertWorkingTransaction: ", @insertWorkingTransaction );
-	
-	/*
-    #update all record from Local to Host
-	update federated_WorkingTransaction
-	left join WorkingTransaction on WorkingTransaction.WorkingTransactionID = federated_WorkingTransaction.WorkingTransactionID
-		set federated_WorkingTransaction.TransactionDate = WorkingTransaction.TransactionDate,
-			federated_WorkingTransaction.MachineCode = WorkingTransaction.MachineCode,
-			federated_WorkingTransaction.CompanyCode = WorkingTransaction.CompanyCode,
-			federated_WorkingTransaction.AssessorID = WorkingTransaction.AssessorID,
-			federated_WorkingTransaction.WOCode = WorkingTransaction.WOCode,
-            federated_WorkingTransaction.OPCode = WorkingTransaction.OPCode,
-            federated_WorkingTransaction.ToolCode = WorkingTransaction.ToolCode,
-            federated_WorkingTransaction.TrayIndex = WorkingTransaction.TrayIndex,
-            federated_WorkingTransaction.Quantity = WorkingTransaction.Quantity,
-            federated_WorkingTransaction.TransactionStatus = WorkingTransaction.TransactionStatus,
-            federated_WorkingTransaction.UpdatedDate = WorkingTransaction.UpdatedDate,
-            federated_WorkingTransaction.RespondMessage = WorkingTransaction.RespondMessage,
-            federated_WorkingTransaction.TransactionType = WorkingTransaction.TransactionType
-		where federated_WorkingTransaction.WorkingTransactionID in (select WorkingTransactionID from WorkingTransaction)
-        and WorkingTransaction.UpdatedDate > 
-		(select (Case when fs.SyncDate is null then '1900-01-01 00:00:00' else fs.SyncDate END) 
-			from synchistory fs
-			where fs.Status = 'SUCCESS' and fs.SynType = 'SyncLocalToHost_WorkingTransaction'
-			order by fs.SyncDate desc LIMIT 1)
-	and WorkingTransaction.UpdatedDate > (Case when federated_WorkingTransaction.UpdatedDate is null then '1900-01-01 00:00:00' else federated_WorkingTransaction.UpdatedDate END);  
-   
-   set @updateWorkingTransaction = (SELECT ROW_COUNT());
-    set @finalResult = concat(@finalResult, ",", "\n", "updateWorkingTransaction: ", @updateWorkingTransaction );
-	*/
-	insert into synchistory(SyncDate, Statistic, Status, SynType)
-		VALUES 
-	(now(), @finalResult, "SUCCESS", "SyncLocalToHost_WorkingTransaction");
 	commit;
-	
-	set  returnResult = @finalResult;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -1202,7 +1127,7 @@ CREATE TABLE `federated_assessor` (
   `UpdatedDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`AssessorID`),
   KEY `UserName` (`UserName`)
-) ENGINE=FEDERATED DEFAULT CHARSET=utf8 CONNECTION='mysql://tqteamne_admin:Admin123@112.213.89.47:3306/tqteamne_iToolsV2/Assessor';
+) ENGINE=FEDERATED DEFAULT CHARSET=utf8 CONNECTION='mysql://tqteamne_admin:Admin123@112.213.89.47:3306/tqteamne_iTools/Assessor';
 
 
 
@@ -1223,7 +1148,7 @@ CREATE TABLE `federated_tools` (
   `IsActive` tinyint(1) NOT NULL,
   PRIMARY KEY (`ToolID`),
   UNIQUE KEY `ToolCode` (`ToolCode`)
-) ENGINE=FEDERATED DEFAULT CHARSET=utf8 CONNECTION='mysql://tqteamne_admin:Admin123@112.213.89.47:3306/tqteamne_iToolsV2/Tools';
+) ENGINE=FEDERATED DEFAULT CHARSET=utf8 CONNECTION='mysql://tqteamne_admin:Admin123@112.213.89.47:3306/tqteamne_iTools/Tools';
 
 ALTER TABLE Tools  ADD CONSTRAINT Tools_Unique  UNIQUE (ToolCode, CompanyCode) ;
 ALTER TABLE Tools  Drop index ToolCode ;
@@ -1239,3 +1164,491 @@ ALTER TABLE `RoleAssessor` DROP FOREIGN KEY `RoleAssessor_ibfk_2`;
 ALTER TABLE `WorkingTransaction` DROP FOREIGN KEY `WorkingTransaction_ibfk_1`;
 ALTER TABLE `WorkingTransaction` DROP FOREIGN KEY `WorkingTransaction_ibfk_2`;
 ALTER TABLE `WorkingTransaction` DROP FOREIGN KEY `WorkingTransaction_ibfk_3`;
+
+
+SELECT 
+  TABLE_NAME,COLUMN_NAME,CONSTRAINT_NAME, REFERENCED_TABLE_NAME,REFERENCED_COLUMN_NAME
+FROM
+  INFORMATION_SCHEMA.KEY_COLUMN_USAGE
+WHERE
+  REFERENCED_TABLE_SCHEMA = ''
+
+  
+  
+  
+  
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+
+--
+-- Dumping routines for database 'itools_v1p0'
+--
+/*!50003 DROP PROCEDURE IF EXISTS `SyncHostToLocal_Assessor` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`admin`@`%` PROCEDURE `SyncHostToLocal_Assessor`(IN CompanyCode VARCHAR(255), IN MachineCode VARCHAR(255), OUT returnResult TEXT)
+BEGIN
+	-- DECLARE EXIT HANDLER FOR SQLEXCEPTION ROLLBACK;
+	-- DECLARE EXIT HANDLER FOR SQLWARNING ROLLBACK;
+	DECLARE count_rows INT;
+    START TRANSACTION;
+	
+    SET SQL_SAFE_UPDATES = 0;
+	
+	select count(*) INTO count_rows from federated_assessor;
+	
+	if (count_rows > 0) then
+	
+		delete from assessor where AssessorID > 0;
+		
+		INSERT INTO assessor
+			SELECT a.* FROM federated_assessor a
+			LEFT OUTER JOIN assessor b ON b.Username = a.Username
+			WHERE b.Username IS NULL;
+			
+		set @insertAssessor = (SELECT ROW_COUNT());
+		set @finalResult = concat(": insertAssessor: ", @insertAssessor );
+		
+		insert into synchistory(SyncDate, Statistic, Status, SynType)
+			VALUES 
+		(now(), @finalResult, "SUCCESS", "SyncHostToLocal_Assessor");
+		
+		
+		set  returnResult = @finalResult;
+	else 
+        set returnResult = "";
+    end if;
+	
+	commit;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `SyncHostToLocal_Company` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`admin`@`%` PROCEDURE `SyncHostToLocal_Company`(IN CompanyCode VARCHAR(255), IN MachineCode VARCHAR(255), OUT returnResult TEXT)
+BEGIN
+	-- DECLARE EXIT HANDLER FOR SQLEXCEPTION ROLLBACK;
+	-- DECLARE EXIT HANDLER FOR SQLWARNING ROLLBACK;
+	DECLARE count_rows INT;
+    START TRANSACTION;
+	
+    SET SQL_SAFE_UPDATES = 0;
+	
+	
+	
+	select count(*) INTO count_rows from federated_Company;
+	
+	if (count_rows > 0) then
+	
+		delete from company where CompanyID > 0;
+		
+		INSERT INTO Company
+		SELECT a.* FROM federated_Company a
+		LEFT OUTER JOIN Company b ON b.CompanyID = a.CompanyID
+		WHERE b.CompanyID IS NULL;
+		
+		set @insertCompany = (SELECT ROW_COUNT());
+		set @finalResult = concat("insertCompany: ", @insertCompany );
+		
+		insert into synchistory(SyncDate, Statistic, Status, SynType)
+			VALUES 
+		(now(), @finalResult, "SUCCESS", "SyncHostToLocal_Company");
+		
+		set  returnResult = @finalResult;
+	else 
+        set returnResult = "";
+    end if;
+	
+	commit;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `SyncHostToLocal_CompanyMachine` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`admin`@`%` PROCEDURE `SyncHostToLocal_CompanyMachine`(IN CompanyCode VARCHAR(255), IN MachineCode VARCHAR(255), OUT returnResult TEXT)
+BEGIN
+	-- DECLARE EXIT HANDLER FOR SQLEXCEPTION ROLLBACK;
+	-- DECLARE EXIT HANDLER FOR SQLWARNING ROLLBACK;
+	DECLARE count_rows INT;
+    START TRANSACTION;
+	
+    SET SQL_SAFE_UPDATES = 0;
+	
+	
+	
+	select count(*) INTO count_rows from federated_CompanyMachine;
+	
+	if (count_rows > 0) then
+		delete from CompanyMachine where CompanyMachineID > 0;
+		
+		select * from CompanyMachine;
+			INSERT INTO CompanyMachine
+			SELECT a.* FROM federated_CompanyMachine a
+			LEFT OUTER JOIN CompanyMachine b ON b.CompanyMachineID = a.CompanyMachineID
+			WHERE b.CompanyMachineID IS NULL;
+			
+		set @insertCompanyMachine = (SELECT ROW_COUNT());
+		set @finalResult = concat("insertCompanyMachine: ", @insertCompanyMachine );
+		
+		
+		insert into synchistory(SyncDate, Statistic, Status, SynType)
+			VALUES 
+		(now(), @finalResult, "SUCCESS", "SyncHostToLocal_CompanyMachine");
+		
+		
+		set  returnResult = @finalResult;
+	
+	else 
+        set returnResult = "";
+    end if;
+	
+	commit;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `SyncHostToLocal_Machine` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`admin`@`%` PROCEDURE `SyncHostToLocal_Machine`(IN CompanyCode VARCHAR(255), IN MachineCode VARCHAR(255), OUT returnResult TEXT)
+BEGIN
+	-- DECLARE EXIT HANDLER FOR SQLEXCEPTION ROLLBACK;
+	-- DECLARE EXIT HANDLER FOR SQLWARNING ROLLBACK;
+	DECLARE count_rows INT;
+    START TRANSACTION;
+	
+    SET SQL_SAFE_UPDATES = 0;
+	
+	
+	
+	select count(*) INTO count_rows from federated_Machine;
+	
+	if (count_rows > 0) then
+	
+		delete from Machine where MachineID > 0;
+		
+		INSERT INTO Machine
+		SELECT a.* FROM federated_Machine a
+		LEFT OUTER JOIN Machine b ON b.MachineCode = a.MachineCode
+		WHERE b.MachineID IS NULL;
+		
+		set @insertMachine = (SELECT ROW_COUNT());
+		set @finalResult = concat("insertMachine: ", @insertMachine );
+		
+		insert into synchistory(SyncDate, Statistic, Status, SynType)
+			VALUES 
+		(now(), @finalResult, "SUCCESS", "SyncHostToLocal_Machine");
+		
+		
+		set  returnResult = @finalResult;
+	else 
+        set returnResult = "";
+    end if;
+	
+	commit;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `SyncHostToLocal_RoleAssessor` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`admin`@`%` PROCEDURE `SyncHostToLocal_RoleAssessor`(IN CompanyCode VARCHAR(255), IN MachineCode VARCHAR(255), OUT returnResult TEXT)
+BEGIN
+	-- DECLARE EXIT HANDLER FOR SQLEXCEPTION ROLLBACK;
+	-- DECLARE EXIT HANDLER FOR SQLWARNING ROLLBACK;
+	DECLARE count_rows INT;
+    START TRANSACTION;
+	
+    SET SQL_SAFE_UPDATES = 0;
+	
+	
+	
+	select count(*) INTO count_rows from federated_RoleAssessor;
+	
+	if (count_rows > 0) then
+		delete from RoleAssessor where RoleAssessorID > 0;
+		
+		INSERT INTO RoleAssessor
+			SELECT a.* FROM federated_RoleAssessor a
+			LEFT OUTER JOIN RoleAssessor b ON b.RoleAssessorID = a.RoleAssessorID
+			WHERE b.RoleAssessorID IS NULL;
+			
+		set @insertRoleAssessor = (SELECT ROW_COUNT());
+		set @finalResult = concat(": insertRoleAssessor: ", @insertRoleAssessor );
+		
+		insert into synchistory(SyncDate, Statistic, Status, SynType)
+			VALUES 
+		(now(), @finalResult, "SUCCESS", "SyncHostToLocal_RoleAssessor");
+		
+		
+		set  returnResult = @finalResult;
+	else 
+        set returnResult = "";
+    end if;
+	
+	commit;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `SyncHostToLocal_Tools` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`admin`@`%` PROCEDURE `SyncHostToLocal_Tools`(IN CompanyCode VARCHAR(255), IN MachineCode VARCHAR(255), OUT returnResult TEXT)
+BEGIN
+	-- DECLARE EXIT HANDLER FOR SQLEXCEPTION ROLLBACK;
+	-- DECLARE EXIT HANDLER FOR SQLWARNING ROLLBACK;
+	DECLARE count_rows INT;
+    START TRANSACTION;
+	
+    SET SQL_SAFE_UPDATES = 0;
+	
+	select count(*) INTO count_rows from federated_Tools;
+	
+	if (count_rows > 0) then
+		delete from Tools where ToolID > 0;
+		
+		INSERT INTO Tools
+		SELECT a.* FROM federated_Tools a
+		LEFT OUTER JOIN Tools b ON b.ToolID = a.ToolID
+		WHERE b.ToolID IS NULL;
+		
+		set @insertTools = (SELECT ROW_COUNT());
+		set @finalResult = concat("insertTools: ", @insertTools);
+		
+		insert into synchistory(SyncDate, Statistic, Status, SynType)
+			VALUES 
+		(now(), @finalResult, "SUCCESS", "SyncHostToLocal_Tools");
+		
+		
+		set  returnResult = @finalResult;
+	else 
+        set returnResult = "";
+    end if;
+	
+	commit;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `SyncLocalToHost_ToolsMachineTray` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`admin`@`%` PROCEDURE `SyncLocalToHost_ToolsMachineTray`(IN CompanyCode VARCHAR(255), IN MachineCode VARCHAR(255), OUT returnResult TEXT)
+BEGIN
+	-- DECLARE EXIT HANDLER FOR SQLEXCEPTION ROLLBACK;
+	-- DECLARE EXIT HANDLER FOR SQLWARNING ROLLBACK;
+	DECLARE count_rows INT;
+    START TRANSACTION;
+		
+    SET SQL_SAFE_UPDATES = 0;
+	
+	
+	select count(*) INTO count_rows from federated_ToolsMachineTray;
+	
+	if (count_rows > 0) then
+		delete from federated_ToolsMachineTray where federated_ToolsMachineTray.MachineCode = MachineCode;
+		
+		INSERT INTO federated_ToolsMachineTray (MachineCode, ToolCode, TrayIndex, Quantity, CreatedDate, UpdatedDate, isActive)
+		SELECT a.MachineCode,a.ToolCode, a.TrayIndex, a.Quantity, a.CreatedDate, a.UpdatedDate, a.isActive FROM ToolsMachineTray a
+		
+		WHERE a.MachineCode = MachineCode;
+		
+		set @insertToolsMachineTray = (SELECT ROW_COUNT());
+		set @finalResult = concat("insertToolsMachineTray: ", @insertToolsMachineTray );
+		
+		
+		insert into synchistory(SyncDate, Statistic, Status, SynType)
+			VALUES 
+		(now(), @finalResult, "SUCCESS", "SyncLocalToHost_ToolsMachineTray");
+		
+		
+		set  returnResult = @finalResult;
+		
+	else 
+        set returnResult = "";
+    end if;
+	
+	commit;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `SyncLocalToHost_WorkingTransaction` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`admin`@`%` PROCEDURE `SyncLocalToHost_WorkingTransaction`(IN CompanyCode VARCHAR(255), IN MachineCode VARCHAR(255), OUT returnResult TEXT)
+BEGIN
+	-- DECLARE EXIT HANDLER FOR SQLEXCEPTION ROLLBACK;
+	-- DECLARE EXIT HANDLER FOR SQLWARNING ROLLBACK;
+	DECLARE count_rows INT;
+    START TRANSACTION;
+	
+    SET SQL_SAFE_UPDATES = 0;
+	
+	
+	
+	select count(*) INTO count_rows from federated_WorkingTransaction;
+	
+	if (count_rows > 0) then
+		delete from federated_WorkingTransaction where federated_WorkingTransaction.MachineCode = MachineCode;
+		
+		
+		INSERT INTO federated_WorkingTransaction (TransactionDate, MachineCode, CompanyCode, AssessorID, WOCode, OPCode, ToolCode, TrayIndex, Quantity, TransactionStatus, UpdatedDate, RespondMessage, TransactionType)
+		SELECT a.TransactionDate, a.MachineCode, a.CompanyCode, a.AssessorID, a.WOCode, a.OPCode, a.ToolCode, a.TrayIndex, a.Quantity, a.TransactionStatus, a.UpdatedDate, a.RespondMessage, a.TransactionType FROM WorkingTransaction a
+		LEFT OUTER JOIN federated_WorkingTransaction b ON  b.CompanyCode = a.CompanyCode and b.MachineCode = a.MachineCode
+		WHERE b.WorkingTransactionID IS NULL;
+		
+		set @insertWorkingTransaction = (SELECT ROW_COUNT());
+		set @finalResult = concat("insertWorkingTransaction: ", @insertWorkingTransaction );
+		
+		insert into synchistory(SyncDate, Statistic, Status, SynType)
+			VALUES 
+		(now(), @finalResult, "SUCCESS", "SyncLocalToHost_WorkingTransaction");
+		
+		
+		set  returnResult = @finalResult;
+	else 
+        set returnResult = "";
+    end if;
+	
+	commit;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;

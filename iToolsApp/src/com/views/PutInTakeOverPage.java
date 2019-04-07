@@ -7,6 +7,7 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -126,6 +127,13 @@ public class PutInTakeOverPage extends JFrame implements ActionListener {
 	static LoginController ctlObj = new LoginController();
 
 	ArrayList<String> listAllTrays = new ArrayList<String>();
+	
+
+	static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+	static int windowWidth = (int) screenSize.getWidth();
+	static int windowHeight = (int) screenSize.getHeight();
+	static int extWidth = (windowWidth > 900) ? 0 : 0;
+	static int extHeight = (windowHeight > 700) ? 0 : 0;
 
 	// AutoCompletion comboBoxComplete;
 
@@ -161,7 +169,7 @@ public class PutInTakeOverPage extends JFrame implements ActionListener {
 		backToDashboardLabel.setText("<html><html><font size=\"5\" face=\"arial\" color=\"#0181BE\"><b><i><u>"
 				+ bundleMessage.getString("Employee_Back_To_Dashboard") + "</u></i></b></font></html></html>");
 		backToDashboardLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		backToDashboardLabel.setBounds(15, 5, 300, 70);
+		backToDashboardLabel.setBounds(15 + extWidth, 5 + extHeight, 300, 70);
 		backToDashboardLabel.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -183,7 +191,7 @@ public class PutInTakeOverPage extends JFrame implements ActionListener {
 		changePassLabel.setText("<html><html><font size=\"5\" face=\"arial\" color=\"#0181BE\"><b><i><u>"
 				+ bundleMessage.getString("App_ChangePassword") + "</u></i></b></font></html></html>");
 		changePassLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		changePassLabel.setBounds(530, 5, 170, 60);
+		changePassLabel.setBounds(530 + extWidth, 5 + extHeight, 170, 60);
 		changePassLabel.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -200,13 +208,13 @@ public class PutInTakeOverPage extends JFrame implements ActionListener {
 			}
 		});
 
-		splitLabel.setBounds(693, 5, 25, 60);
+		splitLabel.setBounds(693 + extWidth, 5 + extHeight, 25, 60);
 		splitLabel.setFont(new Font(labelFont.getName(), Font.BOLD, 25));
 
 		logOutLabel.setText("<html><font size=\"5\" face=\"arial\" color=\"#0181BE\"><b><i><u>"
 				+ bundleMessage.getString("App_Logout") + "</u></i></b></font></html>");
 		logOutLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		logOutLabel.setBounds(715, 5, 150, 60);
+		logOutLabel.setBounds(715 + extWidth, 5 + extHeight, 150, 60);
 		logOutLabel.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -223,7 +231,7 @@ public class PutInTakeOverPage extends JFrame implements ActionListener {
 		});
 
 		////////////////////////////////////////
-		toolLabel.setBounds(100, 85, 250, 40);
+		toolLabel.setBounds(100 + extWidth, 85 + extHeight, 250, 40);
 		toolLabel.setFont(new Font(labelFont.getName(), Font.BOLD, 25));
 
 		// List<Tool> listTools = empCtlObj.getToolsOfMachine(machineCode);
@@ -253,7 +261,7 @@ public class PutInTakeOverPage extends JFrame implements ActionListener {
 		}
 		toolComboBox = new FilterComboBox(listToolNames, keyboard);
 
-		toolComboBox.setBounds(250, 90, 400, 35);
+		toolComboBox.setBounds(250 + extWidth, 90 + extHeight, 400, 35);
 		toolComboBox.setFont(new Font(labelFont.getName(), Font.BOLD, 22));
 
 		toolComboBox.addActionListener(new ActionListener() {
@@ -337,12 +345,12 @@ public class PutInTakeOverPage extends JFrame implements ActionListener {
 		});
 
 		//////////////////////////////////////////////////////////////////
-		trayLabel.setBounds(100, 150, 250, 40);
+		trayLabel.setBounds(100 + extWidth, 150 + extHeight, 250, 40);
 		trayLabel.setFont(new Font(labelFont.getName(), Font.BOLD, 25));
 
 		// trayCombobox = new FilterComboBox(new ArrayList<>(), keyboard);
 		trayCombobox = new JComboBox<>();
-		trayCombobox.setBounds(250, 155, 400, 35);
+		trayCombobox.setBounds(250 + extWidth, 155 + extHeight, 400, 35);
 		trayCombobox.setFont(new Font(labelFont.getName(), Font.BOLD, 22));
 
 		trayCombobox.addActionListener(new ActionListener() {
@@ -377,10 +385,10 @@ public class PutInTakeOverPage extends JFrame implements ActionListener {
 		trayCombobox.addItem("");
 		// comboBox2 = new AutoCompletion(trayCombobox, trayTextField);
 
-		quantityLabel.setBounds(100, 210, 250, 40);
+		quantityLabel.setBounds(100 + extWidth, 210 + extHeight, 250, 40);
 		quantityLabel.setFont(new Font(labelFont.getName(), Font.BOLD, 25));
 
-		quantityTextField.setBounds(250, 215, 180, 35);
+		quantityTextField.setBounds(250 + extWidth, 215 + extHeight, 180, 35);
 		quantityTextField.setFont(new Font(labelFont.getName(), Font.BOLD, 22));
 		// quantityTextField.setEditable(false);
 		quantityTextField.getDocument().addDocumentListener(new DocumentListener() {
@@ -404,14 +412,14 @@ public class PutInTakeOverPage extends JFrame implements ActionListener {
 			}
 		});
 
-		quantityMessage.setBounds(250, 250, 550, 35);
+		quantityMessage.setBounds(250 + extWidth, 250 + extHeight, 550, 35);
 		quantityMessage.setFont(new Font(labelFont.getName(), Font.BOLD, 18));
 
 		sendRequestButton.setEnabled(false);
-		sendRequestButton.setBounds(250, 290, 250, 35);
+		sendRequestButton.setBounds(250 + extWidth, 290 + extHeight, 250, 35);
 		sendRequestButton.setFont(new Font(labelFont.getName(), Font.BOLD, 22));
 
-		cancelButton.setBounds(510, 290, 140, 35);
+		cancelButton.setBounds(510 + extWidth, 290 + extHeight, 140, 35);
 		cancelButton.setFont(new Font(labelFont.getName(), Font.BOLD, 22));
 
 		updateTimer = new Timer(expiredTime, new ActionListener() {
@@ -559,7 +567,7 @@ public class PutInTakeOverPage extends JFrame implements ActionListener {
 			// panel.setBackground(new Color(102, 205, 170));
 			// panel.setSize(new Dimension(200, 64));
 
-			// panel.setBounds(100, 100, 500, 200);
+			// panel.setBounds(100 + extWidth, 100 + extHeight, 500, 200);
 
 			panel.setLayout(null);
 
@@ -576,7 +584,7 @@ public class PutInTakeOverPage extends JFrame implements ActionListener {
 			label2.setVerticalAlignment(SwingConstants.CENTER);
 			label2.setHorizontalAlignment(SwingConstants.CENTER);
 			label2.setFont(new Font("Arial", Font.BOLD, 22));
-			label2.setBounds(0, 0, 350, 150);
+			label2.setBounds(0 + extWidth, 0 + extHeight, 350, 150);
 			panel.add(label2);
 
 			final String action = this.pageType;
@@ -605,7 +613,7 @@ public class PutInTakeOverPage extends JFrame implements ActionListener {
 				JLabel progress = new JLabel("Please Wait...");
 				p1.add(progress, new GridBagConstraints());
 				d.getContentPane().add(p1);
-				d.setBounds(100, 100, 500, 200);
+				d.setBounds(100 + extWidth, 100 + extHeight, 500, 200);
 				// d.setLocationRelativeTo(f);
 				d.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
 				d.setModal(true);

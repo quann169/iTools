@@ -1,9 +1,11 @@
 package com.views;
 
 import java.awt.Container;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
@@ -75,7 +77,6 @@ public class LoginPage extends JFrame implements ActionListener {
 	JButton forgotPwdButton = new JButton(bundleMessage.getString("Login_Page_Forget_Password"));
 	JCheckBox showPassword = new JCheckBox(bundleMessage.getString("Login_Page_Show_Password"));
 
-
 	static LoginController ctlObj = new LoginController();
 
 	private static final Config cfg = new Config();
@@ -92,6 +93,12 @@ public class LoginPage extends JFrame implements ActionListener {
 	final static Logger logger = Logger.getLogger(LoginPage.class);
 	public PopUpKeyboard keyboard;
 	static JFrame root;
+
+	static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+	static int windowWidth = (int) screenSize.getWidth();
+	static int windowHeight = (int) screenSize.getHeight();
+	static int extWidth = (windowWidth > 900) ? 0 : 0;
+	static int extHeight = (windowHeight > 700) ? 0 : 0;
 
 	LoginPage() {
 		setLayoutManager();
@@ -119,13 +126,13 @@ public class LoginPage extends JFrame implements ActionListener {
 	public void setLocationAndSize() {
 		Font labelFont = logoLabel.getFont();
 
-		logoLabel.setBounds(300, 40, 350, 70);
+		logoLabel.setBounds(300 + extWidth, 40 + extHeight, 350, 70);
 		logoLabel.setFont(new Font(labelFont.getName(), Font.ITALIC + Font.BOLD, 40));
 
-		userLabel.setBounds(80, 120, 250, 60);
+		userLabel.setBounds(80 + extWidth, 120 + extHeight, 250, 60);
 		userLabel.setFont(new Font(labelFont.getName(), Font.BOLD, 30));
 
-		userTextField.setBounds(300, 130, 400, 40);
+		userTextField.setBounds(300 + extWidth, 130 + extHeight, 400, 40);
 		userTextField.setFont(new Font(labelFont.getName(), Font.PLAIN, 25));
 		userTextField.getDocument().addDocumentListener(new DocumentListener() {
 			public void changedUpdate(DocumentEvent e) {
@@ -157,10 +164,10 @@ public class LoginPage extends JFrame implements ActionListener {
 			}
 		});
 
-		passwordLabel.setBounds(80, 200, 250, 60);
+		passwordLabel.setBounds(80 + extWidth, 200 + extHeight, 250, 60);
 		passwordLabel.setFont(new Font(labelFont.getName(), Font.BOLD, 30));
 
-		passwordField.setBounds(300, 210, 400, 40);
+		passwordField.setBounds(300 + extWidth, 210 + extHeight, 400, 40);
 		passwordField.setFont(new Font(labelFont.getName(), Font.PLAIN, 25));
 		passwordField.getDocument().addDocumentListener(new DocumentListener() {
 			public void changedUpdate(DocumentEvent e) {
@@ -192,14 +199,14 @@ public class LoginPage extends JFrame implements ActionListener {
 			}
 		});
 
-		showPassword.setBounds(295, 260, 350, 40);
+		showPassword.setBounds(295 + extWidth, 260 + extHeight, 350, 40);
 		showPassword.setFont(new Font(labelFont.getName(), Font.BOLD + Font.ITALIC, 20));
 
 		loginButton.setEnabled(false);
-		loginButton.setBounds(300, 310, 140, 40);
+		loginButton.setBounds(300 + extWidth, 310 + extHeight, 140, 40);
 		loginButton.setFont(new Font(labelFont.getName(), Font.BOLD, 25));
 
-		forgotPwdButton.setBounds(460, 310, 240, 40);
+		forgotPwdButton.setBounds(460 + extWidth, 310 + extHeight, 240, 40);
 		forgotPwdButton.setFont(new Font(labelFont.getName(), Font.BOLD, 25));
 
 	}
@@ -244,12 +251,12 @@ public class LoginPage extends JFrame implements ActionListener {
 		userName = userTextField.getText();
 		if (e.getSource() == loginButton) {
 
-//			if (productMode.equals("Dev")) {
-//				userText = "com1user1";
-//				 userText = "com1admin";
-////				userText = "uhacc";
-//				pwdText = "123456";
-//			}
+			// if (productMode.equals("Dev")) {
+			// userText = "com1user1";
+			// userText = "com1admin";
+			//// userText = "uhacc";
+			// pwdText = "123456";
+			// }
 
 			logger.info("Login with username: " + userText);
 
@@ -392,7 +399,8 @@ public class LoginPage extends JFrame implements ActionListener {
 				try {
 					while (true) {
 						try {
-							// Wait 3 minutes to read the log and get the first sync
+							// Wait 3 minutes to read the log and get the first
+							// sync
 							Thread.sleep(3 * 60 * 1000);
 
 							// Thread.sleep(60 * 1000);
@@ -408,7 +416,7 @@ public class LoginPage extends JFrame implements ActionListener {
 							} catch (Exception e) {
 								logger.error(e.getMessage());
 							}
-							
+
 							// while (true) {
 							//
 							// if (fileLength < file.length()) {
@@ -525,7 +533,7 @@ public class LoginPage extends JFrame implements ActionListener {
 		JLabel progress = new JLabel("Checking configuration...");
 		p1.add(progress, new GridBagConstraints());
 		d.getContentPane().add(p1);
-		d.setBounds(100, 100, 500, 200);
+		d.setBounds(100 + extWidth, 100 + extHeight, 500, 200);
 		// d.setLocationRelativeTo(f);
 		d.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
 		d.setModal(true);
@@ -553,14 +561,13 @@ public class LoginPage extends JFrame implements ActionListener {
 				logger.info("Database version: " + databaseInfo.get(5));
 
 				logger.info("Last Sync: " + databaseInfo.get(6));
-				
+
 				String connectToHost = databaseInfo.get(7);
 				String localDatabase = databaseInfo.get(8);
 				logger.info("connectToHost: " + databaseInfo.get(7));
-				
-				
-//				System.out.println("databaseInfo: " + databaseInfo);
-				
+
+				// System.out.println("databaseInfo: " + databaseInfo);
+
 				Thread.sleep(1000);
 				File versionFile = new File("");
 				try {
@@ -583,37 +590,39 @@ public class LoginPage extends JFrame implements ActionListener {
 
 				boolean checkEmailConfig = emailUtils.checkEmailConnection();
 				logger.info("checkEmailConfig: " + checkEmailConfig);
-				
-				
+
 				if (companyCode == null || companyCodeUH == null || machineCode == null) {
 					publish("Error configuration checking. Please review log file...");
+					logger.error("companyCode: " + companyCode);
+					logger.info("companyCodeUH: " + companyCodeUH);
+					logger.info("machineCode: " + machineCode);
 					Thread.sleep(5000);
-					System.exit(ERROR);
+//					System.exit(ERROR);
 				}
-				
+
 				if (localDatabase == null || !localDatabase.equals("")) {
 					publish("[ERR] Local database - " + localDatabase);
-					Thread.sleep(30000);
-					System.exit(ERROR);
+					logger.error("localDatabase: " + localDatabase);
+					Thread.sleep(5000);
+//					System.exit(ERROR);
 				}
-				
+
 				if (connectToHost == null || !connectToHost.equals("OK")) {
 					publish("[ERR] " + connectToHost);
-					Thread.sleep(30000);
-					System.exit(ERROR);
+					logger.error("connectToHost: " + connectToHost);
+					Thread.sleep(5000);
+//					System.exit(ERROR);
 				}
-				
-				
-				
-				
+
 				for (String info : databaseInfo) {
 					if (info == null) {
 						publish("[ERR] Error database configuration. Please review log file...");
+						logger.error("info: " + info);
 						Thread.sleep(5000);
-						System.exit(ERROR);
+//						System.exit(ERROR);
 					}
 				}
-				
+
 				publish("Done checking...");
 				Thread.sleep(1000);
 

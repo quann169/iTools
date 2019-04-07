@@ -1,9 +1,11 @@
 package com.views;
 
 import java.awt.Container;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
@@ -73,6 +75,12 @@ public class ForgotPasswordPage extends JFrame implements ActionListener {
 	JFrame root = this;
 	Timer updateTimer;
 	int expiredTime = Integer.valueOf(cfg.getProperty("Expired_Time")) * 1000;
+	
+	static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+	static int windowWidth = (int) screenSize.getWidth();
+	static int windowHeight = (int) screenSize.getHeight();
+	static int extWidth = (windowWidth > 900) ? 0 : 0;
+	static int extHeight = (windowHeight > 700) ? 0 : 0;
 
 	ForgotPasswordPage() {
 		setLayoutManager();
@@ -89,10 +97,10 @@ public class ForgotPasswordPage extends JFrame implements ActionListener {
 	public void setLocationAndSize() {
 		Font labelFont = usernameLabel.getFont();
 
-		usernameLabel.setBounds(120, 100, 250, 40);
+		usernameLabel.setBounds(120 + extWidth, 100 + extHeight, 250, 40);
 		usernameLabel.setFont(new Font(labelFont.getName(), Font.BOLD, 25));
 
-		usernameTextField.setBounds(260, 105, 430, 40);
+		usernameTextField.setBounds(260 + extWidth, 105 + extHeight, 430, 40);
 		usernameTextField.setFont(new Font(labelFont.getName(), Font.BOLD, 20));
 		usernameTextField.setText("");
 
@@ -121,10 +129,10 @@ public class ForgotPasswordPage extends JFrame implements ActionListener {
 			}
 		});
 
-		emailLabel.setBounds(120, 190, 250, 40);
+		emailLabel.setBounds(120 + extWidth, 190 + extHeight, 250, 40);
 		emailLabel.setFont(new Font(labelFont.getName(), Font.BOLD, 25));
 
-		emailTextField.setBounds(260, 195, 430, 40);
+		emailTextField.setBounds(260 + extWidth, 195 + extHeight, 430, 40);
 		emailTextField.setFont(new Font(labelFont.getName(), Font.BOLD, 20));
 		emailTextField.setText("");
 
@@ -147,10 +155,10 @@ public class ForgotPasswordPage extends JFrame implements ActionListener {
 		});
 
 		forgotPassButton.setEnabled(false);
-		forgotPassButton.setBounds(260, 280, 230, 50);
+		forgotPassButton.setBounds(260 + extWidth, 280 + extHeight, 230, 50);
 		forgotPassButton.setFont(new Font(labelFont.getName(), Font.BOLD, 25));
 
-		cancelButton.setBounds(510, 280, 180, 50);
+		cancelButton.setBounds(510 + extWidth, 280 + extHeight, 180, 50);
 		cancelButton.setFont(new Font(labelFont.getName(), Font.BOLD, 25));
 
 		updateTimer = new Timer(expiredTime, new ActionListener() {
@@ -214,8 +222,10 @@ public class ForgotPasswordPage extends JFrame implements ActionListener {
 			@Override
 			public void windowClosing(WindowEvent we) {
 				String ObjButtons[] = { "Yes", "No" };
-				int PromptResult = JOptionPane.showOptionDialog(root, "<html><font size=\"5\" face=\"arial\">Are you sure you want to exit?</font></html>", "Confirm Close",
-						JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, ObjButtons, ObjButtons[1]);
+				int PromptResult = JOptionPane.showOptionDialog(root,
+						"<html><font size=\"5\" face=\"arial\">Are you sure you want to exit?</font></html>",
+						"Confirm Close", JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, ObjButtons,
+						ObjButtons[1]);
 				if (PromptResult == JOptionPane.YES_OPTION) {
 					System.exit(0);
 				}
@@ -248,7 +258,7 @@ public class ForgotPasswordPage extends JFrame implements ActionListener {
 				JLabel progress = new JLabel("Please Wait...");
 				p1.add(progress, new GridBagConstraints());
 				d.getContentPane().add(p1);
-				d.setBounds(150, 200, 500, 200);
+				d.setBounds(150 + extWidth, 200 + extHeight, 500, 200);
 				// d.setLocationRelativeTo(f);
 				d.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
 				d.setModal(true);

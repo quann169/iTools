@@ -2,7 +2,9 @@ package com.views;
 
 import java.awt.Container;
 import java.awt.Cursor;
+import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -81,6 +83,13 @@ public class LockUnlockAccountPage extends JFrame implements ActionListener {
 	int expiredTime = Integer.valueOf(cfg.getProperty("Expired_Time")) * 1000;
 	String userName = "";
 	public PopUpKeyboard keyboard;
+	
+	static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+	static int windowWidth = (int) screenSize.getWidth();
+	static int windowHeight = (int) screenSize.getHeight();
+	static int extWidth = (windowWidth > 900) ? 0 : 0;
+	static int extHeight = (windowHeight > 700) ? 0 : 0;
+
 
 	LockUnlockAccountPage(Assessor user, boolean isDashboard) {
 		this.user = user;
@@ -105,7 +114,7 @@ public class LockUnlockAccountPage extends JFrame implements ActionListener {
 		backToDashboardLabel.setText("<html><html><font size=\"5\" face=\"arial\" color=\"#0181BE\"><b><i><u>"
 				+ bundleMessage.getString("Employee_Back_To_Dashboard") + "</u></i></b></font></html></html>");
 		backToDashboardLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		backToDashboardLabel.setBounds(15, 5, 300, 70);
+		backToDashboardLabel.setBounds(15 + extWidth, 5 + extHeight, 300, 70);
 		backToDashboardLabel.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -132,7 +141,7 @@ public class LockUnlockAccountPage extends JFrame implements ActionListener {
 		changePassLabel.setText("<html><html><font size=\"5\" face=\"arial\" color=\"#0181BE\"><b><i><u>"
 				+ bundleMessage.getString("App_ChangePassword") + "</u></i></b></font></html></html>");
 		changePassLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		changePassLabel.setBounds(530, 5, 170, 60);
+		changePassLabel.setBounds(530 + extWidth, 5 + extHeight, 170, 60);
 		changePassLabel.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {				
@@ -149,13 +158,13 @@ public class LockUnlockAccountPage extends JFrame implements ActionListener {
 			}
 		});
 
-		splitLabel.setBounds(693, 5, 25, 60);
+		splitLabel.setBounds(693 + extWidth, 5 + extHeight, 25, 60);
 		splitLabel.setFont(new Font(labelFont.getName(), Font.BOLD, 25));
 
 		logOutLabel.setText("<html><font size=\"5\" face=\"arial\" color=\"#0181BE\"><b><i><u>"
 				+ bundleMessage.getString("App_Logout") + "</u></i></b></font></html>");
 		logOutLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		logOutLabel.setBounds(715, 5, 150, 60);
+		logOutLabel.setBounds(715 + extWidth, 5 + extHeight, 150, 60);
 		logOutLabel.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -171,7 +180,7 @@ public class LockUnlockAccountPage extends JFrame implements ActionListener {
 			}
 		});
 		
-		usernameLabel.setBounds(100, 150, 150, 60);
+		usernameLabel.setBounds(100 + extWidth, 150 + extHeight, 150, 60);
 		usernameLabel.setFont(new Font(labelFont.getName(), Font.BOLD, 20));
 
 		List<String> listAllUserNames = new ArrayList<>();
@@ -191,7 +200,7 @@ public class LockUnlockAccountPage extends JFrame implements ActionListener {
 		
 		userNameComboBox = new FilterComboBox(listAllUserNames, keyboard);
 				
-		userNameComboBox.setBounds(230, 160, 450, 30);
+		userNameComboBox.setBounds(230 + extWidth, 160 + extHeight, 450, 30);
 		userNameComboBox.setFont(new Font(labelFont.getName(), Font.BOLD, 20));
 		
 		userNameComboBox.addActionListener(new ActionListener() {
@@ -212,10 +221,10 @@ public class LockUnlockAccountPage extends JFrame implements ActionListener {
 
 		
 
-		lockAccountButtom.setBounds(230, 220, 220, 35);
+		lockAccountButtom.setBounds(230 + extWidth, 220 + extHeight, 220, 35);
 		lockAccountButtom.setFont(new Font(labelFont.getName(), Font.BOLD, 20));
 
-		unLockAccountButton.setBounds(460, 220, 220, 35);
+		unLockAccountButton.setBounds(460 + extWidth, 220 + extHeight, 220, 35);
 		unLockAccountButton.setFont(new Font(labelFont.getName(), Font.BOLD, 20));
 		validateAllFields();
 

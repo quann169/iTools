@@ -7,6 +7,7 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
@@ -151,7 +152,13 @@ public class EmployeePage extends JFrame implements ActionListener, HidServicesL
 	// JFrame parent;
 
 	ActionListener toolComboboxListener;
-
+	
+	static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+	static int windowWidth = (int) screenSize.getWidth();
+	static int windowHeight = (int) screenSize.getHeight();
+	static int extWidth = (windowWidth > 900) ? 0 : 0;
+	static int extHeight = (windowHeight > 700) ? 0 : 0;
+	
 	EmployeePage(Assessor user, boolean isDashboard) {
 		this.userName = user.getUsername();
 		this.user = user;
@@ -185,7 +192,7 @@ public class EmployeePage extends JFrame implements ActionListener, HidServicesL
 		backToDashboardLabel.setText("<html><html><font size=\"5\" face=\"arial\" color=\"#0181BE\"><b><i><u>"
 				+ bundleMessage.getString("Employee_Back_To_Dashboard") + "</u></i></b></font></html></html>");
 		backToDashboardLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		backToDashboardLabel.setBounds(15, 5, 300, 70);
+		backToDashboardLabel.setBounds(15 + extWidth, 5 + extHeight, 300, 70);
 		backToDashboardLabel.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -213,7 +220,7 @@ public class EmployeePage extends JFrame implements ActionListener, HidServicesL
 		changePassLabel.setText("<html><html><font size=\"5\" face=\"arial\" color=\"#0181BE\"><b><i><u>"
 				+ bundleMessage.getString("App_ChangePassword") + "</u></i></b></font></html></html>");
 		changePassLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		changePassLabel.setBounds(530, 5, 170, 60);
+		changePassLabel.setBounds(530 + extWidth, 5 + extHeight, 170, 60);
 		changePassLabel.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -230,13 +237,13 @@ public class EmployeePage extends JFrame implements ActionListener, HidServicesL
 			}
 		});
 
-		splitLabel.setBounds(693, 5, 25, 60);
+		splitLabel.setBounds(693 + extWidth, 5 + extHeight, 25, 60);
 		splitLabel.setFont(new Font(labelFont.getName(), Font.BOLD, 25));
 
 		logOutLabel.setText("<html><font size=\"5\" face=\"arial\" color=\"#0181BE\"><b><i><u>"
 				+ bundleMessage.getString("App_Logout") + "</u></i></b></font></html>");
 		logOutLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		logOutLabel.setBounds(715, 5, 150, 60);
+		logOutLabel.setBounds(715 + extWidth, 5 + extHeight, 150, 60);
 		logOutLabel.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -252,10 +259,10 @@ public class EmployeePage extends JFrame implements ActionListener, HidServicesL
 			}
 		});
 
-		woLabel.setBounds(180, 70, 150, 60);
+		woLabel.setBounds(180 + extWidth, 70 + extHeight, 150, 60);
 		woLabel.setFont(new Font(labelFont.getName(), Font.BOLD, 25));
 
-		woTextField.setBounds(250, 80, 400, 35);
+		woTextField.setBounds(250 + extWidth, 80 + extHeight, 400, 35);
 
 		woTextField.getDocument().addDocumentListener(new DocumentListener() {
 			public void changedUpdate(DocumentEvent e) {
@@ -284,10 +291,10 @@ public class EmployeePage extends JFrame implements ActionListener, HidServicesL
 			}
 		});
 
-		opLabel.setBounds(180, 125, 150, 60);
+		opLabel.setBounds(180 + extWidth, 125 + extHeight, 150, 60);
 		opLabel.setFont(new Font(labelFont.getName(), Font.BOLD, 25));
 
-		opTextField.setBounds(250, 135, 400, 35);
+		opTextField.setBounds(250 + extWidth, 135 + extHeight, 400, 35);
 		opTextField.setFont(new Font(labelFont.getName(), Font.BOLD, 22));
 		opTextField.getDocument().addDocumentListener(new DocumentListener() {
 			public void changedUpdate(DocumentEvent e) {
@@ -315,7 +322,7 @@ public class EmployeePage extends JFrame implements ActionListener, HidServicesL
 			}
 		});
 
-		toolLabel.setBounds(180, 180, 150, 60);
+		toolLabel.setBounds(180 + extWidth, 180 + extHeight, 150, 60);
 		toolLabel.setFont(new Font(labelFont.getName(), Font.BOLD, 25));
 
 		// toolComboboxListener = new ActionListener() {
@@ -367,7 +374,7 @@ public class EmployeePage extends JFrame implements ActionListener, HidServicesL
 
 		updateToolCombobox();
 
-		toolComboBox.setBounds(250, 190, 400, 35);
+		toolComboBox.setBounds(250 + extWidth, 190 + extHeight, 400, 35);
 		toolComboBox.setFont(new Font(labelFont.getName(), Font.BOLD, 22));
 
 		// toolComboBox.addFocusListener(new FocusAdapter() {
@@ -378,10 +385,10 @@ public class EmployeePage extends JFrame implements ActionListener, HidServicesL
 		// }
 		// });
 
-		trayLabel.setBounds(250, 215, 150, 60);
+		trayLabel.setBounds(250 + extWidth, 215 + extHeight, 150, 60);
 		trayLabel.setFont(new Font(labelFont.getName(), Font.ITALIC + Font.BOLD, 15));
 
-		trayTextField.setBounds(250, 265, 220, 35);
+		trayTextField.setBounds(250 + extWidth, 265 + extHeight, 220, 35);
 		trayTextField.setEditable(false);
 		trayTextField.getDocument().addDocumentListener(new DocumentListener() {
 			public void changedUpdate(DocumentEvent e) {
@@ -405,10 +412,10 @@ public class EmployeePage extends JFrame implements ActionListener, HidServicesL
 
 		trayTextField.setFont(new Font(labelFont.getName(), Font.BOLD, 18));
 
-		quantityLabel.setBounds(490, 215, 210, 60);
+		quantityLabel.setBounds(490 + extWidth, 215 + extHeight, 210, 60);
 		quantityLabel.setFont(new Font(labelFont.getName(), Font.ITALIC + Font.BOLD, 15));
 
-		quantityTextField.setBounds(490, 265, 160, 35);
+		quantityTextField.setBounds(490 + extWidth, 265 + extHeight, 160, 35);
 		quantityTextField.setEditable(false);
 		quantityTextField.getDocument().addDocumentListener(new DocumentListener() {
 			public void changedUpdate(DocumentEvent e) {
@@ -433,10 +440,10 @@ public class EmployeePage extends JFrame implements ActionListener, HidServicesL
 		quantityTextField.setFont(new Font(labelFont.getName(), Font.BOLD, 18));
 
 		sendRequestButton.setEnabled(false);
-		sendRequestButton.setBounds(250, 320, 220, 35);
+		sendRequestButton.setBounds(250 + extWidth, 320 + extHeight, 220, 35);
 		sendRequestButton.setFont(new Font(labelFont.getName(), Font.BOLD, 20));
 
-		cancelButton.setBounds(490, 320, 160, 35);
+		cancelButton.setBounds(490 + extWidth, 320 + extHeight, 160, 35);
 		cancelButton.setFont(new Font(labelFont.getName(), Font.BOLD, 20));
 
 		updateTimer = new Timer(expiredTime, new ActionListener() {
@@ -669,7 +676,7 @@ public class EmployeePage extends JFrame implements ActionListener, HidServicesL
 			// panel.setBackground(new Color(102, 205, 170));
 			// panel.setSize(new Dimension(200, 64));
 
-			// panel.setBounds(100, 100, 500, 200);
+			// panel.setBounds(100 + extWidth, 100 + extHeight, 500, 200);
 
 			panel.setLayout(null);
 
@@ -692,7 +699,7 @@ public class EmployeePage extends JFrame implements ActionListener, HidServicesL
 			label2.setVerticalAlignment(SwingConstants.CENTER);
 			label2.setHorizontalAlignment(SwingConstants.CENTER);
 			label2.setFont(new Font("Arial", Font.BOLD, 15));
-			label2.setBounds(0, 0, 350, 150);
+			label2.setBounds(0 + extWidth, 0 + extHeight, 350, 150);
 			panel.add(label2);
 
 			int dialogResult = JOptionPane.showConfirmDialog(this, panel, "Confirm information",
@@ -712,7 +719,7 @@ public class EmployeePage extends JFrame implements ActionListener, HidServicesL
 				progress.setText("Please Wait...");
 				p1.add(progress, new GridBagConstraints());
 				d.getContentPane().add(p1);
-				d.setBounds(150, 200, 500, 200);
+				d.setBounds(150 + extWidth, 200 + extHeight, 500, 200);
 				// d.setLocationRelativeTo(f);
 				d.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
 				d.setModal(true);

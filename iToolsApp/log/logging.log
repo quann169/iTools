@@ -557,3 +557,447 @@ Your pass has been change to 123456
 Tool: 1015-12.0
 Tray: TRAY_01
 New Quantity: 10
+2019-03-22 15:25:03 INFO  LoginPage:543 - ************************************************************
+2019-03-22 15:25:03 INFO  LoginPage:544 - ************************************************************
+2019-03-22 15:25:03 INFO  LoginPage:545 - ************************************************************
+2019-03-22 15:25:03 INFO  LoginPage:546 - ************************************************************
+2019-03-22 15:25:03 INFO  LoginPage:547 - Starting iTool app.
+2019-03-22 15:25:03 INFO  LoginPage:548 - companyCode: MFC
+2019-03-22 15:25:03 INFO  LoginPage:549 - companyCodeUH: Optiwell
+2019-03-22 15:25:03 INFO  LoginPage:550 - machineCode: VM-2
+2019-03-22 15:25:05 INFO  LoginPage:553 - mDbHost: localhost
+2019-03-22 15:25:05 INFO  LoginPage:554 - mDbUser: admin
+2019-03-22 15:25:05 INFO  LoginPage:555 - mDbPwds: 1qa
+2019-03-22 15:25:05 INFO  LoginPage:556 - mDbName: iTools_v1p0
+2019-03-22 15:25:05 INFO  LoginPage:557 - mDbPort: 3306
+2019-03-22 15:25:05 INFO  LoginPage:558 - Database version: v1p0 - 2018-08-11 13:02:35
+2019-03-22 15:25:05 INFO  LoginPage:560 - Last Sync: 2019-03-11 19:55:55
+2019-03-22 15:25:05 INFO  LoginPage:564 - connectToHost: OK
+2019-03-22 15:25:06 INFO  LoginPage:578 - App Version: 1.0
+2019-03-22 15:25:07 INFO  EmailUtils:57 - mail.tqteam.net25itool_app@tqteam.net1qazxsw2!A
+2019-03-22 15:25:08 INFO  LoginPage:589 - checkEmailConfig: true
+2019-03-22 15:25:09 INFO  LoginPage:375 - ========================================
+2019-03-22 15:25:09 INFO  LoginPage:376 - Start syncing thread - AYWVDVFU
+2019-03-22 15:25:09 INFO  LoginPage:377 - ========================================
+2019-03-22 15:25:09 INFO  SyncController:64 - Start SyncHostToLocal
+2019-03-22 15:25:09 INFO  SyncController:72 - SyncHostToLocal_Assessor: insertAssessor: 33
+2019-03-22 15:25:10 INFO  SyncController:80 - SyncHostToLocal_RoleAssessor: insertRoleAssessor: 35
+2019-03-22 15:25:10 INFO  SyncController:88 - SyncHostToLocal_Machine: insertMachine: 5
+2019-03-22 15:25:10 INFO  SyncController:96 - SyncHostToLocal_Company: insertCompany: 4
+2019-03-22 15:25:11 INFO  SyncController:104 - SyncHostToLocal_CompanyMachine: insertCompanyMachine: 5
+2019-03-22 15:25:11 INFO  SyncController:112 - SyncHostToLocal_Tools: insertTools: 128
+2019-03-22 15:25:11 INFO  SyncController:116 - End SyncHostToLocal: 2s
+2019-03-22 15:25:11 INFO  SyncController:120 - Start SyncLocalToHost
+2019-03-22 15:25:11 INFO  SyncController:130 - SyncLocalToHost_ToolsMachineTray: insertToolsMachineTray: 1,
+updateToolsMachineTray: 0
+2019-03-22 15:25:12 INFO  SyncController:138 - SyncLocalToHost_WorkingTransaction: insertWorkingTransaction: 0
+2019-03-22 15:25:12 INFO  SyncController:141 - End SyncLocalToHost: 0s
+2019-03-22 15:25:12 INFO  LoginPage:380 - ========================================
+2019-03-22 15:25:12 INFO  LoginPage:381 - End syncing thread - AYWVDVFU
+2019-03-22 15:25:12 INFO  LoginPage:382 - ========================================
+2019-03-22 15:34:29 INFO  LoginPage:546 - ************************************************************
+2019-03-22 15:34:29 INFO  LoginPage:547 - ************************************************************
+2019-03-22 15:34:29 INFO  LoginPage:548 - ************************************************************
+2019-03-22 15:34:29 INFO  LoginPage:549 - ************************************************************
+2019-03-22 15:34:29 INFO  LoginPage:550 - Starting iTool app.
+2019-03-22 15:34:29 INFO  LoginPage:551 - companyCode: MFC
+2019-03-22 15:34:29 INFO  LoginPage:552 - companyCodeUH: Optiwell
+2019-03-22 15:34:29 INFO  LoginPage:553 - machineCode: VM-2
+2019-03-22 15:34:30 INFO  LoginPage:556 - mDbHost: localhost
+2019-03-22 15:34:30 INFO  LoginPage:557 - mDbUser: admin
+2019-03-22 15:34:30 INFO  LoginPage:558 - mDbPwds: 1qa
+2019-03-22 15:34:30 INFO  LoginPage:559 - mDbName: iTools_v1p0
+2019-03-22 15:34:30 INFO  LoginPage:560 - mDbPort: 3306
+2019-03-22 15:34:30 INFO  LoginPage:561 - Database version: v1p0 - 2018-08-11 13:02:35
+2019-03-22 15:34:30 INFO  LoginPage:563 - Last Sync: 2019-03-22 15:25:12
+2019-03-22 15:34:30 INFO  LoginPage:567 - connectToHost: OK
+2019-03-22 15:34:31 INFO  LoginPage:581 - App Version: 1.0
+2019-03-22 15:34:32 INFO  EmailUtils:57 - mail.tqteam.net25itool_app@tqteam.net1qazxsw2!A
+2019-03-22 15:34:32 INFO  LoginPage:592 - checkEmailConfig: true
+2019-03-22 15:34:33 INFO  LoginPage:378 - ========================================
+2019-03-22 15:34:33 INFO  LoginPage:379 - Start syncing thread - GKTSC9VP
+2019-03-22 15:34:33 INFO  LoginPage:380 - ========================================
+2019-03-22 15:34:33 INFO  SyncController:64 - Start SyncHostToLocal
+2019-03-22 15:34:33 INFO  SyncController:72 - SyncHostToLocal_Assessor: insertAssessor: 33
+2019-03-22 15:34:34 INFO  SyncController:80 - SyncHostToLocal_RoleAssessor: insertRoleAssessor: 35
+2019-03-22 15:34:34 INFO  SyncController:88 - SyncHostToLocal_Machine: insertMachine: 5
+2019-03-22 15:34:34 INFO  SyncController:96 - SyncHostToLocal_Company: insertCompany: 4
+2019-03-22 15:34:34 INFO  SyncController:104 - SyncHostToLocal_CompanyMachine: insertCompanyMachine: 5
+2019-03-22 15:34:34 INFO  SyncController:112 - SyncHostToLocal_Tools: insertTools: 128
+2019-03-22 15:34:34 INFO  SyncController:116 - End SyncHostToLocal: 0s
+2019-03-22 15:34:34 INFO  SyncController:120 - Start SyncLocalToHost
+2019-03-22 15:34:34 INFO  SyncController:130 - SyncLocalToHost_ToolsMachineTray: insertToolsMachineTray: 1,
+updateToolsMachineTray: 0
+2019-03-22 15:34:34 INFO  SyncController:138 - SyncLocalToHost_WorkingTransaction: insertWorkingTransaction: 0
+2019-03-22 15:34:34 INFO  SyncController:141 - End SyncLocalToHost: 0s
+2019-03-22 15:34:34 INFO  LoginPage:383 - ========================================
+2019-03-22 15:34:34 INFO  LoginPage:384 - End syncing thread - GKTSC9VP
+2019-03-22 15:34:34 INFO  LoginPage:385 - ========================================
+2019-03-22 15:39:35 INFO  LoginPage:546 - ************************************************************
+2019-03-22 15:39:35 INFO  LoginPage:547 - ************************************************************
+2019-03-22 15:39:35 INFO  LoginPage:548 - ************************************************************
+2019-03-22 15:39:35 INFO  LoginPage:549 - ************************************************************
+2019-03-22 15:39:35 INFO  LoginPage:550 - Starting iTool app.
+2019-03-22 15:39:35 INFO  LoginPage:551 - companyCode: MFC
+2019-03-22 15:39:35 INFO  LoginPage:552 - companyCodeUH: Optiwell
+2019-03-22 15:39:35 INFO  LoginPage:553 - machineCode: VM-2
+2019-03-22 15:39:37 INFO  LoginPage:556 - mDbHost: localhost
+2019-03-22 15:39:37 INFO  LoginPage:557 - mDbUser: admin
+2019-03-22 15:39:37 INFO  LoginPage:558 - mDbPwds: 1qa
+2019-03-22 15:39:37 INFO  LoginPage:559 - mDbName: iTools_v1p0
+2019-03-22 15:39:37 INFO  LoginPage:560 - mDbPort: 3306
+2019-03-22 15:39:37 INFO  LoginPage:561 - Database version: v1p0 - 2018-08-11 13:02:35
+2019-03-22 15:39:37 INFO  LoginPage:563 - Last Sync: 2019-03-22 15:34:34
+2019-03-22 15:39:37 INFO  LoginPage:567 - connectToHost: OK
+2019-03-22 15:39:38 INFO  LoginPage:581 - App Version: 1.0
+2019-03-22 15:39:39 INFO  EmailUtils:57 - mail.tqteam.net25itool_app@tqteam.net1qazxsw2!A
+2019-03-22 15:39:40 INFO  LoginPage:592 - checkEmailConfig: true
+2019-03-22 15:39:41 INFO  LoginPage:378 - ========================================
+2019-03-22 15:39:41 INFO  LoginPage:379 - Start syncing thread - NLTJU8DD
+2019-03-22 15:39:41 INFO  LoginPage:380 - ========================================
+2019-03-22 15:39:41 INFO  SyncController:64 - Start SyncHostToLocal
+2019-03-22 15:39:41 INFO  SyncController:72 - SyncHostToLocal_Assessor: insertAssessor: 33
+2019-03-22 15:39:42 INFO  SyncController:80 - SyncHostToLocal_RoleAssessor: insertRoleAssessor: 35
+2019-03-22 15:39:42 INFO  SyncController:88 - SyncHostToLocal_Machine: insertMachine: 5
+2019-03-22 15:39:42 INFO  SyncController:96 - SyncHostToLocal_Company: insertCompany: 4
+2019-03-22 15:39:42 INFO  SyncController:104 - SyncHostToLocal_CompanyMachine: insertCompanyMachine: 5
+2019-03-22 15:39:43 INFO  SyncController:112 - SyncHostToLocal_Tools: insertTools: 128
+2019-03-22 15:39:43 INFO  SyncController:116 - End SyncHostToLocal: 1s
+2019-03-22 15:39:43 INFO  LoginPage:383 - ========================================
+2019-03-22 15:39:43 INFO  LoginPage:384 - End syncing thread - NLTJU8DD
+2019-03-22 15:39:43 INFO  LoginPage:385 - ========================================
+2019-03-22 15:49:57 INFO  LoginPage:546 - ************************************************************
+2019-03-22 15:49:57 INFO  LoginPage:547 - ************************************************************
+2019-03-22 15:49:57 INFO  LoginPage:548 - ************************************************************
+2019-03-22 15:49:57 INFO  LoginPage:549 - ************************************************************
+2019-03-22 15:49:57 INFO  LoginPage:550 - Starting iTool app.
+2019-03-22 15:49:57 INFO  LoginPage:551 - companyCode: MFC
+2019-03-22 15:49:57 INFO  LoginPage:552 - companyCodeUH: Optiwell
+2019-03-22 15:49:57 INFO  LoginPage:553 - machineCode: VM-2
+2019-03-22 15:49:58 INFO  LoginPage:556 - mDbHost: localhost
+2019-03-22 15:49:58 INFO  LoginPage:557 - mDbUser: admin
+2019-03-22 15:49:58 INFO  LoginPage:558 - mDbPwds: 1qa
+2019-03-22 15:49:58 INFO  LoginPage:559 - mDbName: iTools_v1p0
+2019-03-22 15:49:58 INFO  LoginPage:560 - mDbPort: 3306
+2019-03-22 15:49:58 INFO  LoginPage:561 - Database version: v1p0 - 2018-08-11 13:02:35
+2019-03-22 15:49:58 INFO  LoginPage:563 - Last Sync: 2019-03-22 15:39:43
+2019-03-22 15:49:58 INFO  LoginPage:567 - connectToHost: OK
+2019-03-22 15:49:59 INFO  LoginPage:581 - App Version: 1.0
+2019-03-22 15:50:00 INFO  EmailUtils:57 - mail.tqteam.net25itool_app@tqteam.net1qazxsw2!A
+2019-03-22 15:50:00 INFO  LoginPage:592 - checkEmailConfig: true
+2019-03-22 15:50:01 INFO  LoginPage:378 - ========================================
+2019-03-22 15:50:01 INFO  LoginPage:379 - Start syncing thread - S4DN2P8G
+2019-03-22 15:50:01 INFO  LoginPage:380 - ========================================
+2019-03-22 15:50:01 INFO  SyncController:64 - Start SyncHostToLocal
+2019-03-22 15:50:02 INFO  SyncController:72 - SyncHostToLocal_Assessor: insertAssessor: 33
+2019-03-22 15:50:02 INFO  SyncController:80 - SyncHostToLocal_RoleAssessor: insertRoleAssessor: 35
+2019-03-22 15:50:02 INFO  SyncController:88 - SyncHostToLocal_Machine: insertMachine: 5
+2019-03-22 15:50:02 INFO  SyncController:96 - SyncHostToLocal_Company: insertCompany: 4
+2019-03-22 15:50:02 INFO  SyncController:104 - SyncHostToLocal_CompanyMachine: insertCompanyMachine: 5
+2019-03-22 15:50:02 INFO  SyncController:112 - SyncHostToLocal_Tools: insertTools: 128
+2019-03-22 15:50:02 INFO  SyncController:116 - End SyncHostToLocal: 0s
+2019-03-22 15:50:02 INFO  LoginPage:383 - ========================================
+2019-03-22 15:50:02 INFO  LoginPage:384 - End syncing thread - S4DN2P8G
+2019-03-22 15:50:02 INFO  LoginPage:385 - ========================================
+2019-03-22 15:54:04 INFO  LoginPage:546 - ************************************************************
+2019-03-22 15:54:04 INFO  LoginPage:547 - ************************************************************
+2019-03-22 15:54:04 INFO  LoginPage:548 - ************************************************************
+2019-03-22 15:54:04 INFO  LoginPage:549 - ************************************************************
+2019-03-22 15:54:04 INFO  LoginPage:550 - Starting iTool app.
+2019-03-22 15:54:04 INFO  LoginPage:551 - companyCode: MFC
+2019-03-22 15:54:04 INFO  LoginPage:552 - companyCodeUH: Optiwell
+2019-03-22 15:54:04 INFO  LoginPage:553 - machineCode: VM-2
+2019-03-22 15:54:06 INFO  LoginPage:556 - mDbHost: localhost
+2019-03-22 15:54:06 INFO  LoginPage:557 - mDbUser: admin
+2019-03-22 15:54:06 INFO  LoginPage:558 - mDbPwds: 1qa
+2019-03-22 15:54:06 INFO  LoginPage:559 - mDbName: iTools_v1p0
+2019-03-22 15:54:06 INFO  LoginPage:560 - mDbPort: 3306
+2019-03-22 15:54:06 INFO  LoginPage:561 - Database version: v1p0 - 2018-08-11 13:02:35
+2019-03-22 15:54:06 INFO  LoginPage:563 - Last Sync: 2019-03-22 15:50:02
+2019-03-22 15:54:06 INFO  LoginPage:567 - connectToHost: OK
+2019-03-22 15:54:07 INFO  LoginPage:581 - App Version: 1.0
+2019-03-22 15:54:08 INFO  EmailUtils:57 - mail.tqteam.net25itool_app@tqteam.net1qazxsw2!A
+2019-03-22 15:54:08 INFO  LoginPage:592 - checkEmailConfig: true
+2019-03-22 15:54:10 INFO  LoginPage:378 - ========================================
+2019-03-22 15:54:10 INFO  LoginPage:379 - Start syncing thread - ICC4RRCQ
+2019-03-22 15:54:10 INFO  LoginPage:380 - ========================================
+2019-03-22 15:54:10 INFO  SyncController:64 - Start SyncHostToLocal
+2019-03-22 15:54:10 INFO  SyncController:72 - SyncHostToLocal_Assessor: insertAssessor: 33
+2019-03-22 15:54:10 INFO  SyncController:80 - SyncHostToLocal_RoleAssessor: insertRoleAssessor: 35
+2019-03-22 15:54:10 INFO  SyncController:88 - SyncHostToLocal_Machine: insertMachine: 5
+2019-03-22 15:54:10 INFO  SyncController:96 - SyncHostToLocal_Company: insertCompany: 4
+2019-03-22 15:54:10 INFO  SyncController:104 - SyncHostToLocal_CompanyMachine: insertCompanyMachine: 5
+2019-03-22 15:54:11 INFO  SyncController:112 - SyncHostToLocal_Tools: insertTools: 128
+2019-03-22 15:54:11 INFO  SyncController:116 - End SyncHostToLocal: 0s
+2019-03-22 15:54:11 INFO  LoginPage:383 - ========================================
+2019-03-22 15:54:11 INFO  LoginPage:384 - End syncing thread - ICC4RRCQ
+2019-03-22 15:54:11 INFO  LoginPage:385 - ========================================
+2019-03-22 15:57:42 INFO  LoginPage:546 - ************************************************************
+2019-03-22 15:57:42 INFO  LoginPage:547 - ************************************************************
+2019-03-22 15:57:42 INFO  LoginPage:548 - ************************************************************
+2019-03-22 15:57:42 INFO  LoginPage:549 - ************************************************************
+2019-03-22 15:57:42 INFO  LoginPage:550 - Starting iTool app.
+2019-03-22 15:57:42 INFO  LoginPage:551 - companyCode: MFC
+2019-03-22 15:57:42 INFO  LoginPage:552 - companyCodeUH: Optiwell
+2019-03-22 15:57:42 INFO  LoginPage:553 - machineCode: VM-2
+2019-03-22 15:57:43 INFO  LoginPage:556 - mDbHost: localhost
+2019-03-22 15:57:43 INFO  LoginPage:557 - mDbUser: admin
+2019-03-22 15:57:43 INFO  LoginPage:558 - mDbPwds: 1qa
+2019-03-22 15:57:43 INFO  LoginPage:559 - mDbName: iTools_v1p0
+2019-03-22 15:57:43 INFO  LoginPage:560 - mDbPort: 3306
+2019-03-22 15:57:43 INFO  LoginPage:561 - Database version: v1p0 - 2018-08-11 13:02:35
+2019-03-22 15:57:43 INFO  LoginPage:563 - Last Sync: 2019-03-22 15:54:11
+2019-03-22 15:57:43 INFO  LoginPage:567 - connectToHost: OK
+2019-03-22 15:57:44 INFO  LoginPage:581 - App Version: 1.0
+2019-03-22 15:57:45 INFO  EmailUtils:57 - mail.tqteam.net25itool_app@tqteam.net1qazxsw2!A
+2019-03-22 15:57:45 INFO  LoginPage:592 - checkEmailConfig: true
+2019-03-22 15:57:46 INFO  LoginPage:378 - ========================================
+2019-03-22 15:57:46 INFO  LoginPage:379 - Start syncing thread - BNZIX8CK
+2019-03-22 15:57:46 INFO  LoginPage:380 - ========================================
+2019-03-22 15:57:46 INFO  SyncController:64 - Start SyncHostToLocal
+2019-03-22 15:57:46 INFO  SyncController:72 - SyncHostToLocal_Assessor: insertAssessor: 33
+2019-03-22 15:57:47 INFO  SyncController:80 - SyncHostToLocal_RoleAssessor: insertRoleAssessor: 35
+2019-03-22 15:57:48 INFO  SyncController:88 - SyncHostToLocal_Machine: insertMachine: 5
+2019-03-22 15:57:48 INFO  SyncController:96 - SyncHostToLocal_Company: insertCompany: 4
+2019-03-22 15:57:48 INFO  SyncController:104 - SyncHostToLocal_CompanyMachine: insertCompanyMachine: 5
+2019-03-22 15:57:48 INFO  SyncController:112 - SyncHostToLocal_Tools: insertTools: 128
+2019-03-22 15:57:48 INFO  SyncController:116 - End SyncHostToLocal: 1s
+2019-03-22 15:57:48 INFO  LoginPage:383 - ========================================
+2019-03-22 15:57:48 INFO  LoginPage:384 - End syncing thread - BNZIX8CK
+2019-03-22 15:57:48 INFO  LoginPage:385 - ========================================
+2019-03-22 16:21:53 INFO  LoginPage:546 - ************************************************************
+2019-03-22 16:21:53 INFO  LoginPage:547 - ************************************************************
+2019-03-22 16:21:53 INFO  LoginPage:548 - ************************************************************
+2019-03-22 16:21:53 INFO  LoginPage:549 - ************************************************************
+2019-03-22 16:21:53 INFO  LoginPage:550 - Starting iTool app.
+2019-03-22 16:21:53 INFO  LoginPage:551 - companyCode: MFC
+2019-03-22 16:21:53 INFO  LoginPage:552 - companyCodeUH: Optiwell
+2019-03-22 16:21:53 INFO  LoginPage:553 - machineCode: VM-2
+2019-03-22 16:21:54 INFO  LoginPage:556 - mDbHost: localhost
+2019-03-22 16:21:54 INFO  LoginPage:557 - mDbUser: admin
+2019-03-22 16:21:54 INFO  LoginPage:558 - mDbPwds: 1qa
+2019-03-22 16:21:54 INFO  LoginPage:559 - mDbName: iTools_v1p0
+2019-03-22 16:21:54 INFO  LoginPage:560 - mDbPort: 3306
+2019-03-22 16:21:54 INFO  LoginPage:561 - Database version: v1p0 - 2018-08-11 13:02:35
+2019-03-22 16:21:54 INFO  LoginPage:563 - Last Sync: 2019-03-22 15:57:48
+2019-03-22 16:21:54 INFO  LoginPage:567 - connectToHost: OK
+2019-03-22 16:21:55 INFO  LoginPage:581 - App Version: 1.0
+2019-03-22 16:21:56 INFO  EmailUtils:57 - mail.tqteam.net25itool_app@tqteam.net1qazxsw2!A
+2019-03-22 16:21:56 INFO  LoginPage:592 - checkEmailConfig: true
+2019-03-22 16:21:57 INFO  LoginPage:378 - ========================================
+2019-03-22 16:21:57 INFO  LoginPage:379 - Start syncing thread - WI24BWQJ
+2019-03-22 16:21:57 INFO  LoginPage:380 - ========================================
+2019-03-22 16:21:57 INFO  SyncController:64 - Start SyncHostToLocal
+2019-03-22 16:21:57 INFO  SyncController:72 - SyncHostToLocal_Assessor: insertAssessor: 33
+2019-03-22 16:21:57 INFO  SyncController:80 - SyncHostToLocal_RoleAssessor: insertRoleAssessor: 35
+2019-03-22 16:21:58 INFO  SyncController:88 - SyncHostToLocal_Machine: insertMachine: 5
+2019-03-22 16:21:58 INFO  SyncController:96 - SyncHostToLocal_Company: insertCompany: 4
+2019-03-22 16:21:58 INFO  SyncController:104 - SyncHostToLocal_CompanyMachine: insertCompanyMachine: 5
+2019-03-22 16:21:58 INFO  SyncController:112 - SyncHostToLocal_Tools: insertTools: 128
+2019-03-22 16:21:58 INFO  SyncController:116 - End SyncHostToLocal: 0s
+2019-03-22 16:21:58 INFO  LoginPage:383 - ========================================
+2019-03-22 16:21:58 INFO  LoginPage:384 - End syncing thread - WI24BWQJ
+2019-03-22 16:21:58 INFO  LoginPage:385 - ========================================
+2019-03-22 16:26:55 INFO  LoginPage:546 - ************************************************************
+2019-03-22 16:26:55 INFO  LoginPage:547 - ************************************************************
+2019-03-22 16:26:55 INFO  LoginPage:548 - ************************************************************
+2019-03-22 16:26:55 INFO  LoginPage:549 - ************************************************************
+2019-03-22 16:26:55 INFO  LoginPage:550 - Starting iTool app.
+2019-03-22 16:26:55 INFO  LoginPage:551 - companyCode: MFC
+2019-03-22 16:26:55 INFO  LoginPage:552 - companyCodeUH: Optiwell
+2019-03-22 16:26:55 INFO  LoginPage:553 - machineCode: VM-2
+2019-03-22 16:26:56 INFO  LoginPage:556 - mDbHost: localhost
+2019-03-22 16:26:56 INFO  LoginPage:557 - mDbUser: admin
+2019-03-22 16:26:56 INFO  LoginPage:558 - mDbPwds: 1qa
+2019-03-22 16:26:56 INFO  LoginPage:559 - mDbName: iTools_v1p0
+2019-03-22 16:26:56 INFO  LoginPage:560 - mDbPort: 3306
+2019-03-22 16:26:56 INFO  LoginPage:561 - Database version: v1p0 - 2018-08-11 13:02:35
+2019-03-22 16:26:56 INFO  LoginPage:563 - Last Sync: 2019-03-22 16:21:58
+2019-03-22 16:26:56 INFO  LoginPage:567 - connectToHost: OK
+2019-03-22 16:26:57 INFO  LoginPage:581 - App Version: 1.0
+2019-03-22 16:26:58 INFO  EmailUtils:57 - mail.tqteam.net25itool_app@tqteam.net1qazxsw2!A
+2019-03-22 16:26:58 INFO  LoginPage:592 - checkEmailConfig: true
+2019-03-22 16:26:59 INFO  LoginPage:378 - ========================================
+2019-03-22 16:26:59 INFO  LoginPage:379 - Start syncing thread - FXY2QZOI
+2019-03-22 16:26:59 INFO  LoginPage:380 - ========================================
+2019-03-22 16:26:59 INFO  SyncController:64 - Start SyncHostToLocal
+2019-03-22 16:27:00 INFO  SyncController:72 - SyncHostToLocal_Assessor: insertAssessor: 33
+2019-03-22 16:27:00 INFO  SyncController:80 - SyncHostToLocal_RoleAssessor: insertRoleAssessor: 35
+2019-03-22 16:27:00 INFO  SyncController:88 - SyncHostToLocal_Machine: insertMachine: 5
+2019-03-22 16:27:00 INFO  SyncController:96 - SyncHostToLocal_Company: insertCompany: 4
+2019-03-22 16:27:00 INFO  SyncController:104 - SyncHostToLocal_CompanyMachine: insertCompanyMachine: 5
+2019-03-22 16:27:00 INFO  SyncController:112 - SyncHostToLocal_Tools: insertTools: 128
+2019-03-22 16:27:00 INFO  SyncController:116 - End SyncHostToLocal: 0s
+2019-03-22 16:27:00 INFO  LoginPage:383 - ========================================
+2019-03-22 16:27:00 INFO  LoginPage:384 - End syncing thread - FXY2QZOI
+2019-03-22 16:27:00 INFO  LoginPage:385 - ========================================
+2019-03-22 16:27:38 INFO  LoginPage:261 - Login with username: admin
+2019-03-22 16:27:38 INFO  LoginController:45 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin, IsLocked FROM Assessor where Assessor.IsActive = 1 and Assessor.UserName='admin' and (Password=md5('123456') or LastPassword=md5('123456')) and MachineCode like '%VM-2%';
+2019-03-22 16:27:38 INFO  LoginPage:314 - Login Fail
+2019-03-22 16:27:38 INFO  LoginPage:316 - Update Fail Time
+2019-03-22 16:27:38 INFO  LoginController:84 - update Assessor set FailTimes = FailTimes + 1 where Assessor.UserName = 'admin' and Assessor.CompanyCode = 'MFC' ;
+2019-03-22 16:27:38 INFO  LoginController:97 - update federated_assessor set FailTimes = FailTimes + 1 where federated_assessor.UserName = 'admin' and federated_assessor.CompanyCode = 'MFC' ;
+2019-03-22 16:27:38 INFO  LoginController:126 - update Assessor set Assessor.IsLocked = 1 where Assessor.UserName = 'admin' and Assessor.CompanyCode = 'MFC' and Assessor.FailTimes > 2;
+2019-03-22 16:27:38 INFO  LoginController:141 - update federated_assessor set federated_assessor.IsLocked = 1 where federated_assessor.UserName = 'admin' and federated_assessor.CompanyCode = 'MFC' and federated_assessor.FailTimes > 2;
+2019-03-22 16:28:05 INFO  LoginPage:261 - Login with username: mfcsubadmin
+2019-03-22 16:28:05 INFO  LoginController:45 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin, IsLocked FROM Assessor where Assessor.IsActive = 1 and Assessor.UserName='mfcsubadmin' and (Password=md5('HUONG27071987') or LastPassword=md5('HUONG27071987')) and MachineCode like '%VM-2%';
+2019-03-22 16:28:05 INFO  LoginPage:265 - Login OK
+2019-03-22 16:28:05 INFO  LoginController:200 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'MFC' and assessor.UserName= 'mfcsubadmin'
+2019-03-22 16:28:05 INFO  LoginPage:281 - listRoles: [Roles [roleName=SubAdmin]]
+2019-03-22 16:28:05 INFO  LoginPage:302 - Show DashboardPage
+2019-03-22 16:28:05 INFO  DashboardPage:109 - Init DASHBOARD_PAGE with list roles: [subadmin]
+2019-03-22 16:29:23 INFO  LoginPage:546 - ************************************************************
+2019-03-22 16:29:23 INFO  LoginPage:547 - ************************************************************
+2019-03-22 16:29:23 INFO  LoginPage:548 - ************************************************************
+2019-03-22 16:29:23 INFO  LoginPage:549 - ************************************************************
+2019-03-22 16:29:23 INFO  LoginPage:550 - Starting iTool app.
+2019-03-22 16:29:23 INFO  LoginPage:551 - companyCode: MFC
+2019-03-22 16:29:23 INFO  LoginPage:552 - companyCodeUH: Optiwell
+2019-03-22 16:29:23 INFO  LoginPage:553 - machineCode: VM-2
+2019-03-22 16:29:24 INFO  LoginPage:556 - mDbHost: localhost
+2019-03-22 16:29:24 INFO  LoginPage:557 - mDbUser: admin
+2019-03-22 16:29:24 INFO  LoginPage:558 - mDbPwds: 1qa
+2019-03-22 16:29:24 INFO  LoginPage:559 - mDbName: iTools_v1p0
+2019-03-22 16:29:24 INFO  LoginPage:560 - mDbPort: 3306
+2019-03-22 16:29:24 INFO  LoginPage:561 - Database version: v1p0 - 2018-08-11 13:02:35
+2019-03-22 16:29:24 INFO  LoginPage:563 - Last Sync: 2019-03-22 16:27:00
+2019-03-22 16:29:24 INFO  LoginPage:567 - connectToHost: OK
+2019-03-22 16:29:25 INFO  LoginPage:581 - App Version: 1.0
+2019-03-22 16:29:26 INFO  EmailUtils:57 - mail.tqteam.net25itool_app@tqteam.net1qazxsw2!A
+2019-03-22 16:29:27 INFO  LoginPage:592 - checkEmailConfig: true
+2019-03-22 16:29:28 INFO  LoginPage:378 - ========================================
+2019-03-22 16:29:28 INFO  LoginPage:379 - Start syncing thread - F4XITHQP
+2019-03-22 16:29:28 INFO  LoginPage:380 - ========================================
+2019-03-22 16:29:28 INFO  SyncController:64 - Start SyncHostToLocal
+2019-03-22 16:29:28 INFO  SyncController:72 - SyncHostToLocal_Assessor: insertAssessor: 33
+2019-03-22 16:29:28 INFO  SyncController:80 - SyncHostToLocal_RoleAssessor: insertRoleAssessor: 35
+2019-03-22 16:29:28 INFO  SyncController:88 - SyncHostToLocal_Machine: insertMachine: 5
+2019-03-22 16:29:28 INFO  SyncController:96 - SyncHostToLocal_Company: insertCompany: 4
+2019-03-22 16:29:29 INFO  SyncController:104 - SyncHostToLocal_CompanyMachine: insertCompanyMachine: 5
+2019-03-22 16:29:29 INFO  SyncController:112 - SyncHostToLocal_Tools: insertTools: 128
+2019-03-22 16:29:29 INFO  SyncController:116 - End SyncHostToLocal: 1s
+2019-03-22 16:29:29 INFO  LoginPage:383 - ========================================
+2019-03-22 16:29:29 INFO  LoginPage:384 - End syncing thread - F4XITHQP
+2019-03-22 16:29:29 INFO  LoginPage:385 - ========================================
+2019-03-22 16:31:58 INFO  LoginPage:546 - ************************************************************
+2019-03-22 16:31:58 INFO  LoginPage:547 - ************************************************************
+2019-03-22 16:31:58 INFO  LoginPage:548 - ************************************************************
+2019-03-22 16:31:58 INFO  LoginPage:549 - ************************************************************
+2019-03-22 16:31:58 INFO  LoginPage:550 - Starting iTool app.
+2019-03-22 16:31:58 INFO  LoginPage:551 - companyCode: MFC
+2019-03-22 16:31:58 INFO  LoginPage:552 - companyCodeUH: Optiwell
+2019-03-22 16:31:58 INFO  LoginPage:553 - machineCode: VM-2
+2019-03-22 16:31:59 INFO  LoginPage:556 - mDbHost: localhost
+2019-03-22 16:31:59 INFO  LoginPage:557 - mDbUser: admin
+2019-03-22 16:31:59 INFO  LoginPage:558 - mDbPwds: 1qa
+2019-03-22 16:31:59 INFO  LoginPage:559 - mDbName: iTools_v1p0
+2019-03-22 16:31:59 INFO  LoginPage:560 - mDbPort: 3306
+2019-03-22 16:31:59 INFO  LoginPage:561 - Database version: v1p0 - 2018-08-11 13:02:35
+2019-03-22 16:31:59 INFO  LoginPage:563 - Last Sync: 2019-03-22 16:29:29
+2019-03-22 16:31:59 INFO  LoginPage:567 - connectToHost: OK
+2019-03-22 16:32:00 INFO  LoginPage:581 - App Version: 1.0
+2019-03-22 16:32:01 INFO  EmailUtils:57 - mail.tqteam.net25itool_app@tqteam.net1qazxsw2!A
+2019-03-22 16:32:06 INFO  LoginPage:592 - checkEmailConfig: true
+2019-03-22 16:32:07 INFO  LoginPage:378 - ========================================
+2019-03-22 16:32:07 INFO  LoginPage:379 - Start syncing thread - VS5YZ0RQ
+2019-03-22 16:32:07 INFO  LoginPage:380 - ========================================
+2019-03-22 16:32:07 INFO  SyncController:64 - Start SyncHostToLocal
+2019-03-22 16:32:07 INFO  SyncController:72 - SyncHostToLocal_Assessor: insertAssessor: 33
+2019-03-22 16:32:07 INFO  SyncController:80 - SyncHostToLocal_RoleAssessor: insertRoleAssessor: 35
+2019-03-22 16:32:08 INFO  SyncController:88 - SyncHostToLocal_Machine: insertMachine: 5
+2019-03-22 16:32:08 INFO  SyncController:96 - SyncHostToLocal_Company: insertCompany: 4
+2019-03-22 16:32:08 INFO  SyncController:104 - SyncHostToLocal_CompanyMachine: insertCompanyMachine: 5
+2019-03-22 16:32:08 INFO  SyncController:112 - SyncHostToLocal_Tools: insertTools: 128
+2019-03-22 16:32:08 INFO  SyncController:116 - End SyncHostToLocal: 0s
+2019-03-22 16:32:08 INFO  LoginPage:383 - ========================================
+2019-03-22 16:32:08 INFO  LoginPage:384 - End syncing thread - VS5YZ0RQ
+2019-03-22 16:32:08 INFO  LoginPage:385 - ========================================
+2019-03-22 16:32:21 INFO  LoginPage:261 - Login with username: MFCSUBADMIn
+2019-03-22 16:32:21 INFO  LoginController:45 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin, IsLocked FROM Assessor where Assessor.IsActive = 1 and Assessor.UserName='mfcsubadmin' and (Password=md5('HUONG27071987') or LastPassword=md5('HUONG27071987')) and MachineCode like '%VM-2%';
+2019-03-22 16:32:21 INFO  LoginPage:265 - Login OK
+2019-03-22 16:32:21 INFO  LoginController:200 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'MFC' and assessor.UserName= 'MFCSUBADMIn'
+2019-03-22 16:32:21 INFO  LoginPage:281 - listRoles: [Roles [roleName=SubAdmin]]
+2019-03-22 16:32:21 INFO  LoginPage:302 - Show DashboardPage
+2019-03-22 16:32:21 INFO  DashboardPage:109 - Init DASHBOARD_PAGE with list roles: [subadmin]
+2019-03-22 16:32:25 INFO  DashboardPage:390 - Lock - Unlock Account clicked by MFCSUBADMIn
+2019-03-22 16:32:25 INFO  UserController:43 - SELECT AssessorID, UserName, Password, CompanyCode, IsActive, IsLocked, FirstName, LastName FROM Assessor where Assessor.IsActive=1 and Assessor.CompanyCode = 'MFC';
+2019-03-22 16:32:25 ERROR LockUnlockAccountPage:261 - validateAllFields of lockunlockpage: null
+2019-03-22 16:32:25 INFO  LockUnlockAccountPage:102 - Init LOCK_UNLOCK_PAGE
+2019-03-22 16:32:30 INFO  LockUnlockAccountPage:123 - MFCSUBADMIn back to dashboard from LOCK_UNLOCK_PAGE
+2019-03-22 16:32:30 INFO  LoginController:200 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'MFC' and assessor.UserName= 'MFCSUBADMIn'
+2019-03-22 16:32:30 INFO  DashboardPage:109 - Init DASHBOARD_PAGE with list roles: [subadmin]
+2019-03-22 16:32:31 INFO  DashboardPage:402 - Get Tool clicked by MFCSUBADMIn
+2019-03-22 16:32:31 INFO  EmployeeController:161 -  select tools.ToolId, tools.ToolCode ,  toolsmachineTray.Quantity, toolsmachineTray.TrayIndex, toolsmachineTray.Machinecode  from tools inner join toolsmachineTray on tools.ToolCode = toolsmachineTray.ToolCode  where tools.IsActive = '1' and toolsmachineTray.MachineCode = 'VM-2';
+2019-03-22 16:32:31 INFO  EmployeeController:204 - {1015-12.0=[[TRAY_01, 10]]}
+2019-03-22 16:32:31 INFO  EmployeeController:218 -  select tools.ToolCode from tools where tools.IsActive='1' and tools.companyCode = 'MFC';
+2019-03-22 16:32:31 INFO  EmployeeController:238 - {}
+2019-03-22 16:32:31 INFO  EmployeeController:50 - select tools.ToolId, tools.ToolCode  from tools inner join toolsmachineTray on tools.ToolCode = toolsmachineTray.ToolCode  where tools.IsActive = '1' and tools.CompanyCode = 'MFC' and toolsmachineTray.MachineCode = 'VM-2';
+2019-03-22 16:32:31 INFO  EmployeeController:71 - [Tool [toolId=115, toolName=1015-12.0]]
+2019-03-22 16:32:31 INFO  EmployeePage:521 - listToolNames: [, 1015-12.0]
+2019-03-22 16:32:31 INFO  EmployeePage:531 - toolComboBox: [, 1015-12.0]
+2019-03-22 16:32:31 INFO  EmployeePage:173 - Init EMP_PAGE
+2019-03-22 16:32:31 INFO  EmployeePage:176 - listAllTrays: [TRAY_01, TRAY_02, TRAY_03, TRAY_04, TRAY_05, TRAY_06, TRAY_07, TRAY_08, TRAY_09, TRAY_10, TRAY_11, TRAY_12, TRAY_13, TRAY_14, TRAY_15, TRAY_16, TRAY_17, TRAY_18, TRAY_19, TRAY_20, TRAY_21, TRAY_22, TRAY_23, TRAY_24, TRAY_25, TRAY_26, TRAY_27, TRAY_28, TRAY_29, TRAY_30, TRAY_31, TRAY_32, TRAY_33, TRAY_34, TRAY_35, TRAY_36, TRAY_37, TRAY_38, TRAY_39, TRAY_40, TRAY_41, TRAY_42, TRAY_43, TRAY_44, TRAY_45, TRAY_46, TRAY_47, TRAY_48, TRAY_49, TRAY_50, TRAY_51, TRAY_52, TRAY_53, TRAY_54, TRAY_55, TRAY_56, TRAY_57, TRAY_58, TRAY_59, TRAY_60]
+2019-03-22 16:32:31 INFO  EmployeePage:182 - hashMessage: {TRAY_09=09, TRAY_07=07, TRAY_08=08, TRAY_41=41, TRAY_42=42, TRAY_40=40, TRAY_05=05, TRAY_49=49, TRAY_06=06, TRAY_03=03, TRAY_47=47, TRAY_04=04, TRAY_48=48, TRAY_01=01, TRAY_45=45, TRAY_02=02, TRAY_46=46, TRAY_43=43, TRAY_44=44, TRAY_30=30, TRAY_31=31, TRAY_38=38, TRAY_39=39, TRAY_36=36, TRAY_37=37, TRAY_34=34, TRAY_35=35, TRAY_32=32, TRAY_33=33, TRAY_29=29, TRAY_20=20, TRAY_60=60, TRAY_27=27, TRAY_28=28, TRAY_25=25, TRAY_26=26, TRAY_23=23, TRAY_24=24, TRAY_21=21, TRAY_22=22, TRAY_18=18, TRAY_19=19, TRAY_52=52, TRAY_53=53, TRAY_50=50, TRAY_51=51, TRAY_16=16, TRAY_17=17, TRAY_14=14, TRAY_58=58, TRAY_15=15, TRAY_59=59, TRAY_12=12, TRAY_56=56, TRAY_13=13, TRAY_57=57, TRAY_10=10, TRAY_54=54, TRAY_11=11, TRAY_55=55}
+2019-03-22 16:32:34 INFO  EmployeePage:201 - MFCSUBADMIn back to dashboard from GETTOOL
+2019-03-22 16:32:34 INFO  LoginController:200 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'MFC' and assessor.UserName= 'MFCSUBADMIn'
+2019-03-22 16:32:34 INFO  DashboardPage:109 - Init DASHBOARD_PAGE with list roles: [subadmin]
+2019-03-22 16:32:38 INFO  DashboardPage:379 - Reset Password clicked by MFCSUBADMIn
+2019-03-22 16:32:38 INFO  UserController:43 - SELECT AssessorID, UserName, Password, CompanyCode, IsActive, IsLocked, FirstName, LastName FROM Assessor where Assessor.IsActive=1 and Assessor.CompanyCode = 'MFC';
+2019-03-22 16:32:38 INFO  ResetPasswordPage:129 - Init RESET_PASS_PAGE
+2019-03-22 16:32:44 INFO  ResetPasswordPage:151 - MFCSUBADMIn back to dashboard from RESET_PASS_PAGE
+2019-03-22 16:32:44 INFO  LoginController:200 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'MFC' and assessor.UserName= 'MFCSUBADMIn'
+2019-03-22 16:32:44 INFO  DashboardPage:109 - Init DASHBOARD_PAGE with list roles: [subadmin]
+2019-03-22 16:32:53 INFO  DashboardPage:402 - Get Tool clicked by MFCSUBADMIn
+2019-03-22 16:32:53 INFO  EmployeeController:161 -  select tools.ToolId, tools.ToolCode ,  toolsmachineTray.Quantity, toolsmachineTray.TrayIndex, toolsmachineTray.Machinecode  from tools inner join toolsmachineTray on tools.ToolCode = toolsmachineTray.ToolCode  where tools.IsActive = '1' and toolsmachineTray.MachineCode = 'VM-2';
+2019-03-22 16:32:53 INFO  EmployeeController:204 - {1015-12.0=[[TRAY_01, 10]]}
+2019-03-22 16:32:53 INFO  EmployeeController:218 -  select tools.ToolCode from tools where tools.IsActive='1' and tools.companyCode = 'MFC';
+2019-03-22 16:32:53 INFO  EmployeeController:238 - {}
+2019-03-22 16:32:53 INFO  EmployeeController:50 - select tools.ToolId, tools.ToolCode  from tools inner join toolsmachineTray on tools.ToolCode = toolsmachineTray.ToolCode  where tools.IsActive = '1' and tools.CompanyCode = 'MFC' and toolsmachineTray.MachineCode = 'VM-2';
+2019-03-22 16:32:53 INFO  EmployeeController:71 - [Tool [toolId=115, toolName=1015-12.0]]
+2019-03-22 16:32:53 INFO  EmployeePage:521 - listToolNames: [, 1015-12.0]
+2019-03-22 16:32:53 INFO  EmployeePage:531 - toolComboBox: [, 1015-12.0]
+2019-03-22 16:32:53 INFO  EmployeePage:173 - Init EMP_PAGE
+2019-03-22 16:32:53 INFO  EmployeePage:176 - listAllTrays: [TRAY_01, TRAY_02, TRAY_03, TRAY_04, TRAY_05, TRAY_06, TRAY_07, TRAY_08, TRAY_09, TRAY_10, TRAY_11, TRAY_12, TRAY_13, TRAY_14, TRAY_15, TRAY_16, TRAY_17, TRAY_18, TRAY_19, TRAY_20, TRAY_21, TRAY_22, TRAY_23, TRAY_24, TRAY_25, TRAY_26, TRAY_27, TRAY_28, TRAY_29, TRAY_30, TRAY_31, TRAY_32, TRAY_33, TRAY_34, TRAY_35, TRAY_36, TRAY_37, TRAY_38, TRAY_39, TRAY_40, TRAY_41, TRAY_42, TRAY_43, TRAY_44, TRAY_45, TRAY_46, TRAY_47, TRAY_48, TRAY_49, TRAY_50, TRAY_51, TRAY_52, TRAY_53, TRAY_54, TRAY_55, TRAY_56, TRAY_57, TRAY_58, TRAY_59, TRAY_60]
+2019-03-22 16:32:53 INFO  EmployeePage:182 - hashMessage: {TRAY_09=09, TRAY_07=07, TRAY_08=08, TRAY_41=41, TRAY_42=42, TRAY_40=40, TRAY_05=05, TRAY_49=49, TRAY_06=06, TRAY_03=03, TRAY_47=47, TRAY_04=04, TRAY_48=48, TRAY_01=01, TRAY_45=45, TRAY_02=02, TRAY_46=46, TRAY_43=43, TRAY_44=44, TRAY_30=30, TRAY_31=31, TRAY_38=38, TRAY_39=39, TRAY_36=36, TRAY_37=37, TRAY_34=34, TRAY_35=35, TRAY_32=32, TRAY_33=33, TRAY_29=29, TRAY_20=20, TRAY_60=60, TRAY_27=27, TRAY_28=28, TRAY_25=25, TRAY_26=26, TRAY_23=23, TRAY_24=24, TRAY_21=21, TRAY_22=22, TRAY_18=18, TRAY_19=19, TRAY_52=52, TRAY_53=53, TRAY_50=50, TRAY_51=51, TRAY_16=16, TRAY_17=17, TRAY_14=14, TRAY_58=58, TRAY_15=15, TRAY_59=59, TRAY_12=12, TRAY_56=56, TRAY_13=13, TRAY_57=57, TRAY_10=10, TRAY_54=54, TRAY_11=11, TRAY_55=55}
+2019-03-22 16:33:08 INFO  EmployeePage:714 - MFCSUBADMIn confirm: <head><style>table {    font-family: arial, sans-serif;    border: none;    width: 100%;} td, th {    text-align: left;    padding: 2px;} tr:nth-child(even) {    background-color: #dddddd;}</style></head><body><table> <tr>    <th>WO:</th>    <th>QASDDASD</th>  </tr>  <tr>    <td>OP:</td>    <td>ADASD</td>  </tr>  <tr>    <td>CTID:</td>    <td>1015-12.0</td>  </tr>  <tr>    <td>Tray:</td>    <td>TRAY_01</td>  </tr>  <tr>    <td>Quantity:</td>    <td>1</td>  </tr> </table></body>
+2019-03-22 16:33:08 INFO  EmployeePage:716 - MFCSUBADMIn getTools
+2019-03-22 16:33:10 INFO  TransactionController:45 - insert into WorkingTransaction( TransactionDate, MachineCode, CompanyCode, AssessorID, WOCode, OPCode, ToolCode, TrayIndex, Quantity, UpdatedDate, TransactionStatus, TransactionType) values (now(), 'VM-2', 'MFC', 'MFCSUBADMIn', 'QASDDASD', 'ADASD', '1015-12.0', 'TRAY_01', '1', now(), 'Send request to board', 'GetTools');
+2019-03-22 16:33:10 INFO  EmployeePage:738 - Create transaction
+2019-03-22 16:33:10 INFO  EmployeePage:739 - hashMessage: {TRAY_09=09, TRAY_07=07, TRAY_08=08, TRAY_41=41, TRAY_42=42, TRAY_40=40, TRAY_05=05, TRAY_49=49, TRAY_06=06, TRAY_03=03, TRAY_47=47, TRAY_04=04, TRAY_48=48, TRAY_01=01, TRAY_45=45, TRAY_02=02, TRAY_46=46, TRAY_43=43, TRAY_44=44, TRAY_30=30, TRAY_31=31, TRAY_38=38, TRAY_39=39, TRAY_36=36, TRAY_37=37, TRAY_34=34, TRAY_35=35, TRAY_32=32, TRAY_33=33, TRAY_29=29, TRAY_20=20, TRAY_60=60, TRAY_27=27, TRAY_28=28, TRAY_25=25, TRAY_26=26, TRAY_23=23, TRAY_24=24, TRAY_21=21, TRAY_22=22, TRAY_18=18, TRAY_19=19, TRAY_52=52, TRAY_53=53, TRAY_50=50, TRAY_51=51, TRAY_16=16, TRAY_17=17, TRAY_14=14, TRAY_58=58, TRAY_15=15, TRAY_59=59, TRAY_12=12, TRAY_56=56, TRAY_13=13, TRAY_57=57, TRAY_10=10, TRAY_54=54, TRAY_11=11, TRAY_55=55}
+2019-03-22 16:33:10 INFO  EmployeePage:740 - hashMessage containsKey TRAY_01: true
+2019-03-22 16:33:10 INFO  EmployeePage:840 - Starting HID services.
+2019-03-22 16:33:11 ERROR EmployeePage:749 - executeAction exeoption: Hidapi did not initialise: Unable to load library 'hidapi': Native library (win32-x86-64/hidapi.dll) not found in resource path ([file:/D:/OneDrive/OneDrive%20-%20Savarti%20Company%20Limited/Savarti/050_Individual/Project/Release/GIT/iToolsApp/bin/, file:/D:/OneDrive/OneDrive%20-%20Savarti%20Company%20Limited/Savarti/050_Individual/Project/Release/GIT/iToolsApp/lib/c3p0-0.9.1-pre6.jar, file:/D:/OneDrive/OneDrive%20-%20Savarti%20Company%20Limited/Savarti/050_Individual/Project/Release/GIT/iToolsApp/lib/commons-codec-1.11.jar, file:/D:/OneDrive/OneDrive%20-%20Savarti%20Company%20Limited/Savarti/050_Individual/Project/Release/GIT/iToolsApp/lib/jboss-common-jdbc-wrapper-src.jar, file:/D:/OneDrive/OneDrive%20-%20Savarti%20Company%20Limited/Savarti/050_Individual/Project/Release/GIT/iToolsApp/lib/jboss-common-jdbc-wrapper.jar, file:/D:/OneDrive/OneDrive%20-%20Savarti%20Company%20Limited/Savarti/050_Individual/Project/Release/GIT/iToolsApp/lib/log4j.jar, file:/D:/OneDrive/OneDrive%20-%20Savarti%20Company%20Limited/Savarti/050_Individual/Project/Release/GIT/iToolsApp/lib/mysql-connector-java-8.0.11.jar, file:/D:/OneDrive/OneDrive%20-%20Savarti%20Company%20Limited/Savarti/050_Individual/Project/Release/GIT/iToolsApp/lib/mysql-connector.jar, file:/D:/OneDrive/OneDrive%20-%20Savarti%20Company%20Limited/Savarti/050_Individual/Project/Release/GIT/iToolsApp/lib/protobuf-java-2.6.0.jar, file:/D:/OneDrive/OneDrive%20-%20Savarti%20Company%20Limited/Savarti/050_Individual/Project/Release/GIT/iToolsApp/lib/slf4j-api-1.6.1.jar, file:/D:/OneDrive/OneDrive%20-%20Savarti%20Company%20Limited/Savarti/050_Individual/Project/Release/GIT/iToolsApp/lib/swt-win64-3.6.2.jar, file:/D:/OneDrive/OneDrive%20-%20Savarti%20Company%20Limited/Savarti/050_Individual/Project/Release/GIT/iToolsApp/lib/jna-4.2.2.jar, file:/D:/OneDrive/OneDrive%20-%20Savarti%20Company%20Limited/Savarti/050_Individual/Project/Release/GIT/iToolsApp/lib/activation-1.1.jar, file:/D:/OneDrive/OneDrive%20-%20Savarti%20Company%20Limited/Savarti/050_Individual/Project/Release/GIT/iToolsApp/lib/javax.mail-1.5.1.jar])
+2019-03-22 16:33:11 INFO  EmployeePage:805 - Complete with resultValue = 0
+2019-04-03 09:49:43 INFO  LoginPage:546 - ************************************************************
+2019-04-03 09:49:43 INFO  LoginPage:547 - ************************************************************
+2019-04-03 09:49:43 INFO  LoginPage:548 - ************************************************************
+2019-04-03 09:49:43 INFO  LoginPage:549 - ************************************************************
+2019-04-03 09:49:43 INFO  LoginPage:550 - Starting iTool app.
+2019-04-03 09:49:43 INFO  LoginPage:551 - companyCode: VINAMOILTOOLS
+2019-04-03 09:49:43 INFO  LoginPage:552 - companyCodeUH: Optiwell
+2019-04-03 09:49:43 INFO  LoginPage:553 - machineCode: VM-1
+2019-04-03 09:49:44 INFO  LoginPage:556 - mDbHost: localhost
+2019-04-03 09:49:44 INFO  LoginPage:557 - mDbUser: admin
+2019-04-03 09:49:44 INFO  LoginPage:558 - mDbPwds: 1qa
+2019-04-03 09:49:44 INFO  LoginPage:559 - mDbName: iTools_v1p0
+2019-04-03 09:49:44 INFO  LoginPage:560 - mDbPort: 3306
+2019-04-03 09:49:44 INFO  LoginPage:561 - Database version: v1p0 - 2018-08-11 13:02:35
+2019-04-03 09:49:44 INFO  LoginPage:563 - Last Sync: 2019-03-22 16:32:08
+2019-04-03 09:49:44 INFO  LoginPage:567 - connectToHost: OK
+2019-04-03 09:49:45 INFO  LoginPage:581 - App Version: 1.0
+2019-04-03 09:49:46 INFO  EmailUtils:57 - mail.tqteam.net25itool_app@tqteam.net1qazxsw2!A
+2019-04-03 09:49:54 INFO  LoginPage:592 - checkEmailConfig: true
+2019-04-03 09:49:55 INFO  LoginPage:378 - ========================================
+2019-04-03 09:49:55 INFO  LoginPage:379 - Start syncing thread - T0XJVPTY
+2019-04-03 09:49:55 INFO  LoginPage:380 - ========================================
+2019-04-03 09:49:55 INFO  SyncController:64 - Start SyncHostToLocal
+2019-04-03 09:49:56 INFO  SyncController:72 - SyncHostToLocal_Assessor: insertAssessor: 33
+2019-04-03 09:49:56 INFO  SyncController:80 - SyncHostToLocal_RoleAssessor: insertRoleAssessor: 35
+2019-04-03 09:49:56 INFO  SyncController:88 - SyncHostToLocal_Machine: insertMachine: 5
+2019-04-03 09:49:56 INFO  SyncController:96 - SyncHostToLocal_Company: insertCompany: 4
+2019-04-03 09:49:56 INFO  SyncController:104 - SyncHostToLocal_CompanyMachine: insertCompanyMachine: 5
+2019-04-03 09:49:56 INFO  SyncController:112 - SyncHostToLocal_Tools: insertTools: 128
+2019-04-03 09:49:56 INFO  SyncController:116 - End SyncHostToLocal: 0s
+2019-04-03 09:49:56 INFO  LoginPage:383 - ========================================
+2019-04-03 09:49:56 INFO  LoginPage:384 - End syncing thread - T0XJVPTY
+2019-04-03 09:49:56 INFO  LoginPage:385 - ========================================

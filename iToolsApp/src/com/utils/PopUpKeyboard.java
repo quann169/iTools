@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Robot;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -23,12 +24,17 @@ public class PopUpKeyboard extends JPanel implements ActionListener {
 	private JTextComponent textComponent;
 	private boolean isTextFieldFocus;
 	private boolean isComboBoxFocus;
+	static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+	static int windowWidth = (int) screenSize.getWidth();
+	static int windowHeight = (int) screenSize.getHeight();
+	static int extWidth = (windowWidth > 900) ? 50 : 0;
+	static int extHeight = (windowHeight > 700) ? 50 : 0;
 
 	public PopUpKeyboard() {
 		// this.textField = textField;
 		// this.setResizable(false);
 
-		this.setPreferredSize(new Dimension(800, 250));
+		this.setPreferredSize(new Dimension(800+ extWidth, 250 + extHeight));
 		keyboardVariables();
 	}
 

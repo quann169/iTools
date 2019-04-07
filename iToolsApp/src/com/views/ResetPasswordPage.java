@@ -2,7 +2,9 @@ package com.views;
 
 import java.awt.Container;
 import java.awt.Cursor;
+import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
@@ -103,9 +105,15 @@ public class ResetPasswordPage extends JFrame implements ActionListener {
 	JFrame root = this;
 	Timer updateTimer;
 	int expiredTime = Integer.valueOf(cfg.getProperty("Expired_Time")) * 1000;
-	
+
 	String firstName, lastName = "";
-	
+
+	static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+	static int windowWidth = (int) screenSize.getWidth();
+	static int windowHeight = (int) screenSize.getHeight();
+	static int extWidth = (windowWidth > 900) ? 0 : 0;
+	static int extHeight = (windowHeight > 700) ? 0 : 0;
+
 	@SuppressWarnings("static-access")
 	ResetPasswordPage(Assessor user, boolean isDashboard, boolean isFirstTimeLogin) {
 		this.isFirstTimeLogin = isFirstTimeLogin;
@@ -134,7 +142,7 @@ public class ResetPasswordPage extends JFrame implements ActionListener {
 		backToDashboardLabel.setText("<html><html><font size=\"5\" face=\"arial\" color=\"#0181BE\"><b><i><u>"
 				+ bundleMessage.getString("Employee_Back_To_Dashboard") + "</u></i></b></font></html></html>");
 		backToDashboardLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		backToDashboardLabel.setBounds(15, 5, 300, 70);
+		backToDashboardLabel.setBounds(15 + extWidth, 5 + extHeight, 300, 70);
 		backToDashboardLabel.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -161,7 +169,7 @@ public class ResetPasswordPage extends JFrame implements ActionListener {
 		changePassLabel.setText("<html><html><font size=\"5\" face=\"arial\" color=\"#0181BE\"><b><i><u>"
 				+ bundleMessage.getString("App_ChangePassword") + "</u></i></b></font></html></html>");
 		changePassLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		changePassLabel.setBounds(530, 5, 170, 60);
+		changePassLabel.setBounds(530 + extWidth, 5 + extHeight, 170, 60);
 		changePassLabel.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -178,13 +186,13 @@ public class ResetPasswordPage extends JFrame implements ActionListener {
 			}
 		});
 
-		splitLabel.setBounds(693, 5, 25, 60);
+		splitLabel.setBounds(693 + extWidth, 5 + extHeight, 25, 60);
 		splitLabel.setFont(new Font(labelFont.getName(), Font.BOLD, 25));
 
 		logOutLabel.setText("<html><font size=\"5\" face=\"arial\" color=\"#0181BE\"><b><i><u>"
 				+ bundleMessage.getString("App_Logout") + "</u></i></b></font></html>");
 		logOutLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		logOutLabel.setBounds(715, 5, 150, 60);
+		logOutLabel.setBounds(715 + extWidth, 5 + extHeight, 150, 60);
 		logOutLabel.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -200,11 +208,10 @@ public class ResetPasswordPage extends JFrame implements ActionListener {
 			}
 		});
 
-		usernameLabel.setBounds(70, 75, 250, 40);
+		usernameLabel.setBounds(70 + extWidth, 75 + extHeight, 250, 40);
 		usernameLabel.setFont(new Font(labelFont.getName(), Font.BOLD, 20));
-		
-		
-		usernameTextBox.setBounds(260, 80, 450, 30);
+
+		usernameTextBox.setBounds(260 + extWidth, 80 + extHeight, 450, 30);
 		usernameTextBox.setFont(new Font(labelFont.getName(), Font.BOLD, 20));
 
 		List<Assessor> listUsers = empCtlObj.getUsersOfCompany(companyCode);
@@ -222,7 +229,7 @@ public class ResetPasswordPage extends JFrame implements ActionListener {
 			String displayName = firstName + " " + lastName + " - " + user.getUsername();
 			usernameTextBox.setText(displayName);
 			usernameTextBox.setEditable(false);
-			
+
 		} else {
 			// usernameComboBox.addItem("");
 			listUserNames.add("");
@@ -234,9 +241,9 @@ public class ResetPasswordPage extends JFrame implements ActionListener {
 				}
 
 			}
-			
+
 			usernameComboBox = new FilterComboBox(listUserNames, keyboard);
-			usernameComboBox.setBounds(260, 80, 450, 30);
+			usernameComboBox.setBounds(260 + extWidth, 80 + extHeight, 450, 30);
 			usernameComboBox.setFont(new Font(labelFont.getName(), Font.BOLD, 18));
 			usernameComboBox.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
@@ -245,17 +252,15 @@ public class ResetPasswordPage extends JFrame implements ActionListener {
 			});
 		}
 
-		
-
 		//
 		//
 		//
 		// new AutoCompletion(usernameComboBox, keyboard);
 
-		passwordLabel.setBounds(70, 135, 350, 40);
+		passwordLabel.setBounds(70 + extWidth, 135 + extHeight, 350, 40);
 		passwordLabel.setFont(new Font(labelFont.getName(), Font.BOLD, 20));
 
-		passwordTextField.setBounds(260, 140, 450, 30);
+		passwordTextField.setBounds(260 + extWidth, 140 + extHeight, 450, 30);
 		passwordTextField.setFont(new Font(labelFont.getName(), Font.BOLD, 20));
 		passwordTextField.setText("");
 
@@ -284,12 +289,12 @@ public class ResetPasswordPage extends JFrame implements ActionListener {
 			}
 		});
 
-		matchPasswordLabel.setBounds(260, 170, 450, 30);
+		matchPasswordLabel.setBounds(260 + extWidth, 170 + extHeight, 450, 30);
 
-		rePasswordLabel.setBounds(70, 195, 350, 40);
+		rePasswordLabel.setBounds(70 + extWidth, 195 + extHeight, 350, 40);
 		rePasswordLabel.setFont(new Font(labelFont.getName(), Font.BOLD, 20));
 
-		rePasswordTextField.setBounds(260, 200, 450, 30);
+		rePasswordTextField.setBounds(260 + extWidth, 200 + extHeight, 450, 30);
 		rePasswordTextField.setFont(new Font(labelFont.getName(), Font.BOLD, 20));
 		rePasswordTextField.setText("");
 
@@ -318,21 +323,21 @@ public class ResetPasswordPage extends JFrame implements ActionListener {
 			}
 		});
 
-		isFirstChange.setBounds(255, 245, 400, 30);
+		isFirstChange.setBounds(255 + extWidth, 245 + extHeight, 400, 30);
 		isFirstChange.setFont(new Font(labelFont.getName(), Font.ITALIC, 17));
 		// isFirstTimeLogin = true;
 		if (isFirstTimeLogin) {
 			usernameComboBox.setFont(new Font(labelFont.getName(), Font.BOLD, 18));
 			firstTimeLoginLabel.setText(bundleMessage.getString("ResetPassword_Page_FirstTimeLoginLabel"));
-			firstTimeLoginLabel.setBounds(200, 40, 550, 30);
+			firstTimeLoginLabel.setBounds(200 + extWidth, 40 + extHeight, 550, 30);
 			firstTimeLoginLabel.setFont(new Font(labelFont.getName(), Font.BOLD, 18));
 
 			resetPassButton.setText(bundleMessage.getString("ResetPassword_Page_FirstTimeLogin"));
-			resetPassButton.setBounds(260, 270, 300, 35);
+			resetPassButton.setBounds(260 + extWidth, 270 + extHeight, 300, 35);
 			resetPassButton.setFont(new Font(labelFont.getName(), Font.BOLD, 22));
 		} else {
 			resetPassButton.setText(bundleMessage.getString("ResetPassword_Page_ResetPassword"));
-			resetPassButton.setBounds(260, 290, 300, 35);
+			resetPassButton.setBounds(260 + extWidth, 290 + extHeight, 300, 35);
 			resetPassButton.setFont(new Font(labelFont.getName(), Font.BOLD, 22));
 		}
 
@@ -343,8 +348,9 @@ public class ResetPasswordPage extends JFrame implements ActionListener {
 			public void actionPerformed(ActionEvent e) {
 				String timeoutMess = MessageFormat.format(bundleMessage.getString("App_TimeOut"),
 						cfg.getProperty("Expired_Time"));
-				JOptionPane.showMessageDialog(container, "<html><font size=\"5\" face=\"arial\">" + timeoutMess + "</font></html>" , "Time Out Reset Pass",
-						JOptionPane.WARNING_MESSAGE);
+				JOptionPane.showMessageDialog(container,
+						"<html><font size=\"5\" face=\"arial\">" + timeoutMess + "</font></html>",
+						"Time Out Reset Pass", JOptionPane.WARNING_MESSAGE);
 
 				logger.info(userName + ": " + Enum.RESET_PASS_PAGE + " time out.");
 				JFrame old = root;
@@ -396,7 +402,6 @@ public class ResetPasswordPage extends JFrame implements ActionListener {
 		container.add(logOutLabel);
 
 		container.add(usernameLabel);
-		
 
 		container.add(passwordLabel);
 		container.add(passwordTextField);
@@ -426,8 +431,10 @@ public class ResetPasswordPage extends JFrame implements ActionListener {
 			@Override
 			public void windowClosing(WindowEvent we) {
 				String ObjButtons[] = { "Yes", "No" };
-				int PromptResult = JOptionPane.showOptionDialog(root, "<html><font size=\"5\" face=\"arial\">Are you sure you want to exit?</font></html>", "Confirm Close",
-						JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, ObjButtons, ObjButtons[1]);
+				int PromptResult = JOptionPane.showOptionDialog(root,
+						"<html><font size=\"5\" face=\"arial\">Are you sure you want to exit?</font></html>",
+						"Confirm Close", JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, ObjButtons,
+						ObjButtons[1]);
 				if (PromptResult == JOptionPane.YES_OPTION) {
 					System.exit(0);
 				}
@@ -445,7 +452,7 @@ public class ResetPasswordPage extends JFrame implements ActionListener {
 			panel.setLayout(null);
 
 			String password = rePasswordTextField.getText();
-			
+
 			final String usernameResetPass;
 			if (isFirstTimeLogin) {
 				usernameResetPass = userName;
@@ -507,7 +514,6 @@ public class ResetPasswordPage extends JFrame implements ActionListener {
 				if (!isFirstTimeLogin) {
 					usernameComboBox.setSelectedIndex(0);
 				}
-				
 
 			} else {
 				logger.info("No Option");
