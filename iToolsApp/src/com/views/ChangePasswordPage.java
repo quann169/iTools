@@ -353,9 +353,17 @@ public class ChangePasswordPage extends JFrame implements ActionListener {
 					Thread one = new Thread() {
 						public void run() {
 							List<String> listCCEmail = new ArrayList<>();
-							listCCEmail.add(ctlObj.getEmailAdmin());
-							emailUtils.sendEmail(email, listCCEmail, "Change Pass Successfully",
-									"Hi " + userName + ",\nYour pass has been change to " + password);
+//							listCCEmail.add(ctlObj.getEmailAdmin());
+							
+							String emailUser;
+							if (companyCode.contains("MFC")) {
+								emailUser = ctlObj.getEmailSubAdmin(companyCode);
+							} else {
+								emailUser = email;
+							}
+							String fullName = ctlObj.getFullNameUser(companyCode, userName);
+							emailUtils.sendEmail(emailUser, listCCEmail, "Change Pass Successfully",
+									"Hi " + fullName + "("+ userName + "),\nYour pass has been change to " + password);
 
 						}
 					};

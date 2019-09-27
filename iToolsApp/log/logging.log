@@ -1001,3 +1001,1261 @@ updateToolsMachineTray: 0
 2019-04-03 09:49:56 INFO  LoginPage:383 - ========================================
 2019-04-03 09:49:56 INFO  LoginPage:384 - End syncing thread - T0XJVPTY
 2019-04-03 09:49:56 INFO  LoginPage:385 - ========================================
+2019-08-20 09:50:32 INFO  SerialTest2:122 - ========================================
+2019-08-20 09:50:32 INFO  SerialTest2:67 - portId: COM3
+2019-08-20 09:50:32 INFO  SerialTest2:128 - Start sending message
+2019-08-20 09:50:32 INFO  SerialTest2:132 - Send message [TestString]
+2019-08-20 09:50:33 INFO  SerialTest2:109 - Receive message [TestString]
+2019-08-20 09:50:36 INFO  SerialTest2:132 - Send message [TestString]
+2019-08-20 09:50:37 INFO  SerialTest2:109 - Receive message [TestString]
+2019-08-20 09:50:40 INFO  SerialTest2:132 - Send message [TestString]
+2019-08-20 09:50:41 INFO  SerialTest2:109 - Receive message [TestString]
+2019-08-20 09:50:44 INFO  SerialTest2:132 - Send message [TestString]
+2019-08-20 09:50:45 INFO  SerialTest2:109 - Receive message [TestString]
+2019-08-20 09:50:48 INFO  SerialTest2:132 - Send message [TestString]
+2019-08-20 09:50:49 INFO  SerialTest2:109 - Receive message [TestString]
+2019-08-20 09:50:52 INFO  SerialTest2:132 - Send message [TestString]
+2019-08-20 09:50:53 INFO  SerialTest2:109 - Receive message [TestString]
+2019-08-20 09:50:56 INFO  SerialTest2:132 - Send message [TestString]
+2019-08-20 09:50:57 INFO  SerialTest2:109 - Receive message [TestString]
+2019-08-20 09:51:00 INFO  SerialTest2:132 - Send message [TestString]
+2019-08-20 09:51:01 INFO  SerialTest2:109 - Receive message [TestString]
+2019-08-20 09:51:04 INFO  SerialTest2:132 - Send message [TestString]
+2019-08-20 09:51:05 INFO  SerialTest2:109 - Receive message [TestString]
+2019-08-20 09:51:08 INFO  SerialTest2:132 - Send message [TestString]
+2019-08-20 09:51:09 INFO  SerialTest2:109 - Receive message [TestString]
+2019-08-20 17:41:43 INFO  SerialTest2:122 - ========================================
+2019-08-20 17:41:43 INFO  SerialTest2:67 - portId: COM3
+2019-08-20 17:41:43 INFO  SerialTest2:128 - Start sending message
+2019-08-20 17:41:43 INFO  SerialTest2:132 - Send message [TestString]
+2019-08-20 17:41:45 INFO  SerialTest2:109 - Receive message [121]
+2019-08-20 17:41:46 INFO  SerialTest2:109 - Receive message [122]
+2019-08-20 17:41:47 INFO  SerialTest2:132 - Send message [TestString]
+2019-08-20 17:41:49 INFO  SerialTest2:109 - Receive message [121]
+2019-08-20 17:41:50 INFO  SerialTest2:109 - Receive message [122]
+2019-08-20 17:41:51 INFO  SerialTest2:132 - Send message [TestString]
+2019-08-20 17:41:53 INFO  SerialTest2:109 - Receive message [121]
+2019-08-20 17:41:54 INFO  SerialTest2:109 - Receive message [122]
+2019-08-20 17:41:55 INFO  SerialTest2:132 - Send message [TestString]
+2019-08-20 17:41:57 INFO  SerialTest2:109 - Receive message [121]
+2019-08-20 17:41:58 INFO  SerialTest2:109 - Receive message [122]
+2019-08-20 17:41:59 INFO  SerialTest2:132 - Send message [TestString]
+2019-08-20 17:42:01 INFO  SerialTest2:109 - Receive message [121]
+2019-08-20 17:42:02 INFO  SerialTest2:109 - Receive message [122]
+2019-08-20 17:42:03 INFO  SerialTest2:132 - Send message [TestString]
+2019-08-20 17:42:05 INFO  SerialTest2:109 - Receive message [121]
+2019-08-20 17:42:06 INFO  SerialTest2:109 - Receive message [122]
+2019-08-20 17:42:07 INFO  SerialTest2:132 - Send message [TestString]
+2019-08-20 17:42:09 INFO  SerialTest2:109 - Receive message [121]
+2019-08-20 17:42:10 INFO  SerialTest2:109 - Receive message [122]
+2019-08-20 17:42:11 INFO  SerialTest2:132 - Send message [TestString]
+2019-08-20 17:42:13 INFO  SerialTest2:109 - Receive message [121]
+2019-08-20 17:42:14 INFO  SerialTest2:109 - Receive message [122]
+2019-08-20 17:42:15 INFO  SerialTest2:132 - Send message [TestString]
+2019-08-20 17:42:17 INFO  SerialTest2:109 - Receive message [121]
+2019-08-20 17:42:18 INFO  SerialTest2:109 - Receive message [122]
+2019-08-20 17:42:19 INFO  SerialTest2:132 - Send message [TestString]
+2019-08-20 17:42:21 INFO  SerialTest2:109 - Receive message [121]
+2019-08-20 17:42:22 INFO  SerialTest2:109 - Receive message [122]
+2019-08-20 17:43:05 INFO  SerialTest2:122 - ========================================
+2019-08-20 17:43:05 INFO  SerialTest2:67 - portId: COM3
+2019-08-20 17:43:05 INFO  SerialTest2:128 - Start sending message
+2019-08-20 17:43:05 INFO  SerialTest2:130 - Send message [TestString]
+2019-08-20 17:43:07 INFO  SerialTest2:109 - Receive message [121]
+2019-08-20 17:43:08 INFO  SerialTest2:109 - Receive message [122]
+2019-08-20 17:43:36 INFO  SerialTest2:122 - ========================================
+2019-08-20 17:43:36 INFO  SerialTest2:67 - portId: COM3
+2019-08-20 17:43:36 INFO  SerialTest2:128 - Start sending message
+2019-08-20 17:43:36 INFO  SerialTest2:130 - Send message [01]
+2019-08-20 17:43:38 INFO  SerialTest2:109 - Receive message [121]
+2019-08-20 17:43:39 INFO  SerialTest2:109 - Receive message [122]
+2019-08-20 17:44:00 INFO  SerialTest2:122 - ========================================
+2019-08-20 17:44:00 INFO  SerialTest2:67 - portId: COM3
+2019-08-20 17:44:00 INFO  SerialTest2:128 - Start sending message
+2019-08-20 17:44:00 INFO  SerialTest2:130 - Send message [01]
+2019-08-20 17:44:02 INFO  SerialTest2:109 - Receive message [121]
+2019-08-20 17:44:03 INFO  SerialTest2:109 - Receive message [122]
+2019-08-20 17:44:04 INFO  SerialTest2:109 - Receive message [123]
+2019-08-20 18:33:09 INFO  LoginPage:547 - ************************************************************
+2019-08-20 18:33:09 INFO  LoginPage:548 - ************************************************************
+2019-08-20 18:33:09 INFO  LoginPage:549 - ************************************************************
+2019-08-20 18:33:09 INFO  LoginPage:550 - ************************************************************
+2019-08-20 18:33:09 INFO  LoginPage:551 - Starting iTool app.
+2019-08-20 18:33:09 INFO  LoginPage:552 - companyCode: MFC
+2019-08-20 18:33:09 INFO  LoginPage:553 - companyCodeUH: Optiwell
+2019-08-20 18:33:09 INFO  LoginPage:554 - machineCode: VM-5
+2019-08-20 18:33:10 INFO  LoginPage:557 - mDbHost: localhost
+2019-08-20 18:33:10 INFO  LoginPage:558 - mDbUser: admin
+2019-08-20 18:33:10 INFO  LoginPage:559 - mDbPwds: 1qa
+2019-08-20 18:33:10 INFO  LoginPage:560 - mDbName: iTools_v1p0
+2019-08-20 18:33:10 INFO  LoginPage:561 - mDbPort: 3306
+2019-08-20 18:33:10 INFO  LoginPage:562 - Database version: v1p0 - 2018-08-11 13:02:35
+2019-08-20 18:33:10 INFO  LoginPage:564 - Last Sync: 2019-05-29 19:10:26
+2019-08-20 18:33:10 INFO  LoginPage:568 - connectToHost: OK
+2019-08-20 18:33:11 INFO  LoginPage:582 - App Version: 1.0
+2019-08-20 18:33:12 INFO  EmailUtils:57 - mail.tqteam.net25itool_app@tqteam.net1qazxsw2!A
+2019-08-20 18:33:17 INFO  LoginPage:593 - checkEmailConfig: true
+2019-08-20 18:33:18 INFO  LoginPage:378 - ========================================
+2019-08-20 18:33:18 INFO  LoginPage:379 - Start syncing thread - CT827TES
+2019-08-20 18:33:18 INFO  LoginPage:380 - ========================================
+2019-08-20 18:33:18 INFO  SyncController:64 - Start SyncHostToLocal
+2019-08-20 18:33:18 INFO  SyncController:72 - SyncHostToLocal_Assessor: insertAssessor: 95
+2019-08-20 18:33:18 INFO  SyncController:80 - SyncHostToLocal_RoleAssessor: insertRoleAssessor: 97
+2019-08-20 18:33:18 INFO  SyncController:88 - SyncHostToLocal_Machine: insertMachine: 8
+2019-08-20 18:33:18 INFO  SyncController:96 - SyncHostToLocal_Company: insertCompany: 7
+2019-08-20 18:33:19 INFO  SyncController:104 - SyncHostToLocal_CompanyMachine: insertCompanyMachine: 8
+2019-08-20 18:33:19 INFO  SyncController:112 - SyncHostToLocal_Tools: insertTools: 391
+2019-08-20 18:33:19 INFO  SyncController:116 - End SyncHostToLocal: 0s
+2019-08-20 18:33:19 INFO  LoginPage:383 - ========================================
+2019-08-20 18:33:19 INFO  LoginPage:384 - End syncing thread - CT827TES
+2019-08-20 18:33:19 INFO  LoginPage:385 - ========================================
+2019-08-20 18:34:19 INFO  LoginPage:547 - ************************************************************
+2019-08-20 18:34:19 INFO  LoginPage:548 - ************************************************************
+2019-08-20 18:34:19 INFO  LoginPage:549 - ************************************************************
+2019-08-20 18:34:19 INFO  LoginPage:550 - ************************************************************
+2019-08-20 18:34:19 INFO  LoginPage:551 - Starting iTool app.
+2019-08-20 18:34:19 INFO  LoginPage:552 - companyCode: MFC
+2019-08-20 18:34:19 INFO  LoginPage:553 - companyCodeUH: Optiwell
+2019-08-20 18:34:19 INFO  LoginPage:554 - machineCode: VM-7
+2019-08-20 18:34:20 INFO  LoginPage:557 - mDbHost: localhost
+2019-08-20 18:34:20 INFO  LoginPage:558 - mDbUser: admin
+2019-08-20 18:34:20 INFO  LoginPage:559 - mDbPwds: 1qa
+2019-08-20 18:34:20 INFO  LoginPage:560 - mDbName: iTools_v1p0
+2019-08-20 18:34:20 INFO  LoginPage:561 - mDbPort: 3306
+2019-08-20 18:34:20 INFO  LoginPage:562 - Database version: v1p0 - 2018-08-11 13:02:35
+2019-08-20 18:34:20 INFO  LoginPage:564 - Last Sync: 2019-08-20 18:33:19
+2019-08-20 18:34:20 INFO  LoginPage:568 - connectToHost: OK
+2019-08-20 18:34:21 INFO  LoginPage:582 - App Version: 1.0
+2019-08-20 18:34:22 INFO  EmailUtils:57 - mail.tqteam.net25itool_app@tqteam.net1qazxsw2!A
+2019-08-20 18:34:27 INFO  LoginPage:593 - checkEmailConfig: true
+2019-08-20 18:34:28 INFO  LoginPage:378 - ========================================
+2019-08-20 18:34:28 INFO  LoginPage:379 - Start syncing thread - AKDB2ESP
+2019-08-20 18:34:28 INFO  LoginPage:380 - ========================================
+2019-08-20 18:34:28 INFO  SyncController:64 - Start SyncHostToLocal
+2019-08-20 18:34:28 INFO  SyncController:72 - SyncHostToLocal_Assessor: insertAssessor: 95
+2019-08-20 18:34:28 INFO  SyncController:80 - SyncHostToLocal_RoleAssessor: insertRoleAssessor: 97
+2019-08-20 18:34:28 INFO  SyncController:88 - SyncHostToLocal_Machine: insertMachine: 8
+2019-08-20 18:34:28 INFO  SyncController:96 - SyncHostToLocal_Company: insertCompany: 7
+2019-08-20 18:34:28 INFO  SyncController:104 - SyncHostToLocal_CompanyMachine: insertCompanyMachine: 8
+2019-08-20 18:34:28 INFO  SyncController:112 - SyncHostToLocal_Tools: insertTools: 391
+2019-08-20 18:34:28 INFO  SyncController:116 - End SyncHostToLocal: 0s
+2019-08-20 18:34:28 INFO  LoginPage:383 - ========================================
+2019-08-20 18:34:28 INFO  LoginPage:384 - End syncing thread - AKDB2ESP
+2019-08-20 18:34:28 INFO  LoginPage:385 - ========================================
+2019-08-20 18:34:47 INFO  LoginPage:547 - ************************************************************
+2019-08-20 18:34:47 INFO  LoginPage:548 - ************************************************************
+2019-08-20 18:34:47 INFO  LoginPage:549 - ************************************************************
+2019-08-20 18:34:47 INFO  LoginPage:550 - ************************************************************
+2019-08-20 18:34:47 INFO  LoginPage:551 - Starting iTool app.
+2019-08-20 18:34:47 INFO  LoginPage:552 - companyCode: VM-7
+2019-08-20 18:34:47 INFO  LoginPage:553 - companyCodeUH: Optiwell
+2019-08-20 18:34:47 INFO  LoginPage:554 - machineCode: VM-7
+2019-08-20 18:34:47 INFO  LoginPage:557 - mDbHost: localhost
+2019-08-20 18:34:47 INFO  LoginPage:558 - mDbUser: admin
+2019-08-20 18:34:47 INFO  LoginPage:559 - mDbPwds: 1qa
+2019-08-20 18:34:47 INFO  LoginPage:560 - mDbName: iTools_v1p0
+2019-08-20 18:34:47 INFO  LoginPage:561 - mDbPort: 3306
+2019-08-20 18:34:47 INFO  LoginPage:562 - Database version: v1p0 - 2018-08-11 13:02:35
+2019-08-20 18:34:47 INFO  LoginPage:564 - Last Sync: 2019-08-20 18:34:28
+2019-08-20 18:34:47 INFO  LoginPage:568 - connectToHost: OK
+2019-08-20 18:34:48 INFO  LoginPage:582 - App Version: 1.0
+2019-08-20 18:34:49 INFO  EmailUtils:57 - mail.tqteam.net25itool_app@tqteam.net1qazxsw2!A
+2019-08-20 18:34:54 INFO  LoginPage:593 - checkEmailConfig: true
+2019-08-20 18:34:55 INFO  LoginPage:378 - ========================================
+2019-08-20 18:34:55 INFO  LoginPage:379 - Start syncing thread - M0BYVET1
+2019-08-20 18:34:55 INFO  LoginPage:380 - ========================================
+2019-08-20 18:34:55 INFO  SyncController:64 - Start SyncHostToLocal
+2019-08-20 18:34:55 INFO  SyncController:72 - SyncHostToLocal_Assessor: insertAssessor: 95
+2019-08-20 18:34:55 INFO  SyncController:80 - SyncHostToLocal_RoleAssessor: insertRoleAssessor: 97
+2019-08-20 18:34:55 INFO  SyncController:88 - SyncHostToLocal_Machine: insertMachine: 8
+2019-08-20 18:34:56 INFO  SyncController:96 - SyncHostToLocal_Company: insertCompany: 7
+2019-08-20 18:34:56 INFO  SyncController:104 - SyncHostToLocal_CompanyMachine: insertCompanyMachine: 8
+2019-08-20 18:34:56 INFO  SyncController:112 - SyncHostToLocal_Tools: insertTools: 391
+2019-08-20 18:34:56 INFO  SyncController:116 - End SyncHostToLocal: 0s
+2019-08-20 18:34:56 INFO  LoginPage:383 - ========================================
+2019-08-20 18:34:56 INFO  LoginPage:384 - End syncing thread - M0BYVET1
+2019-08-20 18:34:56 INFO  LoginPage:385 - ========================================
+2019-08-20 18:35:02 INFO  LoginPage:261 - Login with username: quann
+2019-08-20 18:35:02 INFO  LoginController:45 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin, IsLocked FROM Assessor where Assessor.IsActive = 1 and Assessor.UserName='quann' and (Password=md5('123456') or LastPassword=md5('123456')) and MachineCode like '%VM-7%';
+2019-08-20 18:35:02 INFO  LoginPage:314 - Login Fail
+2019-08-20 18:35:02 INFO  LoginPage:316 - Update Fail Time
+2019-08-20 18:35:02 INFO  LoginController:84 - update Assessor set FailTimes = FailTimes + 1 where Assessor.UserName = 'quann' and Assessor.CompanyCode = 'VM-7' ;
+2019-08-20 18:35:02 INFO  LoginController:97 - update federated_assessor set FailTimes = FailTimes + 1 where federated_assessor.UserName = 'quann' and federated_assessor.CompanyCode = 'VM-7' ;
+2019-08-20 18:35:02 INFO  LoginController:126 - update Assessor set Assessor.IsLocked = 1 where Assessor.UserName = 'quann' and Assessor.CompanyCode = 'VM-7' and Assessor.FailTimes > 2;
+2019-08-20 18:35:02 INFO  LoginController:141 - update federated_assessor set federated_assessor.IsLocked = 1 where federated_assessor.UserName = 'quann' and federated_assessor.CompanyCode = 'VM-7' and federated_assessor.FailTimes > 2;
+2019-08-20 18:42:30 INFO  LoginPage:547 - ************************************************************
+2019-08-20 18:42:30 INFO  LoginPage:548 - ************************************************************
+2019-08-20 18:42:30 INFO  LoginPage:549 - ************************************************************
+2019-08-20 18:42:30 INFO  LoginPage:550 - ************************************************************
+2019-08-20 18:42:30 INFO  LoginPage:551 - Starting iTool app.
+2019-08-20 18:42:30 INFO  LoginPage:552 - companyCode: VM-7
+2019-08-20 18:42:30 INFO  LoginPage:553 - companyCodeUH: Optiwell
+2019-08-20 18:42:30 INFO  LoginPage:554 - machineCode: VM-7
+2019-08-20 18:42:30 INFO  LoginPage:557 - mDbHost: localhost
+2019-08-20 18:42:30 INFO  LoginPage:558 - mDbUser: admin
+2019-08-20 18:42:30 INFO  LoginPage:559 - mDbPwds: 1qa
+2019-08-20 18:42:30 INFO  LoginPage:560 - mDbName: iTools_v1p0
+2019-08-20 18:42:30 INFO  LoginPage:561 - mDbPort: 3306
+2019-08-20 18:42:30 INFO  LoginPage:562 - Database version: v1p0 - 2018-08-11 13:02:35
+2019-08-20 18:42:30 INFO  LoginPage:564 - Last Sync: 2019-08-20 18:34:56
+2019-08-20 18:42:30 INFO  LoginPage:568 - connectToHost: OK
+2019-08-20 18:42:31 INFO  LoginPage:582 - App Version: 1.0
+2019-08-20 18:42:32 INFO  EmailUtils:57 - mail.tqteam.net25itool_app@tqteam.net1qazxsw2!A
+2019-08-20 18:42:37 INFO  LoginPage:593 - checkEmailConfig: true
+2019-08-20 18:42:38 INFO  LoginPage:378 - ========================================
+2019-08-20 18:42:38 INFO  LoginPage:379 - Start syncing thread - YUQXZWLM
+2019-08-20 18:42:38 INFO  LoginPage:380 - ========================================
+2019-08-20 18:42:38 INFO  SyncController:64 - Start SyncHostToLocal
+2019-08-20 18:42:38 INFO  SyncController:72 - SyncHostToLocal_Assessor: insertAssessor: 95
+2019-08-20 18:42:39 INFO  SyncController:80 - SyncHostToLocal_RoleAssessor: insertRoleAssessor: 97
+2019-08-20 18:42:39 INFO  SyncController:88 - SyncHostToLocal_Machine: insertMachine: 8
+2019-08-20 18:42:39 INFO  SyncController:96 - SyncHostToLocal_Company: insertCompany: 7
+2019-08-20 18:42:39 INFO  SyncController:104 - SyncHostToLocal_CompanyMachine: insertCompanyMachine: 8
+2019-08-20 18:42:39 INFO  SyncController:112 - SyncHostToLocal_Tools: insertTools: 391
+2019-08-20 18:42:39 INFO  SyncController:116 - End SyncHostToLocal: 0s
+2019-08-20 18:42:39 INFO  LoginPage:383 - ========================================
+2019-08-20 18:42:39 INFO  LoginPage:384 - End syncing thread - YUQXZWLM
+2019-08-20 18:42:39 INFO  LoginPage:385 - ========================================
+2019-08-20 18:42:44 INFO  LoginPage:261 - Login with username: quann
+2019-08-20 18:42:44 INFO  LoginController:45 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin, IsLocked FROM Assessor where Assessor.IsActive = 1 and Assessor.UserName='quann' and (Password=md5('123456') or LastPassword=md5('123456')) and MachineCode like '%VM-7%';
+2019-08-20 18:42:44 INFO  LoginPage:314 - Login Fail
+2019-08-20 18:42:44 INFO  LoginPage:316 - Update Fail Time
+2019-08-20 18:42:44 INFO  LoginController:84 - update Assessor set FailTimes = FailTimes + 1 where Assessor.UserName = 'quann' and Assessor.CompanyCode = 'VM-7' ;
+2019-08-20 18:42:44 INFO  LoginController:97 - update federated_assessor set FailTimes = FailTimes + 1 where federated_assessor.UserName = 'quann' and federated_assessor.CompanyCode = 'VM-7' ;
+2019-08-20 18:42:44 INFO  LoginController:126 - update Assessor set Assessor.IsLocked = 1 where Assessor.UserName = 'quann' and Assessor.CompanyCode = 'VM-7' and Assessor.FailTimes > 2;
+2019-08-20 18:42:44 INFO  LoginController:141 - update federated_assessor set federated_assessor.IsLocked = 1 where federated_assessor.UserName = 'quann' and federated_assessor.CompanyCode = 'VM-7' and federated_assessor.FailTimes > 2;
+2019-08-20 18:43:18 INFO  LoginPage:547 - ************************************************************
+2019-08-20 18:43:18 INFO  LoginPage:548 - ************************************************************
+2019-08-20 18:43:18 INFO  LoginPage:549 - ************************************************************
+2019-08-20 18:43:18 INFO  LoginPage:550 - ************************************************************
+2019-08-20 18:43:18 INFO  LoginPage:551 - Starting iTool app.
+2019-08-20 18:43:18 INFO  LoginPage:552 - companyCode: VM-8
+2019-08-20 18:43:18 INFO  LoginPage:553 - companyCodeUH: Optiwell
+2019-08-20 18:43:18 INFO  LoginPage:554 - machineCode: VM-8
+2019-08-20 18:43:19 INFO  LoginPage:557 - mDbHost: localhost
+2019-08-20 18:43:19 INFO  LoginPage:558 - mDbUser: admin
+2019-08-20 18:43:19 INFO  LoginPage:559 - mDbPwds: 1qa
+2019-08-20 18:43:19 INFO  LoginPage:560 - mDbName: iTools_v1p0
+2019-08-20 18:43:19 INFO  LoginPage:561 - mDbPort: 3306
+2019-08-20 18:43:19 INFO  LoginPage:562 - Database version: v1p0 - 2018-08-11 13:02:35
+2019-08-20 18:43:19 INFO  LoginPage:564 - Last Sync: 2019-08-20 18:42:39
+2019-08-20 18:43:19 INFO  LoginPage:568 - connectToHost: OK
+2019-08-20 18:43:20 INFO  LoginPage:582 - App Version: 1.0
+2019-08-20 18:43:21 INFO  EmailUtils:57 - mail.tqteam.net25itool_app@tqteam.net1qazxsw2!A
+2019-08-20 18:43:25 INFO  LoginPage:593 - checkEmailConfig: true
+2019-08-20 18:43:26 INFO  LoginPage:378 - ========================================
+2019-08-20 18:43:26 INFO  LoginPage:379 - Start syncing thread - SOWKAFGU
+2019-08-20 18:43:26 INFO  LoginPage:380 - ========================================
+2019-08-20 18:43:26 INFO  SyncController:64 - Start SyncHostToLocal
+2019-08-20 18:43:27 INFO  SyncController:72 - SyncHostToLocal_Assessor: insertAssessor: 95
+2019-08-20 18:43:27 INFO  SyncController:80 - SyncHostToLocal_RoleAssessor: insertRoleAssessor: 97
+2019-08-20 18:43:27 INFO  SyncController:88 - SyncHostToLocal_Machine: insertMachine: 8
+2019-08-20 18:43:27 INFO  SyncController:96 - SyncHostToLocal_Company: insertCompany: 7
+2019-08-20 18:43:27 INFO  SyncController:104 - SyncHostToLocal_CompanyMachine: insertCompanyMachine: 8
+2019-08-20 18:43:27 INFO  SyncController:112 - SyncHostToLocal_Tools: insertTools: 391
+2019-08-20 18:43:27 INFO  SyncController:116 - End SyncHostToLocal: 0s
+2019-08-20 18:43:27 INFO  LoginPage:383 - ========================================
+2019-08-20 18:43:27 INFO  LoginPage:384 - End syncing thread - SOWKAFGU
+2019-08-20 18:43:27 INFO  LoginPage:385 - ========================================
+2019-08-20 18:43:42 INFO  LoginPage:261 - Login with username: quann
+2019-08-20 18:43:42 INFO  LoginController:45 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin, IsLocked FROM Assessor where Assessor.IsActive = 1 and Assessor.UserName='quann' and (Password=md5('123456') or LastPassword=md5('123456')) and MachineCode like '%VM-8%';
+2019-08-20 18:43:42 INFO  LoginPage:265 - Login OK
+2019-08-20 18:43:42 INFO  LoginController:200 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'VM-8' and assessor.UserName= 'quann'
+2019-08-20 18:43:42 INFO  LoginPage:281 - listRoles: [Roles [roleName=Accounting]]
+2019-08-20 18:43:42 INFO  LoginPage:302 - Show DashboardPage
+2019-08-20 18:43:42 INFO  DashboardPage:109 - Init DASHBOARD_PAGE with list roles: [accounting]
+2019-08-20 18:44:57 INFO  LoginPage:547 - ************************************************************
+2019-08-20 18:44:57 INFO  LoginPage:548 - ************************************************************
+2019-08-20 18:44:57 INFO  LoginPage:549 - ************************************************************
+2019-08-20 18:44:57 INFO  LoginPage:550 - ************************************************************
+2019-08-20 18:44:57 INFO  LoginPage:551 - Starting iTool app.
+2019-08-20 18:44:57 INFO  LoginPage:552 - companyCode: VM-8
+2019-08-20 18:44:57 INFO  LoginPage:553 - companyCodeUH: Optiwell
+2019-08-20 18:44:57 INFO  LoginPage:554 - machineCode: VM-8
+2019-08-20 18:44:57 INFO  LoginPage:557 - mDbHost: localhost
+2019-08-20 18:44:57 INFO  LoginPage:558 - mDbUser: admin
+2019-08-20 18:44:58 INFO  LoginPage:559 - mDbPwds: 1qa
+2019-08-20 18:44:58 INFO  LoginPage:560 - mDbName: iTools_v1p0
+2019-08-20 18:44:58 INFO  LoginPage:561 - mDbPort: 3306
+2019-08-20 18:44:58 INFO  LoginPage:562 - Database version: v1p0 - 2018-08-11 13:02:35
+2019-08-20 18:44:58 INFO  LoginPage:564 - Last Sync: 2019-08-20 18:43:27
+2019-08-20 18:44:58 INFO  LoginPage:568 - connectToHost: OK
+2019-08-20 18:44:59 INFO  LoginPage:582 - App Version: 1.0
+2019-08-20 18:45:00 INFO  EmailUtils:57 - mail.tqteam.net25itool_app@tqteam.net1qazxsw2!A
+2019-08-20 18:45:04 INFO  LoginPage:593 - checkEmailConfig: true
+2019-08-20 18:45:05 INFO  LoginPage:378 - ========================================
+2019-08-20 18:45:05 INFO  LoginPage:379 - Start syncing thread - KHSB86RG
+2019-08-20 18:45:05 INFO  LoginPage:380 - ========================================
+2019-08-20 18:45:05 INFO  SyncController:64 - Start SyncHostToLocal
+2019-08-20 18:45:06 INFO  SyncController:72 - SyncHostToLocal_Assessor: insertAssessor: 95
+2019-08-20 18:45:06 INFO  SyncController:80 - SyncHostToLocal_RoleAssessor: insertRoleAssessor: 97
+2019-08-20 18:45:06 INFO  SyncController:88 - SyncHostToLocal_Machine: insertMachine: 8
+2019-08-20 18:45:06 INFO  SyncController:96 - SyncHostToLocal_Company: insertCompany: 7
+2019-08-20 18:45:06 INFO  SyncController:104 - SyncHostToLocal_CompanyMachine: insertCompanyMachine: 8
+2019-08-20 18:45:06 INFO  SyncController:112 - SyncHostToLocal_Tools: insertTools: 391
+2019-08-20 18:45:06 INFO  SyncController:116 - End SyncHostToLocal: 0s
+2019-08-20 18:45:06 INFO  LoginPage:383 - ========================================
+2019-08-20 18:45:06 INFO  LoginPage:384 - End syncing thread - KHSB86RG
+2019-08-20 18:45:06 INFO  LoginPage:385 - ========================================
+2019-08-20 18:45:13 INFO  LoginPage:261 - Login with username: quann
+2019-08-20 18:45:13 INFO  LoginController:45 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin, IsLocked FROM Assessor where Assessor.IsActive = 1 and Assessor.UserName='quann' and (Password=md5('123456') or LastPassword=md5('123456')) and MachineCode like '%VM-8%';
+2019-08-20 18:45:13 INFO  LoginPage:265 - Login OK
+2019-08-20 18:45:13 INFO  LoginController:200 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'VM-8' and assessor.UserName= 'quann'
+2019-08-20 18:45:13 INFO  LoginPage:281 - listRoles: [Roles [roleName=Emp]]
+2019-08-20 18:45:13 INFO  LoginPage:293 - Show EmployeePage
+2019-08-20 18:45:13 INFO  EmployeeController:161 -  select tools.ToolId, tools.ToolCode ,  toolsmachineTray.Quantity, toolsmachineTray.TrayIndex, toolsmachineTray.Machinecode  from tools inner join toolsmachineTray on tools.ToolCode = toolsmachineTray.ToolCode  where tools.IsActive = '1' and toolsmachineTray.MachineCode = 'VM-8';
+2019-08-20 18:45:13 INFO  EmployeeController:204 - {}
+2019-08-20 18:45:13 INFO  EmployeeController:218 -  select tools.ToolCode from tools where tools.IsActive='1' and tools.companyCode = 'VM-8';
+2019-08-20 18:45:13 INFO  EmployeeController:238 - {}
+2019-08-20 18:45:13 INFO  EmployeeController:50 - select tools.ToolId, tools.ToolCode  from tools inner join toolsmachineTray on tools.ToolCode = toolsmachineTray.ToolCode  where tools.IsActive = '1' and tools.CompanyCode = 'VM-8' and toolsmachineTray.MachineCode = 'VM-8';
+2019-08-20 18:45:13 INFO  EmployeeController:71 - []
+2019-08-20 18:45:13 INFO  EmployeePage:535 - listToolNames: []
+2019-08-20 18:45:13 INFO  EmployeePage:545 - toolComboBox: []
+2019-08-20 18:45:13 INFO  EmployeePage:187 - Init EMP_PAGE
+2019-08-20 18:45:13 INFO  EmployeePage:190 - listAllTrays: [TRAY_01, TRAY_02, TRAY_03, TRAY_04, TRAY_05, TRAY_06, TRAY_07, TRAY_08, TRAY_09, TRAY_10, TRAY_11, TRAY_12, TRAY_13, TRAY_14, TRAY_15, TRAY_16, TRAY_17, TRAY_18, TRAY_19, TRAY_20, TRAY_21, TRAY_22, TRAY_23, TRAY_24, TRAY_25, TRAY_26, TRAY_27, TRAY_28, TRAY_29, TRAY_30, TRAY_31, TRAY_32, TRAY_33, TRAY_34, TRAY_35, TRAY_36, TRAY_37, TRAY_38, TRAY_39, TRAY_40, TRAY_41, TRAY_42, TRAY_43, TRAY_44, TRAY_45, TRAY_46, TRAY_47, TRAY_48, TRAY_49, TRAY_50, TRAY_51, TRAY_52, TRAY_53, TRAY_54, TRAY_55, TRAY_56, TRAY_57, TRAY_58, TRAY_59, TRAY_60]
+2019-08-20 18:45:13 INFO  EmployeePage:196 - hashMessage: {TRAY_09=09, TRAY_07=07, TRAY_08=08, TRAY_41=41, TRAY_42=42, TRAY_40=40, TRAY_05=05, TRAY_49=49, TRAY_06=06, TRAY_03=03, TRAY_47=47, TRAY_04=04, TRAY_48=48, TRAY_01=01, TRAY_45=45, TRAY_02=02, TRAY_46=46, TRAY_43=43, TRAY_44=44, TRAY_30=30, TRAY_31=31, TRAY_38=38, TRAY_39=39, TRAY_36=36, TRAY_37=37, TRAY_34=34, TRAY_35=35, TRAY_32=32, TRAY_33=33, TRAY_29=29, TRAY_20=20, TRAY_60=60, TRAY_27=27, TRAY_28=28, TRAY_25=25, TRAY_26=26, TRAY_23=23, TRAY_24=24, TRAY_21=21, TRAY_22=22, TRAY_18=18, TRAY_19=19, TRAY_52=52, TRAY_53=53, TRAY_50=50, TRAY_51=51, TRAY_16=16, TRAY_17=17, TRAY_14=14, TRAY_58=58, TRAY_15=15, TRAY_59=59, TRAY_12=12, TRAY_56=56, TRAY_13=13, TRAY_57=57, TRAY_10=10, TRAY_54=54, TRAY_11=11, TRAY_55=55}
+2019-08-20 18:48:43 INFO  LoginPage:547 - ************************************************************
+2019-08-20 18:48:43 INFO  LoginPage:548 - ************************************************************
+2019-08-20 18:48:43 INFO  LoginPage:549 - ************************************************************
+2019-08-20 18:48:43 INFO  LoginPage:550 - ************************************************************
+2019-08-20 18:48:43 INFO  LoginPage:551 - Starting iTool app.
+2019-08-20 18:48:43 INFO  LoginPage:552 - companyCode: VM-8
+2019-08-20 18:48:43 INFO  LoginPage:553 - companyCodeUH: Optiwell
+2019-08-20 18:48:43 INFO  LoginPage:554 - machineCode: VM-8
+2019-08-20 18:48:43 INFO  LoginPage:557 - mDbHost: localhost
+2019-08-20 18:48:43 INFO  LoginPage:558 - mDbUser: admin
+2019-08-20 18:48:43 INFO  LoginPage:559 - mDbPwds: 1qa
+2019-08-20 18:48:43 INFO  LoginPage:560 - mDbName: iTools_v1p0
+2019-08-20 18:48:43 INFO  LoginPage:561 - mDbPort: 3306
+2019-08-20 18:48:43 INFO  LoginPage:562 - Database version: v1p0 - 2018-08-11 13:02:35
+2019-08-20 18:48:43 INFO  LoginPage:564 - Last Sync: 2019-08-20 18:45:06
+2019-08-20 18:48:43 INFO  LoginPage:568 - connectToHost: OK
+2019-08-20 18:48:44 INFO  LoginPage:582 - App Version: 1.0
+2019-08-20 18:48:45 INFO  EmailUtils:57 - mail.tqteam.net25itool_app@tqteam.net1qazxsw2!A
+2019-08-20 18:48:50 INFO  LoginPage:593 - checkEmailConfig: true
+2019-08-20 18:48:51 INFO  LoginPage:378 - ========================================
+2019-08-20 18:48:51 INFO  LoginPage:379 - Start syncing thread - YS9MF7AL
+2019-08-20 18:48:51 INFO  LoginPage:380 - ========================================
+2019-08-20 18:48:51 INFO  SyncController:64 - Start SyncHostToLocal
+2019-08-20 18:48:51 INFO  SyncController:72 - SyncHostToLocal_Assessor: insertAssessor: 95
+2019-08-20 18:48:52 INFO  SyncController:80 - SyncHostToLocal_RoleAssessor: insertRoleAssessor: 97
+2019-08-20 18:48:52 INFO  SyncController:88 - SyncHostToLocal_Machine: insertMachine: 8
+2019-08-20 18:48:52 INFO  SyncController:96 - SyncHostToLocal_Company: insertCompany: 7
+2019-08-20 18:48:52 INFO  SyncController:104 - SyncHostToLocal_CompanyMachine: insertCompanyMachine: 8
+2019-08-20 18:48:52 INFO  SyncController:112 - SyncHostToLocal_Tools: insertTools: 392
+2019-08-20 18:48:52 INFO  SyncController:116 - End SyncHostToLocal: 0s
+2019-08-20 18:48:52 INFO  LoginPage:383 - ========================================
+2019-08-20 18:48:52 INFO  LoginPage:384 - End syncing thread - YS9MF7AL
+2019-08-20 18:48:52 INFO  LoginPage:385 - ========================================
+2019-08-20 18:48:59 INFO  LoginPage:261 - Login with username: quann
+2019-08-20 18:48:59 INFO  LoginController:45 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin, IsLocked FROM Assessor where Assessor.IsActive = 1 and Assessor.UserName='quann' and (Password=md5('123456') or LastPassword=md5('123456')) and MachineCode like '%VM-8%';
+2019-08-20 18:48:59 INFO  LoginPage:265 - Login OK
+2019-08-20 18:48:59 INFO  LoginController:200 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'VM-8' and assessor.UserName= 'quann'
+2019-08-20 18:48:59 INFO  LoginPage:281 - listRoles: [Roles [roleName=Emp]]
+2019-08-20 18:48:59 INFO  LoginPage:293 - Show EmployeePage
+2019-08-20 18:48:59 INFO  EmployeeController:161 -  select tools.ToolId, tools.ToolCode ,  toolsmachineTray.Quantity, toolsmachineTray.TrayIndex, toolsmachineTray.Machinecode  from tools inner join toolsmachineTray on tools.ToolCode = toolsmachineTray.ToolCode  where tools.IsActive = '1' and toolsmachineTray.MachineCode = 'VM-8';
+2019-08-20 18:48:59 INFO  EmployeeController:204 - {1015-6.0=[[TRAY_01, 2], [TRAY_01, 2], [TRAY_02, 4], [TRAY_02, 4]]}
+2019-08-20 18:48:59 INFO  EmployeeController:218 -  select tools.ToolCode from tools where tools.IsActive='1' and tools.companyCode = 'VM-8';
+2019-08-20 18:48:59 INFO  EmployeeController:238 - {}
+2019-08-20 18:48:59 INFO  EmployeeController:50 - select tools.ToolId, tools.ToolCode  from tools inner join toolsmachineTray on tools.ToolCode = toolsmachineTray.ToolCode  where tools.IsActive = '1' and tools.CompanyCode = 'VM-8' and toolsmachineTray.MachineCode = 'VM-8';
+2019-08-20 18:48:59 INFO  EmployeeController:71 - [Tool [toolId=696, toolName=1015-6.0], Tool [toolId=696, toolName=1015-6.0]]
+2019-08-20 18:48:59 INFO  EmployeePage:535 - listToolNames: [, 1015-6.0]
+2019-08-20 18:48:59 INFO  EmployeePage:545 - toolComboBox: [, 1015-6.0]
+2019-08-20 18:48:59 INFO  EmployeePage:187 - Init EMP_PAGE
+2019-08-20 18:48:59 INFO  EmployeePage:190 - listAllTrays: [TRAY_01, TRAY_02, TRAY_03, TRAY_04, TRAY_05, TRAY_06, TRAY_07, TRAY_08, TRAY_09, TRAY_10, TRAY_11, TRAY_12, TRAY_13, TRAY_14, TRAY_15, TRAY_16, TRAY_17, TRAY_18, TRAY_19, TRAY_20, TRAY_21, TRAY_22, TRAY_23, TRAY_24, TRAY_25, TRAY_26, TRAY_27, TRAY_28, TRAY_29, TRAY_30, TRAY_31, TRAY_32, TRAY_33, TRAY_34, TRAY_35, TRAY_36, TRAY_37, TRAY_38, TRAY_39, TRAY_40, TRAY_41, TRAY_42, TRAY_43, TRAY_44, TRAY_45, TRAY_46, TRAY_47, TRAY_48, TRAY_49, TRAY_50, TRAY_51, TRAY_52, TRAY_53, TRAY_54, TRAY_55, TRAY_56, TRAY_57, TRAY_58, TRAY_59, TRAY_60]
+2019-08-20 18:48:59 INFO  EmployeePage:196 - hashMessage: {TRAY_09=09, TRAY_07=07, TRAY_08=08, TRAY_41=41, TRAY_42=42, TRAY_40=40, TRAY_05=05, TRAY_49=49, TRAY_06=06, TRAY_03=03, TRAY_47=47, TRAY_04=04, TRAY_48=48, TRAY_01=01, TRAY_45=45, TRAY_02=02, TRAY_46=46, TRAY_43=43, TRAY_44=44, TRAY_30=30, TRAY_31=31, TRAY_38=38, TRAY_39=39, TRAY_36=36, TRAY_37=37, TRAY_34=34, TRAY_35=35, TRAY_32=32, TRAY_33=33, TRAY_29=29, TRAY_20=20, TRAY_60=60, TRAY_27=27, TRAY_28=28, TRAY_25=25, TRAY_26=26, TRAY_23=23, TRAY_24=24, TRAY_21=21, TRAY_22=22, TRAY_18=18, TRAY_19=19, TRAY_52=52, TRAY_53=53, TRAY_50=50, TRAY_51=51, TRAY_16=16, TRAY_17=17, TRAY_14=14, TRAY_58=58, TRAY_15=15, TRAY_59=59, TRAY_12=12, TRAY_56=56, TRAY_13=13, TRAY_57=57, TRAY_10=10, TRAY_54=54, TRAY_11=11, TRAY_55=55}
+2019-08-20 18:49:11 INFO  EmployeePage:728 - quann confirm: <head><style>table {    font-family: arial, sans-serif;    border: none;    width: 100%;} td, th {    text-align: left;    padding: 2px;} tr:nth-child(even) {    background-color: #dddddd;}</style></head><body><table> <tr>    <th>WO:</th>    <th>dsaqd</th>  </tr>  <tr>    <td>OP:</td>    <td>asdas</td>  </tr>  <tr>    <td>CTID:</td>    <td>1015-6.0</td>  </tr>  <tr>    <td>Tray:</td>    <td>TRAY_02</td>  </tr>  <tr>    <td>Quantity:</td>    <td>1</td>  </tr> </table></body>
+2019-08-20 18:49:11 INFO  EmployeePage:730 - quann getTools
+2019-08-20 18:49:13 INFO  TransactionController:45 - insert into WorkingTransaction( TransactionDate, MachineCode, CompanyCode, AssessorID, WOCode, OPCode, ToolCode, TrayIndex, Quantity, UpdatedDate, TransactionStatus, TransactionType) values (now(), 'VM-8', 'VM-8', 'quann', 'dsaqd', 'asdas', '1015-6.0', 'TRAY_02', '1', now(), 'Send request to board', 'GetTools');
+2019-08-20 18:49:13 INFO  EmployeePage:752 - Create transaction
+2019-08-20 18:49:13 INFO  EmployeePage:753 - hashMessage: {TRAY_09=09, TRAY_07=07, TRAY_08=08, TRAY_41=41, TRAY_42=42, TRAY_40=40, TRAY_05=05, TRAY_49=49, TRAY_06=06, TRAY_03=03, TRAY_47=47, TRAY_04=04, TRAY_48=48, TRAY_01=01, TRAY_45=45, TRAY_02=02, TRAY_46=46, TRAY_43=43, TRAY_44=44, TRAY_30=30, TRAY_31=31, TRAY_38=38, TRAY_39=39, TRAY_36=36, TRAY_37=37, TRAY_34=34, TRAY_35=35, TRAY_32=32, TRAY_33=33, TRAY_29=29, TRAY_20=20, TRAY_60=60, TRAY_27=27, TRAY_28=28, TRAY_25=25, TRAY_26=26, TRAY_23=23, TRAY_24=24, TRAY_21=21, TRAY_22=22, TRAY_18=18, TRAY_19=19, TRAY_52=52, TRAY_53=53, TRAY_50=50, TRAY_51=51, TRAY_16=16, TRAY_17=17, TRAY_14=14, TRAY_58=58, TRAY_15=15, TRAY_59=59, TRAY_12=12, TRAY_56=56, TRAY_13=13, TRAY_57=57, TRAY_10=10, TRAY_54=54, TRAY_11=11, TRAY_55=55}
+2019-08-20 18:49:13 INFO  EmployeePage:754 - hashMessage containsKey TRAY_02: true
+2019-08-20 18:49:13 INFO  EmployeePage:858 - ========================================
+2019-08-20 18:49:13 INFO  EmployeePage:1156 - portId: COM3
+2019-08-20 18:49:14 INFO  EmployeePage:861 - Start sending message
+2019-08-20 18:49:14 INFO  EmployeePage:863 - Send message [01]
+2019-08-20 18:49:16 INFO  EmployeePage:1198 - Receive message [121]
+2019-08-20 18:49:16 INFO  EmployeePage:1204 - MOTOR_START
+2019-08-20 18:49:17 INFO  EmployeePage:1198 - Receive message [122]
+2019-08-20 18:49:17 INFO  EmployeePage:1207 - MOTOR_STOP
+2019-08-20 18:49:18 INFO  EmployeePage:1198 - Receive message [123]
+2019-08-20 18:49:18 INFO  EmployeePage:1210 - PRODUCT_OK
+2019-08-20 18:49:19 INFO  EmployeePage:871 - listDataReceived: [121, 122, 123]
+2019-08-20 18:49:19 INFO  TransactionController:77 - update WorkingTransaction set UpdatedDate=now(), TransactionStatus='MotorStart' where WorkingTransactionID = 1420;
+2019-08-20 18:49:19 INFO  TransactionController:77 - update WorkingTransaction set UpdatedDate=now(), TransactionStatus='MotorStop' where WorkingTransactionID = 1420;
+2019-08-20 18:49:19 INFO  TransactionController:77 - update WorkingTransaction set UpdatedDate=now(), TransactionStatus='ProductOK' where WorkingTransactionID = 1420;
+2019-08-20 18:49:19 INFO  EmployeePage:891 - Complete send and receive all messages!!!: 
+2019-08-20 18:49:19 INFO  EmployeePage:774 - resultValue: 1
+2019-08-20 18:49:19 INFO  EmployeeController:80 -  select toolsmachine.ToolsMachineID from tools inner join toolsmachine on tools.ToolCode = toolsmachine.ToolCode where tools.ToolCode = '1015-6.0' and toolsmachine.MachineCode = 'VM-8';
+2019-08-20 18:49:19 INFO  EmployeeController:99 -  select count(*) from toolsmachinetray where toolsmachinetray.ToolCode = '1015-6.0' and toolsmachinetray.TrayIndex = 'TRAY_02' and toolsmachinetray.MachineCode = 'VM-8';
+2019-08-20 18:49:19 INFO  EmployeeController:131 -  update toolsmachinetray set quantity = quantity - 1 where ToolCode = '1015-6.0' and trayIndex = 'TRAY_02' and machineCode = 'VM-8';
+2019-08-20 18:49:19 INFO  EmployeePage:786 - Completed
+2019-08-20 18:49:19 INFO  LoginController:317 - SELECT EmailAddress FROM Assessor where Assessor.UserName = 'quann' and Assessor.CompanyCode = 'VM-8';
+2019-08-20 18:49:19 INFO  LoginController:340 - SELECT FirstName, LastName FROM Assessor where Assessor.UserName = 'quann' and Assessor.CompanyCode = 'VM-8';
+2019-08-20 18:49:19 INFO  LoginController:382 - SELECT EmailAddress FROM Assessor where Assessor.UserName = 'admin';
+2019-08-20 18:49:19 INFO  LoginController:405 - select assessor.EmailAddress from roleassessor inner join assessor on roleassessor.AssessorID = assessor.AssessorID  inner join roles on roleassessor.RoleID = roles.RoleID where roles.RoleName = 'SubAdmin' and assessor.CompanyCode = 'VM-8';
+2019-08-20 18:49:23 INFO  EmailUtils:161 - quann - GETTOOL - Send Mail To quann169@gmail.com - CC: [trinh.wft@gmail.com, ] - Subject: VM-8 - VM-8: Nguyen Quan(quann) get tool notification - Message: Hi Employee Nguyen Quan(quann),
+WO: dsaqd
+OP: asdas
+Tool: 1015-6.0
+Tray: TRAY_02
+Quantity: 1
+Machine no.: VM-8
+2019-08-20 18:49:24 INFO  EmployeePage:822 - Complete with resultValue = 1
+2019-08-20 18:49:24 INFO  EmployeeController:161 -  select tools.ToolId, tools.ToolCode ,  toolsmachineTray.Quantity, toolsmachineTray.TrayIndex, toolsmachineTray.Machinecode  from tools inner join toolsmachineTray on tools.ToolCode = toolsmachineTray.ToolCode  where tools.IsActive = '1' and toolsmachineTray.MachineCode = 'VM-8';
+2019-08-20 18:49:24 INFO  EmployeeController:204 - {1015-6.0=[[TRAY_01, 2], [TRAY_01, 2], [TRAY_02, 3], [TRAY_02, 3]]}
+2019-08-20 18:49:59 INFO  EmployeePage:728 - quann confirm: <head><style>table {    font-family: arial, sans-serif;    border: none;    width: 100%;} td, th {    text-align: left;    padding: 2px;} tr:nth-child(even) {    background-color: #dddddd;}</style></head><body><table> <tr>    <th>WO:</th>    <th>dsaqd</th>  </tr>  <tr>    <td>OP:</td>    <td>asdas</td>  </tr>  <tr>    <td>CTID:</td>    <td>1015-6.0</td>  </tr>  <tr>    <td>Tray:</td>    <td>TRAY_02</td>  </tr>  <tr>    <td>Quantity:</td>    <td>1</td>  </tr> </table></body>
+2019-08-20 18:49:59 INFO  EmployeePage:730 - quann getTools
+2019-08-20 18:50:01 INFO  TransactionController:45 - insert into WorkingTransaction( TransactionDate, MachineCode, CompanyCode, AssessorID, WOCode, OPCode, ToolCode, TrayIndex, Quantity, UpdatedDate, TransactionStatus, TransactionType) values (now(), 'VM-8', 'VM-8', 'quann', 'dsaqd', 'asdas', '1015-6.0', 'TRAY_02', '1', now(), 'Send request to board', 'GetTools');
+2019-08-20 18:50:01 INFO  EmployeePage:752 - Create transaction
+2019-08-20 18:50:01 INFO  EmployeePage:753 - hashMessage: {TRAY_09=09, TRAY_07=07, TRAY_08=08, TRAY_41=41, TRAY_42=42, TRAY_40=40, TRAY_05=05, TRAY_49=49, TRAY_06=06, TRAY_03=03, TRAY_47=47, TRAY_04=04, TRAY_48=48, TRAY_01=01, TRAY_45=45, TRAY_02=02, TRAY_46=46, TRAY_43=43, TRAY_44=44, TRAY_30=30, TRAY_31=31, TRAY_38=38, TRAY_39=39, TRAY_36=36, TRAY_37=37, TRAY_34=34, TRAY_35=35, TRAY_32=32, TRAY_33=33, TRAY_29=29, TRAY_20=20, TRAY_60=60, TRAY_27=27, TRAY_28=28, TRAY_25=25, TRAY_26=26, TRAY_23=23, TRAY_24=24, TRAY_21=21, TRAY_22=22, TRAY_18=18, TRAY_19=19, TRAY_52=52, TRAY_53=53, TRAY_50=50, TRAY_51=51, TRAY_16=16, TRAY_17=17, TRAY_14=14, TRAY_58=58, TRAY_15=15, TRAY_59=59, TRAY_12=12, TRAY_56=56, TRAY_13=13, TRAY_57=57, TRAY_10=10, TRAY_54=54, TRAY_11=11, TRAY_55=55}
+2019-08-20 18:50:01 INFO  EmployeePage:754 - hashMessage containsKey TRAY_02: true
+2019-08-20 18:50:01 INFO  EmployeePage:858 - ========================================
+2019-08-20 18:50:01 INFO  EmployeePage:1156 - portId: COM3
+2019-08-20 18:50:01 INFO  EmployeePage:861 - Start sending message
+2019-08-20 18:50:01 INFO  EmployeePage:863 - Send message [01]
+2019-08-20 18:50:01 INFO  EmployeePage:871 - listDataReceived: [121, 122, 123]
+2019-08-20 18:50:01 INFO  TransactionController:77 - update WorkingTransaction set UpdatedDate=now(), TransactionStatus='MotorStart' where WorkingTransactionID = 1421;
+2019-08-20 18:50:01 INFO  TransactionController:77 - update WorkingTransaction set UpdatedDate=now(), TransactionStatus='MotorStop' where WorkingTransactionID = 1421;
+2019-08-20 18:50:01 INFO  TransactionController:77 - update WorkingTransaction set UpdatedDate=now(), TransactionStatus='ProductOK' where WorkingTransactionID = 1421;
+2019-08-20 18:50:01 INFO  EmployeePage:891 - Complete send and receive all messages!!!: 
+2019-08-20 18:50:01 INFO  EmployeePage:774 - resultValue: 1
+2019-08-20 18:50:01 INFO  EmployeeController:80 -  select toolsmachine.ToolsMachineID from tools inner join toolsmachine on tools.ToolCode = toolsmachine.ToolCode where tools.ToolCode = '1015-6.0' and toolsmachine.MachineCode = 'VM-8';
+2019-08-20 18:50:01 INFO  EmployeeController:99 -  select count(*) from toolsmachinetray where toolsmachinetray.ToolCode = '1015-6.0' and toolsmachinetray.TrayIndex = 'TRAY_02' and toolsmachinetray.MachineCode = 'VM-8';
+2019-08-20 18:50:01 INFO  EmployeeController:131 -  update toolsmachinetray set quantity = quantity - 1 where ToolCode = '1015-6.0' and trayIndex = 'TRAY_02' and machineCode = 'VM-8';
+2019-08-20 18:50:01 INFO  EmployeePage:786 - Completed
+2019-08-20 18:50:01 INFO  LoginController:317 - SELECT EmailAddress FROM Assessor where Assessor.UserName = 'quann' and Assessor.CompanyCode = 'VM-8';
+2019-08-20 18:50:01 INFO  LoginController:340 - SELECT FirstName, LastName FROM Assessor where Assessor.UserName = 'quann' and Assessor.CompanyCode = 'VM-8';
+2019-08-20 18:50:01 INFO  LoginController:382 - SELECT EmailAddress FROM Assessor where Assessor.UserName = 'admin';
+2019-08-20 18:50:01 INFO  LoginController:405 - select assessor.EmailAddress from roleassessor inner join assessor on roleassessor.AssessorID = assessor.AssessorID  inner join roles on roleassessor.RoleID = roles.RoleID where roles.RoleName = 'SubAdmin' and assessor.CompanyCode = 'VM-8';
+2019-08-20 18:50:03 INFO  EmployeePage:822 - Complete with resultValue = 1
+2019-08-20 18:50:03 INFO  EmployeeController:161 -  select tools.ToolId, tools.ToolCode ,  toolsmachineTray.Quantity, toolsmachineTray.TrayIndex, toolsmachineTray.Machinecode  from tools inner join toolsmachineTray on tools.ToolCode = toolsmachineTray.ToolCode  where tools.IsActive = '1' and toolsmachineTray.MachineCode = 'VM-8';
+2019-08-20 18:50:03 INFO  EmployeeController:204 - {1015-6.0=[[TRAY_01, 2], [TRAY_01, 2], [TRAY_02, 2], [TRAY_02, 2]]}
+2019-08-20 18:50:06 INFO  EmailUtils:161 - quann - GETTOOL - Send Mail To quann169@gmail.com - CC: [trinh.wft@gmail.com, ] - Subject: VM-8 - VM-8: Nguyen Quan(quann) get tool notification - Message: Hi Employee Nguyen Quan(quann),
+WO: dsaqd
+OP: asdas
+Tool: 1015-6.0
+Tray: TRAY_02
+Quantity: 1
+Machine no.: VM-8
+2019-08-20 18:50:16 INFO  EmployeePage:728 - quann confirm: <head><style>table {    font-family: arial, sans-serif;    border: none;    width: 100%;} td, th {    text-align: left;    padding: 2px;} tr:nth-child(even) {    background-color: #dddddd;}</style></head><body><table> <tr>    <th>WO:</th>    <th>dsaqd</th>  </tr>  <tr>    <td>OP:</td>    <td>asdas</td>  </tr>  <tr>    <td>CTID:</td>    <td>1015-6.0</td>  </tr>  <tr>    <td>Tray:</td>    <td>TRAY_02</td>  </tr>  <tr>    <td>Quantity:</td>    <td>1</td>  </tr> </table></body>
+2019-08-20 18:50:16 INFO  EmployeePage:730 - quann getTools
+2019-08-20 18:50:18 INFO  TransactionController:45 - insert into WorkingTransaction( TransactionDate, MachineCode, CompanyCode, AssessorID, WOCode, OPCode, ToolCode, TrayIndex, Quantity, UpdatedDate, TransactionStatus, TransactionType) values (now(), 'VM-8', 'VM-8', 'quann', 'dsaqd', 'asdas', '1015-6.0', 'TRAY_02', '1', now(), 'Send request to board', 'GetTools');
+2019-08-20 18:50:19 INFO  EmployeePage:752 - Create transaction
+2019-08-20 18:50:19 INFO  EmployeePage:753 - hashMessage: {TRAY_09=09, TRAY_07=07, TRAY_08=08, TRAY_41=41, TRAY_42=42, TRAY_40=40, TRAY_05=05, TRAY_49=49, TRAY_06=06, TRAY_03=03, TRAY_47=47, TRAY_04=04, TRAY_48=48, TRAY_01=01, TRAY_45=45, TRAY_02=02, TRAY_46=46, TRAY_43=43, TRAY_44=44, TRAY_30=30, TRAY_31=31, TRAY_38=38, TRAY_39=39, TRAY_36=36, TRAY_37=37, TRAY_34=34, TRAY_35=35, TRAY_32=32, TRAY_33=33, TRAY_29=29, TRAY_20=20, TRAY_60=60, TRAY_27=27, TRAY_28=28, TRAY_25=25, TRAY_26=26, TRAY_23=23, TRAY_24=24, TRAY_21=21, TRAY_22=22, TRAY_18=18, TRAY_19=19, TRAY_52=52, TRAY_53=53, TRAY_50=50, TRAY_51=51, TRAY_16=16, TRAY_17=17, TRAY_14=14, TRAY_58=58, TRAY_15=15, TRAY_59=59, TRAY_12=12, TRAY_56=56, TRAY_13=13, TRAY_57=57, TRAY_10=10, TRAY_54=54, TRAY_11=11, TRAY_55=55}
+2019-08-20 18:50:19 INFO  EmployeePage:754 - hashMessage containsKey TRAY_02: true
+2019-08-20 18:50:19 INFO  EmployeePage:858 - ========================================
+2019-08-20 18:50:19 INFO  EmployeePage:1156 - portId: COM3
+2019-08-20 18:50:19 INFO  EmployeePage:861 - Start sending message
+2019-08-20 18:50:19 INFO  EmployeePage:863 - Send message [01]
+2019-08-20 18:50:19 INFO  EmployeePage:871 - listDataReceived: [121, 122, 123]
+2019-08-20 18:50:19 INFO  TransactionController:77 - update WorkingTransaction set UpdatedDate=now(), TransactionStatus='MotorStart' where WorkingTransactionID = 1422;
+2019-08-20 18:50:19 INFO  TransactionController:77 - update WorkingTransaction set UpdatedDate=now(), TransactionStatus='MotorStop' where WorkingTransactionID = 1422;
+2019-08-20 18:50:19 INFO  TransactionController:77 - update WorkingTransaction set UpdatedDate=now(), TransactionStatus='ProductOK' where WorkingTransactionID = 1422;
+2019-08-20 18:50:19 INFO  EmployeePage:891 - Complete send and receive all messages!!!: 
+2019-08-20 18:50:19 INFO  EmployeePage:774 - resultValue: 1
+2019-08-20 18:50:19 INFO  EmployeeController:80 -  select toolsmachine.ToolsMachineID from tools inner join toolsmachine on tools.ToolCode = toolsmachine.ToolCode where tools.ToolCode = '1015-6.0' and toolsmachine.MachineCode = 'VM-8';
+2019-08-20 18:50:19 INFO  EmployeeController:99 -  select count(*) from toolsmachinetray where toolsmachinetray.ToolCode = '1015-6.0' and toolsmachinetray.TrayIndex = 'TRAY_02' and toolsmachinetray.MachineCode = 'VM-8';
+2019-08-20 18:50:19 INFO  EmployeeController:131 -  update toolsmachinetray set quantity = quantity - 1 where ToolCode = '1015-6.0' and trayIndex = 'TRAY_02' and machineCode = 'VM-8';
+2019-08-20 18:50:19 INFO  EmployeePage:786 - Completed
+2019-08-20 18:50:19 INFO  LoginController:317 - SELECT EmailAddress FROM Assessor where Assessor.UserName = 'quann' and Assessor.CompanyCode = 'VM-8';
+2019-08-20 18:50:19 INFO  LoginController:340 - SELECT FirstName, LastName FROM Assessor where Assessor.UserName = 'quann' and Assessor.CompanyCode = 'VM-8';
+2019-08-20 18:50:19 INFO  LoginController:382 - SELECT EmailAddress FROM Assessor where Assessor.UserName = 'admin';
+2019-08-20 18:50:19 INFO  LoginController:405 - select assessor.EmailAddress from roleassessor inner join assessor on roleassessor.AssessorID = assessor.AssessorID  inner join roles on roleassessor.RoleID = roles.RoleID where roles.RoleName = 'SubAdmin' and assessor.CompanyCode = 'VM-8';
+2019-08-20 18:50:23 INFO  EmailUtils:161 - quann - GETTOOL - Send Mail To quann169@gmail.com - CC: [trinh.wft@gmail.com, ] - Subject: VM-8 - VM-8: Nguyen Quan(quann) get tool notification - Message: Hi Employee Nguyen Quan(quann),
+WO: dsaqd
+OP: asdas
+Tool: 1015-6.0
+Tray: TRAY_02
+Quantity: 1
+Machine no.: VM-8
+2019-08-20 18:50:26 INFO  EmployeePage:822 - Complete with resultValue = 1
+2019-08-20 18:50:26 INFO  EmployeeController:161 -  select tools.ToolId, tools.ToolCode ,  toolsmachineTray.Quantity, toolsmachineTray.TrayIndex, toolsmachineTray.Machinecode  from tools inner join toolsmachineTray on tools.ToolCode = toolsmachineTray.ToolCode  where tools.IsActive = '1' and toolsmachineTray.MachineCode = 'VM-8';
+2019-08-20 18:50:26 INFO  EmployeeController:204 - {1015-6.0=[[TRAY_01, 2], [TRAY_01, 2], [TRAY_02, 1], [TRAY_02, 1]]}
+2019-08-20 18:54:31 INFO  LoginPage:547 - ************************************************************
+2019-08-20 18:54:31 INFO  LoginPage:548 - ************************************************************
+2019-08-20 18:54:31 INFO  LoginPage:549 - ************************************************************
+2019-08-20 18:54:31 INFO  LoginPage:550 - ************************************************************
+2019-08-20 18:54:31 INFO  LoginPage:551 - Starting iTool app.
+2019-08-20 18:54:31 INFO  LoginPage:552 - companyCode: VM-8
+2019-08-20 18:54:31 INFO  LoginPage:553 - companyCodeUH: Optiwell
+2019-08-20 18:54:31 INFO  LoginPage:554 - machineCode: VM-8
+2019-08-20 18:54:32 INFO  LoginPage:557 - mDbHost: localhost
+2019-08-20 18:54:32 INFO  LoginPage:558 - mDbUser: admin
+2019-08-20 18:54:32 INFO  LoginPage:559 - mDbPwds: 1qa
+2019-08-20 18:54:32 INFO  LoginPage:560 - mDbName: iTools_v1p0
+2019-08-20 18:54:32 INFO  LoginPage:561 - mDbPort: 3306
+2019-08-20 18:54:32 INFO  LoginPage:562 - Database version: v1p0 - 2018-08-11 13:02:35
+2019-08-20 18:54:32 INFO  LoginPage:564 - Last Sync: 2019-08-20 18:48:52
+2019-08-20 18:54:32 INFO  LoginPage:568 - connectToHost: OK
+2019-08-20 18:54:33 INFO  LoginPage:582 - App Version: 1.0
+2019-08-20 18:54:34 INFO  EmailUtils:57 - mail.tqteam.net25itool_app@tqteam.net1qazxsw2!A
+2019-08-20 18:54:38 INFO  LoginPage:593 - checkEmailConfig: true
+2019-08-20 18:54:40 INFO  LoginPage:378 - ========================================
+2019-08-20 18:54:40 INFO  LoginPage:379 - Start syncing thread - MGMHGTNE
+2019-08-20 18:54:40 INFO  LoginPage:380 - ========================================
+2019-08-20 18:54:40 INFO  SyncController:64 - Start SyncHostToLocal
+2019-08-20 18:54:40 INFO  SyncController:72 - SyncHostToLocal_Assessor: insertAssessor: 95
+2019-08-20 18:54:40 INFO  SyncController:80 - SyncHostToLocal_RoleAssessor: insertRoleAssessor: 97
+2019-08-20 18:54:40 INFO  SyncController:88 - SyncHostToLocal_Machine: insertMachine: 8
+2019-08-20 18:54:40 INFO  SyncController:96 - SyncHostToLocal_Company: insertCompany: 7
+2019-08-20 18:54:40 INFO  SyncController:104 - SyncHostToLocal_CompanyMachine: insertCompanyMachine: 8
+2019-08-20 18:54:40 INFO  SyncController:112 - SyncHostToLocal_Tools: insertTools: 392
+2019-08-20 18:54:40 INFO  SyncController:116 - End SyncHostToLocal: 0s
+2019-08-20 18:54:40 INFO  LoginPage:383 - ========================================
+2019-08-20 18:54:40 INFO  LoginPage:384 - End syncing thread - MGMHGTNE
+2019-08-20 18:54:40 INFO  LoginPage:385 - ========================================
+2019-08-20 18:54:49 INFO  LoginPage:261 - Login with username: quann
+2019-08-20 18:54:49 INFO  LoginController:45 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin, IsLocked FROM Assessor where Assessor.IsActive = 1 and Assessor.UserName='quann' and (Password=md5('123456') or LastPassword=md5('123456')) and MachineCode like '%VM-8%';
+2019-08-20 18:54:49 INFO  LoginPage:265 - Login OK
+2019-08-20 18:54:49 INFO  LoginController:200 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'VM-8' and assessor.UserName= 'quann'
+2019-08-20 18:54:49 INFO  LoginPage:281 - listRoles: [Roles [roleName=Emp]]
+2019-08-20 18:54:49 INFO  LoginPage:293 - Show EmployeePage
+2019-08-20 18:54:49 INFO  EmployeeController:161 -  select tools.ToolId, tools.ToolCode ,  toolsmachineTray.Quantity, toolsmachineTray.TrayIndex, toolsmachineTray.Machinecode  from tools inner join toolsmachineTray on tools.ToolCode = toolsmachineTray.ToolCode  where tools.IsActive = '1' and toolsmachineTray.MachineCode = 'VM-8';
+2019-08-20 18:54:49 INFO  EmployeeController:204 - {1015-6.0=[[TRAY_01, 2], [TRAY_01, 2], [TRAY_02, 1], [TRAY_02, 1]]}
+2019-08-20 18:54:49 INFO  EmployeeController:218 -  select tools.ToolCode from tools where tools.IsActive='1' and tools.companyCode = 'VM-8';
+2019-08-20 18:54:49 INFO  EmployeeController:238 - {}
+2019-08-20 18:54:49 INFO  EmployeeController:50 - select tools.ToolId, tools.ToolCode  from tools inner join toolsmachineTray on tools.ToolCode = toolsmachineTray.ToolCode  where tools.IsActive = '1' and tools.CompanyCode = 'VM-8' and toolsmachineTray.MachineCode = 'VM-8';
+2019-08-20 18:54:49 INFO  EmployeeController:71 - [Tool [toolId=696, toolName=1015-6.0], Tool [toolId=696, toolName=1015-6.0]]
+2019-08-20 18:54:49 INFO  EmployeePage:535 - listToolNames: [, 1015-6.0]
+2019-08-20 18:54:49 INFO  EmployeePage:545 - toolComboBox: [, 1015-6.0]
+2019-08-20 18:54:49 INFO  EmployeePage:187 - Init EMP_PAGE
+2019-08-20 18:54:49 INFO  EmployeePage:190 - listAllTrays: [TRAY_01, TRAY_02, TRAY_03, TRAY_04, TRAY_05, TRAY_06, TRAY_07, TRAY_08, TRAY_09, TRAY_10, TRAY_11, TRAY_12, TRAY_13, TRAY_14, TRAY_15, TRAY_16, TRAY_17, TRAY_18, TRAY_19, TRAY_20, TRAY_21, TRAY_22, TRAY_23, TRAY_24, TRAY_25, TRAY_26, TRAY_27, TRAY_28, TRAY_29, TRAY_30, TRAY_31, TRAY_32, TRAY_33, TRAY_34, TRAY_35, TRAY_36, TRAY_37, TRAY_38, TRAY_39, TRAY_40, TRAY_41, TRAY_42, TRAY_43, TRAY_44, TRAY_45, TRAY_46, TRAY_47, TRAY_48, TRAY_49, TRAY_50, TRAY_51, TRAY_52, TRAY_53, TRAY_54, TRAY_55, TRAY_56, TRAY_57, TRAY_58, TRAY_59, TRAY_60]
+2019-08-20 18:54:49 INFO  EmployeePage:196 - hashMessage: {TRAY_09=09, TRAY_07=07, TRAY_08=08, TRAY_41=41, TRAY_42=42, TRAY_40=40, TRAY_05=05, TRAY_49=49, TRAY_06=06, TRAY_03=03, TRAY_47=47, TRAY_04=04, TRAY_48=48, TRAY_01=01, TRAY_45=45, TRAY_02=02, TRAY_46=46, TRAY_43=43, TRAY_44=44, TRAY_30=30, TRAY_31=31, TRAY_38=38, TRAY_39=39, TRAY_36=36, TRAY_37=37, TRAY_34=34, TRAY_35=35, TRAY_32=32, TRAY_33=33, TRAY_29=29, TRAY_20=20, TRAY_60=60, TRAY_27=27, TRAY_28=28, TRAY_25=25, TRAY_26=26, TRAY_23=23, TRAY_24=24, TRAY_21=21, TRAY_22=22, TRAY_18=18, TRAY_19=19, TRAY_52=52, TRAY_53=53, TRAY_50=50, TRAY_51=51, TRAY_16=16, TRAY_17=17, TRAY_14=14, TRAY_58=58, TRAY_15=15, TRAY_59=59, TRAY_12=12, TRAY_56=56, TRAY_13=13, TRAY_57=57, TRAY_10=10, TRAY_54=54, TRAY_11=11, TRAY_55=55}
+2019-08-20 18:54:55 INFO  EmployeePage:728 - quann confirm: <head><style>table {    font-family: arial, sans-serif;    border: none;    width: 100%;} td, th {    text-align: left;    padding: 2px;} tr:nth-child(even) {    background-color: #dddddd;}</style></head><body><table> <tr>    <th>WO:</th>    <th>sdfd</th>  </tr>  <tr>    <td>OP:</td>    <td>ssdgds</td>  </tr>  <tr>    <td>CTID:</td>    <td>1015-6.0</td>  </tr>  <tr>    <td>Tray:</td>    <td>TRAY_02</td>  </tr>  <tr>    <td>Quantity:</td>    <td>1</td>  </tr> </table></body>
+2019-08-20 18:54:55 INFO  EmployeePage:730 - quann getTools
+2019-08-20 18:54:57 INFO  TransactionController:45 - insert into WorkingTransaction( TransactionDate, MachineCode, CompanyCode, AssessorID, WOCode, OPCode, ToolCode, TrayIndex, Quantity, UpdatedDate, TransactionStatus, TransactionType) values (now(), 'VM-8', 'VM-8', 'quann', 'sdfd', 'ssdgds', '1015-6.0', 'TRAY_02', '1', now(), 'Send request to board', 'GetTools');
+2019-08-20 18:54:57 INFO  EmployeePage:752 - Create transaction
+2019-08-20 18:54:57 INFO  EmployeePage:753 - hashMessage: {TRAY_09=09, TRAY_07=07, TRAY_08=08, TRAY_41=41, TRAY_42=42, TRAY_40=40, TRAY_05=05, TRAY_49=49, TRAY_06=06, TRAY_03=03, TRAY_47=47, TRAY_04=04, TRAY_48=48, TRAY_01=01, TRAY_45=45, TRAY_02=02, TRAY_46=46, TRAY_43=43, TRAY_44=44, TRAY_30=30, TRAY_31=31, TRAY_38=38, TRAY_39=39, TRAY_36=36, TRAY_37=37, TRAY_34=34, TRAY_35=35, TRAY_32=32, TRAY_33=33, TRAY_29=29, TRAY_20=20, TRAY_60=60, TRAY_27=27, TRAY_28=28, TRAY_25=25, TRAY_26=26, TRAY_23=23, TRAY_24=24, TRAY_21=21, TRAY_22=22, TRAY_18=18, TRAY_19=19, TRAY_52=52, TRAY_53=53, TRAY_50=50, TRAY_51=51, TRAY_16=16, TRAY_17=17, TRAY_14=14, TRAY_58=58, TRAY_15=15, TRAY_59=59, TRAY_12=12, TRAY_56=56, TRAY_13=13, TRAY_57=57, TRAY_10=10, TRAY_54=54, TRAY_11=11, TRAY_55=55}
+2019-08-20 18:54:57 INFO  EmployeePage:754 - hashMessage containsKey TRAY_02: true
+2019-08-20 18:54:57 INFO  EmployeePage:858 - ========================================
+2019-08-20 18:54:57 INFO  EmployeePage:1156 - portId: COM3
+2019-08-20 18:54:57 INFO  EmployeePage:861 - Start sending message
+2019-08-20 18:54:57 INFO  EmployeePage:863 - Send message [02]
+2019-08-20 18:54:59 INFO  EmployeePage:1198 - Receive message [121]
+2019-08-20 18:54:59 INFO  EmployeePage:1204 - MOTOR_START
+2019-08-20 18:55:00 INFO  EmployeePage:1198 - Receive message [122]
+2019-08-20 18:55:00 INFO  EmployeePage:1207 - MOTOR_STOP
+2019-08-20 18:55:01 INFO  EmployeePage:1198 - Receive message [124]
+2019-08-20 18:55:01 INFO  EmployeePage:1214 - PRODUCT_FAIL
+2019-08-20 18:55:01 INFO  TransactionController:77 - update WorkingTransaction set UpdatedDate=now(), Quantity='0' where WorkingTransactionID = 1423;
+2019-08-20 18:55:02 INFO  EmployeePage:871 - listDataReceived: [121, 122, 124]
+2019-08-20 18:55:02 INFO  TransactionController:77 - update WorkingTransaction set UpdatedDate=now(), TransactionStatus='MotorStart' where WorkingTransactionID = 1423;
+2019-08-20 18:55:02 INFO  TransactionController:77 - update WorkingTransaction set UpdatedDate=now(), TransactionStatus='MotorStop' where WorkingTransactionID = 1423;
+2019-08-20 18:55:02 INFO  TransactionController:77 - update WorkingTransaction set UpdatedDate=now(), TransactionStatus='ProductFail' where WorkingTransactionID = 1423;
+2019-08-20 18:55:02 INFO  TransactionController:77 - update WorkingTransaction set UpdatedDate=now(), Quantity='0' where WorkingTransactionID = 1423;
+2019-08-20 18:55:02 INFO  EmployeePage:891 - Complete send and receive all messages!!!: 
+2019-08-20 18:55:02 INFO  EmployeePage:774 - resultValue: 0
+2019-08-20 18:55:10 INFO  EmployeePage:822 - Complete with resultValue = 0
+2019-08-20 18:55:25 INFO  EmployeePage:728 - quann confirm: <head><style>table {    font-family: arial, sans-serif;    border: none;    width: 100%;} td, th {    text-align: left;    padding: 2px;} tr:nth-child(even) {    background-color: #dddddd;}</style></head><body><table> <tr>    <th>WO:</th>    <th>sdfd</th>  </tr>  <tr>    <td>OP:</td>    <td>ssdgds</td>  </tr>  <tr>    <td>CTID:</td>    <td>1015-6.0</td>  </tr>  <tr>    <td>Tray:</td>    <td>TRAY_02</td>  </tr>  <tr>    <td>Quantity:</td>    <td>1</td>  </tr> </table></body>
+2019-08-20 18:55:25 INFO  EmployeePage:730 - quann getTools
+2019-08-20 18:55:27 INFO  TransactionController:45 - insert into WorkingTransaction( TransactionDate, MachineCode, CompanyCode, AssessorID, WOCode, OPCode, ToolCode, TrayIndex, Quantity, UpdatedDate, TransactionStatus, TransactionType) values (now(), 'VM-8', 'VM-8', 'quann', 'sdfd', 'ssdgds', '1015-6.0', 'TRAY_02', '1', now(), 'Send request to board', 'GetTools');
+2019-08-20 18:55:27 INFO  EmployeePage:752 - Create transaction
+2019-08-20 18:55:27 INFO  EmployeePage:753 - hashMessage: {TRAY_09=09, TRAY_07=07, TRAY_08=08, TRAY_41=41, TRAY_42=42, TRAY_40=40, TRAY_05=05, TRAY_49=49, TRAY_06=06, TRAY_03=03, TRAY_47=47, TRAY_04=04, TRAY_48=48, TRAY_01=01, TRAY_45=45, TRAY_02=02, TRAY_46=46, TRAY_43=43, TRAY_44=44, TRAY_30=30, TRAY_31=31, TRAY_38=38, TRAY_39=39, TRAY_36=36, TRAY_37=37, TRAY_34=34, TRAY_35=35, TRAY_32=32, TRAY_33=33, TRAY_29=29, TRAY_20=20, TRAY_60=60, TRAY_27=27, TRAY_28=28, TRAY_25=25, TRAY_26=26, TRAY_23=23, TRAY_24=24, TRAY_21=21, TRAY_22=22, TRAY_18=18, TRAY_19=19, TRAY_52=52, TRAY_53=53, TRAY_50=50, TRAY_51=51, TRAY_16=16, TRAY_17=17, TRAY_14=14, TRAY_58=58, TRAY_15=15, TRAY_59=59, TRAY_12=12, TRAY_56=56, TRAY_13=13, TRAY_57=57, TRAY_10=10, TRAY_54=54, TRAY_11=11, TRAY_55=55}
+2019-08-20 18:55:27 INFO  EmployeePage:754 - hashMessage containsKey TRAY_02: true
+2019-08-20 18:55:27 INFO  EmployeePage:858 - ========================================
+2019-08-20 18:55:27 INFO  EmployeePage:1156 - portId: COM3
+2019-08-20 18:55:27 INFO  EmployeePage:861 - Start sending message
+2019-08-20 18:55:27 INFO  EmployeePage:863 - Send message [02]
+2019-08-20 18:55:27 INFO  EmployeePage:871 - listDataReceived: []
+2019-08-20 18:55:27 INFO  EmployeePage:891 - Complete send and receive all messages!!!: 
+2019-08-20 18:55:27 INFO  EmployeePage:774 - resultValue: -1
+2019-08-20 18:55:42 INFO  EmployeePage:822 - Complete with resultValue = -1
+2019-08-20 18:57:43 INFO  LoginPage:547 - ************************************************************
+2019-08-20 18:57:43 INFO  LoginPage:548 - ************************************************************
+2019-08-20 18:57:43 INFO  LoginPage:549 - ************************************************************
+2019-08-20 18:57:43 INFO  LoginPage:550 - ************************************************************
+2019-08-20 18:57:43 INFO  LoginPage:551 - Starting iTool app.
+2019-08-20 18:57:43 INFO  LoginPage:552 - companyCode: VM-8
+2019-08-20 18:57:43 INFO  LoginPage:553 - companyCodeUH: Optiwell
+2019-08-20 18:57:43 INFO  LoginPage:554 - machineCode: VM-8
+2019-08-20 18:57:44 INFO  LoginPage:557 - mDbHost: localhost
+2019-08-20 18:57:44 INFO  LoginPage:558 - mDbUser: admin
+2019-08-20 18:57:44 INFO  LoginPage:559 - mDbPwds: 1qa
+2019-08-20 18:57:44 INFO  LoginPage:560 - mDbName: iTools_v1p0
+2019-08-20 18:57:44 INFO  LoginPage:561 - mDbPort: 3306
+2019-08-20 18:57:44 INFO  LoginPage:562 - Database version: v1p0 - 2018-08-11 13:02:35
+2019-08-20 18:57:44 INFO  LoginPage:564 - Last Sync: 2019-08-20 18:54:40
+2019-08-20 18:57:44 INFO  LoginPage:568 - connectToHost: OK
+2019-08-20 18:57:45 INFO  LoginPage:582 - App Version: 1.0
+2019-08-20 18:57:46 INFO  EmailUtils:57 - mail.tqteam.net25itool_app@tqteam.net1qazxsw2!A
+2019-08-20 18:57:51 INFO  LoginPage:593 - checkEmailConfig: true
+2019-08-20 18:57:52 INFO  LoginPage:378 - ========================================
+2019-08-20 18:57:52 INFO  LoginPage:379 - Start syncing thread - RJAJZMMZ
+2019-08-20 18:57:52 INFO  LoginPage:380 - ========================================
+2019-08-20 18:57:52 INFO  SyncController:64 - Start SyncHostToLocal
+2019-08-20 18:57:52 INFO  SyncController:72 - SyncHostToLocal_Assessor: insertAssessor: 95
+2019-08-20 18:57:52 INFO  SyncController:80 - SyncHostToLocal_RoleAssessor: insertRoleAssessor: 97
+2019-08-20 18:57:52 INFO  SyncController:88 - SyncHostToLocal_Machine: insertMachine: 8
+2019-08-20 18:57:52 INFO  SyncController:96 - SyncHostToLocal_Company: insertCompany: 7
+2019-08-20 18:57:52 INFO  SyncController:104 - SyncHostToLocal_CompanyMachine: insertCompanyMachine: 8
+2019-08-20 18:57:52 INFO  SyncController:112 - SyncHostToLocal_Tools: insertTools: 392
+2019-08-20 18:57:52 INFO  SyncController:116 - End SyncHostToLocal: 0s
+2019-08-20 18:57:52 INFO  LoginPage:383 - ========================================
+2019-08-20 18:57:52 INFO  LoginPage:384 - End syncing thread - RJAJZMMZ
+2019-08-20 18:57:52 INFO  LoginPage:385 - ========================================
+2019-08-20 18:57:58 INFO  LoginPage:261 - Login with username: quann
+2019-08-20 18:57:58 INFO  LoginController:45 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin, IsLocked FROM Assessor where Assessor.IsActive = 1 and Assessor.UserName='quann' and (Password=md5('123456') or LastPassword=md5('123456')) and MachineCode like '%VM-8%';
+2019-08-20 18:57:58 INFO  LoginPage:265 - Login OK
+2019-08-20 18:57:58 INFO  LoginController:200 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'VM-8' and assessor.UserName= 'quann'
+2019-08-20 18:57:58 INFO  LoginPage:281 - listRoles: [Roles [roleName=Emp]]
+2019-08-20 18:57:58 INFO  LoginPage:293 - Show EmployeePage
+2019-08-20 18:57:58 INFO  EmployeeController:161 -  select tools.ToolId, tools.ToolCode ,  toolsmachineTray.Quantity, toolsmachineTray.TrayIndex, toolsmachineTray.Machinecode  from tools inner join toolsmachineTray on tools.ToolCode = toolsmachineTray.ToolCode  where tools.IsActive = '1' and toolsmachineTray.MachineCode = 'VM-8';
+2019-08-20 18:57:58 INFO  EmployeeController:204 - {1015-6.0=[[TRAY_01, 2], [TRAY_01, 2], [TRAY_02, 1], [TRAY_02, 1]]}
+2019-08-20 18:57:58 INFO  EmployeeController:218 -  select tools.ToolCode from tools where tools.IsActive='1' and tools.companyCode = 'VM-8';
+2019-08-20 18:57:58 INFO  EmployeeController:238 - {}
+2019-08-20 18:57:58 INFO  EmployeeController:50 - select tools.ToolId, tools.ToolCode  from tools inner join toolsmachineTray on tools.ToolCode = toolsmachineTray.ToolCode  where tools.IsActive = '1' and tools.CompanyCode = 'VM-8' and toolsmachineTray.MachineCode = 'VM-8';
+2019-08-20 18:57:58 INFO  EmployeeController:71 - [Tool [toolId=696, toolName=1015-6.0], Tool [toolId=696, toolName=1015-6.0]]
+2019-08-20 18:57:58 INFO  EmployeePage:535 - listToolNames: [, 1015-6.0]
+2019-08-20 18:57:58 INFO  EmployeePage:545 - toolComboBox: [, 1015-6.0]
+2019-08-20 18:57:58 INFO  EmployeePage:187 - Init EMP_PAGE
+2019-08-20 18:57:58 INFO  EmployeePage:190 - listAllTrays: [TRAY_01, TRAY_02, TRAY_03, TRAY_04, TRAY_05, TRAY_06, TRAY_07, TRAY_08, TRAY_09, TRAY_10, TRAY_11, TRAY_12, TRAY_13, TRAY_14, TRAY_15, TRAY_16, TRAY_17, TRAY_18, TRAY_19, TRAY_20, TRAY_21, TRAY_22, TRAY_23, TRAY_24, TRAY_25, TRAY_26, TRAY_27, TRAY_28, TRAY_29, TRAY_30, TRAY_31, TRAY_32, TRAY_33, TRAY_34, TRAY_35, TRAY_36, TRAY_37, TRAY_38, TRAY_39, TRAY_40, TRAY_41, TRAY_42, TRAY_43, TRAY_44, TRAY_45, TRAY_46, TRAY_47, TRAY_48, TRAY_49, TRAY_50, TRAY_51, TRAY_52, TRAY_53, TRAY_54, TRAY_55, TRAY_56, TRAY_57, TRAY_58, TRAY_59, TRAY_60]
+2019-08-20 18:57:58 INFO  EmployeePage:196 - hashMessage: {TRAY_09=09, TRAY_07=07, TRAY_08=08, TRAY_41=41, TRAY_42=42, TRAY_40=40, TRAY_05=05, TRAY_49=49, TRAY_06=06, TRAY_03=03, TRAY_47=47, TRAY_04=04, TRAY_48=48, TRAY_01=01, TRAY_45=45, TRAY_02=02, TRAY_46=46, TRAY_43=43, TRAY_44=44, TRAY_30=30, TRAY_31=31, TRAY_38=38, TRAY_39=39, TRAY_36=36, TRAY_37=37, TRAY_34=34, TRAY_35=35, TRAY_32=32, TRAY_33=33, TRAY_29=29, TRAY_20=20, TRAY_60=60, TRAY_27=27, TRAY_28=28, TRAY_25=25, TRAY_26=26, TRAY_23=23, TRAY_24=24, TRAY_21=21, TRAY_22=22, TRAY_18=18, TRAY_19=19, TRAY_52=52, TRAY_53=53, TRAY_50=50, TRAY_51=51, TRAY_16=16, TRAY_17=17, TRAY_14=14, TRAY_58=58, TRAY_15=15, TRAY_59=59, TRAY_12=12, TRAY_56=56, TRAY_13=13, TRAY_57=57, TRAY_10=10, TRAY_54=54, TRAY_11=11, TRAY_55=55}
+2019-08-20 18:58:04 INFO  EmployeePage:728 - quann confirm: <head><style>table {    font-family: arial, sans-serif;    border: none;    width: 100%;} td, th {    text-align: left;    padding: 2px;} tr:nth-child(even) {    background-color: #dddddd;}</style></head><body><table> <tr>    <th>WO:</th>    <th>sdfsd</th>  </tr>  <tr>    <td>OP:</td>    <td>fsdf</td>  </tr>  <tr>    <td>CTID:</td>    <td>1015-6.0</td>  </tr>  <tr>    <td>Tray:</td>    <td>TRAY_02</td>  </tr>  <tr>    <td>Quantity:</td>    <td>1</td>  </tr> </table></body>
+2019-08-20 18:58:04 INFO  EmployeePage:730 - quann getTools
+2019-08-20 18:58:06 INFO  TransactionController:45 - insert into WorkingTransaction( TransactionDate, MachineCode, CompanyCode, AssessorID, WOCode, OPCode, ToolCode, TrayIndex, Quantity, UpdatedDate, TransactionStatus, TransactionType) values (now(), 'VM-8', 'VM-8', 'quann', 'sdfsd', 'fsdf', '1015-6.0', 'TRAY_02', '1', now(), 'Send request to board', 'GetTools');
+2019-08-20 18:58:06 INFO  EmployeePage:752 - Create transaction
+2019-08-20 18:58:06 INFO  EmployeePage:753 - hashMessage: {TRAY_09=09, TRAY_07=07, TRAY_08=08, TRAY_41=41, TRAY_42=42, TRAY_40=40, TRAY_05=05, TRAY_49=49, TRAY_06=06, TRAY_03=03, TRAY_47=47, TRAY_04=04, TRAY_48=48, TRAY_01=01, TRAY_45=45, TRAY_02=02, TRAY_46=46, TRAY_43=43, TRAY_44=44, TRAY_30=30, TRAY_31=31, TRAY_38=38, TRAY_39=39, TRAY_36=36, TRAY_37=37, TRAY_34=34, TRAY_35=35, TRAY_32=32, TRAY_33=33, TRAY_29=29, TRAY_20=20, TRAY_60=60, TRAY_27=27, TRAY_28=28, TRAY_25=25, TRAY_26=26, TRAY_23=23, TRAY_24=24, TRAY_21=21, TRAY_22=22, TRAY_18=18, TRAY_19=19, TRAY_52=52, TRAY_53=53, TRAY_50=50, TRAY_51=51, TRAY_16=16, TRAY_17=17, TRAY_14=14, TRAY_58=58, TRAY_15=15, TRAY_59=59, TRAY_12=12, TRAY_56=56, TRAY_13=13, TRAY_57=57, TRAY_10=10, TRAY_54=54, TRAY_11=11, TRAY_55=55}
+2019-08-20 18:58:06 INFO  EmployeePage:754 - hashMessage containsKey TRAY_02: true
+2019-08-20 18:58:06 INFO  EmployeePage:858 - ========================================
+2019-08-20 18:58:06 INFO  EmployeePage:1157 - portId: COM3
+2019-08-20 18:58:06 INFO  EmployeePage:861 - Start sending message
+2019-08-20 18:58:06 INFO  EmployeePage:863 - Send message [02]
+2019-08-20 18:58:08 INFO  EmployeePage:1199 - Receive message [121]
+2019-08-20 18:58:08 INFO  EmployeePage:1205 - MOTOR_START
+2019-08-20 18:58:09 INFO  EmployeePage:1199 - Receive message [122]
+2019-08-20 18:58:09 INFO  EmployeePage:1208 - MOTOR_STOP
+2019-08-20 18:58:10 INFO  EmployeePage:1199 - Receive message [124]
+2019-08-20 18:58:10 INFO  EmployeePage:1215 - PRODUCT_FAIL
+2019-08-20 18:58:10 INFO  TransactionController:77 - update WorkingTransaction set UpdatedDate=now(), Quantity='0' where WorkingTransactionID = 1425;
+2019-08-20 18:58:11 INFO  EmployeePage:871 - listDataReceived: [121, 122, 124]
+2019-08-20 18:58:11 INFO  TransactionController:77 - update WorkingTransaction set UpdatedDate=now(), TransactionStatus='MotorStart' where WorkingTransactionID = 1425;
+2019-08-20 18:58:11 INFO  TransactionController:77 - update WorkingTransaction set UpdatedDate=now(), TransactionStatus='MotorStop' where WorkingTransactionID = 1425;
+2019-08-20 18:58:11 INFO  TransactionController:77 - update WorkingTransaction set UpdatedDate=now(), TransactionStatus='ProductFail' where WorkingTransactionID = 1425;
+2019-08-20 18:58:11 INFO  TransactionController:77 - update WorkingTransaction set UpdatedDate=now(), Quantity='0' where WorkingTransactionID = 1425;
+2019-08-20 18:58:11 INFO  EmployeePage:891 - Complete send and receive all messages!!!: 
+2019-08-20 18:58:11 INFO  EmployeePage:774 - resultValue: 0
+2019-08-20 18:58:12 INFO  EmployeePage:822 - Complete with resultValue = 0
+2019-08-20 18:58:14 INFO  EmployeePage:728 - quann confirm: <head><style>table {    font-family: arial, sans-serif;    border: none;    width: 100%;} td, th {    text-align: left;    padding: 2px;} tr:nth-child(even) {    background-color: #dddddd;}</style></head><body><table> <tr>    <th>WO:</th>    <th>sdfsd</th>  </tr>  <tr>    <td>OP:</td>    <td>fsdf</td>  </tr>  <tr>    <td>CTID:</td>    <td>1015-6.0</td>  </tr>  <tr>    <td>Tray:</td>    <td>TRAY_02</td>  </tr>  <tr>    <td>Quantity:</td>    <td>1</td>  </tr> </table></body>
+2019-08-20 18:58:14 INFO  EmployeePage:730 - quann getTools
+2019-08-20 18:58:16 INFO  TransactionController:45 - insert into WorkingTransaction( TransactionDate, MachineCode, CompanyCode, AssessorID, WOCode, OPCode, ToolCode, TrayIndex, Quantity, UpdatedDate, TransactionStatus, TransactionType) values (now(), 'VM-8', 'VM-8', 'quann', 'sdfsd', 'fsdf', '1015-6.0', 'TRAY_02', '1', now(), 'Send request to board', 'GetTools');
+2019-08-20 18:58:16 INFO  EmployeePage:752 - Create transaction
+2019-08-20 18:58:16 INFO  EmployeePage:753 - hashMessage: {TRAY_09=09, TRAY_07=07, TRAY_08=08, TRAY_41=41, TRAY_42=42, TRAY_40=40, TRAY_05=05, TRAY_49=49, TRAY_06=06, TRAY_03=03, TRAY_47=47, TRAY_04=04, TRAY_48=48, TRAY_01=01, TRAY_45=45, TRAY_02=02, TRAY_46=46, TRAY_43=43, TRAY_44=44, TRAY_30=30, TRAY_31=31, TRAY_38=38, TRAY_39=39, TRAY_36=36, TRAY_37=37, TRAY_34=34, TRAY_35=35, TRAY_32=32, TRAY_33=33, TRAY_29=29, TRAY_20=20, TRAY_60=60, TRAY_27=27, TRAY_28=28, TRAY_25=25, TRAY_26=26, TRAY_23=23, TRAY_24=24, TRAY_21=21, TRAY_22=22, TRAY_18=18, TRAY_19=19, TRAY_52=52, TRAY_53=53, TRAY_50=50, TRAY_51=51, TRAY_16=16, TRAY_17=17, TRAY_14=14, TRAY_58=58, TRAY_15=15, TRAY_59=59, TRAY_12=12, TRAY_56=56, TRAY_13=13, TRAY_57=57, TRAY_10=10, TRAY_54=54, TRAY_11=11, TRAY_55=55}
+2019-08-20 18:58:16 INFO  EmployeePage:754 - hashMessage containsKey TRAY_02: true
+2019-08-20 18:58:16 INFO  EmployeePage:858 - ========================================
+2019-08-20 18:58:16 INFO  EmployeePage:1157 - portId: COM3
+2019-08-20 18:58:16 INFO  EmployeePage:861 - Start sending message
+2019-08-20 18:58:16 INFO  EmployeePage:863 - Send message [02]
+2019-08-20 18:58:18 INFO  EmployeePage:1199 - Receive message [121]
+2019-08-20 18:58:18 INFO  EmployeePage:1205 - MOTOR_START
+2019-08-20 18:58:19 INFO  EmployeePage:1199 - Receive message [122]
+2019-08-20 18:58:19 INFO  EmployeePage:1208 - MOTOR_STOP
+2019-08-20 18:58:20 INFO  EmployeePage:1199 - Receive message [124]
+2019-08-20 18:58:20 INFO  EmployeePage:1215 - PRODUCT_FAIL
+2019-08-20 18:58:20 INFO  TransactionController:77 - update WorkingTransaction set UpdatedDate=now(), Quantity='0' where WorkingTransactionID = 1426;
+2019-08-20 18:58:21 INFO  EmployeePage:871 - listDataReceived: [121, 122, 124]
+2019-08-20 18:58:21 INFO  TransactionController:77 - update WorkingTransaction set UpdatedDate=now(), TransactionStatus='MotorStart' where WorkingTransactionID = 1426;
+2019-08-20 18:58:21 INFO  TransactionController:77 - update WorkingTransaction set UpdatedDate=now(), TransactionStatus='MotorStop' where WorkingTransactionID = 1426;
+2019-08-20 18:58:21 INFO  TransactionController:77 - update WorkingTransaction set UpdatedDate=now(), TransactionStatus='ProductFail' where WorkingTransactionID = 1426;
+2019-08-20 18:58:21 INFO  TransactionController:77 - update WorkingTransaction set UpdatedDate=now(), Quantity='0' where WorkingTransactionID = 1426;
+2019-08-20 18:58:21 INFO  EmployeePage:891 - Complete send and receive all messages!!!: 
+2019-08-20 18:58:21 INFO  EmployeePage:774 - resultValue: 0
+2019-08-20 18:58:23 INFO  EmployeePage:822 - Complete with resultValue = 0
+2019-08-20 18:58:25 INFO  EmployeePage:728 - quann confirm: <head><style>table {    font-family: arial, sans-serif;    border: none;    width: 100%;} td, th {    text-align: left;    padding: 2px;} tr:nth-child(even) {    background-color: #dddddd;}</style></head><body><table> <tr>    <th>WO:</th>    <th>sdfsd</th>  </tr>  <tr>    <td>OP:</td>    <td>fsdf</td>  </tr>  <tr>    <td>CTID:</td>    <td>1015-6.0</td>  </tr>  <tr>    <td>Tray:</td>    <td>TRAY_02</td>  </tr>  <tr>    <td>Quantity:</td>    <td>1</td>  </tr> </table></body>
+2019-08-20 18:58:25 INFO  EmployeePage:730 - quann getTools
+2019-08-20 18:58:27 INFO  TransactionController:45 - insert into WorkingTransaction( TransactionDate, MachineCode, CompanyCode, AssessorID, WOCode, OPCode, ToolCode, TrayIndex, Quantity, UpdatedDate, TransactionStatus, TransactionType) values (now(), 'VM-8', 'VM-8', 'quann', 'sdfsd', 'fsdf', '1015-6.0', 'TRAY_02', '1', now(), 'Send request to board', 'GetTools');
+2019-08-20 18:58:27 INFO  EmployeePage:752 - Create transaction
+2019-08-20 18:58:27 INFO  EmployeePage:753 - hashMessage: {TRAY_09=09, TRAY_07=07, TRAY_08=08, TRAY_41=41, TRAY_42=42, TRAY_40=40, TRAY_05=05, TRAY_49=49, TRAY_06=06, TRAY_03=03, TRAY_47=47, TRAY_04=04, TRAY_48=48, TRAY_01=01, TRAY_45=45, TRAY_02=02, TRAY_46=46, TRAY_43=43, TRAY_44=44, TRAY_30=30, TRAY_31=31, TRAY_38=38, TRAY_39=39, TRAY_36=36, TRAY_37=37, TRAY_34=34, TRAY_35=35, TRAY_32=32, TRAY_33=33, TRAY_29=29, TRAY_20=20, TRAY_60=60, TRAY_27=27, TRAY_28=28, TRAY_25=25, TRAY_26=26, TRAY_23=23, TRAY_24=24, TRAY_21=21, TRAY_22=22, TRAY_18=18, TRAY_19=19, TRAY_52=52, TRAY_53=53, TRAY_50=50, TRAY_51=51, TRAY_16=16, TRAY_17=17, TRAY_14=14, TRAY_58=58, TRAY_15=15, TRAY_59=59, TRAY_12=12, TRAY_56=56, TRAY_13=13, TRAY_57=57, TRAY_10=10, TRAY_54=54, TRAY_11=11, TRAY_55=55}
+2019-08-20 18:58:27 INFO  EmployeePage:754 - hashMessage containsKey TRAY_02: true
+2019-08-20 18:58:27 INFO  EmployeePage:858 - ========================================
+2019-08-20 18:58:27 INFO  EmployeePage:1157 - portId: COM3
+2019-08-20 18:58:27 INFO  EmployeePage:861 - Start sending message
+2019-08-20 18:58:27 INFO  EmployeePage:863 - Send message [02]
+2019-08-20 18:58:29 INFO  EmployeePage:1199 - Receive message [121]
+2019-08-20 18:58:29 INFO  EmployeePage:1205 - MOTOR_START
+2019-08-20 18:58:30 INFO  EmployeePage:1199 - Receive message [122]
+2019-08-20 18:58:30 INFO  EmployeePage:1208 - MOTOR_STOP
+2019-08-20 18:58:31 INFO  EmployeePage:1199 - Receive message [124]
+2019-08-20 18:58:31 INFO  EmployeePage:1215 - PRODUCT_FAIL
+2019-08-20 18:58:31 INFO  TransactionController:77 - update WorkingTransaction set UpdatedDate=now(), Quantity='0' where WorkingTransactionID = 1427;
+2019-08-20 18:58:32 INFO  EmployeePage:871 - listDataReceived: [121, 122, 124]
+2019-08-20 18:58:32 INFO  TransactionController:77 - update WorkingTransaction set UpdatedDate=now(), TransactionStatus='MotorStart' where WorkingTransactionID = 1427;
+2019-08-20 18:58:32 INFO  TransactionController:77 - update WorkingTransaction set UpdatedDate=now(), TransactionStatus='MotorStop' where WorkingTransactionID = 1427;
+2019-08-20 18:58:32 INFO  TransactionController:77 - update WorkingTransaction set UpdatedDate=now(), TransactionStatus='ProductFail' where WorkingTransactionID = 1427;
+2019-08-20 18:58:32 INFO  TransactionController:77 - update WorkingTransaction set UpdatedDate=now(), Quantity='0' where WorkingTransactionID = 1427;
+2019-08-20 18:58:32 INFO  EmployeePage:891 - Complete send and receive all messages!!!: 
+2019-08-20 18:58:32 INFO  EmployeePage:774 - resultValue: 0
+2019-08-20 18:58:34 INFO  EmployeePage:822 - Complete with resultValue = 0
+2019-08-20 18:58:58 INFO  EmployeePage:265 - quann logout.
+2019-08-20 18:59:03 INFO  LoginPage:261 - Login with username: quann
+2019-08-20 18:59:03 INFO  LoginController:45 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin, IsLocked FROM Assessor where Assessor.IsActive = 1 and Assessor.UserName='quann' and (Password=md5('123456') or LastPassword=md5('123456')) and MachineCode like '%VM-8%';
+2019-08-20 18:59:03 INFO  LoginPage:265 - Login OK
+2019-08-20 18:59:03 INFO  LoginController:200 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'VM-8' and assessor.UserName= 'quann'
+2019-08-20 18:59:03 INFO  LoginPage:281 - listRoles: [Roles [roleName=Emp]]
+2019-08-20 18:59:03 INFO  LoginPage:293 - Show EmployeePage
+2019-08-20 18:59:03 INFO  EmployeeController:161 -  select tools.ToolId, tools.ToolCode ,  toolsmachineTray.Quantity, toolsmachineTray.TrayIndex, toolsmachineTray.Machinecode  from tools inner join toolsmachineTray on tools.ToolCode = toolsmachineTray.ToolCode  where tools.IsActive = '1' and toolsmachineTray.MachineCode = 'VM-8';
+2019-08-20 18:59:03 INFO  EmployeeController:204 - {1015-6.0=[[TRAY_01, 2], [TRAY_01, 2]]}
+2019-08-20 18:59:03 INFO  EmployeeController:218 -  select tools.ToolCode from tools where tools.IsActive='1' and tools.companyCode = 'VM-8';
+2019-08-20 18:59:03 INFO  EmployeeController:238 - {}
+2019-08-20 18:59:03 INFO  EmployeeController:50 - select tools.ToolId, tools.ToolCode  from tools inner join toolsmachineTray on tools.ToolCode = toolsmachineTray.ToolCode  where tools.IsActive = '1' and tools.CompanyCode = 'VM-8' and toolsmachineTray.MachineCode = 'VM-8';
+2019-08-20 18:59:03 INFO  EmployeeController:71 - [Tool [toolId=696, toolName=1015-6.0], Tool [toolId=696, toolName=1015-6.0]]
+2019-08-20 18:59:03 INFO  EmployeePage:535 - listToolNames: [, 1015-6.0]
+2019-08-20 18:59:03 INFO  EmployeePage:545 - toolComboBox: [, 1015-6.0]
+2019-08-20 18:59:03 INFO  EmployeePage:187 - Init EMP_PAGE
+2019-08-20 18:59:03 INFO  EmployeePage:190 - listAllTrays: [TRAY_01, TRAY_02, TRAY_03, TRAY_04, TRAY_05, TRAY_06, TRAY_07, TRAY_08, TRAY_09, TRAY_10, TRAY_11, TRAY_12, TRAY_13, TRAY_14, TRAY_15, TRAY_16, TRAY_17, TRAY_18, TRAY_19, TRAY_20, TRAY_21, TRAY_22, TRAY_23, TRAY_24, TRAY_25, TRAY_26, TRAY_27, TRAY_28, TRAY_29, TRAY_30, TRAY_31, TRAY_32, TRAY_33, TRAY_34, TRAY_35, TRAY_36, TRAY_37, TRAY_38, TRAY_39, TRAY_40, TRAY_41, TRAY_42, TRAY_43, TRAY_44, TRAY_45, TRAY_46, TRAY_47, TRAY_48, TRAY_49, TRAY_50, TRAY_51, TRAY_52, TRAY_53, TRAY_54, TRAY_55, TRAY_56, TRAY_57, TRAY_58, TRAY_59, TRAY_60]
+2019-08-20 18:59:03 INFO  EmployeePage:196 - hashMessage: {TRAY_09=09, TRAY_07=07, TRAY_08=08, TRAY_41=41, TRAY_42=42, TRAY_40=40, TRAY_05=05, TRAY_49=49, TRAY_06=06, TRAY_03=03, TRAY_47=47, TRAY_04=04, TRAY_48=48, TRAY_01=01, TRAY_45=45, TRAY_02=02, TRAY_46=46, TRAY_43=43, TRAY_44=44, TRAY_30=30, TRAY_31=31, TRAY_38=38, TRAY_39=39, TRAY_36=36, TRAY_37=37, TRAY_34=34, TRAY_35=35, TRAY_32=32, TRAY_33=33, TRAY_29=29, TRAY_20=20, TRAY_60=60, TRAY_27=27, TRAY_28=28, TRAY_25=25, TRAY_26=26, TRAY_23=23, TRAY_24=24, TRAY_21=21, TRAY_22=22, TRAY_18=18, TRAY_19=19, TRAY_52=52, TRAY_53=53, TRAY_50=50, TRAY_51=51, TRAY_16=16, TRAY_17=17, TRAY_14=14, TRAY_58=58, TRAY_15=15, TRAY_59=59, TRAY_12=12, TRAY_56=56, TRAY_13=13, TRAY_57=57, TRAY_10=10, TRAY_54=54, TRAY_11=11, TRAY_55=55}
+2019-08-20 18:59:12 INFO  EmployeePage:728 - quann confirm: <head><style>table {    font-family: arial, sans-serif;    border: none;    width: 100%;} td, th {    text-align: left;    padding: 2px;} tr:nth-child(even) {    background-color: #dddddd;}</style></head><body><table> <tr>    <th>WO:</th>    <th>asfdsw</th>  </tr>  <tr>    <td>OP:</td>    <td>fsaf</td>  </tr>  <tr>    <td>CTID:</td>    <td>1015-6.0</td>  </tr>  <tr>    <td>Tray:</td>    <td>TRAY_01</td>  </tr>  <tr>    <td>Quantity:</td>    <td>1</td>  </tr> </table></body>
+2019-08-20 18:59:12 INFO  EmployeePage:730 - quann getTools
+2019-08-20 18:59:14 INFO  TransactionController:45 - insert into WorkingTransaction( TransactionDate, MachineCode, CompanyCode, AssessorID, WOCode, OPCode, ToolCode, TrayIndex, Quantity, UpdatedDate, TransactionStatus, TransactionType) values (now(), 'VM-8', 'VM-8', 'quann', 'asfdsw', 'fsaf', '1015-6.0', 'TRAY_01', '1', now(), 'Send request to board', 'GetTools');
+2019-08-20 18:59:14 INFO  EmployeePage:752 - Create transaction
+2019-08-20 18:59:14 INFO  EmployeePage:753 - hashMessage: {TRAY_09=09, TRAY_07=07, TRAY_08=08, TRAY_41=41, TRAY_42=42, TRAY_40=40, TRAY_05=05, TRAY_49=49, TRAY_06=06, TRAY_03=03, TRAY_47=47, TRAY_04=04, TRAY_48=48, TRAY_01=01, TRAY_45=45, TRAY_02=02, TRAY_46=46, TRAY_43=43, TRAY_44=44, TRAY_30=30, TRAY_31=31, TRAY_38=38, TRAY_39=39, TRAY_36=36, TRAY_37=37, TRAY_34=34, TRAY_35=35, TRAY_32=32, TRAY_33=33, TRAY_29=29, TRAY_20=20, TRAY_60=60, TRAY_27=27, TRAY_28=28, TRAY_25=25, TRAY_26=26, TRAY_23=23, TRAY_24=24, TRAY_21=21, TRAY_22=22, TRAY_18=18, TRAY_19=19, TRAY_52=52, TRAY_53=53, TRAY_50=50, TRAY_51=51, TRAY_16=16, TRAY_17=17, TRAY_14=14, TRAY_58=58, TRAY_15=15, TRAY_59=59, TRAY_12=12, TRAY_56=56, TRAY_13=13, TRAY_57=57, TRAY_10=10, TRAY_54=54, TRAY_11=11, TRAY_55=55}
+2019-08-20 18:59:14 INFO  EmployeePage:754 - hashMessage containsKey TRAY_01: true
+2019-08-20 18:59:14 INFO  EmployeePage:858 - ========================================
+2019-08-20 18:59:14 INFO  EmployeePage:1157 - portId: COM3
+2019-08-20 18:59:14 INFO  EmployeePage:861 - Start sending message
+2019-08-20 18:59:14 INFO  EmployeePage:863 - Send message [01]
+2019-08-20 18:59:16 INFO  EmployeePage:1199 - Receive message [121]
+2019-08-20 18:59:16 INFO  EmployeePage:1205 - MOTOR_START
+2019-08-20 18:59:17 INFO  EmployeePage:1199 - Receive message [122]
+2019-08-20 18:59:17 INFO  EmployeePage:1208 - MOTOR_STOP
+2019-08-20 18:59:18 INFO  EmployeePage:1199 - Receive message [123]
+2019-08-20 18:59:18 INFO  EmployeePage:1211 - PRODUCT_OK
+2019-08-20 18:59:19 INFO  EmployeePage:871 - listDataReceived: [121, 122, 123]
+2019-08-20 18:59:19 INFO  TransactionController:77 - update WorkingTransaction set UpdatedDate=now(), TransactionStatus='MotorStart' where WorkingTransactionID = 1428;
+2019-08-20 18:59:19 INFO  TransactionController:77 - update WorkingTransaction set UpdatedDate=now(), TransactionStatus='MotorStop' where WorkingTransactionID = 1428;
+2019-08-20 18:59:19 INFO  TransactionController:77 - update WorkingTransaction set UpdatedDate=now(), TransactionStatus='ProductOK' where WorkingTransactionID = 1428;
+2019-08-20 18:59:19 INFO  EmployeePage:891 - Complete send and receive all messages!!!: 
+2019-08-20 18:59:19 INFO  EmployeePage:774 - resultValue: 1
+2019-08-20 18:59:19 INFO  EmployeeController:80 -  select toolsmachine.ToolsMachineID from tools inner join toolsmachine on tools.ToolCode = toolsmachine.ToolCode where tools.ToolCode = '1015-6.0' and toolsmachine.MachineCode = 'VM-8';
+2019-08-20 18:59:19 INFO  EmployeeController:99 -  select count(*) from toolsmachinetray where toolsmachinetray.ToolCode = '1015-6.0' and toolsmachinetray.TrayIndex = 'TRAY_01' and toolsmachinetray.MachineCode = 'VM-8';
+2019-08-20 18:59:19 INFO  EmployeeController:131 -  update toolsmachinetray set quantity = quantity - 1 where ToolCode = '1015-6.0' and trayIndex = 'TRAY_01' and machineCode = 'VM-8';
+2019-08-20 18:59:19 INFO  EmployeePage:786 - Completed
+2019-08-20 18:59:19 INFO  LoginController:317 - SELECT EmailAddress FROM Assessor where Assessor.UserName = 'quann' and Assessor.CompanyCode = 'VM-8';
+2019-08-20 18:59:19 INFO  LoginController:340 - SELECT FirstName, LastName FROM Assessor where Assessor.UserName = 'quann' and Assessor.CompanyCode = 'VM-8';
+2019-08-20 18:59:20 INFO  LoginController:382 - SELECT EmailAddress FROM Assessor where Assessor.UserName = 'admin';
+2019-08-20 18:59:20 INFO  LoginController:405 - select assessor.EmailAddress from roleassessor inner join assessor on roleassessor.AssessorID = assessor.AssessorID  inner join roles on roleassessor.RoleID = roles.RoleID where roles.RoleName = 'SubAdmin' and assessor.CompanyCode = 'VM-8';
+2019-08-20 18:59:23 INFO  EmployeePage:822 - Complete with resultValue = 1
+2019-08-20 18:59:23 INFO  EmployeeController:161 -  select tools.ToolId, tools.ToolCode ,  toolsmachineTray.Quantity, toolsmachineTray.TrayIndex, toolsmachineTray.Machinecode  from tools inner join toolsmachineTray on tools.ToolCode = toolsmachineTray.ToolCode  where tools.IsActive = '1' and toolsmachineTray.MachineCode = 'VM-8';
+2019-08-20 18:59:23 INFO  EmployeeController:204 - {1015-6.0=[[TRAY_01, 1], [TRAY_01, 1]]}
+2019-08-20 18:59:24 INFO  EmailUtils:161 - quann - GETTOOL - Send Mail To quann169@gmail.com - CC: [trinh.wft@gmail.com, ] - Subject: VM-8 - VM-8: Nguyen Quan(quann) get tool notification - Message: Hi Employee Nguyen Quan(quann),
+WO: asfdsw
+OP: fsaf
+Tool: 1015-6.0
+Tray: TRAY_01
+Quantity: 1
+Machine no.: VM-8
+2019-08-20 18:59:33 INFO  EmployeePage:728 - quann confirm: <head><style>table {    font-family: arial, sans-serif;    border: none;    width: 100%;} td, th {    text-align: left;    padding: 2px;} tr:nth-child(even) {    background-color: #dddddd;}</style></head><body><table> <tr>    <th>WO:</th>    <th>asfdsw</th>  </tr>  <tr>    <td>OP:</td>    <td>fsaf</td>  </tr>  <tr>    <td>CTID:</td>    <td>1015-6.0</td>  </tr>  <tr>    <td>Tray:</td>    <td>TRAY_01</td>  </tr>  <tr>    <td>Quantity:</td>    <td>1</td>  </tr> </table></body>
+2019-08-20 18:59:33 INFO  EmployeePage:730 - quann getTools
+2019-08-20 18:59:35 INFO  TransactionController:45 - insert into WorkingTransaction( TransactionDate, MachineCode, CompanyCode, AssessorID, WOCode, OPCode, ToolCode, TrayIndex, Quantity, UpdatedDate, TransactionStatus, TransactionType) values (now(), 'VM-8', 'VM-8', 'quann', 'asfdsw', 'fsaf', '1015-6.0', 'TRAY_01', '1', now(), 'Send request to board', 'GetTools');
+2019-08-20 18:59:35 INFO  EmployeePage:752 - Create transaction
+2019-08-20 18:59:35 INFO  EmployeePage:753 - hashMessage: {TRAY_09=09, TRAY_07=07, TRAY_08=08, TRAY_41=41, TRAY_42=42, TRAY_40=40, TRAY_05=05, TRAY_49=49, TRAY_06=06, TRAY_03=03, TRAY_47=47, TRAY_04=04, TRAY_48=48, TRAY_01=01, TRAY_45=45, TRAY_02=02, TRAY_46=46, TRAY_43=43, TRAY_44=44, TRAY_30=30, TRAY_31=31, TRAY_38=38, TRAY_39=39, TRAY_36=36, TRAY_37=37, TRAY_34=34, TRAY_35=35, TRAY_32=32, TRAY_33=33, TRAY_29=29, TRAY_20=20, TRAY_60=60, TRAY_27=27, TRAY_28=28, TRAY_25=25, TRAY_26=26, TRAY_23=23, TRAY_24=24, TRAY_21=21, TRAY_22=22, TRAY_18=18, TRAY_19=19, TRAY_52=52, TRAY_53=53, TRAY_50=50, TRAY_51=51, TRAY_16=16, TRAY_17=17, TRAY_14=14, TRAY_58=58, TRAY_15=15, TRAY_59=59, TRAY_12=12, TRAY_56=56, TRAY_13=13, TRAY_57=57, TRAY_10=10, TRAY_54=54, TRAY_11=11, TRAY_55=55}
+2019-08-20 18:59:35 INFO  EmployeePage:754 - hashMessage containsKey TRAY_01: true
+2019-08-20 18:59:35 INFO  EmployeePage:858 - ========================================
+2019-08-20 18:59:35 INFO  EmployeePage:1157 - portId: COM3
+2019-08-20 18:59:35 INFO  EmployeePage:861 - Start sending message
+2019-08-20 18:59:35 INFO  EmployeePage:863 - Send message [01]
+2019-08-20 18:59:37 INFO  EmployeePage:1199 - Receive message [121]
+2019-08-20 18:59:37 INFO  EmployeePage:1205 - MOTOR_START
+2019-08-20 18:59:38 INFO  EmployeePage:1199 - Receive message [122]
+2019-08-20 18:59:38 INFO  EmployeePage:1208 - MOTOR_STOP
+2019-08-20 18:59:39 INFO  EmployeePage:1199 - Receive message [123]
+2019-08-20 18:59:39 INFO  EmployeePage:1211 - PRODUCT_OK
+2019-08-20 18:59:40 INFO  EmployeePage:871 - listDataReceived: [121, 122, 123]
+2019-08-20 18:59:40 INFO  TransactionController:77 - update WorkingTransaction set UpdatedDate=now(), TransactionStatus='MotorStart' where WorkingTransactionID = 1429;
+2019-08-20 18:59:40 INFO  TransactionController:77 - update WorkingTransaction set UpdatedDate=now(), TransactionStatus='MotorStop' where WorkingTransactionID = 1429;
+2019-08-20 18:59:40 INFO  TransactionController:77 - update WorkingTransaction set UpdatedDate=now(), TransactionStatus='ProductOK' where WorkingTransactionID = 1429;
+2019-08-20 18:59:40 INFO  EmployeePage:891 - Complete send and receive all messages!!!: 
+2019-08-20 18:59:40 INFO  EmployeePage:774 - resultValue: 1
+2019-08-20 18:59:40 INFO  EmployeeController:80 -  select toolsmachine.ToolsMachineID from tools inner join toolsmachine on tools.ToolCode = toolsmachine.ToolCode where tools.ToolCode = '1015-6.0' and toolsmachine.MachineCode = 'VM-8';
+2019-08-20 18:59:40 INFO  EmployeeController:99 -  select count(*) from toolsmachinetray where toolsmachinetray.ToolCode = '1015-6.0' and toolsmachinetray.TrayIndex = 'TRAY_01' and toolsmachinetray.MachineCode = 'VM-8';
+2019-08-20 18:59:40 INFO  EmployeeController:131 -  update toolsmachinetray set quantity = quantity - 1 where ToolCode = '1015-6.0' and trayIndex = 'TRAY_01' and machineCode = 'VM-8';
+2019-08-20 18:59:40 INFO  EmployeePage:786 - Completed
+2019-08-20 18:59:40 INFO  LoginController:317 - SELECT EmailAddress FROM Assessor where Assessor.UserName = 'quann' and Assessor.CompanyCode = 'VM-8';
+2019-08-20 18:59:40 INFO  LoginController:340 - SELECT FirstName, LastName FROM Assessor where Assessor.UserName = 'quann' and Assessor.CompanyCode = 'VM-8';
+2019-08-20 18:59:40 INFO  LoginController:382 - SELECT EmailAddress FROM Assessor where Assessor.UserName = 'admin';
+2019-08-20 18:59:40 INFO  LoginController:405 - select assessor.EmailAddress from roleassessor inner join assessor on roleassessor.AssessorID = assessor.AssessorID  inner join roles on roleassessor.RoleID = roles.RoleID where roles.RoleName = 'SubAdmin' and assessor.CompanyCode = 'VM-8';
+2019-08-20 18:59:43 INFO  EmployeePage:822 - Complete with resultValue = 1
+2019-08-20 18:59:43 INFO  EmployeeController:161 -  select tools.ToolId, tools.ToolCode ,  toolsmachineTray.Quantity, toolsmachineTray.TrayIndex, toolsmachineTray.Machinecode  from tools inner join toolsmachineTray on tools.ToolCode = toolsmachineTray.ToolCode  where tools.IsActive = '1' and toolsmachineTray.MachineCode = 'VM-8';
+2019-08-20 18:59:43 INFO  EmployeeController:204 - {}
+2019-08-20 18:59:45 INFO  EmailUtils:161 - quann - GETTOOL - Send Mail To quann169@gmail.com - CC: [trinh.wft@gmail.com, ] - Subject: VM-8 - VM-8: Nguyen Quan(quann) get tool notification - Message: Hi Employee Nguyen Quan(quann),
+WO: asfdsw
+OP: fsaf
+Tool: 1015-6.0
+Tray: TRAY_01
+Quantity: 1
+Machine no.: VM-8
+2019-08-20 19:10:43 INFO  LoginPage:547 - ************************************************************
+2019-08-20 19:10:43 INFO  LoginPage:548 - ************************************************************
+2019-08-20 19:10:43 INFO  LoginPage:549 - ************************************************************
+2019-08-20 19:10:43 INFO  LoginPage:550 - ************************************************************
+2019-08-20 19:10:43 INFO  LoginPage:551 - Starting iTool app.
+2019-08-20 19:10:43 INFO  LoginPage:552 - companyCode: VM-8
+2019-08-20 19:10:43 INFO  LoginPage:553 - companyCodeUH: Optiwell
+2019-08-20 19:10:43 INFO  LoginPage:554 - machineCode: VM-8
+2019-08-20 19:10:43 INFO  LoginPage:557 - mDbHost: localhost
+2019-08-20 19:10:43 INFO  LoginPage:558 - mDbUser: admin
+2019-08-20 19:10:43 INFO  LoginPage:559 - mDbPwds: 1qa
+2019-08-20 19:10:43 INFO  LoginPage:560 - mDbName: iTools_v1p0
+2019-08-20 19:10:43 INFO  LoginPage:561 - mDbPort: 3306
+2019-08-20 19:10:43 INFO  LoginPage:562 - Database version: v1p0 - 2018-08-11 13:02:35
+2019-08-20 19:10:43 INFO  LoginPage:564 - Last Sync: 2019-08-20 18:57:52
+2019-08-20 19:10:43 INFO  LoginPage:568 - connectToHost: OK
+2019-08-20 19:10:44 INFO  LoginPage:582 - App Version: 1.0
+2019-08-20 19:10:45 INFO  EmailUtils:57 - mail.tqteam.net25itool_app@tqteam.net1qazxsw2!A
+2019-08-20 19:10:50 INFO  LoginPage:593 - checkEmailConfig: true
+2019-08-20 19:10:51 INFO  LoginPage:378 - ========================================
+2019-08-20 19:10:51 INFO  LoginPage:379 - Start syncing thread - BHN9S50Y
+2019-08-20 19:10:51 INFO  LoginPage:380 - ========================================
+2019-08-20 19:10:51 INFO  SyncController:64 - Start SyncHostToLocal
+2019-08-20 19:10:51 INFO  SyncController:72 - SyncHostToLocal_Assessor: insertAssessor: 95
+2019-08-20 19:10:52 INFO  SyncController:80 - SyncHostToLocal_RoleAssessor: insertRoleAssessor: 97
+2019-08-20 19:10:52 INFO  SyncController:88 - SyncHostToLocal_Machine: insertMachine: 8
+2019-08-20 19:10:52 INFO  SyncController:96 - SyncHostToLocal_Company: insertCompany: 7
+2019-08-20 19:10:52 INFO  SyncController:104 - SyncHostToLocal_CompanyMachine: insertCompanyMachine: 8
+2019-08-20 19:10:52 INFO  SyncController:112 - SyncHostToLocal_Tools: insertTools: 392
+2019-08-20 19:10:52 INFO  SyncController:116 - End SyncHostToLocal: 0s
+2019-08-20 19:10:52 INFO  LoginPage:383 - ========================================
+2019-08-20 19:10:52 INFO  LoginPage:384 - End syncing thread - BHN9S50Y
+2019-08-20 19:10:52 INFO  LoginPage:385 - ========================================
+2019-08-20 19:11:25 INFO  LoginPage:261 - Login with username: quann
+2019-08-20 19:11:25 INFO  LoginController:45 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin, IsLocked FROM Assessor where Assessor.IsActive = 1 and Assessor.UserName='quann' and (Password=md5('123456') or LastPassword=md5('123456')) and MachineCode like '%VM-8%';
+2019-08-20 19:11:25 INFO  LoginPage:265 - Login OK
+2019-08-20 19:11:25 INFO  LoginController:200 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'VM-8' and assessor.UserName= 'quann'
+2019-08-20 19:11:25 INFO  LoginPage:281 - listRoles: [Roles [roleName=Emp]]
+2019-08-20 19:11:25 INFO  LoginPage:293 - Show EmployeePage
+2019-08-20 19:11:25 INFO  EmployeeController:161 -  select tools.ToolId, tools.ToolCode ,  toolsmachineTray.Quantity, toolsmachineTray.TrayIndex, toolsmachineTray.Machinecode  from tools inner join toolsmachineTray on tools.ToolCode = toolsmachineTray.ToolCode  where tools.IsActive = '1' and toolsmachineTray.MachineCode = 'VM-8';
+2019-08-20 19:11:25 INFO  EmployeeController:204 - {1015-6.0=[[TRAY_01, 1], [TRAY_01, 1], [TRAY_03, 1], [TRAY_03, 1]]}
+2019-08-20 19:11:25 INFO  EmployeeController:218 -  select tools.ToolCode from tools where tools.IsActive='1' and tools.companyCode = 'VM-8';
+2019-08-20 19:11:25 INFO  EmployeeController:238 - {}
+2019-08-20 19:11:25 INFO  EmployeeController:50 - select tools.ToolId, tools.ToolCode  from tools inner join toolsmachineTray on tools.ToolCode = toolsmachineTray.ToolCode  where tools.IsActive = '1' and tools.CompanyCode = 'VM-8' and toolsmachineTray.MachineCode = 'VM-8';
+2019-08-20 19:11:25 INFO  EmployeeController:71 - [Tool [toolId=696, toolName=1015-6.0], Tool [toolId=696, toolName=1015-6.0]]
+2019-08-20 19:11:25 INFO  EmployeePage:535 - listToolNames: [, 1015-6.0]
+2019-08-20 19:11:25 INFO  EmployeePage:545 - toolComboBox: [, 1015-6.0]
+2019-08-20 19:11:25 INFO  EmployeePage:187 - Init EMP_PAGE
+2019-08-20 19:11:25 INFO  EmployeePage:190 - listAllTrays: [TRAY_01, TRAY_02, TRAY_03, TRAY_04, TRAY_05, TRAY_06, TRAY_07, TRAY_08, TRAY_09, TRAY_10, TRAY_11, TRAY_12, TRAY_13, TRAY_14, TRAY_15, TRAY_16, TRAY_17, TRAY_18, TRAY_19, TRAY_20, TRAY_21, TRAY_22, TRAY_23, TRAY_24, TRAY_25, TRAY_26, TRAY_27, TRAY_28, TRAY_29, TRAY_30, TRAY_31, TRAY_32, TRAY_33, TRAY_34, TRAY_35, TRAY_36, TRAY_37, TRAY_38, TRAY_39, TRAY_40, TRAY_41, TRAY_42, TRAY_43, TRAY_44, TRAY_45, TRAY_46, TRAY_47, TRAY_48, TRAY_49, TRAY_50, TRAY_51, TRAY_52, TRAY_53, TRAY_54, TRAY_55, TRAY_56, TRAY_57, TRAY_58, TRAY_59, TRAY_60]
+2019-08-20 19:11:25 INFO  EmployeePage:196 - hashMessage: {TRAY_09=09, TRAY_07=07, TRAY_08=08, TRAY_41=41, TRAY_42=42, TRAY_40=40, TRAY_05=05, TRAY_49=49, TRAY_06=06, TRAY_03=03, TRAY_47=47, TRAY_04=04, TRAY_48=48, TRAY_01=01, TRAY_45=45, TRAY_02=02, TRAY_46=46, TRAY_43=43, TRAY_44=44, TRAY_30=30, TRAY_31=31, TRAY_38=38, TRAY_39=39, TRAY_36=36, TRAY_37=37, TRAY_34=34, TRAY_35=35, TRAY_32=32, TRAY_33=33, TRAY_29=29, TRAY_20=20, TRAY_60=60, TRAY_27=27, TRAY_28=28, TRAY_25=25, TRAY_26=26, TRAY_23=23, TRAY_24=24, TRAY_21=21, TRAY_22=22, TRAY_18=18, TRAY_19=19, TRAY_52=52, TRAY_53=53, TRAY_50=50, TRAY_51=51, TRAY_16=16, TRAY_17=17, TRAY_14=14, TRAY_58=58, TRAY_15=15, TRAY_59=59, TRAY_12=12, TRAY_56=56, TRAY_13=13, TRAY_57=57, TRAY_10=10, TRAY_54=54, TRAY_11=11, TRAY_55=55}
+2019-08-20 19:11:34 INFO  EmployeePage:728 - quann confirm: <head><style>table {    font-family: arial, sans-serif;    border: none;    width: 100%;} td, th {    text-align: left;    padding: 2px;} tr:nth-child(even) {    background-color: #dddddd;}</style></head><body><table> <tr>    <th>WO:</th>    <th>sda</th>  </tr>  <tr>    <td>OP:</td>    <td>dsa</td>  </tr>  <tr>    <td>CTID:</td>    <td>1015-6.0</td>  </tr>  <tr>    <td>Tray:</td>    <td>TRAY_03</td>  </tr>  <tr>    <td>Quantity:</td>    <td>1</td>  </tr> </table></body>
+2019-08-20 19:11:34 INFO  EmployeePage:730 - quann getTools
+2019-08-20 19:11:36 INFO  TransactionController:45 - insert into WorkingTransaction( TransactionDate, MachineCode, CompanyCode, AssessorID, WOCode, OPCode, ToolCode, TrayIndex, Quantity, UpdatedDate, TransactionStatus, TransactionType) values (now(), 'VM-8', 'VM-8', 'quann', 'sda', 'dsa', '1015-6.0', 'TRAY_03', '1', now(), 'Send request to board', 'GetTools');
+2019-08-20 19:11:37 INFO  EmployeePage:752 - Create transaction
+2019-08-20 19:11:37 INFO  EmployeePage:753 - hashMessage: {TRAY_09=09, TRAY_07=07, TRAY_08=08, TRAY_41=41, TRAY_42=42, TRAY_40=40, TRAY_05=05, TRAY_49=49, TRAY_06=06, TRAY_03=03, TRAY_47=47, TRAY_04=04, TRAY_48=48, TRAY_01=01, TRAY_45=45, TRAY_02=02, TRAY_46=46, TRAY_43=43, TRAY_44=44, TRAY_30=30, TRAY_31=31, TRAY_38=38, TRAY_39=39, TRAY_36=36, TRAY_37=37, TRAY_34=34, TRAY_35=35, TRAY_32=32, TRAY_33=33, TRAY_29=29, TRAY_20=20, TRAY_60=60, TRAY_27=27, TRAY_28=28, TRAY_25=25, TRAY_26=26, TRAY_23=23, TRAY_24=24, TRAY_21=21, TRAY_22=22, TRAY_18=18, TRAY_19=19, TRAY_52=52, TRAY_53=53, TRAY_50=50, TRAY_51=51, TRAY_16=16, TRAY_17=17, TRAY_14=14, TRAY_58=58, TRAY_15=15, TRAY_59=59, TRAY_12=12, TRAY_56=56, TRAY_13=13, TRAY_57=57, TRAY_10=10, TRAY_54=54, TRAY_11=11, TRAY_55=55}
+2019-08-20 19:11:37 INFO  EmployeePage:754 - hashMessage containsKey TRAY_03: true
+2019-08-20 19:11:37 INFO  EmployeePage:858 - ========================================
+2019-08-20 19:11:37 INFO  EmployeePage:1157 - portId: COM3
+2019-08-20 19:11:37 INFO  EmployeePage:861 - Start sending message
+2019-08-20 19:11:37 INFO  EmployeePage:863 - Send message [03]
+2019-08-20 19:11:39 INFO  EmployeePage:1199 - Receive message [121]
+2019-08-20 19:11:39 INFO  EmployeePage:1205 - MOTOR_START
+2019-08-20 19:11:40 INFO  EmployeePage:1199 - Receive message [122]
+2019-08-20 19:11:40 INFO  EmployeePage:1208 - MOTOR_STOP
+2019-08-20 19:12:07 INFO  EmployeePage:774 - resultValue: -1
+2019-08-20 19:12:25 INFO  EmployeePage:822 - Complete with resultValue = -1
+2019-08-20 19:12:40 INFO  LoginPage:547 - ************************************************************
+2019-08-20 19:12:40 INFO  LoginPage:548 - ************************************************************
+2019-08-20 19:12:40 INFO  LoginPage:549 - ************************************************************
+2019-08-20 19:12:40 INFO  LoginPage:550 - ************************************************************
+2019-08-20 19:12:40 INFO  LoginPage:551 - Starting iTool app.
+2019-08-20 19:12:40 INFO  LoginPage:552 - companyCode: VM-8
+2019-08-20 19:12:40 INFO  LoginPage:553 - companyCodeUH: Optiwell
+2019-08-20 19:12:40 INFO  LoginPage:554 - machineCode: VM-8
+2019-08-20 19:12:40 INFO  LoginPage:557 - mDbHost: localhost
+2019-08-20 19:12:40 INFO  LoginPage:558 - mDbUser: admin
+2019-08-20 19:12:40 INFO  LoginPage:559 - mDbPwds: 1qa
+2019-08-20 19:12:40 INFO  LoginPage:560 - mDbName: iTools_v1p0
+2019-08-20 19:12:40 INFO  LoginPage:561 - mDbPort: 3306
+2019-08-20 19:12:40 INFO  LoginPage:562 - Database version: v1p0 - 2018-08-11 13:02:35
+2019-08-20 19:12:40 INFO  LoginPage:564 - Last Sync: 2019-08-20 19:10:52
+2019-08-20 19:12:40 INFO  LoginPage:568 - connectToHost: OK
+2019-08-20 19:12:41 INFO  LoginPage:582 - App Version: 1.0
+2019-08-20 19:12:42 INFO  EmailUtils:57 - mail.tqteam.net25itool_app@tqteam.net1qazxsw2!A
+2019-08-20 19:12:47 INFO  LoginPage:593 - checkEmailConfig: true
+2019-08-20 19:12:48 INFO  LoginPage:378 - ========================================
+2019-08-20 19:12:48 INFO  LoginPage:379 - Start syncing thread - BCOAELWX
+2019-08-20 19:12:48 INFO  LoginPage:380 - ========================================
+2019-08-20 19:12:48 INFO  SyncController:64 - Start SyncHostToLocal
+2019-08-20 19:12:48 INFO  SyncController:72 - SyncHostToLocal_Assessor: insertAssessor: 95
+2019-08-20 19:12:48 INFO  SyncController:80 - SyncHostToLocal_RoleAssessor: insertRoleAssessor: 97
+2019-08-20 19:12:48 INFO  SyncController:88 - SyncHostToLocal_Machine: insertMachine: 8
+2019-08-20 19:12:49 INFO  SyncController:96 - SyncHostToLocal_Company: insertCompany: 7
+2019-08-20 19:12:49 INFO  SyncController:104 - SyncHostToLocal_CompanyMachine: insertCompanyMachine: 8
+2019-08-20 19:12:49 INFO  SyncController:112 - SyncHostToLocal_Tools: insertTools: 392
+2019-08-20 19:12:49 INFO  SyncController:116 - End SyncHostToLocal: 0s
+2019-08-20 19:12:49 INFO  LoginPage:383 - ========================================
+2019-08-20 19:12:49 INFO  LoginPage:384 - End syncing thread - BCOAELWX
+2019-08-20 19:12:49 INFO  LoginPage:385 - ========================================
+2019-08-20 19:12:53 INFO  LoginPage:261 - Login with username: quann
+2019-08-20 19:12:53 INFO  LoginController:45 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin, IsLocked FROM Assessor where Assessor.IsActive = 1 and Assessor.UserName='quann' and (Password=md5('123456') or LastPassword=md5('123456')) and MachineCode like '%VM-8%';
+2019-08-20 19:12:53 INFO  LoginPage:265 - Login OK
+2019-08-20 19:12:53 INFO  LoginController:200 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'VM-8' and assessor.UserName= 'quann'
+2019-08-20 19:12:53 INFO  LoginPage:281 - listRoles: [Roles [roleName=Emp]]
+2019-08-20 19:12:53 INFO  LoginPage:293 - Show EmployeePage
+2019-08-20 19:12:54 INFO  EmployeeController:161 -  select tools.ToolId, tools.ToolCode ,  toolsmachineTray.Quantity, toolsmachineTray.TrayIndex, toolsmachineTray.Machinecode  from tools inner join toolsmachineTray on tools.ToolCode = toolsmachineTray.ToolCode  where tools.IsActive = '1' and toolsmachineTray.MachineCode = 'VM-8';
+2019-08-20 19:12:54 INFO  EmployeeController:204 - {1015-6.0=[[TRAY_01, 1], [TRAY_01, 1], [TRAY_03, 1], [TRAY_03, 1]]}
+2019-08-20 19:12:54 INFO  EmployeeController:218 -  select tools.ToolCode from tools where tools.IsActive='1' and tools.companyCode = 'VM-8';
+2019-08-20 19:12:54 INFO  EmployeeController:238 - {}
+2019-08-20 19:12:54 INFO  EmployeeController:50 - select tools.ToolId, tools.ToolCode  from tools inner join toolsmachineTray on tools.ToolCode = toolsmachineTray.ToolCode  where tools.IsActive = '1' and tools.CompanyCode = 'VM-8' and toolsmachineTray.MachineCode = 'VM-8';
+2019-08-20 19:12:54 INFO  EmployeeController:71 - [Tool [toolId=696, toolName=1015-6.0], Tool [toolId=696, toolName=1015-6.0]]
+2019-08-20 19:12:54 INFO  EmployeePage:535 - listToolNames: [, 1015-6.0]
+2019-08-20 19:12:54 INFO  EmployeePage:545 - toolComboBox: [, 1015-6.0]
+2019-08-20 19:12:54 INFO  EmployeePage:187 - Init EMP_PAGE
+2019-08-20 19:12:54 INFO  EmployeePage:190 - listAllTrays: [TRAY_01, TRAY_02, TRAY_03, TRAY_04, TRAY_05, TRAY_06, TRAY_07, TRAY_08, TRAY_09, TRAY_10, TRAY_11, TRAY_12, TRAY_13, TRAY_14, TRAY_15, TRAY_16, TRAY_17, TRAY_18, TRAY_19, TRAY_20, TRAY_21, TRAY_22, TRAY_23, TRAY_24, TRAY_25, TRAY_26, TRAY_27, TRAY_28, TRAY_29, TRAY_30, TRAY_31, TRAY_32, TRAY_33, TRAY_34, TRAY_35, TRAY_36, TRAY_37, TRAY_38, TRAY_39, TRAY_40, TRAY_41, TRAY_42, TRAY_43, TRAY_44, TRAY_45, TRAY_46, TRAY_47, TRAY_48, TRAY_49, TRAY_50, TRAY_51, TRAY_52, TRAY_53, TRAY_54, TRAY_55, TRAY_56, TRAY_57, TRAY_58, TRAY_59, TRAY_60]
+2019-08-20 19:12:54 INFO  EmployeePage:196 - hashMessage: {TRAY_09=09, TRAY_07=07, TRAY_08=08, TRAY_41=41, TRAY_42=42, TRAY_40=40, TRAY_05=05, TRAY_49=49, TRAY_06=06, TRAY_03=03, TRAY_47=47, TRAY_04=04, TRAY_48=48, TRAY_01=01, TRAY_45=45, TRAY_02=02, TRAY_46=46, TRAY_43=43, TRAY_44=44, TRAY_30=30, TRAY_31=31, TRAY_38=38, TRAY_39=39, TRAY_36=36, TRAY_37=37, TRAY_34=34, TRAY_35=35, TRAY_32=32, TRAY_33=33, TRAY_29=29, TRAY_20=20, TRAY_60=60, TRAY_27=27, TRAY_28=28, TRAY_25=25, TRAY_26=26, TRAY_23=23, TRAY_24=24, TRAY_21=21, TRAY_22=22, TRAY_18=18, TRAY_19=19, TRAY_52=52, TRAY_53=53, TRAY_50=50, TRAY_51=51, TRAY_16=16, TRAY_17=17, TRAY_14=14, TRAY_58=58, TRAY_15=15, TRAY_59=59, TRAY_12=12, TRAY_56=56, TRAY_13=13, TRAY_57=57, TRAY_10=10, TRAY_54=54, TRAY_11=11, TRAY_55=55}
+2019-08-20 19:12:59 INFO  EmployeePage:728 - quann confirm: <head><style>table {    font-family: arial, sans-serif;    border: none;    width: 100%;} td, th {    text-align: left;    padding: 2px;} tr:nth-child(even) {    background-color: #dddddd;}</style></head><body><table> <tr>    <th>WO:</th>    <th>dfdas</th>  </tr>  <tr>    <td>OP:</td>    <td>afs</td>  </tr>  <tr>    <td>CTID:</td>    <td>1015-6.0</td>  </tr>  <tr>    <td>Tray:</td>    <td>TRAY_03</td>  </tr>  <tr>    <td>Quantity:</td>    <td>1</td>  </tr> </table></body>
+2019-08-20 19:12:59 INFO  EmployeePage:730 - quann getTools
+2019-08-20 19:13:01 INFO  TransactionController:45 - insert into WorkingTransaction( TransactionDate, MachineCode, CompanyCode, AssessorID, WOCode, OPCode, ToolCode, TrayIndex, Quantity, UpdatedDate, TransactionStatus, TransactionType) values (now(), 'VM-8', 'VM-8', 'quann', 'dfdas', 'afs', '1015-6.0', 'TRAY_03', '1', now(), 'Send request to board', 'GetTools');
+2019-08-20 19:13:01 INFO  EmployeePage:752 - Create transaction
+2019-08-20 19:13:01 INFO  EmployeePage:753 - hashMessage: {TRAY_09=09, TRAY_07=07, TRAY_08=08, TRAY_41=41, TRAY_42=42, TRAY_40=40, TRAY_05=05, TRAY_49=49, TRAY_06=06, TRAY_03=03, TRAY_47=47, TRAY_04=04, TRAY_48=48, TRAY_01=01, TRAY_45=45, TRAY_02=02, TRAY_46=46, TRAY_43=43, TRAY_44=44, TRAY_30=30, TRAY_31=31, TRAY_38=38, TRAY_39=39, TRAY_36=36, TRAY_37=37, TRAY_34=34, TRAY_35=35, TRAY_32=32, TRAY_33=33, TRAY_29=29, TRAY_20=20, TRAY_60=60, TRAY_27=27, TRAY_28=28, TRAY_25=25, TRAY_26=26, TRAY_23=23, TRAY_24=24, TRAY_21=21, TRAY_22=22, TRAY_18=18, TRAY_19=19, TRAY_52=52, TRAY_53=53, TRAY_50=50, TRAY_51=51, TRAY_16=16, TRAY_17=17, TRAY_14=14, TRAY_58=58, TRAY_15=15, TRAY_59=59, TRAY_12=12, TRAY_56=56, TRAY_13=13, TRAY_57=57, TRAY_10=10, TRAY_54=54, TRAY_11=11, TRAY_55=55}
+2019-08-20 19:13:01 INFO  EmployeePage:754 - hashMessage containsKey TRAY_03: true
+2019-08-20 19:13:01 INFO  EmployeePage:858 - ========================================
+2019-08-20 19:13:01 INFO  EmployeePage:1157 - portId: COM3
+2019-08-20 19:13:01 INFO  EmployeePage:861 - Start sending message
+2019-08-20 19:13:01 INFO  EmployeePage:863 - Send message [03]
+2019-08-20 19:13:03 INFO  EmployeePage:1199 - Receive message [121]
+2019-08-20 19:13:03 INFO  EmployeePage:1205 - MOTOR_START
+2019-08-20 19:13:04 INFO  EmployeePage:1199 - Receive message [122]
+2019-08-20 19:13:04 INFO  EmployeePage:1208 - MOTOR_STOP
+2019-08-20 19:13:31 INFO  EmployeePage:774 - resultValue: -1
+2019-08-20 19:13:40 INFO  LoginPage:547 - ************************************************************
+2019-08-20 19:13:40 INFO  LoginPage:548 - ************************************************************
+2019-08-20 19:13:41 INFO  LoginPage:549 - ************************************************************
+2019-08-20 19:13:41 INFO  LoginPage:550 - ************************************************************
+2019-08-20 19:13:41 INFO  LoginPage:551 - Starting iTool app.
+2019-08-20 19:13:41 INFO  LoginPage:552 - companyCode: VM-8
+2019-08-20 19:13:41 INFO  LoginPage:553 - companyCodeUH: Optiwell
+2019-08-20 19:13:41 INFO  LoginPage:554 - machineCode: VM-8
+2019-08-20 19:13:41 INFO  LoginPage:557 - mDbHost: localhost
+2019-08-20 19:13:41 INFO  LoginPage:558 - mDbUser: admin
+2019-08-20 19:13:41 INFO  LoginPage:559 - mDbPwds: 1qa
+2019-08-20 19:13:41 INFO  LoginPage:560 - mDbName: iTools_v1p0
+2019-08-20 19:13:41 INFO  LoginPage:561 - mDbPort: 3306
+2019-08-20 19:13:41 INFO  LoginPage:562 - Database version: v1p0 - 2018-08-11 13:02:35
+2019-08-20 19:13:41 INFO  LoginPage:564 - Last Sync: 2019-08-20 19:12:49
+2019-08-20 19:13:41 INFO  LoginPage:568 - connectToHost: OK
+2019-08-20 19:13:42 INFO  LoginPage:582 - App Version: 1.0
+2019-08-20 19:13:43 INFO  EmailUtils:57 - mail.tqteam.net25itool_app@tqteam.net1qazxsw2!A
+2019-08-20 19:13:48 INFO  LoginPage:593 - checkEmailConfig: true
+2019-08-20 19:13:49 INFO  LoginPage:378 - ========================================
+2019-08-20 19:13:49 INFO  LoginPage:379 - Start syncing thread - L9BXVCHT
+2019-08-20 19:13:49 INFO  LoginPage:380 - ========================================
+2019-08-20 19:13:49 INFO  SyncController:64 - Start SyncHostToLocal
+2019-08-20 19:13:49 INFO  SyncController:72 - SyncHostToLocal_Assessor: insertAssessor: 95
+2019-08-20 19:13:49 INFO  SyncController:80 - SyncHostToLocal_RoleAssessor: insertRoleAssessor: 97
+2019-08-20 19:13:49 INFO  SyncController:88 - SyncHostToLocal_Machine: insertMachine: 8
+2019-08-20 19:13:49 INFO  SyncController:96 - SyncHostToLocal_Company: insertCompany: 7
+2019-08-20 19:13:49 INFO  SyncController:104 - SyncHostToLocal_CompanyMachine: insertCompanyMachine: 8
+2019-08-20 19:13:49 INFO  SyncController:112 - SyncHostToLocal_Tools: insertTools: 392
+2019-08-20 19:13:49 INFO  SyncController:116 - End SyncHostToLocal: 0s
+2019-08-20 19:13:49 INFO  LoginPage:383 - ========================================
+2019-08-20 19:13:49 INFO  LoginPage:384 - End syncing thread - L9BXVCHT
+2019-08-20 19:13:49 INFO  LoginPage:385 - ========================================
+2019-08-20 19:13:54 INFO  LoginPage:261 - Login with username: quann
+2019-08-20 19:13:54 INFO  LoginController:45 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin, IsLocked FROM Assessor where Assessor.IsActive = 1 and Assessor.UserName='quann' and (Password=md5('123456') or LastPassword=md5('123456')) and MachineCode like '%VM-8%';
+2019-08-20 19:13:54 INFO  LoginPage:265 - Login OK
+2019-08-20 19:13:54 INFO  LoginController:200 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'VM-8' and assessor.UserName= 'quann'
+2019-08-20 19:13:54 INFO  LoginPage:281 - listRoles: [Roles [roleName=Emp]]
+2019-08-20 19:13:54 INFO  LoginPage:293 - Show EmployeePage
+2019-08-20 19:13:54 INFO  EmployeeController:161 -  select tools.ToolId, tools.ToolCode ,  toolsmachineTray.Quantity, toolsmachineTray.TrayIndex, toolsmachineTray.Machinecode  from tools inner join toolsmachineTray on tools.ToolCode = toolsmachineTray.ToolCode  where tools.IsActive = '1' and toolsmachineTray.MachineCode = 'VM-8';
+2019-08-20 19:13:54 INFO  EmployeeController:204 - {1015-6.0=[[TRAY_01, 1], [TRAY_01, 1], [TRAY_03, 1], [TRAY_03, 1]]}
+2019-08-20 19:13:54 INFO  EmployeeController:218 -  select tools.ToolCode from tools where tools.IsActive='1' and tools.companyCode = 'VM-8';
+2019-08-20 19:13:54 INFO  EmployeeController:238 - {}
+2019-08-20 19:13:54 INFO  EmployeeController:50 - select tools.ToolId, tools.ToolCode  from tools inner join toolsmachineTray on tools.ToolCode = toolsmachineTray.ToolCode  where tools.IsActive = '1' and tools.CompanyCode = 'VM-8' and toolsmachineTray.MachineCode = 'VM-8';
+2019-08-20 19:13:54 INFO  EmployeeController:71 - [Tool [toolId=696, toolName=1015-6.0], Tool [toolId=696, toolName=1015-6.0]]
+2019-08-20 19:13:54 INFO  EmployeePage:535 - listToolNames: [, 1015-6.0]
+2019-08-20 19:13:54 INFO  EmployeePage:545 - toolComboBox: [, 1015-6.0]
+2019-08-20 19:13:54 INFO  EmployeePage:187 - Init EMP_PAGE
+2019-08-20 19:13:54 INFO  EmployeePage:190 - listAllTrays: [TRAY_01, TRAY_02, TRAY_03, TRAY_04, TRAY_05, TRAY_06, TRAY_07, TRAY_08, TRAY_09, TRAY_10, TRAY_11, TRAY_12, TRAY_13, TRAY_14, TRAY_15, TRAY_16, TRAY_17, TRAY_18, TRAY_19, TRAY_20, TRAY_21, TRAY_22, TRAY_23, TRAY_24, TRAY_25, TRAY_26, TRAY_27, TRAY_28, TRAY_29, TRAY_30, TRAY_31, TRAY_32, TRAY_33, TRAY_34, TRAY_35, TRAY_36, TRAY_37, TRAY_38, TRAY_39, TRAY_40, TRAY_41, TRAY_42, TRAY_43, TRAY_44, TRAY_45, TRAY_46, TRAY_47, TRAY_48, TRAY_49, TRAY_50, TRAY_51, TRAY_52, TRAY_53, TRAY_54, TRAY_55, TRAY_56, TRAY_57, TRAY_58, TRAY_59, TRAY_60]
+2019-08-20 19:13:54 INFO  EmployeePage:196 - hashMessage: {TRAY_09=09, TRAY_07=07, TRAY_08=08, TRAY_41=41, TRAY_42=42, TRAY_40=40, TRAY_05=05, TRAY_49=49, TRAY_06=06, TRAY_03=03, TRAY_47=47, TRAY_04=04, TRAY_48=48, TRAY_01=01, TRAY_45=45, TRAY_02=02, TRAY_46=46, TRAY_43=43, TRAY_44=44, TRAY_30=30, TRAY_31=31, TRAY_38=38, TRAY_39=39, TRAY_36=36, TRAY_37=37, TRAY_34=34, TRAY_35=35, TRAY_32=32, TRAY_33=33, TRAY_29=29, TRAY_20=20, TRAY_60=60, TRAY_27=27, TRAY_28=28, TRAY_25=25, TRAY_26=26, TRAY_23=23, TRAY_24=24, TRAY_21=21, TRAY_22=22, TRAY_18=18, TRAY_19=19, TRAY_52=52, TRAY_53=53, TRAY_50=50, TRAY_51=51, TRAY_16=16, TRAY_17=17, TRAY_14=14, TRAY_58=58, TRAY_15=15, TRAY_59=59, TRAY_12=12, TRAY_56=56, TRAY_13=13, TRAY_57=57, TRAY_10=10, TRAY_54=54, TRAY_11=11, TRAY_55=55}
+2019-08-20 19:14:04 INFO  EmployeePage:728 - quann confirm: <head><style>table {    font-family: arial, sans-serif;    border: none;    width: 100%;} td, th {    text-align: left;    padding: 2px;} tr:nth-child(even) {    background-color: #dddddd;}</style></head><body><table> <tr>    <th>WO:</th>    <th>fgd</th>  </tr>  <tr>    <td>OP:</td>    <td>kgjh</td>  </tr>  <tr>    <td>CTID:</td>    <td>1015-6.0</td>  </tr>  <tr>    <td>Tray:</td>    <td>TRAY_03</td>  </tr>  <tr>    <td>Quantity:</td>    <td>1</td>  </tr> </table></body>
+2019-08-20 19:14:04 INFO  EmployeePage:730 - quann getTools
+2019-08-20 19:14:06 INFO  TransactionController:45 - insert into WorkingTransaction( TransactionDate, MachineCode, CompanyCode, AssessorID, WOCode, OPCode, ToolCode, TrayIndex, Quantity, UpdatedDate, TransactionStatus, TransactionType) values (now(), 'VM-8', 'VM-8', 'quann', 'fgd', 'kgjh', '1015-6.0', 'TRAY_03', '1', now(), 'Send request to board', 'GetTools');
+2019-08-20 19:14:06 INFO  EmployeePage:752 - Create transaction
+2019-08-20 19:14:06 INFO  EmployeePage:753 - hashMessage: {TRAY_09=09, TRAY_07=07, TRAY_08=08, TRAY_41=41, TRAY_42=42, TRAY_40=40, TRAY_05=05, TRAY_49=49, TRAY_06=06, TRAY_03=03, TRAY_47=47, TRAY_04=04, TRAY_48=48, TRAY_01=01, TRAY_45=45, TRAY_02=02, TRAY_46=46, TRAY_43=43, TRAY_44=44, TRAY_30=30, TRAY_31=31, TRAY_38=38, TRAY_39=39, TRAY_36=36, TRAY_37=37, TRAY_34=34, TRAY_35=35, TRAY_32=32, TRAY_33=33, TRAY_29=29, TRAY_20=20, TRAY_60=60, TRAY_27=27, TRAY_28=28, TRAY_25=25, TRAY_26=26, TRAY_23=23, TRAY_24=24, TRAY_21=21, TRAY_22=22, TRAY_18=18, TRAY_19=19, TRAY_52=52, TRAY_53=53, TRAY_50=50, TRAY_51=51, TRAY_16=16, TRAY_17=17, TRAY_14=14, TRAY_58=58, TRAY_15=15, TRAY_59=59, TRAY_12=12, TRAY_56=56, TRAY_13=13, TRAY_57=57, TRAY_10=10, TRAY_54=54, TRAY_11=11, TRAY_55=55}
+2019-08-20 19:14:06 INFO  EmployeePage:754 - hashMessage containsKey TRAY_03: true
+2019-08-20 19:14:06 INFO  EmployeePage:858 - ========================================
+2019-08-20 19:14:06 INFO  EmployeePage:1159 - portId: COM3
+2019-08-20 19:14:06 INFO  EmployeePage:861 - Start sending message
+2019-08-20 19:14:06 INFO  EmployeePage:865 - Send message [03|]
+2019-08-20 19:14:08 INFO  EmployeePage:1201 - Receive message [121]
+2019-08-20 19:14:08 INFO  EmployeePage:1207 - MOTOR_START
+2019-08-20 19:14:09 INFO  EmployeePage:1201 - Receive message [122]
+2019-08-20 19:14:09 INFO  EmployeePage:1210 - MOTOR_STOP
+2019-08-20 19:14:36 INFO  EmployeePage:774 - resultValue: -1
+2019-08-20 19:14:47 INFO  EmployeePage:822 - Complete with resultValue = -1
+2019-08-20 19:14:52 INFO  EmployeePage:728 - quann confirm: <head><style>table {    font-family: arial, sans-serif;    border: none;    width: 100%;} td, th {    text-align: left;    padding: 2px;} tr:nth-child(even) {    background-color: #dddddd;}</style></head><body><table> <tr>    <th>WO:</th>    <th>fgd</th>  </tr>  <tr>    <td>OP:</td>    <td>kgjh</td>  </tr>  <tr>    <td>CTID:</td>    <td>1015-6.0</td>  </tr>  <tr>    <td>Tray:</td>    <td>TRAY_03</td>  </tr>  <tr>    <td>Quantity:</td>    <td>1</td>  </tr> </table></body>
+2019-08-20 19:14:52 INFO  EmployeePage:730 - quann getTools
+2019-08-20 19:14:54 INFO  TransactionController:45 - insert into WorkingTransaction( TransactionDate, MachineCode, CompanyCode, AssessorID, WOCode, OPCode, ToolCode, TrayIndex, Quantity, UpdatedDate, TransactionStatus, TransactionType) values (now(), 'VM-8', 'VM-8', 'quann', 'fgd', 'kgjh', '1015-6.0', 'TRAY_03', '1', now(), 'Send request to board', 'GetTools');
+2019-08-20 19:14:54 INFO  EmployeePage:752 - Create transaction
+2019-08-20 19:14:54 INFO  EmployeePage:753 - hashMessage: {TRAY_09=09, TRAY_07=07, TRAY_08=08, TRAY_41=41, TRAY_42=42, TRAY_40=40, TRAY_05=05, TRAY_49=49, TRAY_06=06, TRAY_03=03, TRAY_47=47, TRAY_04=04, TRAY_48=48, TRAY_01=01, TRAY_45=45, TRAY_02=02, TRAY_46=46, TRAY_43=43, TRAY_44=44, TRAY_30=30, TRAY_31=31, TRAY_38=38, TRAY_39=39, TRAY_36=36, TRAY_37=37, TRAY_34=34, TRAY_35=35, TRAY_32=32, TRAY_33=33, TRAY_29=29, TRAY_20=20, TRAY_60=60, TRAY_27=27, TRAY_28=28, TRAY_25=25, TRAY_26=26, TRAY_23=23, TRAY_24=24, TRAY_21=21, TRAY_22=22, TRAY_18=18, TRAY_19=19, TRAY_52=52, TRAY_53=53, TRAY_50=50, TRAY_51=51, TRAY_16=16, TRAY_17=17, TRAY_14=14, TRAY_58=58, TRAY_15=15, TRAY_59=59, TRAY_12=12, TRAY_56=56, TRAY_13=13, TRAY_57=57, TRAY_10=10, TRAY_54=54, TRAY_11=11, TRAY_55=55}
+2019-08-20 19:14:54 INFO  EmployeePage:754 - hashMessage containsKey TRAY_03: true
+2019-08-20 19:14:54 INFO  EmployeePage:858 - ========================================
+2019-08-20 19:14:54 INFO  EmployeePage:1159 - portId: COM3
+2019-08-20 19:14:54 INFO  EmployeePage:861 - Start sending message
+2019-08-20 19:14:54 INFO  EmployeePage:865 - Send message [03|]
+2019-08-20 19:14:56 INFO  EmployeePage:1201 - Receive message [121]
+2019-08-20 19:14:56 INFO  EmployeePage:1207 - MOTOR_START
+2019-08-20 19:14:57 INFO  EmployeePage:1201 - Receive message [122]
+2019-08-20 19:14:57 INFO  EmployeePage:1210 - MOTOR_STOP
+2019-08-20 19:15:24 INFO  EmployeePage:774 - resultValue: -1
+2019-08-20 19:15:58 INFO  EmployeePage:822 - Complete with resultValue = -1
+2019-08-20 19:18:45 INFO  LoginPage:547 - ************************************************************
+2019-08-20 19:18:45 INFO  LoginPage:548 - ************************************************************
+2019-08-20 19:18:45 INFO  LoginPage:549 - ************************************************************
+2019-08-20 19:18:45 INFO  LoginPage:550 - ************************************************************
+2019-08-20 19:18:45 INFO  LoginPage:551 - Starting iTool app.
+2019-08-20 19:18:45 INFO  LoginPage:552 - companyCode: VM-8
+2019-08-20 19:18:45 INFO  LoginPage:553 - companyCodeUH: Optiwell
+2019-08-20 19:18:45 INFO  LoginPage:554 - machineCode: VM-8
+2019-08-20 19:18:45 INFO  LoginPage:557 - mDbHost: localhost
+2019-08-20 19:18:45 INFO  LoginPage:558 - mDbUser: admin
+2019-08-20 19:18:45 INFO  LoginPage:559 - mDbPwds: 1qa
+2019-08-20 19:18:45 INFO  LoginPage:560 - mDbName: iTools_v1p0
+2019-08-20 19:18:45 INFO  LoginPage:561 - mDbPort: 3306
+2019-08-20 19:18:45 INFO  LoginPage:562 - Database version: v1p0 - 2018-08-11 13:02:35
+2019-08-20 19:18:45 INFO  LoginPage:564 - Last Sync: 2019-08-20 19:13:49
+2019-08-20 19:18:45 INFO  LoginPage:568 - connectToHost: OK
+2019-08-20 19:18:46 INFO  LoginPage:582 - App Version: 1.0
+2019-08-20 19:18:47 INFO  EmailUtils:57 - mail.tqteam.net25itool_app@tqteam.net1qazxsw2!A
+2019-08-20 19:18:52 INFO  LoginPage:593 - checkEmailConfig: true
+2019-08-20 19:18:53 INFO  LoginPage:378 - ========================================
+2019-08-20 19:18:53 INFO  LoginPage:379 - Start syncing thread - 6C0LKE9X
+2019-08-20 19:18:53 INFO  LoginPage:380 - ========================================
+2019-08-20 19:18:53 INFO  SyncController:64 - Start SyncHostToLocal
+2019-08-20 19:18:54 INFO  SyncController:72 - SyncHostToLocal_Assessor: insertAssessor: 95
+2019-08-20 19:18:54 INFO  SyncController:80 - SyncHostToLocal_RoleAssessor: insertRoleAssessor: 97
+2019-08-20 19:18:54 INFO  SyncController:88 - SyncHostToLocal_Machine: insertMachine: 8
+2019-08-20 19:18:54 INFO  SyncController:96 - SyncHostToLocal_Company: insertCompany: 7
+2019-08-20 19:18:54 INFO  SyncController:104 - SyncHostToLocal_CompanyMachine: insertCompanyMachine: 8
+2019-08-20 19:18:54 INFO  SyncController:112 - SyncHostToLocal_Tools: insertTools: 392
+2019-08-20 19:18:54 INFO  SyncController:116 - End SyncHostToLocal: 0s
+2019-08-20 19:18:54 INFO  LoginPage:383 - ========================================
+2019-08-20 19:18:54 INFO  LoginPage:384 - End syncing thread - 6C0LKE9X
+2019-08-20 19:18:54 INFO  LoginPage:385 - ========================================
+2019-08-20 19:18:59 INFO  LoginPage:261 - Login with username: quann
+2019-08-20 19:18:59 INFO  LoginController:45 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin, IsLocked FROM Assessor where Assessor.IsActive = 1 and Assessor.UserName='quann' and (Password=md5('123456') or LastPassword=md5('123456')) and MachineCode like '%VM-8%';
+2019-08-20 19:18:59 INFO  LoginPage:265 - Login OK
+2019-08-20 19:18:59 INFO  LoginController:200 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'VM-8' and assessor.UserName= 'quann'
+2019-08-20 19:18:59 INFO  LoginPage:281 - listRoles: [Roles [roleName=Emp]]
+2019-08-20 19:18:59 INFO  LoginPage:293 - Show EmployeePage
+2019-08-20 19:18:59 INFO  EmployeeController:161 -  select tools.ToolId, tools.ToolCode ,  toolsmachineTray.Quantity, toolsmachineTray.TrayIndex, toolsmachineTray.Machinecode  from tools inner join toolsmachineTray on tools.ToolCode = toolsmachineTray.ToolCode  where tools.IsActive = '1' and toolsmachineTray.MachineCode = 'VM-8';
+2019-08-20 19:18:59 INFO  EmployeeController:204 - {1015-6.0=[[TRAY_01, 1], [TRAY_01, 1], [TRAY_03, 1], [TRAY_03, 1]]}
+2019-08-20 19:18:59 INFO  EmployeeController:218 -  select tools.ToolCode from tools where tools.IsActive='1' and tools.companyCode = 'VM-8';
+2019-08-20 19:18:59 INFO  EmployeeController:238 - {}
+2019-08-20 19:18:59 INFO  EmployeeController:50 - select tools.ToolId, tools.ToolCode  from tools inner join toolsmachineTray on tools.ToolCode = toolsmachineTray.ToolCode  where tools.IsActive = '1' and tools.CompanyCode = 'VM-8' and toolsmachineTray.MachineCode = 'VM-8';
+2019-08-20 19:18:59 INFO  EmployeeController:71 - [Tool [toolId=696, toolName=1015-6.0], Tool [toolId=696, toolName=1015-6.0]]
+2019-08-20 19:18:59 INFO  EmployeePage:535 - listToolNames: [, 1015-6.0]
+2019-08-20 19:18:59 INFO  EmployeePage:545 - toolComboBox: [, 1015-6.0]
+2019-08-20 19:18:59 INFO  EmployeePage:187 - Init EMP_PAGE
+2019-08-20 19:18:59 INFO  EmployeePage:190 - listAllTrays: [TRAY_01, TRAY_02, TRAY_03, TRAY_04, TRAY_05, TRAY_06, TRAY_07, TRAY_08, TRAY_09, TRAY_10, TRAY_11, TRAY_12, TRAY_13, TRAY_14, TRAY_15, TRAY_16, TRAY_17, TRAY_18, TRAY_19, TRAY_20, TRAY_21, TRAY_22, TRAY_23, TRAY_24, TRAY_25, TRAY_26, TRAY_27, TRAY_28, TRAY_29, TRAY_30, TRAY_31, TRAY_32, TRAY_33, TRAY_34, TRAY_35, TRAY_36, TRAY_37, TRAY_38, TRAY_39, TRAY_40, TRAY_41, TRAY_42, TRAY_43, TRAY_44, TRAY_45, TRAY_46, TRAY_47, TRAY_48, TRAY_49, TRAY_50, TRAY_51, TRAY_52, TRAY_53, TRAY_54, TRAY_55, TRAY_56, TRAY_57, TRAY_58, TRAY_59, TRAY_60]
+2019-08-20 19:18:59 INFO  EmployeePage:196 - hashMessage: {TRAY_09=09, TRAY_07=07, TRAY_08=08, TRAY_41=41, TRAY_42=42, TRAY_40=40, TRAY_05=05, TRAY_49=49, TRAY_06=06, TRAY_03=03, TRAY_47=47, TRAY_04=04, TRAY_48=48, TRAY_01=01, TRAY_45=45, TRAY_02=02, TRAY_46=46, TRAY_43=43, TRAY_44=44, TRAY_30=30, TRAY_31=31, TRAY_38=38, TRAY_39=39, TRAY_36=36, TRAY_37=37, TRAY_34=34, TRAY_35=35, TRAY_32=32, TRAY_33=33, TRAY_29=29, TRAY_20=20, TRAY_60=60, TRAY_27=27, TRAY_28=28, TRAY_25=25, TRAY_26=26, TRAY_23=23, TRAY_24=24, TRAY_21=21, TRAY_22=22, TRAY_18=18, TRAY_19=19, TRAY_52=52, TRAY_53=53, TRAY_50=50, TRAY_51=51, TRAY_16=16, TRAY_17=17, TRAY_14=14, TRAY_58=58, TRAY_15=15, TRAY_59=59, TRAY_12=12, TRAY_56=56, TRAY_13=13, TRAY_57=57, TRAY_10=10, TRAY_54=54, TRAY_11=11, TRAY_55=55}
+2019-08-20 19:19:05 INFO  EmployeePage:728 - quann confirm: <head><style>table {    font-family: arial, sans-serif;    border: none;    width: 100%;} td, th {    text-align: left;    padding: 2px;} tr:nth-child(even) {    background-color: #dddddd;}</style></head><body><table> <tr>    <th>WO:</th>    <th>asfdsf</th>  </tr>  <tr>    <td>OP:</td>    <td>sdsa</td>  </tr>  <tr>    <td>CTID:</td>    <td>1015-6.0</td>  </tr>  <tr>    <td>Tray:</td>    <td>TRAY_03</td>  </tr>  <tr>    <td>Quantity:</td>    <td>1</td>  </tr> </table></body>
+2019-08-20 19:19:05 INFO  EmployeePage:730 - quann getTools
+2019-08-20 19:19:07 INFO  TransactionController:45 - insert into WorkingTransaction( TransactionDate, MachineCode, CompanyCode, AssessorID, WOCode, OPCode, ToolCode, TrayIndex, Quantity, UpdatedDate, TransactionStatus, TransactionType) values (now(), 'VM-8', 'VM-8', 'quann', 'asfdsf', 'sdsa', '1015-6.0', 'TRAY_03', '1', now(), 'Send request to board', 'GetTools');
+2019-08-20 19:19:07 INFO  EmployeePage:752 - Create transaction
+2019-08-20 19:19:07 INFO  EmployeePage:753 - hashMessage: {TRAY_09=09, TRAY_07=07, TRAY_08=08, TRAY_41=41, TRAY_42=42, TRAY_40=40, TRAY_05=05, TRAY_49=49, TRAY_06=06, TRAY_03=03, TRAY_47=47, TRAY_04=04, TRAY_48=48, TRAY_01=01, TRAY_45=45, TRAY_02=02, TRAY_46=46, TRAY_43=43, TRAY_44=44, TRAY_30=30, TRAY_31=31, TRAY_38=38, TRAY_39=39, TRAY_36=36, TRAY_37=37, TRAY_34=34, TRAY_35=35, TRAY_32=32, TRAY_33=33, TRAY_29=29, TRAY_20=20, TRAY_60=60, TRAY_27=27, TRAY_28=28, TRAY_25=25, TRAY_26=26, TRAY_23=23, TRAY_24=24, TRAY_21=21, TRAY_22=22, TRAY_18=18, TRAY_19=19, TRAY_52=52, TRAY_53=53, TRAY_50=50, TRAY_51=51, TRAY_16=16, TRAY_17=17, TRAY_14=14, TRAY_58=58, TRAY_15=15, TRAY_59=59, TRAY_12=12, TRAY_56=56, TRAY_13=13, TRAY_57=57, TRAY_10=10, TRAY_54=54, TRAY_11=11, TRAY_55=55}
+2019-08-20 19:19:07 INFO  EmployeePage:754 - hashMessage containsKey TRAY_03: true
+2019-08-20 19:19:07 INFO  EmployeePage:858 - ========================================
+2019-08-20 19:19:07 INFO  EmployeePage:1166 - portId: COM3
+2019-08-20 19:19:07 INFO  EmployeePage:861 - Start sending message
+2019-08-20 19:19:07 ERROR EmployeePage:763 - executeAction exeoption: For input string: "03|"
+2019-08-20 19:19:07 INFO  EmployeePage:822 - Complete with resultValue = 0
+2019-08-20 19:35:26 INFO  LoginPage:547 - ************************************************************
+2019-08-20 19:35:26 INFO  LoginPage:548 - ************************************************************
+2019-08-20 19:35:26 INFO  LoginPage:549 - ************************************************************
+2019-08-20 19:35:26 INFO  LoginPage:550 - ************************************************************
+2019-08-20 19:35:26 INFO  LoginPage:551 - Starting iTool app.
+2019-08-20 19:35:26 INFO  LoginPage:552 - companyCode: VM-8
+2019-08-20 19:35:26 INFO  LoginPage:553 - companyCodeUH: Optiwell
+2019-08-20 19:35:26 INFO  LoginPage:554 - machineCode: VM-8
+2019-08-20 19:35:27 INFO  LoginPage:557 - mDbHost: localhost
+2019-08-20 19:35:27 INFO  LoginPage:558 - mDbUser: admin
+2019-08-20 19:35:27 INFO  LoginPage:559 - mDbPwds: 1qa
+2019-08-20 19:35:27 INFO  LoginPage:560 - mDbName: iTools_v1p0
+2019-08-20 19:35:27 INFO  LoginPage:561 - mDbPort: 3306
+2019-08-20 19:35:27 INFO  LoginPage:562 - Database version: v1p0 - 2018-08-11 13:02:35
+2019-08-20 19:35:27 INFO  LoginPage:564 - Last Sync: 2019-08-20 19:18:54
+2019-08-20 19:35:27 INFO  LoginPage:568 - connectToHost: OK
+2019-08-20 19:35:28 INFO  LoginPage:582 - App Version: 1.0
+2019-08-20 19:35:29 INFO  EmailUtils:57 - mail.tqteam.net25itool_app@tqteam.net1qazxsw2!A
+2019-08-20 19:35:34 INFO  LoginPage:593 - checkEmailConfig: true
+2019-08-20 19:35:35 INFO  LoginPage:378 - ========================================
+2019-08-20 19:35:35 INFO  LoginPage:379 - Start syncing thread - 6NTQYK1W
+2019-08-20 19:35:35 INFO  LoginPage:380 - ========================================
+2019-08-20 19:35:35 INFO  SyncController:64 - Start SyncHostToLocal
+2019-08-20 19:35:35 INFO  SyncController:72 - SyncHostToLocal_Assessor: insertAssessor: 95
+2019-08-20 19:35:35 INFO  SyncController:80 - SyncHostToLocal_RoleAssessor: insertRoleAssessor: 97
+2019-08-20 19:35:35 INFO  SyncController:88 - SyncHostToLocal_Machine: insertMachine: 8
+2019-08-20 19:35:35 INFO  SyncController:96 - SyncHostToLocal_Company: insertCompany: 7
+2019-08-20 19:35:35 INFO  SyncController:104 - SyncHostToLocal_CompanyMachine: insertCompanyMachine: 8
+2019-08-20 19:35:35 INFO  SyncController:112 - SyncHostToLocal_Tools: insertTools: 392
+2019-08-20 19:35:35 INFO  SyncController:116 - End SyncHostToLocal: 0s
+2019-08-20 19:35:35 INFO  LoginPage:383 - ========================================
+2019-08-20 19:35:35 INFO  LoginPage:384 - End syncing thread - 6NTQYK1W
+2019-08-20 19:35:35 INFO  LoginPage:385 - ========================================
+2019-08-20 19:35:39 INFO  LoginPage:261 - Login with username: quann
+2019-08-20 19:35:39 INFO  LoginController:45 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin, IsLocked FROM Assessor where Assessor.IsActive = 1 and Assessor.UserName='quann' and (Password=md5('123456') or LastPassword=md5('123456')) and MachineCode like '%VM-8%';
+2019-08-20 19:35:39 INFO  LoginPage:265 - Login OK
+2019-08-20 19:35:39 INFO  LoginController:200 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'VM-8' and assessor.UserName= 'quann'
+2019-08-20 19:35:39 INFO  LoginPage:281 - listRoles: [Roles [roleName=Emp]]
+2019-08-20 19:35:39 INFO  LoginPage:293 - Show EmployeePage
+2019-08-20 19:35:39 INFO  EmployeeController:161 -  select tools.ToolId, tools.ToolCode ,  toolsmachineTray.Quantity, toolsmachineTray.TrayIndex, toolsmachineTray.Machinecode  from tools inner join toolsmachineTray on tools.ToolCode = toolsmachineTray.ToolCode  where tools.IsActive = '1' and toolsmachineTray.MachineCode = 'VM-8';
+2019-08-20 19:35:39 INFO  EmployeeController:204 - {1015-6.0=[[TRAY_01, 1], [TRAY_01, 1], [TRAY_03, 1], [TRAY_03, 1]]}
+2019-08-20 19:35:39 INFO  EmployeeController:218 -  select tools.ToolCode from tools where tools.IsActive='1' and tools.companyCode = 'VM-8';
+2019-08-20 19:35:39 INFO  EmployeeController:238 - {}
+2019-08-20 19:35:39 INFO  EmployeeController:50 - select tools.ToolId, tools.ToolCode  from tools inner join toolsmachineTray on tools.ToolCode = toolsmachineTray.ToolCode  where tools.IsActive = '1' and tools.CompanyCode = 'VM-8' and toolsmachineTray.MachineCode = 'VM-8';
+2019-08-20 19:35:39 INFO  EmployeeController:71 - [Tool [toolId=696, toolName=1015-6.0], Tool [toolId=696, toolName=1015-6.0]]
+2019-08-20 19:35:39 INFO  EmployeePage:535 - listToolNames: [, 1015-6.0]
+2019-08-20 19:35:39 INFO  EmployeePage:545 - toolComboBox: [, 1015-6.0]
+2019-08-20 19:35:39 INFO  EmployeePage:187 - Init EMP_PAGE
+2019-08-20 19:35:39 INFO  EmployeePage:190 - listAllTrays: [TRAY_01, TRAY_02, TRAY_03, TRAY_04, TRAY_05, TRAY_06, TRAY_07, TRAY_08, TRAY_09, TRAY_10, TRAY_11, TRAY_12, TRAY_13, TRAY_14, TRAY_15, TRAY_16, TRAY_17, TRAY_18, TRAY_19, TRAY_20, TRAY_21, TRAY_22, TRAY_23, TRAY_24, TRAY_25, TRAY_26, TRAY_27, TRAY_28, TRAY_29, TRAY_30, TRAY_31, TRAY_32, TRAY_33, TRAY_34, TRAY_35, TRAY_36, TRAY_37, TRAY_38, TRAY_39, TRAY_40, TRAY_41, TRAY_42, TRAY_43, TRAY_44, TRAY_45, TRAY_46, TRAY_47, TRAY_48, TRAY_49, TRAY_50, TRAY_51, TRAY_52, TRAY_53, TRAY_54, TRAY_55, TRAY_56, TRAY_57, TRAY_58, TRAY_59, TRAY_60]
+2019-08-20 19:35:39 INFO  EmployeePage:196 - hashMessage: {TRAY_09=09, TRAY_07=07, TRAY_08=08, TRAY_41=41, TRAY_42=42, TRAY_40=40, TRAY_05=05, TRAY_49=49, TRAY_06=06, TRAY_03=03, TRAY_47=47, TRAY_04=04, TRAY_48=48, TRAY_01=01, TRAY_45=45, TRAY_02=02, TRAY_46=46, TRAY_43=43, TRAY_44=44, TRAY_30=30, TRAY_31=31, TRAY_38=38, TRAY_39=39, TRAY_36=36, TRAY_37=37, TRAY_34=34, TRAY_35=35, TRAY_32=32, TRAY_33=33, TRAY_29=29, TRAY_20=20, TRAY_60=60, TRAY_27=27, TRAY_28=28, TRAY_25=25, TRAY_26=26, TRAY_23=23, TRAY_24=24, TRAY_21=21, TRAY_22=22, TRAY_18=18, TRAY_19=19, TRAY_52=52, TRAY_53=53, TRAY_50=50, TRAY_51=51, TRAY_16=16, TRAY_17=17, TRAY_14=14, TRAY_58=58, TRAY_15=15, TRAY_59=59, TRAY_12=12, TRAY_56=56, TRAY_13=13, TRAY_57=57, TRAY_10=10, TRAY_54=54, TRAY_11=11, TRAY_55=55}
+2019-08-20 19:35:45 INFO  EmployeePage:728 - quann confirm: <head><style>table {    font-family: arial, sans-serif;    border: none;    width: 100%;} td, th {    text-align: left;    padding: 2px;} tr:nth-child(even) {    background-color: #dddddd;}</style></head><body><table> <tr>    <th>WO:</th>    <th>sdfs</th>  </tr>  <tr>    <td>OP:</td>    <td>adf</td>  </tr>  <tr>    <td>CTID:</td>    <td>1015-6.0</td>  </tr>  <tr>    <td>Tray:</td>    <td>TRAY_03</td>  </tr>  <tr>    <td>Quantity:</td>    <td>1</td>  </tr> </table></body>
+2019-08-20 19:35:45 INFO  EmployeePage:730 - quann getTools
+2019-08-20 19:35:47 INFO  TransactionController:45 - insert into WorkingTransaction( TransactionDate, MachineCode, CompanyCode, AssessorID, WOCode, OPCode, ToolCode, TrayIndex, Quantity, UpdatedDate, TransactionStatus, TransactionType) values (now(), 'VM-8', 'VM-8', 'quann', 'sdfs', 'adf', '1015-6.0', 'TRAY_03', '1', now(), 'Send request to board', 'GetTools');
+2019-08-20 19:35:47 INFO  EmployeePage:752 - Create transaction
+2019-08-20 19:35:47 INFO  EmployeePage:753 - hashMessage: {TRAY_09=09, TRAY_07=07, TRAY_08=08, TRAY_41=41, TRAY_42=42, TRAY_40=40, TRAY_05=05, TRAY_49=49, TRAY_06=06, TRAY_03=03, TRAY_47=47, TRAY_04=04, TRAY_48=48, TRAY_01=01, TRAY_45=45, TRAY_02=02, TRAY_46=46, TRAY_43=43, TRAY_44=44, TRAY_30=30, TRAY_31=31, TRAY_38=38, TRAY_39=39, TRAY_36=36, TRAY_37=37, TRAY_34=34, TRAY_35=35, TRAY_32=32, TRAY_33=33, TRAY_29=29, TRAY_20=20, TRAY_60=60, TRAY_27=27, TRAY_28=28, TRAY_25=25, TRAY_26=26, TRAY_23=23, TRAY_24=24, TRAY_21=21, TRAY_22=22, TRAY_18=18, TRAY_19=19, TRAY_52=52, TRAY_53=53, TRAY_50=50, TRAY_51=51, TRAY_16=16, TRAY_17=17, TRAY_14=14, TRAY_58=58, TRAY_15=15, TRAY_59=59, TRAY_12=12, TRAY_56=56, TRAY_13=13, TRAY_57=57, TRAY_10=10, TRAY_54=54, TRAY_11=11, TRAY_55=55}
+2019-08-20 19:35:47 INFO  EmployeePage:754 - hashMessage containsKey TRAY_03: true
+2019-08-20 19:35:47 INFO  EmployeePage:858 - ========================================
+2019-08-20 19:35:47 INFO  EmployeePage:1159 - portId: COM3
+2019-08-20 19:35:47 INFO  EmployeePage:861 - Start sending message
+2019-08-20 19:35:47 INFO  EmployeePage:865 - Send message [125,03|]
+2019-08-20 19:35:49 INFO  EmployeePage:1201 - Receive message [121]
+2019-08-20 19:35:49 INFO  EmployeePage:1207 - MOTOR_START
+2019-08-20 19:35:50 INFO  EmployeePage:1201 - Receive message [122]
+2019-08-20 19:35:50 INFO  EmployeePage:1210 - MOTOR_STOP
+2019-08-20 19:36:17 INFO  EmployeePage:774 - resultValue: -1
+2019-08-20 19:37:23 INFO  EmployeePage:822 - Complete with resultValue = -1
+2019-08-20 19:37:31 INFO  EmployeePage:728 - quann confirm: <head><style>table {    font-family: arial, sans-serif;    border: none;    width: 100%;} td, th {    text-align: left;    padding: 2px;} tr:nth-child(even) {    background-color: #dddddd;}</style></head><body><table> <tr>    <th>WO:</th>    <th>qadeqw</th>  </tr>  <tr>    <td>OP:</td>    <td>?a</td>  </tr>  <tr>    <td>CTID:</td>    <td>1015-6.0</td>  </tr>  <tr>    <td>Tray:</td>    <td>TRAY_03</td>  </tr>  <tr>    <td>Quantity:</td>    <td>1</td>  </tr> </table></body>
+2019-08-20 19:37:31 INFO  EmployeePage:730 - quann getTools
+2019-08-20 19:37:33 INFO  TransactionController:45 - insert into WorkingTransaction( TransactionDate, MachineCode, CompanyCode, AssessorID, WOCode, OPCode, ToolCode, TrayIndex, Quantity, UpdatedDate, TransactionStatus, TransactionType) values (now(), 'VM-8', 'VM-8', 'quann', 'qadeqw', '?a', '1015-6.0', 'TRAY_03', '1', now(), 'Send request to board', 'GetTools');
+2019-08-20 19:37:33 INFO  EmployeePage:752 - Create transaction
+2019-08-20 19:37:33 INFO  EmployeePage:753 - hashMessage: {TRAY_09=09, TRAY_07=07, TRAY_08=08, TRAY_41=41, TRAY_42=42, TRAY_40=40, TRAY_05=05, TRAY_49=49, TRAY_06=06, TRAY_03=03, TRAY_47=47, TRAY_04=04, TRAY_48=48, TRAY_01=01, TRAY_45=45, TRAY_02=02, TRAY_46=46, TRAY_43=43, TRAY_44=44, TRAY_30=30, TRAY_31=31, TRAY_38=38, TRAY_39=39, TRAY_36=36, TRAY_37=37, TRAY_34=34, TRAY_35=35, TRAY_32=32, TRAY_33=33, TRAY_29=29, TRAY_20=20, TRAY_60=60, TRAY_27=27, TRAY_28=28, TRAY_25=25, TRAY_26=26, TRAY_23=23, TRAY_24=24, TRAY_21=21, TRAY_22=22, TRAY_18=18, TRAY_19=19, TRAY_52=52, TRAY_53=53, TRAY_50=50, TRAY_51=51, TRAY_16=16, TRAY_17=17, TRAY_14=14, TRAY_58=58, TRAY_15=15, TRAY_59=59, TRAY_12=12, TRAY_56=56, TRAY_13=13, TRAY_57=57, TRAY_10=10, TRAY_54=54, TRAY_11=11, TRAY_55=55}
+2019-08-20 19:37:33 INFO  EmployeePage:754 - hashMessage containsKey TRAY_03: true
+2019-08-20 19:37:33 INFO  EmployeePage:858 - ========================================
+2019-08-20 19:37:33 INFO  EmployeePage:1159 - portId: COM3
+2019-08-20 19:37:33 INFO  EmployeePage:861 - Start sending message
+2019-08-20 19:37:33 INFO  EmployeePage:865 - Send message [125,03|]
+2019-08-20 19:37:35 INFO  EmployeePage:1201 - Receive message [121]
+2019-08-20 19:37:35 INFO  EmployeePage:1207 - MOTOR_START
+2019-08-20 19:37:36 INFO  EmployeePage:1201 - Receive message [122]
+2019-08-20 19:37:36 INFO  EmployeePage:1210 - MOTOR_STOP
+2019-08-20 19:38:03 INFO  EmployeePage:774 - resultValue: -1
+2019-08-20 19:38:05 INFO  EmployeePage:822 - Complete with resultValue = -1
+2019-08-20 19:38:07 INFO  EmployeePage:265 - quann logout.
+2019-08-20 19:38:11 INFO  LoginPage:261 - Login with username: quann
+2019-08-20 19:38:11 INFO  LoginController:45 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin, IsLocked FROM Assessor where Assessor.IsActive = 1 and Assessor.UserName='quann' and (Password=md5('123456') or LastPassword=md5('123456')) and MachineCode like '%VM-8%';
+2019-08-20 19:38:11 INFO  LoginPage:265 - Login OK
+2019-08-20 19:38:11 INFO  LoginController:200 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'VM-8' and assessor.UserName= 'quann'
+2019-08-20 19:38:11 INFO  LoginPage:281 - listRoles: [Roles [roleName=Emp]]
+2019-08-20 19:38:11 INFO  LoginPage:293 - Show EmployeePage
+2019-08-20 19:38:11 INFO  EmployeeController:161 -  select tools.ToolId, tools.ToolCode ,  toolsmachineTray.Quantity, toolsmachineTray.TrayIndex, toolsmachineTray.Machinecode  from tools inner join toolsmachineTray on tools.ToolCode = toolsmachineTray.ToolCode  where tools.IsActive = '1' and toolsmachineTray.MachineCode = 'VM-8';
+2019-08-20 19:38:11 INFO  EmployeeController:204 - {1015-6.0=[[TRAY_01, 1], [TRAY_01, 1]]}
+2019-08-20 19:38:11 INFO  EmployeeController:218 -  select tools.ToolCode from tools where tools.IsActive='1' and tools.companyCode = 'VM-8';
+2019-08-20 19:38:11 INFO  EmployeeController:238 - {}
+2019-08-20 19:38:11 INFO  EmployeeController:50 - select tools.ToolId, tools.ToolCode  from tools inner join toolsmachineTray on tools.ToolCode = toolsmachineTray.ToolCode  where tools.IsActive = '1' and tools.CompanyCode = 'VM-8' and toolsmachineTray.MachineCode = 'VM-8';
+2019-08-20 19:38:11 INFO  EmployeeController:71 - [Tool [toolId=696, toolName=1015-6.0], Tool [toolId=696, toolName=1015-6.0]]
+2019-08-20 19:38:11 INFO  EmployeePage:535 - listToolNames: [, 1015-6.0]
+2019-08-20 19:38:11 INFO  EmployeePage:545 - toolComboBox: [, 1015-6.0]
+2019-08-20 19:38:11 INFO  EmployeePage:187 - Init EMP_PAGE
+2019-08-20 19:38:11 INFO  EmployeePage:190 - listAllTrays: [TRAY_01, TRAY_02, TRAY_03, TRAY_04, TRAY_05, TRAY_06, TRAY_07, TRAY_08, TRAY_09, TRAY_10, TRAY_11, TRAY_12, TRAY_13, TRAY_14, TRAY_15, TRAY_16, TRAY_17, TRAY_18, TRAY_19, TRAY_20, TRAY_21, TRAY_22, TRAY_23, TRAY_24, TRAY_25, TRAY_26, TRAY_27, TRAY_28, TRAY_29, TRAY_30, TRAY_31, TRAY_32, TRAY_33, TRAY_34, TRAY_35, TRAY_36, TRAY_37, TRAY_38, TRAY_39, TRAY_40, TRAY_41, TRAY_42, TRAY_43, TRAY_44, TRAY_45, TRAY_46, TRAY_47, TRAY_48, TRAY_49, TRAY_50, TRAY_51, TRAY_52, TRAY_53, TRAY_54, TRAY_55, TRAY_56, TRAY_57, TRAY_58, TRAY_59, TRAY_60]
+2019-08-20 19:38:11 INFO  EmployeePage:196 - hashMessage: {TRAY_09=09, TRAY_07=07, TRAY_08=08, TRAY_41=41, TRAY_42=42, TRAY_40=40, TRAY_05=05, TRAY_49=49, TRAY_06=06, TRAY_03=03, TRAY_47=47, TRAY_04=04, TRAY_48=48, TRAY_01=01, TRAY_45=45, TRAY_02=02, TRAY_46=46, TRAY_43=43, TRAY_44=44, TRAY_30=30, TRAY_31=31, TRAY_38=38, TRAY_39=39, TRAY_36=36, TRAY_37=37, TRAY_34=34, TRAY_35=35, TRAY_32=32, TRAY_33=33, TRAY_29=29, TRAY_20=20, TRAY_60=60, TRAY_27=27, TRAY_28=28, TRAY_25=25, TRAY_26=26, TRAY_23=23, TRAY_24=24, TRAY_21=21, TRAY_22=22, TRAY_18=18, TRAY_19=19, TRAY_52=52, TRAY_53=53, TRAY_50=50, TRAY_51=51, TRAY_16=16, TRAY_17=17, TRAY_14=14, TRAY_58=58, TRAY_15=15, TRAY_59=59, TRAY_12=12, TRAY_56=56, TRAY_13=13, TRAY_57=57, TRAY_10=10, TRAY_54=54, TRAY_11=11, TRAY_55=55}
+2019-08-20 19:38:16 INFO  EmployeePage:728 - quann confirm: <head><style>table {    font-family: arial, sans-serif;    border: none;    width: 100%;} td, th {    text-align: left;    padding: 2px;} tr:nth-child(even) {    background-color: #dddddd;}</style></head><body><table> <tr>    <th>WO:</th>    <th>xfgsd</th>  </tr>  <tr>    <td>OP:</td>    <td>gs</td>  </tr>  <tr>    <td>CTID:</td>    <td>1015-6.0</td>  </tr>  <tr>    <td>Tray:</td>    <td>TRAY_01</td>  </tr>  <tr>    <td>Quantity:</td>    <td>1</td>  </tr> </table></body>
+2019-08-20 19:38:16 INFO  EmployeePage:730 - quann getTools
+2019-08-20 19:38:18 INFO  TransactionController:45 - insert into WorkingTransaction( TransactionDate, MachineCode, CompanyCode, AssessorID, WOCode, OPCode, ToolCode, TrayIndex, Quantity, UpdatedDate, TransactionStatus, TransactionType) values (now(), 'VM-8', 'VM-8', 'quann', 'xfgsd', 'gs', '1015-6.0', 'TRAY_01', '1', now(), 'Send request to board', 'GetTools');
+2019-08-20 19:38:18 INFO  EmployeePage:752 - Create transaction
+2019-08-20 19:38:18 INFO  EmployeePage:753 - hashMessage: {TRAY_09=09, TRAY_07=07, TRAY_08=08, TRAY_41=41, TRAY_42=42, TRAY_40=40, TRAY_05=05, TRAY_49=49, TRAY_06=06, TRAY_03=03, TRAY_47=47, TRAY_04=04, TRAY_48=48, TRAY_01=01, TRAY_45=45, TRAY_02=02, TRAY_46=46, TRAY_43=43, TRAY_44=44, TRAY_30=30, TRAY_31=31, TRAY_38=38, TRAY_39=39, TRAY_36=36, TRAY_37=37, TRAY_34=34, TRAY_35=35, TRAY_32=32, TRAY_33=33, TRAY_29=29, TRAY_20=20, TRAY_60=60, TRAY_27=27, TRAY_28=28, TRAY_25=25, TRAY_26=26, TRAY_23=23, TRAY_24=24, TRAY_21=21, TRAY_22=22, TRAY_18=18, TRAY_19=19, TRAY_52=52, TRAY_53=53, TRAY_50=50, TRAY_51=51, TRAY_16=16, TRAY_17=17, TRAY_14=14, TRAY_58=58, TRAY_15=15, TRAY_59=59, TRAY_12=12, TRAY_56=56, TRAY_13=13, TRAY_57=57, TRAY_10=10, TRAY_54=54, TRAY_11=11, TRAY_55=55}
+2019-08-20 19:38:18 INFO  EmployeePage:754 - hashMessage containsKey TRAY_01: true
+2019-08-20 19:38:18 INFO  EmployeePage:858 - ========================================
+2019-08-20 19:38:18 INFO  EmployeePage:1159 - portId: COM3
+2019-08-20 19:38:18 INFO  EmployeePage:861 - Start sending message
+2019-08-20 19:38:18 INFO  EmployeePage:865 - Send message [125,01|]
+2019-08-20 19:38:20 INFO  EmployeePage:1201 - Receive message [121]
+2019-08-20 19:38:20 INFO  EmployeePage:1207 - MOTOR_START
+2019-08-20 19:38:21 INFO  EmployeePage:1201 - Receive message [122]
+2019-08-20 19:38:21 INFO  EmployeePage:1210 - MOTOR_STOP
+2019-08-20 19:38:22 INFO  EmployeePage:1201 - Receive message [123]
+2019-08-20 19:38:22 INFO  EmployeePage:1213 - PRODUCT_OK
+2019-08-20 19:38:23 INFO  EmployeePage:873 - listDataReceived: [121, 122, 123]
+2019-08-20 19:38:23 INFO  TransactionController:77 - update WorkingTransaction set UpdatedDate=now(), TransactionStatus='MotorStart' where WorkingTransactionID = 1437;
+2019-08-20 19:38:23 INFO  TransactionController:77 - update WorkingTransaction set UpdatedDate=now(), TransactionStatus='MotorStop' where WorkingTransactionID = 1437;
+2019-08-20 19:38:23 INFO  TransactionController:77 - update WorkingTransaction set UpdatedDate=now(), TransactionStatus='ProductOK' where WorkingTransactionID = 1437;
+2019-08-20 19:38:23 INFO  EmployeePage:893 - Complete send and receive all messages!!!: 
+2019-08-20 19:38:23 INFO  EmployeePage:774 - resultValue: 1
+2019-08-20 19:38:23 INFO  EmployeeController:80 -  select toolsmachine.ToolsMachineID from tools inner join toolsmachine on tools.ToolCode = toolsmachine.ToolCode where tools.ToolCode = '1015-6.0' and toolsmachine.MachineCode = 'VM-8';
+2019-08-20 19:38:23 INFO  EmployeeController:99 -  select count(*) from toolsmachinetray where toolsmachinetray.ToolCode = '1015-6.0' and toolsmachinetray.TrayIndex = 'TRAY_01' and toolsmachinetray.MachineCode = 'VM-8';
+2019-08-20 19:38:23 INFO  EmployeeController:131 -  update toolsmachinetray set quantity = quantity - 1 where ToolCode = '1015-6.0' and trayIndex = 'TRAY_01' and machineCode = 'VM-8';
+2019-08-20 19:38:23 INFO  EmployeePage:786 - Completed
+2019-08-20 19:38:23 INFO  LoginController:317 - SELECT EmailAddress FROM Assessor where Assessor.UserName = 'quann' and Assessor.CompanyCode = 'VM-8';
+2019-08-20 19:38:23 INFO  LoginController:340 - SELECT FirstName, LastName FROM Assessor where Assessor.UserName = 'quann' and Assessor.CompanyCode = 'VM-8';
+2019-08-20 19:38:23 INFO  LoginController:382 - SELECT EmailAddress FROM Assessor where Assessor.UserName = 'admin';
+2019-08-20 19:38:23 INFO  LoginController:405 - select assessor.EmailAddress from roleassessor inner join assessor on roleassessor.AssessorID = assessor.AssessorID  inner join roles on roleassessor.RoleID = roles.RoleID where roles.RoleName = 'SubAdmin' and assessor.CompanyCode = 'VM-8';
+2019-08-20 19:38:25 INFO  EmployeePage:822 - Complete with resultValue = 1
+2019-08-20 19:38:25 INFO  EmployeeController:161 -  select tools.ToolId, tools.ToolCode ,  toolsmachineTray.Quantity, toolsmachineTray.TrayIndex, toolsmachineTray.Machinecode  from tools inner join toolsmachineTray on tools.ToolCode = toolsmachineTray.ToolCode  where tools.IsActive = '1' and toolsmachineTray.MachineCode = 'VM-8';
+2019-08-20 19:38:25 INFO  EmployeeController:204 - {}
+2019-08-20 19:38:28 INFO  EmailUtils:161 - quann - GETTOOL - Send Mail To quann169@gmail.com - CC: [trinh.wft@gmail.com, ] - Subject: VM-8 - VM-8: Nguyen Quan(quann) get tool notification - Message: Hi Employee Nguyen Quan(quann),
+WO: xfgsd
+OP: gs
+Tool: 1015-6.0
+Tray: TRAY_01
+Quantity: 1
+Machine no.: VM-8
+2019-08-21 14:35:15 INFO  LoginPage:547 - ************************************************************
+2019-08-21 14:35:15 INFO  LoginPage:548 - ************************************************************
+2019-08-21 14:35:15 INFO  LoginPage:549 - ************************************************************
+2019-08-21 14:35:15 INFO  LoginPage:550 - ************************************************************
+2019-08-21 14:35:15 INFO  LoginPage:551 - Starting iTool app.
+2019-08-21 14:35:15 INFO  LoginPage:552 - companyCode: DNP
+2019-08-21 14:35:15 INFO  LoginPage:553 - companyCodeUH: Optiwell
+2019-08-21 14:35:15 INFO  LoginPage:554 - machineCode: VM-6
+2019-08-21 14:35:16 INFO  LoginPage:557 - mDbHost: localhost
+2019-08-21 14:35:16 INFO  LoginPage:558 - mDbUser: admin
+2019-08-21 14:35:16 INFO  LoginPage:559 - mDbPwds: 1qa
+2019-08-21 14:35:16 INFO  LoginPage:560 - mDbName: iTools_v1p0
+2019-08-21 14:35:16 INFO  LoginPage:561 - mDbPort: 3306
+2019-08-21 14:35:16 INFO  LoginPage:562 - Database version: v1p0 - 2018-08-11 13:02:35
+2019-08-21 14:35:16 INFO  LoginPage:564 - Last Sync: 2019-08-20 19:35:35
+2019-08-21 14:35:16 INFO  LoginPage:568 - connectToHost: OK
+2019-08-21 14:35:17 INFO  LoginPage:582 - App Version: 1.0
+2019-08-21 14:35:18 INFO  EmailUtils:57 - mail.tqteam.net25itool_app@tqteam.net1qazxsw2!A
+2019-08-21 14:35:23 INFO  LoginPage:593 - checkEmailConfig: true
+2019-08-21 14:35:24 INFO  LoginPage:378 - ========================================
+2019-08-21 14:35:24 INFO  LoginPage:379 - Start syncing thread - BJU1ZSIX
+2019-08-21 14:35:24 INFO  LoginPage:380 - ========================================
+2019-08-21 14:35:24 INFO  SyncController:64 - Start SyncHostToLocal
+2019-08-21 14:35:24 INFO  SyncController:72 - SyncHostToLocal_Assessor: insertAssessor: 95
+2019-08-21 14:35:24 INFO  SyncController:80 - SyncHostToLocal_RoleAssessor: insertRoleAssessor: 97
+2019-08-21 14:35:25 INFO  SyncController:88 - SyncHostToLocal_Machine: insertMachine: 8
+2019-08-21 14:35:25 INFO  SyncController:96 - SyncHostToLocal_Company: insertCompany: 7
+2019-08-21 14:35:25 INFO  SyncController:104 - SyncHostToLocal_CompanyMachine: insertCompanyMachine: 8
+2019-08-21 14:35:25 INFO  SyncController:112 - SyncHostToLocal_Tools: insertTools: 392
+2019-08-21 14:35:25 INFO  SyncController:116 - End SyncHostToLocal: 0s
+2019-08-21 14:35:25 INFO  SyncController:120 - Start SyncLocalToHost
+2019-08-21 14:35:25 ERROR SyncController:144 - Can't write; duplicate key in table 'federated_toolsmachinetray'
+2019-08-21 14:35:25 INFO  LoginPage:383 - ========================================
+2019-08-21 14:35:25 INFO  LoginPage:384 - End syncing thread - BJU1ZSIX
+2019-08-21 14:35:25 INFO  LoginPage:385 - ========================================
+2019-08-21 14:35:29 INFO  LoginPage:261 - Login with username: quann
+2019-08-21 14:35:29 INFO  LoginController:45 - SELECT AssessorID, UserName, FirstName, LastName, CompanyCode, IsFirstTimeLogin, IsLocked FROM Assessor where Assessor.IsActive = 1 and Assessor.UserName='quann' and (Password=md5('123456') or LastPassword=md5('123456')) and MachineCode like '%VM-6%';
+2019-08-21 14:35:29 INFO  LoginPage:265 - Login OK
+2019-08-21 14:35:29 INFO  LoginController:200 - select distinct RoleName  from assessor inner join roleassessor  on assessor.AssessorID = roleassessor.AssessorID inner join roles on roles.RoleID = roleassessor.RoleID where assessor.CompanyCode = 'DNP' and assessor.UserName= 'quann'
+2019-08-21 14:35:29 INFO  LoginPage:281 - listRoles: [Roles [roleName=Emp]]
+2019-08-21 14:35:29 INFO  LoginPage:293 - Show EmployeePage
+2019-08-21 14:35:30 ERROR AdvancedEncryptionStandard:60 - COM3
+2019-08-21 14:35:30 ERROR AdvancedEncryptionStandard:61 - Input length must be multiple of 16 when decrypting with padded cipher
+2019-08-21 14:35:30 INFO  EmployeeController:161 -  select tools.ToolId, tools.ToolCode ,  toolsmachineTray.Quantity, toolsmachineTray.TrayIndex, toolsmachineTray.Machinecode  from tools inner join toolsmachineTray on tools.ToolCode = toolsmachineTray.ToolCode  where tools.IsActive = '1' and toolsmachineTray.MachineCode = 'VM-6';
+2019-08-21 14:35:30 INFO  EmployeeController:204 - {WAE303025=[[TRAY_34, 4]], WAE303100=[[TRAY_40, 2]], 1015-3.0=[[TRAY_28, 3]], WAE303020=[[TRAY_31, 4]], 1015-5.0=[[TRAY_14, 4]], ZE704010=[[TRAY_50, 5], [TRAY_50, 5]], WAE303060=[[TRAY_32, 2]], 1017-5.0=[[TRAY_26, 6]], TX304040=[[TRAY_24, 2]], TX304160=[[TRAY_51, 3]], TX304120=[[TRAY_52, 1]], TX304080=[[TRAY_56, 5], [TRAY_56, 5]], BLMP0603R-ML-TT9080=[[TRAY_07, 8], [TRAY_08, 4]], WAE303015=[[TRAY_36, 2]], ZSPM4030-05=[[TRAY_20, 4]], WAE303010=[[TRAY_39, 4]], ZE704015=[[TRAY_46, 4]], ZE704020=[[TRAY_47, 1]], TX304010=[[TRAY_41, 1]], ZSPM4040-05=[[TRAY_19, 4], [TRAY_19, 4]], LDS060=[[TRAY_23, 2]], APMT1135PDER-H2=[[TRAY_01, 10], [TRAY_09, 3]], LDS030=[[TRAY_21, 3]], 1015-2.0=[[TRAY_13, 2]], ZSPM4060-05=[[TRAY_17, 4]], TX304015=[[TRAY_57, 4]], WAE303120=[[TRAY_38, 2]], ZE704025=[[TRAY_45, 5]], 1015-6.0=[[TRAY_10, 3], [TRAY_10, 3]], 1015-2.5=[[TRAY_12, 3]], WAE303040=[[TRAY_35, 5]], ZE704100=[[TRAY_55, 3]], ZSPM4080-10=[[TRAY_30, 4]], 1015-4.0=[[TRAY_11, 5]], 1017-6.0=[[TRAY_15, 4]], WAE303160=[[TRAY_60, 3]], 1017-2.5=[[TRAY_27, 2]], 1017-4.0=[[TRAY_29, 2]], TX304020=[[TRAY_05, 1]], WAE303080=[[TRAY_37, 1]], ZE704030=[[TRAY_43, 5]], 1017-2.0=[[TRAY_25, 2]], 1015-8.0=[[TRAY_16, 4]], TX304100=[[TRAY_53, 4], [TRAY_53, 4]], TX304060=[[TRAY_59, 6]], LDS040=[[TRAY_22, 4]], WAE303030=[[TRAY_33, 5]], ZE704120=[[TRAY_54, 2]], TX304030=[[TRAY_58, 3], [TRAY_58, 3]], ZE704040=[[TRAY_44, 4]], JDMT070208R-JP4020=[[TRAY_02, 2], [TRAY_04, 7]], JDMT09T320ZDSR-JM-VP15TF=[[TRAY_03, 3]], ZE704080=[[TRAY_48, 4]]}
+2019-08-21 14:35:30 INFO  EmployeeController:218 -  select tools.ToolCode from tools where tools.IsActive='1' and tools.companyCode = 'DNP';
+2019-08-21 14:35:30 INFO  EmployeeController:238 - {}
+2019-08-21 14:35:30 INFO  EmployeeController:50 - select tools.ToolId, tools.ToolCode  from tools inner join toolsmachineTray on tools.ToolCode = toolsmachineTray.ToolCode  where tools.IsActive = '1' and tools.CompanyCode = 'DNP' and toolsmachineTray.MachineCode = 'VM-6';
+2019-08-21 14:35:30 INFO  EmployeeController:71 - []
+2019-08-21 14:35:30 INFO  EmployeePage:537 - listToolNames: []
+2019-08-21 14:35:30 INFO  EmployeePage:547 - toolComboBox: []
+2019-08-21 14:35:30 INFO  EmployeePage:189 - Init EMP_PAGE
+2019-08-21 14:35:30 INFO  EmployeePage:192 - listAllTrays: [TRAY_01, TRAY_02, TRAY_03, TRAY_04, TRAY_05, TRAY_06, TRAY_07, TRAY_08, TRAY_09, TRAY_10, TRAY_11, TRAY_12, TRAY_13, TRAY_14, TRAY_15, TRAY_16, TRAY_17, TRAY_18, TRAY_19, TRAY_20, TRAY_21, TRAY_22, TRAY_23, TRAY_24, TRAY_25, TRAY_26, TRAY_27, TRAY_28, TRAY_29, TRAY_30, TRAY_31, TRAY_32, TRAY_33, TRAY_34, TRAY_35, TRAY_36, TRAY_37, TRAY_38, TRAY_39, TRAY_40, TRAY_41, TRAY_42, TRAY_43, TRAY_44, TRAY_45, TRAY_46, TRAY_47, TRAY_48, TRAY_49, TRAY_50, TRAY_51, TRAY_52, TRAY_53, TRAY_54, TRAY_55, TRAY_56, TRAY_57, TRAY_58, TRAY_59, TRAY_60]
+2019-08-21 14:35:30 INFO  EmployeePage:198 - hashMessage: {TRAY_09=09, TRAY_07=07, TRAY_08=08, TRAY_41=41, TRAY_42=42, TRAY_40=40, TRAY_05=05, TRAY_49=49, TRAY_06=06, TRAY_03=03, TRAY_47=47, TRAY_04=04, TRAY_48=48, TRAY_01=01, TRAY_45=45, TRAY_02=02, TRAY_46=46, TRAY_43=43, TRAY_44=44, TRAY_30=30, TRAY_31=31, TRAY_38=38, TRAY_39=39, TRAY_36=36, TRAY_37=37, TRAY_34=34, TRAY_35=35, TRAY_32=32, TRAY_33=33, TRAY_29=29, TRAY_20=20, TRAY_60=60, TRAY_27=27, TRAY_28=28, TRAY_25=25, TRAY_26=26, TRAY_23=23, TRAY_24=24, TRAY_21=21, TRAY_22=22, TRAY_18=18, TRAY_19=19, TRAY_52=52, TRAY_53=53, TRAY_50=50, TRAY_51=51, TRAY_16=16, TRAY_17=17, TRAY_14=14, TRAY_58=58, TRAY_15=15, TRAY_59=59, TRAY_12=12, TRAY_56=56, TRAY_13=13, TRAY_57=57, TRAY_10=10, TRAY_54=54, TRAY_11=11, TRAY_55=55}
+2019-09-15 22:04:49 ERROR EncryptionTools:43 - keys.txt not existed
+2019-09-15 22:04:49 INFO  EncryptionTools:45 - All keys: []
+2019-09-15 22:04:49 ERROR EncryptionTools:57 - raw_data.txt not existed
+2019-09-15 22:04:49 INFO  EncryptionTools:60 - Key Value: []
+2019-09-15 22:04:49 INFO  EncryptionTools:70 - Key Value Encrypted: []
+2019-09-15 22:04:49 INFO  EncryptionTools:77 - Delete old file successfully.
+2019-09-15 22:04:49 INFO  EncryptionTools:103 - Write File Done: ./encrypted_data.txt

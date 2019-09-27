@@ -25,6 +25,7 @@ public class UserController {
 
 	MysqlConnect mysqlConnect = new MysqlConnect();
 	final static Logger logger = Logger.getLogger(UserController.class);
+	static LoginController ctlObj = new LoginController();
 
 	/**
 	 * 
@@ -222,8 +223,15 @@ public class UserController {
 			logger.info(rows + " row(s) updated!");
 			
 			if (rows > 0) {
+				String emailUser;
+				if (companyCode.contains("MFC")) {
+					emailUser = ctlObj.getEmailSubAdmin(companyCode);
+				} else {
+					emailUser = email;
+				}
 				EmailUtils emailUtils = new EmailUtils(Enum.FORGOT_PASS_PAGE, userName, companyCode, machineCode);
-				emailUtils.sendEmail(email, "New password reset", "New password: " + passwordTmp);
+				
+				emailUtils.sendEmail(emailUser, "New password reset", "New password: " + passwordTmp);
 			} else {
 				logger.warn(rows + " row(s) updated!");
 			}
@@ -242,8 +250,14 @@ public class UserController {
 			logger.info(rows + " row(s) updated!");
 			
 			if (rows > 0) {
+				String emailUser;
+				if (companyCode.contains("MFC")) {
+					emailUser = ctlObj.getEmailSubAdmin(companyCode);
+				} else {
+					emailUser = email;
+				}
 				EmailUtils emailUtils = new EmailUtils(Enum.FORGOT_PASS_PAGE, userName, companyCode, machineCode);
-				emailUtils.sendEmail(email, "New password reset", "New password: " + passwordTmp);
+				emailUtils.sendEmail(emailUser, "New password reset", "New password: " + passwordTmp);
 				return true;
 			} else {
 				logger.warn(rows + " row(s) updated!");

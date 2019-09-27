@@ -1,0 +1,6 @@
+
+COMPANY_CODE = DNP
+
+MACHINE_CODE = VM-6
+
+

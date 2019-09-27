@@ -19,5 +19,6 @@
 	</classpathentry>
 	<classpathentry kind="lib" path="lib/activation-1.1.jar"/>
 	<classpathentry kind="lib" path="lib/javax.mail-1.5.1.jar"/>
+	<classpathentry kind="lib" path="D:/OneDrive/OneDrive - Savarti Company Limited/Savarti/050_Individual/ExtProject/Release_iTools/GIT/iToolsApp/lib/RXTXcomm.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

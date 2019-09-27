@@ -313,7 +313,7 @@ public class DashboardPage extends JFrame implements ActionListener {
 						publish("Completed writing report to file...");
 
 						List<String> ccEmail = new ArrayList<>();
-						ccEmail.add("quann169@gmail.com");
+//						ccEmail.add("quann169@gmail.com");
 
 						String email = ctlObj.getEmailUser(userName);
 

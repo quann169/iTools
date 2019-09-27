@@ -462,66 +462,67 @@ public class LoginPage extends JFrame implements ActionListener {
 	 * @throws IOException
 	 */
 	public static String readFile(File file, Long fileLength) throws IOException {
-		LogController logCtl = new LogController();
-		String latestTime = logCtl.getLatestEmailLog();
-
-		DateFormat dateFormat = new SimpleDateFormat("yyyy_MM_dd_HH_mm_ss");
-		Date date = new Date();
-		String dateTime = dateFormat.format(date);
-		String outFilePath = "./log/logging_" + dateTime + ".log";
-		String line = "";
-		BufferedReader in = new BufferedReader(new java.io.FileReader(file));
-		in.skip(fileLength);
-
-		String dataLog = "";
-		int countLine = 0;
-		String lastLine = "";
-		while ((line = in.readLine()) != null) {
-			if (line.compareTo(latestTime) > 0) {
-				line = line.trim();
-				dataLog += line + "\n";
-				countLine++;
-				lastLine = line;
-				if (countLine % 1000 == 0) {
-					logger.info("Get " + countLine + " from logs");
-				}
-			}
-
-		}
-		in.close();
-
-		BufferedWriter writer = new BufferedWriter(new FileWriter(outFilePath));
-		writer.write(dataLog);
-
-		writer.close();
-
-		emailUtils.sendEmailWithAttachedFile("quann169@gmail.com",
-				companyCode + " - " + machineCode + ": ITools App Log", outFilePath);
-		// emailUtils.sendEmailWithAttachedFile("ngngoctanthuong@gmail.com",
-		// companyCode + " - " + machineCode + ": ITools App Log", outFilePath);
-		String[] dataLastLine = lastLine.split(" ");
-		String strDate = dataLastLine[0] + " " + dataLastLine[1];
-		SimpleDateFormat sdfrmt = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		sdfrmt.setLenient(false);
-		try {
-			sdfrmt.parse(strDate);
-			boolean addLog = logCtl.updateLatestEmailLog(strDate);
-			if (addLog) {
-				logger.info("Update " + strDate + " to MasterLog successfully.");
-			}
-
-		} catch (ParseException e) {
-			logger.error(strDate + ": erorr date format");
-		}
-
-		try {
-			Files.deleteIfExists(Paths.get(outFilePath));
-			logger.info("Delete log file successfully.");
-		} catch (Exception e) {
-			logger.error(strDate + ": Cannot delete log file");
-		}
-
-		return outFilePath;
+//		LogController logCtl = new LogController();
+//		String latestTime = logCtl.getLatestEmailLog();
+//
+//		DateFormat dateFormat = new SimpleDateFormat("yyyy_MM_dd_HH_mm_ss");
+//		Date date = new Date();
+//		String dateTime = dateFormat.format(date);
+//		String outFilePath = "./log/logging_" + dateTime + ".log";
+//		String line = "";
+//		BufferedReader in = new BufferedReader(new java.io.FileReader(file));
+//		in.skip(fileLength);
+//
+//		String dataLog = "";
+//		int countLine = 0;
+//		String lastLine = "";
+//		while ((line = in.readLine()) != null) {
+//			if (line.compareTo(latestTime) > 0) {
+//				line = line.trim();
+//				dataLog += line + "\n";
+//				countLine++;
+//				lastLine = line;
+//				if (countLine % 1000 == 0) {
+//					logger.info("Get " + countLine + " from logs");
+//				}
+//			}
+//
+//		}
+//		in.close();
+//
+//		BufferedWriter writer = new BufferedWriter(new FileWriter(outFilePath));
+//		writer.write(dataLog);
+//
+//		writer.close();
+//
+//		emailUtils.sendEmailWithAttachedFile("quann169@gmail.com",
+//				companyCode + " - " + machineCode + ": ITools App Log", outFilePath);
+//		// emailUtils.sendEmailWithAttachedFile("ngngoctanthuong@gmail.com",
+//		// companyCode + " - " + machineCode + ": ITools App Log", outFilePath);
+//		String[] dataLastLine = lastLine.split(" ");
+//		String strDate = dataLastLine[0] + " " + dataLastLine[1];
+//		SimpleDateFormat sdfrmt = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//		sdfrmt.setLenient(false);
+//		try {
+//			sdfrmt.parse(strDate);
+//			boolean addLog = logCtl.updateLatestEmailLog(strDate);
+//			if (addLog) {
+//				logger.info("Update " + strDate + " to MasterLog successfully.");
+//			}
+//
+//		} catch (ParseException e) {
+//			logger.error(strDate + ": erorr date format");
+//		}
+//
+//		try {
+//			Files.deleteIfExists(Paths.get(outFilePath));
+//			logger.info("Delete log file successfully.");
+//		} catch (Exception e) {
+//			logger.error(strDate + ": Cannot delete log file");
+//		}
+//
+//		return outFilePath;
+		return "";
 	}
 
 	/**

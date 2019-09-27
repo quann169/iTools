@@ -656,9 +656,10 @@ public class PutInTakeOverPage extends JFrame implements ActionListener {
 										machineCode);
 								List<String> listCCEmail = new ArrayList<>();
 								listCCEmail.add(ctlObj.getEmailAdmin());
+								String fullName = ctlObj.getFullNameUser(companyCode, userName);
 								emailUtils.sendEmail(email, listCCEmail,
 										companyCode + " - " + machineCode + " " + pageType + " notification",
-										"Hi " + userName + ",\n\nTool: " + ctid + "\nTray: " + tray + "\nNew Quantity: "
+										"Hi " + fullName + "(" + userName + "),\n\nTool: " + ctid + "\nTray: " + tray + "\nNew Quantity: "
 												+ quantity);
 
 							}

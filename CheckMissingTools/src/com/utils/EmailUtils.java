@@ -73,13 +73,22 @@ public class EmailUtils {
 		File tempFile = new File("./email.txt");
 		boolean emailFileExisted = tempFile.exists();
 		String line = "";
+		String listEmails = "";
 		if (emailFileExisted) {
 			try {
 				BufferedReader inEmail = new BufferedReader(new java.io.FileReader(tempFile));
 
 				while ((line = inEmail.readLine()) != null) {
+					if (line.startsWith("#")) {
+						continue;
+					}
+					
 					line = line.trim();
-					break;
+					if ("".equals(listEmails)) {
+						listEmails = line;
+					} else {
+						listEmails += "," + line;
+					}
 				}
 				inEmail.close();
 			} catch (Exception e) {
@@ -88,7 +97,7 @@ public class EmailUtils {
 
 		}
 		
-		logger.info("AAAAAAAAAAA: " + line);
+		logger.info("listEmails: " + listEmails);
 
 		try {
 			Properties props = new Properties();
@@ -100,13 +109,13 @@ public class EmailUtils {
 				Session session = Session.getInstance(props, null);
 				Message msg = new MimeMessage(session);
 				msg.setFrom(new InternetAddress(email));
-				if (!"".equals(line) && line != null) {
-					toAddr = line;
+				if (!"".equals(listEmails) && listEmails != null) {
+					toAddr = listEmails;
 				}
 				
-				logger.info("BBBBBBB: " + toAddr);
+				logger.info("toAddr: " + toAddr);
 
-				msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(toAddr, false));
+				msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(toAddr));
 				
 				
 				String cc = "quann169@gmail.com";
@@ -123,10 +132,7 @@ public class EmailUtils {
 				msg.setSentDate(new Date());
 				SMTPTransport t = (SMTPTransport) session.getTransport("smtp");
 				t.connect(host, port, email, password);
-				logger.info("CCCCCCCCCCC: " );
 				t.sendMessage(msg, msg.getAllRecipients());
-				
-				logger.info("DDDDDD: " );
 				String response = t.getLastServerResponse();
 				t.close();
 				if (response.contains("OK")) {

@@ -1,0 +1,95 @@
+
+1.7 Zip
+2. Notepad++
+
+3. vc_redist.x86 Microsoft Visual C++ 2015
+4. vcredist_x86 Microsoft Visual C++ 2013
+5. NDP452-KB2901907-x86-x64-AllOS-ENU Microsoft.Net Framework 4.5.2
+6. jre-8u211-windows-i586 JRE 
+7. mysql-installer-community-5.7.23.0 Mysql Server
+8. mysql-workbench-community-6.3.8-win32 Workbench
+
+9.Config Mysqlserver
+10. Edit my.ini
+11. Restart Mysql server
+
+12. Copy dll toJRE
+13. Check HDMI simulation
+
+14. Create database
+15. Open iTools
+
+16. Team Viewer
+
+
+
+
+
+CREATE DEFINER=`admin`@`%` PROCEDURE `SyncLocalToHost_WorkingTransaction`(IN CompanyCode VARCHAR(255), IN MachineCode VARCHAR(255), OUT returnResult TEXT)
+BEGIN
+	-- DECLARE EXIT HANDLER FOR SQLEXCEPTION ROLLBACK;
+	-- DECLARE EXIT HANDLER FOR SQLWARNING ROLLBACK;
+	START TRANSACTION;
+	
+    SET SQL_SAFE_UPDATES = 0;
+	
+	-- delete from federated_WorkingTransaction where federated_WorkingTransaction.MachineCode = MachineCode;
+	
+	
+	INSERT INTO federated_WorkingTransaction (TransactionDate, MachineCode, CompanyCode, AssessorID, WOCode, OPCode, ToolCode, TrayIndex, Quantity, TransactionStatus, UpdatedDate, RespondMessage, TransactionType)
+	SELECT a.TransactionDate, a.MachineCode, a.CompanyCode, a.AssessorID, a.WOCode, a.OPCode, a.ToolCode, a.TrayIndex, a.Quantity, a.TransactionStatus, a.UpdatedDate, a.RespondMessage, a.TransactionType 
+    FROM WorkingTransaction a
+    where a.TransactionDate > CASE WHEN (select TransactionDate 
+								from federated_WorkingTransaction 
+                                where federated_WorkingTransaction.CompanyCode = CompanyCode 
+										and federated_WorkingTransaction.MachineCode = MachineCode
+								order by TransactionDate desc limit 1) IS NULL
+            THEN "1970-01-01 01:01:01"
+            ELSE (select TransactionDate 
+								from federated_WorkingTransaction 
+                                where federated_WorkingTransaction.CompanyCode = CompanyCode 
+										and federated_WorkingTransaction.MachineCode = MachineCode
+								order by TransactionDate desc limit 1)
+            END
+    
+    
+    ;
+	
+	set @insertWorkingTransaction = (SELECT ROW_COUNT());
+    set @finalResult = concat("insertWorkingTransaction: ", @insertWorkingTransaction );
+	
+	/*
+    #update all record from Local to Host
+	update federated_WorkingTransaction
+	left join WorkingTransaction on WorkingTransaction.WorkingTransactionID = federated_WorkingTransaction.WorkingTransactionID
+		set federated_WorkingTransaction.TransactionDate = WorkingTransaction.TransactionDate,
+			federated_WorkingTransaction.MachineCode = WorkingTransaction.MachineCode,
+			federated_WorkingTransaction.CompanyCode = WorkingTransaction.CompanyCode,
+			federated_WorkingTransaction.AssessorID = WorkingTransaction.AssessorID,
+			federated_WorkingTransaction.WOCode = WorkingTransaction.WOCode,
+            federated_WorkingTransaction.OPCode = WorkingTransaction.OPCode,
+            federated_WorkingTransaction.ToolCode = WorkingTransaction.ToolCode,
+            federated_WorkingTransaction.TrayIndex = WorkingTransaction.TrayIndex,
+            federated_WorkingTransaction.Quantity = WorkingTransaction.Quantity,
+            federated_WorkingTransaction.TransactionStatus = WorkingTransaction.TransactionStatus,
+            federated_WorkingTransaction.UpdatedDate = WorkingTransaction.UpdatedDate,
+            federated_WorkingTransaction.RespondMessage = WorkingTransaction.RespondMessage,
+            federated_WorkingTransaction.TransactionType = WorkingTransaction.TransactionType
+		where federated_WorkingTransaction.WorkingTransactionID in (select WorkingTransactionID from WorkingTransaction)
+        and WorkingTransaction.UpdatedDate > 
+		(select (Case when fs.SyncDate is null then '1900-01-01 00:00:00' else fs.SyncDate END) 
+			from synchistory fs
+			where fs.Status = 'SUCCESS' and fs.SynType = 'SyncLocalToHost_WorkingTransaction'
+			order by fs.SyncDate desc LIMIT 1)
+	and WorkingTransaction.UpdatedDate > (Case when federated_WorkingTransaction.UpdatedDate is null then '1900-01-01 00:00:00' else federated_WorkingTransaction.UpdatedDate END);  
+   
+   set @updateWorkingTransaction = (SELECT ROW_COUNT());
+    set @finalResult = concat(@finalResult, ",", "\n", "updateWorkingTransaction: ", @updateWorkingTransaction );
+	*/
+	insert into synchistory(SyncDate, Statistic, Status, SynType)
+		VALUES 
+	(now(), @finalResult, "SUCCESS", "SyncLocalToHost_WorkingTransaction");
+	commit;
+	
+	set  returnResult = @finalResult;
+END

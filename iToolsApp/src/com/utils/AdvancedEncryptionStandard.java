@@ -72,12 +72,17 @@ public class AdvancedEncryptionStandard {
 //		System.out.println(AdvancedEncryptionStandard.decrypt("evNaJwjjy9S1qudJ3/VSUA=="));
 		
 //		System.out.println("Optiwell: " + AdvancedEncryptionStandard.encrypt("Optiwell"));
-		System.out.println("VINAMOILTOOLS: " + AdvancedEncryptionStandard.encrypt("VINAMOILTOOLS"));
-		System.out.println("MFC: " + AdvancedEncryptionStandard.encrypt("MFC"));
+//		System.out.println("VINAMOILTOOLS: " + AdvancedEncryptionStandard.encrypt("VINAMOILTOOLS"));
+//		System.out.println("MFC: " + AdvancedEncryptionStandard.encrypt("MFC"));
 //		System.out.println("VM-1: " + AdvancedEncryptionStandard.encrypt("VM-1"));
 //		System.out.println("VM-2: " + AdvancedEncryptionStandard.encrypt("VM-2"));
 //		System.out.println("VM-3: " + AdvancedEncryptionStandard.encrypt("VM-3"));
 //		System.out.println("VM-4: " + AdvancedEncryptionStandard.encrypt("VM-4"));
+		
+		System.out.println("DNP: " + AdvancedEncryptionStandard.encrypt("DNP"));
+//		System.out.println("VM-6: " + AdvancedEncryptionStandard.encrypt("VM-6"));
+//		System.out.println("VM-7: " + AdvancedEncryptionStandard.encrypt("VM-7"));
+//		System.out.println("VM-8: " + AdvancedEncryptionStandard.encrypt("VM-8"));
 		
 //
 //		plainText = "1qazxsw2!A";

@@ -16,11 +16,16 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -69,9 +74,15 @@ import com.utils.Config;
 import com.utils.EmailUtils;
 import com.utils.MyFocusListener;
 import com.utils.PopUpKeyboard;
+import com.utils.SerialTest2;
 import com.utils.StringUtils;
 
-public class EmployeePage extends JFrame implements ActionListener, HidServicesListener {
+import gnu.io.CommPortIdentifier;
+import gnu.io.SerialPort;
+import gnu.io.SerialPortEvent;
+import gnu.io.SerialPortEventListener;
+
+public class EmployeePage extends JFrame implements ActionListener, SerialPortEventListener {
 
 	/**
 	 * 
@@ -111,6 +122,8 @@ public class EmployeePage extends JFrame implements ActionListener, HidServicesL
 	private static final Config cfg = new Config();
 	private static final String COMPANY_CODE = "COMPANY_CODE";
 	private static final String MACHINE_CODE = "MACHINE_CODE";
+	String COM_PORT_NAME = cfg.getProperty("COM_PORT_NAME");
+	
 	String companyCode = AdvancedEncryptionStandard.decrypt(cfg.getProperty(COMPANY_CODE));
 	String machineCode = AdvancedEncryptionStandard.decrypt(cfg.getProperty(MACHINE_CODE));
 	private static final String companyCodeUH = AdvancedEncryptionStandard.decrypt(cfg.getProperty("COMPANY_CODE_UH"));
@@ -130,10 +143,9 @@ public class EmployeePage extends JFrame implements ActionListener, HidServicesL
 	String vendorId = cfg.getProperty("VENDOR_ID");
 	String productId = cfg.getProperty("PRODUCT_ID");
 	int readWaitTime = Integer.valueOf(cfg.getProperty("READ_WAIT_TIME"));
-	
+
 	int readWaitTimeFinal = Integer.valueOf(cfg.getProperty("READ_WAIT_TIME_FINAL"));
-	
-	
+
 	HashMap<String, String> hashMessage = new HashMap<>();
 	TransactionController transCtl = new TransactionController();
 
@@ -141,6 +153,10 @@ public class EmployeePage extends JFrame implements ActionListener, HidServicesL
 	int MOTOR_STOP = Integer.valueOf(cfg.getProperty("MOTOR_STOP"));
 	int PRODUCT_OK = Integer.valueOf(cfg.getProperty("PRODUCT_OK"));
 	int PRODUCT_FAIL = Integer.valueOf(cfg.getProperty("PRODUCT_FAIL"));
+
+	boolean isComplete = false;
+
+	List<Integer> listDataReceived = new ArrayList<>();
 
 	AutoCompletion combox1;
 
@@ -152,13 +168,13 @@ public class EmployeePage extends JFrame implements ActionListener, HidServicesL
 	// JFrame parent;
 
 	ActionListener toolComboboxListener;
-	
+
 	static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 	static int windowWidth = (int) screenSize.getWidth();
 	static int windowHeight = (int) screenSize.getHeight();
 	static int extWidth = (windowWidth > 900) ? 0 : 0;
 	static int extHeight = (windowHeight > 700) ? 0 : 0;
-	
+
 	EmployeePage(Assessor user, boolean isDashboard) {
 		this.userName = user.getUsername();
 		this.user = user;
@@ -771,6 +787,7 @@ public class EmployeePage extends JFrame implements ActionListener, HidServicesL
 									trayTextField.getText(), "-1");
 							logger.info("Completed");
 							String email = ctlObj.getEmailUser(companyCode, userName);
+							String fullName = ctlObj.getFullNameUser(companyCode, userName);
 							Thread one = new Thread() {
 								public void run() {
 									EmailUtils emailUtils = new EmailUtils(Enum.GETTOOL, userName, companyCode,
@@ -779,9 +796,11 @@ public class EmployeePage extends JFrame implements ActionListener, HidServicesL
 									listCCEmail.add(ctlObj.getEmailAdmin());
 									listCCEmail.add(ctlObj.getEmailSubAdmin(companyCode));
 									emailUtils.sendEmail(email, listCCEmail,
-											companyCode + " - " + machineCode + " notification",
-											"Hi " + userName + ",\nWO: " + wo + "\nOP: " + op + "\nTool: " + ctid
-													+ "\nTray: " + tray + "\nQuantity: 1");
+											companyCode + " - " + machineCode + ": " + fullName + "(" + userName
+													+ ") get tool notification",
+											"Hi Employee " + fullName + "(" + userName + "),\nWO: " + wo + "\nOP: " + op
+													+ "\nTool: " + ctid + "\nTray: " + tray + "\nQuantity: 1\n"
+													+ "Machine no.: " + machineCode);
 
 								}
 							};
@@ -805,8 +824,8 @@ public class EmployeePage extends JFrame implements ActionListener, HidServicesL
 						logger.info("Complete with resultValue = " + resultValue);
 						d.dispose();
 						if (resultValue == 1) {
-//							woTextField.setText("");
-//							opTextField.setText("");
+							// woTextField.setText("");
+							// opTextField.setText("");
 							toolComboBox.setSelectedIndex(0);
 							quantityTextField.setText("");
 							trayTextField.setText("");
@@ -836,198 +855,258 @@ public class EmployeePage extends JFrame implements ActionListener, HidServicesL
 		}
 	}
 
-	public int executeAction(String messageData) throws HidException {
-		logger.info("Starting HID services.");
-		// Configure to use custom specification
-		HidServicesSpecification hidServicesSpecification = new HidServicesSpecification();
-		hidServicesSpecification.setAutoShutdown(true);
-		hidServicesSpecification.setScanInterval(500);
-		hidServicesSpecification.setPauseInterval(5000);
-		hidServicesSpecification.setScanMode(ScanMode.SCAN_AT_FIXED_INTERVAL_WITH_PAUSE_AFTER_WRITE);
+	public int executeAction(String messageData) throws IOException, InterruptedException {
 
-		// Get HID services using custom specification
-		HidServices hidServices = HidManager.getHidServices(hidServicesSpecification);
-		hidServices.addHidServicesListener(this);
+		logger.info("========================================");
+		this.initialize();
 
-		// Start the services
+		logger.info("Start sending message");
+		
+		messageData = "125," + messageData + "|";
+		output.write(messageData.getBytes());
+		logger.info("Send message [" + messageData + "]");
 
-		hidServices.start();
-		progress.setText("Calculating attached devices...");
-		logger.info("Calculating attached devices...");
+		for (int i = 0; i < 30; i++) {
+			if (isComplete) {
+				output.close();
+				serialPort.close();
 
-		// Provide a list of attached devices
-		for (HidDevice hidDevice : hidServices.getAttachedHidDevices()) {
-			logger.info(hidDevice);
-		}
-
-		int VENDOR_ID = Integer.decode(vendorId);
-		int PRODUCT_ID = Integer.decode(productId);
-
-		logger.info("vendorId: " + vendorId + " - " + VENDOR_ID);
-		logger.info("productId: " + productId + " - " + PRODUCT_ID);
-
-		HidDevice hidDevice = hidServices.getHidDevice(VENDOR_ID, PRODUCT_ID, null);
-		logger.info("hidDevice: " + hidDevice);
-		logger.info("messageData: " + messageData);
-
-		progress.setText("Get HidDevice " + hidDevice);
-		int result = -1;
-		if (hidDevice != null) {
-			result = sendMessage(hidDevice, messageData);
-		} else {
-			logger.error("Do not find HID device - please help me to recheck config file");
-
-		}
-
-		hidServices.shutdown();
-		return result;
-	}
-
-	@Override
-	public void hidDeviceAttached(HidServicesEvent event) {
-		logger.warn("Add device: " + event.getHidDevice());
-
-	}
-
-	@Override
-	public void hidDeviceDetached(HidServicesEvent event) {
-		logger.warn("Remove device: " + event.getHidDevice());
-
-	}
-
-	@Override
-	public void hidFailure(HidServicesEvent event) {
-		logger.warn("HID failure: " + event);
-
-	}
-
-	private int sendMessage(HidDevice hidDevice, String messageData) {
-
-		// Ensure device is open after an attach/detach event
-		logger.info("hidDevice: " + hidDevice);
-		logger.info("hidDevice.isOpen(): " + hidDevice.isOpen());
-		if (hidDevice != null && !hidDevice.isOpen()) {
-
-			boolean openDevice = hidDevice.open();
-			if (openDevice) {
-				logger.info("Open device OK");
-			} else {
-				logger.error("Open device ERR: " + hidDevice.getLastErrorMessage());
-			}
-		}
-		logger.info("hidDevice.isOpen(): " + hidDevice.isOpen());
-
-		byte value = (byte) Integer.parseInt(messageData, 10);
-		byte[] message = new byte[2];
-		message[0] = 125;
-		message[1] = value;
-		logger.info("Data send to board: " + Arrays.toString(message));
-		progress.setText("Data send to board: " + Arrays.toString(message));
-		int val = -1;
-		try {
-			val = hidDevice.write(message, 2, (byte) 0x00);
-		} catch (Exception e) {
-			logger.error("[ERR] Cannot send data. " + e.getMessage() + " " + Enum.SEND_SIGNAL_TO_BOARD_FAIL);
-
-			transCtl.updateTransaction(transactionID, "TransactionStatus", Enum.SEND_SIGNAL_TO_BOARD_FAIL.text());
-			transCtl.updateTransaction(transactionID, "Quantity", "0");
-			hidDevice.close();
-			return -1;
-		}
-
-		if (val >= 0) {
-			logger.info("> [" + val + "]");
-			logger.info(
-					"> Send message " + messageData + " successfully. Wait to read data in " + readWaitTime + "s...");
-		} else {
-			logger.error(hidDevice.getLastErrorMessage());
-			transCtl.updateTransaction(transactionID, "TransactionStatus", Enum.SEND_SIGNAL_TO_BOARD_FAIL.text());
-			transCtl.updateTransaction(transactionID, "Quantity", "0");
-		}
-		progress.setText("Begin wait to read data");
-		logger.info("-------------Begin wait to read data in " + readWaitTime + "s------------");
-		List<Integer> listDataReceived = new ArrayList<>();
-		for (int i = 0; i < 4; i++) {
-			// Prepare to read a single data packet
-			boolean moreData = true;
-			while (moreData) {
-				byte data[] = new byte[2];
-				if (i == 3) {
-					val = hidDevice.read(data, readWaitTimeFinal * 1000);
-				} else {
-					val = hidDevice.read(data, readWaitTime * 1000);
-				}
+				int result = -1;
+				logger.info("listDataReceived: " + listDataReceived);
+				Collections.sort(listDataReceived);
 				
-				logger.info("Switch case --- " + val + " ----");
-				switch (val) {
-				case -1:
-					logger.error(hidDevice.getLastErrorMessage());
-					progress.setText("ERR: " + hidDevice.getLastErrorMessage());
-					moreData = false;
-					break;
-				case 0:
-					logger.info("-------------No data receive, end read data------------");
-					progress.setText("No data receive, end read data");
-					moreData = false;
-					break;
-				default:
-					if (Arrays.equals(data, message)) {
-						progress.setText("Board return with meassage: " + Arrays.toString(data));
-						continue;
+				for (int dataReceived : listDataReceived) {
+					if (dataReceived == MOTOR_START) {
+						transCtl.updateTransaction(transactionID, "TransactionStatus", Enum.MOTOR_START.text());
+						// logger.info(Enum.MOTOR_START);
+					} else if (dataReceived == MOTOR_STOP) {
+						transCtl.updateTransaction(transactionID, "TransactionStatus", Enum.MOTOR_STOP.text());
+						// logger.info(Enum.MOTOR_STOP);
+					} else if (dataReceived == PRODUCT_OK) {
+						result = 1;
+						transCtl.updateTransaction(transactionID, "TransactionStatus", Enum.PRODUCT_OK.text());
+						break;
+						// logger.info(Enum.PRODUCT_OK);
+					} else if (dataReceived == PRODUCT_FAIL) {
+						result = 0;
+						transCtl.updateTransaction(transactionID, "TransactionStatus", Enum.PRODUCT_FAIL.text());
+						transCtl.updateTransaction(transactionID, "Quantity", "0");
+						// logger.info(Enum.PRODUCT_FAIL);
 					}
-					if (data.length == 2 && data[0] == value) {
-						int receivedCode = data[1];
-						listDataReceived.add(receivedCode);
-						if (receivedCode == MOTOR_START) {
-							progress.setText("MOTOR_START");
-							logger.info(Enum.MOTOR_START);
-						} else if (receivedCode == MOTOR_STOP) {
-							progress.setText("MOTOR_STOP");
-							logger.info(Enum.MOTOR_STOP);
-						} else if (receivedCode == PRODUCT_OK) {
-							progress.setText("PRODUCT_OK - Wait " + readWaitTime + "s to next item.");
-							logger.info(Enum.PRODUCT_OK);
-
-						} else if (receivedCode == PRODUCT_FAIL) {
-							progress.setText("PRODUCT_FAIL");
-							logger.info(Enum.PRODUCT_FAIL);
-						}
-
-					} else {
-						logger.error("INVALID_SIGNAL_RECEIVE " + Arrays.toString(data));
-					}
-					logger.info("<Data received from board [" + Arrays.toString(data) + "]");
-					moreData = false;
-					break;
 				}
-			}
 
-		}
-		int result = -1;
-		logger.info("listDataReceived: " + listDataReceived);
-		for (int dataReceived : listDataReceived) {
-			if (dataReceived == MOTOR_START) {
-				transCtl.updateTransaction(transactionID, "TransactionStatus", Enum.MOTOR_START.text());
-				// logger.info(Enum.MOTOR_START);
-			} else if (dataReceived == MOTOR_STOP) {
-				transCtl.updateTransaction(transactionID, "TransactionStatus", Enum.MOTOR_STOP.text());
-				// logger.info(Enum.MOTOR_STOP);
-			} else if (dataReceived == PRODUCT_OK) {
-				result = 1;
-				transCtl.updateTransaction(transactionID, "TransactionStatus", Enum.PRODUCT_OK.text());
-				// logger.info(Enum.PRODUCT_OK);
-			} else if (dataReceived == PRODUCT_FAIL) {
-				result = 0;
-				transCtl.updateTransaction(transactionID, "TransactionStatus", Enum.PRODUCT_FAIL.text());
-				transCtl.updateTransaction(transactionID, "Quantity", "0");
-				// logger.info(Enum.PRODUCT_FAIL);
+				logger.info("Complete send and receive all messages!!!: ");
+				listDataReceived = new ArrayList<>();
+				isComplete = false;
+				return result;
+
+			} else {
+				Thread.sleep(1000);
 			}
 		}
 
-		logger.info("Complete send and receive all messages!!!: ");
-		hidDevice.close();
-		return result;
+		output.close();
+		serialPort.close();
+
+		return -1;
 	}
+
+	// public int executeAction(String messageData) throws HidException {
+	// logger.info("Starting HID services.");
+	// // Configure to use custom specification
+	// HidServicesSpecification hidServicesSpecification = new
+	// HidServicesSpecification();
+	// hidServicesSpecification.setAutoShutdown(true);
+	// hidServicesSpecification.setScanInterval(500);
+	// hidServicesSpecification.setPauseInterval(5000);
+	// hidServicesSpecification.setScanMode(ScanMode.SCAN_AT_FIXED_INTERVAL_WITH_PAUSE_AFTER_WRITE);
+	//
+	// // Get HID services using custom specification
+	// HidServices hidServices =
+	// HidManager.getHidServices(hidServicesSpecification);
+	// hidServices.addHidServicesListener(this);
+	//
+	// // Start the services
+	//
+	// hidServices.start();
+	// progress.setText("Calculating attached devices...");
+	// logger.info("Calculating attached devices...");
+	//
+	// // Provide a list of attached devices
+	// for (HidDevice hidDevice : hidServices.getAttachedHidDevices()) {
+	// logger.info(hidDevice);
+	// }
+	//
+	// int VENDOR_ID = Integer.decode(vendorId);
+	// int PRODUCT_ID = Integer.decode(productId);
+	//
+	// logger.info("vendorId: " + vendorId + " - " + VENDOR_ID);
+	// logger.info("productId: " + productId + " - " + PRODUCT_ID);
+	//
+	// HidDevice hidDevice = hidServices.getHidDevice(VENDOR_ID, PRODUCT_ID,
+	// null);
+	// logger.info("hidDevice: " + hidDevice);
+	// logger.info("messageData: " + messageData);
+	//
+	// progress.setText("Get HidDevice " + hidDevice);
+	// int result = -1;
+	// if (hidDevice != null) {
+	// result = sendMessage(hidDevice, messageData);
+	// } else {
+	// logger.error("Do not find HID device - please help me to recheck config
+	// file");
+	//
+	// }
+	//
+	// hidServices.shutdown();
+	// return result;
+	// }
+	//
+	// @Override
+	// public void hidDeviceAttached(HidServicesEvent event) {
+	// logger.warn("Add device: " + event.getHidDevice());
+	//
+	// }
+	//
+	// @Override
+	// public void hidDeviceDetached(HidServicesEvent event) {
+	// logger.warn("Remove device: " + event.getHidDevice());
+	//
+	// }
+	//
+	// @Override
+	// public void hidFailure(HidServicesEvent event) {
+	// logger.warn("HID failure: " + event);
+	//
+	// }
+
+//	private int sendMessage(HidDevice hidDevice, String messageData) {
+//
+//		// Ensure device is open after an attach/detach event
+//		logger.info("hidDevice: " + hidDevice);
+//		logger.info("hidDevice.isOpen(): " + hidDevice.isOpen());
+//		if (hidDevice != null && !hidDevice.isOpen()) {
+//
+//			boolean openDevice = hidDevice.open();
+//			if (openDevice) {
+//				logger.info("Open device OK");
+//			} else {
+//				logger.error("Open device ERR: " + hidDevice.getLastErrorMessage());
+//			}
+//		}
+//		logger.info("hidDevice.isOpen(): " + hidDevice.isOpen());
+//
+//		byte value = (byte) Integer.parseInt(messageData, 10);
+//		byte[] message = new byte[2];
+//		message[0] = 125;
+//		message[1] = value;
+//		logger.info("Data send to board: " + Arrays.toString(message));
+//		progress.setText("Data send to board: " + Arrays.toString(message));
+//		int val = -1;
+//		try {
+//			val = hidDevice.write(message, 2, (byte) 0x00);
+//		} catch (Exception e) {
+//			logger.error("[ERR] Cannot send data. " + e.getMessage() + " " + Enum.SEND_SIGNAL_TO_BOARD_FAIL);
+//
+//			transCtl.updateTransaction(transactionID, "TransactionStatus", Enum.SEND_SIGNAL_TO_BOARD_FAIL.text());
+//			transCtl.updateTransaction(transactionID, "Quantity", "0");
+//			hidDevice.close();
+//			return -1;
+//		}
+//
+//		if (val >= 0) {
+//			logger.info("> [" + val + "]");
+//			logger.info(
+//					"> Send message " + messageData + " successfully. Wait to read data in " + readWaitTime + "s...");
+//		} else {
+//			logger.error(hidDevice.getLastErrorMessage());
+//			transCtl.updateTransaction(transactionID, "TransactionStatus", Enum.SEND_SIGNAL_TO_BOARD_FAIL.text());
+//			transCtl.updateTransaction(transactionID, "Quantity", "0");
+//		}
+//		progress.setText("Begin wait to read data");
+//		logger.info("-------------Begin wait to read data in " + readWaitTime + "s------------");
+//		List<Integer> listDataReceived = new ArrayList<>();
+//		for (int i = 0; i < 4; i++) {
+//			// Prepare to read a single data packet
+//			boolean moreData = true;
+//			while (moreData) {
+//				byte data[] = new byte[2];
+//				if (i == 3) {
+//					val = hidDevice.read(data, readWaitTimeFinal * 1000);
+//				} else {
+//					val = hidDevice.read(data, readWaitTime * 1000);
+//				}
+//
+//				logger.info("Switch case --- " + val + " ----");
+//				switch (val) {
+//				case -1:
+//					logger.error(hidDevice.getLastErrorMessage());
+//					progress.setText("ERR: " + hidDevice.getLastErrorMessage());
+//					moreData = false;
+//					break;
+//				case 0:
+//					logger.info("-------------No data receive, end read data------------");
+//					progress.setText("No data receive, end read data");
+//					moreData = false;
+//					break;
+//				default:
+//					if (Arrays.equals(data, message)) {
+//						progress.setText("Board return with meassage: " + Arrays.toString(data));
+//						continue;
+//					}
+//					if (data.length == 2 && data[0] == value) {
+//						int receivedCode = data[1];
+//						listDataReceived.add(receivedCode);
+//						if (receivedCode == MOTOR_START) {
+//							progress.setText("MOTOR_START");
+//							logger.info(Enum.MOTOR_START);
+//						} else if (receivedCode == MOTOR_STOP) {
+//							progress.setText("MOTOR_STOP");
+//							logger.info(Enum.MOTOR_STOP);
+//						} else if (receivedCode == PRODUCT_OK) {
+//							progress.setText("PRODUCT_OK - Wait " + readWaitTime + "s to next item.");
+//							logger.info(Enum.PRODUCT_OK);
+//
+//						} else if (receivedCode == PRODUCT_FAIL) {
+//							progress.setText("PRODUCT_FAIL");
+//							logger.info(Enum.PRODUCT_FAIL);
+//						}
+//
+//					} else {
+//						logger.error("INVALID_SIGNAL_RECEIVE " + Arrays.toString(data));
+//					}
+//					logger.info("<Data received from board [" + Arrays.toString(data) + "]");
+//					moreData = false;
+//					break;
+//				}
+//			}
+//
+//		}
+//		int result = -1;
+//		logger.info("listDataReceived: " + listDataReceived);
+//		for (int dataReceived : listDataReceived) {
+//			if (dataReceived == MOTOR_START) {
+//				transCtl.updateTransaction(transactionID, "TransactionStatus", Enum.MOTOR_START.text());
+//				// logger.info(Enum.MOTOR_START);
+//			} else if (dataReceived == MOTOR_STOP) {
+//				transCtl.updateTransaction(transactionID, "TransactionStatus", Enum.MOTOR_STOP.text());
+//				// logger.info(Enum.MOTOR_STOP);
+//			} else if (dataReceived == PRODUCT_OK) {
+//				result = 1;
+//				transCtl.updateTransaction(transactionID, "TransactionStatus", Enum.PRODUCT_OK.text());
+//				// logger.info(Enum.PRODUCT_OK);
+//			} else if (dataReceived == PRODUCT_FAIL) {
+//				result = 0;
+//				transCtl.updateTransaction(transactionID, "TransactionStatus", Enum.PRODUCT_FAIL.text());
+//				transCtl.updateTransaction(transactionID, "Quantity", "0");
+//				// logger.info(Enum.PRODUCT_FAIL);
+//			}
+//		}
+//
+//		logger.info("Complete send and receive all messages!!!: ");
+//		hidDevice.close();
+//		return result;
+//	}
 
 	public void addVirtualKeyboardListener() {
 		MyFocusListener focus1 = new MyFocusListener(keyboard);
@@ -1035,6 +1114,119 @@ public class EmployeePage extends JFrame implements ActionListener, HidServicesL
 		opTextField.addFocusListener(focus1);
 		toolComboBox.getEditor().getEditorComponent().addFocusListener(focus1);
 		// combox1.getEditor().addFocusListener(focus1);
+	}
+
+	static Enumeration portList;
+	static CommPortIdentifier portId;
+	static String messageString = "TestString";
+	static SerialPort serialPort;
+	static OutputStream outputStream;
+
+
+	/**
+	 * A BufferedReader which will be fed by a InputStreamReader converting the
+	 * bytes into characters making the displayed results codepage independent
+	 */
+	private BufferedReader input;
+
+	/** The output stream to the port */
+	private static OutputStream output;
+
+	/** Milliseconds to block while waiting for port open */
+	private static final int TIME_OUT = 15000;
+
+	/** Default bits per second for COM port. */
+	private static final int DATA_RATE = 9600;
+
+	public void initialize() {
+
+		Enumeration portEnum = CommPortIdentifier.getPortIdentifiers();
+
+		// First, Find an instance of serial port as set in PORT_NAMES.
+		while (portEnum.hasMoreElements()) {
+			CommPortIdentifier currPortId = (CommPortIdentifier) portEnum.nextElement();
+			
+			if (currPortId.getName().equals(COM_PORT_NAME)) {
+				portId = currPortId;
+				break;
+			}
+		}
+
+		if (portId == null) {
+			logger.info("Could not find COM port.");
+			System.out.println("Could not find COM port.");
+			return;
+		}
+
+		logger.info("portId: " + portId.getName());
+
+		try {
+			// open serial port, and use class name for the appName.
+			serialPort = (SerialPort) portId.open(this.getClass().getName(), TIME_OUT);
+
+			// set port parameters
+			serialPort.setSerialPortParams(DATA_RATE, SerialPort.DATABITS_8, SerialPort.STOPBITS_1,
+					SerialPort.PARITY_NONE);
+
+			// open the streams
+			input = new BufferedReader(new InputStreamReader(serialPort.getInputStream()));
+			output = serialPort.getOutputStream();
+
+			// add event listeners
+			serialPort.addEventListener(this);
+			serialPort.notifyOnDataAvailable(true);
+		} catch (Exception e) {
+			System.err.println(e.toString());
+			logger.error("portId: " + portId.getName());
+		}
+	}
+
+	/**
+	 * This should be called when you stop using the port. This will prevent
+	 * port locking on platforms like Linux.
+	 */
+	public synchronized void close() {
+		if (serialPort != null) {
+			serialPort.removeEventListener();
+			serialPort.close();
+		}
+	}
+
+	/**
+	 * Handle an event on the serial port. Read the data and print it.
+	 */
+	public synchronized void serialEvent(SerialPortEvent oEvent) {
+		if (oEvent.getEventType() == SerialPortEvent.DATA_AVAILABLE) {
+			try {
+				while (input.ready()) {
+					String receivedCodeStr = input.readLine().trim();
+					logger.info("Receive message [" + receivedCodeStr + "]");
+
+					int receivedCode = Integer.parseInt(receivedCodeStr);
+					listDataReceived.add(receivedCode);
+					if (receivedCode == MOTOR_START) {
+						progress.setText("MOTOR_START");
+						logger.info(Enum.MOTOR_START);
+					} else if (receivedCode == MOTOR_STOP) {
+						progress.setText("MOTOR_STOP");
+						logger.info(Enum.MOTOR_STOP);
+					} else if (receivedCode == PRODUCT_OK) {
+						progress.setText("PRODUCT_OK - Wait " + readWaitTime + "s to next item.");
+						logger.info(Enum.PRODUCT_OK);
+						isComplete = true;
+					} else if (receivedCode == PRODUCT_FAIL) {
+						progress.setText("PRODUCT_FAIL");
+						logger.info(Enum.PRODUCT_FAIL);
+						transCtl.updateTransaction(transactionID, "Quantity", "0");
+						isComplete = true;
+					}
+
+				}
+			} catch (Exception e) {
+				logger.error(e.toString());
+				transCtl.updateTransaction(transactionID, "Quantity", "0");
+			}
+		}
 	}
 
 }

@@ -73,7 +73,7 @@ public class CheckMissingTools {
 		while (true) {
 			doWork();
 			try {
-				Thread.sleep(30 * 60 * 1000);
+				Thread.sleep(60 * 60 * 1000);
 			} catch (InterruptedException e) {
 				logger.error(e.getMessage());
 			}
@@ -121,7 +121,7 @@ public class CheckMissingTools {
 			in.close();
 			if (!"".equals(dataLog)) {
 				emailUtils.sendEmail(toEmail,
-						"Warning - " + companyCode + " - " + machineCode + ": Vending machine notification", dataLog,
+						"Warning Missing Item - " + companyCode + " - " + machineCode, dataLog,
 						numLine);
 				emailLog.warn("");
 			}

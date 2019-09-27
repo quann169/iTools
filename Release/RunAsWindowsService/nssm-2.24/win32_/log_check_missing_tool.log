@@ -1,0 +1,812 @@
+Starts at Fri Apr 05 15:50:20 ICT 2019
+Fri Apr 05 15:51:47 ICT 2019: hidDevice - HidDevice [vendorId=0x461, productId=0x20, product=CCS HID Demo]
+Fri Apr 05 15:51:47 ICT 2019: Start reading message
+Fri Apr 05 15:55:01 ICT 2019: Board return with meassage: [127, 123]
+Fri Apr 05 15:55:02 ICT 2019: Board return with meassage: [127, 123]
+Fri Apr 05 15:55:03 ICT 2019: Board return with meassage: [127, 123]
+Fri Apr 05 15:55:04 ICT 2019: Board return with meassage: [127, 123]
+Fri Apr 05 15:55:05 ICT 2019: Board return with meassage: [127, 123]
+Fri Apr 05 15:55:06 ICT 2019: Board return with meassage: [127, 123]
+Fri Apr 05 15:55:07 ICT 2019: Board return with meassage: [127, 123]
+Fri Apr 05 15:55:08 ICT 2019: Board return with meassage: [127, 123]
+Fri Apr 05 15:55:09 ICT 2019: Board return with meassage: [127, 123]
+Fri Apr 05 15:55:10 ICT 2019: Board return with meassage: [127, 123]
+Fri Apr 05 15:55:11 ICT 2019: Board return with meassage: [127, 123]
+Fri Apr 05 15:55:12 ICT 2019: Board return with meassage: [127, 123]
+Fri Apr 05 15:55:13 ICT 2019: Board return with meassage: [127, 123]
+Fri Apr 05 15:55:14 ICT 2019: Board return with meassage: [127, 123]
+Fri Apr 05 15:55:15 ICT 2019: Board return with meassage: [127, 123]
+Fri Apr 05 15:55:16 ICT 2019: Board return with meassage: [127, 123]
+Fri Apr 05 15:55:17 ICT 2019: Board return with meassage: [127, 123]
+Fri Apr 05 15:55:18 ICT 2019: Board return with meassage: [127, 123]
+Fri Apr 05 15:55:19 ICT 2019: Board return with meassage: [127, 123]
+Fri Apr 05 15:55:20 ICT 2019: Board return with meassage: [127, 123]
+Fri Apr 05 15:55:37 ICT 2019: Board return with meassage: [127, 123]
+Fri Apr 05 15:55:38 ICT 2019: Board return with meassage: [127, 123]
+Fri Apr 05 15:55:39 ICT 2019: Board return with meassage: [127, 123]
+Fri Apr 05 15:55:40 ICT 2019: Board return with meassage: [127, 123]
+Fri Apr 05 16:08:46 ICT 2019: Board return with meassage: [127, 123]
+Fri Apr 05 16:08:47 ICT 2019: Board return with meassage: [127, 123]
+Fri Apr 05 16:08:49 ICT 2019: Board return with meassage: [127, 123]
+Fri Apr 05 16:08:50 ICT 2019: Board return with meassage: [127, 123]
+Ends at Fri Apr 05 16:11:39 ICT 2019
+Starts at Fri Apr 05 16:11:52 ICT 2019
+Fri Apr 05 16:13:19 ICT 2019: hidDevice - HidDevice [vendorId=0x461, productId=0x20, product=CCS HID Demo]
+Fri Apr 05 16:13:19 ICT 2019: Start reading message
+Fri Apr 05 16:13:28 ICT 2019: Board return with meassage: [127, 123]
+Fri Apr 05 16:13:29 ICT 2019: Board return with meassage: [127, 123]
+Fri Apr 05 16:13:30 ICT 2019: Board return with meassage: [127, 123]
+Fri Apr 05 16:13:31 ICT 2019: Board return with meassage: [127, 123]
+Ends at Fri Apr 05 16:16:43 ICT 2019
+Starts at Fri Apr 05 16:17:00 ICT 2019
+Fri Apr 05 16:18:24 ICT 2019: hidDevice - HidDevice [vendorId=0x461, productId=0x20, product=CCS HID Demo]
+Fri Apr 05 16:18:24 ICT 2019: Start reading message
+Ends at Fri Apr 05 16:20:43 ICT 2019
+Starts at Fri Apr 05 16:20:56 ICT 2019
+Fri Apr 05 16:22:19 ICT 2019: hidDevice - HidDevice [vendorId=0x461, productId=0x20, product=CCS HID Demo]
+Fri Apr 05 16:22:19 ICT 2019: Start reading message
+Ends at Fri Apr 05 16:22:57 ICT 2019
+Starts at Fri Apr 05 16:23:09 ICT 2019
+Fri Apr 05 16:24:37 ICT 2019: hidDevice - HidDevice [vendorId=0x461, productId=0x20, product=CCS HID Demo]
+Fri Apr 05 16:24:37 ICT 2019: Start reading message
+Fri Apr 05 16:24:40 ICT 2019: Board return with meassage: [127, 123]
+Fri Apr 05 16:24:41 ICT 2019: Board return with meassage: [127, 123]
+Fri Apr 05 16:24:42 ICT 2019: Board return with meassage: [127, 123]
+Fri Apr 05 16:24:43 ICT 2019: Board return with meassage: [127, 123]
+Fri Apr 05 16:24:44 ICT 2019: Board return with meassage: [127, 123]
+Fri Apr 05 16:24:45 ICT 2019: Board return with meassage: [127, 123]
+Fri Apr 05 16:24:46 ICT 2019: Board return with meassage: [127, 123]
+Fri Apr 05 16:24:47 ICT 2019: Board return with meassage: [127, 123]
+Fri Apr 05 16:24:48 ICT 2019: Board return with meassage: [127, 123]
+Fri Apr 05 16:24:49 ICT 2019: Board return with meassage: [127, 123]
+Fri Apr 05 16:24:50 ICT 2019: Board return with meassage: [127, 123]
+Fri Apr 05 16:24:51 ICT 2019: Board return with meassage: [127, 123]
+Fri Apr 05 16:24:52 ICT 2019: Board return with meassage: [127, 123]
+Fri Apr 05 16:24:53 ICT 2019: Board return with meassage: [127, 123]
+Fri Apr 05 16:24:54 ICT 2019: Board return with meassage: [127, 123]
+Fri Apr 05 16:24:55 ICT 2019: Board return with meassage: [127, 123]
+Fri Apr 05 16:24:56 ICT 2019: Board return with meassage: [127, 123]
+Fri Apr 05 16:24:57 ICT 2019: Board return with meassage: [127, 123]
+Fri Apr 05 16:24:58 ICT 2019: Board return with meassage: [127, 123]
+Fri Apr 05 16:24:59 ICT 2019: Board return with meassage: [127, 123]
+Fri Apr 05 16:25:00 ICT 2019: Board return with meassage: [127, 123]
+Fri Apr 05 16:25:01 ICT 2019: Board return with meassage: [127, 123]
+Fri Apr 05 16:25:07 ICT 2019: Board return with meassage: [127, 123]
+Fri Apr 05 16:25:08 ICT 2019: Board return with meassage: [127, 123]
+Fri Apr 05 16:25:09 ICT 2019: Board return with meassage: [127, 123]
+Fri Apr 05 16:44:00 ICT 2019: Board return with meassage: [127, 123]
+Fri Apr 05 16:44:01 ICT 2019: Board return with meassage: [127, 123]
+Fri Apr 05 16:44:02 ICT 2019: Board return with meassage: [127, 123]
+Fri Apr 05 16:44:03 ICT 2019: Board return with meassage: [127, 123]
+Fri Apr 05 16:44:04 ICT 2019: Board return with meassage: [127, 123]
+Fri Apr 05 16:44:05 ICT 2019: Board return with meassage: [127, 123]
+Fri Apr 05 16:44:06 ICT 2019: Board return with meassage: [127, 123]
+Fri Apr 05 16:44:07 ICT 2019: Board return with meassage: [127, 123]
+Fri Apr 05 16:44:08 ICT 2019: Board return with meassage: [127, 123]
+Fri Apr 05 16:44:09 ICT 2019: Board return with meassage: [127, 123]
+Fri Apr 05 16:44:10 ICT 2019: Board return with meassage: [127, 123]
+Fri Apr 05 16:52:09 ICT 2019: Board return with meassage: [127, 123]
+Fri Apr 05 16:52:10 ICT 2019: Board return with meassage: [127, 123]
+Fri Apr 05 16:52:11 ICT 2019: Board return with meassage: [127, 123]
+Fri Apr 05 16:52:12 ICT 2019: Board return with meassage: [127, 123]
+Ends at Fri Apr 05 18:32:26 ICT 2019
+Starts at Sat Apr 06 06:58:41 ICT 2019
+Sat Apr 06 07:00:25 ICT 2019: hidDevice - null
+Sat Apr 06 07:00:25 ICT 2019: Do not find HID device
+Sun Apr 07 09:03:58 ICT 2019: hidDevice - null
+Sun Apr 07 09:03:58 ICT 2019: Do not find HID device
+Sun Apr 07 09:33:58 ICT 2019: hidDevice - null
+Sun Apr 07 09:33:58 ICT 2019: Do not find HID device
+Sun Apr 07 10:03:58 ICT 2019: hidDevice - null
+Sun Apr 07 10:03:58 ICT 2019: Do not find HID device
+Sun Apr 07 10:33:59 ICT 2019: hidDevice - null
+Sun Apr 07 10:33:59 ICT 2019: Do not find HID device
+Sun Apr 07 11:03:59 ICT 2019: hidDevice - null
+Sun Apr 07 11:03:59 ICT 2019: Do not find HID device
+Sun Apr 07 15:42:33 ICT 2019: hidDevice - null
+Sun Apr 07 15:42:33 ICT 2019: Do not find HID device
+Ends at Sun Apr 07 16:06:26 ICT 2019
+Starts at Sun Apr 07 16:07:16 ICT 2019
+Sun Apr 07 16:08:51 ICT 2019: hidDevice - null
+Sun Apr 07 16:08:51 ICT 2019: Do not find HID device
+Sun Apr 07 16:38:51 ICT 2019: hidDevice - null
+Sun Apr 07 16:38:51 ICT 2019: Do not find HID device
+Sun Apr 07 17:08:51 ICT 2019: hidDevice - null
+Sun Apr 07 17:08:51 ICT 2019: Do not find HID device
+Mon Apr 08 09:15:53 ICT 2019: hidDevice - null
+Mon Apr 08 09:15:53 ICT 2019: Do not find HID device
+Mon Apr 08 09:45:54 ICT 2019: hidDevice - null
+Mon Apr 08 09:45:54 ICT 2019: Do not find HID device
+Mon Apr 08 10:15:54 ICT 2019: hidDevice - null
+Mon Apr 08 10:15:54 ICT 2019: Do not find HID device
+Mon Apr 08 10:45:54 ICT 2019: hidDevice - null
+Mon Apr 08 10:45:54 ICT 2019: Do not find HID device
+Mon Apr 08 11:15:55 ICT 2019: hidDevice - null
+Mon Apr 08 11:15:55 ICT 2019: Do not find HID device
+Mon Apr 08 11:45:55 ICT 2019: hidDevice - null
+Mon Apr 08 11:45:55 ICT 2019: Do not find HID device
+Mon Apr 08 12:15:55 ICT 2019: hidDevice - null
+Mon Apr 08 12:15:55 ICT 2019: Do not find HID device
+Mon Apr 08 12:45:55 ICT 2019: hidDevice - null
+Mon Apr 08 12:45:55 ICT 2019: Do not find HID device
+Mon Apr 08 13:15:56 ICT 2019: hidDevice - null
+Mon Apr 08 13:15:56 ICT 2019: Do not find HID device
+Mon Apr 08 13:45:56 ICT 2019: hidDevice - null
+Mon Apr 08 13:45:56 ICT 2019: Do not find HID device
+Mon Apr 08 14:16:04 ICT 2019: hidDevice - null
+Mon Apr 08 14:16:04 ICT 2019: Do not find HID device
+Mon Apr 08 14:46:04 ICT 2019: hidDevice - null
+Mon Apr 08 14:46:04 ICT 2019: Do not find HID device
+Mon Apr 08 15:16:04 ICT 2019: hidDevice - null
+Mon Apr 08 15:16:04 ICT 2019: Do not find HID device
+Mon Apr 08 15:46:05 ICT 2019: hidDevice - null
+Mon Apr 08 15:46:05 ICT 2019: Do not find HID device
+Mon Apr 08 16:16:05 ICT 2019: hidDevice - null
+Mon Apr 08 16:16:05 ICT 2019: Do not find HID device
+Mon Apr 08 16:46:05 ICT 2019: hidDevice - null
+Mon Apr 08 16:46:05 ICT 2019: Do not find HID device
+Mon Apr 08 17:16:05 ICT 2019: hidDevice - null
+Mon Apr 08 17:16:05 ICT 2019: Do not find HID device
+Mon Apr 08 17:46:06 ICT 2019: hidDevice - null
+Mon Apr 08 17:46:06 ICT 2019: Do not find HID device
+Mon Apr 08 18:16:06 ICT 2019: hidDevice - null
+Mon Apr 08 18:16:06 ICT 2019: Do not find HID device
+Mon Apr 08 18:46:06 ICT 2019: hidDevice - null
+Mon Apr 08 18:46:06 ICT 2019: Do not find HID device
+Mon Apr 08 19:16:06 ICT 2019: hidDevice - null
+Mon Apr 08 19:16:06 ICT 2019: Do not find HID device
+Mon Apr 08 19:46:06 ICT 2019: hidDevice - null
+Mon Apr 08 19:46:06 ICT 2019: Do not find HID device
+Mon Apr 08 20:16:06 ICT 2019: hidDevice - null
+Mon Apr 08 20:16:06 ICT 2019: Do not find HID device
+Mon Apr 08 20:46:06 ICT 2019: hidDevice - null
+Mon Apr 08 20:46:06 ICT 2019: Do not find HID device
+Mon Apr 08 21:16:06 ICT 2019: hidDevice - null
+Mon Apr 08 21:16:06 ICT 2019: Do not find HID device
+Mon Apr 08 21:46:06 ICT 2019: hidDevice - null
+Mon Apr 08 21:46:06 ICT 2019: Do not find HID device
+Mon Apr 08 22:16:06 ICT 2019: hidDevice - null
+Mon Apr 08 22:16:06 ICT 2019: Do not find HID device
+Mon Apr 08 22:46:06 ICT 2019: hidDevice - null
+Mon Apr 08 22:46:06 ICT 2019: Do not find HID device
+Mon Apr 08 23:16:06 ICT 2019: hidDevice - null
+Mon Apr 08 23:16:06 ICT 2019: Do not find HID device
+Mon Apr 08 23:46:07 ICT 2019: hidDevice - null
+Mon Apr 08 23:46:07 ICT 2019: Do not find HID device
+Tue Apr 09 00:16:07 ICT 2019: hidDevice - null
+Tue Apr 09 00:16:07 ICT 2019: Do not find HID device
+Tue Apr 09 00:46:07 ICT 2019: hidDevice - null
+Tue Apr 09 00:46:07 ICT 2019: Do not find HID device
+Tue Apr 09 01:16:07 ICT 2019: hidDevice - null
+Tue Apr 09 01:16:07 ICT 2019: Do not find HID device
+Tue Apr 09 01:46:07 ICT 2019: hidDevice - null
+Tue Apr 09 01:46:07 ICT 2019: Do not find HID device
+Tue Apr 09 02:16:07 ICT 2019: hidDevice - null
+Tue Apr 09 02:16:07 ICT 2019: Do not find HID device
+Tue Apr 09 02:46:07 ICT 2019: hidDevice - null
+Tue Apr 09 02:46:07 ICT 2019: Do not find HID device
+Tue Apr 09 03:16:07 ICT 2019: hidDevice - null
+Tue Apr 09 03:16:07 ICT 2019: Do not find HID device
+Tue Apr 09 03:46:07 ICT 2019: hidDevice - null
+Tue Apr 09 03:46:07 ICT 2019: Do not find HID device
+Tue Apr 09 04:16:07 ICT 2019: hidDevice - null
+Tue Apr 09 04:16:07 ICT 2019: Do not find HID device
+Tue Apr 09 04:46:07 ICT 2019: hidDevice - null
+Tue Apr 09 04:46:07 ICT 2019: Do not find HID device
+Tue Apr 09 05:16:07 ICT 2019: hidDevice - null
+Tue Apr 09 05:16:07 ICT 2019: Do not find HID device
+Tue Apr 09 05:46:07 ICT 2019: hidDevice - null
+Tue Apr 09 05:46:07 ICT 2019: Do not find HID device
+Tue Apr 09 06:16:07 ICT 2019: hidDevice - null
+Tue Apr 09 06:16:07 ICT 2019: Do not find HID device
+Tue Apr 09 06:46:08 ICT 2019: hidDevice - null
+Tue Apr 09 06:46:08 ICT 2019: Do not find HID device
+Tue Apr 09 07:16:08 ICT 2019: hidDevice - null
+Tue Apr 09 07:16:08 ICT 2019: Do not find HID device
+Tue Apr 09 07:46:08 ICT 2019: hidDevice - null
+Tue Apr 09 07:46:08 ICT 2019: Do not find HID device
+Tue Apr 09 08:16:08 ICT 2019: hidDevice - null
+Tue Apr 09 08:16:08 ICT 2019: Do not find HID device
+Tue Apr 09 08:46:08 ICT 2019: hidDevice - null
+Tue Apr 09 08:46:08 ICT 2019: Do not find HID device
+Tue Apr 09 09:16:08 ICT 2019: hidDevice - null
+Tue Apr 09 09:16:08 ICT 2019: Do not find HID device
+Tue Apr 09 09:46:08 ICT 2019: hidDevice - null
+Tue Apr 09 09:46:08 ICT 2019: Do not find HID device
+Tue Apr 09 10:16:08 ICT 2019: hidDevice - null
+Tue Apr 09 10:16:08 ICT 2019: Do not find HID device
+Tue Apr 09 10:46:08 ICT 2019: hidDevice - null
+Tue Apr 09 10:46:08 ICT 2019: Do not find HID device
+Tue Apr 09 11:16:08 ICT 2019: hidDevice - null
+Tue Apr 09 11:16:08 ICT 2019: Do not find HID device
+Tue Apr 09 11:46:08 ICT 2019: hidDevice - null
+Tue Apr 09 11:46:08 ICT 2019: Do not find HID device
+Tue Apr 09 12:16:08 ICT 2019: hidDevice - null
+Tue Apr 09 12:16:08 ICT 2019: Do not find HID device
+Tue Apr 09 12:46:08 ICT 2019: hidDevice - null
+Tue Apr 09 12:46:08 ICT 2019: Do not find HID device
+Tue Apr 09 13:16:09 ICT 2019: hidDevice - null
+Tue Apr 09 13:16:09 ICT 2019: Do not find HID device
+Tue Apr 09 13:46:09 ICT 2019: hidDevice - null
+Tue Apr 09 13:46:09 ICT 2019: Do not find HID device
+Tue Apr 09 14:16:09 ICT 2019: hidDevice - null
+Tue Apr 09 14:16:09 ICT 2019: Do not find HID device
+Tue Apr 09 14:46:09 ICT 2019: hidDevice - null
+Tue Apr 09 14:46:09 ICT 2019: Do not find HID device
+Tue Apr 09 15:16:09 ICT 2019: hidDevice - null
+Tue Apr 09 15:16:09 ICT 2019: Do not find HID device
+Tue Apr 09 15:46:09 ICT 2019: hidDevice - null
+Tue Apr 09 15:46:09 ICT 2019: Do not find HID device
+Tue Apr 09 16:16:09 ICT 2019: hidDevice - null
+Tue Apr 09 16:16:09 ICT 2019: Do not find HID device
+Tue Apr 09 16:46:09 ICT 2019: hidDevice - null
+Tue Apr 09 16:46:09 ICT 2019: Do not find HID device
+Tue Apr 09 17:16:09 ICT 2019: hidDevice - null
+Tue Apr 09 17:16:09 ICT 2019: Do not find HID device
+Tue Apr 09 17:46:09 ICT 2019: hidDevice - null
+Tue Apr 09 17:46:09 ICT 2019: Do not find HID device
+Tue Apr 09 18:16:09 ICT 2019: hidDevice - null
+Tue Apr 09 18:16:09 ICT 2019: Do not find HID device
+Tue Apr 09 18:46:09 ICT 2019: hidDevice - null
+Tue Apr 09 18:46:09 ICT 2019: Do not find HID device
+Tue Apr 09 19:16:09 ICT 2019: hidDevice - null
+Tue Apr 09 19:16:09 ICT 2019: Do not find HID device
+Tue Apr 09 19:46:09 ICT 2019: hidDevice - null
+Tue Apr 09 19:46:09 ICT 2019: Do not find HID device
+Tue Apr 09 20:16:09 ICT 2019: hidDevice - null
+Tue Apr 09 20:16:09 ICT 2019: Do not find HID device
+Tue Apr 09 20:46:09 ICT 2019: hidDevice - null
+Tue Apr 09 20:46:09 ICT 2019: Do not find HID device
+Tue Apr 09 21:16:09 ICT 2019: hidDevice - null
+Tue Apr 09 21:16:09 ICT 2019: Do not find HID device
+Tue Apr 09 21:46:09 ICT 2019: hidDevice - null
+Tue Apr 09 21:46:09 ICT 2019: Do not find HID device
+Tue Apr 09 22:16:10 ICT 2019: hidDevice - null
+Tue Apr 09 22:16:10 ICT 2019: Do not find HID device
+Tue Apr 09 22:46:10 ICT 2019: hidDevice - null
+Tue Apr 09 22:46:10 ICT 2019: Do not find HID device
+Tue Apr 09 23:16:10 ICT 2019: hidDevice - null
+Tue Apr 09 23:16:10 ICT 2019: Do not find HID device
+Tue Apr 09 23:46:10 ICT 2019: hidDevice - null
+Tue Apr 09 23:46:10 ICT 2019: Do not find HID device
+Wed Apr 10 00:16:10 ICT 2019: hidDevice - null
+Wed Apr 10 00:16:10 ICT 2019: Do not find HID device
+Wed Apr 10 00:46:10 ICT 2019: hidDevice - null
+Wed Apr 10 00:46:10 ICT 2019: Do not find HID device
+Wed Apr 10 01:16:10 ICT 2019: hidDevice - null
+Wed Apr 10 01:16:10 ICT 2019: Do not find HID device
+Wed Apr 10 01:46:10 ICT 2019: hidDevice - null
+Wed Apr 10 01:46:10 ICT 2019: Do not find HID device
+Wed Apr 10 02:16:10 ICT 2019: hidDevice - null
+Wed Apr 10 02:16:10 ICT 2019: Do not find HID device
+Wed Apr 10 02:46:10 ICT 2019: hidDevice - null
+Wed Apr 10 02:46:10 ICT 2019: Do not find HID device
+Wed Apr 10 03:16:10 ICT 2019: hidDevice - null
+Wed Apr 10 03:16:10 ICT 2019: Do not find HID device
+Wed Apr 10 03:46:10 ICT 2019: hidDevice - null
+Wed Apr 10 03:46:10 ICT 2019: Do not find HID device
+Wed Apr 10 04:16:10 ICT 2019: hidDevice - null
+Wed Apr 10 04:16:10 ICT 2019: Do not find HID device
+Wed Apr 10 04:46:10 ICT 2019: hidDevice - null
+Wed Apr 10 04:46:10 ICT 2019: Do not find HID device
+Wed Apr 10 05:16:10 ICT 2019: hidDevice - null
+Wed Apr 10 05:16:10 ICT 2019: Do not find HID device
+Wed Apr 10 05:46:10 ICT 2019: hidDevice - null
+Wed Apr 10 05:46:10 ICT 2019: Do not find HID device
+Wed Apr 10 06:16:10 ICT 2019: hidDevice - null
+Wed Apr 10 06:16:10 ICT 2019: Do not find HID device
+Wed Apr 10 06:46:11 ICT 2019: hidDevice - null
+Wed Apr 10 06:46:11 ICT 2019: Do not find HID device
+Wed Apr 10 07:16:11 ICT 2019: hidDevice - null
+Wed Apr 10 07:16:11 ICT 2019: Do not find HID device
+Wed Apr 10 07:46:11 ICT 2019: hidDevice - null
+Wed Apr 10 07:46:11 ICT 2019: Do not find HID device
+Wed Apr 10 08:16:11 ICT 2019: hidDevice - null
+Wed Apr 10 08:16:11 ICT 2019: Do not find HID device
+Wed Apr 10 08:46:11 ICT 2019: hidDevice - null
+Wed Apr 10 08:46:11 ICT 2019: Do not find HID device
+Wed Apr 10 09:16:11 ICT 2019: hidDevice - null
+Wed Apr 10 09:16:11 ICT 2019: Do not find HID device
+Wed Apr 10 09:46:11 ICT 2019: hidDevice - null
+Wed Apr 10 09:46:11 ICT 2019: Do not find HID device
+Wed Apr 10 10:16:11 ICT 2019: hidDevice - null
+Wed Apr 10 10:16:11 ICT 2019: Do not find HID device
+Wed Apr 10 10:46:11 ICT 2019: hidDevice - null
+Wed Apr 10 10:46:11 ICT 2019: Do not find HID device
+Wed Apr 10 11:16:11 ICT 2019: hidDevice - null
+Wed Apr 10 11:16:11 ICT 2019: Do not find HID device
+Wed Apr 10 11:46:11 ICT 2019: hidDevice - null
+Wed Apr 10 11:46:11 ICT 2019: Do not find HID device
+Wed Apr 10 12:16:11 ICT 2019: hidDevice - null
+Wed Apr 10 12:16:11 ICT 2019: Do not find HID device
+Wed Apr 10 12:46:11 ICT 2019: hidDevice - null
+Wed Apr 10 12:46:11 ICT 2019: Do not find HID device
+Wed Apr 10 13:16:11 ICT 2019: hidDevice - null
+Wed Apr 10 13:16:11 ICT 2019: Do not find HID device
+Wed Apr 10 13:46:11 ICT 2019: hidDevice - null
+Wed Apr 10 13:46:11 ICT 2019: Do not find HID device
+Wed Apr 10 14:16:11 ICT 2019: hidDevice - null
+Wed Apr 10 14:16:11 ICT 2019: Do not find HID device
+Wed Apr 10 14:46:11 ICT 2019: hidDevice - null
+Wed Apr 10 14:46:11 ICT 2019: Do not find HID device
+Wed Apr 10 15:16:11 ICT 2019: hidDevice - null
+Wed Apr 10 15:16:11 ICT 2019: Do not find HID device
+Wed Apr 10 15:46:11 ICT 2019: hidDevice - null
+Wed Apr 10 15:46:11 ICT 2019: Do not find HID device
+Wed Apr 10 16:16:12 ICT 2019: hidDevice - null
+Wed Apr 10 16:16:12 ICT 2019: Do not find HID device
+Wed Apr 10 16:46:12 ICT 2019: hidDevice - null
+Wed Apr 10 16:46:12 ICT 2019: Do not find HID device
+Wed Apr 10 17:16:12 ICT 2019: hidDevice - null
+Wed Apr 10 17:16:12 ICT 2019: Do not find HID device
+Wed Apr 10 17:46:12 ICT 2019: hidDevice - null
+Wed Apr 10 17:46:12 ICT 2019: Do not find HID device
+Wed Apr 10 18:16:12 ICT 2019: hidDevice - null
+Wed Apr 10 18:16:12 ICT 2019: Do not find HID device
+Wed Apr 10 18:46:12 ICT 2019: hidDevice - null
+Wed Apr 10 18:46:12 ICT 2019: Do not find HID device
+Wed Apr 10 19:16:12 ICT 2019: hidDevice - null
+Wed Apr 10 19:16:12 ICT 2019: Do not find HID device
+Wed Apr 10 19:46:12 ICT 2019: hidDevice - null
+Wed Apr 10 19:46:12 ICT 2019: Do not find HID device
+Wed Apr 10 20:16:12 ICT 2019: hidDevice - null
+Wed Apr 10 20:16:12 ICT 2019: Do not find HID device
+Wed Apr 10 20:46:12 ICT 2019: hidDevice - null
+Wed Apr 10 20:46:12 ICT 2019: Do not find HID device
+Wed Apr 10 21:16:12 ICT 2019: hidDevice - null
+Wed Apr 10 21:16:12 ICT 2019: Do not find HID device
+Wed Apr 10 21:46:12 ICT 2019: hidDevice - null
+Wed Apr 10 21:46:12 ICT 2019: Do not find HID device
+Wed Apr 10 22:16:12 ICT 2019: hidDevice - null
+Wed Apr 10 22:16:12 ICT 2019: Do not find HID device
+Wed Apr 10 22:46:12 ICT 2019: hidDevice - null
+Wed Apr 10 22:46:12 ICT 2019: Do not find HID device
+Wed Apr 10 23:16:12 ICT 2019: hidDevice - null
+Wed Apr 10 23:16:12 ICT 2019: Do not find HID device
+Wed Apr 10 23:46:12 ICT 2019: hidDevice - null
+Wed Apr 10 23:46:12 ICT 2019: Do not find HID device
+Thu Apr 11 00:16:12 ICT 2019: hidDevice - null
+Thu Apr 11 00:16:12 ICT 2019: Do not find HID device
+Thu Apr 11 00:46:13 ICT 2019: hidDevice - null
+Thu Apr 11 00:46:13 ICT 2019: Do not find HID device
+Thu Apr 11 01:16:13 ICT 2019: hidDevice - null
+Thu Apr 11 01:16:13 ICT 2019: Do not find HID device
+Thu Apr 11 01:46:13 ICT 2019: hidDevice - null
+Thu Apr 11 01:46:13 ICT 2019: Do not find HID device
+Thu Apr 11 02:16:13 ICT 2019: hidDevice - null
+Thu Apr 11 02:16:13 ICT 2019: Do not find HID device
+Thu Apr 11 02:46:13 ICT 2019: hidDevice - null
+Thu Apr 11 02:46:13 ICT 2019: Do not find HID device
+Thu Apr 11 03:16:13 ICT 2019: hidDevice - null
+Thu Apr 11 03:16:13 ICT 2019: Do not find HID device
+Thu Apr 11 03:46:13 ICT 2019: hidDevice - null
+Thu Apr 11 03:46:13 ICT 2019: Do not find HID device
+Thu Apr 11 04:16:13 ICT 2019: hidDevice - null
+Thu Apr 11 04:16:13 ICT 2019: Do not find HID device
+Thu Apr 11 04:46:13 ICT 2019: hidDevice - null
+Thu Apr 11 04:46:13 ICT 2019: Do not find HID device
+Thu Apr 11 05:16:16 ICT 2019: hidDevice - null
+Thu Apr 11 05:16:16 ICT 2019: Do not find HID device
+Thu Apr 11 05:46:16 ICT 2019: hidDevice - null
+Thu Apr 11 05:46:16 ICT 2019: Do not find HID device
+Thu Apr 11 06:16:17 ICT 2019: hidDevice - null
+Thu Apr 11 06:16:17 ICT 2019: Do not find HID device
+Thu Apr 11 06:46:17 ICT 2019: hidDevice - null
+Thu Apr 11 06:46:17 ICT 2019: Do not find HID device
+Thu Apr 11 07:16:17 ICT 2019: hidDevice - null
+Thu Apr 11 07:16:18 ICT 2019: Do not find HID device
+Thu Apr 11 07:46:21 ICT 2019: hidDevice - null
+Thu Apr 11 07:46:21 ICT 2019: Do not find HID device
+Thu Apr 11 08:16:22 ICT 2019: hidDevice - null
+Thu Apr 11 08:16:22 ICT 2019: Do not find HID device
+Thu Apr 11 08:46:22 ICT 2019: hidDevice - null
+Thu Apr 11 08:46:22 ICT 2019: Do not find HID device
+Thu Apr 11 09:16:22 ICT 2019: hidDevice - null
+Thu Apr 11 09:16:22 ICT 2019: Do not find HID device
+Thu Apr 11 09:46:23 ICT 2019: hidDevice - null
+Thu Apr 11 09:46:23 ICT 2019: Do not find HID device
+Thu Apr 11 10:16:23 ICT 2019: hidDevice - null
+Thu Apr 11 10:16:23 ICT 2019: Do not find HID device
+Thu Apr 11 10:46:23 ICT 2019: hidDevice - null
+Thu Apr 11 10:46:23 ICT 2019: Do not find HID device
+Thu Apr 11 11:16:23 ICT 2019: hidDevice - null
+Thu Apr 11 11:16:23 ICT 2019: Do not find HID device
+Thu Apr 11 11:46:23 ICT 2019: hidDevice - null
+Thu Apr 11 11:46:23 ICT 2019: Do not find HID device
+Thu Apr 11 12:16:23 ICT 2019: hidDevice - null
+Thu Apr 11 12:16:23 ICT 2019: Do not find HID device
+Thu Apr 11 12:46:23 ICT 2019: hidDevice - null
+Thu Apr 11 12:46:23 ICT 2019: Do not find HID device
+Thu Apr 11 13:16:23 ICT 2019: hidDevice - null
+Thu Apr 11 13:16:23 ICT 2019: Do not find HID device
+Thu Apr 11 13:46:24 ICT 2019: hidDevice - null
+Thu Apr 11 13:46:24 ICT 2019: Do not find HID device
+Thu Apr 11 14:16:24 ICT 2019: hidDevice - null
+Thu Apr 11 14:16:24 ICT 2019: Do not find HID device
+Thu Apr 11 14:46:24 ICT 2019: hidDevice - null
+Thu Apr 11 14:46:24 ICT 2019: Do not find HID device
+Thu Apr 11 15:16:24 ICT 2019: hidDevice - null
+Thu Apr 11 15:16:24 ICT 2019: Do not find HID device
+Thu Apr 11 15:46:24 ICT 2019: hidDevice - null
+Thu Apr 11 15:46:24 ICT 2019: Do not find HID device
+Thu Apr 11 16:16:24 ICT 2019: hidDevice - null
+Thu Apr 11 16:16:24 ICT 2019: Do not find HID device
+Thu Apr 11 16:46:24 ICT 2019: hidDevice - null
+Thu Apr 11 16:46:24 ICT 2019: Do not find HID device
+Thu Apr 11 17:16:24 ICT 2019: hidDevice - null
+Thu Apr 11 17:16:24 ICT 2019: Do not find HID device
+Thu Apr 11 17:46:24 ICT 2019: hidDevice - null
+Thu Apr 11 17:46:24 ICT 2019: Do not find HID device
+Thu Apr 11 18:16:24 ICT 2019: hidDevice - null
+Thu Apr 11 18:16:24 ICT 2019: Do not find HID device
+Thu Apr 11 18:46:24 ICT 2019: hidDevice - null
+Thu Apr 11 18:46:24 ICT 2019: Do not find HID device
+Thu Apr 11 19:16:24 ICT 2019: hidDevice - null
+Thu Apr 11 19:16:24 ICT 2019: Do not find HID device
+Thu Apr 11 19:46:24 ICT 2019: hidDevice - null
+Thu Apr 11 19:46:24 ICT 2019: Do not find HID device
+Thu Apr 11 20:16:24 ICT 2019: hidDevice - null
+Thu Apr 11 20:16:24 ICT 2019: Do not find HID device
+Thu Apr 11 20:46:24 ICT 2019: hidDevice - null
+Thu Apr 11 20:46:24 ICT 2019: Do not find HID device
+Thu Apr 11 21:16:24 ICT 2019: hidDevice - null
+Thu Apr 11 21:16:24 ICT 2019: Do not find HID device
+Thu Apr 11 21:46:25 ICT 2019: hidDevice - null
+Thu Apr 11 21:46:25 ICT 2019: Do not find HID device
+Thu Apr 11 22:16:25 ICT 2019: hidDevice - null
+Thu Apr 11 22:16:25 ICT 2019: Do not find HID device
+Thu Apr 11 22:46:25 ICT 2019: hidDevice - null
+Thu Apr 11 22:46:25 ICT 2019: Do not find HID device
+Thu Apr 11 23:16:25 ICT 2019: hidDevice - null
+Thu Apr 11 23:16:25 ICT 2019: Do not find HID device
+Thu Apr 11 23:46:25 ICT 2019: hidDevice - null
+Thu Apr 11 23:46:25 ICT 2019: Do not find HID device
+Fri Apr 12 00:16:25 ICT 2019: hidDevice - null
+Fri Apr 12 00:16:25 ICT 2019: Do not find HID device
+Fri Apr 12 00:46:25 ICT 2019: hidDevice - null
+Fri Apr 12 00:46:25 ICT 2019: Do not find HID device
+Fri Apr 12 01:16:25 ICT 2019: hidDevice - null
+Fri Apr 12 01:16:25 ICT 2019: Do not find HID device
+Fri Apr 12 01:46:25 ICT 2019: hidDevice - null
+Fri Apr 12 01:46:25 ICT 2019: Do not find HID device
+Fri Apr 12 02:16:25 ICT 2019: hidDevice - null
+Fri Apr 12 02:16:25 ICT 2019: Do not find HID device
+Fri Apr 12 02:46:25 ICT 2019: hidDevice - null
+Fri Apr 12 02:46:25 ICT 2019: Do not find HID device
+Fri Apr 12 03:16:25 ICT 2019: hidDevice - null
+Fri Apr 12 03:16:25 ICT 2019: Do not find HID device
+Fri Apr 12 03:46:25 ICT 2019: hidDevice - null
+Fri Apr 12 03:46:25 ICT 2019: Do not find HID device
+Fri Apr 12 04:16:26 ICT 2019: hidDevice - null
+Fri Apr 12 04:16:26 ICT 2019: Do not find HID device
+Fri Apr 12 04:46:26 ICT 2019: hidDevice - null
+Fri Apr 12 04:46:26 ICT 2019: Do not find HID device
+Fri Apr 12 05:16:26 ICT 2019: hidDevice - null
+Fri Apr 12 05:16:26 ICT 2019: Do not find HID device
+Fri Apr 12 05:46:26 ICT 2019: hidDevice - null
+Fri Apr 12 05:46:26 ICT 2019: Do not find HID device
+Fri Apr 12 06:16:26 ICT 2019: hidDevice - null
+Fri Apr 12 06:16:26 ICT 2019: Do not find HID device
+Fri Apr 12 06:46:26 ICT 2019: hidDevice - null
+Fri Apr 12 06:46:26 ICT 2019: Do not find HID device
+Fri Apr 12 07:16:26 ICT 2019: hidDevice - null
+Fri Apr 12 07:16:26 ICT 2019: Do not find HID device
+Fri Apr 12 07:46:26 ICT 2019: hidDevice - null
+Fri Apr 12 07:46:26 ICT 2019: Do not find HID device
+Fri Apr 12 08:16:26 ICT 2019: hidDevice - null
+Fri Apr 12 08:16:26 ICT 2019: Do not find HID device
+Fri Apr 12 08:46:26 ICT 2019: hidDevice - null
+Fri Apr 12 08:46:26 ICT 2019: Do not find HID device
+Fri Apr 12 09:16:26 ICT 2019: hidDevice - null
+Fri Apr 12 09:16:26 ICT 2019: Do not find HID device
+Starts at Tue Apr 16 08:56:36 ICT 2019
+Tue Apr 16 08:58:18 ICT 2019: hidDevice - null
+Tue Apr 16 08:58:18 ICT 2019: Do not find HID device
+Tue Apr 16 09:28:18 ICT 2019: hidDevice - null
+Tue Apr 16 09:28:18 ICT 2019: Do not find HID device
+Tue Apr 16 09:58:18 ICT 2019: hidDevice - null
+Tue Apr 16 09:58:18 ICT 2019: Do not find HID device
+Ends at Tue Apr 16 10:15:49 ICT 2019
+Starts at Sat Apr 20 08:36:33 ICT 2019
+Sat Apr 20 08:38:12 ICT 2019: hidDevice - null
+Sat Apr 20 08:38:12 ICT 2019: Do not find HID device
+Sat Apr 20 09:08:12 ICT 2019: hidDevice - null
+Sat Apr 20 09:08:12 ICT 2019: Do not find HID device
+Sat Apr 20 09:38:12 ICT 2019: hidDevice - null
+Sat Apr 20 09:38:12 ICT 2019: Do not find HID device
+Sat Apr 20 10:08:12 ICT 2019: hidDevice - null
+Sat Apr 20 10:08:12 ICT 2019: Do not find HID device
+Mon Apr 22 09:21:48 ICT 2019: hidDevice - null
+Mon Apr 22 09:21:48 ICT 2019: Do not find HID device
+Mon Apr 22 09:51:48 ICT 2019: hidDevice - null
+Mon Apr 22 09:51:48 ICT 2019: Do not find HID device
+Mon Apr 22 10:21:49 ICT 2019: hidDevice - null
+Mon Apr 22 10:21:49 ICT 2019: Do not find HID device
+Mon Apr 22 10:51:49 ICT 2019: hidDevice - null
+Mon Apr 22 10:51:49 ICT 2019: Do not find HID device
+Mon Apr 22 11:21:49 ICT 2019: hidDevice - null
+Mon Apr 22 11:21:49 ICT 2019: Do not find HID device
+Mon Apr 22 11:51:49 ICT 2019: hidDevice - null
+Mon Apr 22 11:51:49 ICT 2019: Do not find HID device
+Mon Apr 22 12:21:49 ICT 2019: hidDevice - null
+Mon Apr 22 12:21:49 ICT 2019: Do not find HID device
+Mon Apr 22 12:51:49 ICT 2019: hidDevice - null
+Mon Apr 22 12:51:49 ICT 2019: Do not find HID device
+Mon Apr 22 13:21:49 ICT 2019: hidDevice - null
+Mon Apr 22 13:21:49 ICT 2019: Do not find HID device
+Mon Apr 22 13:51:49 ICT 2019: hidDevice - null
+Mon Apr 22 13:51:49 ICT 2019: Do not find HID device
+Mon Apr 22 14:21:50 ICT 2019: hidDevice - null
+Mon Apr 22 14:21:50 ICT 2019: Do not find HID device
+Mon Apr 22 14:51:50 ICT 2019: hidDevice - null
+Mon Apr 22 14:51:50 ICT 2019: Do not find HID device
+Mon Apr 22 15:21:50 ICT 2019: hidDevice - null
+Mon Apr 22 15:21:50 ICT 2019: Do not find HID device
+Mon Apr 22 15:51:50 ICT 2019: hidDevice - null
+Mon Apr 22 15:51:50 ICT 2019: Do not find HID device
+Mon Apr 22 16:21:50 ICT 2019: hidDevice - null
+Mon Apr 22 16:21:50 ICT 2019: Do not find HID device
+Mon Apr 22 16:51:50 ICT 2019: hidDevice - null
+Mon Apr 22 16:51:50 ICT 2019: Do not find HID device
+Mon Apr 22 17:21:50 ICT 2019: hidDevice - null
+Mon Apr 22 17:21:50 ICT 2019: Do not find HID device
+Mon Apr 22 17:51:50 ICT 2019: hidDevice - null
+Mon Apr 22 17:51:50 ICT 2019: Do not find HID device
+Mon Apr 22 18:21:50 ICT 2019: hidDevice - null
+Mon Apr 22 18:21:50 ICT 2019: Do not find HID device
+Mon Apr 22 18:51:50 ICT 2019: hidDevice - null
+Mon Apr 22 18:51:50 ICT 2019: Do not find HID device
+Mon Apr 22 19:21:50 ICT 2019: hidDevice - null
+Mon Apr 22 19:21:51 ICT 2019: Do not find HID device
+Mon Apr 22 19:51:51 ICT 2019: hidDevice - null
+Mon Apr 22 19:51:51 ICT 2019: Do not find HID device
+Mon Apr 22 20:21:52 ICT 2019: hidDevice - null
+Mon Apr 22 20:21:52 ICT 2019: Do not find HID device
+Mon Apr 22 20:51:52 ICT 2019: hidDevice - null
+Mon Apr 22 20:51:53 ICT 2019: Do not find HID device
+Mon Apr 22 21:21:53 ICT 2019: hidDevice - null
+Mon Apr 22 21:21:53 ICT 2019: Do not find HID device
+Mon Apr 22 21:51:53 ICT 2019: hidDevice - null
+Mon Apr 22 21:51:54 ICT 2019: Do not find HID device
+Mon Apr 22 22:21:54 ICT 2019: hidDevice - null
+Mon Apr 22 22:21:54 ICT 2019: Do not find HID device
+Mon Apr 22 22:51:54 ICT 2019: hidDevice - null
+Mon Apr 22 22:51:54 ICT 2019: Do not find HID device
+Mon Apr 22 23:21:54 ICT 2019: hidDevice - null
+Mon Apr 22 23:21:54 ICT 2019: Do not find HID device
+Mon Apr 22 23:51:54 ICT 2019: hidDevice - null
+Mon Apr 22 23:51:54 ICT 2019: Do not find HID device
+Tue Apr 23 00:21:54 ICT 2019: hidDevice - null
+Tue Apr 23 00:21:54 ICT 2019: Do not find HID device
+Tue Apr 23 00:51:54 ICT 2019: hidDevice - null
+Tue Apr 23 00:51:54 ICT 2019: Do not find HID device
+Tue Apr 23 01:21:54 ICT 2019: hidDevice - null
+Tue Apr 23 01:21:54 ICT 2019: Do not find HID device
+Tue Apr 23 01:51:55 ICT 2019: hidDevice - null
+Tue Apr 23 01:51:55 ICT 2019: Do not find HID device
+Tue Apr 23 02:21:55 ICT 2019: hidDevice - null
+Tue Apr 23 02:21:55 ICT 2019: Do not find HID device
+Tue Apr 23 02:51:55 ICT 2019: hidDevice - null
+Tue Apr 23 02:51:55 ICT 2019: Do not find HID device
+Tue Apr 23 03:21:55 ICT 2019: hidDevice - null
+Tue Apr 23 03:21:55 ICT 2019: Do not find HID device
+Tue Apr 23 03:51:55 ICT 2019: hidDevice - null
+Tue Apr 23 03:51:55 ICT 2019: Do not find HID device
+Tue Apr 23 04:21:55 ICT 2019: hidDevice - null
+Tue Apr 23 04:21:55 ICT 2019: Do not find HID device
+Tue Apr 23 04:51:55 ICT 2019: hidDevice - null
+Tue Apr 23 04:51:55 ICT 2019: Do not find HID device
+Tue Apr 23 05:21:55 ICT 2019: hidDevice - null
+Tue Apr 23 05:21:55 ICT 2019: Do not find HID device
+Tue Apr 23 05:51:55 ICT 2019: hidDevice - null
+Tue Apr 23 05:51:55 ICT 2019: Do not find HID device
+Tue Apr 23 06:21:55 ICT 2019: hidDevice - null
+Tue Apr 23 06:21:55 ICT 2019: Do not find HID device
+Tue Apr 23 06:51:55 ICT 2019: hidDevice - null
+Tue Apr 23 06:51:55 ICT 2019: Do not find HID device
+Tue Apr 23 07:21:55 ICT 2019: hidDevice - null
+Tue Apr 23 07:21:55 ICT 2019: Do not find HID device
+Tue Apr 23 07:51:55 ICT 2019: hidDevice - null
+Tue Apr 23 07:51:55 ICT 2019: Do not find HID device
+Tue Apr 23 08:21:55 ICT 2019: hidDevice - null
+Tue Apr 23 08:21:55 ICT 2019: Do not find HID device
+Tue Apr 23 08:51:55 ICT 2019: hidDevice - null
+Tue Apr 23 08:51:55 ICT 2019: Do not find HID device
+Tue Apr 23 09:21:56 ICT 2019: hidDevice - null
+Tue Apr 23 09:21:56 ICT 2019: Do not find HID device
+Tue Apr 23 09:51:56 ICT 2019: hidDevice - null
+Tue Apr 23 09:51:56 ICT 2019: Do not find HID device
+Tue Apr 23 10:21:56 ICT 2019: hidDevice - null
+Tue Apr 23 10:21:56 ICT 2019: Do not find HID device
+Tue Apr 23 10:51:56 ICT 2019: hidDevice - null
+Tue Apr 23 10:51:56 ICT 2019: Do not find HID device
+Tue Apr 23 11:21:56 ICT 2019: hidDevice - null
+Tue Apr 23 11:21:56 ICT 2019: Do not find HID device
+Tue Apr 23 11:51:56 ICT 2019: hidDevice - null
+Tue Apr 23 11:51:56 ICT 2019: Do not find HID device
+Tue Apr 23 12:21:56 ICT 2019: hidDevice - null
+Tue Apr 23 12:21:56 ICT 2019: Do not find HID device
+Tue Apr 23 12:51:56 ICT 2019: hidDevice - null
+Tue Apr 23 12:51:56 ICT 2019: Do not find HID device
+Tue Apr 23 13:21:56 ICT 2019: hidDevice - null
+Tue Apr 23 13:21:56 ICT 2019: Do not find HID device
+Tue Apr 23 13:51:56 ICT 2019: hidDevice - null
+Tue Apr 23 13:51:56 ICT 2019: Do not find HID device
+Tue Apr 23 14:21:56 ICT 2019: hidDevice - null
+Tue Apr 23 14:21:56 ICT 2019: Do not find HID device
+Tue Apr 23 14:51:57 ICT 2019: hidDevice - null
+Tue Apr 23 14:51:57 ICT 2019: Do not find HID device
+Tue Apr 23 15:21:57 ICT 2019: hidDevice - null
+Tue Apr 23 15:21:57 ICT 2019: Do not find HID device
+Tue Apr 23 15:51:57 ICT 2019: hidDevice - null
+Tue Apr 23 15:51:57 ICT 2019: Do not find HID device
+Tue Apr 23 16:21:57 ICT 2019: hidDevice - null
+Tue Apr 23 16:21:57 ICT 2019: Do not find HID device
+Tue Apr 23 16:51:57 ICT 2019: hidDevice - null
+Tue Apr 23 16:51:57 ICT 2019: Do not find HID device
+Tue Apr 23 17:21:57 ICT 2019: hidDevice - null
+Tue Apr 23 17:21:57 ICT 2019: Do not find HID device
+Tue Apr 23 17:51:57 ICT 2019: hidDevice - null
+Tue Apr 23 17:51:57 ICT 2019: Do not find HID device
+Tue Apr 23 18:21:57 ICT 2019: hidDevice - null
+Tue Apr 23 18:21:57 ICT 2019: Do not find HID device
+Tue Apr 23 18:51:57 ICT 2019: hidDevice - null
+Tue Apr 23 18:51:57 ICT 2019: Do not find HID device
+Tue Apr 23 19:21:57 ICT 2019: hidDevice - null
+Tue Apr 23 19:21:57 ICT 2019: Do not find HID device
+Tue Apr 23 19:51:57 ICT 2019: hidDevice - null
+Tue Apr 23 19:51:57 ICT 2019: Do not find HID device
+Tue Apr 23 20:21:57 ICT 2019: hidDevice - null
+Tue Apr 23 20:21:57 ICT 2019: Do not find HID device
+Tue Apr 23 20:51:58 ICT 2019: hidDevice - null
+Tue Apr 23 20:51:58 ICT 2019: Do not find HID device
+Tue Apr 23 21:21:58 ICT 2019: hidDevice - null
+Tue Apr 23 21:21:58 ICT 2019: Do not find HID device
+Tue Apr 23 21:51:58 ICT 2019: hidDevice - null
+Tue Apr 23 21:51:58 ICT 2019: Do not find HID device
+Tue Apr 23 22:21:58 ICT 2019: hidDevice - null
+Tue Apr 23 22:21:58 ICT 2019: Do not find HID device
+Tue Apr 23 22:51:58 ICT 2019: hidDevice - null
+Tue Apr 23 22:51:58 ICT 2019: Do not find HID device
+Tue Apr 23 23:21:58 ICT 2019: hidDevice - null
+Tue Apr 23 23:21:58 ICT 2019: Do not find HID device
+Tue Apr 23 23:51:58 ICT 2019: hidDevice - null
+Tue Apr 23 23:51:58 ICT 2019: Do not find HID device
+Wed Apr 24 00:21:58 ICT 2019: hidDevice - null
+Wed Apr 24 00:21:58 ICT 2019: Do not find HID device
+Wed Apr 24 00:51:58 ICT 2019: hidDevice - null
+Wed Apr 24 00:51:58 ICT 2019: Do not find HID device
+Wed Apr 24 01:21:58 ICT 2019: hidDevice - null
+Wed Apr 24 01:21:58 ICT 2019: Do not find HID device
+Wed Apr 24 01:51:58 ICT 2019: hidDevice - null
+Wed Apr 24 01:51:58 ICT 2019: Do not find HID device
+Wed Apr 24 02:21:58 ICT 2019: hidDevice - null
+Wed Apr 24 02:21:58 ICT 2019: Do not find HID device
+Wed Apr 24 02:51:59 ICT 2019: hidDevice - null
+Wed Apr 24 02:51:59 ICT 2019: Do not find HID device
+Wed Apr 24 03:21:59 ICT 2019: hidDevice - null
+Wed Apr 24 03:21:59 ICT 2019: Do not find HID device
+Wed Apr 24 03:51:59 ICT 2019: hidDevice - null
+Wed Apr 24 03:51:59 ICT 2019: Do not find HID device
+Wed Apr 24 04:21:59 ICT 2019: hidDevice - null
+Wed Apr 24 04:21:59 ICT 2019: Do not find HID device
+Wed Apr 24 04:51:59 ICT 2019: hidDevice - null
+Wed Apr 24 04:51:59 ICT 2019: Do not find HID device
+Wed Apr 24 05:21:59 ICT 2019: hidDevice - null
+Wed Apr 24 05:21:59 ICT 2019: Do not find HID device
+Wed Apr 24 05:51:59 ICT 2019: hidDevice - null
+Wed Apr 24 05:51:59 ICT 2019: Do not find HID device
+Wed Apr 24 06:21:59 ICT 2019: hidDevice - null
+Wed Apr 24 06:21:59 ICT 2019: Do not find HID device
+Wed Apr 24 06:51:59 ICT 2019: hidDevice - null
+Wed Apr 24 06:51:59 ICT 2019: Do not find HID device
+Wed Apr 24 07:21:59 ICT 2019: hidDevice - null
+Wed Apr 24 07:21:59 ICT 2019: Do not find HID device
+Wed Apr 24 07:51:59 ICT 2019: hidDevice - null
+Wed Apr 24 07:51:59 ICT 2019: Do not find HID device
+Wed Apr 24 08:21:59 ICT 2019: hidDevice - null
+Wed Apr 24 08:21:59 ICT 2019: Do not find HID device
+Wed Apr 24 08:51:59 ICT 2019: hidDevice - null
+Wed Apr 24 08:51:59 ICT 2019: Do not find HID device
+Wed Apr 24 09:21:59 ICT 2019: hidDevice - null
+Wed Apr 24 09:21:59 ICT 2019: Do not find HID device
+Wed Apr 24 09:52:00 ICT 2019: hidDevice - null
+Wed Apr 24 09:52:00 ICT 2019: Do not find HID device
+Wed Apr 24 10:22:00 ICT 2019: hidDevice - null
+Wed Apr 24 10:22:00 ICT 2019: Do not find HID device
+Wed Apr 24 10:52:00 ICT 2019: hidDevice - null
+Wed Apr 24 10:52:00 ICT 2019: Do not find HID device
+Wed Apr 24 11:22:00 ICT 2019: hidDevice - null
+Wed Apr 24 11:22:00 ICT 2019: Do not find HID device
+Wed Apr 24 11:52:00 ICT 2019: hidDevice - null
+Wed Apr 24 11:52:00 ICT 2019: Do not find HID device
+Wed Apr 24 12:22:00 ICT 2019: hidDevice - null
+Wed Apr 24 12:22:00 ICT 2019: Do not find HID device
+Wed Apr 24 12:52:00 ICT 2019: hidDevice - null
+Wed Apr 24 12:52:00 ICT 2019: Do not find HID device
+Wed Apr 24 13:22:00 ICT 2019: hidDevice - null
+Wed Apr 24 13:22:00 ICT 2019: Do not find HID device
+Wed Apr 24 13:52:00 ICT 2019: hidDevice - null
+Wed Apr 24 13:52:00 ICT 2019: Do not find HID device
+Wed Apr 24 14:22:00 ICT 2019: hidDevice - null
+Wed Apr 24 14:22:00 ICT 2019: Do not find HID device
+Wed Apr 24 14:52:00 ICT 2019: hidDevice - null
+Wed Apr 24 14:52:00 ICT 2019: Do not find HID device
+Wed Apr 24 15:22:01 ICT 2019: hidDevice - null
+Wed Apr 24 15:22:01 ICT 2019: Do not find HID device
+Wed Apr 24 15:52:01 ICT 2019: hidDevice - null
+Wed Apr 24 15:52:01 ICT 2019: Do not find HID device
+Wed Apr 24 16:22:01 ICT 2019: hidDevice - null
+Wed Apr 24 16:22:01 ICT 2019: Do not find HID device
+Wed Apr 24 16:52:01 ICT 2019: hidDevice - null
+Wed Apr 24 16:52:01 ICT 2019: Do not find HID device
+Wed Apr 24 17:22:01 ICT 2019: hidDevice - null
+Wed Apr 24 17:22:01 ICT 2019: Do not find HID device
+Wed Apr 24 17:52:01 ICT 2019: hidDevice - null
+Wed Apr 24 17:52:01 ICT 2019: Do not find HID device
+Wed Apr 24 18:22:01 ICT 2019: hidDevice - null
+Wed Apr 24 18:22:01 ICT 2019: Do not find HID device
+Wed Apr 24 18:52:01 ICT 2019: hidDevice - null
+Wed Apr 24 18:52:01 ICT 2019: Do not find HID device
+Wed Apr 24 19:22:01 ICT 2019: hidDevice - null
+Wed Apr 24 19:22:01 ICT 2019: Do not find HID device
+Wed Apr 24 19:52:01 ICT 2019: hidDevice - null
+Wed Apr 24 19:52:01 ICT 2019: Do not find HID device
+Wed Apr 24 20:22:01 ICT 2019: hidDevice - null
+Wed Apr 24 20:22:01 ICT 2019: Do not find HID device
+Wed Apr 24 20:52:01 ICT 2019: hidDevice - null
+Wed Apr 24 20:52:01 ICT 2019: Do not find HID device
+Wed Apr 24 21:22:02 ICT 2019: hidDevice - null
+Wed Apr 24 21:22:02 ICT 2019: Do not find HID device
+Wed Apr 24 21:52:02 ICT 2019: hidDevice - null
+Wed Apr 24 21:52:02 ICT 2019: Do not find HID device
+Wed Apr 24 22:22:02 ICT 2019: hidDevice - null
+Wed Apr 24 22:22:02 ICT 2019: Do not find HID device
+Wed Apr 24 22:52:02 ICT 2019: hidDevice - null
+Wed Apr 24 22:52:02 ICT 2019: Do not find HID device
+Wed Apr 24 23:22:02 ICT 2019: hidDevice - null
+Wed Apr 24 23:22:02 ICT 2019: Do not find HID device
+Wed Apr 24 23:52:02 ICT 2019: hidDevice - null
+Wed Apr 24 23:52:02 ICT 2019: Do not find HID device
+Thu Apr 25 00:22:02 ICT 2019: hidDevice - null
+Thu Apr 25 00:22:02 ICT 2019: Do not find HID device
+Thu Apr 25 00:52:02 ICT 2019: hidDevice - null
+Thu Apr 25 00:52:02 ICT 2019: Do not find HID device
+Thu Apr 25 01:22:02 ICT 2019: hidDevice - null
+Thu Apr 25 01:22:02 ICT 2019: Do not find HID device
+Thu Apr 25 01:52:03 ICT 2019: hidDevice - null
+Thu Apr 25 01:52:03 ICT 2019: Do not find HID device
+Thu Apr 25 02:22:03 ICT 2019: hidDevice - null
+Thu Apr 25 02:22:03 ICT 2019: Do not find HID device
+Thu Apr 25 02:52:03 ICT 2019: hidDevice - null
+Thu Apr 25 02:52:03 ICT 2019: Do not find HID device
+Thu Apr 25 03:22:03 ICT 2019: hidDevice - null
+Thu Apr 25 03:22:03 ICT 2019: Do not find HID device
+Thu Apr 25 03:52:03 ICT 2019: hidDevice - null
+Thu Apr 25 03:52:03 ICT 2019: Do not find HID device
+Thu Apr 25 04:22:03 ICT 2019: hidDevice - null
+Thu Apr 25 04:22:03 ICT 2019: Do not find HID device
+Thu Apr 25 04:52:03 ICT 2019: hidDevice - null
+Thu Apr 25 04:52:03 ICT 2019: Do not find HID device
+Thu Apr 25 05:22:03 ICT 2019: hidDevice - null
+Thu Apr 25 05:22:03 ICT 2019: Do not find HID device
+Thu Apr 25 05:52:03 ICT 2019: hidDevice - null
+Thu Apr 25 05:52:03 ICT 2019: Do not find HID device
+Thu Apr 25 06:22:03 ICT 2019: hidDevice - null
+Thu Apr 25 06:22:03 ICT 2019: Do not find HID device
+Thu Apr 25 06:52:03 ICT 2019: hidDevice - null
+Thu Apr 25 06:52:03 ICT 2019: Do not find HID device
+Thu Apr 25 07:22:04 ICT 2019: hidDevice - null
+Thu Apr 25 07:22:04 ICT 2019: Do not find HID device
+Thu Apr 25 07:52:04 ICT 2019: hidDevice - null
+Thu Apr 25 07:52:04 ICT 2019: Do not find HID device
+Thu Apr 25 08:22:04 ICT 2019: hidDevice - null
+Thu Apr 25 08:22:04 ICT 2019: Do not find HID device
+Thu Apr 25 08:52:04 ICT 2019: hidDevice - null
+Thu Apr 25 08:52:04 ICT 2019: Do not find HID device
+Thu Apr 25 09:22:08 ICT 2019: hidDevice - null
+Thu Apr 25 09:22:08 ICT 2019: Do not find HID device
+Thu Apr 25 09:52:10 ICT 2019: hidDevice - null
+Thu Apr 25 09:52:10 ICT 2019: Do not find HID device
+Thu Apr 25 10:22:11 ICT 2019: hidDevice - null
+Thu Apr 25 10:22:11 ICT 2019: Do not find HID device

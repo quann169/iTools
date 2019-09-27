@@ -474,14 +474,24 @@ public class ResetPasswordPage extends JFrame implements ActionListener {
 				logger.info("Yes option");
 				if (isFirstTimeLogin) {
 					String newPass = empCtlObj.updatePassword(usernameResetPass, companyCode, password, 0);
-					String email = ctlObj.getEmailUser(companyCode, usernameResetPass);
+					
+					
+					
+					
 					logger.info("Lock User");
 					Thread one = new Thread() {
 						public void run() {
 							List<String> listCCEmail = new ArrayList<>();
-							listCCEmail.add(ctlObj.getEmailAdmin());
-							emailUtils.sendEmail(email, listCCEmail, "First Time Login Change Pass",
-									"Hi " + usernameResetPass + ",\nYour pass has been change to " + newPass);
+							String emailUser;
+							if (companyCode.contains("MFC")) {
+								emailUser = ctlObj.getEmailSubAdmin(companyCode);
+							} else {
+								emailUser = ctlObj.getEmailUser(companyCode, usernameResetPass);
+								listCCEmail.add(ctlObj.getEmailAdmin());
+							}
+							String fullName = ctlObj.getFullNameUser(companyCode, userName);
+							emailUtils.sendEmail(emailUser, listCCEmail, "First Time Login Change Pass",
+									"Hi " + fullName + "(" + usernameResetPass + "),\nYour pass has been change to " + newPass);
 
 						}
 					};

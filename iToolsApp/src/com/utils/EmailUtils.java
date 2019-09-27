@@ -29,7 +29,7 @@ public class EmailUtils {
 	final static String password = AdvancedEncryptionStandard.decrypt(cfg.getProperty("EMAIL_PASSWORD"));
 	final static int port = Integer.valueOf(AdvancedEncryptionStandard.decrypt(cfg.getProperty("EMAIL_PORT")));
 	static String host = AdvancedEncryptionStandard.decrypt(cfg.getProperty("EMAIL_HOST"));
-	
+
 	static int isSendingEmail = Integer.valueOf(cfg.getProperty("IS_SEND_MAIL"));
 
 	final static Logger logger = Logger.getLogger(EmailUtils.class);
@@ -54,7 +54,7 @@ public class EmailUtils {
 			props.put("mail.smtp.port", port);
 			Session session = Session.getInstance(props, null);
 			SMTPTransport transport = (SMTPTransport) session.getTransport("smtp");
-			logger.info(host + port+ email+ password);
+			logger.info(host + port + email + password);
 			transport.connect(host, port, email, password);
 			transport.close();
 			return true;
@@ -93,8 +93,8 @@ public class EmailUtils {
 				String response = t.getLastServerResponse();
 				t.close();
 				if (response.contains("OK")) {
-					String logInfo = username + " - " + page + " - Send Mail" + " To " + toAddr + " - Subject: " + subject
-							+ " - Message: " + message;
+					String logInfo = username + " - " + page + " - Send Mail" + " To " + toAddr + " - Subject: "
+							+ subject + " - Message: " + message;
 					logger.info(logInfo);
 					return true;
 				}
@@ -104,11 +104,12 @@ public class EmailUtils {
 				logger.info(logInfo);
 				return true;
 			}
-			
+
 		} catch (AuthenticationFailedException e) {
-			logger.error("AuthenticationFailedException: Cannot connect to email" + e.getMessage());
+			logger.error("AuthenticationFailedException: Cannot connect to email " + e.getMessage());
 		} catch (Exception e) {
-			logger.error("Exception: Cannot connect to email" + e.getMessage());
+			logger.error("Exception: Cannot connect to email " + e.getMessage());
+			logger.error("Exception: Cannot connect to email " + toAddr);
 		}
 		return false;
 
@@ -126,23 +127,25 @@ public class EmailUtils {
 				Message msg = new MimeMessage(session);
 				msg.setFrom(new InternetAddress(email));
 				msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(mainEmail, false));
-	
-				String cc = "";
-	
-				for (String ccEmail : listCCEmail) {
-					cc += "," + ccEmail;
+
+				if (listCCEmail != null && listCCEmail.size() != 0) {
+					String cc = "";
+
+					for (String ccEmail : listCCEmail) {
+						cc += "," + ccEmail;
+					}
+
+					if (cc.startsWith(",")) {
+						cc = cc.replaceFirst(",", "");
+					}
+
+					if (cc.indexOf(',') > 0) {
+						msg.setRecipients(Message.RecipientType.CC, InternetAddress.parse(cc));
+					} else {
+						msg.setRecipient(Message.RecipientType.CC, new InternetAddress(cc));
+					}
 				}
-	
-				if (cc.startsWith(",")) {
-					cc = cc.replaceFirst(",", "");
-				}
-	
-				if (cc.indexOf(',') > 0) {
-					msg.setRecipients(Message.RecipientType.CC, InternetAddress.parse(cc));
-				} else {
-					msg.setRecipient(Message.RecipientType.CC, new InternetAddress(cc));
-				}
-	
+
 				msg.setSubject(subject);
 				msg.setText(message);
 				msg.setHeader("iTool_App", "Email from system");
@@ -153,8 +156,8 @@ public class EmailUtils {
 				String response = t.getLastServerResponse();
 				t.close();
 				if (response.contains("OK")) {
-					String logInfo = username + " - " + page + " - Send Mail" + " To " + mainEmail + " - CC: " + listCCEmail
-							+ " - Subject: " + subject + " - Message: " + message;
+					String logInfo = username + " - " + page + " - Send Mail" + " To " + mainEmail + " - CC: "
+							+ listCCEmail + " - Subject: " + subject + " - Message: " + message;
 					logger.info(logInfo);
 					return true;
 				}
@@ -165,9 +168,10 @@ public class EmailUtils {
 				return true;
 			}
 		} catch (AuthenticationFailedException e) {
-			logger.error("AuthenticationFailedException: Cannot connect to email" + e.getMessage());
+			logger.error("AuthenticationFailedException: Cannot connect to email " + e.getMessage());
 		} catch (Exception e) {
-			logger.error("Exception: Cannot connect to email" + e.getMessage());
+			logger.error("Exception: Cannot connect to email " + e.getMessage());
+			logger.error("Exception: Cannot connect to email " + mainEmail + ", " + listCCEmail);
 		}
 		return false;
 
@@ -217,14 +221,15 @@ public class EmailUtils {
 		} catch (AuthenticationFailedException e) {
 			logger.error("AuthenticationFailedException: Cannot connect to email" + e.getMessage());
 		} catch (Exception e) {
-			logger.error("Exception: Cannot connect to email" + e.getMessage());
+			logger.error("Exception: Cannot connect to email " + e.getMessage());
+			logger.error("Exception: Cannot connect to email " + mainEmail);
 		}
 		return false;
 
 	}
-	
-	
-	public boolean sendEmailCCWithAttachedFile(String mainEmail, List<String> listCCEmail, String subject, String pathFile) {
+
+	public boolean sendEmailCCWithAttachedFile(String mainEmail, List<String> listCCEmail, String subject,
+			String pathFile) {
 		try {
 			Properties props = new Properties();
 			props.put("mail.smtp.auth", "true");
@@ -252,22 +257,23 @@ public class EmailUtils {
 			messageBodyPart.setFileName("LogFile.txt");
 			multipart.addBodyPart(messageBodyPart);
 			msg.setContent(multipart);
-			
-			
-			String cc = "";
-			
-			for (String ccEmail : listCCEmail) {
-				cc += "," + ccEmail;
-			}
 
-			if (cc.startsWith(",")) {
-				cc = cc.replaceFirst(",", "");
-			}
+			if (listCCEmail != null && listCCEmail.size() != 0) {
+				String cc = "";
 
-			if (cc.indexOf(',') > 0) {
-				msg.setRecipients(Message.RecipientType.CC, InternetAddress.parse(cc));
-			} else {
-				msg.setRecipient(Message.RecipientType.CC, new InternetAddress(cc));
+				for (String ccEmail : listCCEmail) {
+					cc += "," + ccEmail;
+				}
+
+				if (cc.startsWith(",")) {
+					cc = cc.replaceFirst(",", "");
+				}
+
+				if (cc.indexOf(',') > 0) {
+					msg.setRecipients(Message.RecipientType.CC, InternetAddress.parse(cc));
+				} else {
+					msg.setRecipient(Message.RecipientType.CC, new InternetAddress(cc));
+				}
 			}
 
 			SMTPTransport t = (SMTPTransport) session.getTransport("smtp");
@@ -283,9 +289,10 @@ public class EmailUtils {
 				return true;
 			}
 		} catch (AuthenticationFailedException e) {
-			logger.error("AuthenticationFailedException: Cannot connect to email" + e.getMessage());
+			logger.error("AuthenticationFailedException: Cannot connect to email " + e.getMessage());
 		} catch (Exception e) {
-			logger.error("Exception: Cannot connect to email" + e.getMessage());
+			logger.error("Exception: Cannot connect to email " + e.getMessage());
+			logger.error("Exception: Cannot connect to email " + mainEmail + ", " + listCCEmail);
 		}
 		return false;
 

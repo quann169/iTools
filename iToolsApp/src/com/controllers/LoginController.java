@@ -331,6 +331,29 @@ public class LoginController {
 		}
 		return emailUser;
 	}
+	
+	
+	public String getFullNameUser(String companycode, String username) {
+		String fullName = "";
+		String sql = "SELECT FirstName, LastName FROM Assessor where Assessor.UserName = '" + username
+				+ "' and Assessor.CompanyCode = '" + companycode + "';";
+		logger.info(sql);
+		try {
+			PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
+			ResultSet rs = statement.executeQuery(sql);
+
+			while (rs.next()) {
+				fullName = rs.getString(1) + " " + rs.getString(2);
+				break;
+			}
+		} catch (Exception e) {
+			logger.info(e.getMessage());
+			return "";
+		} finally {
+			mysqlConnect.disconnect();
+		}
+		return fullName;
+	}
 
 	public String getEmailUser(String username) {
 		String emailUser = "";

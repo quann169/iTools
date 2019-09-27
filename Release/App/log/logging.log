@@ -1,50 +1,14 @@
-2019-02-22 16:29:07 INFO  LoginPage:530 - ************************************************************
-2019-02-22 16:29:07 INFO  LoginPage:531 - ************************************************************
-2019-02-22 16:29:07 INFO  LoginPage:532 - ************************************************************
-2019-02-22 16:29:07 INFO  LoginPage:533 - ************************************************************
-2019-02-22 16:29:07 INFO  LoginPage:534 - Starting iTool app.
-2019-02-22 16:29:07 INFO  LoginPage:535 - companyCode: VINAMOILTOOLS
-2019-02-22 16:29:07 INFO  LoginPage:536 - companyCodeUH: Optiwell
-2019-02-22 16:29:07 INFO  LoginPage:537 - machineCode: VM-1
-2019-02-22 16:29:11 INFO  LoginPage:540 - mDbHost: localhost
-2019-02-22 16:29:11 INFO  LoginPage:541 - mDbUser: admin
-2019-02-22 16:29:11 INFO  LoginPage:542 - mDbPwds: 1qazxsw2
-2019-02-22 16:29:11 INFO  LoginPage:543 - mDbName: iTools_v1p0
-2019-02-22 16:29:11 INFO  LoginPage:544 - mDbPort: 3306
-2019-02-22 16:29:11 INFO  LoginPage:545 - Database version: v1p0 - 2018-08-11 13:02:35
-2019-02-22 16:29:11 INFO  LoginPage:547 - Last Sync: 2018-12-25 16:16:01
-2019-02-22 16:29:11 INFO  LoginPage:551 - connectToHost: OK
-2019-02-22 16:29:19 INFO  EmailUtils:57 - mail.tqteam.net25itool_app@tqteam.net1qazxsw2!A
-2019-02-22 16:29:24 INFO  LoginPage:577 - checkEmailConfig: true
-2019-02-22 16:29:25 INFO  LoginPage:371 - ========================================
-2019-02-22 16:29:25 INFO  LoginPage:372 - Start syncing thread - BV9PGWVV
-2019-02-22 16:29:25 INFO  LoginPage:373 - ========================================
-2019-02-22 16:29:25 INFO  SyncController:64 - Start SyncHostToLocal
-2019-02-22 16:29:25 INFO  LogController:134 - select NewValue from MasterLog where Action = 'SendLog' order by NewValue desc limit 1;
-2019-02-22 16:29:26 INFO  SyncController:72 - SyncHostToLocal_AssessorinsertAssessor: 6,
-updateAssessor: 4
-2019-02-22 16:29:26 INFO  SyncController:80 - SyncHostToLocal_RoleAssessorinsertRoleAssessor: 10,
-updateRoleAssessor: 0
-2019-02-22 16:29:26 INFO  SyncController:88 - SyncHostToLocal_Machine: insertMachine: 1,
-updateMachine: 2
-2019-02-22 16:29:27 INFO  SyncController:96 - SyncHostToLocal_Company: insertCompany: 1,
-updateCompany: 0
-2019-02-22 16:29:27 INFO  SyncController:104 - SyncHostToLocal_CompanyMachine: insertCompanyMachine: 0,
-updateCompanyMachine: 1
-2019-02-22 16:29:29 INFO  SyncController:112 - SyncHostToLocal_Tools: insertCompanyMachine: 0,
-updateCompanyMachine: 1,
-insertTools: 0,
-updateTools: 0
-2019-02-22 16:29:29 INFO  SyncController:116 - End SyncHostToLocal: 3s
-2019-02-22 16:29:29 INFO  SyncController:120 - Start SyncLocalToHost
-2019-02-22 16:29:29 INFO  SyncController:130 - SyncLocalToHost_ToolsMachineTray: insertToolsMachineTray: 0,
-updateToolsMachineTray: 0
-2019-02-22 16:29:29 INFO  SyncController:138 - SyncLocalToHost_WorkingTransaction: insertWorkingTransaction: 0,
-updateWorkingTransaction: 0
-2019-02-22 16:29:29 INFO  SyncController:141 - End SyncLocalToHost: 0s
-2019-02-22 16:29:29 INFO  LoginPage:376 - ========================================
-2019-02-22 16:29:29 INFO  LoginPage:377 - End syncing thread - BV9PGWVV
-2019-02-22 16:29:29 INFO  LoginPage:378 - ========================================
-2019-02-22 16:29:39 INFO  LogController:162 - insert into MasterLog(Action, NewValue) values('SendLog', '2019-02-22 16:29:25')
-2019-02-22 16:29:39 INFO  LoginPage:494 - Update 2019-02-22 16:29:25 to MasterLog successfully.
-2019-02-22 16:29:39 INFO  LoginPage:503 - Delete log file successfully.
+2019-08-19 14:25:53 INFO  SerialTest2:119 - ========================================
+2019-08-19 14:25:53 INFO  SerialTest2:124 - Start sending message
+2019-08-19 14:25:53 INFO  SerialTest2:128 - Send message [TestString]
+2019-08-19 14:25:57 INFO  SerialTest2:128 - Send message [TestString]
+2019-08-19 14:26:01 INFO  SerialTest2:128 - Send message [TestString]
+2019-08-19 14:26:05 INFO  SerialTest2:128 - Send message [TestString]
+2019-08-19 14:26:09 INFO  SerialTest2:119 - ========================================
+2019-08-19 14:26:09 INFO  SerialTest2:124 - Start sending message
+2019-08-19 14:26:09 INFO  SerialTest2:128 - Send message [TestString]
+2019-08-19 14:26:13 INFO  SerialTest2:128 - Send message [TestString]
+2019-08-19 14:26:17 INFO  SerialTest2:128 - Send message [TestString]
+2019-08-19 14:26:21 INFO  SerialTest2:128 - Send message [TestString]
+2019-08-19 14:26:25 INFO  SerialTest2:128 - Send message [TestString]
+2019-08-19 14:26:29 INFO  SerialTest2:128 - Send message [TestString]

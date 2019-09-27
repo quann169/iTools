@@ -46,7 +46,7 @@ public class EncryptionTools {
 		
 		
 		List<List<String>> keysValue = new ArrayList<>();
-		file = new File("./config.properties");
+		file = new File("./raw_data.txt");
 		if (file.exists() && file.canRead()) {
 			try {
 				keysValue = readConfigFile(file, 0L, listKeys);
@@ -54,7 +54,7 @@ public class EncryptionTools {
 				logger.error(e.getMessage());
 			}
 		} else {
-			logger.error("config.properties not existed");
+			logger.error("raw_data.txt not existed");
 		}
 		
 		logger.info("Key Value: " + keysValue);
@@ -69,7 +69,7 @@ public class EncryptionTools {
 		
 		logger.info("Key Value Encrypted: " + keysValue);
 		
-		String fileNameOut = "./config_encrypted.txt";
+		String fileNameOut = "./encrypted_data.txt";
 		
 		
 		try {
